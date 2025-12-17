@@ -1,0 +1,33 @@
+[
+  {
+    "objectID": "src/00/welcome.html#welcome-content",
+    "href": "src/00/welcome.html#welcome-content",
+    "title": "Welcome",
+    "section": "Welcome Content",
+    "text": "Welcome Content",
+    "crumbs": [
+      "Welcome!",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "CS-394/594",
+    "section": "",
+    "text": "This site contains a collection of slides, code, and other resources for lectures held within the 25/26 CS-394/594 course.",
+    "crumbs": [
+      "CS-394/594"
+    ]
+  },
+  {
+    "objectID": "index.html#about",
+    "href": "index.html#about",
+    "title": "CS-394/594",
+    "section": "",
+    "text": "This site contains a collection of slides, code, and other resources for lectures held within the 25/26 CS-394/594 course.",
+    "crumbs": [
+      "CS-394/594"
+    ]
+  }
+]
