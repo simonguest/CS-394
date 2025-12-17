@@ -1,0 +1,13 @@
+---
+title: "Welcome"
+author: "Simon Guest"
+format: 
+  revealjs:
+    slide-number: true
+    incremental: true
+    center-title-slide: true
+    theme: default
+logo: ../../src/logos/DigiPen_RGB_Red.png
+---
+
+## Welcome Content

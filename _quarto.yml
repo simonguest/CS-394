@@ -1,0 +1,29 @@
+project:
+  type: website
+  output-dir: dist
+  render:
+    - "*.qmd"
+    - "*.ipynb"
+    - "!LICENSE.md"
+format:
+  html:
+    theme: 
+      light: flatly
+      dark: darkly
+website:
+  title: "CS-394"
+  page-navigation: true
+  sidebar:
+    logo: src/logos/DigiPen_Dragon_Shield_RGB_Black.png
+    style: "docked"
+    collapse-level: 2
+    search: true
+    contents:
+      - text: "CS-394/594"
+        href: index.qmd
+      - text: "---"
+      - section: "Welcome!"
+        contents:
+          - text: "Slides"
+            href: src/00/welcome.qmd
+            target: blank

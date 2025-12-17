@@ -1,0 +1,5 @@
+# CS-394/594
+
+## About
+
+This site contains a collection of slides, code, and other resources for lectures held within the 25/26 CS-394/594 course.

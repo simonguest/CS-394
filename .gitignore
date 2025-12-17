@@ -1,0 +1,26 @@
+# Virtual env folder
+.venv
+
+# Quarto config folder
+.quarto
+
+# Quarto build folder
+dist
+/.quarto/
+
+# Node modules folders for demos
+node_modules
+
+# Env files
+.env
+
+# Pycache
+__pycache__
+
+# Gradio
+.gradio
+
+# Mac Finder
+.DS_Store
+
+**/*.quarto_ipynb
