@@ -9,8 +9,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.26">
 
-  <meta name="author" content="Simon Guest">
-  <title>CS-394 – Welcome to CS-394/594!</title>
+  <title>CS-394 – Week 1: Foundations of Generative AI</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -28,6 +27,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #24292e;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #24292e; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #6a737d; } /* Annotation */
+    code span.at { color: #d73a49; } /* Attribute */
+    code span.bn { color: #005cc5; } /* BaseN */
+    code span.bu { color: #d73a49; } /* BuiltIn */
+    code span.cf { color: #d73a49; } /* ControlFlow */
+    code span.ch { color: #032f62; } /* Char */
+    code span.cn { color: #005cc5; } /* Constant */
+    code span.co { color: #6a737d; } /* Comment */
+    code span.cv { color: #6a737d; } /* CommentVar */
+    code span.do { color: #6a737d; } /* Documentation */
+    code span.dt { color: #d73a49; } /* DataType */
+    code span.dv { color: #005cc5; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #d73a49; font-weight: bold; } /* Extension */
+    code span.fl { color: #005cc5; } /* Float */
+    code span.fu { color: #6f42c1; } /* Function */
+    code span.im { color: #032f62; } /* Import */
+    code span.in { color: #6a737d; } /* Information */
+    code span.kw { color: #d73a49; } /* Keyword */
+    code span.op { color: #24292e; } /* Operator */
+    code span.ot { color: #6f42c1; } /* Other */
+    code span.pp { color: #d73a49; } /* Preprocessor */
+    code span.re { color: #6a737d; } /* RegionMarker */
+    code span.sc { color: #005cc5; } /* SpecialChar */
+    code span.ss { color: #032f62; } /* SpecialString */
+    code span.st { color: #032f62; } /* String */
+    code span.va { color: #e36209; } /* Variable */
+    code span.vs { color: #032f62; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-a39a92c06113b896d7c71398f6e66dea.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -127,250 +192,83 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Welcome to CS-394/594!</h1>
+  <h1 class="title">Week 1: Foundations of Generative AI</h1>
 
 <div class="quarto-title-authors">
-<div class="quarto-title-author">
-<div class="quarto-title-author-name">
-Simon Guest 
-</div>
-</div>
 </div>
 
 </section>
-<section id="introductions" class="title-slide slide level1 center">
-<h1>Introductions</h1>
-
+<section id="lesson-objectives" class="slide level2">
+<h2>Lesson Objectives</h2>
+<ul>
+<li class="fragment">Understand how generative AI fits with other AI techniques</li>
+<li class="fragment">How to create vector embeddings and test for similarity</li>
+<li class="fragment">Understand the transformer architecture and how it works at a high level</li>
+<li class="fragment">Setup and use Colab Pro for experimenting with vector embeddings and downloading/testing a GPT-2 model.</li>
+<li class="fragment">Start becoming familiar with the basics of notebooks and Python (if you haven’t used it already)</li>
+</ul>
 </section>
-
 <section>
-<section id="course-overview" class="title-slide slide level1 center">
-<h1>Course Overview</h1>
+<section id="a-recap-of-mlneural-network-architectures" class="title-slide slide level1 center">
+<h1>A recap of ML/Neural Network architectures</h1>
 
 </section>
-<section id="course-description" class="slide level2">
-<h2>Course Description</h2>
-<ul>
-<li class="fragment"><strong>How Generative AI Works</strong> focuses on the practical implementation of generative AI within custom software applications and games.</li>
-<li class="fragment">The course covers neural network architectures, including the impact of the Transformer model, customization of large language models across multiple vendors using APIs, and experimentation with multimodal models for image and audio recognition and generation.</li>
-</ul>
-</section>
-<section id="course-description-1" class="slide level2">
-<h2>Course Description</h2>
-<ul>
-<li class="fragment">Hands-on experience includes working with both hosted and locally run models, integrating AI with game engines such as Unity and Unreal, and developing AI agents that extend beyond simple chat-based interactions.</li>
-<li class="fragment">Ethical considerations and model evaluation are integrated throughout, emphasizing awareness of broader societal implications.</li>
-<li class="fragment">Through lectures, programming assignments, and a final project, the course provides the expertise needed to apply generative AI in creating innovative and interactive experiences.</li>
-</ul>
-</section>
-<section id="learning-outcomes" class="slide level2">
-<h2>Learning Outcomes</h2>
-<ul>
-<li class="fragment">Understand the basic working principles and history of current LLMs (Large Language Models)</li>
-<li class="fragment">Understand ethical and safety aspects of using generative models</li>
-<li class="fragment">Evaluate and test generative models using industry benchmarks</li>
-<li class="fragment">Run generative models on local, laptop-based hardware (using CPU, GPU, NPUs)</li>
-</ul>
-</section>
-<section id="learning-outcomes-1" class="slide level2">
-<h2>Learning Outcomes</h2>
-<ul>
-<li class="fragment">Create AI-based agents and tools based on the MCP (Model Context Protocol) specification</li>
-<li class="fragment">Avoid hallucinations by increasing the accuracy of models through RAG (Retrieval Augmented Generation) and fine-tuning</li>
-<li class="fragment">Explore and use multimodal models for image and audio recognition and generation</li>
-<li class="fragment">Create and deploy API-based clients, accessing LLMs hosted by different vendors (OpenAI, Meta, Google)</li>
-</ul>
-</section>
-<section id="overall" class="slide level2">
-<h2>Overall</h2>
-<ul>
-<li class="fragment">Provide a level of understanding beyond where most professional software developers are today</li>
-<li class="fragment">Build some cool stuff</li>
-<li class="fragment">Create a final project that you can add to your portfolio</li>
-</ul>
-</section></section>
-<section>
-<section id="syllabus-overview" class="title-slide slide level1 center">
-<h1>Syllabus Overview</h1>
-
-</section>
-<section id="syllabus-overview-1" class="slide level2">
-<h2>Syllabus Overview</h2>
+<section id="a-recap-of-mlneural-network-architectures-1" class="slide level2">
+<h2>A recap of ML/Neural Network architectures</h2>
 <ul>
 <li class="fragment">TBD</li>
 </ul>
 </section></section>
 <section>
-<section id="what-to-expect-in-each-class" class="title-slide slide level1 center">
-<h1>What to Expect in Each Class</h1>
+<section id="vector-embeddings" class="title-slide slide level1 center">
+<h1>Vector Embeddings</h1>
 
 </section>
-<section id="schedule" class="slide level2">
-<h2>Schedule</h2>
+<section id="what-are-vector-embeddings" class="slide level2">
+<h2>What are Vector Embeddings?</h2>
 <ul>
-<li class="fragment">Every Friday (Curie); 2pm - 4.50pm</li>
-<li class="fragment">~1.5 hours of lecture, together with hands-on exercises</li>
-<li class="fragment">~1.5 hours for in-class lab time, working on assignments</li>
-<li class="fragment">Expectation of after-class work, especially for final project</li>
-</ul>
-</section>
-<section id="during-class" class="slide level2">
-<h2>During Class</h2>
+<li class="fragment">Vector Embeddings are <strong>meaningful numerical representations</strong> of words
 <ul>
-<li class="fragment">Strive for conversation and interactivity
-<ul>
-<li class="fragment">Please ask questions, even mid-slide!</li>
-<li class="fragment">I enjoy going off on tangents / on the whiteboard</li>
-<li class="fragment">Use lab time to seek input / troubleshoot code</li>
+<li class="fragment">Representations where strings of words (i.e., sentences) are encoded into multi-dimensional space</li>
+<li class="fragment">Similar sentences have similar numbers</li>
 </ul></li>
 </ul>
 </section>
-<section id="handing-in-work" class="slide level2">
-<h2>Handing in Work</h2>
-<ul>
-<li class="fragment">Everything submitted via GitHub
-<ul>
-<li class="fragment">Recommend creating a repo for in-class assignments</li>
-<li class="fragment">And another repo for your final project</li>
-<li class="fragment">Don’t forget to give me permissions! <span class="citation" data-cites="simonguest">@simonguest</span></li>
-</ul></li>
-<li class="fragment">Graded Course
-<ul>
-<li class="fragment">General rubric for the in-class assignments</li>
-<li class="fragment">Complete rubric for the final project</li>
-</ul></li>
-</ul>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a>model.encode(<span class="st">"The cat sat on the mat"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>array([ 1.30401835e-01, -1.18701281e-02, 
+       -2.81170383e-02,  5.12386411e-02,
+       -5.59744686e-02,  3.01915426e-02, 
+        3.01612969e-02,  2.46983729e-02,
+       ...
+])</code></pre>
 </section>
-<section id="handing-in-work-1" class="slide level2">
-<h2>Handing in Work</h2>
-<ul>
-<li class="fragment">Deadlines (In-class Assignments)
-<ul>
-<li class="fragment">Assignments are due by the following week’s lesson</li>
-<li class="fragment">i.e., you get a week for each assignment</li>
-<li class="fragment">If you need more time/exception, please reach out via Teams</li>
-</ul></li>
-<li class="fragment">Deadlines (Final Project)
-<ul>
-<li class="fragment">Up until Week 15 presentations</li>
-<li class="fragment">(We’ll cover in detail later in the semester)</li>
-</ul></li>
-</ul>
+<section id="example-1" class="slide level2">
+<h2>Example</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>model.encode(<span class="st">"The dog rested on the rug"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>array([ 1.22975238e-01,  4.51563150e-02, 
+        3.61849144e-02,  9.36113819e-02,
+       -2.68524364e-02,  6.86257482e-02,
+       -1.26129715e-03,  2.68533616e-03,
+       ...
+])</code></pre>
+</section>
+<section id="example-2" class="slide level2">
+<h2>Example</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a>model.encode(<span class="st">"I love pizza!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>array([-9.43841636e-02,  2.38583814e-02, 
+        9.20313317e-03,  4.99277934e-02,
+       -9.53309909e-02,  6.13559736e-03, 
+        3.51318866e-02,  8.50055646e-03,
+       ...
+])</code></pre>
+
+
 </section></section>
-<section>
-<section id="tools-languages-and-hardware" class="title-slide slide level1 center">
-<h1>Tools, Languages, and Hardware</h1>
-
-</section>
-<section id="tools" class="slide level2">
-<h2>Tools</h2>
-<ul>
-<li class="fragment">We will be introducing many tools
-<ul>
-<li class="fragment">Colab Pro, OpenRouter, Hugging Face, etc.</li>
-<li class="fragment">Most will be free</li>
-<li class="fragment">Expect to need about $10-25 in OpenRouter API credits</li>
-</ul></li>
-</ul>
-</section>
-<section id="languages" class="slide level2">
-<h2>Languages</h2>
-<ul>
-<li class="fragment">We will be using (and learning) a lot of Python!
-<ul>
-<li class="fragment">Most of the in-class assignments will be in Python</li>
-<li class="fragment">Don’t worry if you are new to Python as we’ll introduce concepts gradually
-<ul>
-<li class="fragment">Although recommend investing extra time</li>
-</ul></li>
-</ul></li>
-<li class="fragment">Final Project
-<ul>
-<li class="fragment">Can be any language</li>
-<li class="fragment">Probably depending on what you choose to create</li>
-</ul></li>
-</ul>
-</section>
-<section id="hardware" class="slide level2">
-<h2>Hardware</h2>
-<ul>
-<li class="fragment">Will will be training small models (SLMs) later in the semester</li>
-<li class="fragment">This training will require a decent GPU and VRAM
-<ul>
-<li class="fragment">Colab Pro (CUDA)</li>
-<li class="fragment">Your own NVIDIA-based laptop (CUDA)</li>
-<li class="fragment">Potential of using MLX for any Mac users</li>
-</ul></li>
-</ul>
-</section></section>
-<section>
-<section id="need-help" class="title-slide slide level1 center">
-<h1>Need Help?</h1>
-
-</section>
-<section id="need-help-1" class="slide level2">
-<h2>Need Help?</h2>
-<ul>
-<li class="fragment">Everything we cover will be on my GitHub repo
-<ul>
-<li class="fragment"><a href="https://simonguest.github.io/CS-394">https://simonguest.github.io/CS-394</a></li>
-<li class="fragment">Slides (current and prior lectures), Demo code, Links</li>
-</ul></li>
-<li class="fragment">Office Hours
-<ul>
-<li class="fragment">Thursdays 1pm - 3pm</li>
-<li class="fragment">Either on campus or virtually via Teams</li>
-</ul></li>
-<li class="fragment">Teams
-<ul>
-<li class="fragment">Primary mechanism for updates, ask questions, request office hours, etc.</li>
-</ul></li>
-</ul>
-</section></section>
-<section>
-<section id="before-we-get-started" class="title-slide slide level1 center">
-<h1>Before We Get Started</h1>
-
-</section>
-<section id="steep-learning-curve" class="slide level2">
-<h2>Steep Learning Curve</h2>
-<ul>
-<li class="fragment">We will be using the latest tools and AI models</li>
-<li class="fragment">Lots of new tools, acronyms, frameworks, etc.</li>
-<li class="fragment">Much of the curriculum builds upon itself
-<ul>
-<li class="fragment">Please try not to miss lectures</li>
-<li class="fragment">Ask for help if you need to catch up</li>
-</ul></li>
-</ul>
-</section>
-<section id="new-course-at-digipen" class="slide level2">
-<h2>New Course at DigiPen!</h2>
-<ul>
-<li class="fragment">There may be some minor curriculum tweaks mid-flight
-<ul>
-<li class="fragment">Especially for topics that need less/more time</li>
-</ul></li>
-</ul>
-</section>
-<section id="fast-moving-space" class="slide level2">
-<h2>Fast Moving Space</h2>
-<ul>
-<li class="fragment">There will be areas/questions that I don’t have experience of
-<ul>
-<li class="fragment">e.g., multiple new models are launched every week</li>
-</ul></li>
-<li class="fragment">But that’s what makes it exciting!</li>
-</ul>
-</section></section>
-<section id="questions" class="title-slide slide level1 center">
-<h1>Questions?</h1>
-
-
-</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
-<p><img src="../../src/logos/DigiPen_RGB_Red.png" class="slide-logo"></p>
+<p><img src="../../theme/logos/DigiPen_RGB_Red.png" class="slide-logo"></p>
 <div class="footer footer-default">
 
 </div>
