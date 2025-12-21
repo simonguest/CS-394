@@ -1,0 +1,81 @@
+---
+title: "Week 1: Foundations of Generative AI"
+format:
+  revealjs:
+    slide-number: true
+    incremental: true
+    center-title-slide: true
+    theme: [default, ../../theme/digipen-ai.scss]
+    highlight-style: github
+    width: 1050
+    height: 700
+    margin: 0.15
+logo: ../../theme/logos/DigiPen_RGB_Red.png
+---
+
+## Lesson Objectives
+
+- Understand how generative AI fits with other AI techniques
+- How to create vector embeddings and test for similarity
+- Understand the transformer architecture and how it works at a high level
+- Setup and use Colab Pro for experimenting with vector embeddings and downloading/testing a GPT-2 model.
+- Start becoming familiar with the basics of notebooks and Python (if you haven’t used it already)
+
+# A recap of ML/Neural Network architectures
+
+## A recap of ML/Neural Network architectures
+
+- TBD
+
+# Vector Embeddings
+
+## What are Vector Embeddings?
+
+- Vector Embeddings are **meaningful numerical representations** of words
+  - Representations where strings of words (i.e., sentences) are encoded into multi-dimensional space
+  - Similar sentences have similar numbers
+
+## Example
+
+```python
+model.encode("The cat sat on the mat")
+```
+
+```
+array([ 1.30401835e-01, -1.18701281e-02, 
+       -2.81170383e-02,  5.12386411e-02,
+       -5.59744686e-02,  3.01915426e-02, 
+        3.01612969e-02,  2.46983729e-02,
+       ...
+])
+```
+
+## Example
+
+```python
+model.encode("The dog rested on the rug")
+```
+
+```
+array([ 1.22975238e-01,  4.51563150e-02, 
+        3.61849144e-02,  9.36113819e-02,
+       -2.68524364e-02,  6.86257482e-02,
+       -1.26129715e-03,  2.68533616e-03,
+       ...
+])
+```
+
+## Example
+
+```python
+model.encode("I love pizza!")
+```
+
+```
+array([-9.43841636e-02,  2.38583814e-02, 
+        9.20313317e-03,  4.99277934e-02,
+       -9.53309909e-02,  6.13559736e-03, 
+        3.51318866e-02,  8.50055646e-03,
+       ...
+])
+```

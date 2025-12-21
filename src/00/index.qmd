@@ -11,7 +11,7 @@ format:
     width: 1050
     height: 700
     margin: 0.15
-logo: ../../src/logos/DigiPen_RGB_Red.png
+logo: ../../theme/logos/DigiPen_RGB_Red.png
 ---
 
 # Introductions

@@ -7,3 +7,6 @@ requires-python = ">=3.13"
 dependencies = [
     "quarto-cli>=1.7.31",
 ]
+
+[tool.uv.workspace]
+members = ["src/01"]

@@ -22,8 +22,13 @@ website:
       - text: "CS-394/594"
         href: index.qmd
       - text: "---"
-      - section: "Welcome!"
+      - section: "Welcome to CS-394/594!"
         contents:
           - text: "Slides"
-            href: src/00/welcome.qmd
+            href: src/00/index.qmd
+            target: blank
+      - section: "Week 1: Foundations of Generative AI"
+        contents:
+          - text: "Slides"
+            href: src/01/index.qmd
             target: blank
