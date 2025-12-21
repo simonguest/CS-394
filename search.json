@@ -1,10 +1,186 @@
 [
   {
-    "objectID": "src/00/welcome.html#welcome-content",
-    "href": "src/00/welcome.html#welcome-content",
-    "title": "Welcome",
-    "section": "Welcome Content",
-    "text": "Welcome Content",
+    "objectID": "src/00/welcome.html#course-description",
+    "href": "src/00/welcome.html#course-description",
+    "title": "Welcome to CS-394/594!",
+    "section": "Course Description",
+    "text": "Course Description\n\nHow Generative AI Works focuses on the practical implementation of generative AI within custom software applications and games.\nThe course covers neural network architectures, including the impact of the Transformer model, customization of large language models across multiple vendors using APIs, and experimentation with multimodal models for image and audio recognition and generation.",
+    "crumbs": [
+      "Welcome!",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/00/welcome.html#course-description-1",
+    "href": "src/00/welcome.html#course-description-1",
+    "title": "Welcome to CS-394/594!",
+    "section": "Course Description",
+    "text": "Course Description\n\nHands-on experience includes working with both hosted and locally run models, integrating AI with game engines such as Unity and Unreal, and developing AI agents that extend beyond simple chat-based interactions.\nEthical considerations and model evaluation are integrated throughout, emphasizing awareness of broader societal implications.\nThrough lectures, programming assignments, and a final project, the course provides the expertise needed to apply generative AI in creating innovative and interactive experiences.",
+    "crumbs": [
+      "Welcome!",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/00/welcome.html#learning-outcomes",
+    "href": "src/00/welcome.html#learning-outcomes",
+    "title": "Welcome to CS-394/594!",
+    "section": "Learning Outcomes",
+    "text": "Learning Outcomes\n\nUnderstand the basic working principles and history of current LLMs (Large Language Models)\nUnderstand ethical and safety aspects of using generative models\nEvaluate and test generative models using industry benchmarks\nRun generative models on local, laptop-based hardware (using CPU, GPU, NPUs)",
+    "crumbs": [
+      "Welcome!",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/00/welcome.html#learning-outcomes-1",
+    "href": "src/00/welcome.html#learning-outcomes-1",
+    "title": "Welcome to CS-394/594!",
+    "section": "Learning Outcomes",
+    "text": "Learning Outcomes\n\nCreate AI-based agents and tools based on the MCP (Model Context Protocol) specification\nAvoid hallucinations by increasing the accuracy of models through RAG (Retrieval Augmented Generation) and fine-tuning\nExplore and use multimodal models for image and audio recognition and generation\nCreate and deploy API-based clients, accessing LLMs hosted by different vendors (OpenAI, Meta, Google)",
+    "crumbs": [
+      "Welcome!",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/00/welcome.html#overall",
+    "href": "src/00/welcome.html#overall",
+    "title": "Welcome to CS-394/594!",
+    "section": "Overall",
+    "text": "Overall\n\nProvide a level of understanding beyond where most professional software developers are today\nBuild some cool stuff\nCreate a final project that you can add to your portfolio",
+    "crumbs": [
+      "Welcome!",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/00/welcome.html#syllabus-overview-1",
+    "href": "src/00/welcome.html#syllabus-overview-1",
+    "title": "Welcome to CS-394/594!",
+    "section": "Syllabus Overview",
+    "text": "Syllabus Overview\n\nTBD",
+    "crumbs": [
+      "Welcome!",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/00/welcome.html#schedule",
+    "href": "src/00/welcome.html#schedule",
+    "title": "Welcome to CS-394/594!",
+    "section": "Schedule",
+    "text": "Schedule\n\nEvery Friday (Curie); 2pm - 4.50pm\n~1.5 hours of lecture, together with hands-on exercises\n~1.5 hours for in-class lab time, working on assignments\nExpectation of after-class work, especially for final project",
+    "crumbs": [
+      "Welcome!",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/00/welcome.html#during-class",
+    "href": "src/00/welcome.html#during-class",
+    "title": "Welcome to CS-394/594!",
+    "section": "During Class",
+    "text": "During Class\n\nStrive for conversation and interactivity\n\nPlease ask questions, even mid-slide!\nI enjoy going off on tangents / on the whiteboard\nUse lab time to seek input / troubleshoot code",
+    "crumbs": [
+      "Welcome!",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/00/welcome.html#handing-in-work",
+    "href": "src/00/welcome.html#handing-in-work",
+    "title": "Welcome to CS-394/594!",
+    "section": "Handing in Work",
+    "text": "Handing in Work\n\nEverything submitted via GitHub\n\nRecommend creating a repo for in-class assignments\nAnd another repo for your final project\nDon’t forget to give me permissions! @simonguest\n\nGraded Course\n\nGeneral rubric for the in-class assignments\nComplete rubric for the final project",
+    "crumbs": [
+      "Welcome!",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/00/welcome.html#handing-in-work-1",
+    "href": "src/00/welcome.html#handing-in-work-1",
+    "title": "Welcome to CS-394/594!",
+    "section": "Handing in Work",
+    "text": "Handing in Work\n\nDeadlines (In-class Assignments)\n\nAssignments are due by the following week’s lesson\ni.e., you get a week for each assignment\nIf you need more time/exception, please reach out via Teams\n\nDeadlines (Final Project)\n\nUp until Week 15 presentations\n(We’ll cover in detail later in the semester)",
+    "crumbs": [
+      "Welcome!",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/00/welcome.html#tools",
+    "href": "src/00/welcome.html#tools",
+    "title": "Welcome to CS-394/594!",
+    "section": "Tools",
+    "text": "Tools\n\nWe will be introducing many tools\n\nColab Pro, OpenRouter, Hugging Face, etc.\nMost will be free\nExpect to need about $10-25 in OpenRouter API credits",
+    "crumbs": [
+      "Welcome!",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/00/welcome.html#languages",
+    "href": "src/00/welcome.html#languages",
+    "title": "Welcome to CS-394/594!",
+    "section": "Languages",
+    "text": "Languages\n\nWe will be using (and learning) a lot of Python!\n\nMost of the in-class assignments will be in Python\nDon’t worry if you are new to Python as we’ll introduce concepts gradually\n\nAlthough recommend investing extra time\n\n\nFinal Project\n\nCan be any language\nProbably depending on what you choose to create",
+    "crumbs": [
+      "Welcome!",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/00/welcome.html#hardware",
+    "href": "src/00/welcome.html#hardware",
+    "title": "Welcome to CS-394/594!",
+    "section": "Hardware",
+    "text": "Hardware\n\nWill will be training small models (SLMs) later in the semester\nThis training will require a decent GPU and VRAM\n\nColab Pro (CUDA)\nYour own NVIDIA-based laptop (CUDA)\nPotential of using MLX for any Mac users",
+    "crumbs": [
+      "Welcome!",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/00/welcome.html#need-help-1",
+    "href": "src/00/welcome.html#need-help-1",
+    "title": "Welcome to CS-394/594!",
+    "section": "Need Help?",
+    "text": "Need Help?\n\nEverything we cover will be on my GitHub repo\n\nhttps://simonguest.github.io/CS-394\nSlides (current and prior lectures), Demo code, Links\n\nOffice Hours\n\nThursdays 1pm - 3pm\nEither on campus or virtually via Teams\n\nTeams\n\nPrimary mechanism for updates, ask questions, request office hours, etc.",
+    "crumbs": [
+      "Welcome!",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/00/welcome.html#steep-learning-curve",
+    "href": "src/00/welcome.html#steep-learning-curve",
+    "title": "Welcome to CS-394/594!",
+    "section": "Steep Learning Curve",
+    "text": "Steep Learning Curve\n\nWe will be using the latest tools and AI models\nLots of new tools, acronyms, frameworks, etc.\nMuch of the curriculum builds upon itself\n\nPlease try not to miss lectures\nAsk for help if you need to catch up",
+    "crumbs": [
+      "Welcome!",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/00/welcome.html#new-course-at-digipen",
+    "href": "src/00/welcome.html#new-course-at-digipen",
+    "title": "Welcome to CS-394/594!",
+    "section": "New Course at DigiPen!",
+    "text": "New Course at DigiPen!\n\nThere may be some minor curriculum tweaks mid-flight\n\nEspecially for topics that need less/more time",
+    "crumbs": [
+      "Welcome!",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/00/welcome.html#fast-moving-space",
+    "href": "src/00/welcome.html#fast-moving-space",
+    "title": "Welcome to CS-394/594!",
+    "section": "Fast Moving Space",
+    "text": "Fast Moving Space\n\nThere will be areas/questions that I don’t have experience of\n\ne.g., multiple new models are launched every week\n\nBut that’s what makes it exciting!",
     "crumbs": [
       "Welcome!",
       "Slides"
