@@ -1,5 +1,5 @@
 ---
-title: "Welcome"
+title: "Welcome to CS-394/594!"
 author: "Simon Guest"
 format: 
   revealjs:
@@ -10,4 +10,142 @@ format:
 logo: ../../src/logos/DigiPen_RGB_Red.png
 ---
 
-## Welcome Content
+# Introductions
+
+# Course Overview
+
+## Course Description
+
+- **How Generative AI Works** focuses on the practical implementation of generative AI within custom software applications and games. 
+- The course covers neural network architectures, including the impact of the Transformer model, customization of large language models across multiple vendors using APIs, and experimentation with multimodal models for image and audio recognition and generation. 
+
+## Course Description
+
+- Hands-on experience includes working with both hosted and locally run models, integrating AI with game engines such as Unity and Unreal, and developing AI agents that extend beyond simple chat-based interactions. 
+- Ethical considerations and model evaluation are integrated throughout, emphasizing awareness of broader societal implications. 
+- Through lectures, programming assignments, and a final project, the course provides the expertise needed to apply generative AI in creating innovative and interactive experiences.
+
+## Learning Outcomes
+
+- Understand the basic working principles and history of current LLMs (Large Language Models)
+- Understand ethical and safety aspects of using generative models
+- Evaluate and test generative models using industry benchmarks
+- Run generative models on local, laptop-based hardware (using CPU, GPU, NPUs)
+
+## Learning Outcomes
+
+- Create AI-based agents and tools based on the MCP (Model Context Protocol) specification
+- Avoid hallucinations by increasing the accuracy of models through RAG (Retrieval Augmented Generation) and fine-tuning
+- Explore and use multimodal models for image and audio recognition and generation
+- Create and deploy API-based clients, accessing LLMs hosted by different vendors (OpenAI, Meta, Google)
+
+## Overall
+
+- Provide a level of understanding beyond where most professional software developers are today
+- Build some cool stuff
+- Create a final project that you can add to your portfolio
+
+# Syllabus Overview
+
+## Syllabus Overview
+
+- TBD
+
+# What to Expect in Each Class
+
+## Schedule
+
+- Every Friday (Curie); 2pm - 4.50pm
+- ~1.5 hours of lecture, together with hands-on exercises
+- ~1.5 hours for in-class lab time, working on assignments
+- Expectation of after-class work, especially for final project
+
+## During Class
+
+- Strive for conversation and interactivity
+  - Please ask questions, even mid-slide!
+  - I enjoy going off on tangents / on the whiteboard
+  - Use lab time to seek input / troubleshoot code
+
+## Handing in Work
+
+- Everything submitted via GitHub
+  - Recommend creating a repo for in-class assignments
+  - And another repo for your final project 
+  - Don't forget to give me permissions! @simonguest
+- Graded Course
+  - General rubric for the in-class assignments
+  - Complete rubric for the final project
+
+## Handing in Work
+
+- Deadlines (In-class Assignments)
+  - Assignments are due by the following week's lesson
+  - i.e., you get a week for each assignment
+  - If you need more time/exception, please reach out via Teams
+- Deadlines (Final Project)
+  - Up until Week 15 presentations
+  - (We'll cover in detail later in the semester)
+
+# Tools, Languages, and Hardware
+
+## Tools
+
+- We will be introducing many tools
+  - Colab Pro, OpenRouter, Hugging Face, etc.
+  - Most will be free
+  - Expect to need about $10-25 in OpenRouter API credits
+
+## Languages
+
+- We will be using (and learning) a lot of Python!
+  - Most of the in-class assignments will be in Python
+  - Don't worry if you are new to Python as we'll introduce concepts gradually
+    - Although recommend investing extra time
+- Final Project
+  - Can be any language
+  - Probably depending on what you choose to create
+
+## Hardware
+
+- Will will be training small models (SLMs) later in the semester
+- This training will require a decent GPU and VRAM
+  - Colab Pro (CUDA)
+  - Your own NVIDIA-based laptop (CUDA)
+  - Potential of using MLX for any Mac users
+
+# Need Help?
+
+## Need Help?
+
+- Everything we cover will be on my GitHub repo
+  - https://simonguest.github.io/CS-394
+  - Slides (current and prior lectures), Demo code, Links
+- Office Hours
+  - Thursdays 1pm - 3pm
+  - Either on campus or virtually via Teams
+- Teams
+  - Primary mechanism for updates, ask questions, request office hours, etc.
+
+# Before We Get Started
+
+## Steep Learning Curve
+
+- We will be using the latest tools and AI models
+- Lots of new tools, acronyms, frameworks, etc.
+- Much of the curriculum builds upon itself
+  - Please try not to miss lectures
+  - Ask for help if you need to catch up
+
+## New Course at DigiPen!
+
+- There may be some minor curriculum tweaks mid-flight
+  - Especially for topics that need less/more time
+
+## Fast Moving Space
+
+- There will be areas/questions that I don't have experience of
+  - e.g., multiple new models are launched every week
+- But that's what makes it exciting!
+
+# Questions?
