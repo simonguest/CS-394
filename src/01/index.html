@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -94,7 +94,7 @@
     code span.vs { color: #032f62; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-a39a92c06113b896d7c71398f6e66dea.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-7cb77561e7d9a12b4d23a8dc8372cbc7.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -186,6 +186,10 @@
       margin-right: 0; 
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+  
+  <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+  <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -236,36 +240,86 @@
 </section>
 <section id="example" class="slide level2">
 <h2>Example</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a>model.encode(<span class="st">"The cat sat on the mat"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre><code>array([ 1.30401835e-01, -1.18701281e-02, 
-       -2.81170383e-02,  5.12386411e-02,
-       -5.59744686e-02,  3.01915426e-02, 
-        3.01612969e-02,  2.46983729e-02,
-       ...
-])</code></pre>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/embeddings.ipynb" data-notebook-title="Load the sentence tranformer model" data-notebook-cellid="sentence-1">
+<div id="sentence-1" class="cell" data-execution_count="22">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a>embeddings <span class="op">=</span> model.encode(<span class="st">"The cat sat on the mat"</span>)</span>
+<span id="cb1-2"><a></a>embeddings[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<pre><code>array([ 0.13040183, -0.01187013, -0.02811704,  0.05123864, -0.05597447,
+        0.03019154,  0.0301613 ,  0.02469837, -0.01837057,  0.05876679],
+      dtype=float32)</code></pre>
+</div>
+</div>
+</div>
 </section>
 <section id="example-1" class="slide level2">
 <h2>Example</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>model.encode(<span class="st">"The dog rested on the rug"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre><code>array([ 1.22975238e-01,  4.51563150e-02, 
-        3.61849144e-02,  9.36113819e-02,
-       -2.68524364e-02,  6.86257482e-02,
-       -1.26129715e-03,  2.68533616e-03,
-       ...
-])</code></pre>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/embeddings.ipynb" data-notebook-title="Load the sentence tranformer model" data-notebook-cellid="sentence-2">
+<div id="sentence-2" class="cell" data-execution_count="23">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>embeddings <span class="op">=</span> model.encode(<span class="st">"The dog rested on the rug"</span>)</span>
+<span id="cb3-2"><a></a>embeddings[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<pre><code>array([ 0.05627272,  0.02632686,  0.05896206,  0.12019245, -0.00399702,
+        0.08970873, -0.02332847, -0.01548103,  0.00939427,  0.01598458],
+      dtype=float32)</code></pre>
+</div>
+</div>
+</div>
 </section>
 <section id="example-2" class="slide level2">
 <h2>Example</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a>model.encode(<span class="st">"I love pizza!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre><code>array([-9.43841636e-02,  2.38583814e-02, 
-        9.20313317e-03,  4.99277934e-02,
-       -9.53309909e-02,  6.13559736e-03, 
-        3.51318866e-02,  8.50055646e-03,
-       ...
-])</code></pre>
-
-
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/embeddings.ipynb" data-notebook-title="Load the sentence tranformer model" data-notebook-cellid="sentence-3">
+<div id="sentence-3" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a>embeddings <span class="op">=</span> model.encode(<span class="st">"I love pizza!"</span>)</span>
+<span id="cb5-2"><a></a>embeddings[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<pre><code>array([-0.09438416,  0.02385838,  0.00920313,  0.04992779, -0.09533099,
+        0.0061356 ,  0.03513189,  0.00850056,  0.0105693 , -0.0578883 ],
+      dtype=float32)</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="are-they-similar" class="slide level2">
+<h2>Are They Similar?</h2>
+<ul>
+<li class="fragment">We can test with <strong>cosine similarity</strong></li>
+<li class="fragment">Measures the angle between two vectors:
+<ul>
+<li class="fragment">Same direction = very similar (similarity close to 1)</li>
+<li class="fragment">Opposite direction = very different (similarity of -1)</li>
+</ul></li>
+<li class="fragment">Cosine similarity focuses on the angle of the vector vs.&nbsp;length
+<ul>
+<li class="fragment">Useful for comparing texts of different sizes</li>
+</ul></li>
+</ul>
+</section>
+<section id="are-they-similar-1" class="slide level2">
+<h2>Are They Similar?</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/embeddings.ipynb" data-notebook-title="Load the sentence tranformer model" data-notebook-cellid="similarity">
+<div id="similarity" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="im">from</span> sklearn.metrics.pairwise <span class="im">import</span> cosine_similarity</span>
+<span id="cb7-2"><a></a></span>
+<span id="cb7-3"><a></a>sentences <span class="op">=</span> [<span class="st">'The cat sat on the mat'</span>, </span>
+<span id="cb7-4"><a></a>             <span class="st">'The dog rested on the rug'</span>,</span>
+<span id="cb7-5"><a></a>             <span class="st">'I love pizza'</span>]</span>
+<span id="cb7-6"><a></a>embeddings <span class="op">=</span> model.encode(sentences)</span>
+<span id="cb7-7"><a></a></span>
+<span id="cb7-8"><a></a><span class="bu">print</span>(cosine_similarity(embeddings))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[ 1.0000002   0.47530937  0.00155361]
+ [ 0.47530937  1.         -0.04451237]
+ [ 0.00155361 -0.04451237  1.        ]]</code></pre>
+</div>
+</div>
+</div>
 </section></section>
+<section id="lets-run-the-code" class="title-slide slide level1 center">
+<h1>Let’s Run The Code!</h1>
+
+
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="../../theme/logos/DigiPen_RGB_Red.png" class="slide-logo"></p>
