@@ -37,45 +37,28 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 
 ## Example
 
-```python
-model.encode("The cat sat on the mat")
-```
-
-```
-array([ 1.30401835e-01, -1.18701281e-02, 
-       -2.81170383e-02,  5.12386411e-02,
-       -5.59744686e-02,  3.01915426e-02, 
-        3.01612969e-02,  2.46983729e-02,
-       ...
-])
-```
+{{< embed embeddings.ipynb#sentence-1 echo=true >}}
 
 ## Example
 
-```python
-model.encode("The dog rested on the rug")
-```
-
-```
-array([ 1.22975238e-01,  4.51563150e-02, 
-        3.61849144e-02,  9.36113819e-02,
-       -2.68524364e-02,  6.86257482e-02,
-       -1.26129715e-03,  2.68533616e-03,
-       ...
-])
-```
+{{< embed embeddings.ipynb#sentence-2 echo=true >}}
 
 ## Example
 
-```python
-model.encode("I love pizza!")
-```
+{{< embed embeddings.ipynb#sentence-3 echo=true >}}
 
-```
-array([-9.43841636e-02,  2.38583814e-02, 
-        9.20313317e-03,  4.99277934e-02,
-       -9.53309909e-02,  6.13559736e-03, 
-        3.51318866e-02,  8.50055646e-03,
-       ...
-])
-```
+## Are They Similar?
+
+- We can test with **cosine similarity**
+- Measures the angle between two vectors: 
+  - Same direction = very similar (similarity close to 1)
+  - Opposite direction = very different (similarity of -1)
+- Cosine similarity focuses on the angle of the vector vs. length
+  - Useful for comparing texts of different sizes
+
+## Are They Similar?
+
+{{< embed embeddings.ipynb#similarity echo=true >}}
+
+# Let's Run The Code!
+
