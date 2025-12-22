@@ -123,8 +123,8 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 ## Need Help?
 
 - Everything we cover will be on my GitHub repo
-  - [https://simonguest.github.io/CS-394](https://simonguest.github.io/CS-394)
-  - Slides (current and prior lectures), Demo code, Links
+  - [https://simonguest.github.io/CS-394](https://simonguest.github.io/CS-394){.external target="_blank"}
+  - Slides (current and prior lectures), Demo code, Resources
 - Office Hours
   - Thursdays 1pm - 3pm
   - Either on campus or virtually via Teams

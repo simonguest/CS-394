@@ -33,6 +33,7 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 
 - Vector Embeddings are **meaningful numerical representations** of words
   - Representations where strings of words (i.e., sentences) are encoded into multi-dimensional space
+  - Large number of dimensions (we'll use 384 in our examples)
   - Similar sentences have similar numbers
 
 ## Example
@@ -59,6 +60,14 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 ## Are They Similar?
 
 {{< embed embeddings.ipynb#similarity echo=true >}}
+
+## Overview of Embedding Models
+
+- TBD
+
+## What Embeddings Are Used For
+
+- TBD
 
 # Let's Run Some Code!
 

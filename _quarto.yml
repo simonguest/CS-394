@@ -14,7 +14,7 @@ website:
   title: "CS-394"
   page-navigation: true
   sidebar:
-    logo: src/logos/DigiPen_Dragon_Shield_RGB_Black.png
+    logo: theme/logos/DigiPen_Dragon_Shield_RGB_Black.png
     style: "docked"
     collapse-level: 2
     search: true
@@ -32,6 +32,8 @@ website:
           - text: "Slides"
             href: src/01/index.qmd
             target: blank
+          - text: "Resources"
+            href: src/01/resources.qmd
           - section: "Hands-on Notebooks"
             contents:
               - text: "embeddings.ipynb"
