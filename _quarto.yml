@@ -34,5 +34,5 @@ website:
             target: blank
           - section: "Hands-on Notebooks"
             contents:
-              - text: "Embeddings Notebook"
+              - text: "embeddings.ipynb"
                 href: src/01/embeddings.ipynb
