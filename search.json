@@ -2,13 +2,13 @@
   {
     "objectID": "src/01/embeddings.html",
     "href": "src/01/embeddings.html",
-    "title": "CS-394",
+    "title": "Embeddings",
     "section": "",
-    "text": "# Load the sentence tranformer model\n\nfrom sentence_transformers import SentenceTransformer\nmodel = SentenceTransformer('all-MiniLM-L6-v2')\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nembeddings = model.encode(\"The cat sat on the mat\")\nembeddings[:10]\n\narray([ 0.13040183, -0.01187013, -0.02811704,  0.05123864, -0.05597447,\n        0.03019154,  0.0301613 ,  0.02469837, -0.01837057,  0.05876679],\n      dtype=float32)\n\n\n\nembeddings = model.encode(\"The dog rested on the rug\")\nembeddings[:10]\n\narray([ 0.05627272,  0.02632686,  0.05896206,  0.12019245, -0.00399702,\n        0.08970873, -0.02332847, -0.01548103,  0.00939427,  0.01598458],\n      dtype=float32)\n\n\n\nembeddings = model.encode(\"I love pizza!\")\nembeddings[:10]\n\narray([-0.09438416,  0.02385838,  0.00920313,  0.04992779, -0.09533099,\n        0.0061356 ,  0.03513189,  0.00850056,  0.0105693 , -0.0578883 ],\n      dtype=float32)\n\n\n\nfrom sklearn.metrics.pairwise import cosine_similarity\n\nsentences = ['The cat sat on the mat', \n             'The dog rested on the rug',\n             'I love pizza']\nembeddings = model.encode(sentences)\n\nprint(cosine_similarity(embeddings))\n\n[[ 1.0000002   0.47530937  0.00155361]\n [ 0.47530937  1.         -0.04451237]\n [ 0.00155361 -0.04451237  1.        ]]",
+    "text": "In this notebook, we use the SentenceTransformer model to encode various sentences and test the cosine similarity between them.\n     \n\nfrom sentence_transformers import SentenceTransformer\nmodel = SentenceTransformer('all-MiniLM-L6-v2')\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nembeddings = model.encode(\"The cat sat on the mat\")\nembeddings[:10]\n\narray([ 0.13040183, -0.01187013, -0.02811704,  0.05123864, -0.05597447,\n        0.03019154,  0.0301613 ,  0.02469837, -0.01837057,  0.05876679],\n      dtype=float32)\n\n\n\nembeddings = model.encode(\"The dog rested on the rug\")\nembeddings[:10]\n\narray([ 0.05627272,  0.02632686,  0.05896206,  0.12019245, -0.00399702,\n        0.08970873, -0.02332847, -0.01548103,  0.00939427,  0.01598458],\n      dtype=float32)\n\n\n\nembeddings = model.encode(\"I love pizza!\")\nembeddings[:10]\n\narray([-0.09438416,  0.02385838,  0.00920313,  0.04992779, -0.09533099,\n        0.0061356 ,  0.03513189,  0.00850056,  0.0105693 , -0.0578883 ],\n      dtype=float32)\n\n\n\nfrom sklearn.metrics.pairwise import cosine_similarity\n\nsentences = ['The cat sat on the mat', \n             'The dog rested on the rug',\n             'I love pizza']\nembeddings = model.encode(sentences)\n\nprint(cosine_similarity(embeddings))\n\n[[ 1.0000002   0.47530937  0.00155361]\n [ 0.47530937  1.         -0.04451237]\n [ 0.00155361 -0.04451237  1.        ]]",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Hands-on Notebooks",
-      "Embeddings Notebook"
+      "embeddings.ipynb"
     ]
   },
   {
