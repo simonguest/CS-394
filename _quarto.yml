@@ -36,5 +36,7 @@ website:
             href: src/01/resources.qmd
           - section: "Hands-on Notebooks"
             contents:
+              - text: "hello-world.ipynb"
+                href: src/01/hello-world.ipynb
               - text: "embeddings.ipynb"
                 href: src/01/embeddings.ipynb

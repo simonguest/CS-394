@@ -24,3 +24,7 @@ __pycache__
 .DS_Store
 
 **/*.quarto_ipynb
+
+# ipynb checkpoints
+
+**/.ipynb_checkpoints

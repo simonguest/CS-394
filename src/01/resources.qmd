@@ -4,3 +4,8 @@
 
 - [A Visual Introduction to Vector Embeddings, Pamela Fox](https://blog.pamelafox.org/2025/05/a-visual-exploration-of-vector.html){.external target="_blank"}
 - [A Visual Exploration of Vectors, Pamela Fox](https://drive.google.com/file/d/1pnI2XGxwhQQDKF2Ktl2XvaUUf294_-Qe/view){.external target="_blank"}
+
+## Introduction to Notebooks
+
+- [Google Colab Sign-up Page](https://colab.research.google.com/signup){.external target="_blank"}
+- [Project Jupyter Page](https://jupyter.org/){.external target="_blank"}

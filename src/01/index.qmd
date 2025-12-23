@@ -69,5 +69,65 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 
 - TBD
 
-# Let's Run Some Code!
+# Let's Get Into Some Code!
 
+# What is a Notebook?
+
+## What is a Notebook?
+
+- An **interactive document** that combines:
+  - Live code that can be executed
+  - Rich text explanations (markdown)
+  - Visualizations and outputs
+- Think of it as a **computational narrative**
+  - Tell a story with code, data, and explanations
+- Originally designed for data science and research
+- Also used for learning, experimenting, and sharing results
+
+## A Brief History of Notebooks
+
+- **2011**: IPython Notebook project begins
+  - Interactive Python shell → web-based notebook
+- **2014**: Renamed to **Jupyter** (Julia, Python, R)
+  - Now supports 40+ programming languages
+- **2017**: Google launches **Colab**
+  - Free cloud-based Jupyter notebooks
+  - Free access to GPUs and TPUs
+- **Today**: Industry standard for ML/AI development
+
+## Anatomy of a Notebook
+
+- **Format**: Extension is .ipynb
+  - JSON format, using Jupyter Document Schema
+- **Cells**: Building blocks of notebooks
+  - **Code cells**: Executable Python code
+  - **Markdown cells**: Text, headings, images, equations
+- **Kernel**: The computational engine running your code
+  - Maintains state between cell executions
+- **Outputs**: Results appear directly below code cells
+  - Text, tables, plots, interactive widgets
+
+## How to Run Notebooks
+
+- **Jupyter Notebook Server** (Classic approach)
+   - Web interface on localhost
+- **VS Code** (Local development)
+   - Jupyter extension for VS Code
+   - Run on your own machine
+- **Google Colab** (Recommended)
+   - Browser-based, no installation needed
+   - Free GPU access
+
+## Advantages of Google Colab
+
+- Access to GPUs and TPUs for AI-based tasks
+  - e.g., A100 and H100 with 40Gb/80Gb VRAM
+- Model downloaded between cloud vendors
+  - vs. downloading large models via the DigiPen network
+- Many libraries pre-installed
+- Easy to share notebooks with others
+- Generous (free) GPU limits for students!
+
+# Demo
+
+Hello World notebook in **Colab**, **VS Code**, and **Local Jupyter server**
