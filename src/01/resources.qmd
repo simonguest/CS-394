@@ -9,3 +9,7 @@
 
 - [Google Colab Sign-up Page](https://colab.research.google.com/signup){.external target="_blank"}
 - [Project Jupyter Page](https://jupyter.org/){.external target="_blank"}
+
+## Learning Python
+
+- [Learn Python with Jupyter, Serena Bonaretti](https://www.learnpythonwithjupyter.com/){.external target="_blank"}

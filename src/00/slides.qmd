@@ -105,7 +105,7 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 - We will be using (and learning) a lot of Python!
   - Most of the in-class assignments will be in Python
   - Don't worry if you are new to Python as we'll introduce concepts gradually
-    - Although recommend investing extra time
+    - Although recommend investing extra time (see resources in Week 1)
 - Final Project
   - Can be any language
   - Probably depending on what you choose to create
