@@ -22,7 +22,7 @@ website:
       - text: "CS-394/594"
         href: index.qmd
       - text: "---"
-      - section: "Welcome to CS-394/594!"
+      - section: "Welcome!"
         contents:
           - text: "Slides"
             href: src/00/slides.qmd
@@ -40,3 +40,7 @@ website:
                 href: src/01/hello-world.ipynb
               - text: "embeddings.ipynb"
                 href: src/01/embeddings.ipynb
+              - text: "GPT-2.ipynb"
+                href: src/01/GPT-2.ipynb
+          - text: "Assignment"
+            href: src/01/assignment.qmd
