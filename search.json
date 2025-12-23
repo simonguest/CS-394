@@ -36,41 +36,173 @@
     ]
   },
   {
-    "objectID": "src/01/resources.html",
-    "href": "src/01/resources.html",
-    "title": "Week 1 Resources",
-    "section": "",
-    "text": "A Visual Introduction to Vector Embeddings, Pamela Fox\nA Visual Exploration of Vectors, Pamela Fox\n\n\n\n\n\nGoogle Colab Sign-up Page\nProject Jupyter Page",
+    "objectID": "src/01/slides.html#lesson-objectives",
+    "href": "src/01/slides.html#lesson-objectives",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Lesson Objectives",
+    "text": "Lesson Objectives\n\nUnderstand how generative AI fits with other AI techniques\nHow to create vector embeddings and test for similarity\nUnderstand the transformer architecture and how it works at a high level\nSetup and use Colab Pro for experimenting with vector embeddings and downloading/testing a GPT-2 model.\nStart becoming familiar with the basics of notebooks and Python (if you haven’t used it already)",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
-      "Resources"
+      "Slides"
     ]
   },
   {
-    "objectID": "src/01/resources.html#vector-embeddings",
-    "href": "src/01/resources.html#vector-embeddings",
-    "title": "Week 1 Resources",
-    "section": "",
-    "text": "A Visual Introduction to Vector Embeddings, Pamela Fox\nA Visual Exploration of Vectors, Pamela Fox",
+    "objectID": "src/01/slides.html#a-recap-of-mlneural-network-architectures-1",
+    "href": "src/01/slides.html#a-recap-of-mlneural-network-architectures-1",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "A recap of ML/Neural Network architectures",
+    "text": "A recap of ML/Neural Network architectures\n\nTBD",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
-      "Resources"
+      "Slides"
     ]
   },
   {
-    "objectID": "src/01/resources.html#introduction-to-notebooks",
-    "href": "src/01/resources.html#introduction-to-notebooks",
-    "title": "Week 1 Resources",
-    "section": "",
-    "text": "Google Colab Sign-up Page\nProject Jupyter Page",
+    "objectID": "src/01/slides.html#what-are-vector-embeddings",
+    "href": "src/01/slides.html#what-are-vector-embeddings",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "What are Vector Embeddings?",
+    "text": "What are Vector Embeddings?\n\nVector Embeddings are meaningful numerical representations of words\n\nRepresentations where strings of words (i.e., sentences) are encoded into multi-dimensional space\nLarge number of dimensions (we’ll use 384 in our examples)\nSimilar sentences have similar numbers",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
-      "Resources"
+      "Slides"
     ]
   },
   {
-    "objectID": "src/00/index.html#course-description",
-    "href": "src/00/index.html#course-description",
+    "objectID": "src/01/slides.html#example",
+    "href": "src/01/slides.html#example",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Example",
+    "text": "Example\n\n\nembeddings = model.encode(\"The cat sat on the mat\")\nembeddings[:10]\n\narray([ 0.13040183, -0.01187013, -0.02811704,  0.05123864, -0.05597447,\n        0.03019154,  0.0301613 ,  0.02469837, -0.01837057,  0.05876679],\n      dtype=float32)",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#example-1",
+    "href": "src/01/slides.html#example-1",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Example",
+    "text": "Example\n\n\nembeddings = model.encode(\"The dog rested on the rug\")\nembeddings[:10]\n\narray([ 0.05627272,  0.02632686,  0.05896206,  0.12019245, -0.00399702,\n        0.08970873, -0.02332847, -0.01548103,  0.00939427,  0.01598458],\n      dtype=float32)",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#example-2",
+    "href": "src/01/slides.html#example-2",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Example",
+    "text": "Example\n\n\nembeddings = model.encode(\"I love pizza!\")\nembeddings[:10]\n\narray([-0.09438416,  0.02385838,  0.00920313,  0.04992779, -0.09533099,\n        0.0061356 ,  0.03513189,  0.00850056,  0.0105693 , -0.0578883 ],\n      dtype=float32)",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#are-they-similar",
+    "href": "src/01/slides.html#are-they-similar",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Are They Similar?",
+    "text": "Are They Similar?\n\nWe can test with cosine similarity\nMeasures the angle between two vectors:\n\nSame direction = very similar (similarity close to 1)\nOpposite direction = very different (similarity of -1)\n\nCosine similarity focuses on the angle of the vector vs. length\n\nUseful for comparing texts of different sizes",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#are-they-similar-1",
+    "href": "src/01/slides.html#are-they-similar-1",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Are They Similar?",
+    "text": "Are They Similar?\n\n\nfrom sklearn.metrics.pairwise import cosine_similarity\n\nsentences = ['The cat sat on the mat', \n             'The dog rested on the rug',\n             'I love pizza']\nembeddings = model.encode(sentences)\n\nprint(cosine_similarity(embeddings))\n\n[[ 1.0000002   0.47530937  0.00155361]\n [ 0.47530937  1.         -0.04451237]\n [ 0.00155361 -0.04451237  1.        ]]",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#overview-of-embedding-models",
+    "href": "src/01/slides.html#overview-of-embedding-models",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Overview of Embedding Models",
+    "text": "Overview of Embedding Models\n\nTBD",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#what-embeddings-are-used-for",
+    "href": "src/01/slides.html#what-embeddings-are-used-for",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "What Embeddings Are Used For",
+    "text": "What Embeddings Are Used For\n\nTBD",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#what-is-a-notebook-1",
+    "href": "src/01/slides.html#what-is-a-notebook-1",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "What is a Notebook?",
+    "text": "What is a Notebook?\n\nAn interactive document that combines:\n\nLive code that can be executed\nRich text explanations (markdown)\nVisualizations and outputs\n\nThink of it as a computational narrative\n\nTell a story with code, data, and explanations\n\nOriginally designed for data science and research\nAlso used for learning, experimenting, and sharing results",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#a-brief-history-of-notebooks",
+    "href": "src/01/slides.html#a-brief-history-of-notebooks",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "A Brief History of Notebooks",
+    "text": "A Brief History of Notebooks\n\n2011: IPython Notebook project begins\n\nInteractive Python shell → web-based notebook\n\n2014: Renamed to Jupyter (Julia, Python, R)\n\nNow supports 40+ programming languages\n\n2017: Google launches Colab\n\nFree cloud-based Jupyter notebooks\nFree access to GPUs and TPUs\n\nToday: Industry standard for ML/AI development",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#anatomy-of-a-notebook",
+    "href": "src/01/slides.html#anatomy-of-a-notebook",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Anatomy of a Notebook",
+    "text": "Anatomy of a Notebook\n\nFormat: Extension is .ipynb\n\nJSON format, using Jupyter Document Schema\n\nCells: Building blocks of notebooks\n\nCode cells: Executable Python code\nMarkdown cells: Text, headings, images, equations\n\nKernel: The computational engine running your code\n\nMaintains state between cell executions\n\nOutputs: Results appear directly below code cells\n\nText, tables, plots, interactive widgets",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#how-to-run-notebooks",
+    "href": "src/01/slides.html#how-to-run-notebooks",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "How to Run Notebooks",
+    "text": "How to Run Notebooks\n\nJupyter Notebook Server (Classic approach)\n\nWeb interface on localhost\n\nVS Code (Local development)\n\nJupyter extension for VS Code\nRun on your own machine\n\nGoogle Colab (Recommended)\n\nBrowser-based, no installation needed\nFree GPU access",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#advantages-of-google-colab",
+    "href": "src/01/slides.html#advantages-of-google-colab",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Advantages of Google Colab",
+    "text": "Advantages of Google Colab\n\nAccess to GPUs and TPUs for AI-based tasks\n\ne.g., A100 and H100 with 40Gb/80Gb VRAM\n\nModel downloaded between cloud vendors\n\nvs. downloading large models via the DigiPen network\n\nMany libraries pre-installed\nEasy to share notebooks with others\nGenerous (free) GPU limits for students!",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/00/slides.html#course-description",
+    "href": "src/00/slides.html#course-description",
     "title": "Welcome to CS-394/594!",
     "section": "Course Description",
     "text": "Course Description\n\nHow Generative AI Works focuses on the practical implementation of generative AI within custom software applications and games.\nThe course covers neural network architectures, including the impact of the Transformer model, customization of large language models across multiple vendors using APIs, and experimentation with multimodal models for image and audio recognition and generation.",
@@ -80,8 +212,8 @@
     ]
   },
   {
-    "objectID": "src/00/index.html#course-description-1",
-    "href": "src/00/index.html#course-description-1",
+    "objectID": "src/00/slides.html#course-description-1",
+    "href": "src/00/slides.html#course-description-1",
     "title": "Welcome to CS-394/594!",
     "section": "Course Description",
     "text": "Course Description\n\nHands-on experience includes working with both hosted and locally run models, integrating AI with game engines such as Unity and Unreal, and developing AI agents that extend beyond simple chat-based interactions.\nEthical considerations and model evaluation are integrated throughout, emphasizing awareness of broader societal implications.\nThrough lectures, programming assignments, and a final project, the course provides the expertise needed to apply generative AI in creating innovative and interactive experiences.",
@@ -91,8 +223,8 @@
     ]
   },
   {
-    "objectID": "src/00/index.html#learning-outcomes",
-    "href": "src/00/index.html#learning-outcomes",
+    "objectID": "src/00/slides.html#learning-outcomes",
+    "href": "src/00/slides.html#learning-outcomes",
     "title": "Welcome to CS-394/594!",
     "section": "Learning Outcomes",
     "text": "Learning Outcomes\n\nUnderstand the basic working principles and history of current LLMs (Large Language Models)\nUnderstand ethical and safety aspects of using generative models\nEvaluate and test generative models using industry benchmarks\nRun generative models on local, laptop-based hardware (using CPU, GPU, NPUs)",
@@ -102,8 +234,8 @@
     ]
   },
   {
-    "objectID": "src/00/index.html#learning-outcomes-1",
-    "href": "src/00/index.html#learning-outcomes-1",
+    "objectID": "src/00/slides.html#learning-outcomes-1",
+    "href": "src/00/slides.html#learning-outcomes-1",
     "title": "Welcome to CS-394/594!",
     "section": "Learning Outcomes",
     "text": "Learning Outcomes\n\nCreate AI-based agents and tools based on the MCP (Model Context Protocol) specification\nAvoid hallucinations by increasing the accuracy of models through RAG (Retrieval Augmented Generation) and fine-tuning\nExplore and use multimodal models for image and audio recognition and generation\nCreate and deploy API-based clients, accessing LLMs hosted by different vendors (OpenAI, Meta, Google)",
@@ -113,8 +245,8 @@
     ]
   },
   {
-    "objectID": "src/00/index.html#overall",
-    "href": "src/00/index.html#overall",
+    "objectID": "src/00/slides.html#overall",
+    "href": "src/00/slides.html#overall",
     "title": "Welcome to CS-394/594!",
     "section": "Overall",
     "text": "Overall\n\nProvide a level of understanding beyond where most professional software developers are today\nFocus on augmentation vs. automation\nBuild a cool final project that you can add to your portfolio!",
@@ -124,8 +256,8 @@
     ]
   },
   {
-    "objectID": "src/00/index.html#syllabus-overview-1",
-    "href": "src/00/index.html#syllabus-overview-1",
+    "objectID": "src/00/slides.html#syllabus-overview-1",
+    "href": "src/00/slides.html#syllabus-overview-1",
     "title": "Welcome to CS-394/594!",
     "section": "Syllabus Overview",
     "text": "Syllabus Overview\n\nTBD",
@@ -135,8 +267,8 @@
     ]
   },
   {
-    "objectID": "src/00/index.html#schedule",
-    "href": "src/00/index.html#schedule",
+    "objectID": "src/00/slides.html#schedule",
+    "href": "src/00/slides.html#schedule",
     "title": "Welcome to CS-394/594!",
     "section": "Schedule",
     "text": "Schedule\n\nEvery Friday (Curie); 2pm - 4.50pm\n~1.5 hours of lecture, together with hands-on exercises\n~1.5 hours for in-class lab time, working on assignments\nExpectation of after-class work, especially for final project",
@@ -146,8 +278,8 @@
     ]
   },
   {
-    "objectID": "src/00/index.html#during-class",
-    "href": "src/00/index.html#during-class",
+    "objectID": "src/00/slides.html#during-class",
+    "href": "src/00/slides.html#during-class",
     "title": "Welcome to CS-394/594!",
     "section": "During Class",
     "text": "During Class\n\nStrive for conversation and interactivity\n\nPlease ask questions, even mid-slide!\nI enjoy going off on tangents / on the whiteboard\nUse lab time to seek input / troubleshoot code",
@@ -157,8 +289,8 @@
     ]
   },
   {
-    "objectID": "src/00/index.html#handing-in-work",
-    "href": "src/00/index.html#handing-in-work",
+    "objectID": "src/00/slides.html#handing-in-work",
+    "href": "src/00/slides.html#handing-in-work",
     "title": "Welcome to CS-394/594!",
     "section": "Handing in Work",
     "text": "Handing in Work\n\nEverything submitted via GitHub\n\nRecommend creating a repo for in-class assignments\nAnd another repo for your final project\nDon’t forget to give me permissions! @simonguest\n\nGraded Course\n\nGeneral rubric for the in-class assignments\nComplete rubric for the final project",
@@ -168,8 +300,8 @@
     ]
   },
   {
-    "objectID": "src/00/index.html#handing-in-work-1",
-    "href": "src/00/index.html#handing-in-work-1",
+    "objectID": "src/00/slides.html#handing-in-work-1",
+    "href": "src/00/slides.html#handing-in-work-1",
     "title": "Welcome to CS-394/594!",
     "section": "Handing in Work",
     "text": "Handing in Work\n\nDeadlines (In-class Assignments)\n\nAssignments are due by the following week’s lesson\ni.e., you get a week for each assignment\nIf you need more time/exception, please reach out via Teams\n\nDeadlines (Final Project)\n\nUp until Week 15 presentations\n(We’ll cover in detail later in the semester)",
@@ -179,8 +311,8 @@
     ]
   },
   {
-    "objectID": "src/00/index.html#tools",
-    "href": "src/00/index.html#tools",
+    "objectID": "src/00/slides.html#tools",
+    "href": "src/00/slides.html#tools",
     "title": "Welcome to CS-394/594!",
     "section": "Tools",
     "text": "Tools\n\nWe will be introducing many tools\n\nColab Pro, OpenRouter, Hugging Face, etc.\nMost will be free\nExpect to need about $10-25 in OpenRouter API credits",
@@ -190,19 +322,19 @@
     ]
   },
   {
-    "objectID": "src/00/index.html#languages",
-    "href": "src/00/index.html#languages",
+    "objectID": "src/00/slides.html#languages",
+    "href": "src/00/slides.html#languages",
     "title": "Welcome to CS-394/594!",
     "section": "Languages",
-    "text": "Languages\n\nWe will be using (and learning) a lot of Python!\n\nMost of the in-class assignments will be in Python\nDon’t worry if you are new to Python as we’ll introduce concepts gradually\n\nAlthough recommend investing extra time\n\n\nFinal Project\n\nCan be any language\nProbably depending on what you choose to create",
+    "text": "Languages\n\nWe will be using (and learning) a lot of Python!\n\nMost of the in-class assignments will be in Python\nDon’t worry if you are new to Python as we’ll introduce concepts gradually\n\nAlthough recommend investing extra time (see resources in Week 1)\n\n\nFinal Project\n\nCan be any language\nProbably depending on what you choose to create",
     "crumbs": [
       "Welcome to CS-394/594!",
       "Slides"
     ]
   },
   {
-    "objectID": "src/00/index.html#hardware",
-    "href": "src/00/index.html#hardware",
+    "objectID": "src/00/slides.html#hardware",
+    "href": "src/00/slides.html#hardware",
     "title": "Welcome to CS-394/594!",
     "section": "Hardware",
     "text": "Hardware\n\nWill will be training small models (SLMs) later in the semester\nThis training will require a decent GPU and VRAM\n\nColab Pro (CUDA)\nYour own NVIDIA-based laptop (CUDA)\nPotential of using MLX for any Mac users",
@@ -212,8 +344,8 @@
     ]
   },
   {
-    "objectID": "src/00/index.html#need-help-1",
-    "href": "src/00/index.html#need-help-1",
+    "objectID": "src/00/slides.html#need-help-1",
+    "href": "src/00/slides.html#need-help-1",
     "title": "Welcome to CS-394/594!",
     "section": "Need Help?",
     "text": "Need Help?\n\nEverything we cover will be on my GitHub repo\n\nhttps://simonguest.github.io/CS-394\nSlides (current and prior lectures), Demo code, Resources\n\nOffice Hours\n\nThursdays 1pm - 3pm\nEither on campus or virtually via Teams\n\nTeams\n\nPrimary mechanism for updates, ask questions, request office hours, etc.",
@@ -223,8 +355,8 @@
     ]
   },
   {
-    "objectID": "src/00/index.html#steep-learning-curve",
-    "href": "src/00/index.html#steep-learning-curve",
+    "objectID": "src/00/slides.html#steep-learning-curve",
+    "href": "src/00/slides.html#steep-learning-curve",
     "title": "Welcome to CS-394/594!",
     "section": "Steep Learning Curve",
     "text": "Steep Learning Curve\n\nWe will be using the latest tools and AI models\nLots of new tools, acronyms, frameworks, etc.\nMuch of the curriculum builds upon itself\n\nPlease try not to miss lectures\nAsk for help if you need to catch up",
@@ -234,8 +366,8 @@
     ]
   },
   {
-    "objectID": "src/00/index.html#new-course-at-digipen",
-    "href": "src/00/index.html#new-course-at-digipen",
+    "objectID": "src/00/slides.html#new-course-at-digipen",
+    "href": "src/00/slides.html#new-course-at-digipen",
     "title": "Welcome to CS-394/594!",
     "section": "New Course at DigiPen!",
     "text": "New Course at DigiPen!\n\nThere may be some minor curriculum tweaks mid-flight\n\nEspecially for topics that need less/more time",
@@ -245,8 +377,8 @@
     ]
   },
   {
-    "objectID": "src/00/index.html#fast-moving-space",
-    "href": "src/00/index.html#fast-moving-space",
+    "objectID": "src/00/slides.html#fast-moving-space",
+    "href": "src/00/slides.html#fast-moving-space",
     "title": "Welcome to CS-394/594!",
     "section": "Fast Moving Space",
     "text": "Fast Moving Space\n\nThere will be areas/questions that I don’t have experience of\n\ne.g., multiple new models are launched every week\n\nBut that’s what makes it exciting!",
@@ -276,168 +408,47 @@
     ]
   },
   {
-    "objectID": "src/01/index.html#lesson-objectives",
-    "href": "src/01/index.html#lesson-objectives",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "Lesson Objectives",
-    "text": "Lesson Objectives\n\nUnderstand how generative AI fits with other AI techniques\nHow to create vector embeddings and test for similarity\nUnderstand the transformer architecture and how it works at a high level\nSetup and use Colab Pro for experimenting with vector embeddings and downloading/testing a GPT-2 model.\nStart becoming familiar with the basics of notebooks and Python (if you haven’t used it already)",
+    "objectID": "src/01/resources.html",
+    "href": "src/01/resources.html",
+    "title": "Week 1 Resources",
+    "section": "",
+    "text": "A Visual Introduction to Vector Embeddings, Pamela Fox\nA Visual Exploration of Vectors, Pamela Fox\n\n\n\n\n\nGoogle Colab Sign-up Page\nProject Jupyter Page\n\n\n\n\n\nLearn Python with Jupyter, Serena Bonaretti",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
-      "Slides"
+      "Resources"
     ]
   },
   {
-    "objectID": "src/01/index.html#a-recap-of-mlneural-network-architectures-1",
-    "href": "src/01/index.html#a-recap-of-mlneural-network-architectures-1",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "A recap of ML/Neural Network architectures",
-    "text": "A recap of ML/Neural Network architectures\n\nTBD",
+    "objectID": "src/01/resources.html#vector-embeddings",
+    "href": "src/01/resources.html#vector-embeddings",
+    "title": "Week 1 Resources",
+    "section": "",
+    "text": "A Visual Introduction to Vector Embeddings, Pamela Fox\nA Visual Exploration of Vectors, Pamela Fox",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
-      "Slides"
+      "Resources"
     ]
   },
   {
-    "objectID": "src/01/index.html#what-are-vector-embeddings",
-    "href": "src/01/index.html#what-are-vector-embeddings",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "What are Vector Embeddings?",
-    "text": "What are Vector Embeddings?\n\nVector Embeddings are meaningful numerical representations of words\n\nRepresentations where strings of words (i.e., sentences) are encoded into multi-dimensional space\nLarge number of dimensions (we’ll use 384 in our examples)\nSimilar sentences have similar numbers",
+    "objectID": "src/01/resources.html#introduction-to-notebooks",
+    "href": "src/01/resources.html#introduction-to-notebooks",
+    "title": "Week 1 Resources",
+    "section": "",
+    "text": "Google Colab Sign-up Page\nProject Jupyter Page",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
-      "Slides"
+      "Resources"
     ]
   },
   {
-    "objectID": "src/01/index.html#example",
-    "href": "src/01/index.html#example",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "Example",
-    "text": "Example\n\n\nembeddings = model.encode(\"The cat sat on the mat\")\nembeddings[:10]\n\narray([ 0.13040183, -0.01187013, -0.02811704,  0.05123864, -0.05597447,\n        0.03019154,  0.0301613 ,  0.02469837, -0.01837057,  0.05876679],\n      dtype=float32)",
+    "objectID": "src/01/resources.html#learning-python",
+    "href": "src/01/resources.html#learning-python",
+    "title": "Week 1 Resources",
+    "section": "",
+    "text": "Learn Python with Jupyter, Serena Bonaretti",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/index.html#example-1",
-    "href": "src/01/index.html#example-1",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "Example",
-    "text": "Example\n\n\nembeddings = model.encode(\"The dog rested on the rug\")\nembeddings[:10]\n\narray([ 0.05627272,  0.02632686,  0.05896206,  0.12019245, -0.00399702,\n        0.08970873, -0.02332847, -0.01548103,  0.00939427,  0.01598458],\n      dtype=float32)",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/index.html#example-2",
-    "href": "src/01/index.html#example-2",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "Example",
-    "text": "Example\n\n\nembeddings = model.encode(\"I love pizza!\")\nembeddings[:10]\n\narray([-0.09438416,  0.02385838,  0.00920313,  0.04992779, -0.09533099,\n        0.0061356 ,  0.03513189,  0.00850056,  0.0105693 , -0.0578883 ],\n      dtype=float32)",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/index.html#are-they-similar",
-    "href": "src/01/index.html#are-they-similar",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "Are They Similar?",
-    "text": "Are They Similar?\n\nWe can test with cosine similarity\nMeasures the angle between two vectors:\n\nSame direction = very similar (similarity close to 1)\nOpposite direction = very different (similarity of -1)\n\nCosine similarity focuses on the angle of the vector vs. length\n\nUseful for comparing texts of different sizes",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/index.html#are-they-similar-1",
-    "href": "src/01/index.html#are-they-similar-1",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "Are They Similar?",
-    "text": "Are They Similar?\n\n\nfrom sklearn.metrics.pairwise import cosine_similarity\n\nsentences = ['The cat sat on the mat', \n             'The dog rested on the rug',\n             'I love pizza']\nembeddings = model.encode(sentences)\n\nprint(cosine_similarity(embeddings))\n\n[[ 1.0000002   0.47530937  0.00155361]\n [ 0.47530937  1.         -0.04451237]\n [ 0.00155361 -0.04451237  1.        ]]",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/index.html#overview-of-embedding-models",
-    "href": "src/01/index.html#overview-of-embedding-models",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "Overview of Embedding Models",
-    "text": "Overview of Embedding Models\n\nTBD",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/index.html#what-embeddings-are-used-for",
-    "href": "src/01/index.html#what-embeddings-are-used-for",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "What Embeddings Are Used For",
-    "text": "What Embeddings Are Used For\n\nTBD",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/index.html#what-is-a-notebook-1",
-    "href": "src/01/index.html#what-is-a-notebook-1",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "What is a Notebook?",
-    "text": "What is a Notebook?\n\nAn interactive document that combines:\n\nLive code that can be executed\nRich text explanations (markdown)\nVisualizations and outputs\n\nThink of it as a computational narrative\n\nTell a story with code, data, and explanations\n\nOriginally designed for data science and research\nAlso used for learning, experimenting, and sharing results",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/index.html#a-brief-history-of-notebooks",
-    "href": "src/01/index.html#a-brief-history-of-notebooks",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "A Brief History of Notebooks",
-    "text": "A Brief History of Notebooks\n\n2011: IPython Notebook project begins\n\nInteractive Python shell → web-based notebook\n\n2014: Renamed to Jupyter (Julia, Python, R)\n\nNow supports 40+ programming languages\n\n2017: Google launches Colab\n\nFree cloud-based Jupyter notebooks\nFree access to GPUs and TPUs\n\nToday: Industry standard for ML/AI development",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/index.html#anatomy-of-a-notebook",
-    "href": "src/01/index.html#anatomy-of-a-notebook",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "Anatomy of a Notebook",
-    "text": "Anatomy of a Notebook\n\nFormat: Extension is .ipynb\n\nJSON format, using Jupyter Document Schema\n\nCells: Building blocks of notebooks\n\nCode cells: Executable Python code\nMarkdown cells: Text, headings, images, equations\n\nKernel: The computational engine running your code\n\nMaintains state between cell executions\n\nOutputs: Results appear directly below code cells\n\nText, tables, plots, interactive widgets",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/index.html#how-to-run-notebooks",
-    "href": "src/01/index.html#how-to-run-notebooks",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "How to Run Notebooks",
-    "text": "How to Run Notebooks\n\nJupyter Notebook Server (Classic approach)\n\nWeb interface on localhost\n\nVS Code (Local development)\n\nJupyter extension for VS Code\nRun on your own machine\n\nGoogle Colab (Recommended)\n\nBrowser-based, no installation needed\nFree GPU access",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/index.html#advantages-of-google-colab",
-    "href": "src/01/index.html#advantages-of-google-colab",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "Advantages of Google Colab",
-    "text": "Advantages of Google Colab\n\nAccess to GPUs and TPUs for AI-based tasks\n\ne.g., A100 and H100 with 40Gb/80Gb VRAM\n\nModel downloaded between cloud vendors\n\nvs. downloading large models via the DigiPen network\n\nMany libraries pre-installed\nEasy to share notebooks with others\nGenerous (free) GPU limits for students!",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
+      "Resources"
     ]
   },
   {
