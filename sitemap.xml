@@ -2,26 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://simonguest.github.io/CS-394/src/01/hello-world.html</loc>
-    <lastmod>2025-12-23T00:36:32.673Z</lastmod>
+    <lastmod>2025-12-23T08:39:54.974Z</lastmod>
   </url>
   <url>
-    <loc>https://simonguest.github.io/CS-394/src/01/slides.html</loc>
-    <lastmod>2025-12-23T00:36:32.674Z</lastmod>
-  </url>
-  <url>
-    <loc>https://simonguest.github.io/CS-394/src/00/slides.html</loc>
-    <lastmod>2025-12-23T00:36:32.673Z</lastmod>
-  </url>
-  <url>
-    <loc>https://simonguest.github.io/CS-394/index.html</loc>
-    <lastmod>2025-12-23T00:36:32.673Z</lastmod>
+    <loc>https://simonguest.github.io/CS-394/src/01/GPT-2.html</loc>
+    <lastmod>2025-12-23T08:39:54.973Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/01/resources.html</loc>
-    <lastmod>2025-12-23T00:36:32.673Z</lastmod>
+    <lastmod>2025-12-23T08:39:54.974Z</lastmod>
+  </url>
+  <url>
+    <loc>https://simonguest.github.io/CS-394/src/00/slides.html</loc>
+    <lastmod>2025-12-23T08:39:54.973Z</lastmod>
+  </url>
+  <url>
+    <loc>https://simonguest.github.io/CS-394/index.html</loc>
+    <lastmod>2025-12-23T08:39:54.973Z</lastmod>
+  </url>
+  <url>
+    <loc>https://simonguest.github.io/CS-394/src/01/assignment.html</loc>
+    <lastmod>2025-12-23T08:39:54.973Z</lastmod>
+  </url>
+  <url>
+    <loc>https://simonguest.github.io/CS-394/src/01/slides.html</loc>
+    <lastmod>2025-12-23T08:39:54.974Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/01/embeddings.html</loc>
-    <lastmod>2025-12-23T00:36:32.673Z</lastmod>
+    <lastmod>2025-12-23T08:39:54.974Z</lastmod>
   </url>
 </urlset>
