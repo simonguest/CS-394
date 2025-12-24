@@ -17,63 +17,88 @@ bibliography: references.bib
 
 ## Lesson Objectives
 
-- How to create vector embeddings and test for similarity
+- Explore the history of vector embeddings and tokenization
 - Understand the transformer architecture and how it works at a high level
-- Cover a brief history of early generative models
-- Setup and use Colab Pro for experimenting with vector embeddings and downloading/testing a GPT-2 model.
-- Start becoming familiar with the basics of notebooks and Python (if you haven’t used it already)
+- Use a simple sentence transformer to create vector embeddings and test for similarity
+- Cover a brief history of early generative transformers
+- Setup and use Colab Pro, and start becoming familiar with the basics of notebooks and Python (if you haven’t used them already)
 
-# Introducing Vector Embeddings
+# Let's Rewind To 2013...
+
+## Back in 2013
+
+- NLP (Natural Language Processing) was hot!
+  - Sentiment analysis, named entity recognition, parsing, etc.
+- But, you had limited options...
+  - One-hot encoding
+  - Hand crafted features
+  - Neural language models
+
+## Word2Vec Released
+
+- First example of vector embeddings
+  - TBD Citation here
 
 ## What are Vector Embeddings?
 
 - Vector Embeddings are **meaningful numerical representations** of words
-  - Representations where strings of words (i.e., sentences) are encoded into multi-dimensional space
+  - Representations where words (or sentences) are encoded into multi-dimensional space
   - Large number of dimensions (we'll use 384 in our examples)
-  - Similar sentences have similar numbers
+  - Similar words/sentences have similar numbers
 
-## Example
-
-{{< embed embeddings.ipynb#sentence-1 echo=true >}}
-
-## Example
-
-{{< embed embeddings.ipynb#sentence-2 echo=true >}}
-
-## Example
-
-{{< embed embeddings.ipynb#sentence-3 echo=true >}}
-
-## Are They Similar?
-
-- We can test with **cosine similarity**
-- Measures the angle between two vectors: 
-  - Same direction = very similar (similarity close to 1)
-  - Opposite direction = very different (similarity of -1)
-- Cosine similarity focuses on the angle of the vector vs. length
-  - Useful for comparing texts of different sizes
-
-## Are They Similar?
-
-{{< embed embeddings.ipynb#similarity echo=true >}}
-
-## Overview of Embedding Models
+## How does Word2Vec Work?
 
 - TBD
 
-## What Embeddings Are Used For
+## Challenges with Word-Based Embeddings
 
-- TBD
+- Large volabularies
+  - 100K+ words
+  - And not particularly friendly to non-English vocabularies
+- Little representation between words
+  - "Run" and "Running" should be related
+- Lack of context
+  - Embedding for the word "bank" is the same, regardless of context
+  - "River bank" != "Savings bank"
 
-# Introducing the Transformer
+## Challenges with Word-Based Embeddings
 
-## Introducing the Transformer
+- Some researchers tried character-level models
+  - Small vocabulary (26 letters + puntuation for English)
+  - But very long sequences
+  - And hard to extra meaning
 
-- Let's rewind to June 2017
+## 2015: Subword Tokenization
+
+- Breaks words into frequent subword units
+  - "unbelievable" → ["un", "believ", "able"]
+- Balance between word level (large vocab) and character level (long sequences)
+  - Supports related words (["Run"] and ["Run", "ning"])
+  - Supports unknown words
+  - 30-50K tokens vs. 100K
+  - Also works well for non-English languages
+
+## 2016: Byte Pair Encoding (BPE)
+
+- TBD: Sennrich et. al (need citation)
+
+## Search for Context
+
+- BPE provided efficiency and representation between words
+- But still didn't solve context
+  - e.g., "River bank" != "Savings bank"
+- Researchers working on "attention tasks" using Recurrent Neural Networks (RNNs)
+  - Mostly for translation purposes
+  - Showed that focusing on relevant parts of input improved translation quality
+  - TBD: Bahdanau et al. introduce attention for translation (citation needed)
+
+## 2017: "Attention is all you need"
+
 - Google researchers publish "Attention is all you need" [@vaswani2017attention]
-  - Introduced a novel neural network architecture, eliminating the need for RNNs for sequence-to-sequence models
+  - Introduced the **Transformer** a novel Neural Network (NN) architecture, eliminating the need for RNNs for sequence-to-sequence models
+  - Used BPE tokenization, and creates contextual embeddings during training process
   - Attention mechanism allows the model to weigh the importance of words in a sequence
-  - Achieved SOTA (State Of The Art) performance on language translation, while also being faster to train
+  - Achieved State Of The Art (SOTA) performance on language translation, while also being faster to train
 
 ## Introducing the Transformer
 
@@ -107,6 +132,31 @@ bibliography: references.bib
 %%| file: diagrams/transformer-4.mmd
 ```
 
+## Example
+
+{{< embed sentence-transformer.ipynb#sentence-1 echo=true >}}
+
+## Example
+
+{{< embed sentence-transformer.ipynb#sentence-2 echo=true >}}
+
+## Example
+
+{{< embed sentence-transformer.ipynb#sentence-3 echo=true >}}
+
+## Are They Similar?
+
+- We can test with **cosine similarity**
+- Measures the angle between two vectors: 
+  - Same direction = very similar (similarity close to 1)
+  - Opposite direction = very different (similarity of -1)
+- Cosine similarity focuses on the angle of the vector vs. length
+  - Useful for comparing texts of different sizes
+
+## Are They Similar?
+
+{{< embed sentence-transformer.ipynb#similarity echo=true >}}
+
 ## Lead into GPT
 
 - TBD
@@ -115,7 +165,7 @@ bibliography: references.bib
 
 - TBD
 
-# Let's Get Into Some Code!
+# Let's Run Some Code!
 
 # What is a Notebook?
 

@@ -38,8 +38,10 @@ website:
             contents:
               - text: "hello-world.ipynb"
                 href: src/01/hello-world.ipynb
-              - text: "embeddings.ipynb"
-                href: src/01/embeddings.ipynb
+              - text: "word2vec.ipynb"
+                href: src/01/word2vec.ipynb
+              - text: "sentence-transformer.ipynb"
+                href: src/01/sentence-transformer.ipynb
               - text: "GPT-2.ipynb"
                 href: src/01/GPT-2.ipynb
           - text: "Assignment"
