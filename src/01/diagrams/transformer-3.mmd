@@ -1,0 +1,26 @@
+graph TB
+    Input["Input: 'Le chat est sur le tapis'"]
+    
+    subgraph Transformer
+        direction LR
+        subgraph "Encoder Stack (N layers)"
+            E[Encoder<br/>Layers<br/>1...N]
+        end
+        
+        subgraph "Decoder Stack (N layers)"
+            D[Decoder<br/>Layers<br/>1...N]
+        end
+        
+        E -.->|Context| D
+    end
+    
+    Output["Output: 'The cat is on the mat'"]
+    
+    Input --> E
+    D --> Output
+    
+    style E fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
+    style D fill:#E67E22,stroke:#C0652A,stroke-width:2px,color:#fff
+    style Input fill:#E8F4F8,stroke:#4A90E2,stroke-width:2px
+    style Output fill:#FCE8D8,stroke:#E67E22,stroke-width:2px
+    style Transformer fill:#f9f9f9,stroke:#333,stroke-width:2px

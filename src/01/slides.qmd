@@ -10,24 +10,20 @@ format:
     width: 1050
     height: 700
     margin: 0.15
+    mermaid-format: png
 logo: ../../theme/logos/DigiPen_RGB_Red.png
+bibliography: references.bib
 ---
 
 ## Lesson Objectives
 
-- Understand how generative AI fits with other AI techniques
 - How to create vector embeddings and test for similarity
 - Understand the transformer architecture and how it works at a high level
+- Cover a brief history of early generative models
 - Setup and use Colab Pro for experimenting with vector embeddings and downloading/testing a GPT-2 model.
 - Start becoming familiar with the basics of notebooks and Python (if you haven’t used it already)
 
-# A recap of ML/Neural Network architectures
-
-## A recap of ML/Neural Network architectures
-
-- TBD
-
-# Vector Embeddings
+# Introducing Vector Embeddings
 
 ## What are Vector Embeddings?
 
@@ -66,6 +62,56 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 - TBD
 
 ## What Embeddings Are Used For
+
+- TBD
+
+# Introducing the Transformer
+
+## Introducing the Transformer
+
+- Let's rewind to June 2017
+- Google researchers publish "Attention is all you need" [@vaswani2017attention]
+  - Introduced a novel neural network architecture, eliminating the need for RNNs for sequence-to-sequence models
+  - Attention mechanism allows the model to weigh the importance of words in a sequence
+  - Achieved SOTA (State Of The Art) performance on language translation, while also being faster to train
+
+## Introducing the Transformer
+
+```{mermaid .lightbox}
+%%| fig-height: 100%
+%%| label: transformer-1
+%%| file: diagrams/transformer-1.mmd
+```
+
+## Introducing the Transformer
+
+```{mermaid}
+%%| fig-height: 100%
+%%| label: transformer-2
+%%| file: diagrams/transformer-2.mmd
+```
+
+## Introducing the Transformer
+
+```{mermaid}
+%%| fig-height: 100%
+%%| label: transformer-3
+%%| file: diagrams/transformer-3.mmd
+```
+
+## Introducing the Transformer
+
+```{mermaid}
+%%| fig-height: 100%
+%%| label: transformer-4
+%%| file: diagrams/transformer-4.mmd
+```
+
+## Lead into GPT
+
+- TBD
+
+## Then show the history
 
 - TBD
 
@@ -131,3 +177,5 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 # Demo
 
 Hello World notebook in **Colab**, **VS Code**, and **Local Jupyter server**
+
+## References

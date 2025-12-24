@@ -1,0 +1,50 @@
+graph TB
+    Input["Input: 'Le chat est sur le tapis'"]
+    
+    subgraph Transformer
+        direction TB
+        
+        subgraph "Encoder Layer"
+            direction TB
+            E_SelfAttn[Multi-Head<br/>Self-Attention]
+            E_AddNorm1[Add & Norm]
+            E_FFN[Feed-Forward<br/>Network]
+            E_AddNorm2[Add & Norm]
+            
+            E_SelfAttn --> E_AddNorm1 --> E_FFN --> E_AddNorm2
+        end
+        
+        subgraph "Decoder Layer"
+            direction TB
+            D_SelfAttn[Masked Multi-Head<br/>Self-Attention]
+            D_AddNorm1[Add & Norm]
+            D_CrossAttn[Multi-Head<br/>Cross-Attention]
+            D_AddNorm2[Add & Norm]
+            D_FFN[Feed-Forward<br/>Network]
+            D_AddNorm3[Add & Norm]
+            
+            D_SelfAttn --> D_AddNorm1 --> D_CrossAttn --> D_AddNorm2 --> D_FFN --> D_AddNorm3
+        end
+        
+        E_AddNorm2 -.->|Encoder<br/>Output| D_CrossAttn
+    end
+    
+    Output["Output: 'The cat is on the mat'"]
+    
+    Input --> E_SelfAttn
+    D_AddNorm3 --> Output
+    
+    style E_SelfAttn fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
+    style E_FFN fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
+    style E_AddNorm1 fill:#A8D5F2,stroke:#4A90E2,stroke-width:1px,color:#000
+    style E_AddNorm2 fill:#A8D5F2,stroke:#4A90E2,stroke-width:1px,color:#000
+    
+    style D_SelfAttn fill:#E67E22,stroke:#C0652A,stroke-width:2px,color:#fff
+    style D_CrossAttn fill:#E67E22,stroke:#C0652A,stroke-width:2px,color:#fff
+    style D_FFN fill:#E67E22,stroke:#C0652A,stroke-width:2px,color:#fff
+    style D_AddNorm1 fill:#F8C9A8,stroke:#E67E22,stroke-width:1px,color:#000
+    style D_AddNorm2 fill:#F8C9A8,stroke:#E67E22,stroke-width:1px,color:#000
+    style D_AddNorm3 fill:#F8C9A8,stroke:#E67E22,stroke-width:1px,color:#000
+    
+    style Input fill:#E8F4F8,stroke:#4A90E2,stroke-width:2px
+    style Output fill:#FCE8D8,stroke:#E67E22,stroke-width:2px
