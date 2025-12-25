@@ -12,7 +12,6 @@ format:
     margin: 0.15
     mermaid-format: png
 logo: ../../theme/logos/DigiPen_RGB_Red.png
-bibliography: references.bib
 ---
 
 ## Lesson Objectives
