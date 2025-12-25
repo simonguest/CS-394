@@ -1,5 +1,77 @@
 [
   {
+    "objectID": "src/01/word2vec.html",
+    "href": "src/01/word2vec.html",
+    "title": "Word2Vec",
+    "section": "",
+    "text": "This notebook explores Word2Vec embeddings to understand how they capture semantic relationships.\nUses pre-trained embeddings from Google News (trained on ~100 billion words).\n# Install required packages\n!uv pip install gensim numpy matplotlib scikit-learn -q",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Hands-on Notebooks",
+      "word2vec.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/01/word2vec.html#load-pretrained-word2vec-model",
+    "href": "src/01/word2vec.html#load-pretrained-word2vec-model",
+    "title": "Word2Vec",
+    "section": "Load Pretrained Word2Vec Model",
+    "text": "Load Pretrained Word2Vec Model\n\nimport gensim.downloader as api\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.manifold import TSNE\nfrom sklearn.decomposition import PCA\nimport warnings\nwarnings.filterwarnings('ignore')\n\n# Load pre-trained Word2Vec model (Google News, 300-dimensional vectors)\nprint(\"Loading Word2Vec model...\")\nmodel = api.load('word2vec-google-news-300')\nprint(f\"Model loaded. Vocabulary size: {len(model)} words\")\nprint(f\"Vector dimension: {model.vector_size}\") # type: ignore\n\nLoading Word2Vec model...\nModel loaded. Vocabulary size: 3000000 words\nVector dimension: 300\n\n\n\nword = \"cat\"\nvector = model[word] # type: ignore\nvector[:10]\n\narray([ 0.0123291 ,  0.20410156, -0.28515625,  0.21679688,  0.11816406,\n        0.08300781,  0.04980469, -0.00952148,  0.22070312, -0.12597656],\n      dtype=float32)\n\n\n\nword = \"dog\"\nvector = model[word] # type: ignore\nvector[:10]\n\narray([ 0.05126953, -0.02233887, -0.17285156,  0.16113281, -0.08447266,\n        0.05737305,  0.05859375, -0.08251953, -0.01538086, -0.06347656],\n      dtype=float32)\n\n\n\nword = \"pizza\"\nvector = model[word] # type: ignore\nvector[:10]\n\narray([-1.2597656e-01,  2.5390625e-02,  1.6699219e-01,  5.5078125e-01,\n       -7.6660156e-02,  1.2890625e-01,  1.0253906e-01, -3.9482117e-04,\n        1.2158203e-01,  4.3212891e-02], dtype=float32)",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Hands-on Notebooks",
+      "word2vec.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/01/word2vec.html#find-similar-words",
+    "href": "src/01/word2vec.html#find-similar-words",
+    "title": "Word2Vec",
+    "section": "Find Similar Words",
+    "text": "Find Similar Words\nWords with similar meanings have similar vectors.\n\ndef find_similar_words(word, top_n=10):\n    \"\"\"Find the most similar words to a given word.\"\"\"\n    try:\n        similar = model.most_similar(word, topn=top_n) # type: ignore\n        print(f\"\\nWords most similar to '{word}':\")\n        print(\"-\" * 40)\n        for similar_word, similarity in similar:\n            print(f\"{similar_word:20s} | similarity: {similarity:.4f}\")\n    except KeyError:\n        print(f\"Word '{word}' not in vocabulary\")\n\n# Try different words!\nfind_similar_words(\"cat\")\nfind_similar_words(\"dog\")\nfind_similar_words(\"pizza\")\n\n\nWords most similar to 'cat':\n----------------------------------------\ncats                 | similarity: 0.8099\ndog                  | similarity: 0.7609\nkitten               | similarity: 0.7465\nfeline               | similarity: 0.7326\nbeagle               | similarity: 0.7151\npuppy                | similarity: 0.7075\npup                  | similarity: 0.6934\npet                  | similarity: 0.6892\nfelines              | similarity: 0.6756\nchihuahua            | similarity: 0.6710\n\nWords most similar to 'dog':\n----------------------------------------\ndogs                 | similarity: 0.8680\npuppy                | similarity: 0.8106\npit_bull             | similarity: 0.7804\npooch                | similarity: 0.7627\ncat                  | similarity: 0.7609\ngolden_retriever     | similarity: 0.7501\nGerman_shepherd      | similarity: 0.7465\nRottweiler           | similarity: 0.7438\nbeagle               | similarity: 0.7419\npup                  | similarity: 0.7407\n\nWords most similar to 'pizza':\n----------------------------------------\npizzas               | similarity: 0.7863\nDomino_pizza         | similarity: 0.7343\nPizza                | similarity: 0.6988\npepperoni_pizza      | similarity: 0.6903\nsandwich             | similarity: 0.6840\nburger               | similarity: 0.6570\nsandwiches           | similarity: 0.6495\ntakeout_pizza        | similarity: 0.6492\ngourmet_pizza        | similarity: 0.6401\nmeatball_sandwich    | similarity: 0.6377",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Hands-on Notebooks",
+      "word2vec.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/01/word2vec.html#compute-similarity",
+    "href": "src/01/word2vec.html#compute-similarity",
+    "title": "Word2Vec",
+    "section": "Compute Similarity",
+    "text": "Compute Similarity\n\ndef compute_similarity(word1, word2):\n    \"\"\"Compute cosine similarity between two words.\"\"\"\n    try:\n        similarity = model.similarity(word1, word2) # type: ignore\n        print(f\"Similarity between '{word1}' and '{word2}': {similarity:.4f}\")\n        return similarity\n    except KeyError as e:\n        print(f\"Word not in vocabulary: {e}\")\n\n# Similar words\ncompute_similarity('cat', 'dog')\ncompute_similarity('cat', 'kitten')\n\n# Unrelated words\ncompute_similarity('cat', 'car')\n\n# Related concepts\ncompute_similarity('doctor', 'hospital')\ncompute_similarity('king', 'queen')\n\nSimilarity between 'cat' and 'dog': 0.7609\nSimilarity between 'cat' and 'kitten': 0.7465\nSimilarity between 'cat' and 'car': 0.2153\nSimilarity between 'doctor' and 'hospital': 0.5143\nSimilarity between 'king' and 'queen': 0.6511\n\n\nnp.float32(0.6510956)",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Hands-on Notebooks",
+      "word2vec.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/01/word2vec.html#vector-arithmetic",
+    "href": "src/01/word2vec.html#vector-arithmetic",
+    "title": "Word2Vec",
+    "section": "Vector Arithmetic",
+    "text": "Vector Arithmetic\n\ndef vector_arithmetic(positive, negative, top_n=5):\n    \"\"\"Perform vector arithmetic: positive words - negative words.\"\"\"\n    try:\n        result = model.most_similar(positive=positive, negative=negative, topn=top_n) # type: ignore\n        print(f\"\\n{' + '.join(positive)} - {' - '.join(negative)}:\")\n        print(\"-\" * 50)\n        for word, similarity in result:\n            print(f\"{word:20s} | similarity: {similarity:.4f}\")\n    except KeyError as e:\n        print(f\"Word not in vocabulary: {e}\")\n\n# The famous example\nvector_arithmetic(['king', 'woman'], ['man'])\n\n# Geography\nvector_arithmetic(['Paris', 'Italy'], ['France'])\n\n# Grammar\nvector_arithmetic(['walking', 'swim'], ['walk'])\n\n\nking + woman - man:\n--------------------------------------------------\nqueen                | similarity: 0.7118\nmonarch              | similarity: 0.6190\nprincess             | similarity: 0.5902\ncrown_prince         | similarity: 0.5499\nprince               | similarity: 0.5377\n\nParis + Italy - France:\n--------------------------------------------------\nMilan                | similarity: 0.7222\nRome                 | similarity: 0.7028\nPalermo_Sicily       | similarity: 0.5968\nItalian              | similarity: 0.5911\nTuscany              | similarity: 0.5633\n\nwalking + swim - walk:\n--------------------------------------------------\nswimming             | similarity: 0.8246\nswam                 | similarity: 0.6807\nswims                | similarity: 0.6538\nswimmers             | similarity: 0.6495\npaddling             | similarity: 0.6424",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Hands-on Notebooks",
+      "word2vec.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/01/word2vec.html#d-visualization",
+    "href": "src/01/word2vec.html#d-visualization",
+    "title": "Word2Vec",
+    "section": "2D Visualization",
+    "text": "2D Visualization\n\ndef visualize_words(words, method='tsne'):\n    \"\"\"Visualize word embeddings in 2D.\"\"\"\n    # Get vectors for words that exist in vocabulary\n    valid_words = [w for w in words if w in model]\n    if len(valid_words) &lt; 2:\n        print(\"Need at least 2 valid words to visualize\")\n        return\n    \n    vectors = np.array([model[w] for w in valid_words])\n    \n    # Reduce to 2D\n    if method == 'tsne':\n        reducer = TSNE(n_components=2, random_state=42, perplexity=min(5, len(valid_words)-1))\n    else:\n        reducer = PCA(n_components=2, random_state=42)\n    \n    vectors_2d = reducer.fit_transform(vectors)\n    \n    # Plot\n    plt.figure(figsize=(12, 8))\n    plt.scatter(vectors_2d[:, 0], vectors_2d[:, 1], s=200, alpha=0.6)\n    \n    for i, word in enumerate(valid_words):\n        plt.annotate(word, \n                    xy=(vectors_2d[i, 0], vectors_2d[i, 1]),\n                    xytext=(5, 5),\n                    textcoords='offset points',\n                    fontsize=12,\n                    fontweight='bold')\n    \n    plt.title(f'Word Embeddings Visualization ({method.upper()})', fontsize=16)\n    plt.xlabel('Dimension 1')\n    plt.ylabel('Dimension 2')\n    plt.grid(True, alpha=0.3)\n    plt.tight_layout()\n    plt.show()\n\nwords = ['cat', 'dog', 'kitten', 'puppy', 'lion', 'tiger', 'elephant', 'mouse', 'chicken', 'rat']\nvisualize_words(words)",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Hands-on Notebooks",
+      "word2vec.ipynb"
+    ]
+  },
+  {
     "objectID": "src/01/hello-world.html",
     "href": "src/01/hello-world.html",
     "title": "Hello World Notebook!",
@@ -36,59 +108,342 @@
     ]
   },
   {
-    "objectID": "src/01/GPT-2.html",
-    "href": "src/01/GPT-2.html",
-    "title": "Pre-trained GPT-2 Notebook",
-    "section": "",
-    "text": "from transformers import GPT2LMHeadModel, GPT2Tokenizer\nimport torch\n\n# Load pre-trained GPT-2 model and tokenizer\nmodel_name = \"gpt2\"  # Options: \"gpt2\", \"gpt2-medium\", \"gpt2-large\", \"gpt2-xl\"\ntokenizer = GPT2Tokenizer.from_pretrained(model_name)\nmodel = GPT2LMHeadModel.from_pretrained(model_name)\n\n# Set model to evaluation mode\nmodel.eval()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGPT2LMHeadModel(\n  (transformer): GPT2Model(\n    (wte): Embedding(50257, 768)\n    (wpe): Embedding(1024, 768)\n    (drop): Dropout(p=0.1, inplace=False)\n    (h): ModuleList(\n      (0-11): 12 x GPT2Block(\n        (ln_1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)\n        (attn): GPT2Attention(\n          (c_attn): Conv1D(nf=2304, nx=768)\n          (c_proj): Conv1D(nf=768, nx=768)\n          (attn_dropout): Dropout(p=0.1, inplace=False)\n          (resid_dropout): Dropout(p=0.1, inplace=False)\n        )\n        (ln_2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)\n        (mlp): GPT2MLP(\n          (c_fc): Conv1D(nf=3072, nx=768)\n          (c_proj): Conv1D(nf=768, nx=3072)\n          (act): NewGELUActivation()\n          (dropout): Dropout(p=0.1, inplace=False)\n        )\n      )\n    )\n    (ln_f): LayerNorm((768,), eps=1e-05, elementwise_affine=True)\n  )\n  (lm_head): Linear(in_features=768, out_features=50257, bias=False)\n)\n\n\n\ndef autocomplete(prompt, max_length=50, temperature=0.7, top_k=50, top_p=0.9):\n    \"\"\"\n    Generate autocomplete text continuation from a prompt.\n\n    Args:\n        prompt: Input text to continue\n        max_length: Maximum total tokens (prompt + generation)\n        temperature: Sampling temperature (higher = more random)\n        top_k: Number of highest probability tokens to keep\n        top_p: Nucleus sampling threshold\n    \"\"\"\n    # Encode the prompt\n    input_ids = tokenizer.encode(prompt, return_tensors=\"pt\")\n\n    # Generate continuation\n    with torch.no_grad():\n        output = model.generate(\n            input_ids,\n            max_length=max_length,\n            temperature=temperature,\n            top_k=top_k,\n            top_p=top_p,\n            do_sample=True,\n            pad_token_id=tokenizer.eos_token_id\n        )\n\n    # Decode and return the generated text\n    generated_text = tokenizer.decode(output[0], skip_special_tokens=True)\n    return generated_text\n\n\nprompts = [\n    \"Mary had a little lamb\",\n    \"The future of artificial intelligence\",\n    \"In a galaxy far, far away\",\n    \"DigiPen is a place where\",\n    \"def calculate_fibonacci(n):\"\n]\n\nfor prompt in prompts:\n    print(f\"\\nPrompt: {prompt}\")\n    print(\"-\" * 50)\n    completion = autocomplete(prompt, max_length=80)\n    print(f\"Output: {completion}\\n\")\n\n\nPrompt: Mary had a little lamb\n--------------------------------------------------\nOutput: Mary had a little lamb, which I bought from the shopkeeper for her, and I was going to bring it home. She came back with a bundle of hay, which she put in a large box, and a little box containing a small bag of hay.\n\n\"When I went home, I was taken to a large garden, and I saw a tree with a branch in it,\n\n\nPrompt: The future of artificial intelligence\n--------------------------------------------------\nOutput: The future of artificial intelligence is likely to be far from bright.\n\nThe next big news will come from the company's future of AI.\n\nThis article was originally published on The Conversation. Read the original article.\n\n\nPrompt: In a galaxy far, far away\n--------------------------------------------------\nOutput: In a galaxy far, far away, I have seen a huge galaxy, with a massive amount of galaxies, and a huge amount of planets. I have seen a lot of them. I have seen planets that are so big that they have to be made of matter, like the ones in the movies, but they are not. I have seen planets that are so big that they have to be made\n\n\nPrompt: DigiPen is a place where\n--------------------------------------------------\nOutput: DigiPen is a place where you can learn more about the world of penmanship, and more importantly about penmanship, and learn about how to be a good penman.\n\nI'm glad to announce the launch of the first ever penmanship course in the U.S. on the Penmanship International Course Series.\n\nI'm very excited to see Penmanship International.\n\n\n\n\nPrompt: def calculate_fibonacci(n):\n--------------------------------------------------\nOutput: def calculate_fibonacci(n): print(n, \"\n\n\" + len(n))\n\nreturn n\n\nclass EqEq ( Eq ):\n\ndef __init__ ( self , n ):\n\nself .n = n\n\ndef __eq__ ( self , other ):\n\nreturn (n &lt; other)\n\nclass Eq",
+    "objectID": "src/01/slides.html#lesson-objectives",
+    "href": "src/01/slides.html#lesson-objectives",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Lesson Objectives",
+    "text": "Lesson Objectives\n\nExplore the history of vector embeddings and tokenization\nUnderstand the transformer architecture and how it works at a high level\nUse a simple sentence transformer to create vector embeddings and test for similarity\nCover a brief history of early generative transformers\nSetup and use Colab Pro, and start becoming familiar with the basics of notebooks and Python (if you haven’t used them already)",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
-      "Hands-on Notebooks",
-      "GPT-2.ipynb"
+      "Slides"
     ]
   },
   {
-    "objectID": "src/01/resources.html",
-    "href": "src/01/resources.html",
-    "title": "Week 1 Resources",
-    "section": "",
-    "text": "A Visual Introduction to Vector Embeddings, Pamela Fox\nA Visual Exploration of Vectors, Pamela Fox\n\n\n\n\n\nGoogle Colab Sign-up Page\nProject Jupyter Page\n\n\n\n\n\nLearn Python with Jupyter, Serena Bonaretti",
+    "objectID": "src/01/slides.html#back-in-2013",
+    "href": "src/01/slides.html#back-in-2013",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Back in 2013",
+    "text": "Back in 2013\n\nNLP (Natural Language Processing) was hot!\n\nSentiment analysis, named entity recognition, parsing, etc.\n\nBut, you had limited options…\n\nOne-hot encoding\nHand crafted features\nNeural language models",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
-      "Resources"
+      "Slides"
     ]
   },
   {
-    "objectID": "src/01/resources.html#vector-embeddings",
-    "href": "src/01/resources.html#vector-embeddings",
-    "title": "Week 1 Resources",
-    "section": "",
-    "text": "A Visual Introduction to Vector Embeddings, Pamela Fox\nA Visual Exploration of Vectors, Pamela Fox",
+    "objectID": "src/01/slides.html#word2vec-released",
+    "href": "src/01/slides.html#word2vec-released",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Word2Vec Released",
+    "text": "Word2Vec Released\n\nFirst example of vector embeddings\n\nTBD Citation here",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
-      "Resources"
+      "Slides"
     ]
   },
   {
-    "objectID": "src/01/resources.html#introduction-to-notebooks",
-    "href": "src/01/resources.html#introduction-to-notebooks",
-    "title": "Week 1 Resources",
-    "section": "",
-    "text": "Google Colab Sign-up Page\nProject Jupyter Page",
+    "objectID": "src/01/slides.html#what-are-vector-embeddings",
+    "href": "src/01/slides.html#what-are-vector-embeddings",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "What are Vector Embeddings?",
+    "text": "What are Vector Embeddings?\n\nVector Embeddings are meaningful numerical representations of words\n\nRepresentations where words (or sentences) are encoded into multi-dimensional space\nLarge number of dimensions (we’ll use 384 in our examples)\nSimilar words/sentences have similar numbers",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
-      "Resources"
+      "Slides"
     ]
   },
   {
-    "objectID": "src/01/resources.html#learning-python",
-    "href": "src/01/resources.html#learning-python",
-    "title": "Week 1 Resources",
-    "section": "",
-    "text": "Learn Python with Jupyter, Serena Bonaretti",
+    "objectID": "src/01/slides.html#how-does-word2vec-work",
+    "href": "src/01/slides.html#how-does-word2vec-work",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "How does Word2Vec Work?",
+    "text": "How does Word2Vec Work?\n\nTBD",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
-      "Resources"
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#challenges-with-word-based-embeddings",
+    "href": "src/01/slides.html#challenges-with-word-based-embeddings",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Challenges with Word-Based Embeddings",
+    "text": "Challenges with Word-Based Embeddings\n\nLarge volabularies\n\n100K+ words\nAnd not particularly friendly to non-English vocabularies\n\nLittle representation between words\n\n“Run” and “Running” should be related\n\nLack of context\n\nEmbedding for the word “bank” is the same, regardless of context\n“River bank” != “Savings bank”",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#challenges-with-word-based-embeddings-1",
+    "href": "src/01/slides.html#challenges-with-word-based-embeddings-1",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Challenges with Word-Based Embeddings",
+    "text": "Challenges with Word-Based Embeddings\n\nSome researchers tried character-level models\n\nSmall vocabulary (26 letters + puntuation for English)\nBut very long sequences\nAnd hard to extra meaning",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#subword-tokenization",
+    "href": "src/01/slides.html#subword-tokenization",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "2015: Subword Tokenization",
+    "text": "2015: Subword Tokenization\n\nBreaks words into frequent subword units\n\n“unbelievable” → [“un”, “believ”, “able”]\n\nBalance between word level (large vocab) and character level (long sequences)\n\nSupports related words ([“Run”] and [“Run”, “ning”])\nSupports unknown words\n30-50K tokens vs. 100K\nAlso works well for non-English languages",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#byte-pair-encoding-bpe",
+    "href": "src/01/slides.html#byte-pair-encoding-bpe",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "2016: Byte Pair Encoding (BPE)",
+    "text": "2016: Byte Pair Encoding (BPE)\n\nTBD: Sennrich et. al (need citation)",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#search-for-context",
+    "href": "src/01/slides.html#search-for-context",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Search for Context",
+    "text": "Search for Context\n\nBPE provided efficiency and representation between words\nBut still didn’t solve context\n\ne.g., “River bank” != “Savings bank”\n\nResearchers working on “attention tasks” using Recurrent Neural Networks (RNNs)\n\nMostly for translation purposes\nShowed that focusing on relevant parts of input improved translation quality\nTBD: Bahdanau et al. introduce attention for translation (citation needed)",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#attention-is-all-you-need",
+    "href": "src/01/slides.html#attention-is-all-you-need",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "2017: “Attention is all you need”",
+    "text": "2017: “Attention is all you need”\n\nGoogle researchers publish “Attention is all you need” (Vaswani et al. 2017)\n\nIntroduced the Transformer a novel Neural Network (NN) architecture, eliminating the need for RNNs for sequence-to-sequence models\nUsed BPE tokenization, and creates contextual embeddings during training process\nAttention mechanism allows the model to weigh the importance of words in a sequence\nAchieved State Of The Art (SOTA) performance on language translation, while also being faster to train",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#introducing-the-transformer",
+    "href": "src/01/slides.html#introducing-the-transformer",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Introducing the Transformer",
+    "text": "Introducing the Transformer",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#introducing-the-transformer-1",
+    "href": "src/01/slides.html#introducing-the-transformer-1",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Introducing the Transformer",
+    "text": "Introducing the Transformer",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#introducing-the-transformer-2",
+    "href": "src/01/slides.html#introducing-the-transformer-2",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Introducing the Transformer",
+    "text": "Introducing the Transformer",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#introducing-the-transformer-3",
+    "href": "src/01/slides.html#introducing-the-transformer-3",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Introducing the Transformer",
+    "text": "Introducing the Transformer",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#example",
+    "href": "src/01/slides.html#example",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Example",
+    "text": "Example\n\n\nembeddings = model.encode(\"The cat sat on the mat\")\nembeddings[:10]\n\narray([ 0.13040183, -0.01187013, -0.02811704,  0.05123864, -0.05597447,\n        0.03019154,  0.0301613 ,  0.02469837, -0.01837057,  0.05876679],\n      dtype=float32)",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#example-1",
+    "href": "src/01/slides.html#example-1",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Example",
+    "text": "Example\n\n\nembeddings = model.encode(\"The dog rested on the rug\")\nembeddings[:10]\n\narray([ 0.05627272,  0.02632686,  0.05896206,  0.12019245, -0.00399702,\n        0.08970873, -0.02332847, -0.01548103,  0.00939427,  0.01598458],\n      dtype=float32)",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#example-2",
+    "href": "src/01/slides.html#example-2",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Example",
+    "text": "Example\n\n\nembeddings = model.encode(\"I love pizza!\")\nembeddings[:10]\n\narray([-0.09438416,  0.02385838,  0.00920313,  0.04992779, -0.09533099,\n        0.0061356 ,  0.03513189,  0.00850056,  0.0105693 , -0.0578883 ],\n      dtype=float32)",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#are-they-similar",
+    "href": "src/01/slides.html#are-they-similar",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Are They Similar?",
+    "text": "Are They Similar?\n\nWe can test with cosine similarity\nMeasures the angle between two vectors:\n\nSame direction = very similar (similarity close to 1)\nOpposite direction = very different (similarity of -1)\n\nCosine similarity focuses on the angle of the vector vs. length\n\nUseful for comparing texts of different sizes",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#are-they-similar-1",
+    "href": "src/01/slides.html#are-they-similar-1",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Are They Similar?",
+    "text": "Are They Similar?\n\n\nfrom sklearn.metrics.pairwise import cosine_similarity\n\nsentences = ['The cat sat on the mat', \n             'The dog rested on the rug',\n             'I love pizza']\nembeddings = model.encode(sentences)\n\nprint(cosine_similarity(embeddings))\n\n[[ 1.0000002   0.47530937  0.00155361]\n [ 0.47530937  1.         -0.04451237]\n [ 0.00155361 -0.04451237  1.        ]]",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#lead-into-gpt",
+    "href": "src/01/slides.html#lead-into-gpt",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Lead into GPT",
+    "text": "Lead into GPT\n\nTBD",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#then-show-the-history",
+    "href": "src/01/slides.html#then-show-the-history",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Then show the history",
+    "text": "Then show the history\n\nTBD",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#what-is-a-notebook-1",
+    "href": "src/01/slides.html#what-is-a-notebook-1",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "What is a Notebook?",
+    "text": "What is a Notebook?\n\nAn interactive document that combines:\n\nLive code that can be executed\nRich text explanations (markdown)\nVisualizations and outputs\n\nThink of it as a computational narrative\n\nTell a story with code, data, and explanations\n\nOriginally designed for data science and research\nAlso used for learning, experimenting, and sharing results",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#a-brief-history-of-notebooks",
+    "href": "src/01/slides.html#a-brief-history-of-notebooks",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "A Brief History of Notebooks",
+    "text": "A Brief History of Notebooks\n\n2011: IPython Notebook project begins\n\nInteractive Python shell → web-based notebook\n\n2014: Renamed to Jupyter (Julia, Python, R)\n\nNow supports 40+ programming languages\n\n2017: Google launches Colab\n\nFree cloud-based Jupyter notebooks\nFree access to GPUs and TPUs\n\nToday: Industry standard for ML/AI development",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#anatomy-of-a-notebook",
+    "href": "src/01/slides.html#anatomy-of-a-notebook",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Anatomy of a Notebook",
+    "text": "Anatomy of a Notebook\n\nFormat: Extension is .ipynb\n\nJSON format, using Jupyter Document Schema\n\nCells: Building blocks of notebooks\n\nCode cells: Executable Python code\nMarkdown cells: Text, headings, images, equations\n\nKernel: The computational engine running your code\n\nMaintains state between cell executions\n\nOutputs: Results appear directly below code cells\n\nText, tables, plots, interactive widgets",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#how-to-run-notebooks",
+    "href": "src/01/slides.html#how-to-run-notebooks",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "How to Run Notebooks",
+    "text": "How to Run Notebooks\n\nJupyter Notebook Server (Classic approach)\n\nWeb interface on localhost\n\nVS Code (Local development)\n\nJupyter extension for VS Code\nRun on your own machine\n\nGoogle Colab (Recommended)\n\nBrowser-based, no installation needed\nFree GPU access",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#advantages-of-google-colab",
+    "href": "src/01/slides.html#advantages-of-google-colab",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Advantages of Google Colab",
+    "text": "Advantages of Google Colab\n\nAccess to GPUs and TPUs for AI-based tasks\n\ne.g., A100 and H100 with 40Gb/80Gb VRAM\n\nModel downloaded between cloud vendors\n\nvs. downloading large models via the DigiPen network\n\nMany libraries pre-installed\nEasy to share notebooks with others\nGenerous (free) GPU limits for students!",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#references",
+    "href": "src/01/slides.html#references",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "References",
+    "text": "References\n\n\n\n\nVaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Łukasz Kaiser, and Illia Polosukhin. 2017. “Attention Is All You Need.” In Advances in Neural Information Processing Systems. Vol. 30.",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/assignment.html",
+    "href": "src/01/assignment.html",
+    "title": "Week 1 Assignment",
+    "section": "",
+    "text": "Week 1 Assignment\n\nTBD",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Assignment"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "CS-394/594: How Generative AI Works",
+    "section": "",
+    "text": "This site contains a collection of slides, code, and other resources for lectures held within the 25/26 CS-394/594 course.",
+    "crumbs": [
+      "CS-394/594"
+    ]
+  },
+  {
+    "objectID": "index.html#about",
+    "href": "index.html#about",
+    "title": "CS-394/594: How Generative AI Works",
+    "section": "",
+    "text": "This site contains a collection of slides, code, and other resources for lectures held within the 25/26 CS-394/594 course.",
+    "crumbs": [
+      "CS-394/594"
     ]
   },
   {
@@ -202,6 +557,17 @@
     ]
   },
   {
+    "objectID": "src/00/slides.html#ai-policy",
+    "href": "src/00/slides.html#ai-policy",
+    "title": "Welcome to CS-394/594!",
+    "section": "AI Policy",
+    "text": "AI Policy\n\nTBD",
+    "crumbs": [
+      "Welcome!",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "src/00/slides.html#tools",
     "href": "src/00/slides.html#tools",
     "title": "Welcome to CS-394/594!",
@@ -279,211 +645,82 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "CS-394/594: How Generative AI Works",
+    "objectID": "src/01/resources.html",
+    "href": "src/01/resources.html",
+    "title": "Week 1 Resources",
     "section": "",
-    "text": "This site contains a collection of slides, code, and other resources for lectures held within the 25/26 CS-394/594 course.",
+    "text": "A Visual Introduction to Vector Embeddings, Pamela Fox\nA Visual Exploration of Vectors, Pamela Fox\n\n\n\n\n\nGoogle Colab Sign-up Page\nProject Jupyter Page\n\n\n\n\n\nLearn Python with Jupyter, Serena Bonaretti\n\n\n\n\n\nThe Illustrated Transformer",
     "crumbs": [
-      "CS-394/594"
+      "Week 1: Foundations of Generative AI",
+      "Resources"
     ]
   },
   {
-    "objectID": "index.html#about",
-    "href": "index.html#about",
-    "title": "CS-394/594: How Generative AI Works",
+    "objectID": "src/01/resources.html#vector-embeddings",
+    "href": "src/01/resources.html#vector-embeddings",
+    "title": "Week 1 Resources",
     "section": "",
-    "text": "This site contains a collection of slides, code, and other resources for lectures held within the 25/26 CS-394/594 course.",
+    "text": "A Visual Introduction to Vector Embeddings, Pamela Fox\nA Visual Exploration of Vectors, Pamela Fox",
     "crumbs": [
-      "CS-394/594"
+      "Week 1: Foundations of Generative AI",
+      "Resources"
     ]
   },
   {
-    "objectID": "src/01/assignment.html",
-    "href": "src/01/assignment.html",
-    "title": "Week 1 Assignment",
+    "objectID": "src/01/resources.html#introduction-to-notebooks",
+    "href": "src/01/resources.html#introduction-to-notebooks",
+    "title": "Week 1 Resources",
     "section": "",
-    "text": "Week 1 Assignment\n\nTBD",
+    "text": "Google Colab Sign-up Page\nProject Jupyter Page",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
-      "Assignment"
+      "Resources"
     ]
   },
   {
-    "objectID": "src/01/slides.html#lesson-objectives",
-    "href": "src/01/slides.html#lesson-objectives",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "Lesson Objectives",
-    "text": "Lesson Objectives\n\nUnderstand how generative AI fits with other AI techniques\nHow to create vector embeddings and test for similarity\nUnderstand the transformer architecture and how it works at a high level\nSetup and use Colab Pro for experimenting with vector embeddings and downloading/testing a GPT-2 model.\nStart becoming familiar with the basics of notebooks and Python (if you haven’t used it already)",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/slides.html#a-recap-of-mlneural-network-architectures-1",
-    "href": "src/01/slides.html#a-recap-of-mlneural-network-architectures-1",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "A recap of ML/Neural Network architectures",
-    "text": "A recap of ML/Neural Network architectures\n\nTBD",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/slides.html#what-are-vector-embeddings",
-    "href": "src/01/slides.html#what-are-vector-embeddings",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "What are Vector Embeddings?",
-    "text": "What are Vector Embeddings?\n\nVector Embeddings are meaningful numerical representations of words\n\nRepresentations where strings of words (i.e., sentences) are encoded into multi-dimensional space\nLarge number of dimensions (we’ll use 384 in our examples)\nSimilar sentences have similar numbers",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/slides.html#example",
-    "href": "src/01/slides.html#example",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "Example",
-    "text": "Example\n\n\nembeddings = model.encode(\"The cat sat on the mat\")\nembeddings[:10]\n\narray([ 0.13040183, -0.01187013, -0.02811704,  0.05123864, -0.05597447,\n        0.03019154,  0.0301613 ,  0.02469837, -0.01837057,  0.05876679],\n      dtype=float32)",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/slides.html#example-1",
-    "href": "src/01/slides.html#example-1",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "Example",
-    "text": "Example\n\n\nembeddings = model.encode(\"The dog rested on the rug\")\nembeddings[:10]\n\narray([ 0.05627272,  0.02632686,  0.05896206,  0.12019245, -0.00399702,\n        0.08970873, -0.02332847, -0.01548103,  0.00939427,  0.01598458],\n      dtype=float32)",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/slides.html#example-2",
-    "href": "src/01/slides.html#example-2",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "Example",
-    "text": "Example\n\n\nembeddings = model.encode(\"I love pizza!\")\nembeddings[:10]\n\narray([-0.09438416,  0.02385838,  0.00920313,  0.04992779, -0.09533099,\n        0.0061356 ,  0.03513189,  0.00850056,  0.0105693 , -0.0578883 ],\n      dtype=float32)",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/slides.html#are-they-similar",
-    "href": "src/01/slides.html#are-they-similar",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "Are They Similar?",
-    "text": "Are They Similar?\n\nWe can test with cosine similarity\nMeasures the angle between two vectors:\n\nSame direction = very similar (similarity close to 1)\nOpposite direction = very different (similarity of -1)\n\nCosine similarity focuses on the angle of the vector vs. length\n\nUseful for comparing texts of different sizes",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/slides.html#are-they-similar-1",
-    "href": "src/01/slides.html#are-they-similar-1",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "Are They Similar?",
-    "text": "Are They Similar?\n\n\nfrom sklearn.metrics.pairwise import cosine_similarity\n\nsentences = ['The cat sat on the mat', \n             'The dog rested on the rug',\n             'I love pizza']\nembeddings = model.encode(sentences)\n\nprint(cosine_similarity(embeddings))\n\n[[ 1.0000002   0.47530937  0.00155361]\n [ 0.47530937  1.         -0.04451237]\n [ 0.00155361 -0.04451237  1.        ]]",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/slides.html#overview-of-embedding-models",
-    "href": "src/01/slides.html#overview-of-embedding-models",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "Overview of Embedding Models",
-    "text": "Overview of Embedding Models\n\nTBD",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/slides.html#what-embeddings-are-used-for",
-    "href": "src/01/slides.html#what-embeddings-are-used-for",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "What Embeddings Are Used For",
-    "text": "What Embeddings Are Used For\n\nTBD",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/slides.html#what-is-a-notebook-1",
-    "href": "src/01/slides.html#what-is-a-notebook-1",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "What is a Notebook?",
-    "text": "What is a Notebook?\n\nAn interactive document that combines:\n\nLive code that can be executed\nRich text explanations (markdown)\nVisualizations and outputs\n\nThink of it as a computational narrative\n\nTell a story with code, data, and explanations\n\nOriginally designed for data science and research\nAlso used for learning, experimenting, and sharing results",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/slides.html#a-brief-history-of-notebooks",
-    "href": "src/01/slides.html#a-brief-history-of-notebooks",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "A Brief History of Notebooks",
-    "text": "A Brief History of Notebooks\n\n2011: IPython Notebook project begins\n\nInteractive Python shell → web-based notebook\n\n2014: Renamed to Jupyter (Julia, Python, R)\n\nNow supports 40+ programming languages\n\n2017: Google launches Colab\n\nFree cloud-based Jupyter notebooks\nFree access to GPUs and TPUs\n\nToday: Industry standard for ML/AI development",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/slides.html#anatomy-of-a-notebook",
-    "href": "src/01/slides.html#anatomy-of-a-notebook",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "Anatomy of a Notebook",
-    "text": "Anatomy of a Notebook\n\nFormat: Extension is .ipynb\n\nJSON format, using Jupyter Document Schema\n\nCells: Building blocks of notebooks\n\nCode cells: Executable Python code\nMarkdown cells: Text, headings, images, equations\n\nKernel: The computational engine running your code\n\nMaintains state between cell executions\n\nOutputs: Results appear directly below code cells\n\nText, tables, plots, interactive widgets",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/slides.html#how-to-run-notebooks",
-    "href": "src/01/slides.html#how-to-run-notebooks",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "How to Run Notebooks",
-    "text": "How to Run Notebooks\n\nJupyter Notebook Server (Classic approach)\n\nWeb interface on localhost\n\nVS Code (Local development)\n\nJupyter extension for VS Code\nRun on your own machine\n\nGoogle Colab (Recommended)\n\nBrowser-based, no installation needed\nFree GPU access",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/slides.html#advantages-of-google-colab",
-    "href": "src/01/slides.html#advantages-of-google-colab",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "Advantages of Google Colab",
-    "text": "Advantages of Google Colab\n\nAccess to GPUs and TPUs for AI-based tasks\n\ne.g., A100 and H100 with 40Gb/80Gb VRAM\n\nModel downloaded between cloud vendors\n\nvs. downloading large models via the DigiPen network\n\nMany libraries pre-installed\nEasy to share notebooks with others\nGenerous (free) GPU limits for students!",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/embeddings.html",
-    "href": "src/01/embeddings.html",
-    "title": "Embeddings",
+    "objectID": "src/01/resources.html#learning-python",
+    "href": "src/01/resources.html#learning-python",
+    "title": "Week 1 Resources",
     "section": "",
-    "text": "In this notebook, we use the SentenceTransformer model to encode various sentences and test the cosine similarity between them.\n     \n\nfrom sentence_transformers import SentenceTransformer\nmodel = SentenceTransformer('all-MiniLM-L6-v2')\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nembeddings = model.encode(\"The cat sat on the mat\")\nembeddings[:10]\n\narray([ 0.13040183, -0.01187013, -0.02811704,  0.05123864, -0.05597447,\n        0.03019154,  0.0301613 ,  0.02469837, -0.01837057,  0.05876679],\n      dtype=float32)\n\n\n\nembeddings = model.encode(\"The dog rested on the rug\")\nembeddings[:10]\n\narray([ 0.05627272,  0.02632686,  0.05896206,  0.12019245, -0.00399702,\n        0.08970873, -0.02332847, -0.01548103,  0.00939427,  0.01598458],\n      dtype=float32)\n\n\n\nembeddings = model.encode(\"I love pizza!\")\nembeddings[:10]\n\narray([-0.09438416,  0.02385838,  0.00920313,  0.04992779, -0.09533099,\n        0.0061356 ,  0.03513189,  0.00850056,  0.0105693 , -0.0578883 ],\n      dtype=float32)\n\n\n\nfrom sklearn.metrics.pairwise import cosine_similarity\n\nsentences = ['The cat sat on the mat', \n             'The dog rested on the rug',\n             'I love pizza']\nembeddings = model.encode(sentences)\n\nprint(cosine_similarity(embeddings))\n\n[[ 1.0000002   0.47530937  0.00155361]\n [ 0.47530937  1.         -0.04451237]\n [ 0.00155361 -0.04451237  1.        ]]",
+    "text": "Learn Python with Jupyter, Serena Bonaretti",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/01/resources.html#transformers",
+    "href": "src/01/resources.html#transformers",
+    "title": "Week 1 Resources",
+    "section": "",
+    "text": "The Illustrated Transformer",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/01/GPT-2.html",
+    "href": "src/01/GPT-2.html",
+    "title": "Pre-trained GPT-2 Notebook",
+    "section": "",
+    "text": "from transformers import GPT2LMHeadModel, GPT2Tokenizer\nimport torch\n\n# Load pre-trained GPT-2 model and tokenizer\nmodel_name = \"gpt2\"  # Options: \"gpt2\", \"gpt2-medium\", \"gpt2-large\", \"gpt2-xl\"\ntokenizer = GPT2Tokenizer.from_pretrained(model_name)\nmodel = GPT2LMHeadModel.from_pretrained(model_name)\n\n# Set model to evaluation mode\nmodel.eval()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGPT2LMHeadModel(\n  (transformer): GPT2Model(\n    (wte): Embedding(50257, 768)\n    (wpe): Embedding(1024, 768)\n    (drop): Dropout(p=0.1, inplace=False)\n    (h): ModuleList(\n      (0-11): 12 x GPT2Block(\n        (ln_1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)\n        (attn): GPT2Attention(\n          (c_attn): Conv1D(nf=2304, nx=768)\n          (c_proj): Conv1D(nf=768, nx=768)\n          (attn_dropout): Dropout(p=0.1, inplace=False)\n          (resid_dropout): Dropout(p=0.1, inplace=False)\n        )\n        (ln_2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)\n        (mlp): GPT2MLP(\n          (c_fc): Conv1D(nf=3072, nx=768)\n          (c_proj): Conv1D(nf=768, nx=3072)\n          (act): NewGELUActivation()\n          (dropout): Dropout(p=0.1, inplace=False)\n        )\n      )\n    )\n    (ln_f): LayerNorm((768,), eps=1e-05, elementwise_affine=True)\n  )\n  (lm_head): Linear(in_features=768, out_features=50257, bias=False)\n)\n\n\n\ndef autocomplete(prompt, max_length=50, temperature=0.7, top_k=50, top_p=0.9):\n    \"\"\"\n    Generate autocomplete text continuation from a prompt.\n\n    Args:\n        prompt: Input text to continue\n        max_length: Maximum total tokens (prompt + generation)\n        temperature: Sampling temperature (higher = more random)\n        top_k: Number of highest probability tokens to keep\n        top_p: Nucleus sampling threshold\n    \"\"\"\n    # Encode the prompt\n    input_ids = tokenizer.encode(prompt, return_tensors=\"pt\")\n\n    # Generate continuation\n    with torch.no_grad():\n        output = model.generate(\n            input_ids,\n            max_length=max_length,\n            temperature=temperature,\n            top_k=top_k,\n            top_p=top_p,\n            do_sample=True,\n            pad_token_id=tokenizer.eos_token_id\n        )\n\n    # Decode and return the generated text\n    generated_text = tokenizer.decode(output[0], skip_special_tokens=True)\n    return generated_text\n\n\nprompts = [\n    \"Mary had a little lamb\",\n    \"The future of artificial intelligence\",\n    \"In a galaxy far, far away\",\n    \"DigiPen is a place where\",\n    \"def calculate_fibonacci(n):\"\n]\n\nfor prompt in prompts:\n    print(f\"\\nPrompt: {prompt}\")\n    print(\"-\" * 50)\n    completion = autocomplete(prompt, max_length=80)\n    print(f\"Output: {completion}\\n\")\n\n\nPrompt: Mary had a little lamb\n--------------------------------------------------\nOutput: Mary had a little lamb, which I bought from the shopkeeper for her, and I was going to bring it home. She came back with a bundle of hay, which she put in a large box, and a little box containing a small bag of hay.\n\n\"When I went home, I was taken to a large garden, and I saw a tree with a branch in it,\n\n\nPrompt: The future of artificial intelligence\n--------------------------------------------------\nOutput: The future of artificial intelligence is likely to be far from bright.\n\nThe next big news will come from the company's future of AI.\n\nThis article was originally published on The Conversation. Read the original article.\n\n\nPrompt: In a galaxy far, far away\n--------------------------------------------------\nOutput: In a galaxy far, far away, I have seen a huge galaxy, with a massive amount of galaxies, and a huge amount of planets. I have seen a lot of them. I have seen planets that are so big that they have to be made of matter, like the ones in the movies, but they are not. I have seen planets that are so big that they have to be made\n\n\nPrompt: DigiPen is a place where\n--------------------------------------------------\nOutput: DigiPen is a place where you can learn more about the world of penmanship, and more importantly about penmanship, and learn about how to be a good penman.\n\nI'm glad to announce the launch of the first ever penmanship course in the U.S. on the Penmanship International Course Series.\n\nI'm very excited to see Penmanship International.\n\n\n\n\nPrompt: def calculate_fibonacci(n):\n--------------------------------------------------\nOutput: def calculate_fibonacci(n): print(n, \"\n\n\" + len(n))\n\nreturn n\n\nclass EqEq ( Eq ):\n\ndef __init__ ( self , n ):\n\nself .n = n\n\ndef __eq__ ( self , other ):\n\nreturn (n &lt; other)\n\nclass Eq",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Hands-on Notebooks",
-      "embeddings.ipynb"
+      "GPT-2.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/01/sentence-transformer.html",
+    "href": "src/01/sentence-transformer.html",
+    "title": "Sentence Transformer",
+    "section": "",
+    "text": "In this notebook, we use the SentenceTransformer model to encode various sentences and test the cosine similarity between them.\n     \n\n# Install required packages\n!uv pip install sentence-transformers -q\n\n\nfrom sentence_transformers import SentenceTransformer\nmodel = SentenceTransformer('all-MiniLM-L6-v2')\n\n\nembeddings = model.encode(\"The cat sat on the mat\")\nembeddings[:10]\n\narray([ 0.13040183, -0.01187013, -0.02811704,  0.05123864, -0.05597447,\n        0.03019154,  0.0301613 ,  0.02469837, -0.01837057,  0.05876679],\n      dtype=float32)\n\n\n\nembeddings = model.encode(\"The dog rested on the rug\")\nembeddings[:10]\n\narray([ 0.05627272,  0.02632686,  0.05896206,  0.12019245, -0.00399702,\n        0.08970873, -0.02332847, -0.01548103,  0.00939427,  0.01598458],\n      dtype=float32)\n\n\n\nembeddings = model.encode(\"I love pizza!\")\nembeddings[:10]\n\narray([-0.09438416,  0.02385838,  0.00920313,  0.04992779, -0.09533099,\n        0.0061356 ,  0.03513189,  0.00850056,  0.0105693 , -0.0578883 ],\n      dtype=float32)\n\n\n\nfrom sklearn.metrics.pairwise import cosine_similarity\n\nsentences = ['The cat sat on the mat', \n             'The dog rested on the rug',\n             'I love pizza']\nembeddings = model.encode(sentences)\n\nprint(cosine_similarity(embeddings))\n\n[[ 1.0000002   0.47530937  0.00155361]\n [ 0.47530937  1.         -0.04451237]\n [ 0.00155361 -0.04451237  1.        ]]",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Hands-on Notebooks",
+      "sentence-transformer.ipynb"
     ]
   }
 ]
