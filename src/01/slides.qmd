@@ -12,6 +12,7 @@ format:
     margin: 0.15
     mermaid-format: png
 logo: ../../theme/logos/DigiPen_RGB_Red.png
+bibliography: references.bib
 ---
 
 ## Lesson Objectives
@@ -101,7 +102,7 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 
 ## Introducing the Transformer
 
-```{mermaid .lightbox}
+```{mermaid}
 %%| fig-height: 100%
 %%| label: transformer-1
 %%| file: diagrams/transformer-1.mmd
