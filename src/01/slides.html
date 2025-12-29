@@ -114,7 +114,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-7cb77561e7d9a12b4d23a8dc8372cbc7.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-eeafb82a00776dbd0312b01cd21cfa25.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -233,10 +233,10 @@
 <h1>Let’s Rewind To 2013…</h1>
 
 </section>
-<section id="back-in-2013" class="slide level2">
-<h2>Back in 2013</h2>
+<section id="rewind-to-2013" class="slide level2">
+<h2>Rewind To 2013</h2>
 <ul>
-<li class="fragment">NLP (Natural Language Processing) was hot!
+<li class="fragment">NLP (Natural Language Processing) was the thing!
 <ul>
 <li class="fragment">Sentiment analysis, named entity recognition, parsing, etc.</li>
 </ul></li>
@@ -249,7 +249,7 @@
 </ul>
 </section>
 <section id="word2vec-released" class="slide level2">
-<h2>Word2Vec Released</h2>
+<h2>2013: Word2Vec Released</h2>
 <ul>
 <li class="fragment">First example of vector embeddings
 <ul>
@@ -270,14 +270,173 @@
 </section>
 <section id="how-does-word2vec-work" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
-<ul>
-<li class="fragment">TBD</li>
-</ul>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-1">
+<div id="word-1" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a>word <span class="op">=</span> <span class="st">"cat"</span></span>
+<span id="cb1-2"><a></a>vector <span class="op">=</span> model[word] <span class="co"># type: ignore</span></span>
+<span id="cb1-3"><a></a>vector[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>array([ 0.0123291 ,  0.20410156, -0.28515625,  0.21679688,  0.11816406,
+        0.08300781,  0.04980469, -0.00952148,  0.22070312, -0.12597656],
+      dtype=float32)</code></pre>
+</div>
+</div>
+</div>
 </section>
-<section id="challenges-with-word-based-embeddings" class="slide level2">
-<h2>Challenges with Word-Based Embeddings</h2>
+<section id="how-does-word2vec-work-1" class="slide level2">
+<h2>How does Word2Vec Work?</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-2">
+<div id="word-2" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>word <span class="op">=</span> <span class="st">"dog"</span></span>
+<span id="cb3-2"><a></a>vector <span class="op">=</span> model[word] <span class="co"># type: ignore</span></span>
+<span id="cb3-3"><a></a>vector[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>array([ 0.05126953, -0.02233887, -0.17285156,  0.16113281, -0.08447266,
+        0.05737305,  0.05859375, -0.08251953, -0.01538086, -0.06347656],
+      dtype=float32)</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="how-does-word2vec-work-2" class="slide level2">
+<h2>How does Word2Vec Work?</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-3">
+<div id="word-3" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a>word <span class="op">=</span> <span class="st">"pizza"</span></span>
+<span id="cb5-2"><a></a>vector <span class="op">=</span> model[word] <span class="co"># type: ignore</span></span>
+<span id="cb5-3"><a></a>vector[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>array([-1.2597656e-01,  2.5390625e-02,  1.6699219e-01,  5.5078125e-01,
+       -7.6660156e-02,  1.2890625e-01,  1.0253906e-01, -3.9482117e-04,
+        1.2158203e-01,  4.3212891e-02], dtype=float32)</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="how-does-word2vec-work-3" class="slide level2">
+<h2>How does Word2Vec Work?</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="similar-words">
+<div id="similar-words" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a>find_similar_words(<span class="st">"cat"</span>)</span>
+<span id="cb7-2"><a></a>find_similar_words(<span class="st">"dog"</span>)</span>
+<span id="cb7-3"><a></a>find_similar_words(<span class="st">"pizza"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Words most similar to 'cat':
+----------------------------------------
+cats                 | similarity: 0.8099
+dog                  | similarity: 0.7609
+kitten               | similarity: 0.7465
+feline               | similarity: 0.7326
+beagle               | similarity: 0.7151
+puppy                | similarity: 0.7075
+pup                  | similarity: 0.6934
+pet                  | similarity: 0.6892
+felines              | similarity: 0.6756
+chihuahua            | similarity: 0.6710
+
+Words most similar to 'dog':
+----------------------------------------
+dogs                 | similarity: 0.8680
+puppy                | similarity: 0.8106
+pit_bull             | similarity: 0.7804
+pooch                | similarity: 0.7627
+cat                  | similarity: 0.7609
+golden_retriever     | similarity: 0.7501
+German_shepherd      | similarity: 0.7465
+Rottweiler           | similarity: 0.7438
+beagle               | similarity: 0.7419
+pup                  | similarity: 0.7407
+
+Words most similar to 'pizza':
+----------------------------------------
+pizzas               | similarity: 0.7863
+Domino_pizza         | similarity: 0.7343
+Pizza                | similarity: 0.6988
+pepperoni_pizza      | similarity: 0.6903
+sandwich             | similarity: 0.6840
+burger               | similarity: 0.6570
+sandwiches           | similarity: 0.6495
+takeout_pizza        | similarity: 0.6492
+gourmet_pizza        | similarity: 0.6401
+meatball_sandwich    | similarity: 0.6377</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="how-does-word2vec-work-4" class="slide level2">
+<h2>How does Word2Vec Work?</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="compute-similarity">
+<div id="compute-similarity" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a>compute_similarity(<span class="st">'cat'</span>, <span class="st">'dog'</span>)</span>
+<span id="cb9-2"><a></a>compute_similarity(<span class="st">'cat'</span>, <span class="st">'kitten'</span>)</span>
+<span id="cb9-3"><a></a>compute_similarity(<span class="st">'cat'</span>, <span class="st">'car'</span>)</span>
+<span id="cb9-4"><a></a>compute_similarity(<span class="st">'doctor'</span>, <span class="st">'hospital'</span>)</span>
+<span id="cb9-5"><a></a>compute_similarity(<span class="st">'king'</span>, <span class="st">'queen'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Similarity between 'cat' and 'dog': 0.7609
+Similarity between 'cat' and 'kitten': 0.7465
+Similarity between 'cat' and 'car': 0.2153
+Similarity between 'doctor' and 'hospital': 0.5143
+Similarity between 'king' and 'queen': 0.6511</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="how-does-word2vec-work-5" class="slide level2">
+<h2>How does Word2Vec Work?</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="vector-arithmetic">
+<div id="vector-arithmetic" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a>vector_arithmetic([<span class="st">'king'</span>, <span class="st">'woman'</span>], [<span class="st">'man'</span>])</span>
+<span id="cb11-2"><a></a>vector_arithmetic([<span class="st">'Paris'</span>, <span class="st">'Italy'</span>], [<span class="st">'France'</span>])</span>
+<span id="cb11-3"><a></a>vector_arithmetic([<span class="st">'walking'</span>, <span class="st">'swim'</span>], [<span class="st">'walk'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+king + woman - man:
+--------------------------------------------------
+queen                | similarity: 0.7118
+monarch              | similarity: 0.6190
+princess             | similarity: 0.5902
+crown_prince         | similarity: 0.5499
+prince               | similarity: 0.5377
+
+Paris + Italy - France:
+--------------------------------------------------
+Milan                | similarity: 0.7222
+Rome                 | similarity: 0.7028
+Palermo_Sicily       | similarity: 0.5968
+Italian              | similarity: 0.5911
+Tuscany              | similarity: 0.5633
+
+walking + swim - walk:
+--------------------------------------------------
+swimming             | similarity: 0.8246
+swam                 | similarity: 0.6807
+swims                | similarity: 0.6538
+swimmers             | similarity: 0.6495
+paddling             | similarity: 0.6424</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="how-does-word2vec-work-6" class="slide level2">
+<h2>How does Word2Vec Work?</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="2d-visualization">
+<div id="2d-visualization" class="cell" data-execution_count="18">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/word2vec-cell-13-output-1.png"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="challenges-with-word-embeddings" class="slide level2">
+<h2>Challenges with Word Embeddings</h2>
 <ul>
-<li class="fragment">Large volabularies
+<li class="fragment">Large vocabularies
 <ul>
 <li class="fragment">100K+ words</li>
 <li class="fragment">And not particularly friendly to non-English vocabularies</li>
@@ -293,8 +452,8 @@
 </ul></li>
 </ul>
 </section>
-<section id="challenges-with-word-based-embeddings-1" class="slide level2">
-<h2>Challenges with Word-Based Embeddings</h2>
+<section id="challenges-with-word-embeddings-1" class="slide level2">
+<h2>Challenges with Word Embeddings</h2>
 <ul>
 <li class="fragment">Some researchers tried character-level models
 <ul>
@@ -309,11 +468,11 @@
 <ul>
 <li class="fragment">Breaks words into frequent subword units
 <ul>
-<li class="fragment">“unbelievable” → [“un”, “believ”, “able”]</li>
+<li class="fragment">“unbelievable” → <strong>[“un”, “believ”, “able”]</strong></li>
 </ul></li>
 <li class="fragment">Balance between word level (large vocab) and character level (long sequences)
 <ul>
-<li class="fragment">Supports related words ([“Run”] and [“Run”, “ning”])</li>
+<li class="fragment">Supports related words: <strong>[“Run”]</strong> and <strong>[“Run”, “ning”]</strong></li>
 <li class="fragment">Supports unknown words</li>
 <li class="fragment">30-50K tokens vs.&nbsp;100K</li>
 <li class="fragment">Also works well for non-English languages</li>
@@ -345,7 +504,7 @@
 <section id="attention-is-all-you-need" class="slide level2">
 <h2>2017: “Attention is all you need”</h2>
 <ul>
-<li class="fragment">Google researchers publish “Attention is all you need” <span class="citation" data-cites="vaswani2017attention">(<a href="#/references" role="doc-biblioref" onclick="">Vaswani et al. 2017</a>)</span>
+<li class="fragment">Google researchers publish “Attention is all you need” <span class="citation" data-cites="vaswani2017attention">(<a href="#/references-1" role="doc-biblioref" onclick="">Vaswani et al. 2017</a>)</span>
 <ul>
 <li class="fragment">Introduced the <strong>Transformer</strong> a novel Neural Network (NN) architecture, eliminating the need for RNNs for sequence-to-sequence models</li>
 <li class="fragment">Used BPE tokenization, and creates contextual embeddings during training process</li>
@@ -374,8 +533,8 @@
 <h2>Example</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/sentence-transformer.ipynb" data-notebook-title="Sentence Transformer" data-notebook-cellid="sentence-1">
 <div id="sentence-1" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a>embeddings <span class="op">=</span> model.encode(<span class="st">"The cat sat on the mat"</span>)</span>
-<span id="cb1-2"><a></a>embeddings[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a>embeddings <span class="op">=</span> model.encode(<span class="st">"The cat sat on the mat"</span>)</span>
+<span id="cb13-2"><a></a>embeddings[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>array([ 0.13040183, -0.01187013, -0.02811704,  0.05123864, -0.05597447,
         0.03019154,  0.0301613 ,  0.02469837, -0.01837057,  0.05876679],
@@ -388,8 +547,8 @@
 <h2>Example</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/sentence-transformer.ipynb" data-notebook-title="Sentence Transformer" data-notebook-cellid="sentence-2">
 <div id="sentence-2" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>embeddings <span class="op">=</span> model.encode(<span class="st">"The dog rested on the rug"</span>)</span>
-<span id="cb3-2"><a></a>embeddings[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a>embeddings <span class="op">=</span> model.encode(<span class="st">"The dog rested on the rug"</span>)</span>
+<span id="cb15-2"><a></a>embeddings[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>array([ 0.05627272,  0.02632686,  0.05896206,  0.12019245, -0.00399702,
         0.08970873, -0.02332847, -0.01548103,  0.00939427,  0.01598458],
@@ -402,8 +561,8 @@
 <h2>Example</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/sentence-transformer.ipynb" data-notebook-title="Sentence Transformer" data-notebook-cellid="sentence-3">
 <div id="sentence-3" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a>embeddings <span class="op">=</span> model.encode(<span class="st">"I love pizza!"</span>)</span>
-<span id="cb5-2"><a></a>embeddings[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a>embeddings <span class="op">=</span> model.encode(<span class="st">"I love pizza!"</span>)</span>
+<span id="cb17-2"><a></a>embeddings[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>array([-0.09438416,  0.02385838,  0.00920313,  0.04992779, -0.09533099,
         0.0061356 ,  0.03513189,  0.00850056,  0.0105693 , -0.0578883 ],
@@ -431,14 +590,14 @@
 <h2>Are They Similar?</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/sentence-transformer.ipynb" data-notebook-title="Sentence Transformer" data-notebook-cellid="similarity">
 <div id="similarity" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="im">from</span> sklearn.metrics.pairwise <span class="im">import</span> cosine_similarity</span>
-<span id="cb7-2"><a></a></span>
-<span id="cb7-3"><a></a>sentences <span class="op">=</span> [<span class="st">'The cat sat on the mat'</span>, </span>
-<span id="cb7-4"><a></a>             <span class="st">'The dog rested on the rug'</span>,</span>
-<span id="cb7-5"><a></a>             <span class="st">'I love pizza'</span>]</span>
-<span id="cb7-6"><a></a>embeddings <span class="op">=</span> model.encode(sentences)</span>
-<span id="cb7-7"><a></a></span>
-<span id="cb7-8"><a></a><span class="bu">print</span>(cosine_similarity(embeddings))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a><span class="im">from</span> sklearn.metrics.pairwise <span class="im">import</span> cosine_similarity</span>
+<span id="cb19-2"><a></a></span>
+<span id="cb19-3"><a></a>sentences <span class="op">=</span> [<span class="st">'The cat sat on the mat'</span>, </span>
+<span id="cb19-4"><a></a>             <span class="st">'The dog rested on the rug'</span>,</span>
+<span id="cb19-5"><a></a>             <span class="st">'I love pizza'</span>]</span>
+<span id="cb19-6"><a></a>embeddings <span class="op">=</span> model.encode(sentences)</span>
+<span id="cb19-7"><a></a></span>
+<span id="cb19-8"><a></a><span class="bu">print</span>(cosine_similarity(embeddings))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[ 1.0000002   0.47530937  0.00155361]
  [ 0.47530937  1.         -0.04451237]
@@ -543,6 +702,7 @@
 <ul>
 <li class="fragment">Browser-based, no installation needed</li>
 <li class="fragment">Free GPU access</li>
+<li class="fragment">Can also access local GPU</li>
 </ul></li>
 </ul>
 </section>
@@ -562,12 +722,17 @@
 <li class="fragment">Generous (free) GPU limits for students!</li>
 </ul>
 </section></section>
-<section>
 <section id="demo" class="title-slide slide level1 center">
 <h1>Demo</h1>
 <p>Hello World notebook in <strong>Colab</strong>, <strong>VS Code</strong>, and <strong>Local Jupyter server</strong></p>
 </section>
-<section id="references" class="slide level2 smaller scrollable">
+
+<section>
+<section id="references" class="title-slide slide level1 center">
+<h1>References</h1>
+
+</section>
+<section id="references-1" class="slide level2 smaller scrollable">
 <h2>References</h2>
 
 

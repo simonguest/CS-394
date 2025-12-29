@@ -459,7 +459,7 @@ Model loaded. Vocabulary size: 3000000 words
 Vector dimension: 300</code></pre>
 </div>
 </div>
-<div id="cell-5" class="cell" data-execution_count="12">
+<div id="word-1" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>word <span class="op">=</span> <span class="st">"cat"</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>vector <span class="op">=</span> model[word] <span class="co"># type: ignore</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>vector[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -469,7 +469,7 @@ Vector dimension: 300</code></pre>
       dtype=float32)</code></pre>
 </div>
 </div>
-<div id="cell-6" class="cell" data-execution_count="13">
+<div id="word-2" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>word <span class="op">=</span> <span class="st">"dog"</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>vector <span class="op">=</span> model[word] <span class="co"># type: ignore</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>vector[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -479,7 +479,7 @@ Vector dimension: 300</code></pre>
       dtype=float32)</code></pre>
 </div>
 </div>
-<div id="cell-7" class="cell" data-execution_count="14">
+<div id="word-3" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>word <span class="op">=</span> <span class="st">"pizza"</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>vector <span class="op">=</span> model[word] <span class="co"># type: ignore</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>vector[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -493,7 +493,7 @@ Vector dimension: 300</code></pre>
 <section id="find-similar-words" class="level2">
 <h2 class="anchored" data-anchor-id="find-similar-words">Find Similar Words</h2>
 <p>Words with similar meanings have similar vectors.</p>
-<div id="cell-9" class="cell" data-execution_count="15">
+<div id="cell-9" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_similar_words(word, top_n<span class="op">=</span><span class="dv">10</span>):</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Find the most similar words to a given word."""</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
@@ -503,12 +503,12 @@ Vector dimension: 300</code></pre>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> similar_word, similarity <span class="kw">in</span> similar:</span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>similar_word<span class="sc">:20s}</span><span class="ss"> | similarity: </span><span class="sc">{</span>similarity<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">KeyError</span>:</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Word '</span><span class="sc">{</span>word<span class="sc">}</span><span class="ss">' not in vocabulary"</span>)</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Try different words!</span></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>find_similar_words(<span class="st">"cat"</span>)</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>find_similar_words(<span class="st">"dog"</span>)</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>find_similar_words(<span class="st">"pizza"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Word '</span><span class="sc">{</span>word<span class="sc">}</span><span class="ss">' not in vocabulary"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="similar-words" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>find_similar_words(<span class="st">"cat"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>find_similar_words(<span class="st">"dog"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>find_similar_words(<span class="st">"pizza"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Words most similar to 'cat':
@@ -554,26 +554,21 @@ meatball_sandwich    | similarity: 0.6377</code></pre>
 </section>
 <section id="compute-similarity" class="level2">
 <h2 class="anchored" data-anchor-id="compute-similarity">Compute Similarity</h2>
-<div id="cell-11" class="cell" data-execution_count="16">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_similarity(word1, word2):</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute cosine similarity between two words."""</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        similarity <span class="op">=</span> model.similarity(word1, word2) <span class="co"># type: ignore</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Similarity between '</span><span class="sc">{</span>word1<span class="sc">}</span><span class="ss">' and '</span><span class="sc">{</span>word2<span class="sc">}</span><span class="ss">': </span><span class="sc">{</span>similarity<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> similarity</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">KeyError</span> <span class="im">as</span> e:</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Word not in vocabulary: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Similar words</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>compute_similarity(<span class="st">'cat'</span>, <span class="st">'dog'</span>)</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>compute_similarity(<span class="st">'cat'</span>, <span class="st">'kitten'</span>)</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Unrelated words</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>compute_similarity(<span class="st">'cat'</span>, <span class="st">'car'</span>)</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Related concepts</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>compute_similarity(<span class="st">'doctor'</span>, <span class="st">'hospital'</span>)</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>compute_similarity(<span class="st">'king'</span>, <span class="st">'queen'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-12" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_similarity(word1, word2):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute cosine similarity between two words."""</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>        similarity <span class="op">=</span> model.similarity(word1, word2) <span class="co"># type: ignore</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Similarity between '</span><span class="sc">{</span>word1<span class="sc">}</span><span class="ss">' and '</span><span class="sc">{</span>word2<span class="sc">}</span><span class="ss">': </span><span class="sc">{</span>similarity<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">KeyError</span> <span class="im">as</span> e:</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Word not in vocabulary: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="compute-similarity" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>compute_similarity(<span class="st">'cat'</span>, <span class="st">'dog'</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>compute_similarity(<span class="st">'cat'</span>, <span class="st">'kitten'</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>compute_similarity(<span class="st">'cat'</span>, <span class="st">'car'</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>compute_similarity(<span class="st">'doctor'</span>, <span class="st">'hospital'</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>compute_similarity(<span class="st">'king'</span>, <span class="st">'queen'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Similarity between 'cat' and 'dog': 0.7609
 Similarity between 'cat' and 'kitten': 0.7465
@@ -581,33 +576,26 @@ Similarity between 'cat' and 'car': 0.2153
 Similarity between 'doctor' and 'hospital': 0.5143
 Similarity between 'king' and 'queen': 0.6511</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="16">
-<pre><code>np.float32(0.6510956)</code></pre>
-</div>
 </div>
 </section>
 <section id="vector-arithmetic" class="level2">
 <h2 class="anchored" data-anchor-id="vector-arithmetic">Vector Arithmetic</h2>
-<div id="cell-13" class="cell" data-execution_count="17">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> vector_arithmetic(positive, negative, top_n<span class="op">=</span><span class="dv">5</span>):</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Perform vector arithmetic: positive words - negative words."""</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> model.most_similar(positive<span class="op">=</span>positive, negative<span class="op">=</span>negative, topn<span class="op">=</span>top_n) <span class="co"># type: ignore</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="sc">{</span><span class="st">' + '</span><span class="sc">.</span>join(positive)<span class="sc">}</span><span class="ss"> - </span><span class="sc">{</span><span class="st">' - '</span><span class="sc">.</span>join(negative)<span class="sc">}</span><span class="ss">:"</span>)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">50</span>)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> word, similarity <span class="kw">in</span> result:</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>word<span class="sc">:20s}</span><span class="ss"> | similarity: </span><span class="sc">{</span>similarity<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">KeyError</span> <span class="im">as</span> e:</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Word not in vocabulary: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># The famous example</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>vector_arithmetic([<span class="st">'king'</span>, <span class="st">'woman'</span>], [<span class="st">'man'</span>])</span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Geography</span></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>vector_arithmetic([<span class="st">'Paris'</span>, <span class="st">'Italy'</span>], [<span class="st">'France'</span>])</span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Grammar</span></span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>vector_arithmetic([<span class="st">'walking'</span>, <span class="st">'swim'</span>], [<span class="st">'walk'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-15" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> vector_arithmetic(positive, negative, top_n<span class="op">=</span><span class="dv">5</span>):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Perform vector arithmetic: positive words - negative words."""</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> model.most_similar(positive<span class="op">=</span>positive, negative<span class="op">=</span>negative, topn<span class="op">=</span>top_n) <span class="co"># type: ignore</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="sc">{</span><span class="st">' + '</span><span class="sc">.</span>join(positive)<span class="sc">}</span><span class="ss"> - </span><span class="sc">{</span><span class="st">' - '</span><span class="sc">.</span>join(negative)<span class="sc">}</span><span class="ss">:"</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> word, similarity <span class="kw">in</span> result:</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>word<span class="sc">:20s}</span><span class="ss"> | similarity: </span><span class="sc">{</span>similarity<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">KeyError</span> <span class="im">as</span> e:</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Word not in vocabulary: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="vector-arithmetic" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>vector_arithmetic([<span class="st">'king'</span>, <span class="st">'woman'</span>], [<span class="st">'man'</span>])</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>vector_arithmetic([<span class="st">'Paris'</span>, <span class="st">'Italy'</span>], [<span class="st">'France'</span>])</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>vector_arithmetic([<span class="st">'walking'</span>, <span class="st">'swim'</span>], [<span class="st">'walk'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 king + woman - man:
@@ -638,50 +626,50 @@ paddling             | similarity: 0.6424</code></pre>
 </section>
 <section id="d-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="d-visualization">2D Visualization</h2>
-<div id="cell-15" class="cell" data-execution_count="18">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> visualize_words(words, method<span class="op">=</span><span class="st">'tsne'</span>):</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Visualize word embeddings in 2D."""</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get vectors for words that exist in vocabulary</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    valid_words <span class="op">=</span> [w <span class="cf">for</span> w <span class="kw">in</span> words <span class="cf">if</span> w <span class="kw">in</span> model]</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(valid_words) <span class="op">&lt;</span> <span class="dv">2</span>:</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Need at least 2 valid words to visualize"</span>)</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    vectors <span class="op">=</span> np.array([model[w] <span class="cf">for</span> w <span class="kw">in</span> valid_words])</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Reduce to 2D</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> method <span class="op">==</span> <span class="st">'tsne'</span>:</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>        reducer <span class="op">=</span> TSNE(n_components<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">42</span>, perplexity<span class="op">=</span><span class="bu">min</span>(<span class="dv">5</span>, <span class="bu">len</span>(valid_words)<span class="op">-</span><span class="dv">1</span>))</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>        reducer <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    vectors_2d <span class="op">=</span> reducer.fit_transform(vectors)</span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot</span></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    plt.scatter(vectors_2d[:, <span class="dv">0</span>], vectors_2d[:, <span class="dv">1</span>], s<span class="op">=</span><span class="dv">200</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, word <span class="kw">in</span> <span class="bu">enumerate</span>(valid_words):</span>
-<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>        plt.annotate(word, </span>
-<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>                    xy<span class="op">=</span>(vectors_2d[i, <span class="dv">0</span>], vectors_2d[i, <span class="dv">1</span>]),</span>
-<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>                    xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>),</span>
-<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>                    textcoords<span class="op">=</span><span class="st">'offset points'</span>,</span>
-<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>                    fontsize<span class="op">=</span><span class="dv">12</span>,</span>
-<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>                    fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="ss">f'Word Embeddings Visualization (</span><span class="sc">{</span>method<span class="sc">.</span>upper()<span class="sc">}</span><span class="ss">)'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'Dimension 1'</span>)</span>
-<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'Dimension 2'</span>)</span>
-<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>    plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
-<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
-<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>words <span class="op">=</span> [<span class="st">'cat'</span>, <span class="st">'dog'</span>, <span class="st">'kitten'</span>, <span class="st">'puppy'</span>, <span class="st">'lion'</span>, <span class="st">'tiger'</span>, <span class="st">'elephant'</span>, <span class="st">'mouse'</span>, <span class="st">'chicken'</span>, <span class="st">'rat'</span>]</span>
-<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>visualize_words(words)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="2d-visualization" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> visualize_words(words, method<span class="op">=</span><span class="st">'tsne'</span>):</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Visualize word embeddings in 2D."""</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get vectors for words that exist in vocabulary</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    valid_words <span class="op">=</span> [w <span class="cf">for</span> w <span class="kw">in</span> words <span class="cf">if</span> w <span class="kw">in</span> model]</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(valid_words) <span class="op">&lt;</span> <span class="dv">2</span>:</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Need at least 2 valid words to visualize"</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    vectors <span class="op">=</span> np.array([model[w] <span class="cf">for</span> w <span class="kw">in</span> valid_words])</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Reduce to 2D</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> method <span class="op">==</span> <span class="st">'tsne'</span>:</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>        reducer <span class="op">=</span> TSNE(n_components<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">42</span>, perplexity<span class="op">=</span><span class="bu">min</span>(<span class="dv">5</span>, <span class="bu">len</span>(valid_words)<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>        reducer <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    vectors_2d <span class="op">=</span> reducer.fit_transform(vectors)</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>    plt.scatter(vectors_2d[:, <span class="dv">0</span>], vectors_2d[:, <span class="dv">1</span>], s<span class="op">=</span><span class="dv">200</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, word <span class="kw">in</span> <span class="bu">enumerate</span>(valid_words):</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>        plt.annotate(word, </span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>                    xy<span class="op">=</span>(vectors_2d[i, <span class="dv">0</span>], vectors_2d[i, <span class="dv">1</span>]),</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>                    xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>),</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>                    textcoords<span class="op">=</span><span class="st">'offset points'</span>,</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>                    fontsize<span class="op">=</span><span class="dv">12</span>,</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>                    fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="ss">f'Word Embeddings Visualization (</span><span class="sc">{</span>method<span class="sc">.</span>upper()<span class="sc">}</span><span class="ss">)'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'Dimension 1'</span>)</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'Dimension 2'</span>)</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>    plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>words <span class="op">=</span> [<span class="st">'cat'</span>, <span class="st">'dog'</span>, <span class="st">'kitten'</span>, <span class="st">'puppy'</span>, <span class="st">'lion'</span>, <span class="st">'tiger'</span>, <span class="st">'elephant'</span>, <span class="st">'mouse'</span>, <span class="st">'chicken'</span>, <span class="st">'rat'</span>]</span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>visualize_words(words)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="word2vec_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="word2vec_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>

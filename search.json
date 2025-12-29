@@ -28,7 +28,7 @@
     "href": "src/01/word2vec.html#find-similar-words",
     "title": "Word2Vec",
     "section": "Find Similar Words",
-    "text": "Find Similar Words\nWords with similar meanings have similar vectors.\n\ndef find_similar_words(word, top_n=10):\n    \"\"\"Find the most similar words to a given word.\"\"\"\n    try:\n        similar = model.most_similar(word, topn=top_n) # type: ignore\n        print(f\"\\nWords most similar to '{word}':\")\n        print(\"-\" * 40)\n        for similar_word, similarity in similar:\n            print(f\"{similar_word:20s} | similarity: {similarity:.4f}\")\n    except KeyError:\n        print(f\"Word '{word}' not in vocabulary\")\n\n# Try different words!\nfind_similar_words(\"cat\")\nfind_similar_words(\"dog\")\nfind_similar_words(\"pizza\")\n\n\nWords most similar to 'cat':\n----------------------------------------\ncats                 | similarity: 0.8099\ndog                  | similarity: 0.7609\nkitten               | similarity: 0.7465\nfeline               | similarity: 0.7326\nbeagle               | similarity: 0.7151\npuppy                | similarity: 0.7075\npup                  | similarity: 0.6934\npet                  | similarity: 0.6892\nfelines              | similarity: 0.6756\nchihuahua            | similarity: 0.6710\n\nWords most similar to 'dog':\n----------------------------------------\ndogs                 | similarity: 0.8680\npuppy                | similarity: 0.8106\npit_bull             | similarity: 0.7804\npooch                | similarity: 0.7627\ncat                  | similarity: 0.7609\ngolden_retriever     | similarity: 0.7501\nGerman_shepherd      | similarity: 0.7465\nRottweiler           | similarity: 0.7438\nbeagle               | similarity: 0.7419\npup                  | similarity: 0.7407\n\nWords most similar to 'pizza':\n----------------------------------------\npizzas               | similarity: 0.7863\nDomino_pizza         | similarity: 0.7343\nPizza                | similarity: 0.6988\npepperoni_pizza      | similarity: 0.6903\nsandwich             | similarity: 0.6840\nburger               | similarity: 0.6570\nsandwiches           | similarity: 0.6495\ntakeout_pizza        | similarity: 0.6492\ngourmet_pizza        | similarity: 0.6401\nmeatball_sandwich    | similarity: 0.6377",
+    "text": "Find Similar Words\nWords with similar meanings have similar vectors.\n\ndef find_similar_words(word, top_n=10):\n    \"\"\"Find the most similar words to a given word.\"\"\"\n    try:\n        similar = model.most_similar(word, topn=top_n) # type: ignore\n        print(f\"\\nWords most similar to '{word}':\")\n        print(\"-\" * 40)\n        for similar_word, similarity in similar:\n            print(f\"{similar_word:20s} | similarity: {similarity:.4f}\")\n    except KeyError:\n        print(f\"Word '{word}' not in vocabulary\")\n\n\nfind_similar_words(\"cat\")\nfind_similar_words(\"dog\")\nfind_similar_words(\"pizza\")\n\n\nWords most similar to 'cat':\n----------------------------------------\ncats                 | similarity: 0.8099\ndog                  | similarity: 0.7609\nkitten               | similarity: 0.7465\nfeline               | similarity: 0.7326\nbeagle               | similarity: 0.7151\npuppy                | similarity: 0.7075\npup                  | similarity: 0.6934\npet                  | similarity: 0.6892\nfelines              | similarity: 0.6756\nchihuahua            | similarity: 0.6710\n\nWords most similar to 'dog':\n----------------------------------------\ndogs                 | similarity: 0.8680\npuppy                | similarity: 0.8106\npit_bull             | similarity: 0.7804\npooch                | similarity: 0.7627\ncat                  | similarity: 0.7609\ngolden_retriever     | similarity: 0.7501\nGerman_shepherd      | similarity: 0.7465\nRottweiler           | similarity: 0.7438\nbeagle               | similarity: 0.7419\npup                  | similarity: 0.7407\n\nWords most similar to 'pizza':\n----------------------------------------\npizzas               | similarity: 0.7863\nDomino_pizza         | similarity: 0.7343\nPizza                | similarity: 0.6988\npepperoni_pizza      | similarity: 0.6903\nsandwich             | similarity: 0.6840\nburger               | similarity: 0.6570\nsandwiches           | similarity: 0.6495\ntakeout_pizza        | similarity: 0.6492\ngourmet_pizza        | similarity: 0.6401\nmeatball_sandwich    | similarity: 0.6377",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Hands-on Notebooks",
@@ -40,7 +40,7 @@
     "href": "src/01/word2vec.html#compute-similarity",
     "title": "Word2Vec",
     "section": "Compute Similarity",
-    "text": "Compute Similarity\n\ndef compute_similarity(word1, word2):\n    \"\"\"Compute cosine similarity between two words.\"\"\"\n    try:\n        similarity = model.similarity(word1, word2) # type: ignore\n        print(f\"Similarity between '{word1}' and '{word2}': {similarity:.4f}\")\n        return similarity\n    except KeyError as e:\n        print(f\"Word not in vocabulary: {e}\")\n\n# Similar words\ncompute_similarity('cat', 'dog')\ncompute_similarity('cat', 'kitten')\n\n# Unrelated words\ncompute_similarity('cat', 'car')\n\n# Related concepts\ncompute_similarity('doctor', 'hospital')\ncompute_similarity('king', 'queen')\n\nSimilarity between 'cat' and 'dog': 0.7609\nSimilarity between 'cat' and 'kitten': 0.7465\nSimilarity between 'cat' and 'car': 0.2153\nSimilarity between 'doctor' and 'hospital': 0.5143\nSimilarity between 'king' and 'queen': 0.6511\n\n\nnp.float32(0.6510956)",
+    "text": "Compute Similarity\n\ndef compute_similarity(word1, word2):\n    \"\"\"Compute cosine similarity between two words.\"\"\"\n    try:\n        similarity = model.similarity(word1, word2) # type: ignore\n        print(f\"Similarity between '{word1}' and '{word2}': {similarity:.4f}\")\n    except KeyError as e:\n        print(f\"Word not in vocabulary: {e}\")\n\n\ncompute_similarity('cat', 'dog')\ncompute_similarity('cat', 'kitten')\ncompute_similarity('cat', 'car')\ncompute_similarity('doctor', 'hospital')\ncompute_similarity('king', 'queen')\n\nSimilarity between 'cat' and 'dog': 0.7609\nSimilarity between 'cat' and 'kitten': 0.7465\nSimilarity between 'cat' and 'car': 0.2153\nSimilarity between 'doctor' and 'hospital': 0.5143\nSimilarity between 'king' and 'queen': 0.6511",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Hands-on Notebooks",
@@ -52,7 +52,7 @@
     "href": "src/01/word2vec.html#vector-arithmetic",
     "title": "Word2Vec",
     "section": "Vector Arithmetic",
-    "text": "Vector Arithmetic\n\ndef vector_arithmetic(positive, negative, top_n=5):\n    \"\"\"Perform vector arithmetic: positive words - negative words.\"\"\"\n    try:\n        result = model.most_similar(positive=positive, negative=negative, topn=top_n) # type: ignore\n        print(f\"\\n{' + '.join(positive)} - {' - '.join(negative)}:\")\n        print(\"-\" * 50)\n        for word, similarity in result:\n            print(f\"{word:20s} | similarity: {similarity:.4f}\")\n    except KeyError as e:\n        print(f\"Word not in vocabulary: {e}\")\n\n# The famous example\nvector_arithmetic(['king', 'woman'], ['man'])\n\n# Geography\nvector_arithmetic(['Paris', 'Italy'], ['France'])\n\n# Grammar\nvector_arithmetic(['walking', 'swim'], ['walk'])\n\n\nking + woman - man:\n--------------------------------------------------\nqueen                | similarity: 0.7118\nmonarch              | similarity: 0.6190\nprincess             | similarity: 0.5902\ncrown_prince         | similarity: 0.5499\nprince               | similarity: 0.5377\n\nParis + Italy - France:\n--------------------------------------------------\nMilan                | similarity: 0.7222\nRome                 | similarity: 0.7028\nPalermo_Sicily       | similarity: 0.5968\nItalian              | similarity: 0.5911\nTuscany              | similarity: 0.5633\n\nwalking + swim - walk:\n--------------------------------------------------\nswimming             | similarity: 0.8246\nswam                 | similarity: 0.6807\nswims                | similarity: 0.6538\nswimmers             | similarity: 0.6495\npaddling             | similarity: 0.6424",
+    "text": "Vector Arithmetic\n\ndef vector_arithmetic(positive, negative, top_n=5):\n    \"\"\"Perform vector arithmetic: positive words - negative words.\"\"\"\n    try:\n        result = model.most_similar(positive=positive, negative=negative, topn=top_n) # type: ignore\n        print(f\"\\n{' + '.join(positive)} - {' - '.join(negative)}:\")\n        print(\"-\" * 50)\n        for word, similarity in result:\n            print(f\"{word:20s} | similarity: {similarity:.4f}\")\n    except KeyError as e:\n        print(f\"Word not in vocabulary: {e}\")\n\n\nvector_arithmetic(['king', 'woman'], ['man'])\nvector_arithmetic(['Paris', 'Italy'], ['France'])\nvector_arithmetic(['walking', 'swim'], ['walk'])\n\n\nking + woman - man:\n--------------------------------------------------\nqueen                | similarity: 0.7118\nmonarch              | similarity: 0.6190\nprincess             | similarity: 0.5902\ncrown_prince         | similarity: 0.5499\nprince               | similarity: 0.5377\n\nParis + Italy - France:\n--------------------------------------------------\nMilan                | similarity: 0.7222\nRome                 | similarity: 0.7028\nPalermo_Sicily       | similarity: 0.5968\nItalian              | similarity: 0.5911\nTuscany              | similarity: 0.5633\n\nwalking + swim - walk:\n--------------------------------------------------\nswimming             | similarity: 0.8246\nswam                 | similarity: 0.6807\nswims                | similarity: 0.6538\nswimmers             | similarity: 0.6495\npaddling             | similarity: 0.6424",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Hands-on Notebooks",
@@ -119,11 +119,11 @@
     ]
   },
   {
-    "objectID": "src/01/slides.html#back-in-2013",
-    "href": "src/01/slides.html#back-in-2013",
+    "objectID": "src/01/slides.html#rewind-to-2013",
+    "href": "src/01/slides.html#rewind-to-2013",
     "title": "Week 1: Foundations of Generative AI",
-    "section": "Back in 2013",
-    "text": "Back in 2013\n\nNLP (Natural Language Processing) was hot!\n\nSentiment analysis, named entity recognition, parsing, etc.\n\nBut, you had limited options…\n\nOne-hot encoding\nHand crafted features\nNeural language models",
+    "section": "Rewind To 2013",
+    "text": "Rewind To 2013\n\nNLP (Natural Language Processing) was the thing!\n\nSentiment analysis, named entity recognition, parsing, etc.\n\nBut, you had limited options…\n\nOne-hot encoding\nHand crafted features\nNeural language models",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -133,8 +133,8 @@
     "objectID": "src/01/slides.html#word2vec-released",
     "href": "src/01/slides.html#word2vec-released",
     "title": "Week 1: Foundations of Generative AI",
-    "section": "Word2Vec Released",
-    "text": "Word2Vec Released\n\nFirst example of vector embeddings\n\nTBD Citation here",
+    "section": "2013: Word2Vec Released",
+    "text": "2013: Word2Vec Released\n\nFirst example of vector embeddings\n\nTBD Citation here",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -156,29 +156,95 @@
     "href": "src/01/slides.html#how-does-word2vec-work",
     "title": "Week 1: Foundations of Generative AI",
     "section": "How does Word2Vec Work?",
-    "text": "How does Word2Vec Work?\n\nTBD",
+    "text": "How does Word2Vec Work?\n\n\nword = \"cat\"\nvector = model[word] # type: ignore\nvector[:10]\n\narray([ 0.0123291 ,  0.20410156, -0.28515625,  0.21679688,  0.11816406,\n        0.08300781,  0.04980469, -0.00952148,  0.22070312, -0.12597656],\n      dtype=float32)",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
     ]
   },
   {
-    "objectID": "src/01/slides.html#challenges-with-word-based-embeddings",
-    "href": "src/01/slides.html#challenges-with-word-based-embeddings",
+    "objectID": "src/01/slides.html#how-does-word2vec-work-1",
+    "href": "src/01/slides.html#how-does-word2vec-work-1",
     "title": "Week 1: Foundations of Generative AI",
-    "section": "Challenges with Word-Based Embeddings",
-    "text": "Challenges with Word-Based Embeddings\n\nLarge volabularies\n\n100K+ words\nAnd not particularly friendly to non-English vocabularies\n\nLittle representation between words\n\n“Run” and “Running” should be related\n\nLack of context\n\nEmbedding for the word “bank” is the same, regardless of context\n“River bank” != “Savings bank”",
+    "section": "How does Word2Vec Work?",
+    "text": "How does Word2Vec Work?\n\n\nword = \"dog\"\nvector = model[word] # type: ignore\nvector[:10]\n\narray([ 0.05126953, -0.02233887, -0.17285156,  0.16113281, -0.08447266,\n        0.05737305,  0.05859375, -0.08251953, -0.01538086, -0.06347656],\n      dtype=float32)",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
     ]
   },
   {
-    "objectID": "src/01/slides.html#challenges-with-word-based-embeddings-1",
-    "href": "src/01/slides.html#challenges-with-word-based-embeddings-1",
+    "objectID": "src/01/slides.html#how-does-word2vec-work-2",
+    "href": "src/01/slides.html#how-does-word2vec-work-2",
     "title": "Week 1: Foundations of Generative AI",
-    "section": "Challenges with Word-Based Embeddings",
-    "text": "Challenges with Word-Based Embeddings\n\nSome researchers tried character-level models\n\nSmall vocabulary (26 letters + puntuation for English)\nBut very long sequences\nAnd hard to extra meaning",
+    "section": "How does Word2Vec Work?",
+    "text": "How does Word2Vec Work?\n\n\nword = \"pizza\"\nvector = model[word] # type: ignore\nvector[:10]\n\narray([-1.2597656e-01,  2.5390625e-02,  1.6699219e-01,  5.5078125e-01,\n       -7.6660156e-02,  1.2890625e-01,  1.0253906e-01, -3.9482117e-04,\n        1.2158203e-01,  4.3212891e-02], dtype=float32)",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#how-does-word2vec-work-3",
+    "href": "src/01/slides.html#how-does-word2vec-work-3",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "How does Word2Vec Work?",
+    "text": "How does Word2Vec Work?\n\n\nfind_similar_words(\"cat\")\nfind_similar_words(\"dog\")\nfind_similar_words(\"pizza\")\n\n\nWords most similar to 'cat':\n----------------------------------------\ncats                 | similarity: 0.8099\ndog                  | similarity: 0.7609\nkitten               | similarity: 0.7465\nfeline               | similarity: 0.7326\nbeagle               | similarity: 0.7151\npuppy                | similarity: 0.7075\npup                  | similarity: 0.6934\npet                  | similarity: 0.6892\nfelines              | similarity: 0.6756\nchihuahua            | similarity: 0.6710\n\nWords most similar to 'dog':\n----------------------------------------\ndogs                 | similarity: 0.8680\npuppy                | similarity: 0.8106\npit_bull             | similarity: 0.7804\npooch                | similarity: 0.7627\ncat                  | similarity: 0.7609\ngolden_retriever     | similarity: 0.7501\nGerman_shepherd      | similarity: 0.7465\nRottweiler           | similarity: 0.7438\nbeagle               | similarity: 0.7419\npup                  | similarity: 0.7407\n\nWords most similar to 'pizza':\n----------------------------------------\npizzas               | similarity: 0.7863\nDomino_pizza         | similarity: 0.7343\nPizza                | similarity: 0.6988\npepperoni_pizza      | similarity: 0.6903\nsandwich             | similarity: 0.6840\nburger               | similarity: 0.6570\nsandwiches           | similarity: 0.6495\ntakeout_pizza        | similarity: 0.6492\ngourmet_pizza        | similarity: 0.6401\nmeatball_sandwich    | similarity: 0.6377",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#how-does-word2vec-work-4",
+    "href": "src/01/slides.html#how-does-word2vec-work-4",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "How does Word2Vec Work?",
+    "text": "How does Word2Vec Work?\n\n\ncompute_similarity('cat', 'dog')\ncompute_similarity('cat', 'kitten')\ncompute_similarity('cat', 'car')\ncompute_similarity('doctor', 'hospital')\ncompute_similarity('king', 'queen')\n\nSimilarity between 'cat' and 'dog': 0.7609\nSimilarity between 'cat' and 'kitten': 0.7465\nSimilarity between 'cat' and 'car': 0.2153\nSimilarity between 'doctor' and 'hospital': 0.5143\nSimilarity between 'king' and 'queen': 0.6511",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#how-does-word2vec-work-5",
+    "href": "src/01/slides.html#how-does-word2vec-work-5",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "How does Word2Vec Work?",
+    "text": "How does Word2Vec Work?\n\n\nvector_arithmetic(['king', 'woman'], ['man'])\nvector_arithmetic(['Paris', 'Italy'], ['France'])\nvector_arithmetic(['walking', 'swim'], ['walk'])\n\n\nking + woman - man:\n--------------------------------------------------\nqueen                | similarity: 0.7118\nmonarch              | similarity: 0.6190\nprincess             | similarity: 0.5902\ncrown_prince         | similarity: 0.5499\nprince               | similarity: 0.5377\n\nParis + Italy - France:\n--------------------------------------------------\nMilan                | similarity: 0.7222\nRome                 | similarity: 0.7028\nPalermo_Sicily       | similarity: 0.5968\nItalian              | similarity: 0.5911\nTuscany              | similarity: 0.5633\n\nwalking + swim - walk:\n--------------------------------------------------\nswimming             | similarity: 0.8246\nswam                 | similarity: 0.6807\nswims                | similarity: 0.6538\nswimmers             | similarity: 0.6495\npaddling             | similarity: 0.6424",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#how-does-word2vec-work-6",
+    "href": "src/01/slides.html#how-does-word2vec-work-6",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "How does Word2Vec Work?",
+    "text": "How does Word2Vec Work?",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#challenges-with-word-embeddings",
+    "href": "src/01/slides.html#challenges-with-word-embeddings",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Challenges with Word Embeddings",
+    "text": "Challenges with Word Embeddings\n\nLarge vocabularies\n\n100K+ words\nAnd not particularly friendly to non-English vocabularies\n\nLittle representation between words\n\n“Run” and “Running” should be related\n\nLack of context\n\nEmbedding for the word “bank” is the same, regardless of context\n“River bank” != “Savings bank”",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#challenges-with-word-embeddings-1",
+    "href": "src/01/slides.html#challenges-with-word-embeddings-1",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Challenges with Word Embeddings",
+    "text": "Challenges with Word Embeddings\n\nSome researchers tried character-level models\n\nSmall vocabulary (26 letters + puntuation for English)\nBut very long sequences\nAnd hard to extra meaning",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -189,7 +255,7 @@
     "href": "src/01/slides.html#subword-tokenization",
     "title": "Week 1: Foundations of Generative AI",
     "section": "2015: Subword Tokenization",
-    "text": "2015: Subword Tokenization\n\nBreaks words into frequent subword units\n\n“unbelievable” → [“un”, “believ”, “able”]\n\nBalance between word level (large vocab) and character level (long sequences)\n\nSupports related words ([“Run”] and [“Run”, “ning”])\nSupports unknown words\n30-50K tokens vs. 100K\nAlso works well for non-English languages",
+    "text": "2015: Subword Tokenization\n\nBreaks words into frequent subword units\n\n“unbelievable” → [“un”, “believ”, “able”]\n\nBalance between word level (large vocab) and character level (long sequences)\n\nSupports related words: [“Run”] and [“Run”, “ning”]\nSupports unknown words\n30-50K tokens vs. 100K\nAlso works well for non-English languages",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -387,7 +453,7 @@
     "href": "src/01/slides.html#how-to-run-notebooks",
     "title": "Week 1: Foundations of Generative AI",
     "section": "How to Run Notebooks",
-    "text": "How to Run Notebooks\n\nJupyter Notebook Server (Classic approach)\n\nWeb interface on localhost\n\nVS Code (Local development)\n\nJupyter extension for VS Code\nRun on your own machine\n\nGoogle Colab (Recommended)\n\nBrowser-based, no installation needed\nFree GPU access",
+    "text": "How to Run Notebooks\n\nJupyter Notebook Server (Classic approach)\n\nWeb interface on localhost\n\nVS Code (Local development)\n\nJupyter extension for VS Code\nRun on your own machine\n\nGoogle Colab (Recommended)\n\nBrowser-based, no installation needed\nFree GPU access\nCan also access local GPU",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -405,8 +471,8 @@
     ]
   },
   {
-    "objectID": "src/01/slides.html#references",
-    "href": "src/01/slides.html#references",
+    "objectID": "src/01/slides.html#references-1",
+    "href": "src/01/slides.html#references-1",
     "title": "Week 1: Foundations of Generative AI",
     "section": "References",
     "text": "References\n\n\n\n\nVaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Łukasz Kaiser, and Illia Polosukhin. 2017. “Attention Is All You Need.” In Advances in Neural Information Processing Systems. Vol. 30.",
