@@ -17,113 +17,25 @@ $linkColor: $digipen-red;
 $linkColorHover: $dark-red;
 $selectionBackgroundColor: rgba($light-red, 0.3);
 
-// Fonts - using system fonts for better sizing/rendering
-$mainFont: -apple-system, BlinkMacSystemFont, 'Source Sans Pro', Helvetica, Arial, sans-serif;
-$headingFont: -apple-system, BlinkMacSystemFont, 'Source Sans Pro', Helvetica, Arial, sans-serif;
-$codeFont: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Courier New', monospace;
-
-// Heading styles - reduced sizes to prevent overflow
-$heading1Size: 2.2em;
-$heading2Size: 1.5em;
-$heading3Size: 1.2em;
-$headingTextShadow: none;
-$headingLetterSpacing: normal;
-$headingTextTransform: none;
-$headingFontWeight: 600;
-
-// Body text sizing
-$mainFontSize: 38px;
-
 // Code block styling
 $codeBg: #f5f5f5;
 $codeColor: $dark-gray;
 
 /*-- scss:rules --*/
 
-// Overall slide styling
-.reveal {
-  font-weight: 400;
+.reveal h1 {
+  color: $digipen-red;
 }
 
-// Regular slide headings
 .reveal h2 {
   color: $digipen-red;
-  font-weight: 600;
-  font-size: $heading2Size;
-  margin-bottom: 0.5em;
-  margin-top: 0;
   border-bottom: 3px solid $digipen-red;
-  padding-bottom: 0.2em;
-}
-
-.reveal h3 {
-  color: $digipen-red;
-  font-weight: 500;
-  font-size: $heading3Size;
-  margin-top: 0;
-}
-
-// Lists - tighter spacing to prevent overflow
-.reveal ul, .reveal ol {
-  margin-left: 0;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-}
-
-.reveal ul li,
-.reveal ol li {
-  margin-bottom: 0.35em;
-  line-height: 1.4;
-}
-
-// Add subtle accent to list items
-.reveal ul li::marker {
-  color: $digipen-red;
-  font-weight: bold;
-}
-
-// Links
-.reveal a {
-  color: $digipen-red;
-  text-decoration: none;
-  transition: all 0.2s ease;
-
-  &:hover {
-    color: $dark-red;
-    text-decoration: underline;
-  }
-}
-
-// Code blocks
-.reveal pre {
-  background: $codeBg;
-  border-left: 4px solid $digipen-red;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin: 0.5em 0;
-  font-size: 0.8em;
 }
 
 .reveal code {
-  font-family: $codeFont;
   background: $codeBg;
-  padding: 0.1em 0.4em;
   border-radius: 3px;
   color: $dark-red;
-  font-size: 0.8em;
-}
-
-.reveal pre code {
-  background: transparent;
-  padding: 0.8em;
-  color: $dark-gray;
-  max-height: 500px;
-}
-
-// Inline code
-.reveal p code,
-.reveal li code {
-  color: $dark-red;
-  font-weight: 500;
 }
 
 // Emphasis
@@ -131,43 +43,6 @@ $codeColor: $dark-gray;
 .reveal b {
   color: $digipen-red;
   font-weight: 700;
-}
-
-.reveal em {
-  color: $dark-gray;
-  font-style: italic;
-}
-
-// Blockquotes
-.reveal blockquote {
-  border-left: 4px solid $digipen-red;
-  padding-left: 1em;
-  background: rgba($medium-gray, 0.15);
-  color: $dark-gray;
-  font-style: italic;
-  margin: 0.5em 0;
-}
-
-// Tables
-.reveal table {
-  border-collapse: collapse;
-  font-size: 0.85em;
-
-  th {
-    background: $digipen-red;
-    color: white;
-    font-weight: 600;
-    padding: 0.5em;
-  }
-
-  td {
-    padding: 0.5em;
-    border-bottom: 1px solid $medium-gray;
-  }
-
-  tr:hover {
-    background: rgba($light-red, 0.08);
-  }
 }
 
 // Progress bar
@@ -181,11 +56,6 @@ $codeColor: $dark-gray;
   }
 }
 
-// Controls
-.reveal .controls {
-  color: $digipen-red;
-}
-
 // Slide numbers
 .reveal .slide-number {
   color: $digipen-red;
@@ -193,71 +63,4 @@ $codeColor: $dark-gray;
   border-radius: 4px;
   font-weight: 500;
   font-size: 0.7em;
-}
-
-// Logo positioning
-.reveal .slide-logo {
-  max-height: 50px;
-  opacity: 0.85;
-}
-
-// Fragment highlighting
-.reveal .fragment.highlight-red {
-  color: $digipen-red;
-
-  &.visible {
-    font-weight: 600;
-  }
-}
-
-// Custom accent box (can be used with ::: {.accent-box})
-.reveal .accent-box {
-  background: rgba($light-red, 0.08);
-  border-left: 4px solid $digipen-red;
-  padding: 0.8em;
-  margin: 0.5em 0;
-  border-radius: 4px;
-}
-
-// Two-column layout support
-.reveal .columns {
-  display: flex;
-  gap: 1.5em;
-
-  .column {
-    flex: 1;
-  }
-}
-
-// Small text for credits/notes
-.reveal .small {
-  font-size: 0.65em;
-  color: $dark-gray;
-}
-
-.reveal .slides section > * {
-  margin-top: 0;
-  margin-bottom: 0.5em;
-}
-
-// Ensure text wraps properly and doesn't overflow
-.reveal .slides {
-  text-align: left;
-  width: 100%;
-}
-
-.reveal p,
-.reveal ul,
-.reveal ol {
-  width: 100%;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
-
-// Fix for section title slides
-.reveal section:has(> h1:only-child) {
-  h1 {
-    width: 100%;
-    box-sizing: border-box;
-  }
 }

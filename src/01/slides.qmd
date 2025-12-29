@@ -74,9 +74,9 @@ bibliography: references.bib
 
 {{< embed word2vec.ipynb#2d-visualization >}}
 
-## Challenges with Word-Based Embeddings
+## Challenges with Word Embeddings
 
-- Large volabularies
+- Large vocabularies
   - 100K+ words
   - And not particularly friendly to non-English vocabularies
 - Little representation between words
@@ -85,7 +85,7 @@ bibliography: references.bib
   - Embedding for the word "bank" is the same, regardless of context
   - "River bank" != "Savings bank"
 
-## Challenges with Word-Based Embeddings
+## Challenges with Word Embeddings
 
 - Some researchers tried character-level models
   - Small vocabulary (26 letters + puntuation for English)
@@ -95,9 +95,9 @@ bibliography: references.bib
 ## 2015: Subword Tokenization
 
 - Breaks words into frequent subword units
-  - "unbelievable" → ["un", "believ", "able"]
+  - "unbelievable" → **["un", "believ", "able"]**
 - Balance between word level (large vocab) and character level (long sequences)
-  - Supports related words (["Run"] and ["Run", "ning"])
+  - Supports related words: **["Run"]** and **["Run", "ning"]**
   - Supports unknown words
   - 30-50K tokens vs. 100K
   - Also works well for non-English languages
