@@ -25,16 +25,16 @@ bibliography: references.bib
 
 # Let's Rewind To 2013...
 
-## Back in 2013
+## Rewind To 2013
 
-- NLP (Natural Language Processing) was hot!
+- NLP (Natural Language Processing) was the thing!
   - Sentiment analysis, named entity recognition, parsing, etc.
 - But, you had limited options...
   - One-hot encoding
   - Hand crafted features
   - Neural language models
 
-## Word2Vec Released
+## 2013: Word2Vec Released
 
 - First example of vector embeddings
   - TBD Citation here
@@ -48,7 +48,31 @@ bibliography: references.bib
 
 ## How does Word2Vec Work?
 
-- TBD
+{{< embed word2vec.ipynb#word-1 echo=true >}}
+
+## How does Word2Vec Work?
+
+{{< embed word2vec.ipynb#word-2 echo=true >}}
+
+## How does Word2Vec Work?
+
+{{< embed word2vec.ipynb#word-3 echo=true >}}
+
+## How does Word2Vec Work?
+
+{{< embed word2vec.ipynb#similar-words echo=true >}}
+
+## How does Word2Vec Work?
+
+{{< embed word2vec.ipynb#compute-similarity echo=true >}}
+
+## How does Word2Vec Work?
+
+{{< embed word2vec.ipynb#vector-arithmetic echo=true >}}
+
+## How does Word2Vec Work?
+
+{{< embed word2vec.ipynb#2d-visualization >}}
 
 ## Challenges with Word-Based Embeddings
 
@@ -213,6 +237,7 @@ bibliography: references.bib
 - **Google Colab** (Recommended)
    - Browser-based, no installation needed
    - Free GPU access
+   - Can also access local GPU
 
 ## Advantages of Google Colab
 
@@ -227,5 +252,7 @@ bibliography: references.bib
 # Demo
 
 Hello World notebook in **Colab**, **VS Code**, and **Local Jupyter server**
+
+# References
 
 ## References
