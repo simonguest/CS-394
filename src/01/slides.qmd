@@ -36,15 +36,19 @@ bibliography: references.bib
 
 ## 2013: Word2Vec Released
 
-- First example of vector embeddings
-  - TBD Citation here
+- Word2Vec introduced by Mikolov and colleagues at Google Research in two papers
+  - Skip-gram and Continuous Bag-of-Words (CBOW) [@mikolov2013efficient]
+  - Negative sampling and subsampling techniques [@mikolov2013distributed]
+- Paradigm shift from count-based methods
+  - Used Neural Networks (NNs) to predict words vs. large matrices
+- Foundation for modern NLP tasks
 
-## What are Vector Embeddings?
+## How does Word2Vec Work?
 
-- Vector Embeddings are **meaningful numerical representations** of words
+- Word Embeddings are **meaningful numerical representations** of words
   - Representations where words (or sentences) are encoded into multi-dimensional space
-  - Large number of dimensions (we'll use 384 in our examples)
-  - Similar words/sentences have similar numbers
+  - Large number of dimensions (200-500 is typical)
+  - Similar words have similar numbers
 
 ## How does Word2Vec Work?
 
@@ -57,6 +61,14 @@ bibliography: references.bib
 ## How does Word2Vec Work?
 
 {{< embed word2vec.ipynb#word-3 echo=true >}}
+
+## Why Do This?
+
+- Mapping words to multi-dimensional vectors enables
+  - Test for similarity
+  - Compute similarity
+  - Perform vector arithmetic
+  - Explore sets of words through visualizations
 
 ## How does Word2Vec Work?
 
@@ -79,11 +91,11 @@ bibliography: references.bib
 - Large vocabularies
   - 100K+ words
   - And not particularly friendly to non-English vocabularies
-- Little representation between words
+- Little representation between certain words
   - "Run" and "Running" should be related
 - Lack of context
   - Embedding for the word "bank" is the same, regardless of context
-  - "River bank" != "Savings bank"
+  - **River bank** != **Savings bank**
 
 ## Challenges with Word Embeddings
 
@@ -92,9 +104,16 @@ bibliography: references.bib
   - But very long sequences
   - And hard to extra meaning
 
-## 2015: Subword Tokenization
+## 2016: Byte Pair Encoding (BPE)
 
-- Breaks words into frequent subword units
+- Originally developed in 1994 as a simple compression algorithm [@gage1994new]
+  - Frequent pairs of adjacent bytes represented as a single byte
+- In 2016, adapted to neural machine translation [@sennrich-etal-2016-neural]
+  - Applied BPE to break words into subword units for better handling of rare words
+
+## 2016: Byte Pair Encoding (BPE)
+
+- Breaks words into frequent subword units (a.k.a. **tokens**)
   - "unbelievable" → **["un", "believ", "able"]**
 - Balance between word level (large vocab) and character level (long sequences)
   - Supports related words: **["Run"]** and **["Run", "ning"]**
@@ -102,19 +121,14 @@ bibliography: references.bib
   - 30-50K tokens vs. 100K
   - Also works well for non-English languages
 
-## 2016: Byte Pair Encoding (BPE)
-
-- TBD: Sennrich et. al (need citation)
-
 ## Search for Context
 
 - BPE provided efficiency and representation between words
 - But still didn't solve context
-  - e.g., "River bank" != "Savings bank"
+  - e.g., the **River bank** != **Savings bank** problem
 - Researchers working on "attention tasks" using Recurrent Neural Networks (RNNs)
-  - Mostly for translation purposes
+  - Bahdanau et al. introduce attention for translation [@bahdanau2015neural]
   - Showed that focusing on relevant parts of input improved translation quality
-  - TBD: Bahdanau et al. introduce attention for translation (citation needed)
 
 ## 2017: "Attention is all you need"
 
