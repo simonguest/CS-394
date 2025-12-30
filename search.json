@@ -134,18 +134,7 @@
     "href": "src/01/slides.html#word2vec-released",
     "title": "Week 1: Foundations of Generative AI",
     "section": "2013: Word2Vec Released",
-    "text": "2013: Word2Vec Released\n\nFirst example of vector embeddings\n\nTBD Citation here",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/slides.html#what-are-vector-embeddings",
-    "href": "src/01/slides.html#what-are-vector-embeddings",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "What are Vector Embeddings?",
-    "text": "What are Vector Embeddings?\n\nVector Embeddings are meaningful numerical representations of words\n\nRepresentations where words (or sentences) are encoded into multi-dimensional space\nLarge number of dimensions (we’ll use 384 in our examples)\nSimilar words/sentences have similar numbers",
+    "text": "2013: Word2Vec Released\n\nWord2Vec introduced by Mikolov and colleagues at Google Research in two papers\n\nSkip-gram and Continuous Bag-of-Words (CBOW) (Mikolov, Chen, et al. 2013)\nNegative sampling and subsampling techniques (Mikolov, Sutskever, et al. 2013)\n\nParadigm shift from count-based methods\n\nUsed Neural Networks (NNs) to predict words vs. large matrices\n\nFoundation for modern NLP tasks",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -156,7 +145,7 @@
     "href": "src/01/slides.html#how-does-word2vec-work",
     "title": "Week 1: Foundations of Generative AI",
     "section": "How does Word2Vec Work?",
-    "text": "How does Word2Vec Work?\n\n\nword = \"cat\"\nvector = model[word] # type: ignore\nvector[:10]\n\narray([ 0.0123291 ,  0.20410156, -0.28515625,  0.21679688,  0.11816406,\n        0.08300781,  0.04980469, -0.00952148,  0.22070312, -0.12597656],\n      dtype=float32)",
+    "text": "How does Word2Vec Work?\n\nWord Embeddings are meaningful numerical representations of words\n\nRepresentations where words (or sentences) are encoded into multi-dimensional space\nLarge number of dimensions (200-500 is typical)\nSimilar words have similar numbers",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -167,7 +156,7 @@
     "href": "src/01/slides.html#how-does-word2vec-work-1",
     "title": "Week 1: Foundations of Generative AI",
     "section": "How does Word2Vec Work?",
-    "text": "How does Word2Vec Work?\n\n\nword = \"dog\"\nvector = model[word] # type: ignore\nvector[:10]\n\narray([ 0.05126953, -0.02233887, -0.17285156,  0.16113281, -0.08447266,\n        0.05737305,  0.05859375, -0.08251953, -0.01538086, -0.06347656],\n      dtype=float32)",
+    "text": "How does Word2Vec Work?\n\n\nword = \"cat\"\nvector = model[word] # type: ignore\nvector[:10]\n\narray([ 0.0123291 ,  0.20410156, -0.28515625,  0.21679688,  0.11816406,\n        0.08300781,  0.04980469, -0.00952148,  0.22070312, -0.12597656],\n      dtype=float32)",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -178,7 +167,7 @@
     "href": "src/01/slides.html#how-does-word2vec-work-2",
     "title": "Week 1: Foundations of Generative AI",
     "section": "How does Word2Vec Work?",
-    "text": "How does Word2Vec Work?\n\n\nword = \"pizza\"\nvector = model[word] # type: ignore\nvector[:10]\n\narray([-1.2597656e-01,  2.5390625e-02,  1.6699219e-01,  5.5078125e-01,\n       -7.6660156e-02,  1.2890625e-01,  1.0253906e-01, -3.9482117e-04,\n        1.2158203e-01,  4.3212891e-02], dtype=float32)",
+    "text": "How does Word2Vec Work?\n\n\nword = \"dog\"\nvector = model[word] # type: ignore\nvector[:10]\n\narray([ 0.05126953, -0.02233887, -0.17285156,  0.16113281, -0.08447266,\n        0.05737305,  0.05859375, -0.08251953, -0.01538086, -0.06347656],\n      dtype=float32)",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -189,7 +178,18 @@
     "href": "src/01/slides.html#how-does-word2vec-work-3",
     "title": "Week 1: Foundations of Generative AI",
     "section": "How does Word2Vec Work?",
-    "text": "How does Word2Vec Work?\n\n\nfind_similar_words(\"cat\")\nfind_similar_words(\"dog\")\nfind_similar_words(\"pizza\")\n\n\nWords most similar to 'cat':\n----------------------------------------\ncats                 | similarity: 0.8099\ndog                  | similarity: 0.7609\nkitten               | similarity: 0.7465\nfeline               | similarity: 0.7326\nbeagle               | similarity: 0.7151\npuppy                | similarity: 0.7075\npup                  | similarity: 0.6934\npet                  | similarity: 0.6892\nfelines              | similarity: 0.6756\nchihuahua            | similarity: 0.6710\n\nWords most similar to 'dog':\n----------------------------------------\ndogs                 | similarity: 0.8680\npuppy                | similarity: 0.8106\npit_bull             | similarity: 0.7804\npooch                | similarity: 0.7627\ncat                  | similarity: 0.7609\ngolden_retriever     | similarity: 0.7501\nGerman_shepherd      | similarity: 0.7465\nRottweiler           | similarity: 0.7438\nbeagle               | similarity: 0.7419\npup                  | similarity: 0.7407\n\nWords most similar to 'pizza':\n----------------------------------------\npizzas               | similarity: 0.7863\nDomino_pizza         | similarity: 0.7343\nPizza                | similarity: 0.6988\npepperoni_pizza      | similarity: 0.6903\nsandwich             | similarity: 0.6840\nburger               | similarity: 0.6570\nsandwiches           | similarity: 0.6495\ntakeout_pizza        | similarity: 0.6492\ngourmet_pizza        | similarity: 0.6401\nmeatball_sandwich    | similarity: 0.6377",
+    "text": "How does Word2Vec Work?\n\n\nword = \"pizza\"\nvector = model[word] # type: ignore\nvector[:10]\n\narray([-1.2597656e-01,  2.5390625e-02,  1.6699219e-01,  5.5078125e-01,\n       -7.6660156e-02,  1.2890625e-01,  1.0253906e-01, -3.9482117e-04,\n        1.2158203e-01,  4.3212891e-02], dtype=float32)",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#why-do-this",
+    "href": "src/01/slides.html#why-do-this",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Why Do This?",
+    "text": "Why Do This?\n\nMapping words to multi-dimensional vectors enables\n\nTest for similarity\nCompute similarity\nPerform vector arithmetic\nExplore sets of words through visualizations",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -200,7 +200,7 @@
     "href": "src/01/slides.html#how-does-word2vec-work-4",
     "title": "Week 1: Foundations of Generative AI",
     "section": "How does Word2Vec Work?",
-    "text": "How does Word2Vec Work?\n\n\ncompute_similarity('cat', 'dog')\ncompute_similarity('cat', 'kitten')\ncompute_similarity('cat', 'car')\ncompute_similarity('doctor', 'hospital')\ncompute_similarity('king', 'queen')\n\nSimilarity between 'cat' and 'dog': 0.7609\nSimilarity between 'cat' and 'kitten': 0.7465\nSimilarity between 'cat' and 'car': 0.2153\nSimilarity between 'doctor' and 'hospital': 0.5143\nSimilarity between 'king' and 'queen': 0.6511",
+    "text": "How does Word2Vec Work?\n\n\nfind_similar_words(\"cat\")\nfind_similar_words(\"dog\")\nfind_similar_words(\"pizza\")\n\n\nWords most similar to 'cat':\n----------------------------------------\ncats                 | similarity: 0.8099\ndog                  | similarity: 0.7609\nkitten               | similarity: 0.7465\nfeline               | similarity: 0.7326\nbeagle               | similarity: 0.7151\npuppy                | similarity: 0.7075\npup                  | similarity: 0.6934\npet                  | similarity: 0.6892\nfelines              | similarity: 0.6756\nchihuahua            | similarity: 0.6710\n\nWords most similar to 'dog':\n----------------------------------------\ndogs                 | similarity: 0.8680\npuppy                | similarity: 0.8106\npit_bull             | similarity: 0.7804\npooch                | similarity: 0.7627\ncat                  | similarity: 0.7609\ngolden_retriever     | similarity: 0.7501\nGerman_shepherd      | similarity: 0.7465\nRottweiler           | similarity: 0.7438\nbeagle               | similarity: 0.7419\npup                  | similarity: 0.7407\n\nWords most similar to 'pizza':\n----------------------------------------\npizzas               | similarity: 0.7863\nDomino_pizza         | similarity: 0.7343\nPizza                | similarity: 0.6988\npepperoni_pizza      | similarity: 0.6903\nsandwich             | similarity: 0.6840\nburger               | similarity: 0.6570\nsandwiches           | similarity: 0.6495\ntakeout_pizza        | similarity: 0.6492\ngourmet_pizza        | similarity: 0.6401\nmeatball_sandwich    | similarity: 0.6377",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -211,7 +211,7 @@
     "href": "src/01/slides.html#how-does-word2vec-work-5",
     "title": "Week 1: Foundations of Generative AI",
     "section": "How does Word2Vec Work?",
-    "text": "How does Word2Vec Work?\n\n\nvector_arithmetic(['king', 'woman'], ['man'])\nvector_arithmetic(['Paris', 'Italy'], ['France'])\nvector_arithmetic(['walking', 'swim'], ['walk'])\n\n\nking + woman - man:\n--------------------------------------------------\nqueen                | similarity: 0.7118\nmonarch              | similarity: 0.6190\nprincess             | similarity: 0.5902\ncrown_prince         | similarity: 0.5499\nprince               | similarity: 0.5377\n\nParis + Italy - France:\n--------------------------------------------------\nMilan                | similarity: 0.7222\nRome                 | similarity: 0.7028\nPalermo_Sicily       | similarity: 0.5968\nItalian              | similarity: 0.5911\nTuscany              | similarity: 0.5633\n\nwalking + swim - walk:\n--------------------------------------------------\nswimming             | similarity: 0.8246\nswam                 | similarity: 0.6807\nswims                | similarity: 0.6538\nswimmers             | similarity: 0.6495\npaddling             | similarity: 0.6424",
+    "text": "How does Word2Vec Work?\n\n\ncompute_similarity('cat', 'dog')\ncompute_similarity('cat', 'kitten')\ncompute_similarity('cat', 'car')\ncompute_similarity('doctor', 'hospital')\ncompute_similarity('king', 'queen')\n\nSimilarity between 'cat' and 'dog': 0.7609\nSimilarity between 'cat' and 'kitten': 0.7465\nSimilarity between 'cat' and 'car': 0.2153\nSimilarity between 'doctor' and 'hospital': 0.5143\nSimilarity between 'king' and 'queen': 0.6511",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -220,6 +220,17 @@
   {
     "objectID": "src/01/slides.html#how-does-word2vec-work-6",
     "href": "src/01/slides.html#how-does-word2vec-work-6",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "How does Word2Vec Work?",
+    "text": "How does Word2Vec Work?\n\n\nvector_arithmetic(['king', 'woman'], ['man'])\nvector_arithmetic(['Paris', 'Italy'], ['France'])\nvector_arithmetic(['walking', 'swim'], ['walk'])\n\n\nking + woman - man:\n--------------------------------------------------\nqueen                | similarity: 0.7118\nmonarch              | similarity: 0.6190\nprincess             | similarity: 0.5902\ncrown_prince         | similarity: 0.5499\nprince               | similarity: 0.5377\n\nParis + Italy - France:\n--------------------------------------------------\nMilan                | similarity: 0.7222\nRome                 | similarity: 0.7028\nPalermo_Sicily       | similarity: 0.5968\nItalian              | similarity: 0.5911\nTuscany              | similarity: 0.5633\n\nwalking + swim - walk:\n--------------------------------------------------\nswimming             | similarity: 0.8246\nswam                 | similarity: 0.6807\nswims                | similarity: 0.6538\nswimmers             | similarity: 0.6495\npaddling             | similarity: 0.6424",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#how-does-word2vec-work-7",
+    "href": "src/01/slides.html#how-does-word2vec-work-7",
     "title": "Week 1: Foundations of Generative AI",
     "section": "How does Word2Vec Work?",
     "text": "How does Word2Vec Work?",
@@ -233,7 +244,7 @@
     "href": "src/01/slides.html#challenges-with-word-embeddings",
     "title": "Week 1: Foundations of Generative AI",
     "section": "Challenges with Word Embeddings",
-    "text": "Challenges with Word Embeddings\n\nLarge vocabularies\n\n100K+ words\nAnd not particularly friendly to non-English vocabularies\n\nLittle representation between words\n\n“Run” and “Running” should be related\n\nLack of context\n\nEmbedding for the word “bank” is the same, regardless of context\n“River bank” != “Savings bank”",
+    "text": "Challenges with Word Embeddings\n\nLarge vocabularies\n\n100K+ words\nAnd not particularly friendly to non-English vocabularies\n\nLittle representation between certain words\n\n“Run” and “Running” should be related\n\nLack of context\n\nEmbedding for the word “bank” is the same, regardless of context\nRiver bank != Savings bank",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -251,22 +262,22 @@
     ]
   },
   {
-    "objectID": "src/01/slides.html#subword-tokenization",
-    "href": "src/01/slides.html#subword-tokenization",
+    "objectID": "src/01/slides.html#byte-pair-encoding-bpe",
+    "href": "src/01/slides.html#byte-pair-encoding-bpe",
     "title": "Week 1: Foundations of Generative AI",
-    "section": "2015: Subword Tokenization",
-    "text": "2015: Subword Tokenization\n\nBreaks words into frequent subword units\n\n“unbelievable” → [“un”, “believ”, “able”]\n\nBalance between word level (large vocab) and character level (long sequences)\n\nSupports related words: [“Run”] and [“Run”, “ning”]\nSupports unknown words\n30-50K tokens vs. 100K\nAlso works well for non-English languages",
+    "section": "2016: Byte Pair Encoding (BPE)",
+    "text": "2016: Byte Pair Encoding (BPE)\n\nOriginally developed in 1994 as a simple compression algorithm (Gage 1994)\n\nFrequent pairs of adjacent bytes represented as a single byte\n\nIn 2016, adapted to neural machine translation (Sennrich, Haddow, and Birch 2016)\n\nApplied BPE to break words into subword units for better handling of rare words",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
     ]
   },
   {
-    "objectID": "src/01/slides.html#byte-pair-encoding-bpe",
-    "href": "src/01/slides.html#byte-pair-encoding-bpe",
+    "objectID": "src/01/slides.html#byte-pair-encoding-bpe-1",
+    "href": "src/01/slides.html#byte-pair-encoding-bpe-1",
     "title": "Week 1: Foundations of Generative AI",
     "section": "2016: Byte Pair Encoding (BPE)",
-    "text": "2016: Byte Pair Encoding (BPE)\n\nTBD: Sennrich et. al (need citation)",
+    "text": "2016: Byte Pair Encoding (BPE)\n\nBreaks words into frequent subword units (a.k.a. tokens)\n\n“unbelievable” → [“un”, “believ”, “able”]\n\nBalance between word level (large vocab) and character level (long sequences)\n\nSupports related words: [“Run”] and [“Run”, “ning”]\nSupports unknown words\n30-50K tokens vs. 100K\nAlso works well for non-English languages",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -277,7 +288,7 @@
     "href": "src/01/slides.html#search-for-context",
     "title": "Week 1: Foundations of Generative AI",
     "section": "Search for Context",
-    "text": "Search for Context\n\nBPE provided efficiency and representation between words\nBut still didn’t solve context\n\ne.g., “River bank” != “Savings bank”\n\nResearchers working on “attention tasks” using Recurrent Neural Networks (RNNs)\n\nMostly for translation purposes\nShowed that focusing on relevant parts of input improved translation quality\nTBD: Bahdanau et al. introduce attention for translation (citation needed)",
+    "text": "Search for Context\n\nBPE provided efficiency and representation between words\nBut still didn’t solve context\n\ne.g., the River bank != Savings bank problem\n\nResearchers working on “attention tasks” using Recurrent Neural Networks (RNNs)\n\nBahdanau et al. introduce attention for translation (Bahdanau, Cho, and Bengio 2015)\nShowed that focusing on relevant parts of input improved translation quality",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -475,7 +486,7 @@
     "href": "src/01/slides.html#references-1",
     "title": "Week 1: Foundations of Generative AI",
     "section": "References",
-    "text": "References\n\n\n\n\nVaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Łukasz Kaiser, and Illia Polosukhin. 2017. “Attention Is All You Need.” In Advances in Neural Information Processing Systems. Vol. 30.",
+    "text": "References\n\n\n\n\nBahdanau, Dzmitry, Kyunghyun Cho, and Yoshua Bengio. 2015. “Neural Machine Translation by Jointly Learning to Align and Translate.” In International Conference on Learning Representations. https://arxiv.org/abs/1409.0473.\n\n\nGage, Philip. 1994. “A New Algorithm for Data Compression.” The C Users Journal 12 (2): 23–38.\n\n\nMikolov, Tomas, Kai Chen, Greg Corrado, and Jeffrey Dean. 2013. “Efficient Estimation of Word Representations in Vector Space.” In International Conference on Learning Representations. https://arxiv.org/abs/1301.3781.\n\n\nMikolov, Tomas, Ilya Sutskever, Kai Chen, Greg S Corrado, and Jeff Dean. 2013. “Distributed Representations of Words and Phrases and Their Compositionality.” In Advances in Neural Information Processing Systems, 3111–19. https://arxiv.org/abs/1310.4546.\n\n\nSennrich, Rico, Barry Haddow, and Alexandra Birch. 2016. “Neural Machine Translation of Rare Words with Subword Units.” In Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), 1715–25. Berlin, Germany: Association for Computational Linguistics. https://doi.org/10.18653/v1/P16-1162.\n\n\nVaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Łukasz Kaiser, and Illia Polosukhin. 2017. “Attention Is All You Need.” In Advances in Neural Information Processing Systems. Vol. 30.",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"

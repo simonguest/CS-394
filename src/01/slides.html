@@ -251,24 +251,30 @@
 <section id="word2vec-released" class="slide level2">
 <h2>2013: Word2Vec Released</h2>
 <ul>
-<li class="fragment">First example of vector embeddings
+<li class="fragment">Word2Vec introduced by Mikolov and colleagues at Google Research in two papers
 <ul>
-<li class="fragment">TBD Citation here</li>
+<li class="fragment">Skip-gram and Continuous Bag-of-Words (CBOW) <span class="citation" data-cites="mikolov2013efficient">(<a href="#/references-1" role="doc-biblioref" onclick="">Mikolov, Chen, et al. 2013</a>)</span></li>
+<li class="fragment">Negative sampling and subsampling techniques <span class="citation" data-cites="mikolov2013distributed">(<a href="#/references-1" role="doc-biblioref" onclick="">Mikolov, Sutskever, et al. 2013</a>)</span></li>
 </ul></li>
-</ul>
-</section>
-<section id="what-are-vector-embeddings" class="slide level2">
-<h2>What are Vector Embeddings?</h2>
+<li class="fragment">Paradigm shift from count-based methods
 <ul>
-<li class="fragment">Vector Embeddings are <strong>meaningful numerical representations</strong> of words
-<ul>
-<li class="fragment">Representations where words (or sentences) are encoded into multi-dimensional space</li>
-<li class="fragment">Large number of dimensions (we’ll use 384 in our examples)</li>
-<li class="fragment">Similar words/sentences have similar numbers</li>
+<li class="fragment">Used Neural Networks (NNs) to predict words vs.&nbsp;large matrices</li>
 </ul></li>
+<li class="fragment">Foundation for modern NLP tasks</li>
 </ul>
 </section>
 <section id="how-does-word2vec-work" class="slide level2">
+<h2>How does Word2Vec Work?</h2>
+<ul>
+<li class="fragment">Word Embeddings are <strong>meaningful numerical representations</strong> of words
+<ul>
+<li class="fragment">Representations where words (or sentences) are encoded into multi-dimensional space</li>
+<li class="fragment">Large number of dimensions (200-500 is typical)</li>
+<li class="fragment">Similar words have similar numbers</li>
+</ul></li>
+</ul>
+</section>
+<section id="how-does-word2vec-work-1" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-1">
 <div id="word-1" class="cell" data-execution_count="12">
@@ -283,7 +289,7 @@
 </div>
 </div>
 </section>
-<section id="how-does-word2vec-work-1" class="slide level2">
+<section id="how-does-word2vec-work-2" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-2">
 <div id="word-2" class="cell" data-execution_count="13">
@@ -298,7 +304,7 @@
 </div>
 </div>
 </section>
-<section id="how-does-word2vec-work-2" class="slide level2">
+<section id="how-does-word2vec-work-3" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-3">
 <div id="word-3" class="cell" data-execution_count="14">
@@ -313,7 +319,19 @@
 </div>
 </div>
 </section>
-<section id="how-does-word2vec-work-3" class="slide level2">
+<section id="why-do-this" class="slide level2">
+<h2>Why Do This?</h2>
+<ul>
+<li class="fragment">Mapping words to multi-dimensional vectors enables
+<ul>
+<li class="fragment">Test for similarity</li>
+<li class="fragment">Compute similarity</li>
+<li class="fragment">Perform vector arithmetic</li>
+<li class="fragment">Explore sets of words through visualizations</li>
+</ul></li>
+</ul>
+</section>
+<section id="how-does-word2vec-work-4" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="similar-words">
 <div id="similar-words" class="cell">
@@ -364,7 +382,7 @@ meatball_sandwich    | similarity: 0.6377</code></pre>
 </div>
 </div>
 </section>
-<section id="how-does-word2vec-work-4" class="slide level2">
+<section id="how-does-word2vec-work-5" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="compute-similarity">
 <div id="compute-similarity" class="cell" data-execution_count="21">
@@ -383,7 +401,7 @@ Similarity between 'king' and 'queen': 0.6511</code></pre>
 </div>
 </div>
 </section>
-<section id="how-does-word2vec-work-5" class="slide level2">
+<section id="how-does-word2vec-work-6" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="vector-arithmetic">
 <div id="vector-arithmetic" class="cell">
@@ -419,7 +437,7 @@ paddling             | similarity: 0.6424</code></pre>
 </div>
 </div>
 </section>
-<section id="how-does-word2vec-work-6" class="slide level2">
+<section id="how-does-word2vec-work-7" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="2d-visualization">
 <div id="2d-visualization" class="cell" data-execution_count="18">
@@ -441,14 +459,14 @@ paddling             | similarity: 0.6424</code></pre>
 <li class="fragment">100K+ words</li>
 <li class="fragment">And not particularly friendly to non-English vocabularies</li>
 </ul></li>
-<li class="fragment">Little representation between words
+<li class="fragment">Little representation between certain words
 <ul>
 <li class="fragment">“Run” and “Running” should be related</li>
 </ul></li>
 <li class="fragment">Lack of context
 <ul>
 <li class="fragment">Embedding for the word “bank” is the same, regardless of context</li>
-<li class="fragment">“River bank” != “Savings bank”</li>
+<li class="fragment"><strong>River bank</strong> != <strong>Savings bank</strong></li>
 </ul></li>
 </ul>
 </section>
@@ -463,10 +481,23 @@ paddling             | similarity: 0.6424</code></pre>
 </ul></li>
 </ul>
 </section>
-<section id="subword-tokenization" class="slide level2">
-<h2>2015: Subword Tokenization</h2>
+<section id="byte-pair-encoding-bpe" class="slide level2">
+<h2>2016: Byte Pair Encoding (BPE)</h2>
 <ul>
-<li class="fragment">Breaks words into frequent subword units
+<li class="fragment">Originally developed in 1994 as a simple compression algorithm <span class="citation" data-cites="gage1994new">(<a href="#/references-1" role="doc-biblioref" onclick="">Gage 1994</a>)</span>
+<ul>
+<li class="fragment">Frequent pairs of adjacent bytes represented as a single byte</li>
+</ul></li>
+<li class="fragment">In 2016, adapted to neural machine translation <span class="citation" data-cites="sennrich-etal-2016-neural">(<a href="#/references-1" role="doc-biblioref" onclick="">Sennrich, Haddow, and Birch 2016</a>)</span>
+<ul>
+<li class="fragment">Applied BPE to break words into subword units for better handling of rare words</li>
+</ul></li>
+</ul>
+</section>
+<section id="byte-pair-encoding-bpe-1" class="slide level2">
+<h2>2016: Byte Pair Encoding (BPE)</h2>
+<ul>
+<li class="fragment">Breaks words into frequent subword units (a.k.a. <strong>tokens</strong>)
 <ul>
 <li class="fragment">“unbelievable” → <strong>[“un”, “believ”, “able”]</strong></li>
 </ul></li>
@@ -479,25 +510,18 @@ paddling             | similarity: 0.6424</code></pre>
 </ul></li>
 </ul>
 </section>
-<section id="byte-pair-encoding-bpe" class="slide level2">
-<h2>2016: Byte Pair Encoding (BPE)</h2>
-<ul>
-<li class="fragment">TBD: Sennrich et. al (need citation)</li>
-</ul>
-</section>
 <section id="search-for-context" class="slide level2">
 <h2>Search for Context</h2>
 <ul>
 <li class="fragment">BPE provided efficiency and representation between words</li>
 <li class="fragment">But still didn’t solve context
 <ul>
-<li class="fragment">e.g., “River bank” != “Savings bank”</li>
+<li class="fragment">e.g., the <strong>River bank</strong> != <strong>Savings bank</strong> problem</li>
 </ul></li>
 <li class="fragment">Researchers working on “attention tasks” using Recurrent Neural Networks (RNNs)
 <ul>
-<li class="fragment">Mostly for translation purposes</li>
+<li class="fragment">Bahdanau et al.&nbsp;introduce attention for translation <span class="citation" data-cites="bahdanau2015neural">(<a href="#/references-1" role="doc-biblioref" onclick="">Bahdanau, Cho, and Bengio 2015</a>)</span></li>
 <li class="fragment">Showed that focusing on relevant parts of input improved translation quality</li>
-<li class="fragment">TBD: Bahdanau et al.&nbsp;introduce attention for translation (citation needed)</li>
 </ul></li>
 </ul>
 </section>
@@ -737,6 +761,21 @@ paddling             | similarity: 0.6424</code></pre>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-bahdanau2015neural" class="csl-entry" role="listitem">
+Bahdanau, Dzmitry, Kyunghyun Cho, and Yoshua Bengio. 2015. <span>“Neural Machine Translation by Jointly Learning to Align and Translate.”</span> In <em>International Conference on Learning Representations</em>. <a href="https://arxiv.org/abs/1409.0473">https://arxiv.org/abs/1409.0473</a>.
+</div>
+<div id="ref-gage1994new" class="csl-entry" role="listitem">
+Gage, Philip. 1994. <span>“A New Algorithm for Data Compression.”</span> <em>The C Users Journal</em> 12 (2): 23–38.
+</div>
+<div id="ref-mikolov2013efficient" class="csl-entry" role="listitem">
+Mikolov, Tomas, Kai Chen, Greg Corrado, and Jeffrey Dean. 2013. <span>“Efficient Estimation of Word Representations in Vector Space.”</span> In <em>International Conference on Learning Representations</em>. <a href="https://arxiv.org/abs/1301.3781">https://arxiv.org/abs/1301.3781</a>.
+</div>
+<div id="ref-mikolov2013distributed" class="csl-entry" role="listitem">
+Mikolov, Tomas, Ilya Sutskever, Kai Chen, Greg S Corrado, and Jeff Dean. 2013. <span>“Distributed Representations of Words and Phrases and Their Compositionality.”</span> In <em>Advances in Neural Information Processing Systems</em>, 3111–19. <a href="https://arxiv.org/abs/1310.4546">https://arxiv.org/abs/1310.4546</a>.
+</div>
+<div id="ref-sennrich-etal-2016-neural" class="csl-entry" role="listitem">
+Sennrich, Rico, Barry Haddow, and Alexandra Birch. 2016. <span>“Neural Machine Translation of Rare Words with Subword Units.”</span> In <em>Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)</em>, 1715–25. Berlin, Germany: Association for Computational Linguistics. <a href="https://doi.org/10.18653/v1/P16-1162">https://doi.org/10.18653/v1/P16-1162</a>.
+</div>
 <div id="ref-vaswani2017attention" class="csl-entry" role="listitem">
 Vaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Łukasz Kaiser, and Illia Polosukhin. 2017. <span>“Attention Is All You Need.”</span> In <em>Advances in Neural Information Processing Systems</em>. Vol. 30.
 </div>
