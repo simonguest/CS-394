@@ -138,6 +138,8 @@ bibliography: references.bib
   - Attention mechanism allows the model to weigh the importance of words in a sequence
   - Achieved State Of The Art (SOTA) performance on language translation, while also being faster to train
 
+# Introducing the Transformer
+
 ## Introducing the Transformer
 
 ```{mermaid}
@@ -162,6 +164,29 @@ bibliography: references.bib
 %%| file: diagrams/transformer-3.mmd
 ```
 
+## Example
+
+{{< embed translation-transformer.ipynb#load-model echo=true >}}
+
+## Example
+
+{{< embed translation-transformer.ipynb#tokenize echo=true >}}
+
+## Example
+
+{{< embed translation-transformer.ipynb#transformer echo=true >}}
+
+## How Does the Encoder/Decoder Work?
+
+`output_ids = model.generate(input_ids)`
+
+- Takes input ids, runs through encoder
+  - Generates contextual vectors using self attention across input tokens
+- Runs the decoder iteratively to generate **one token at a time**
+  - Uses self attention on previously generated tokens
+  - Uses cross-attention to attend to encoder output
+- Continues until it generates an end-of-sequence token or hits max length
+
 ## Introducing the Transformer
 
 ```{mermaid}
@@ -172,28 +197,7 @@ bibliography: references.bib
 
 ## Example
 
-{{< embed sentence-transformer.ipynb#sentence-1 echo=true >}}
-
-## Example
-
-{{< embed sentence-transformer.ipynb#sentence-2 echo=true >}}
-
-## Example
-
-{{< embed sentence-transformer.ipynb#sentence-3 echo=true >}}
-
-## Are They Similar?
-
-- We can test with **cosine similarity**
-- Measures the angle between two vectors: 
-  - Same direction = very similar (similarity close to 1)
-  - Opposite direction = very different (similarity of -1)
-- Cosine similarity focuses on the angle of the vector vs. length
-  - Useful for comparing texts of different sizes
-
-## Are They Similar?
-
-{{< embed sentence-transformer.ipynb#similarity echo=true >}}
+{{< embed translation-transformer.ipynb#decode echo=true >}}
 
 ## Lead into GPT
 

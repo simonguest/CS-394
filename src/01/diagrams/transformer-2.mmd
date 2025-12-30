@@ -1,5 +1,5 @@
-graph TB
-    Input["Input: 'Le chat est sur le tapis'"]
+graph LR
+    Input["Input: 'Bonjour, comment allez-vous?'"]
     
     subgraph Transformer
         Encoder[Encoder]
@@ -7,10 +7,10 @@ graph TB
         Encoder --> Decoder
     end
     
-    Output["Output: 'The cat is on the mat'"]
+    Output["Output: 'Hello, how are you?'"]
     
-    Input --> Encoder
-    Decoder --> Output
+    Input --> Tokenize --> Encoder
+    Decoder --> Decode --> Output
     
     style Encoder fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
     style Decoder fill:#E67E22,stroke:#C0652A,stroke-width:2px,color:#fff

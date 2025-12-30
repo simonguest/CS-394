@@ -1,5 +1,5 @@
 graph TB
-    Input["Input: 'Le chat est sur le tapis'"]
+    Input["Input: 'Bonjour, comment allez-vous?'"]
     
     subgraph Transformer
         direction TB
@@ -29,7 +29,7 @@ graph TB
         E_AddNorm2 -.->|Encoder<br/>Output| D_CrossAttn
     end
     
-    Output["Output: 'The cat is on the mat'"]
+    Output["Output: 'Hello, how are you?'"]
     
     Input --> E_SelfAttn
     D_AddNorm3 --> Output
