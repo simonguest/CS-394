@@ -1,3 +1,38 @@
-# Week 1 Assignment
+# Week 1 Assignment - "Build Your Own Text Continuation Style"
 
-- TBD
+**Objective:** Create a Colab notebook that uses GPT-2 to generate creative text continuations with different "personalities" or styles.
+
+**Requirements:**
+
+- Load a pre-trained GPT-2 model (using HuggingFace transformers - same to what was demonstrated in GPT-2.ipynb)
+- Create 3 different prompt templates that guide the model toward different styles (e.g., "Write like a pirate:", "Explain like I'm 5:", "As a news reporter:")
+- For each template, generate text using two different sampling strategies (e.g., greedy vs. temperature sampling)
+- Compare and document the outputs (using Markdown in the notebook) - what differences do you notice?
+- **Creative component:** Design your own custom prompt that produces interesting or useful outputs
+
+**Deliverable: A Colab/Jupyter notebook with:**
+
+- Code cells with your implementation
+- Outputs of generated text from GPT-2
+- Markdown cells explaining what each sampling strategy does and any observations
+
+**Hint:**
+
+Remember GPT-2 is a completion model (not instruction tuned), so you'll need to create a template that provides examples:
+
+```{python}
+prompt_template = """Rewrite sentences as a pirate would say them:
+
+Normal: I'm going to the market.
+Pirate: Arrr, I be sailin' to the marketplace, matey!
+
+Normal: That's a beautiful ship.
+Pirate: Shiver me timbers, that be a fine vessel!
+
+Normal: {user_input}
+Pirate:"""
+
+# Example usage:
+user_input = "Can you help me find my keys?"
+prompt = prompt_template.format(user_input=user_input)
+```

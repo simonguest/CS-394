@@ -36,15 +36,17 @@ website:
             target: blank
           - text: "Resources"
             href: src/01/resources.qmd
-          - section: "Hands-on Notebooks"
+          - section: "Notebooks"
             contents:
               - text: "hello-world.ipynb"
-                href: src/01/hello-world.ipynb
+                href: src/01/notebooks/hello-world.ipynb
               - text: "word2vec.ipynb"
-                href: src/01/word2vec.ipynb
+                href: src/01/notebooks/word2vec.ipynb
+              - text: "translation-transformer.ipynb"
+                href: src/01/notebooks/translation-transformer.ipynb
               - text: "sentence-transformer.ipynb"
-                href: src/01/sentence-transformer.ipynb
+                href: src/01/notebooks/sentence-transformer.ipynb
               - text: "GPT-2.ipynb"
-                href: src/01/GPT-2.ipynb
+                href: src/01/notebooks/GPT-2.ipynb
           - text: "Assignment"
             href: src/01/assignment.qmd

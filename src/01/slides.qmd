@@ -53,15 +53,15 @@ bibliography: references.bib
 
 ## How does Word2Vec Work?
 
-{{< embed word2vec.ipynb#word-1 echo=true >}}
+{{< embed notebooks/word2vec.ipynb#word-1 echo=true >}}
 
 ## How does Word2Vec Work?
 
-{{< embed word2vec.ipynb#word-2 echo=true >}}
+{{< embed notebooks/word2vec.ipynb#word-2 echo=true >}}
 
 ## How does Word2Vec Work?
 
-{{< embed word2vec.ipynb#word-3 echo=true >}}
+{{< embed notebooks/word2vec.ipynb#word-3 echo=true >}}
 
 ## Why Do This?
 
@@ -73,19 +73,19 @@ bibliography: references.bib
 
 ## How does Word2Vec Work?
 
-{{< embed word2vec.ipynb#similar-words echo=true >}}
+{{< embed notebooks/word2vec.ipynb#similar-words echo=true >}}
 
 ## How does Word2Vec Work?
 
-{{< embed word2vec.ipynb#compute-similarity echo=true >}}
+{{< embed notebooks/word2vec.ipynb#compute-similarity echo=true >}}
 
 ## How does Word2Vec Work?
 
-{{< embed word2vec.ipynb#vector-arithmetic echo=true >}}
+{{< embed notebooks/word2vec.ipynb#vector-arithmetic echo=true >}}
 
 ## How does Word2Vec Work?
 
-{{< embed word2vec.ipynb#2d-visualization >}}
+{{< embed notebooks/word2vec.ipynb#2d-visualization >}}
 
 ## Challenges with Word Embeddings
 
@@ -167,15 +167,15 @@ bibliography: references.bib
 
 ## Example
 
-{{< embed translation-transformer.ipynb#load-model echo=true >}}
+{{< embed notebooks/translation-transformer.ipynb#load-model echo=true >}}
 
 ## Example
 
-{{< embed translation-transformer.ipynb#tokenize echo=true >}}
+{{< embed notebooks/translation-transformer.ipynb#tokenize echo=true >}}
 
 ## Example
 
-{{< embed translation-transformer.ipynb#transformer echo=true >}}
+{{< embed notebooks/translation-transformer.ipynb#transformer echo=true >}}
 
 ## How Does the Encoder/Decoder Work?
 
@@ -198,19 +198,58 @@ bibliography: references.bib
 
 ## Example
 
-{{< embed translation-transformer.ipynb#decode echo=true >}}
+{{< embed notebooks/translation-transformer.ipynb#decode echo=true >}}
 
-## Lead into GPT
+# 2018: Origin of "GPT"
 
-- TBD
+## 2018: Origin of "GPT"
 
-## Then show the history
+- **Generative Pre-trained Transformer**
+- Name coined by OpenAI researchers (Alec Radford et. al) in "Improving Language Understanding by Generative Pre-Training" [@radford2018improving]
 
-- TBD
+## What is a GPT?
+
+- "Decoder-only" architecture
+  - Self attention is causal/masked - tokens can only attend to previous tokens, not future ones
+- Pre-training objective: Next token prediction
+  - Trained on a massive text corpora
+  - Learns grammar, facts, reasoning patterns just from this objective
+
+## What is a GPT?
+
+- Autoregressive generation
+  - Generates one token at a time, feeding back each output as input
+  - Temperature and sampling strategies
+  - Same prompt can produce different outputs
+- Context window
+  - Fixed maximum length (2048 for GPT-2)
+  - Everything must fit within this window during generation
+  - Introduced the concept of "context" vs. "knowledge" (prompt vs. training)
+
+## GPT-2
+
+- Released in 2019 by OpenAI
+  - Initially, only 117M param model released in Feb 2019 due to safety concerns
+  - Staged releases throughout the year, 1.5B in Nov 2019
+- Trained on WebText, 8 million web pages/40GB of text
+- Zero-shot task performance
+  - Did well on translation, summarization, and question answering without task-specific training
+
+## Example
+
+{{< embed notebooks/GPT-2.ipynb#load-model echo=true >}}
+
+## Example
+
+{{< embed notebooks/GPT-2.ipynb#autocomplete echo=true >}}
+
+## Example
+
+{{< embed notebooks/GPT-2.ipynb#prompts echo=true >}}
 
 # Let's Run Some Code!
 
-# What is a Notebook?
+# Introducing Notebooks
 
 ## What is a Notebook?
 
@@ -255,7 +294,7 @@ bibliography: references.bib
    - Run on your own machine
 - **Google Colab** (Recommended)
    - Browser-based, no installation needed
-   - Free GPU access
+   - Free(-ish) GPU access
    - Can also access local GPU
 
 ## Advantages of Google Colab
@@ -271,6 +310,10 @@ bibliography: references.bib
 # Demo
 
 Hello World notebook in **Colab**, **VS Code**, and **Local Jupyter server**
+
+# Hands-On
+
+Setup Colab, go through the notebooks for this week (hello-world, word2vec, translation-transformer, and GPT-2)
 
 # References
 
