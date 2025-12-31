@@ -206,6 +206,9 @@
       margin-right: 0; 
     }
   </style>
+  <script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
   
   <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
@@ -280,7 +283,7 @@
 </section>
 <section id="how-does-word2vec-work-1" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/Users/simon/Dev/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-1">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-1">
 <div id="word-1" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a>word <span class="op">=</span> <span class="st">"cat"</span></span>
 <span id="cb1-2"><a></a>vector <span class="op">=</span> model[word] <span class="co"># type: ignore</span></span>
@@ -295,7 +298,7 @@
 </section>
 <section id="how-does-word2vec-work-2" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/Users/simon/Dev/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-2">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-2">
 <div id="word-2" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>word <span class="op">=</span> <span class="st">"dog"</span></span>
 <span id="cb3-2"><a></a>vector <span class="op">=</span> model[word] <span class="co"># type: ignore</span></span>
@@ -310,7 +313,7 @@
 </section>
 <section id="how-does-word2vec-work-3" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/Users/simon/Dev/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-3">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-3">
 <div id="word-3" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a>word <span class="op">=</span> <span class="st">"pizza"</span></span>
 <span id="cb5-2"><a></a>vector <span class="op">=</span> model[word] <span class="co"># type: ignore</span></span>
@@ -337,7 +340,7 @@
 </section>
 <section id="how-does-word2vec-work-4" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/Users/simon/Dev/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="similar-words">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="similar-words">
 <div id="similar-words" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a>find_similar_words(<span class="st">"cat"</span>)</span>
 <span id="cb7-2"><a></a>find_similar_words(<span class="st">"dog"</span>)</span>
@@ -388,7 +391,7 @@ meatball_sandwich    | similarity: 0.6377</code></pre>
 </section>
 <section id="how-does-word2vec-work-5" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/Users/simon/Dev/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="compute-similarity">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="compute-similarity">
 <div id="compute-similarity" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a>compute_similarity(<span class="st">'cat'</span>, <span class="st">'dog'</span>)</span>
 <span id="cb9-2"><a></a>compute_similarity(<span class="st">'cat'</span>, <span class="st">'kitten'</span>)</span>
@@ -407,7 +410,7 @@ Similarity between 'king' and 'queen': 0.6511</code></pre>
 </section>
 <section id="how-does-word2vec-work-6" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/Users/simon/Dev/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="vector-arithmetic">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="vector-arithmetic">
 <div id="vector-arithmetic" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a>vector_arithmetic([<span class="st">'king'</span>, <span class="st">'woman'</span>], [<span class="st">'man'</span>])</span>
 <span id="cb11-2"><a></a>vector_arithmetic([<span class="st">'Paris'</span>, <span class="st">'Italy'</span>], [<span class="st">'France'</span>])</span>
@@ -443,7 +446,7 @@ paddling             | similarity: 0.6424</code></pre>
 </section>
 <section id="how-does-word2vec-work-7" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/Users/simon/Dev/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="2d-visualization">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="2d-visualization">
 <div id="2d-visualization" class="cell" data-execution_count="18">
 <div class="cell-output cell-output-display">
 <div>
@@ -548,19 +551,95 @@ paddling             | similarity: 0.6424</code></pre>
 </section>
 <section id="introducing-the-transformer-1" class="slide level2">
 <h2>Introducing the Transformer</h2>
-
-<img data-src="slides_files/figure-revealjs/mermaid-figure-1.png" class="r-stretch"></section>
+<div class="cell" data-reveal="true" data-fig-height="100%" data-file="diagrams/transformer-1.mmd" data-layout-align="default">
+<div class="cell-output-display">
+<div id="transformer-1">
+<div>
+<pre class="mermaid mermaid-js" data-label="transformer-1">graph LR
+    Input["Input: 'Bonjour, comment allez-vous?'"]
+    Transformer[Transformer]
+    Output["Output: 'Hello, how are you?'"]
+    
+    Input --&gt; Tokenize --&gt; Transformer --&gt; Decode --&gt; Output
+    
+    style Transformer fill:#4A90E2,stroke:#2E5C8A,stroke-width:3px,color:#fff
+    style Input fill:#E8F4F8,stroke:#4A90E2,stroke-width:2px
+    style Output fill:#E8F4F8,stroke:#4A90E2,stroke-width:2px</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="introducing-the-transformer-2" class="slide level2">
 <h2>Introducing the Transformer</h2>
-
-<img data-src="slides_files/figure-revealjs/mermaid-figure-4.png" class="r-stretch"></section>
+<div class="cell" data-reveal="true" data-fig-height="100%" data-file="diagrams/transformer-2.mmd" data-layout-align="default">
+<div class="cell-output-display">
+<div id="transformer-2">
+<div>
+<pre class="mermaid mermaid-js" data-label="transformer-2">graph LR
+    Input["Input: 'Bonjour, comment allez-vous?'"]
+    
+    subgraph Transformer
+        Encoder[Encoder]
+        Decoder[Decoder]
+        Encoder --&gt; Decoder
+    end
+    
+    Output["Output: 'Hello, how are you?'"]
+    
+    Input --&gt; Tokenize --&gt; Encoder
+    Decoder --&gt; Decode --&gt; Output
+    
+    style Encoder fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
+    style Decoder fill:#E67E22,stroke:#C0652A,stroke-width:2px,color:#fff
+    style Input fill:#E8F4F8,stroke:#4A90E2,stroke-width:2px
+    style Output fill:#FCE8D8,stroke:#E67E22,stroke-width:2px
+    style Transformer fill:#f9f9f9,stroke:#333,stroke-width:2px</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="introducing-the-transformer-3" class="slide level2">
 <h2>Introducing the Transformer</h2>
-
-<img data-src="slides_files/figure-revealjs/mermaid-figure-3.png" class="r-stretch"></section>
+<div class="cell" data-reveal="true" data-fig-height="100%" data-file="diagrams/transformer-3.mmd" data-layout-align="default">
+<div class="cell-output-display">
+<div id="transformer-3">
+<div>
+<pre class="mermaid mermaid-js" data-label="transformer-3">graph LR
+    Input["Input: 'Bonjour, comment allez-vous?'"]
+    
+    subgraph Transformer
+        direction LR
+        subgraph "Encoder Stack (N layers)"
+            E[Encoder&lt;br/&gt;Layers&lt;br/&gt;1...N]
+        end
+        
+        subgraph "Decoder Stack (N layers)"
+            D[Decoder&lt;br/&gt;Layers&lt;br/&gt;1...N]
+        end
+        
+        E -.-&gt;|Context| D
+    end
+    
+    Output["Output: 'Hello, how are you?'"]
+    
+    Input --&gt; Tokenize --&gt; E
+    D --&gt; Decode --&gt; Output
+    
+    style E fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
+    style D fill:#E67E22,stroke:#C0652A,stroke-width:2px,color:#fff
+    style Input fill:#E8F4F8,stroke:#4A90E2,stroke-width:2px
+    style Output fill:#FCE8D8,stroke:#E67E22,stroke-width:2px
+    style Transformer fill:#f9f9f9,stroke:#333,stroke-width:2px</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="example" class="slide level2">
 <h2>Example</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/Users/simon/Dev/CS-394/src/01/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="load-model">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="load-model">
 <div id="load-model" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="co"># @title Load Model</span></span>
 <span id="cb13-2"><a></a></span>
@@ -599,7 +678,7 @@ paddling             | similarity: 0.6424</code></pre>
 </section>
 <section id="example-1" class="slide level2">
 <h2>Example</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/Users/simon/Dev/CS-394/src/01/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="tokenize">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="tokenize">
 <div id="tokenize" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="co"># @title Tokenize</span></span>
 <span id="cb14-2"><a></a></span>
@@ -616,7 +695,7 @@ Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&
 </section>
 <section id="example-2" class="slide level2">
 <h2>Example</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/Users/simon/Dev/CS-394/src/01/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="transformer">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="transformer">
 <div id="transformer" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a><span class="co"># @title Run through transformer</span></span>
 <span id="cb16-2"><a></a></span>
@@ -646,11 +725,68 @@ Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&
 </section>
 <section id="introducing-the-transformer-4" class="slide level2">
 <h2>Introducing the Transformer</h2>
-
-<img data-src="slides_files/figure-revealjs/mermaid-figure-2.png" class="r-stretch"></section>
+<div class="cell" data-reveal="true" data-fig-height="100%" data-file="diagrams/transformer-4.mmd" data-layout-align="default">
+<div class="cell-output-display">
+<div id="transformer-4">
+<div>
+<pre class="mermaid mermaid-js" data-label="transformer-4">graph TB
+    Input["Input: 'Bonjour, comment allez-vous?'"]
+    
+    subgraph Transformer
+        direction TB
+        
+        subgraph "Encoder Layer"
+            direction TB
+            E_SelfAttn[Multi-Head&lt;br/&gt;Self-Attention]
+            E_AddNorm1[Add &amp; Norm]
+            E_FFN[Feed-Forward&lt;br/&gt;Network]
+            E_AddNorm2[Add &amp; Norm]
+            
+            E_SelfAttn --&gt; E_AddNorm1 --&gt; E_FFN --&gt; E_AddNorm2
+        end
+        
+        subgraph "Decoder Layer"
+            direction TB
+            D_SelfAttn[Masked Multi-Head&lt;br/&gt;Self-Attention]
+            D_AddNorm1[Add &amp; Norm]
+            D_CrossAttn[Multi-Head&lt;br/&gt;Cross-Attention]
+            D_AddNorm2[Add &amp; Norm]
+            D_FFN[Feed-Forward&lt;br/&gt;Network]
+            D_AddNorm3[Add &amp; Norm]
+            
+            D_SelfAttn --&gt; D_AddNorm1 --&gt; D_CrossAttn --&gt; D_AddNorm2 --&gt; D_FFN --&gt; D_AddNorm3
+        end
+        
+        E_AddNorm2 -.-&gt;|Encoder&lt;br/&gt;Output| D_CrossAttn
+    end
+    
+    Output["Output: 'Hello, how are you?'"]
+    
+    Input --&gt; E_SelfAttn
+    D_AddNorm3 --&gt; Output
+    
+    style E_SelfAttn fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
+    style E_FFN fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
+    style E_AddNorm1 fill:#A8D5F2,stroke:#4A90E2,stroke-width:1px,color:#000
+    style E_AddNorm2 fill:#A8D5F2,stroke:#4A90E2,stroke-width:1px,color:#000
+    
+    style D_SelfAttn fill:#E67E22,stroke:#C0652A,stroke-width:2px,color:#fff
+    style D_CrossAttn fill:#E67E22,stroke:#C0652A,stroke-width:2px,color:#fff
+    style D_FFN fill:#E67E22,stroke:#C0652A,stroke-width:2px,color:#fff
+    style D_AddNorm1 fill:#F8C9A8,stroke:#E67E22,stroke-width:1px,color:#000
+    style D_AddNorm2 fill:#F8C9A8,stroke:#E67E22,stroke-width:1px,color:#000
+    style D_AddNorm3 fill:#F8C9A8,stroke:#E67E22,stroke-width:1px,color:#000
+    
+    style Input fill:#E8F4F8,stroke:#4A90E2,stroke-width:2px
+    style Output fill:#FCE8D8,stroke:#E67E22,stroke-width:2px</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="example-3" class="slide level2">
 <h2>Example</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/Users/simon/Dev/CS-394/src/01/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="decode">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="decode">
 <div id="decode" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a><span class="co"># @title Decode back to tokens to complete the translation</span></span>
 <span id="cb18-2"><a></a></span>

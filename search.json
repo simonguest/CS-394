@@ -582,7 +582,7 @@
     "href": "src/01/slides.html#introducing-the-transformer-1",
     "title": "Week 1: Foundations of Generative AI",
     "section": "Introducing the Transformer",
-    "text": "Introducing the Transformer",
+    "text": "Introducing the Transformer\n\n\n\n\ngraph LR\n    Input[\"Input: 'Bonjour, comment allez-vous?'\"]\n    Transformer[Transformer]\n    Output[\"Output: 'Hello, how are you?'\"]\n    \n    Input --&gt; Tokenize --&gt; Transformer --&gt; Decode --&gt; Output\n    \n    style Transformer fill:#4A90E2,stroke:#2E5C8A,stroke-width:3px,color:#fff\n    style Input fill:#E8F4F8,stroke:#4A90E2,stroke-width:2px\n    style Output fill:#E8F4F8,stroke:#4A90E2,stroke-width:2px",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -593,7 +593,7 @@
     "href": "src/01/slides.html#introducing-the-transformer-2",
     "title": "Week 1: Foundations of Generative AI",
     "section": "Introducing the Transformer",
-    "text": "Introducing the Transformer",
+    "text": "Introducing the Transformer\n\n\n\n\ngraph LR\n    Input[\"Input: 'Bonjour, comment allez-vous?'\"]\n    \n    subgraph Transformer\n        Encoder[Encoder]\n        Decoder[Decoder]\n        Encoder --&gt; Decoder\n    end\n    \n    Output[\"Output: 'Hello, how are you?'\"]\n    \n    Input --&gt; Tokenize --&gt; Encoder\n    Decoder --&gt; Decode --&gt; Output\n    \n    style Encoder fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff\n    style Decoder fill:#E67E22,stroke:#C0652A,stroke-width:2px,color:#fff\n    style Input fill:#E8F4F8,stroke:#4A90E2,stroke-width:2px\n    style Output fill:#FCE8D8,stroke:#E67E22,stroke-width:2px\n    style Transformer fill:#f9f9f9,stroke:#333,stroke-width:2px",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -604,7 +604,7 @@
     "href": "src/01/slides.html#introducing-the-transformer-3",
     "title": "Week 1: Foundations of Generative AI",
     "section": "Introducing the Transformer",
-    "text": "Introducing the Transformer",
+    "text": "Introducing the Transformer\n\n\n\n\ngraph LR\n    Input[\"Input: 'Bonjour, comment allez-vous?'\"]\n    \n    subgraph Transformer\n        direction LR\n        subgraph \"Encoder Stack (N layers)\"\n            E[Encoder&lt;br/&gt;Layers&lt;br/&gt;1...N]\n        end\n        \n        subgraph \"Decoder Stack (N layers)\"\n            D[Decoder&lt;br/&gt;Layers&lt;br/&gt;1...N]\n        end\n        \n        E -.-&gt;|Context| D\n    end\n    \n    Output[\"Output: 'Hello, how are you?'\"]\n    \n    Input --&gt; Tokenize --&gt; E\n    D --&gt; Decode --&gt; Output\n    \n    style E fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff\n    style D fill:#E67E22,stroke:#C0652A,stroke-width:2px,color:#fff\n    style Input fill:#E8F4F8,stroke:#4A90E2,stroke-width:2px\n    style Output fill:#FCE8D8,stroke:#E67E22,stroke-width:2px\n    style Transformer fill:#f9f9f9,stroke:#333,stroke-width:2px",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -659,7 +659,7 @@
     "href": "src/01/slides.html#introducing-the-transformer-4",
     "title": "Week 1: Foundations of Generative AI",
     "section": "Introducing the Transformer",
-    "text": "Introducing the Transformer",
+    "text": "Introducing the Transformer\n\n\n\n\ngraph TB\n    Input[\"Input: 'Bonjour, comment allez-vous?'\"]\n    \n    subgraph Transformer\n        direction TB\n        \n        subgraph \"Encoder Layer\"\n            direction TB\n            E_SelfAttn[Multi-Head&lt;br/&gt;Self-Attention]\n            E_AddNorm1[Add & Norm]\n            E_FFN[Feed-Forward&lt;br/&gt;Network]\n            E_AddNorm2[Add & Norm]\n            \n            E_SelfAttn --&gt; E_AddNorm1 --&gt; E_FFN --&gt; E_AddNorm2\n        end\n        \n        subgraph \"Decoder Layer\"\n            direction TB\n            D_SelfAttn[Masked Multi-Head&lt;br/&gt;Self-Attention]\n            D_AddNorm1[Add & Norm]\n            D_CrossAttn[Multi-Head&lt;br/&gt;Cross-Attention]\n            D_AddNorm2[Add & Norm]\n            D_FFN[Feed-Forward&lt;br/&gt;Network]\n            D_AddNorm3[Add & Norm]\n            \n            D_SelfAttn --&gt; D_AddNorm1 --&gt; D_CrossAttn --&gt; D_AddNorm2 --&gt; D_FFN --&gt; D_AddNorm3\n        end\n        \n        E_AddNorm2 -.-&gt;|Encoder&lt;br/&gt;Output| D_CrossAttn\n    end\n    \n    Output[\"Output: 'Hello, how are you?'\"]\n    \n    Input --&gt; E_SelfAttn\n    D_AddNorm3 --&gt; Output\n    \n    style E_SelfAttn fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff\n    style E_FFN fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff\n    style E_AddNorm1 fill:#A8D5F2,stroke:#4A90E2,stroke-width:1px,color:#000\n    style E_AddNorm2 fill:#A8D5F2,stroke:#4A90E2,stroke-width:1px,color:#000\n    \n    style D_SelfAttn fill:#E67E22,stroke:#C0652A,stroke-width:2px,color:#fff\n    style D_CrossAttn fill:#E67E22,stroke:#C0652A,stroke-width:2px,color:#fff\n    style D_FFN fill:#E67E22,stroke:#C0652A,stroke-width:2px,color:#fff\n    style D_AddNorm1 fill:#F8C9A8,stroke:#E67E22,stroke-width:1px,color:#000\n    style D_AddNorm2 fill:#F8C9A8,stroke:#E67E22,stroke-width:1px,color:#000\n    style D_AddNorm3 fill:#F8C9A8,stroke:#E67E22,stroke-width:1px,color:#000\n    \n    style Input fill:#E8F4F8,stroke:#4A90E2,stroke-width:2px\n    style Output fill:#FCE8D8,stroke:#E67E22,stroke-width:2px",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
