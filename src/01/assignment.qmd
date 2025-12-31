@@ -1,5 +1,9 @@
-# Week 1 Assignment - "Build Your Own Text Continuation Style"
-
+---
+title: "Week 1 Assignment - Build Your Own Text Continuation Style"
+format: html
+execute:
+  enabled: false
+---
 **Objective:** Create a Colab notebook that uses GPT-2 to generate creative text continuations with different "personalities" or styles.
 
 **Requirements:**
@@ -18,7 +22,14 @@
 
 **Hint:**
 
-Remember GPT-2 is a completion model (not instruction tuned), so you'll need to create a template that provides examples:
+For best results, use a larger GPT-2 model on Colab.
+
+```{python}
+tokenizer = GPT2Tokenizer.from_pretrained("gpt2-medium")
+model = GPT2LMHeadModel.from_pretrained("gpt2-medium")
+```
+
+Remember GPT-2 is a completion model (not instruction tuned), so you'll need to create a template that provides examples for the model:
 
 ```{python}
 prompt_template = """Rewrite sentences as a pirate would say them:
