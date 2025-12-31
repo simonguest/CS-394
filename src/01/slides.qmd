@@ -10,6 +10,8 @@ format:
     width: 1050
     height: 700
     margin: 0.15
+    mermaid:
+      theme: neutral
 logo: ../../theme/logos/DigiPen_RGB_Red.png
 bibliography: references.bib
 ---
