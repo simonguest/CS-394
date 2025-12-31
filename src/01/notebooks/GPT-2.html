@@ -437,7 +437,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><a target="_blank" href="https://colab.research.google.com/github/simonguest/CS-394/blob/main/src/01/notebooks/GPT-2.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"> </a> <a target="_blank" href="https://github.com/simonguest/CS-394/raw/refs/heads/main/src/01/notebooks/GPT-2.ipynb"> <img src="https://img.shields.io/badge/Download_.ipynb-blue" alt="Download .ipynb"> </a></p>
-<div id="load-model" class="cell" data-execution_count="7">
+<div id="load-model" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> GPT2LMHeadModel, GPT2Tokenizer</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load pre-trained GPT-2 model and tokenizer</span></span>
@@ -447,7 +447,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Set pad token</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>tokenizer.pad_token <span class="op">=</span> tokenizer.eos_token</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="autocomplete" class="cell" data-execution_count="8">
+<div id="autocomplete" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> autocomplete(prompt, max_length<span class="op">=</span><span class="dv">50</span>, temperature<span class="op">=</span><span class="fl">0.7</span>, top_k<span class="op">=</span><span class="dv">50</span>, top_p<span class="op">=</span><span class="fl">0.9</span>):</span>
@@ -471,61 +471,91 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    generated_text <span class="op">=</span> tokenizer.decode(output[<span class="dv">0</span>], skip_special_tokens<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> generated_text</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="prompts" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="7decbea9-1b4b-4208-a441-a65f9be042d2" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>prompts <span class="op">=</span> [</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mary had a little lamb"</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"The future of artificial intelligence"</span>,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"In a galaxy far, far away"</span>,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DigiPen is a place where"</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"def calculate_fibonacci(n):"</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> prompt <span class="kw">in</span> prompts:</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Prompt: </span><span class="sc">{</span>prompt<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">50</span>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    completion <span class="op">=</span> autocomplete(prompt, max_length<span class="op">=</span><span class="dv">80</span>)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Output: </span><span class="sc">{</span>completion<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="prompts" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="7decbea9-1b4b-4208-a441-a65f9be042d2" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> <span class="st">"Mary had a little lamb"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>completion <span class="op">=</span> autocomplete(prompt, max_length<span class="op">=</span><span class="dv">80</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(completion)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Mary had a little lamb, and the young woman asked her for a little lamb, and they gave it to her.
+
+"Oh, my child, it is good to have a little lamb," said he, "but it is not to be bought, for it is hard to make, and it is much more difficult to make.
+
+"When you have a little lamb, it</code></pre>
+</div>
+</div>
+<div id="cell-5" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>prompts <span class="op">=</span> [</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Mary had a little lamb"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"The future of artificial intelligence"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"In a galaxy far, far away"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"DigiPen is a place where"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"def calculate_fibonacci(n):"</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> prompt <span class="kw">in</span> prompts:</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Prompt: </span><span class="sc">{</span>prompt<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    completion <span class="op">=</span> autocomplete(prompt, max_length<span class="op">=</span><span class="dv">80</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Output: </span><span class="sc">{</span>completion<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Prompt: Mary had a little lamb
 --------------------------------------------------
-Output: Mary had a little lamb in her mouth, and when she looked at it, she saw that it was a little lamb, and she said, "What is this?" And she said, "I have seen some of the things in the temple, and it is good for you to see them." So she said, "Why, then, do you think I have seen some of the things in
+Output: Mary had a little lamb, and the child was very hungry, and so he took a small lamb and brought it to her, and she and the child were very merry. So the child went home and the lamb was brought to her. So she and the child went to the priest and he gave her a piece of bread and said to her, "This is good bread for you, but what
 
 
 Prompt: The future of artificial intelligence
 --------------------------------------------------
-Output: The future of artificial intelligence in general is uncertain. The most likely scenarios are that humans will eventually develop the ability to perform complex tasks, like reading the news, and that the technologies will allow us to recognize and even recognize people as we see them. However, there is a large body of evidence that artificial intelligence may not be able to accomplish these tasks.
+Output: The future of artificial intelligence is uncertain, but its future is bright.
 
-The most important question is whether human
+And so, we are all waiting for a breakthrough.
+
+And that's why I think that it's important to understand how AI is coming to the table.
+
+One of the big questions we have right now is how AI will be able to take over a world, and how it will be able to take
 
 
 Prompt: In a galaxy far, far away
 --------------------------------------------------
-Output: In a galaxy far, far away, an enormous asteroid is found.
+Output: In a galaxy far, far away, there is only one thing that matters. The fate of our galaxy.
 
-The asteroid is almost 20 times larger than the Earth's, and it's so big that it's the size of a football field.
+And it matters only to you.
 
-The asteroid's mass is about 1,500 times larger than the Earth's.
+A New Frontier for Space
 
-"It's a giant asteroid, but it's a very, very big one,"
+It's been almost two years since I first wrote a post about this book. And that's because I've been busy.
+
+In the last month or so, I've been working on an
 
 
 Prompt: DigiPen is a place where
 --------------------------------------------------
-Output: DigiPen is a place where you can learn to create and share ideas with other people in the community. We are a group of people who love to create, and share ideas. This is the place where we'll see you at the party.
+Output: DigiPen is a place where you can share your creations.
 
-In the meantime, check out our other projects on our official Facebook page!
+Don't let the name fool you. This is the place to share your creations and to share your creativity.
+
+Don't let the name fool you. This is the place to share your creations and to share your creativity.
+
+Don't let the name fool you. This is the place to share your creations and
 
 
 Prompt: def calculate_fibonacci(n):
 --------------------------------------------------
-Output: def calculate_fibonacci(n): return n + 1
+Output: def calculate_fibonacci(n):
 
-Now we're going to be using the same function in the second function, so we'll be using the same number of times:
+fibonacci(n) = 0.01
 
-from mongo.db import MongoDB db.db.cursor = cursor.new_cursor()
+return f(n)
 
-Now we'll use the same number of times as the previous
+def calculate_fibonacci(n):
+
+fibonacci(n) = 0.01
+
+return f(n)
+
+def calculate_fibonacci(n):
+
+fibonacci
 </code></pre>
 </div>
 </div>

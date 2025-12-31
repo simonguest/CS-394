@@ -16,7 +16,7 @@
     "href": "src/01/notebooks/word2vec.html#load-pretrained-word2vec-model",
     "title": "Word2Vec",
     "section": "Load Pretrained Word2Vec Model",
-    "text": "Load Pretrained Word2Vec Model\n\nimport gensim.downloader as api\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.manifold import TSNE\nfrom sklearn.decomposition import PCA\nimport warnings\nwarnings.filterwarnings('ignore')\n\n# Load pre-trained Word2Vec model (Google News, 300-dimensional vectors)\nprint(\"Loading Word2Vec model...\")\nmodel = api.load('word2vec-google-news-300')\nprint(f\"Model loaded. Vocabulary size: {len(model)} words\")\nprint(f\"Vector dimension: {model.vector_size}\") # type: ignore\n\nLoading Word2Vec model...\nModel loaded. Vocabulary size: 3000000 words\nVector dimension: 300\n\n\n\nword = \"cat\"\nvector = model[word] # type: ignore\nvector[:10]\n\narray([ 0.0123291 ,  0.20410156, -0.28515625,  0.21679688,  0.11816406,\n        0.08300781,  0.04980469, -0.00952148,  0.22070312, -0.12597656],\n      dtype=float32)\n\n\n\nword = \"dog\"\nvector = model[word] # type: ignore\nvector[:10]\n\narray([ 0.05126953, -0.02233887, -0.17285156,  0.16113281, -0.08447266,\n        0.05737305,  0.05859375, -0.08251953, -0.01538086, -0.06347656],\n      dtype=float32)\n\n\n\nword = \"pizza\"\nvector = model[word] # type: ignore\nvector[:10]\n\narray([-1.2597656e-01,  2.5390625e-02,  1.6699219e-01,  5.5078125e-01,\n       -7.6660156e-02,  1.2890625e-01,  1.0253906e-01, -3.9482117e-04,\n        1.2158203e-01,  4.3212891e-02], dtype=float32)",
+    "text": "Load Pretrained Word2Vec Model\n\nimport gensim.downloader as api\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.manifold import TSNE\nfrom sklearn.decomposition import PCA\nimport warnings\nwarnings.filterwarnings('ignore')\n\n# Load pre-trained Word2Vec model (Google News, 300-dimensional vectors)\nprint(\"Loading Word2Vec model...\")\nmodel = api.load('word2vec-google-news-300')\nprint(f\"Model loaded. Vocabulary size: {len(model)} words\")\nprint(f\"Vector dimension: {model.vector_size}\") # type: ignore\n\nLoading Word2Vec model...\nModel loaded. Vocabulary size: 3000000 words\nVector dimension: 300\n\n\n\nword = \"cat\"\nvector = model[word]\nvector[:10]\n\narray([ 0.0123291 ,  0.20410156, -0.28515625,  0.21679688,  0.11816406,\n        0.08300781,  0.04980469, -0.00952148,  0.22070312, -0.12597656],\n      dtype=float32)\n\n\n\nword = \"dog\"\nvector = model[word]\nvector[:10]\n\narray([ 0.05126953, -0.02233887, -0.17285156,  0.16113281, -0.08447266,\n        0.05737305,  0.05859375, -0.08251953, -0.01538086, -0.06347656],\n      dtype=float32)\n\n\n\nword = \"pizza\"\nvector = model[word]\nvector[:10]\n\narray([-1.2597656e-01,  2.5390625e-02,  1.6699219e-01,  5.5078125e-01,\n       -7.6660156e-02,  1.2890625e-01,  1.0253906e-01, -3.9482117e-04,\n        1.2158203e-01,  4.3212891e-02], dtype=float32)",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Notebooks",
@@ -88,7 +88,7 @@
     "href": "src/01/notebooks/GPT-2.html",
     "title": "Pre-trained GPT-2 Notebook",
     "section": "",
-    "text": "from transformers import GPT2LMHeadModel, GPT2Tokenizer\n\n# Load pre-trained GPT-2 model and tokenizer\ntokenizer = GPT2Tokenizer.from_pretrained(\"gpt2\")\nmodel = GPT2LMHeadModel.from_pretrained(\"gpt2\")\n\n# Set pad token\ntokenizer.pad_token = tokenizer.eos_token\n\n\nimport torch\n\ndef autocomplete(prompt, max_length=50, temperature=0.7, top_k=50, top_p=0.9):\n    # Encode the prompt with attention mask\n    inputs = tokenizer(prompt, return_tensors=\"pt\")\n    \n    # Generate continuation\n    with torch.no_grad():\n        output = model.generate(\n            inputs['input_ids'],\n            attention_mask=inputs['attention_mask'],\n            max_length=max_length,\n            temperature=temperature,\n            top_k=top_k,\n            top_p=top_p,\n            do_sample=True,\n            pad_token_id=tokenizer.eos_token_id\n        )\n    \n    # Decode and return the generated text\n    generated_text = tokenizer.decode(output[0], skip_special_tokens=True)\n    return generated_text\n\n\nprompts = [\n    \"Mary had a little lamb\",\n    \"The future of artificial intelligence\",\n    \"In a galaxy far, far away\",\n    \"DigiPen is a place where\",\n    \"def calculate_fibonacci(n):\"\n]\n\nfor prompt in prompts:\n    print(f\"\\nPrompt: {prompt}\")\n    print(\"-\" * 50)\n    completion = autocomplete(prompt, max_length=80)\n    print(f\"Output: {completion}\\n\")\n\n\nPrompt: Mary had a little lamb\n--------------------------------------------------\nOutput: Mary had a little lamb in her mouth, and when she looked at it, she saw that it was a little lamb, and she said, \"What is this?\" And she said, \"I have seen some of the things in the temple, and it is good for you to see them.\" So she said, \"Why, then, do you think I have seen some of the things in\n\n\nPrompt: The future of artificial intelligence\n--------------------------------------------------\nOutput: The future of artificial intelligence in general is uncertain. The most likely scenarios are that humans will eventually develop the ability to perform complex tasks, like reading the news, and that the technologies will allow us to recognize and even recognize people as we see them. However, there is a large body of evidence that artificial intelligence may not be able to accomplish these tasks.\n\nThe most important question is whether human\n\n\nPrompt: In a galaxy far, far away\n--------------------------------------------------\nOutput: In a galaxy far, far away, an enormous asteroid is found.\n\nThe asteroid is almost 20 times larger than the Earth's, and it's so big that it's the size of a football field.\n\nThe asteroid's mass is about 1,500 times larger than the Earth's.\n\n\"It's a giant asteroid, but it's a very, very big one,\"\n\n\nPrompt: DigiPen is a place where\n--------------------------------------------------\nOutput: DigiPen is a place where you can learn to create and share ideas with other people in the community. We are a group of people who love to create, and share ideas. This is the place where we'll see you at the party.\n\nIn the meantime, check out our other projects on our official Facebook page!\n\n\nPrompt: def calculate_fibonacci(n):\n--------------------------------------------------\nOutput: def calculate_fibonacci(n): return n + 1\n\nNow we're going to be using the same function in the second function, so we'll be using the same number of times:\n\nfrom mongo.db import MongoDB db.db.cursor = cursor.new_cursor()\n\nNow we'll use the same number of times as the previous",
+    "text": "from transformers import GPT2LMHeadModel, GPT2Tokenizer\n\n# Load pre-trained GPT-2 model and tokenizer\ntokenizer = GPT2Tokenizer.from_pretrained(\"gpt2\")\nmodel = GPT2LMHeadModel.from_pretrained(\"gpt2\")\n\n# Set pad token\ntokenizer.pad_token = tokenizer.eos_token\n\n\nimport torch\n\ndef autocomplete(prompt, max_length=50, temperature=0.7, top_k=50, top_p=0.9):\n    # Encode the prompt with attention mask\n    inputs = tokenizer(prompt, return_tensors=\"pt\")\n    \n    # Generate continuation\n    with torch.no_grad():\n        output = model.generate(\n            inputs['input_ids'],\n            attention_mask=inputs['attention_mask'],\n            max_length=max_length,\n            temperature=temperature,\n            top_k=top_k,\n            top_p=top_p,\n            do_sample=True,\n            pad_token_id=tokenizer.eos_token_id\n        )\n    \n    # Decode and return the generated text\n    generated_text = tokenizer.decode(output[0], skip_special_tokens=True)\n    return generated_text\n\n\nprompt = \"Mary had a little lamb\"\ncompletion = autocomplete(prompt, max_length=80)\nprint(completion)\n\nMary had a little lamb, and the young woman asked her for a little lamb, and they gave it to her.\n\n\"Oh, my child, it is good to have a little lamb,\" said he, \"but it is not to be bought, for it is hard to make, and it is much more difficult to make.\n\n\"When you have a little lamb, it\n\n\n\nprompts = [\n    \"Mary had a little lamb\",\n    \"The future of artificial intelligence\",\n    \"In a galaxy far, far away\",\n    \"DigiPen is a place where\",\n    \"def calculate_fibonacci(n):\"\n]\n\nfor prompt in prompts:\n    print(f\"\\nPrompt: {prompt}\")\n    print(\"-\" * 50)\n    completion = autocomplete(prompt, max_length=80)\n    print(f\"Output: {completion}\\n\")\n\n\nPrompt: Mary had a little lamb\n--------------------------------------------------\nOutput: Mary had a little lamb, and the child was very hungry, and so he took a small lamb and brought it to her, and she and the child were very merry. So the child went home and the lamb was brought to her. So she and the child went to the priest and he gave her a piece of bread and said to her, \"This is good bread for you, but what\n\n\nPrompt: The future of artificial intelligence\n--------------------------------------------------\nOutput: The future of artificial intelligence is uncertain, but its future is bright.\n\nAnd so, we are all waiting for a breakthrough.\n\nAnd that's why I think that it's important to understand how AI is coming to the table.\n\nOne of the big questions we have right now is how AI will be able to take over a world, and how it will be able to take\n\n\nPrompt: In a galaxy far, far away\n--------------------------------------------------\nOutput: In a galaxy far, far away, there is only one thing that matters. The fate of our galaxy.\n\nAnd it matters only to you.\n\nA New Frontier for Space\n\nIt's been almost two years since I first wrote a post about this book. And that's because I've been busy.\n\nIn the last month or so, I've been working on an\n\n\nPrompt: DigiPen is a place where\n--------------------------------------------------\nOutput: DigiPen is a place where you can share your creations.\n\nDon't let the name fool you. This is the place to share your creations and to share your creativity.\n\nDon't let the name fool you. This is the place to share your creations and to share your creativity.\n\nDon't let the name fool you. This is the place to share your creations and\n\n\nPrompt: def calculate_fibonacci(n):\n--------------------------------------------------\nOutput: def calculate_fibonacci(n):\n\nfibonacci(n) = 0.01\n\nreturn f(n)\n\ndef calculate_fibonacci(n):\n\nfibonacci(n) = 0.01\n\nreturn f(n)\n\ndef calculate_fibonacci(n):\n\nfibonacci",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Notebooks",
@@ -100,7 +100,7 @@
     "href": "src/01/resources.html",
     "title": "Week 1 Resources",
     "section": "",
-    "text": "A Visual Introduction to Vector Embeddings, Pamela Fox\nA Visual Exploration of Vectors, Pamela Fox\n\n\n\n\n\nThe Illustrated Transformer\n\n\n\n\n\nGoogle Colab Sign-up Page\nProject Jupyter Page\n\n\n\n\n\nLearn Python with Jupyter, Serena Bonaretti\n\n\n\n\n\nReferences Slide",
+    "text": "A Visual Introduction to Vector Embeddings, Pamela Fox\nA Visual Exploration of Vectors, Pamela Fox\nVisualize embeddings in 3D space, powered by EmbeddingGemma and Transformers.js\n\n\n\n\n\nThe Illustrated Transformer\n\n\n\n\n\nGoogle Colab Sign-up Page\nProject Jupyter Page\n\n\n\n\n\nLearn Python with Jupyter, Serena Bonaretti\n\n\n\n\n\nReferences Slide",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Resources"
@@ -111,7 +111,7 @@
     "href": "src/01/resources.html#vector-embeddings",
     "title": "Week 1 Resources",
     "section": "",
-    "text": "A Visual Introduction to Vector Embeddings, Pamela Fox\nA Visual Exploration of Vectors, Pamela Fox",
+    "text": "A Visual Introduction to Vector Embeddings, Pamela Fox\nA Visual Exploration of Vectors, Pamela Fox\nVisualize embeddings in 3D space, powered by EmbeddingGemma and Transformers.js",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Resources"
@@ -395,7 +395,7 @@
     "href": "src/01/slides.html#lesson-objectives",
     "title": "Week 1: Foundations of Generative AI",
     "section": "Lesson Objectives",
-    "text": "Lesson Objectives\n\nExplore the history of vector embeddings and tokenization\nUnderstand the transformer architecture and how it works at a high level\nUse a simple sentence transformer to create vector embeddings and test for similarity\nCover a brief history of early generative transformers\nSetup and use Colab Pro, and start becoming familiar with the basics of notebooks and Python (if you haven’t used them already)",
+    "text": "Lesson Objectives\n\nExplore the history of vector embeddings and tokenization\nUnderstand the transformer architecture at a high level\nUse our first transformer to translate language\nCover a brief history of early generative transformers\nSetup and use Colab, and become familiar with the basics of notebooks and Python (if you haven’t used them already)",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -428,7 +428,7 @@
     "href": "src/01/slides.html#how-does-word2vec-work",
     "title": "Week 1: Foundations of Generative AI",
     "section": "How does Word2Vec Work?",
-    "text": "How does Word2Vec Work?\n\nWord Embeddings are meaningful numerical representations of words\n\nRepresentations where words (or sentences) are encoded into multi-dimensional space\nLarge number of dimensions (200-500 is typical)\nSimilar words have similar numbers",
+    "text": "How does Word2Vec Work?\n\nWord Embeddings are meaningful numerical representations of words\n\nRepresentations where words are encoded into multi-dimensional space\nLarge number of dimensions (200-500 is typical)\nSimilar words have similar numbers",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -439,7 +439,7 @@
     "href": "src/01/slides.html#how-does-word2vec-work-1",
     "title": "Week 1: Foundations of Generative AI",
     "section": "How does Word2Vec Work?",
-    "text": "How does Word2Vec Work?\n\n\nword = \"cat\"\nvector = model[word] # type: ignore\nvector[:10]\n\narray([ 0.0123291 ,  0.20410156, -0.28515625,  0.21679688,  0.11816406,\n        0.08300781,  0.04980469, -0.00952148,  0.22070312, -0.12597656],\n      dtype=float32)",
+    "text": "How does Word2Vec Work?\n\n\nword = \"cat\"\nvector = model[word]\nvector[:10]\n\narray([ 0.0123291 ,  0.20410156, -0.28515625,  0.21679688,  0.11816406,\n        0.08300781,  0.04980469, -0.00952148,  0.22070312, -0.12597656],\n      dtype=float32)",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -450,7 +450,7 @@
     "href": "src/01/slides.html#how-does-word2vec-work-2",
     "title": "Week 1: Foundations of Generative AI",
     "section": "How does Word2Vec Work?",
-    "text": "How does Word2Vec Work?\n\n\nword = \"dog\"\nvector = model[word] # type: ignore\nvector[:10]\n\narray([ 0.05126953, -0.02233887, -0.17285156,  0.16113281, -0.08447266,\n        0.05737305,  0.05859375, -0.08251953, -0.01538086, -0.06347656],\n      dtype=float32)",
+    "text": "How does Word2Vec Work?\n\n\nword = \"dog\"\nvector = model[word]\nvector[:10]\n\narray([ 0.05126953, -0.02233887, -0.17285156,  0.16113281, -0.08447266,\n        0.05737305,  0.05859375, -0.08251953, -0.01538086, -0.06347656],\n      dtype=float32)",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -461,7 +461,7 @@
     "href": "src/01/slides.html#how-does-word2vec-work-3",
     "title": "Week 1: Foundations of Generative AI",
     "section": "How does Word2Vec Work?",
-    "text": "How does Word2Vec Work?\n\n\nword = \"pizza\"\nvector = model[word] # type: ignore\nvector[:10]\n\narray([-1.2597656e-01,  2.5390625e-02,  1.6699219e-01,  5.5078125e-01,\n       -7.6660156e-02,  1.2890625e-01,  1.0253906e-01, -3.9482117e-04,\n        1.2158203e-01,  4.3212891e-02], dtype=float32)",
+    "text": "How does Word2Vec Work?\n\n\nword = \"pizza\"\nvector = model[word]\nvector[:10]\n\narray([-1.2597656e-01,  2.5390625e-02,  1.6699219e-01,  5.5078125e-01,\n       -7.6660156e-02,  1.2890625e-01,  1.0253906e-01, -3.9482117e-04,\n        1.2158203e-01,  4.3212891e-02], dtype=float32)",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -517,6 +517,61 @@
     "title": "Week 1: Foundations of Generative AI",
     "section": "How does Word2Vec Work?",
     "text": "How does Word2Vec Work?",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#what-is-a-notebook",
+    "href": "src/01/slides.html#what-is-a-notebook",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "What is a Notebook?",
+    "text": "What is a Notebook?\n\nAn interactive document that combines:\n\nLive code that can be executed\nRich text explanations (markdown)\nVisualizations and outputs\n\nThink of it as a computational narrative\n\nTell a story with code, data, and explanations\n\nOriginally designed for data science and research\nAlso used for learning, experimenting, and sharing results",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#a-brief-history-of-notebooks",
+    "href": "src/01/slides.html#a-brief-history-of-notebooks",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "A Brief History of Notebooks",
+    "text": "A Brief History of Notebooks\n\n2011: IPython Notebook project begins\n\nInteractive Python shell → web-based notebook\n\n2014: Renamed to Jupyter (Julia, Python, R)\n\nNow supports 40+ programming languages\nPython is most popular by far\n\n2017: Google launches Colab\n\nFree cloud-based Jupyter notebooks\nFree access to GPUs and TPUs\n\nToday: Industry standard for ML/AI development",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#anatomy-of-a-python-notebook",
+    "href": "src/01/slides.html#anatomy-of-a-python-notebook",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Anatomy of a Python Notebook",
+    "text": "Anatomy of a Python Notebook\n\nFormat: Extension is .ipynb\n\nJSON format, using Jupyter Document Schema\n\nCells: Building blocks of notebooks\n\nCode cells: Executable Python code\nMarkdown cells: Text, headings, images, equations\n\nKernel: The computational engine running your code\n\nMaintains state between cell executions\n\nOutputs: Results appear directly below code cells\n\nText, tables, plots, interactive widgets",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#how-to-run-notebooks",
+    "href": "src/01/slides.html#how-to-run-notebooks",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "How to Run Notebooks",
+    "text": "How to Run Notebooks\n\nJupyter Notebook Server (Classic approach)\n\nWeb interface on localhost\n\nVS Code (Local development)\n\nJupyter extension for VS Code\nRun on your own machine\n\nGoogle Colab (Recommended)\n\nBrowser-based, no installation needed\nFree(-ish) GPU access\nCan also access local GPU",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#advantages-of-google-colab",
+    "href": "src/01/slides.html#advantages-of-google-colab",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Advantages of Google Colab",
+    "text": "Advantages of Google Colab\n\nAccess to GPUs and TPUs for AI-based tasks\n\ne.g., A100 and H100 with 40Gb/80Gb VRAM\n\nModel downloaded between cloud vendors\n\nvs. downloading large models via the DigiPen network\n\nMany libraries pre-installed\nEasy to share notebooks with others\nGenerous (free) GPU limits for students!",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -600,28 +655,6 @@
     ]
   },
   {
-    "objectID": "src/01/slides.html#introducing-the-transformer-2",
-    "href": "src/01/slides.html#introducing-the-transformer-2",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "Introducing the Transformer",
-    "text": "Introducing the Transformer\n\n\n\n\ngraph LR\n    Input[\"Input: 'Bonjour, comment allez-vous?'\"]\n    \n    subgraph Transformer\n        Encoder[Encoder]\n        Decoder[Decoder]\n        Encoder --&gt; Decoder\n    end\n    \n    Output[\"Output: 'Hello, how are you?'\"]\n    \n    Input --&gt; Tokenize --&gt; Encoder\n    Decoder --&gt; Decode --&gt; Output",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/slides.html#introducing-the-transformer-3",
-    "href": "src/01/slides.html#introducing-the-transformer-3",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "Introducing the Transformer",
-    "text": "Introducing the Transformer\n\n\n\n\ngraph LR\n    Input[\"Input: 'Bonjour, comment allez-vous?'\"]\n    \n    subgraph Transformer\n        direction LR\n        subgraph \"Encoder Stack (N layers)\"\n            E[Encoder&lt;br/&gt;Layers&lt;br/&gt;1...N]\n        end\n        \n        subgraph \"Decoder Stack (N layers)\"\n            D[Decoder&lt;br/&gt;Layers&lt;br/&gt;1...N]\n        end\n        \n        E -.-&gt;|Context| D\n    end\n    \n    Output[\"Output: 'Hello, how are you?'\"]\n    \n    Input --&gt; Tokenize --&gt; E\n    D --&gt; Decode --&gt; Output",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
     "objectID": "src/01/slides.html#example",
     "href": "src/01/slides.html#example",
     "title": "Week 1: Foundations of Generative AI",
@@ -655,28 +688,6 @@
     ]
   },
   {
-    "objectID": "src/01/slides.html#how-does-the-encoderdecoder-work",
-    "href": "src/01/slides.html#how-does-the-encoderdecoder-work",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "How Does the Encoder/Decoder Work?",
-    "text": "How Does the Encoder/Decoder Work?\noutput_ids = model.generate(input_ids)\n\nTakes input ids, runs through encoder\n\nGenerates contextual vectors using self attention across input tokens\n\nRuns the decoder iteratively to generate one token at a time\n\nUses self attention on previously generated tokens\nUses cross-attention to attend to encoder output\n\nContinues until it generates an end-of-sequence token or hits max length",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/slides.html#introducing-the-transformer-4",
-    "href": "src/01/slides.html#introducing-the-transformer-4",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "Introducing the Transformer",
-    "text": "Introducing the Transformer\n\n\n\n\ngraph LR\n    Input[\"Input: 'Bonjour, comment allez-vous?'\"]\n    \n    subgraph Transformer\n        direction TB\n        \n        subgraph \"Encoder Layer\"\n            direction TB\n            E_SelfAttn[Multi-Head&lt;br/&gt;Self-Attention]\n            E_AddNorm1[Add & Norm]\n            E_FFN[Feed-Forward&lt;br/&gt;Network]\n            E_AddNorm2[Add & Norm]\n            \n            E_SelfAttn --&gt; E_AddNorm1 --&gt; E_FFN --&gt; E_AddNorm2\n        end\n        \n        subgraph \"Decoder Layer\"\n            direction TB\n            D_SelfAttn[Masked Multi-Head&lt;br/&gt;Self-Attention]\n            D_AddNorm1[Add & Norm]\n            D_CrossAttn[Multi-Head&lt;br/&gt;Cross-Attention]\n            D_AddNorm2[Add & Norm]\n            D_FFN[Feed-Forward&lt;br/&gt;Network]\n            D_AddNorm3[Add & Norm]\n            \n            D_SelfAttn --&gt; D_AddNorm1 --&gt; D_CrossAttn --&gt; D_AddNorm2 --&gt; D_FFN --&gt; D_AddNorm3\n        end\n        \n        E_AddNorm2 -.-&gt;|Encoder&lt;br/&gt;Output| D_CrossAttn\n    end\n    \n    Output[\"Output: 'Hello, how are you?'\"]\n    \n    Input --&gt; E_SelfAttn\n    D_AddNorm3 --&gt; Output",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
     "objectID": "src/01/slides.html#example-3",
     "href": "src/01/slides.html#example-3",
     "title": "Week 1: Foundations of Generative AI",
@@ -688,11 +699,66 @@
     ]
   },
   {
+    "objectID": "src/01/slides.html#introducing-the-transformer-2",
+    "href": "src/01/slides.html#introducing-the-transformer-2",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Introducing the Transformer",
+    "text": "Introducing the Transformer\n\n\n\n\ngraph LR\n    Input[\"Input: 'Bonjour, comment allez-vous?'\"]\n    Transformer[Transformer]\n    Output[\"Output: 'Hello, how are you?'\"]\n    \n    Input --&gt; Tokenize --&gt; Transformer --&gt; Decode --&gt; Output",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#introducing-the-transformer-3",
+    "href": "src/01/slides.html#introducing-the-transformer-3",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Introducing the Transformer",
+    "text": "Introducing the Transformer\n\n\n\n\ngraph LR\n    Input[\"Input: 'Bonjour, comment allez-vous?'\"]\n    \n    subgraph Transformer\n        Encoder[Encoder]\n        Decoder[Decoder]\n        Encoder --&gt; Decoder\n    end\n    \n    Output[\"Output: 'Hello, how are you?'\"]\n    \n    Input --&gt; Tokenize --&gt; Encoder\n    Decoder --&gt; Decode --&gt; Output",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#introducing-the-transformer-4",
+    "href": "src/01/slides.html#introducing-the-transformer-4",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Introducing the Transformer",
+    "text": "Introducing the Transformer\n\n\n\n\ngraph LR\n    Input[\"Input: 'Bonjour, comment allez-vous?'\"]\n    \n    subgraph Transformer\n        direction LR\n        subgraph \"Encoder Stack (N layers)\"\n            E[Encoder&lt;br/&gt;Layers&lt;br/&gt;1...N]\n        end\n        \n        subgraph \"Decoder Stack (N layers)\"\n            D[Decoder&lt;br/&gt;Layers&lt;br/&gt;1...N]\n        end\n        \n        E -.-&gt;|Context| D\n    end\n    \n    Output[\"Output: 'Hello, how are you?'\"]\n    \n    Input --&gt; Tokenize --&gt; E\n    D --&gt; Decode --&gt; Output",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#how-does-the-encoderdecoder-work",
+    "href": "src/01/slides.html#how-does-the-encoderdecoder-work",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "How Does the Encoder/Decoder Work?",
+    "text": "How Does the Encoder/Decoder Work?\noutput_ids = model.generate(input_ids)\n\nTakes input ids, runs through encoder\n\nGenerates contextual vectors using self attention across input tokens\n\nRuns the decoder iteratively to generate one token at a time\n\nUses self attention on previously generated tokens\nUses cross-attention to attend to encoder output\n\nContinues until it generates an end-of-sequence token or hits max length",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#introducing-the-transformer-5",
+    "href": "src/01/slides.html#introducing-the-transformer-5",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Introducing the Transformer",
+    "text": "Introducing the Transformer\n\n\n\n\ngraph LR\n    Input[\"Input: 'Bonjour, comment allez-vous?'\"]\n    \n    subgraph Transformer\n        direction TB\n        \n        subgraph \"Encoder Layer\"\n            direction TB\n            E_SelfAttn[Multi-Head&lt;br/&gt;Self-Attention]\n            E_AddNorm1[Add & Norm]\n            E_FFN[Feed-Forward&lt;br/&gt;Network]\n            E_AddNorm2[Add & Norm]\n            \n            E_SelfAttn --&gt; E_AddNorm1 --&gt; E_FFN --&gt; E_AddNorm2\n        end\n        \n        subgraph \"Decoder Layer\"\n            direction TB\n            D_SelfAttn[Masked Multi-Head&lt;br/&gt;Self-Attention]\n            D_AddNorm1[Add & Norm]\n            D_CrossAttn[Multi-Head&lt;br/&gt;Cross-Attention]\n            D_AddNorm2[Add & Norm]\n            D_FFN[Feed-Forward&lt;br/&gt;Network]\n            D_AddNorm3[Add & Norm]\n            \n            D_SelfAttn --&gt; D_AddNorm1 --&gt; D_CrossAttn --&gt; D_AddNorm2 --&gt; D_FFN --&gt; D_AddNorm3\n        end\n        \n        E_AddNorm2 -.-&gt;|Encoder&lt;br/&gt;Output| D_CrossAttn\n    end\n    \n    Output[\"Output: 'Hello, how are you?'\"]\n    \n    Input --&gt; E_SelfAttn\n    D_AddNorm3 --&gt; Output",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "src/01/slides.html#origin-of-gpt-1",
     "href": "src/01/slides.html#origin-of-gpt-1",
     "title": "Week 1: Foundations of Generative AI",
     "section": "2018: Origin of “GPT”",
-    "text": "2018: Origin of “GPT”\n\nGenerative Pre-trained Transformer\nName coined by OpenAI researchers (Alec Radford et. al) in “Improving Language Understanding by Generative Pre-Training” (Radford et al. 2018)",
+    "text": "2018: Origin of “GPT”\n\nGenerative Pre-trained Transformer\nName coined by OpenAI researchers in “Improving Language Understanding by Generative Pre-Training” (Radford et al. 2018)",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -758,62 +824,7 @@
     "href": "src/01/slides.html#example-6",
     "title": "Week 1: Foundations of Generative AI",
     "section": "Example",
-    "text": "Example\n\n\nprompts = [\n    \"Mary had a little lamb\",\n    \"The future of artificial intelligence\",\n    \"In a galaxy far, far away\",\n    \"DigiPen is a place where\",\n    \"def calculate_fibonacci(n):\"\n]\n\nfor prompt in prompts:\n    print(f\"\\nPrompt: {prompt}\")\n    print(\"-\" * 50)\n    completion = autocomplete(prompt, max_length=80)\n    print(f\"Output: {completion}\\n\")\n\n\nPrompt: Mary had a little lamb\n--------------------------------------------------\nOutput: Mary had a little lamb in her mouth, and when she looked at it, she saw that it was a little lamb, and she said, \"What is this?\" And she said, \"I have seen some of the things in the temple, and it is good for you to see them.\" So she said, \"Why, then, do you think I have seen some of the things in\n\n\nPrompt: The future of artificial intelligence\n--------------------------------------------------\nOutput: The future of artificial intelligence in general is uncertain. The most likely scenarios are that humans will eventually develop the ability to perform complex tasks, like reading the news, and that the technologies will allow us to recognize and even recognize people as we see them. However, there is a large body of evidence that artificial intelligence may not be able to accomplish these tasks.\n\nThe most important question is whether human\n\n\nPrompt: In a galaxy far, far away\n--------------------------------------------------\nOutput: In a galaxy far, far away, an enormous asteroid is found.\n\nThe asteroid is almost 20 times larger than the Earth's, and it's so big that it's the size of a football field.\n\nThe asteroid's mass is about 1,500 times larger than the Earth's.\n\n\"It's a giant asteroid, but it's a very, very big one,\"\n\n\nPrompt: DigiPen is a place where\n--------------------------------------------------\nOutput: DigiPen is a place where you can learn to create and share ideas with other people in the community. We are a group of people who love to create, and share ideas. This is the place where we'll see you at the party.\n\nIn the meantime, check out our other projects on our official Facebook page!\n\n\nPrompt: def calculate_fibonacci(n):\n--------------------------------------------------\nOutput: def calculate_fibonacci(n): return n + 1\n\nNow we're going to be using the same function in the second function, so we'll be using the same number of times:\n\nfrom mongo.db import MongoDB db.db.cursor = cursor.new_cursor()\n\nNow we'll use the same number of times as the previous",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/slides.html#what-is-a-notebook",
-    "href": "src/01/slides.html#what-is-a-notebook",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "What is a Notebook?",
-    "text": "What is a Notebook?\n\nAn interactive document that combines:\n\nLive code that can be executed\nRich text explanations (markdown)\nVisualizations and outputs\n\nThink of it as a computational narrative\n\nTell a story with code, data, and explanations\n\nOriginally designed for data science and research\nAlso used for learning, experimenting, and sharing results",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/slides.html#a-brief-history-of-notebooks",
-    "href": "src/01/slides.html#a-brief-history-of-notebooks",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "A Brief History of Notebooks",
-    "text": "A Brief History of Notebooks\n\n2011: IPython Notebook project begins\n\nInteractive Python shell → web-based notebook\n\n2014: Renamed to Jupyter (Julia, Python, R)\n\nNow supports 40+ programming languages\n\n2017: Google launches Colab\n\nFree cloud-based Jupyter notebooks\nFree access to GPUs and TPUs\n\nToday: Industry standard for ML/AI development",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/slides.html#anatomy-of-a-notebook",
-    "href": "src/01/slides.html#anatomy-of-a-notebook",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "Anatomy of a Notebook",
-    "text": "Anatomy of a Notebook\n\nFormat: Extension is .ipynb\n\nJSON format, using Jupyter Document Schema\n\nCells: Building blocks of notebooks\n\nCode cells: Executable Python code\nMarkdown cells: Text, headings, images, equations\n\nKernel: The computational engine running your code\n\nMaintains state between cell executions\n\nOutputs: Results appear directly below code cells\n\nText, tables, plots, interactive widgets",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/slides.html#how-to-run-notebooks",
-    "href": "src/01/slides.html#how-to-run-notebooks",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "How to Run Notebooks",
-    "text": "How to Run Notebooks\n\nJupyter Notebook Server (Classic approach)\n\nWeb interface on localhost\n\nVS Code (Local development)\n\nJupyter extension for VS Code\nRun on your own machine\n\nGoogle Colab (Recommended)\n\nBrowser-based, no installation needed\nFree(-ish) GPU access\nCan also access local GPU",
-    "crumbs": [
-      "Week 1: Foundations of Generative AI",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/01/slides.html#advantages-of-google-colab",
-    "href": "src/01/slides.html#advantages-of-google-colab",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "Advantages of Google Colab",
-    "text": "Advantages of Google Colab\n\nAccess to GPUs and TPUs for AI-based tasks\n\ne.g., A100 and H100 with 40Gb/80Gb VRAM\n\nModel downloaded between cloud vendors\n\nvs. downloading large models via the DigiPen network\n\nMany libraries pre-installed\nEasy to share notebooks with others\nGenerous (free) GPU limits for students!",
+    "text": "Example\n\n\nprompt = \"Mary had a little lamb\"\ncompletion = autocomplete(prompt, max_length=80)\nprint(completion)\n\nMary had a little lamb, and the young woman asked her for a little lamb, and they gave it to her.\n\n\"Oh, my child, it is good to have a little lamb,\" said he, \"but it is not to be bought, for it is hard to make, and it is much more difficult to make.\n\n\"When you have a little lamb, it",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"

@@ -226,10 +226,10 @@
 <h2>Lesson Objectives</h2>
 <ul>
 <li class="fragment">Explore the history of vector embeddings and tokenization</li>
-<li class="fragment">Understand the transformer architecture and how it works at a high level</li>
-<li class="fragment">Use a simple sentence transformer to create vector embeddings and test for similarity</li>
+<li class="fragment">Understand the transformer architecture at a high level</li>
+<li class="fragment">Use our first transformer to translate language</li>
 <li class="fragment">Cover a brief history of early generative transformers</li>
-<li class="fragment">Setup and use Colab Pro, and start becoming familiar with the basics of notebooks and Python (if you haven’t used them already)</li>
+<li class="fragment">Setup and use Colab, and become familiar with the basics of notebooks and Python (if you haven’t used them already)</li>
 </ul>
 </section>
 <section>
@@ -272,7 +272,7 @@
 <ul>
 <li class="fragment">Word Embeddings are <strong>meaningful numerical representations</strong> of words
 <ul>
-<li class="fragment">Representations where words (or sentences) are encoded into multi-dimensional space</li>
+<li class="fragment">Representations where words are encoded into multi-dimensional space</li>
 <li class="fragment">Large number of dimensions (200-500 is typical)</li>
 <li class="fragment">Similar words have similar numbers</li>
 </ul></li>
@@ -281,9 +281,9 @@
 <section id="how-does-word2vec-work-1" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/notebooks/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-1">
-<div id="word-1" class="cell" data-execution_count="12">
+<div id="word-1" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a>word <span class="op">=</span> <span class="st">"cat"</span></span>
-<span id="cb1-2"><a></a>vector <span class="op">=</span> model[word] <span class="co"># type: ignore</span></span>
+<span id="cb1-2"><a></a>vector <span class="op">=</span> model[word]</span>
 <span id="cb1-3"><a></a>vector[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>array([ 0.0123291 ,  0.20410156, -0.28515625,  0.21679688,  0.11816406,
@@ -296,9 +296,9 @@
 <section id="how-does-word2vec-work-2" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/notebooks/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-2">
-<div id="word-2" class="cell" data-execution_count="13">
+<div id="word-2" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>word <span class="op">=</span> <span class="st">"dog"</span></span>
-<span id="cb3-2"><a></a>vector <span class="op">=</span> model[word] <span class="co"># type: ignore</span></span>
+<span id="cb3-2"><a></a>vector <span class="op">=</span> model[word]</span>
 <span id="cb3-3"><a></a>vector[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>array([ 0.05126953, -0.02233887, -0.17285156,  0.16113281, -0.08447266,
@@ -311,9 +311,9 @@
 <section id="how-does-word2vec-work-3" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/notebooks/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-3">
-<div id="word-3" class="cell" data-execution_count="14">
+<div id="word-3" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a>word <span class="op">=</span> <span class="st">"pizza"</span></span>
-<span id="cb5-2"><a></a>vector <span class="op">=</span> model[word] <span class="co"># type: ignore</span></span>
+<span id="cb5-2"><a></a>vector <span class="op">=</span> model[word]</span>
 <span id="cb5-3"><a></a>vector[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>array([-1.2597656e-01,  2.5390625e-02,  1.6699219e-01,  5.5078125e-01,
@@ -454,6 +454,121 @@ paddling             | similarity: 0.6424</code></pre>
 </div>
 </div>
 </div>
+</section></section>
+<section id="lets-run-some-code" class="title-slide slide level1 center">
+<h1>Let’s Run Some Code!</h1>
+
+</section>
+
+<section>
+<section id="introducing-notebooks" class="title-slide slide level1 center">
+<h1>Introducing Notebooks</h1>
+
+</section>
+<section id="what-is-a-notebook" class="slide level2">
+<h2>What is a Notebook?</h2>
+<ul>
+<li class="fragment">An <strong>interactive document</strong> that combines:
+<ul>
+<li class="fragment">Live code that can be executed</li>
+<li class="fragment">Rich text explanations (markdown)</li>
+<li class="fragment">Visualizations and outputs</li>
+</ul></li>
+<li class="fragment">Think of it as a <strong>computational narrative</strong>
+<ul>
+<li class="fragment">Tell a story with code, data, and explanations</li>
+</ul></li>
+<li class="fragment">Originally designed for data science and research</li>
+<li class="fragment">Also used for learning, experimenting, and sharing results</li>
+</ul>
+</section>
+<section id="a-brief-history-of-notebooks" class="slide level2">
+<h2>A Brief History of Notebooks</h2>
+<ul>
+<li class="fragment"><strong>2011</strong>: IPython Notebook project begins
+<ul>
+<li class="fragment">Interactive Python shell → web-based notebook</li>
+</ul></li>
+<li class="fragment"><strong>2014</strong>: Renamed to <strong>Jupyter</strong> (Julia, Python, R)
+<ul>
+<li class="fragment">Now supports 40+ programming languages</li>
+<li class="fragment">Python is most popular by far</li>
+</ul></li>
+<li class="fragment"><strong>2017</strong>: Google launches <strong>Colab</strong>
+<ul>
+<li class="fragment">Free cloud-based Jupyter notebooks</li>
+<li class="fragment">Free access to GPUs and TPUs</li>
+</ul></li>
+<li class="fragment"><strong>Today</strong>: Industry standard for ML/AI development</li>
+</ul>
+</section>
+<section id="anatomy-of-a-python-notebook" class="slide level2">
+<h2>Anatomy of a Python Notebook</h2>
+<ul>
+<li class="fragment"><strong>Format</strong>: Extension is .ipynb
+<ul>
+<li class="fragment">JSON format, using Jupyter Document Schema</li>
+</ul></li>
+<li class="fragment"><strong>Cells</strong>: Building blocks of notebooks
+<ul>
+<li class="fragment"><strong>Code cells</strong>: Executable Python code</li>
+<li class="fragment"><strong>Markdown cells</strong>: Text, headings, images, equations</li>
+</ul></li>
+<li class="fragment"><strong>Kernel</strong>: The computational engine running your code
+<ul>
+<li class="fragment">Maintains state between cell executions</li>
+</ul></li>
+<li class="fragment"><strong>Outputs</strong>: Results appear directly below code cells
+<ul>
+<li class="fragment">Text, tables, plots, interactive widgets</li>
+</ul></li>
+</ul>
+</section>
+<section id="how-to-run-notebooks" class="slide level2">
+<h2>How to Run Notebooks</h2>
+<ul>
+<li class="fragment"><strong>Jupyter Notebook Server</strong> (Classic approach)
+<ul>
+<li class="fragment">Web interface on localhost</li>
+</ul></li>
+<li class="fragment"><strong>VS Code</strong> (Local development)
+<ul>
+<li class="fragment">Jupyter extension for VS Code</li>
+<li class="fragment">Run on your own machine</li>
+</ul></li>
+<li class="fragment"><strong>Google Colab</strong> (Recommended)
+<ul>
+<li class="fragment">Browser-based, no installation needed</li>
+<li class="fragment">Free(-ish) GPU access</li>
+<li class="fragment">Can also access local GPU</li>
+</ul></li>
+</ul>
+</section>
+<section id="advantages-of-google-colab" class="slide level2">
+<h2>Advantages of Google Colab</h2>
+<ul>
+<li class="fragment">Access to GPUs and TPUs for AI-based tasks
+<ul>
+<li class="fragment">e.g., A100 and H100 with 40Gb/80Gb VRAM</li>
+</ul></li>
+<li class="fragment">Model downloaded between cloud vendors
+<ul>
+<li class="fragment">vs.&nbsp;downloading large models via the DigiPen network</li>
+</ul></li>
+<li class="fragment">Many libraries pre-installed</li>
+<li class="fragment">Easy to share notebooks with others</li>
+<li class="fragment">Generous (free) GPU limits for students!</li>
+</ul>
+</section></section>
+<section id="demo" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p>Hello World and Word2Vec notebooks in <strong>Colab</strong>, <strong>VS Code</strong>, and <strong>Local Jupyter server</strong></p>
+</section>
+
+<section>
+<section id="hands-on" class="title-slide slide level1 center">
+<h1>Hands-On</h1>
+<p>Setup Colab, get the two notebooks up and running (hello-world, word2vec)</p>
 </section>
 <section id="challenges-with-word-embeddings" class="slide level2">
 <h2>Challenges with Word Embeddings</h2>
@@ -563,61 +678,6 @@ paddling             | similarity: 0.6424</code></pre>
 </div>
 </div>
 </section>
-<section id="introducing-the-transformer-2" class="slide level2">
-<h2>Introducing the Transformer</h2>
-<div class="cell" data-reveal="true" data-fig-height="100%" data-file="diagrams/transformer-2.mmd" data-layout-align="default">
-<div class="cell-output-display">
-<div id="transformer-2">
-<div>
-<pre class="mermaid mermaid-js" data-label="transformer-2">graph LR
-    Input["Input: 'Bonjour, comment allez-vous?'"]
-    
-    subgraph Transformer
-        Encoder[Encoder]
-        Decoder[Decoder]
-        Encoder --&gt; Decoder
-    end
-    
-    Output["Output: 'Hello, how are you?'"]
-    
-    Input --&gt; Tokenize --&gt; Encoder
-    Decoder --&gt; Decode --&gt; Output</pre>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="introducing-the-transformer-3" class="slide level2">
-<h2>Introducing the Transformer</h2>
-<div class="cell" data-reveal="true" data-fig-height="100%" data-file="diagrams/transformer-3.mmd" data-layout-align="default">
-<div class="cell-output-display">
-<div id="transformer-3">
-<div>
-<pre class="mermaid mermaid-js" data-label="transformer-3">graph LR
-    Input["Input: 'Bonjour, comment allez-vous?'"]
-    
-    subgraph Transformer
-        direction LR
-        subgraph "Encoder Stack (N layers)"
-            E[Encoder&lt;br/&gt;Layers&lt;br/&gt;1...N]
-        end
-        
-        subgraph "Decoder Stack (N layers)"
-            D[Decoder&lt;br/&gt;Layers&lt;br/&gt;1...N]
-        end
-        
-        E -.-&gt;|Context| D
-    end
-    
-    Output["Output: 'Hello, how are you?'"]
-    
-    Input --&gt; Tokenize --&gt; E
-    D --&gt; Decode --&gt; Output</pre>
-</div>
-</div>
-</div>
-</div>
-</section>
 <section id="example" class="slide level2">
 <h2>Example</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/notebooks/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="load-model">
@@ -688,6 +748,92 @@ Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&
 </div>
 </div>
 </section>
+<section id="example-3" class="slide level2">
+<h2>Example</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/notebooks/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="decode">
+<div id="decode" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a><span class="co"># @title Decode back to tokens to complete the translation</span></span>
+<span id="cb18-2"><a></a></span>
+<span id="cb18-3"><a></a>english_text <span class="op">=</span> tokenizer.decode(output_ids[<span class="dv">0</span>], skip_special_tokens<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb18-4"><a></a><span class="bu">print</span>(<span class="st">"Translation:"</span>, english_text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Translation: Hello, how are you?</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="introducing-the-transformer-2" class="slide level2">
+<h2>Introducing the Transformer</h2>
+<div class="cell" data-reveal="true" data-fig-height="100%" data-file="diagrams/transformer-1.mmd" data-layout-align="default">
+<div class="cell-output-display">
+<div id="transformer-1">
+<div>
+<pre class="mermaid mermaid-js" data-label="transformer-1">graph LR
+    Input["Input: 'Bonjour, comment allez-vous?'"]
+    Transformer[Transformer]
+    Output["Output: 'Hello, how are you?'"]
+    
+    Input --&gt; Tokenize --&gt; Transformer --&gt; Decode --&gt; Output</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="introducing-the-transformer-3" class="slide level2">
+<h2>Introducing the Transformer</h2>
+<div class="cell" data-reveal="true" data-fig-height="100%" data-file="diagrams/transformer-2.mmd" data-layout-align="default">
+<div class="cell-output-display">
+<div id="transformer-2">
+<div>
+<pre class="mermaid mermaid-js" data-label="transformer-2">graph LR
+    Input["Input: 'Bonjour, comment allez-vous?'"]
+    
+    subgraph Transformer
+        Encoder[Encoder]
+        Decoder[Decoder]
+        Encoder --&gt; Decoder
+    end
+    
+    Output["Output: 'Hello, how are you?'"]
+    
+    Input --&gt; Tokenize --&gt; Encoder
+    Decoder --&gt; Decode --&gt; Output</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="introducing-the-transformer-4" class="slide level2">
+<h2>Introducing the Transformer</h2>
+<div class="cell" data-reveal="true" data-fig-height="100%" data-file="diagrams/transformer-3.mmd" data-layout-align="default">
+<div class="cell-output-display">
+<div id="transformer-3">
+<div>
+<pre class="mermaid mermaid-js" data-label="transformer-3">graph LR
+    Input["Input: 'Bonjour, comment allez-vous?'"]
+    
+    subgraph Transformer
+        direction LR
+        subgraph "Encoder Stack (N layers)"
+            E[Encoder&lt;br/&gt;Layers&lt;br/&gt;1...N]
+        end
+        
+        subgraph "Decoder Stack (N layers)"
+            D[Decoder&lt;br/&gt;Layers&lt;br/&gt;1...N]
+        end
+        
+        E -.-&gt;|Context| D
+    end
+    
+    Output["Output: 'Hello, how are you?'"]
+    
+    Input --&gt; Tokenize --&gt; E
+    D --&gt; Decode --&gt; Output</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="how-does-the-encoderdecoder-work" class="slide level2">
 <h2>How Does the Encoder/Decoder Work?</h2>
 <p><code>output_ids = model.generate(input_ids)</code></p>
@@ -704,7 +850,7 @@ Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&
 <li class="fragment">Continues until it generates an end-of-sequence token or hits max length</li>
 </ul>
 </section>
-<section id="introducing-the-transformer-4" class="slide level2">
+<section id="introducing-the-transformer-5" class="slide level2">
 <h2>Introducing the Transformer</h2>
 <div class="cell" data-reveal="true" data-fig-height="100%" data-file="diagrams/transformer-4.mmd" data-layout-align="default">
 <div class="cell-output-display">
@@ -749,21 +895,17 @@ Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&
 </div>
 </div>
 </div>
-</section>
-<section id="example-3" class="slide level2">
-<h2>Example</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/notebooks/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="decode">
-<div id="decode" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a><span class="co"># @title Decode back to tokens to complete the translation</span></span>
-<span id="cb18-2"><a></a></span>
-<span id="cb18-3"><a></a>english_text <span class="op">=</span> tokenizer.decode(output_ids[<span class="dv">0</span>], skip_special_tokens<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb18-4"><a></a><span class="bu">print</span>(<span class="st">"Translation:"</span>, english_text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Translation: Hello, how are you?</code></pre>
-</div>
-</div>
-</div>
 </section></section>
+<section id="demo-1" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p>Translation Transformer in Colab</p>
+</section>
+
+<section id="hands-on-1" class="title-slide slide level1 center">
+<h1>Hands-On</h1>
+<p>Experiment with your own phrases in the translation-transformer.ipynb notebook</p>
+</section>
+
 <section>
 <section id="origin-of-gpt" class="title-slide slide level1 center">
 <h1>2018: Origin of “GPT”</h1>
@@ -772,8 +914,8 @@ Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&
 <section id="origin-of-gpt-1" class="slide level2">
 <h2>2018: Origin of “GPT”</h2>
 <ul>
-<li class="fragment"><strong>Generative Pre-trained Transformer</strong></li>
-<li class="fragment">Name coined by OpenAI researchers (Alec Radford et. al) in “Improving Language Understanding by Generative Pre-Training” <span class="citation" data-cites="radford2018improving">(<a href="#/references-1" role="doc-biblioref" onclick="">Radford et al. 2018</a>)</span></li>
+<li class="fragment"><strong>G</strong>enerative <strong>P</strong>re-trained <strong>T</strong>ransformer</li>
+<li class="fragment">Name coined by OpenAI researchers in “Improving Language Understanding by Generative Pre-Training” <span class="citation" data-cites="radford2018improving">(<a href="#/references-1" role="doc-biblioref" onclick="">Radford et al. 2018</a>)</span></li>
 </ul>
 </section>
 <section id="what-is-a-gpt" class="slide level2">
@@ -825,7 +967,7 @@ Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&
 <section id="example-4" class="slide level2">
 <h2>Example</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/notebooks/GPT-2.ipynb" data-notebook-title="Pre-trained GPT-2 Notebook" data-notebook-cellid="load-model">
-<div id="load-model" class="cell" data-execution_count="7">
+<div id="load-model" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a></a><span class="im">from</span> transformers <span class="im">import</span> GPT2LMHeadModel, GPT2Tokenizer</span>
 <span id="cb20-2"><a></a></span>
 <span id="cb20-3"><a></a><span class="co"># Load pre-trained GPT-2 model and tokenizer</span></span>
@@ -840,7 +982,7 @@ Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&
 <section id="example-5" class="slide level2">
 <h2>Example</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/notebooks/GPT-2.ipynb" data-notebook-title="Pre-trained GPT-2 Notebook" data-notebook-cellid="autocomplete">
-<div id="autocomplete" class="cell" data-execution_count="8">
+<div id="autocomplete" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a></a><span class="im">import</span> torch</span>
 <span id="cb21-2"><a></a></span>
 <span id="cb21-3"><a></a><span class="kw">def</span> autocomplete(prompt, max_length<span class="op">=</span><span class="dv">50</span>, temperature<span class="op">=</span><span class="fl">0.7</span>, top_k<span class="op">=</span><span class="dv">50</span>, top_p<span class="op">=</span><span class="fl">0.9</span>):</span>
@@ -869,178 +1011,28 @@ Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&
 <section id="example-6" class="slide level2">
 <h2>Example</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/notebooks/GPT-2.ipynb" data-notebook-title="Pre-trained GPT-2 Notebook" data-notebook-cellid="prompts">
-<div id="prompts" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="7decbea9-1b4b-4208-a441-a65f9be042d2" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a></a>prompts <span class="op">=</span> [</span>
-<span id="cb22-2"><a></a>    <span class="st">"Mary had a little lamb"</span>,</span>
-<span id="cb22-3"><a></a>    <span class="st">"The future of artificial intelligence"</span>,</span>
-<span id="cb22-4"><a></a>    <span class="st">"In a galaxy far, far away"</span>,</span>
-<span id="cb22-5"><a></a>    <span class="st">"DigiPen is a place where"</span>,</span>
-<span id="cb22-6"><a></a>    <span class="st">"def calculate_fibonacci(n):"</span></span>
-<span id="cb22-7"><a></a>]</span>
-<span id="cb22-8"><a></a></span>
-<span id="cb22-9"><a></a><span class="cf">for</span> prompt <span class="kw">in</span> prompts:</span>
-<span id="cb22-10"><a></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Prompt: </span><span class="sc">{</span>prompt<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb22-11"><a></a>    <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">50</span>)</span>
-<span id="cb22-12"><a></a>    completion <span class="op">=</span> autocomplete(prompt, max_length<span class="op">=</span><span class="dv">80</span>)</span>
-<span id="cb22-13"><a></a>    <span class="bu">print</span>(<span class="ss">f"Output: </span><span class="sc">{</span>completion<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="prompts" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="7decbea9-1b4b-4208-a441-a65f9be042d2" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a></a>prompt <span class="op">=</span> <span class="st">"Mary had a little lamb"</span></span>
+<span id="cb22-2"><a></a>completion <span class="op">=</span> autocomplete(prompt, max_length<span class="op">=</span><span class="dv">80</span>)</span>
+<span id="cb22-3"><a></a><span class="bu">print</span>(completion)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>
-Prompt: Mary had a little lamb
---------------------------------------------------
-Output: Mary had a little lamb in her mouth, and when she looked at it, she saw that it was a little lamb, and she said, "What is this?" And she said, "I have seen some of the things in the temple, and it is good for you to see them." So she said, "Why, then, do you think I have seen some of the things in
+<pre><code>Mary had a little lamb, and the young woman asked her for a little lamb, and they gave it to her.
 
+"Oh, my child, it is good to have a little lamb," said he, "but it is not to be bought, for it is hard to make, and it is much more difficult to make.
 
-Prompt: The future of artificial intelligence
---------------------------------------------------
-Output: The future of artificial intelligence in general is uncertain. The most likely scenarios are that humans will eventually develop the ability to perform complex tasks, like reading the news, and that the technologies will allow us to recognize and even recognize people as we see them. However, there is a large body of evidence that artificial intelligence may not be able to accomplish these tasks.
-
-The most important question is whether human
-
-
-Prompt: In a galaxy far, far away
---------------------------------------------------
-Output: In a galaxy far, far away, an enormous asteroid is found.
-
-The asteroid is almost 20 times larger than the Earth's, and it's so big that it's the size of a football field.
-
-The asteroid's mass is about 1,500 times larger than the Earth's.
-
-"It's a giant asteroid, but it's a very, very big one,"
-
-
-Prompt: DigiPen is a place where
---------------------------------------------------
-Output: DigiPen is a place where you can learn to create and share ideas with other people in the community. We are a group of people who love to create, and share ideas. This is the place where we'll see you at the party.
-
-In the meantime, check out our other projects on our official Facebook page!
-
-
-Prompt: def calculate_fibonacci(n):
---------------------------------------------------
-Output: def calculate_fibonacci(n): return n + 1
-
-Now we're going to be using the same function in the second function, so we'll be using the same number of times:
-
-from mongo.db import MongoDB db.db.cursor = cursor.new_cursor()
-
-Now we'll use the same number of times as the previous
-</code></pre>
+"When you have a little lamb, it</code></pre>
 </div>
 </div>
 </div>
 </section></section>
-<section id="lets-run-some-code" class="title-slide slide level1 center">
-<h1>Let’s Run Some Code!</h1>
-
-</section>
-
-<section>
-<section id="introducing-notebooks" class="title-slide slide level1 center">
-<h1>Introducing Notebooks</h1>
-
-</section>
-<section id="what-is-a-notebook" class="slide level2">
-<h2>What is a Notebook?</h2>
-<ul>
-<li class="fragment">An <strong>interactive document</strong> that combines:
-<ul>
-<li class="fragment">Live code that can be executed</li>
-<li class="fragment">Rich text explanations (markdown)</li>
-<li class="fragment">Visualizations and outputs</li>
-</ul></li>
-<li class="fragment">Think of it as a <strong>computational narrative</strong>
-<ul>
-<li class="fragment">Tell a story with code, data, and explanations</li>
-</ul></li>
-<li class="fragment">Originally designed for data science and research</li>
-<li class="fragment">Also used for learning, experimenting, and sharing results</li>
-</ul>
-</section>
-<section id="a-brief-history-of-notebooks" class="slide level2">
-<h2>A Brief History of Notebooks</h2>
-<ul>
-<li class="fragment"><strong>2011</strong>: IPython Notebook project begins
-<ul>
-<li class="fragment">Interactive Python shell → web-based notebook</li>
-</ul></li>
-<li class="fragment"><strong>2014</strong>: Renamed to <strong>Jupyter</strong> (Julia, Python, R)
-<ul>
-<li class="fragment">Now supports 40+ programming languages</li>
-</ul></li>
-<li class="fragment"><strong>2017</strong>: Google launches <strong>Colab</strong>
-<ul>
-<li class="fragment">Free cloud-based Jupyter notebooks</li>
-<li class="fragment">Free access to GPUs and TPUs</li>
-</ul></li>
-<li class="fragment"><strong>Today</strong>: Industry standard for ML/AI development</li>
-</ul>
-</section>
-<section id="anatomy-of-a-notebook" class="slide level2">
-<h2>Anatomy of a Notebook</h2>
-<ul>
-<li class="fragment"><strong>Format</strong>: Extension is .ipynb
-<ul>
-<li class="fragment">JSON format, using Jupyter Document Schema</li>
-</ul></li>
-<li class="fragment"><strong>Cells</strong>: Building blocks of notebooks
-<ul>
-<li class="fragment"><strong>Code cells</strong>: Executable Python code</li>
-<li class="fragment"><strong>Markdown cells</strong>: Text, headings, images, equations</li>
-</ul></li>
-<li class="fragment"><strong>Kernel</strong>: The computational engine running your code
-<ul>
-<li class="fragment">Maintains state between cell executions</li>
-</ul></li>
-<li class="fragment"><strong>Outputs</strong>: Results appear directly below code cells
-<ul>
-<li class="fragment">Text, tables, plots, interactive widgets</li>
-</ul></li>
-</ul>
-</section>
-<section id="how-to-run-notebooks" class="slide level2">
-<h2>How to Run Notebooks</h2>
-<ul>
-<li class="fragment"><strong>Jupyter Notebook Server</strong> (Classic approach)
-<ul>
-<li class="fragment">Web interface on localhost</li>
-</ul></li>
-<li class="fragment"><strong>VS Code</strong> (Local development)
-<ul>
-<li class="fragment">Jupyter extension for VS Code</li>
-<li class="fragment">Run on your own machine</li>
-</ul></li>
-<li class="fragment"><strong>Google Colab</strong> (Recommended)
-<ul>
-<li class="fragment">Browser-based, no installation needed</li>
-<li class="fragment">Free(-ish) GPU access</li>
-<li class="fragment">Can also access local GPU</li>
-</ul></li>
-</ul>
-</section>
-<section id="advantages-of-google-colab" class="slide level2">
-<h2>Advantages of Google Colab</h2>
-<ul>
-<li class="fragment">Access to GPUs and TPUs for AI-based tasks
-<ul>
-<li class="fragment">e.g., A100 and H100 with 40Gb/80Gb VRAM</li>
-</ul></li>
-<li class="fragment">Model downloaded between cloud vendors
-<ul>
-<li class="fragment">vs.&nbsp;downloading large models via the DigiPen network</li>
-</ul></li>
-<li class="fragment">Many libraries pre-installed</li>
-<li class="fragment">Easy to share notebooks with others</li>
-<li class="fragment">Generous (free) GPU limits for students!</li>
-</ul>
-</section></section>
-<section id="demo" class="title-slide slide level1 center">
+<section id="demo-2" class="title-slide slide level1 center">
 <h1>Demo</h1>
-<p>Hello World notebook in <strong>Colab</strong>, <strong>VS Code</strong>, and <strong>Local Jupyter server</strong></p>
+<p>GPT-2 notebook in Colab</p>
 </section>
 
-<section id="hands-on" class="title-slide slide level1 center">
+<section id="hands-on-2" class="title-slide slide level1 center">
 <h1>Hands-On</h1>
-<p>Setup Colab, go through the notebooks for this week (hello-world, word2vec, translation-transformer, and GPT-2)</p>
+<p>Experiment with your own phrases in the GPT-2.ipynb notebook</p>
 </section>
 
 <section>
