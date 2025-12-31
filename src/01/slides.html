@@ -461,6 +461,75 @@ paddling             | similarity: 0.6424</code></pre>
 </section>
 
 <section>
+<section id="python-primer" class="title-slide slide level1 center">
+<h1>Python Primer</h1>
+
+</section>
+<section id="what-is-python" class="slide level2">
+<h2>What is Python?</h2>
+<ul>
+<li class="fragment"><strong>Interpreted language</strong> (vs.&nbsp;compiled like C++ or C#)
+<ul>
+<li class="fragment">No compilation step - code runs directly</li>
+<li class="fragment">Interactive and flexible, great for experimentation</li>
+</ul></li>
+<li class="fragment">Created by Guido van Rossum in 1991
+<ul>
+<li class="fragment">Python 2 (2000-2020), Python 3 (2008-present)</li>
+<li class="fragment">We’ll use Python 3.13</li>
+</ul></li>
+<li class="fragment"><strong>Cross-platform</strong>: Runs on Windows, macOS, Linux</li>
+<li class="fragment"><strong>Dynamically typed</strong>: No need to declare variable types</li>
+<li class="fragment"><strong>The language of AI/ML</strong>: Vast ecosystem of libraries (NumPy, TensorFlow, PyTorch, Transformers)</li>
+</ul>
+</section>
+<section id="variables-and-data-types" class="slide level2">
+<h2>Variables and Data Types</h2>
+<ul>
+<li class="fragment">Variables store data (no type declaration needed)
+<ul>
+<li class="fragment"><code>x = 42</code> (integer)</li>
+<li class="fragment"><code>name = "Alice"</code> (string)</li>
+<li class="fragment"><code>pi = 3.14</code> (float)</li>
+</ul></li>
+<li class="fragment">Lists hold multiple values
+<ul>
+<li class="fragment"><code>numbers = [1, 2, 3, 4, 5]</code></li>
+<li class="fragment"><code>words = ["cat", "dog", "bird"]</code></li>
+</ul></li>
+<li class="fragment">Access with square brackets: <code>numbers[0]</code> returns <code>1</code></li>
+</ul>
+</section>
+<section id="functions" class="slide level2">
+<h2>Functions</h2>
+<ul>
+<li class="fragment">Functions perform actions
+<ul>
+<li class="fragment">Built-in: <code>print("Hello")</code>, <code>len([1, 2, 3])</code></li>
+<li class="fragment">Define your own: <code>def greet(name): return f"Hello {name}"</code></li>
+<li class="fragment">Indentation vs.&nbsp;braces</li>
+<li class="fragment">Support for classes (although used rarely in AI/ML)</li>
+</ul></li>
+</ul>
+</section>
+<section id="libraries-and-packages" class="slide level2">
+<h2>Libraries and Packages</h2>
+<ul>
+<li class="fragment">Libraries extend Python’s capabilities
+<ul>
+<li class="fragment"><code>import math</code> - mathematical functions</li>
+<li class="fragment"><code>from transformers import AutoModel</code> - import specific components</li>
+</ul></li>
+<li class="fragment">Use dot notation to access: <code>math.sqrt(16)</code></li>
+<li class="fragment"><strong>Package management</strong>
+<ul>
+<li class="fragment"><code>pip</code> - standard package installer (similar to NuGet for C#)</li>
+<li class="fragment"><code>uv</code> - modern, faster alternative to pip</li>
+<li class="fragment">PyPI (Python Package Index) - central repository with 500K+ packages</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
 <section id="introducing-notebooks" class="title-slide slide level1 center">
 <h1>Introducing Notebooks</h1>
 
@@ -544,8 +613,8 @@ paddling             | similarity: 0.6424</code></pre>
 </ul></li>
 </ul>
 </section>
-<section id="advantages-of-google-colab" class="slide level2">
-<h2>Advantages of Google Colab</h2>
+<section id="why-recommend-google-colab" class="slide level2">
+<h2>Why Recommend Google Colab?</h2>
 <ul>
 <li class="fragment">Access to GPUs and TPUs for AI-based tasks
 <ul>
@@ -594,9 +663,9 @@ paddling             | similarity: 0.6424</code></pre>
 <ul>
 <li class="fragment">Some researchers tried character-level models
 <ul>
-<li class="fragment">Small vocabulary (26 letters + puntuation for English)</li>
+<li class="fragment">Small vocabulary (26 letters + punctuation for English)</li>
 <li class="fragment">But very long sequences</li>
-<li class="fragment">And hard to extra meaning</li>
+<li class="fragment">And hard to extract meaning</li>
 </ul></li>
 </ul>
 </section>
@@ -623,9 +692,12 @@ paddling             | similarity: 0.6424</code></pre>
 <li class="fragment">Balance between word level (large vocab) and character level (long sequences)
 <ul>
 <li class="fragment">Supports related words: <strong>[“Run”]</strong> and <strong>[“Run”, “ning”]</strong></li>
-<li class="fragment">Supports unknown words</li>
-<li class="fragment">30-50K tokens vs.&nbsp;100K</li>
-<li class="fragment">Also works well for non-English languages</li>
+<li class="fragment">30-50K tokens vs.&nbsp;100K, and works well for non-English languages</li>
+</ul></li>
+<li class="fragment">Foundations of today’s tokenization
+<ul>
+<li class="fragment">API costs are measured in tokens</li>
+<li class="fragment">Different models use different tokenizers</li>
 </ul></li>
 </ul>
 </section>
@@ -1030,11 +1102,41 @@ Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&
 <p>GPT-2 notebook in Colab</p>
 </section>
 
+<section>
 <section id="hands-on-2" class="title-slide slide level1 center">
 <h1>Hands-On</h1>
 <p>Experiment with your own phrases in the GPT-2.ipynb notebook</p>
 </section>
+<section id="limitations-of-gpt-2" class="slide level2">
+<h2>Limitations of GPT-2</h2>
+<ul>
+<li class="fragment">Hallucinations / factual errors</li>
+<li class="fragment">No real-world grounding</li>
+<li class="fragment">Repetition issues</li>
+<li class="fragment">Onwards to GPT-3 and beyond…</li>
+</ul>
+</section></section>
+<section>
+<section id="looking-ahead-to-next-week" class="title-slide slide level1 center">
+<h1>Looking Ahead to Next Week</h1>
 
+</section>
+<section id="looking-ahead-to-next-week-1" class="slide level2">
+<h2>Looking Ahead to Next Week</h2>
+<ul>
+<li class="fragment"><a href="https://simonguest.github.io/CS-394/src/01/assignment.html" class="external" target="_blank">This week’s assignment!</a></li>
+<li class="fragment">New to Python?
+<ul>
+<li class="fragment"><a href="https://www.learnpythonwithjupyter.com/" class="external" target="_blank">Learn Python with Jupyter</a></li>
+</ul></li>
+<li class="fragment">Next Week’s Topics
+<ul>
+<li class="fragment">Instruction-tuned models</li>
+<li class="fragment">OpenAI specification</li>
+<li class="fragment">Gradio for chat-based UIs</li>
+</ul></li>
+</ul>
+</section></section>
 <section>
 <section id="references" class="title-slide slide level1 center">
 <h1>References</h1>

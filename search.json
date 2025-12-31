@@ -523,6 +523,50 @@
     ]
   },
   {
+    "objectID": "src/01/slides.html#what-is-python",
+    "href": "src/01/slides.html#what-is-python",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "What is Python?",
+    "text": "What is Python?\n\nInterpreted language (vs. compiled like C++ or C#)\n\nNo compilation step - code runs directly\nInteractive and flexible, great for experimentation\n\nCreated by Guido van Rossum in 1991\n\nPython 2 (2000-2020), Python 3 (2008-present)\nWe’ll use Python 3.13\n\nCross-platform: Runs on Windows, macOS, Linux\nDynamically typed: No need to declare variable types\nThe language of AI/ML: Vast ecosystem of libraries (NumPy, TensorFlow, PyTorch, Transformers)",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#variables-and-data-types",
+    "href": "src/01/slides.html#variables-and-data-types",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Variables and Data Types",
+    "text": "Variables and Data Types\n\nVariables store data (no type declaration needed)\n\nx = 42 (integer)\nname = \"Alice\" (string)\npi = 3.14 (float)\n\nLists hold multiple values\n\nnumbers = [1, 2, 3, 4, 5]\nwords = [\"cat\", \"dog\", \"bird\"]\n\nAccess with square brackets: numbers[0] returns 1",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#functions",
+    "href": "src/01/slides.html#functions",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Functions",
+    "text": "Functions\n\nFunctions perform actions\n\nBuilt-in: print(\"Hello\"), len([1, 2, 3])\nDefine your own: def greet(name): return f\"Hello {name}\"\nIndentation vs. braces\nSupport for classes (although used rarely in AI/ML)",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#libraries-and-packages",
+    "href": "src/01/slides.html#libraries-and-packages",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Libraries and Packages",
+    "text": "Libraries and Packages\n\nLibraries extend Python’s capabilities\n\nimport math - mathematical functions\nfrom transformers import AutoModel - import specific components\n\nUse dot notation to access: math.sqrt(16)\nPackage management\n\npip - standard package installer (similar to NuGet for C#)\nuv - modern, faster alternative to pip\nPyPI (Python Package Index) - central repository with 500K+ packages",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "src/01/slides.html#what-is-a-notebook",
     "href": "src/01/slides.html#what-is-a-notebook",
     "title": "Week 1: Foundations of Generative AI",
@@ -567,11 +611,11 @@
     ]
   },
   {
-    "objectID": "src/01/slides.html#advantages-of-google-colab",
-    "href": "src/01/slides.html#advantages-of-google-colab",
+    "objectID": "src/01/slides.html#why-recommend-google-colab",
+    "href": "src/01/slides.html#why-recommend-google-colab",
     "title": "Week 1: Foundations of Generative AI",
-    "section": "Advantages of Google Colab",
-    "text": "Advantages of Google Colab\n\nAccess to GPUs and TPUs for AI-based tasks\n\ne.g., A100 and H100 with 40Gb/80Gb VRAM\n\nModel downloaded between cloud vendors\n\nvs. downloading large models via the DigiPen network\n\nMany libraries pre-installed\nEasy to share notebooks with others\nGenerous (free) GPU limits for students!",
+    "section": "Why Recommend Google Colab?",
+    "text": "Why Recommend Google Colab?\n\nAccess to GPUs and TPUs for AI-based tasks\n\ne.g., A100 and H100 with 40Gb/80Gb VRAM\n\nModel downloaded between cloud vendors\n\nvs. downloading large models via the DigiPen network\n\nMany libraries pre-installed\nEasy to share notebooks with others\nGenerous (free) GPU limits for students!",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -593,7 +637,7 @@
     "href": "src/01/slides.html#challenges-with-word-embeddings-1",
     "title": "Week 1: Foundations of Generative AI",
     "section": "Challenges with Word Embeddings",
-    "text": "Challenges with Word Embeddings\n\nSome researchers tried character-level models\n\nSmall vocabulary (26 letters + puntuation for English)\nBut very long sequences\nAnd hard to extra meaning",
+    "text": "Challenges with Word Embeddings\n\nSome researchers tried character-level models\n\nSmall vocabulary (26 letters + punctuation for English)\nBut very long sequences\nAnd hard to extract meaning",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -615,7 +659,7 @@
     "href": "src/01/slides.html#byte-pair-encoding-bpe-1",
     "title": "Week 1: Foundations of Generative AI",
     "section": "2016: Byte Pair Encoding (BPE)",
-    "text": "2016: Byte Pair Encoding (BPE)\n\nBreaks words into frequent subword units (a.k.a. tokens)\n\n“unbelievable” → [“un”, “believ”, “able”]\n\nBalance between word level (large vocab) and character level (long sequences)\n\nSupports related words: [“Run”] and [“Run”, “ning”]\nSupports unknown words\n30-50K tokens vs. 100K\nAlso works well for non-English languages",
+    "text": "2016: Byte Pair Encoding (BPE)\n\nBreaks words into frequent subword units (a.k.a. tokens)\n\n“unbelievable” → [“un”, “believ”, “able”]\n\nBalance between word level (large vocab) and character level (long sequences)\n\nSupports related words: [“Run”] and [“Run”, “ning”]\n30-50K tokens vs. 100K, and works well for non-English languages\n\nFoundations of today’s tokenization\n\nAPI costs are measured in tokens\nDifferent models use different tokenizers",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -825,6 +869,28 @@
     "title": "Week 1: Foundations of Generative AI",
     "section": "Example",
     "text": "Example\n\n\nprompt = \"Mary had a little lamb\"\ncompletion = autocomplete(prompt, max_length=80)\nprint(completion)\n\nMary had a little lamb, and the young woman asked her for a little lamb, and they gave it to her.\n\n\"Oh, my child, it is good to have a little lamb,\" said he, \"but it is not to be bought, for it is hard to make, and it is much more difficult to make.\n\n\"When you have a little lamb, it",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#limitations-of-gpt-2",
+    "href": "src/01/slides.html#limitations-of-gpt-2",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Limitations of GPT-2",
+    "text": "Limitations of GPT-2\n\nHallucinations / factual errors\nNo real-world grounding\nRepetition issues\nOnwards to GPT-3 and beyond…",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#looking-ahead-to-next-week-1",
+    "href": "src/01/slides.html#looking-ahead-to-next-week-1",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Looking Ahead to Next Week",
+    "text": "Looking Ahead to Next Week\n\nThis week’s assignment!\nNew to Python?\n\nLearn Python with Jupyter\n\nNext Week’s Topics\n\nInstruction-tuned models\nOpenAI specification\nGradio for chat-based UIs",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
