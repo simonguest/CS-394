@@ -89,6 +89,50 @@ bibliography: references.bib
 
 # Let's Run Some Code!
 
+# Python Primer
+
+## What is Python?
+
+- **Interpreted language** (vs. compiled like C++ or C#)
+  - No compilation step - code runs directly
+  - Interactive and flexible, great for experimentation
+- Created by Guido van Rossum in 1991
+  - Python 2 (2000-2020), Python 3 (2008-present)
+  - We'll use Python 3.13
+- **Cross-platform**: Runs on Windows, macOS, Linux
+- **Dynamically typed**: No need to declare variable types
+- **The language of AI/ML**: Vast ecosystem of libraries (NumPy, TensorFlow, PyTorch, Transformers)
+
+## Variables and Data Types
+
+- Variables store data (no type declaration needed)
+  - `x = 42` (integer)
+  - `name = "Alice"` (string)
+  - `pi = 3.14` (float)
+- Lists hold multiple values
+  - `numbers = [1, 2, 3, 4, 5]`
+  - `words = ["cat", "dog", "bird"]`
+- Access with square brackets: `numbers[0]` returns `1`
+
+## Functions
+
+- Functions perform actions
+  - Built-in: `print("Hello")`, `len([1, 2, 3])`
+  - Define your own: `def greet(name): return f"Hello {name}"`
+  - Indentation vs. braces
+  - Support for classes (although used rarely in AI/ML)
+
+## Libraries and Packages
+
+- Libraries extend Python's capabilities
+  - `import math` - mathematical functions
+  - `from transformers import AutoModel` - import specific components
+- Use dot notation to access: `math.sqrt(16)`
+- **Package management**
+  - `pip` - standard package installer (similar to NuGet for C#)
+  - `uv` - modern, faster alternative to pip
+  - PyPI (Python Package Index) - central repository with 500K+ packages
+
 # Introducing Notebooks
 
 ## What is a Notebook?
@@ -138,7 +182,7 @@ bibliography: references.bib
    - Free(-ish) GPU access
    - Can also access local GPU
 
-## Advantages of Google Colab
+## Why Recommend Google Colab?
 
 - Access to GPUs and TPUs for AI-based tasks
   - e.g., A100 and H100 with 40Gb/80Gb VRAM
@@ -170,9 +214,9 @@ Setup Colab, get the two notebooks up and running (hello-world, word2vec)
 ## Challenges with Word Embeddings
 
 - Some researchers tried character-level models
-  - Small vocabulary (26 letters + puntuation for English)
+  - Small vocabulary (26 letters + punctuation for English)
   - But very long sequences
-  - And hard to extra meaning
+  - And hard to extract meaning
 
 ## 2016: Byte Pair Encoding (BPE)
 
@@ -187,9 +231,10 @@ Setup Colab, get the two notebooks up and running (hello-world, word2vec)
   - "unbelievable" → **["un", "believ", "able"]**
 - Balance between word level (large vocab) and character level (long sequences)
   - Supports related words: **["Run"]** and **["Run", "ning"]**
-  - Supports unknown words
-  - 30-50K tokens vs. 100K
-  - Also works well for non-English languages
+  - 30-50K tokens vs. 100K, and works well for non-English languages
+- Foundations of today's tokenization
+  - API costs are measured in tokens
+  - Different models use different tokenizers
 
 ## Search for Context
 
@@ -339,6 +384,25 @@ GPT-2 notebook in Colab
 # Hands-On
 
 Experiment with your own phrases in the GPT-2.ipynb notebook
+
+## Limitations of GPT-2
+
+- Hallucinations / factual errors
+- No real-world grounding
+- Repetition issues
+- Onwards to GPT-3 and beyond...
+
+# Looking Ahead to Next Week
+
+## Looking Ahead to Next Week
+
+- [This week's assignment!](https://simonguest.github.io/CS-394/src/01/assignment.html){.external target="_blank"}
+- New to Python?
+  - [Learn Python with Jupyter](https://www.learnpythonwithjupyter.com/){.external target="_blank"}
+- Next Week's Topics
+  - Instruction-tuned models
+  - OpenAI specification
+  - Gradio for chat-based UIs
 
 # References
 
