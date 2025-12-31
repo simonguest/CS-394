@@ -622,8 +622,8 @@
     ]
   },
   {
-    "objectID": "src/01/slides.html#challenges-with-word-embeddings",
-    "href": "src/01/slides.html#challenges-with-word-embeddings",
+    "objectID": "src/01/slides.html#challenges-with-word-embeddings-1",
+    "href": "src/01/slides.html#challenges-with-word-embeddings-1",
     "title": "Week 1: Foundations of Generative AI",
     "section": "Challenges with Word Embeddings",
     "text": "Challenges with Word Embeddings\n\nLarge vocabularies\n\n100K+ words\nAnd not particularly friendly to non-English vocabularies\n\nLittle representation between certain words\n\n“Run” and “Running” should be related\n\nLack of context\n\nEmbedding for the word “bank” is the same, regardless of context\nRiver bank != Savings bank",
@@ -633,8 +633,8 @@
     ]
   },
   {
-    "objectID": "src/01/slides.html#challenges-with-word-embeddings-1",
-    "href": "src/01/slides.html#challenges-with-word-embeddings-1",
+    "objectID": "src/01/slides.html#challenges-with-word-embeddings-2",
+    "href": "src/01/slides.html#challenges-with-word-embeddings-2",
     "title": "Week 1: Foundations of Generative AI",
     "section": "Challenges with Word Embeddings",
     "text": "Challenges with Word Embeddings\n\nSome researchers tried character-level models\n\nSmall vocabulary (26 letters + punctuation for English)\nBut very long sequences\nAnd hard to extract meaning",
@@ -875,8 +875,8 @@
     ]
   },
   {
-    "objectID": "src/01/slides.html#limitations-of-gpt-2",
-    "href": "src/01/slides.html#limitations-of-gpt-2",
+    "objectID": "src/01/slides.html#limitations-of-gpt-2-1",
+    "href": "src/01/slides.html#limitations-of-gpt-2-1",
     "title": "Week 1: Foundations of Generative AI",
     "section": "Limitations of GPT-2",
     "text": "Limitations of GPT-2\n\nHallucinations / factual errors\nNo real-world grounding\nRepetition issues\nOnwards to GPT-3 and beyond…",
