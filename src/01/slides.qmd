@@ -200,6 +200,8 @@ Hello World and Word2Vec notebooks in **Colab**, **VS Code**, and **Local Jupyte
 
 Setup Colab, get the two notebooks up and running (hello-world, word2vec)
 
+# Challenges with Word Embeddings
+
 ## Challenges with Word Embeddings
 
 - Large vocabularies
@@ -384,6 +386,8 @@ GPT-2 notebook in Colab
 # Hands-On
 
 Experiment with your own phrases in the GPT-2.ipynb notebook
+
+# Limitations of GPT-2
 
 ## Limitations of GPT-2
 
