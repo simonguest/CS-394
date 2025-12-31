@@ -206,6 +206,7 @@
       margin-right: 0; 
     }
   </style>
+  <meta name="mermaid-theme" content="neutral">
   <script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
   <script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
   <link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
@@ -560,11 +561,7 @@ paddling             | similarity: 0.6424</code></pre>
     Transformer[Transformer]
     Output["Output: 'Hello, how are you?'"]
     
-    Input --&gt; Tokenize --&gt; Transformer --&gt; Decode --&gt; Output
-    
-    style Transformer fill:#4A90E2,stroke:#2E5C8A,stroke-width:3px,color:#fff
-    style Input fill:#E8F4F8,stroke:#4A90E2,stroke-width:2px
-    style Output fill:#E8F4F8,stroke:#4A90E2,stroke-width:2px</pre>
+    Input --&gt; Tokenize --&gt; Transformer --&gt; Decode --&gt; Output</pre>
 </div>
 </div>
 </div>
@@ -588,13 +585,7 @@ paddling             | similarity: 0.6424</code></pre>
     Output["Output: 'Hello, how are you?'"]
     
     Input --&gt; Tokenize --&gt; Encoder
-    Decoder --&gt; Decode --&gt; Output
-    
-    style Encoder fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
-    style Decoder fill:#E67E22,stroke:#C0652A,stroke-width:2px,color:#fff
-    style Input fill:#E8F4F8,stroke:#4A90E2,stroke-width:2px
-    style Output fill:#FCE8D8,stroke:#E67E22,stroke-width:2px
-    style Transformer fill:#f9f9f9,stroke:#333,stroke-width:2px</pre>
+    Decoder --&gt; Decode --&gt; Output</pre>
 </div>
 </div>
 </div>
@@ -625,13 +616,7 @@ paddling             | similarity: 0.6424</code></pre>
     Output["Output: 'Hello, how are you?'"]
     
     Input --&gt; Tokenize --&gt; E
-    D --&gt; Decode --&gt; Output
-    
-    style E fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
-    style D fill:#E67E22,stroke:#C0652A,stroke-width:2px,color:#fff
-    style Input fill:#E8F4F8,stroke:#4A90E2,stroke-width:2px
-    style Output fill:#FCE8D8,stroke:#E67E22,stroke-width:2px
-    style Transformer fill:#f9f9f9,stroke:#333,stroke-width:2px</pre>
+    D --&gt; Decode --&gt; Output</pre>
 </div>
 </div>
 </div>
@@ -729,7 +714,7 @@ Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&
 <div class="cell-output-display">
 <div id="transformer-4">
 <div>
-<pre class="mermaid mermaid-js" data-label="transformer-4">graph TB
+<pre class="mermaid mermaid-js" data-label="transformer-4">graph LR
     Input["Input: 'Bonjour, comment allez-vous?'"]
     
     subgraph Transformer
@@ -763,22 +748,7 @@ Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&
     Output["Output: 'Hello, how are you?'"]
     
     Input --&gt; E_SelfAttn
-    D_AddNorm3 --&gt; Output
-    
-    style E_SelfAttn fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
-    style E_FFN fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
-    style E_AddNorm1 fill:#A8D5F2,stroke:#4A90E2,stroke-width:1px,color:#000
-    style E_AddNorm2 fill:#A8D5F2,stroke:#4A90E2,stroke-width:1px,color:#000
-    
-    style D_SelfAttn fill:#E67E22,stroke:#C0652A,stroke-width:2px,color:#fff
-    style D_CrossAttn fill:#E67E22,stroke:#C0652A,stroke-width:2px,color:#fff
-    style D_FFN fill:#E67E22,stroke:#C0652A,stroke-width:2px,color:#fff
-    style D_AddNorm1 fill:#F8C9A8,stroke:#E67E22,stroke-width:1px,color:#000
-    style D_AddNorm2 fill:#F8C9A8,stroke:#E67E22,stroke-width:1px,color:#000
-    style D_AddNorm3 fill:#F8C9A8,stroke:#E67E22,stroke-width:1px,color:#000
-    
-    style Input fill:#E8F4F8,stroke:#4A90E2,stroke-width:2px
-    style Output fill:#FCE8D8,stroke:#E67E22,stroke-width:2px</pre>
+    D_AddNorm3 --&gt; Output</pre>
 </div>
 </div>
 </div>
