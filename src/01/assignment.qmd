@@ -1,18 +1,27 @@
 ---
-title: "Week 1 Assignment - Build Your Own Text Continuation Style"
+title: "Week 1 Assignment - Experiment with Text Continuation Styles"
 format: html
 execute:
   enabled: false
 ---
-**Objective:** Create a Colab notebook that uses GPT-2 to generate creative text continuations with different "personalities" or styles.
+**Objective:** Create a Colab notebook that uses GPT-2 to generate creative text continuations with different styles.
 
 **Requirements:**
 
-- Load a pre-trained GPT-2 model (using HuggingFace transformers - same to what was demonstrated in GPT-2.ipynb)
-- Create 3 different prompt templates that guide the model toward different styles (e.g., "Write like a pirate:", "Explain like I'm 5:", "As a news reporter:")
-- For each template, generate text using two different sampling strategies (e.g., greedy vs. temperature sampling)
-- Compare and document the outputs (using Markdown in the notebook) - what differences do you notice?
-- **Creative component:** Design your own custom prompt that produces interesting or useful outputs
+- Load a pre-trained GPT-2 model (using HuggingFace transformers - same approach as used in GPT-2.ipynb)
+- Create 3 different story starters in different genres/styles. For example:
+  - Fantasy/Adventure: "In a land of dragons and magic..."
+  - Sci-fi: "The year is 2157. Humanity has just..."
+  - Mystery: "The detective examined the crime scene and noticed..."
+  - (or choose your own three)
+- Then adjust for:
+  - Greedy decoding vs. sampling
+  - Different temperature values
+  - How the opening sentence shapes the continuation (e.g., short vs. long)
+- Document your observations (using Markdown in the notebook)
+  - What differences do you notice between the strategies?
+  - What worked well (or surprised you!)
+  - What didn't work that well
 
 **Deliverable: A Colab/Jupyter notebook with:**
 
@@ -22,28 +31,9 @@ execute:
 
 **Hint:**
 
-For best results, use a larger GPT-2 model on Colab.
+For better results, use a larger GPT-2 model on Colab T4.
 
 ```{python}
 tokenizer = GPT2Tokenizer.from_pretrained("gpt2-medium")
 model = GPT2LMHeadModel.from_pretrained("gpt2-medium")
-```
-
-Remember GPT-2 is a completion model (not instruction tuned), so you'll need to create a template that provides examples for the model:
-
-```{python}
-prompt_template = """Rewrite sentences as a pirate would say them:
-
-Normal: I'm going to the market.
-Pirate: Arrr, I be sailin' to the marketplace, matey!
-
-Normal: That's a beautiful ship.
-Pirate: Shiver me timbers, that be a fine vessel!
-
-Normal: {user_input}
-Pirate:"""
-
-# Example usage:
-user_input = "Can you help me find my keys?"
-prompt = prompt_template.format(user_input=user_input)
 ```

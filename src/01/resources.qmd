@@ -5,6 +5,10 @@
 - [A Visual Introduction to Vector Embeddings, Pamela Fox](https://blog.pamelafox.org/2025/05/a-visual-exploration-of-vector.html){.external target="_blank"}
 - [A Visual Exploration of Vectors, Pamela Fox](https://drive.google.com/file/d/1pnI2XGxwhQQDKF2Ktl2XvaUUf294_-Qe/view){.external target="_blank"}
 
+## Transformers
+
+- [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/){.external target="_blank"}
+
 ## Introduction to Notebooks
 
 - [Google Colab Sign-up Page](https://colab.research.google.com/signup){.external target="_blank"}
@@ -14,6 +18,6 @@
 
 - [Learn Python with Jupyter, Serena Bonaretti](https://www.learnpythonwithjupyter.com/){.external target="_blank"}
 
-## Transformers
+## Citations
 
-- [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/){.external target="_blank"}
+- [References Slide](https://simonguest.github.io/CS-394/src/01/slides.html#/references-1){.external target="_blank"}
