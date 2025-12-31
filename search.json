@@ -1,97 +1,97 @@
 [
   {
-    "objectID": "src/01/word2vec.html",
-    "href": "src/01/word2vec.html",
+    "objectID": "src/01/notebooks/word2vec.html",
+    "href": "src/01/notebooks/word2vec.html",
     "title": "Word2Vec",
     "section": "",
     "text": "This notebook explores Word2Vec embeddings to understand how they capture semantic relationships.\nUses pre-trained embeddings from Google News (trained on ~100 billion words).\n# Install required packages\n!uv pip install gensim numpy matplotlib scikit-learn -q",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
-      "Hands-on Notebooks",
+      "Notebooks",
       "word2vec.ipynb"
     ]
   },
   {
-    "objectID": "src/01/word2vec.html#load-pretrained-word2vec-model",
-    "href": "src/01/word2vec.html#load-pretrained-word2vec-model",
+    "objectID": "src/01/notebooks/word2vec.html#load-pretrained-word2vec-model",
+    "href": "src/01/notebooks/word2vec.html#load-pretrained-word2vec-model",
     "title": "Word2Vec",
     "section": "Load Pretrained Word2Vec Model",
     "text": "Load Pretrained Word2Vec Model\n\nimport gensim.downloader as api\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.manifold import TSNE\nfrom sklearn.decomposition import PCA\nimport warnings\nwarnings.filterwarnings('ignore')\n\n# Load pre-trained Word2Vec model (Google News, 300-dimensional vectors)\nprint(\"Loading Word2Vec model...\")\nmodel = api.load('word2vec-google-news-300')\nprint(f\"Model loaded. Vocabulary size: {len(model)} words\")\nprint(f\"Vector dimension: {model.vector_size}\") # type: ignore\n\nLoading Word2Vec model...\nModel loaded. Vocabulary size: 3000000 words\nVector dimension: 300\n\n\n\nword = \"cat\"\nvector = model[word] # type: ignore\nvector[:10]\n\narray([ 0.0123291 ,  0.20410156, -0.28515625,  0.21679688,  0.11816406,\n        0.08300781,  0.04980469, -0.00952148,  0.22070312, -0.12597656],\n      dtype=float32)\n\n\n\nword = \"dog\"\nvector = model[word] # type: ignore\nvector[:10]\n\narray([ 0.05126953, -0.02233887, -0.17285156,  0.16113281, -0.08447266,\n        0.05737305,  0.05859375, -0.08251953, -0.01538086, -0.06347656],\n      dtype=float32)\n\n\n\nword = \"pizza\"\nvector = model[word] # type: ignore\nvector[:10]\n\narray([-1.2597656e-01,  2.5390625e-02,  1.6699219e-01,  5.5078125e-01,\n       -7.6660156e-02,  1.2890625e-01,  1.0253906e-01, -3.9482117e-04,\n        1.2158203e-01,  4.3212891e-02], dtype=float32)",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
-      "Hands-on Notebooks",
+      "Notebooks",
       "word2vec.ipynb"
     ]
   },
   {
-    "objectID": "src/01/word2vec.html#find-similar-words",
-    "href": "src/01/word2vec.html#find-similar-words",
+    "objectID": "src/01/notebooks/word2vec.html#find-similar-words",
+    "href": "src/01/notebooks/word2vec.html#find-similar-words",
     "title": "Word2Vec",
     "section": "Find Similar Words",
     "text": "Find Similar Words\nWords with similar meanings have similar vectors.\n\ndef find_similar_words(word, top_n=10):\n    \"\"\"Find the most similar words to a given word.\"\"\"\n    try:\n        similar = model.most_similar(word, topn=top_n) # type: ignore\n        print(f\"\\nWords most similar to '{word}':\")\n        print(\"-\" * 40)\n        for similar_word, similarity in similar:\n            print(f\"{similar_word:20s} | similarity: {similarity:.4f}\")\n    except KeyError:\n        print(f\"Word '{word}' not in vocabulary\")\n\n\nfind_similar_words(\"cat\")\nfind_similar_words(\"dog\")\nfind_similar_words(\"pizza\")\n\n\nWords most similar to 'cat':\n----------------------------------------\ncats                 | similarity: 0.8099\ndog                  | similarity: 0.7609\nkitten               | similarity: 0.7465\nfeline               | similarity: 0.7326\nbeagle               | similarity: 0.7151\npuppy                | similarity: 0.7075\npup                  | similarity: 0.6934\npet                  | similarity: 0.6892\nfelines              | similarity: 0.6756\nchihuahua            | similarity: 0.6710\n\nWords most similar to 'dog':\n----------------------------------------\ndogs                 | similarity: 0.8680\npuppy                | similarity: 0.8106\npit_bull             | similarity: 0.7804\npooch                | similarity: 0.7627\ncat                  | similarity: 0.7609\ngolden_retriever     | similarity: 0.7501\nGerman_shepherd      | similarity: 0.7465\nRottweiler           | similarity: 0.7438\nbeagle               | similarity: 0.7419\npup                  | similarity: 0.7407\n\nWords most similar to 'pizza':\n----------------------------------------\npizzas               | similarity: 0.7863\nDomino_pizza         | similarity: 0.7343\nPizza                | similarity: 0.6988\npepperoni_pizza      | similarity: 0.6903\nsandwich             | similarity: 0.6840\nburger               | similarity: 0.6570\nsandwiches           | similarity: 0.6495\ntakeout_pizza        | similarity: 0.6492\ngourmet_pizza        | similarity: 0.6401\nmeatball_sandwich    | similarity: 0.6377",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
-      "Hands-on Notebooks",
+      "Notebooks",
       "word2vec.ipynb"
     ]
   },
   {
-    "objectID": "src/01/word2vec.html#compute-similarity",
-    "href": "src/01/word2vec.html#compute-similarity",
+    "objectID": "src/01/notebooks/word2vec.html#compute-similarity",
+    "href": "src/01/notebooks/word2vec.html#compute-similarity",
     "title": "Word2Vec",
     "section": "Compute Similarity",
     "text": "Compute Similarity\n\ndef compute_similarity(word1, word2):\n    \"\"\"Compute cosine similarity between two words.\"\"\"\n    try:\n        similarity = model.similarity(word1, word2) # type: ignore\n        print(f\"Similarity between '{word1}' and '{word2}': {similarity:.4f}\")\n    except KeyError as e:\n        print(f\"Word not in vocabulary: {e}\")\n\n\ncompute_similarity('cat', 'dog')\ncompute_similarity('cat', 'kitten')\ncompute_similarity('cat', 'car')\ncompute_similarity('doctor', 'hospital')\ncompute_similarity('king', 'queen')\n\nSimilarity between 'cat' and 'dog': 0.7609\nSimilarity between 'cat' and 'kitten': 0.7465\nSimilarity between 'cat' and 'car': 0.2153\nSimilarity between 'doctor' and 'hospital': 0.5143\nSimilarity between 'king' and 'queen': 0.6511",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
-      "Hands-on Notebooks",
+      "Notebooks",
       "word2vec.ipynb"
     ]
   },
   {
-    "objectID": "src/01/word2vec.html#vector-arithmetic",
-    "href": "src/01/word2vec.html#vector-arithmetic",
+    "objectID": "src/01/notebooks/word2vec.html#vector-arithmetic",
+    "href": "src/01/notebooks/word2vec.html#vector-arithmetic",
     "title": "Word2Vec",
     "section": "Vector Arithmetic",
     "text": "Vector Arithmetic\n\ndef vector_arithmetic(positive, negative, top_n=5):\n    \"\"\"Perform vector arithmetic: positive words - negative words.\"\"\"\n    try:\n        result = model.most_similar(positive=positive, negative=negative, topn=top_n) # type: ignore\n        print(f\"\\n{' + '.join(positive)} - {' - '.join(negative)}:\")\n        print(\"-\" * 50)\n        for word, similarity in result:\n            print(f\"{word:20s} | similarity: {similarity:.4f}\")\n    except KeyError as e:\n        print(f\"Word not in vocabulary: {e}\")\n\n\nvector_arithmetic(['king', 'woman'], ['man'])\nvector_arithmetic(['Paris', 'Italy'], ['France'])\nvector_arithmetic(['walking', 'swim'], ['walk'])\n\n\nking + woman - man:\n--------------------------------------------------\nqueen                | similarity: 0.7118\nmonarch              | similarity: 0.6190\nprincess             | similarity: 0.5902\ncrown_prince         | similarity: 0.5499\nprince               | similarity: 0.5377\n\nParis + Italy - France:\n--------------------------------------------------\nMilan                | similarity: 0.7222\nRome                 | similarity: 0.7028\nPalermo_Sicily       | similarity: 0.5968\nItalian              | similarity: 0.5911\nTuscany              | similarity: 0.5633\n\nwalking + swim - walk:\n--------------------------------------------------\nswimming             | similarity: 0.8246\nswam                 | similarity: 0.6807\nswims                | similarity: 0.6538\nswimmers             | similarity: 0.6495\npaddling             | similarity: 0.6424",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
-      "Hands-on Notebooks",
+      "Notebooks",
       "word2vec.ipynb"
     ]
   },
   {
-    "objectID": "src/01/word2vec.html#d-visualization",
-    "href": "src/01/word2vec.html#d-visualization",
+    "objectID": "src/01/notebooks/word2vec.html#d-visualization",
+    "href": "src/01/notebooks/word2vec.html#d-visualization",
     "title": "Word2Vec",
     "section": "2D Visualization",
     "text": "2D Visualization\n\ndef visualize_words(words, method='tsne'):\n    \"\"\"Visualize word embeddings in 2D.\"\"\"\n    # Get vectors for words that exist in vocabulary\n    valid_words = [w for w in words if w in model]\n    if len(valid_words) &lt; 2:\n        print(\"Need at least 2 valid words to visualize\")\n        return\n    \n    vectors = np.array([model[w] for w in valid_words])\n    \n    # Reduce to 2D\n    if method == 'tsne':\n        reducer = TSNE(n_components=2, random_state=42, perplexity=min(5, len(valid_words)-1))\n    else:\n        reducer = PCA(n_components=2, random_state=42)\n    \n    vectors_2d = reducer.fit_transform(vectors)\n    \n    # Plot\n    plt.figure(figsize=(12, 8))\n    plt.scatter(vectors_2d[:, 0], vectors_2d[:, 1], s=200, alpha=0.6)\n    \n    for i, word in enumerate(valid_words):\n        plt.annotate(word, \n                    xy=(vectors_2d[i, 0], vectors_2d[i, 1]),\n                    xytext=(5, 5),\n                    textcoords='offset points',\n                    fontsize=12,\n                    fontweight='bold')\n    \n    plt.title(f'Word Embeddings Visualization ({method.upper()})', fontsize=16)\n    plt.xlabel('Dimension 1')\n    plt.ylabel('Dimension 2')\n    plt.grid(True, alpha=0.3)\n    plt.tight_layout()\n    plt.show()\n\nwords = ['cat', 'dog', 'kitten', 'puppy', 'lion', 'tiger', 'elephant', 'mouse', 'chicken', 'rat']\nvisualize_words(words)",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
-      "Hands-on Notebooks",
+      "Notebooks",
       "word2vec.ipynb"
     ]
   },
   {
-    "objectID": "src/01/sentence-transformer.html",
-    "href": "src/01/sentence-transformer.html",
+    "objectID": "src/01/notebooks/sentence-transformer.html",
+    "href": "src/01/notebooks/sentence-transformer.html",
     "title": "Sentence Transformer",
     "section": "",
     "text": "In this notebook, we use the SentenceTransformer model to encode various sentences and test the cosine similarity between them.\n     \n\n# Install required packages\n!uv pip install sentence-transformers -q\n\n\nfrom sentence_transformers import SentenceTransformer\nmodel = SentenceTransformer('all-MiniLM-L6-v2')\n\n\nembeddings = model.encode(\"The cat sat on the mat\")\nembeddings[:10]\n\narray([ 0.13040183, -0.01187013, -0.02811704,  0.05123864, -0.05597447,\n        0.03019154,  0.0301613 ,  0.02469837, -0.01837057,  0.05876679],\n      dtype=float32)\n\n\n\nembeddings = model.encode(\"The dog rested on the rug\")\nembeddings[:10]\n\narray([ 0.05627272,  0.02632686,  0.05896206,  0.12019245, -0.00399702,\n        0.08970873, -0.02332847, -0.01548103,  0.00939427,  0.01598458],\n      dtype=float32)\n\n\n\nembeddings = model.encode(\"I love pizza!\")\nembeddings[:10]\n\narray([-0.09438416,  0.02385838,  0.00920313,  0.04992779, -0.09533099,\n        0.0061356 ,  0.03513189,  0.00850056,  0.0105693 , -0.0578883 ],\n      dtype=float32)\n\n\n\nfrom sklearn.metrics.pairwise import cosine_similarity\n\nsentences = ['The cat sat on the mat', \n             'The dog rested on the rug',\n             'I love pizza']\nembeddings = model.encode(sentences)\n\nprint(cosine_similarity(embeddings))\n\n[[ 1.0000002   0.47530937  0.00155361]\n [ 0.47530937  1.         -0.04451237]\n [ 0.00155361 -0.04451237  1.        ]]",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
-      "Hands-on Notebooks",
+      "Notebooks",
       "sentence-transformer.ipynb"
     ]
   },
   {
-    "objectID": "src/01/GPT-2.html",
-    "href": "src/01/GPT-2.html",
+    "objectID": "src/01/notebooks/GPT-2.html",
+    "href": "src/01/notebooks/GPT-2.html",
     "title": "Pre-trained GPT-2 Notebook",
     "section": "",
-    "text": "from transformers import GPT2LMHeadModel, GPT2Tokenizer\nimport torch\n\n# Load pre-trained GPT-2 model and tokenizer\nmodel_name = \"gpt2\"  # Options: \"gpt2\", \"gpt2-medium\", \"gpt2-large\", \"gpt2-xl\"\ntokenizer = GPT2Tokenizer.from_pretrained(model_name)\nmodel = GPT2LMHeadModel.from_pretrained(model_name)\n\n# Set model to evaluation mode\nmodel.eval()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGPT2LMHeadModel(\n  (transformer): GPT2Model(\n    (wte): Embedding(50257, 768)\n    (wpe): Embedding(1024, 768)\n    (drop): Dropout(p=0.1, inplace=False)\n    (h): ModuleList(\n      (0-11): 12 x GPT2Block(\n        (ln_1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)\n        (attn): GPT2Attention(\n          (c_attn): Conv1D(nf=2304, nx=768)\n          (c_proj): Conv1D(nf=768, nx=768)\n          (attn_dropout): Dropout(p=0.1, inplace=False)\n          (resid_dropout): Dropout(p=0.1, inplace=False)\n        )\n        (ln_2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)\n        (mlp): GPT2MLP(\n          (c_fc): Conv1D(nf=3072, nx=768)\n          (c_proj): Conv1D(nf=768, nx=3072)\n          (act): NewGELUActivation()\n          (dropout): Dropout(p=0.1, inplace=False)\n        )\n      )\n    )\n    (ln_f): LayerNorm((768,), eps=1e-05, elementwise_affine=True)\n  )\n  (lm_head): Linear(in_features=768, out_features=50257, bias=False)\n)\n\n\n\ndef autocomplete(prompt, max_length=50, temperature=0.7, top_k=50, top_p=0.9):\n    \"\"\"\n    Generate autocomplete text continuation from a prompt.\n\n    Args:\n        prompt: Input text to continue\n        max_length: Maximum total tokens (prompt + generation)\n        temperature: Sampling temperature (higher = more random)\n        top_k: Number of highest probability tokens to keep\n        top_p: Nucleus sampling threshold\n    \"\"\"\n    # Encode the prompt\n    input_ids = tokenizer.encode(prompt, return_tensors=\"pt\")\n\n    # Generate continuation\n    with torch.no_grad():\n        output = model.generate(\n            input_ids,\n            max_length=max_length,\n            temperature=temperature,\n            top_k=top_k,\n            top_p=top_p,\n            do_sample=True,\n            pad_token_id=tokenizer.eos_token_id\n        )\n\n    # Decode and return the generated text\n    generated_text = tokenizer.decode(output[0], skip_special_tokens=True)\n    return generated_text\n\n\nprompts = [\n    \"Mary had a little lamb\",\n    \"The future of artificial intelligence\",\n    \"In a galaxy far, far away\",\n    \"DigiPen is a place where\",\n    \"def calculate_fibonacci(n):\"\n]\n\nfor prompt in prompts:\n    print(f\"\\nPrompt: {prompt}\")\n    print(\"-\" * 50)\n    completion = autocomplete(prompt, max_length=80)\n    print(f\"Output: {completion}\\n\")\n\n\nPrompt: Mary had a little lamb\n--------------------------------------------------\nOutput: Mary had a little lamb, which I bought from the shopkeeper for her, and I was going to bring it home. She came back with a bundle of hay, which she put in a large box, and a little box containing a small bag of hay.\n\n\"When I went home, I was taken to a large garden, and I saw a tree with a branch in it,\n\n\nPrompt: The future of artificial intelligence\n--------------------------------------------------\nOutput: The future of artificial intelligence is likely to be far from bright.\n\nThe next big news will come from the company's future of AI.\n\nThis article was originally published on The Conversation. Read the original article.\n\n\nPrompt: In a galaxy far, far away\n--------------------------------------------------\nOutput: In a galaxy far, far away, I have seen a huge galaxy, with a massive amount of galaxies, and a huge amount of planets. I have seen a lot of them. I have seen planets that are so big that they have to be made of matter, like the ones in the movies, but they are not. I have seen planets that are so big that they have to be made\n\n\nPrompt: DigiPen is a place where\n--------------------------------------------------\nOutput: DigiPen is a place where you can learn more about the world of penmanship, and more importantly about penmanship, and learn about how to be a good penman.\n\nI'm glad to announce the launch of the first ever penmanship course in the U.S. on the Penmanship International Course Series.\n\nI'm very excited to see Penmanship International.\n\n\n\n\nPrompt: def calculate_fibonacci(n):\n--------------------------------------------------\nOutput: def calculate_fibonacci(n): print(n, \"\n\n\" + len(n))\n\nreturn n\n\nclass EqEq ( Eq ):\n\ndef __init__ ( self , n ):\n\nself .n = n\n\ndef __eq__ ( self , other ):\n\nreturn (n &lt; other)\n\nclass Eq",
+    "text": "from transformers import GPT2LMHeadModel, GPT2Tokenizer\n\n# Load pre-trained GPT-2 model and tokenizer\ntokenizer = GPT2Tokenizer.from_pretrained(\"gpt2\")\nmodel = GPT2LMHeadModel.from_pretrained(\"gpt2\")\n\n\nimport torch\n\ndef autocomplete(prompt, max_length=50, temperature=0.7, top_k=50, top_p=0.9):\n    # Encode the prompt\n    input_ids = tokenizer.encode(prompt, return_tensors=\"pt\")\n\n    # Generate continuation\n    with torch.no_grad():\n        output = model.generate(\n            input_ids,\n            max_length=max_length,\n            temperature=temperature,\n            top_k=top_k,\n            top_p=top_p,\n            do_sample=True,\n            pad_token_id=tokenizer.eos_token_id\n        )\n\n    # Decode and return the generated text\n    generated_text = tokenizer.decode(output[0], skip_special_tokens=True)\n    return generated_text\n\n\nprompts = [\n    \"Mary had a little lamb\",\n    \"The future of artificial intelligence\",\n    \"In a galaxy far, far away\",\n    \"DigiPen is a place where\",\n    \"def calculate_fibonacci(n):\"\n]\n\nfor prompt in prompts:\n    print(f\"\\nPrompt: {prompt}\")\n    print(\"-\" * 50)\n    completion = autocomplete(prompt, max_length=80)\n    print(f\"Output: {completion}\\n\")\n\n\nPrompt: Mary had a little lamb\n--------------------------------------------------\nOutput: Mary had a little lamb on her lap and a little black bean, but I think she was just as happy to eat it as I was to drink it. She was quite surprised when I told her I had eaten it.\n\n\"I've been saying that for a while now, but I've been talking to you all the time.\"\n\n\"I didn't have any tea,\" said\n\n\nPrompt: The future of artificial intelligence\n--------------------------------------------------\nOutput: The future of artificial intelligence is not so much a matter of what will happen to humans but rather what we do with them.\n\nIn short, what's in your fridge?\n\nWhat's in your fridge?\n\nWhat's in your fridge?\n\nWhat's in your fridge?\n\nWhat's in your fridge?\n\nWhat's in your fridge?\n\nWhat's\n\n\nPrompt: In a galaxy far, far away\n--------------------------------------------------\nOutput: In a galaxy far, far away, where the universe is a vast expanse of nothingness, the only place where life exists is at the bottom of the ocean.\n\nThe only place where life exists is at the bottom of the ocean.\n\nThe only place where life exists is at the bottom of the ocean.\n\nThe only place where life exists is at the bottom of the\n\n\nPrompt: DigiPen is a place where\n--------------------------------------------------\nOutput: DigiPen is a place where you can get the most out of your pen. It's not just about writing with pen tools or with pens. The main thing you will notice is that the pen is not just a pen, it's a pen. It's a pen.\n\nThe pen is a pen. It's a pen.\n\nThe pen is a pen. It's a\n\n\nPrompt: def calculate_fibonacci(n):\n--------------------------------------------------\nOutput: def calculate_fibonacci(n): # calculate the Fibonacci number 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
-      "Hands-on Notebooks",
+      "Notebooks",
       "GPT-2.ipynb"
     ]
   },
@@ -371,9 +371,9 @@
   {
     "objectID": "src/01/assignment.html",
     "href": "src/01/assignment.html",
-    "title": "Week 1 Assignment",
+    "title": "Week 1 Assignment - Build Your Own Text Continuation Style",
     "section": "",
-    "text": "Week 1 Assignment\n\nTBD",
+    "text": "Objective: Create a Colab notebook that uses GPT-2 to generate creative text continuations with different “personalities” or styles.\nRequirements:\n\nLoad a pre-trained GPT-2 model (using HuggingFace transformers - same to what was demonstrated in GPT-2.ipynb)\nCreate 3 different prompt templates that guide the model toward different styles (e.g., “Write like a pirate:”, “Explain like I’m 5:”, “As a news reporter:”)\nFor each template, generate text using two different sampling strategies (e.g., greedy vs. temperature sampling)\nCompare and document the outputs (using Markdown in the notebook) - what differences do you notice?\nCreative component: Design your own custom prompt that produces interesting or useful outputs\n\nDeliverable: A Colab/Jupyter notebook with:\n\nCode cells with your implementation\nOutputs of generated text from GPT-2\nMarkdown cells explaining what each sampling strategy does and any observations\n\nHint:\nFor best results, use a larger GPT-2 model on Colab.\n\ntokenizer = GPT2Tokenizer.from_pretrained(\"gpt2-medium\")\nmodel = GPT2LMHeadModel.from_pretrained(\"gpt2-medium\")\n\nRemember GPT-2 is a completion model (not instruction tuned), so you’ll need to create a template that provides examples for the model:\n\nprompt_template = \"\"\"Rewrite sentences as a pirate would say them:\n\nNormal: I'm going to the market.\nPirate: Arrr, I be sailin' to the marketplace, matey!\n\nNormal: That's a beautiful ship.\nPirate: Shiver me timbers, that be a fine vessel!\n\nNormal: {user_input}\nPirate:\"\"\"\n\n# Example usage:\nuser_input = \"Can you help me find my keys?\"\nprompt = prompt_template.format(user_input=user_input)",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Assignment"
@@ -677,30 +677,85 @@
     ]
   },
   {
-    "objectID": "src/01/slides.html#lead-into-gpt",
-    "href": "src/01/slides.html#lead-into-gpt",
+    "objectID": "src/01/slides.html#origin-of-gpt-1",
+    "href": "src/01/slides.html#origin-of-gpt-1",
     "title": "Week 1: Foundations of Generative AI",
-    "section": "Lead into GPT",
-    "text": "Lead into GPT\n\nTBD",
+    "section": "2018: Origin of “GPT”",
+    "text": "2018: Origin of “GPT”\n\nGenerative Pre-trained Transformer\nName coined by OpenAI researchers (Alec Radford et. al) in “Improving Language Understanding by Generative Pre-Training” (Radford et al. 2018)",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
     ]
   },
   {
-    "objectID": "src/01/slides.html#then-show-the-history",
-    "href": "src/01/slides.html#then-show-the-history",
+    "objectID": "src/01/slides.html#what-is-a-gpt",
+    "href": "src/01/slides.html#what-is-a-gpt",
     "title": "Week 1: Foundations of Generative AI",
-    "section": "Then show the history",
-    "text": "Then show the history\n\nTBD",
+    "section": "What is a GPT?",
+    "text": "What is a GPT?\n\n“Decoder-only” architecture\n\nSelf attention is causal/masked - tokens can only attend to previous tokens, not future ones\n\nPre-training objective: Next token prediction\n\nTrained on a massive text corpora\nLearns grammar, facts, reasoning patterns just from this objective",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
     ]
   },
   {
-    "objectID": "src/01/slides.html#what-is-a-notebook-1",
-    "href": "src/01/slides.html#what-is-a-notebook-1",
+    "objectID": "src/01/slides.html#what-is-a-gpt-1",
+    "href": "src/01/slides.html#what-is-a-gpt-1",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "What is a GPT?",
+    "text": "What is a GPT?\n\nAutoregressive generation\n\nGenerates one token at a time, feeding back each output as input\nTemperature and sampling strategies\nSame prompt can produce different outputs\n\nContext window\n\nFixed maximum length (2048 for GPT-2)\nEverything must fit within this window during generation\nIntroduced the concept of “context” vs. “knowledge” (prompt vs. training)",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#gpt-2",
+    "href": "src/01/slides.html#gpt-2",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "GPT-2",
+    "text": "GPT-2\n\nReleased in 2019 by OpenAI\n\nInitially, only 117M param model released in Feb 2019 due to safety concerns\nStaged releases throughout the year, 1.5B in Nov 2019\n\nTrained on WebText, 8 million web pages/40GB of text\nZero-shot task performance\n\nDid well on translation, summarization, and question answering without task-specific training",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#example-4",
+    "href": "src/01/slides.html#example-4",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Example",
+    "text": "Example\n\n\nfrom transformers import GPT2LMHeadModel, GPT2Tokenizer\n\n# Load pre-trained GPT-2 model and tokenizer\ntokenizer = GPT2Tokenizer.from_pretrained(\"gpt2\")\nmodel = GPT2LMHeadModel.from_pretrained(\"gpt2\")",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#example-5",
+    "href": "src/01/slides.html#example-5",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Example",
+    "text": "Example\n\n\nimport torch\n\ndef autocomplete(prompt, max_length=50, temperature=0.7, top_k=50, top_p=0.9):\n    # Encode the prompt\n    input_ids = tokenizer.encode(prompt, return_tensors=\"pt\")\n\n    # Generate continuation\n    with torch.no_grad():\n        output = model.generate(\n            input_ids,\n            max_length=max_length,\n            temperature=temperature,\n            top_k=top_k,\n            top_p=top_p,\n            do_sample=True,\n            pad_token_id=tokenizer.eos_token_id\n        )\n\n    # Decode and return the generated text\n    generated_text = tokenizer.decode(output[0], skip_special_tokens=True)\n    return generated_text",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#example-6",
+    "href": "src/01/slides.html#example-6",
+    "title": "Week 1: Foundations of Generative AI",
+    "section": "Example",
+    "text": "Example\n\n\nprompts = [\n    \"Mary had a little lamb\",\n    \"The future of artificial intelligence\",\n    \"In a galaxy far, far away\",\n    \"DigiPen is a place where\",\n    \"def calculate_fibonacci(n):\"\n]\n\nfor prompt in prompts:\n    print(f\"\\nPrompt: {prompt}\")\n    print(\"-\" * 50)\n    completion = autocomplete(prompt, max_length=80)\n    print(f\"Output: {completion}\\n\")\n\n\nPrompt: Mary had a little lamb\n--------------------------------------------------\nOutput: Mary had a little lamb on her lap and a little black bean, but I think she was just as happy to eat it as I was to drink it. She was quite surprised when I told her I had eaten it.\n\n\"I've been saying that for a while now, but I've been talking to you all the time.\"\n\n\"I didn't have any tea,\" said\n\n\nPrompt: The future of artificial intelligence\n--------------------------------------------------\nOutput: The future of artificial intelligence is not so much a matter of what will happen to humans but rather what we do with them.\n\nIn short, what's in your fridge?\n\nWhat's in your fridge?\n\nWhat's in your fridge?\n\nWhat's in your fridge?\n\nWhat's in your fridge?\n\nWhat's in your fridge?\n\nWhat's\n\n\nPrompt: In a galaxy far, far away\n--------------------------------------------------\nOutput: In a galaxy far, far away, where the universe is a vast expanse of nothingness, the only place where life exists is at the bottom of the ocean.\n\nThe only place where life exists is at the bottom of the ocean.\n\nThe only place where life exists is at the bottom of the ocean.\n\nThe only place where life exists is at the bottom of the\n\n\nPrompt: DigiPen is a place where\n--------------------------------------------------\nOutput: DigiPen is a place where you can get the most out of your pen. It's not just about writing with pen tools or with pens. The main thing you will notice is that the pen is not just a pen, it's a pen. It's a pen.\n\nThe pen is a pen. It's a pen.\n\nThe pen is a pen. It's a\n\n\nPrompt: def calculate_fibonacci(n):\n--------------------------------------------------\nOutput: def calculate_fibonacci(n): # calculate the Fibonacci number 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/01/slides.html#what-is-a-notebook",
+    "href": "src/01/slides.html#what-is-a-notebook",
     "title": "Week 1: Foundations of Generative AI",
     "section": "What is a Notebook?",
     "text": "What is a Notebook?\n\nAn interactive document that combines:\n\nLive code that can be executed\nRich text explanations (markdown)\nVisualizations and outputs\n\nThink of it as a computational narrative\n\nTell a story with code, data, and explanations\n\nOriginally designed for data science and research\nAlso used for learning, experimenting, and sharing results",
@@ -736,7 +791,7 @@
     "href": "src/01/slides.html#how-to-run-notebooks",
     "title": "Week 1: Foundations of Generative AI",
     "section": "How to Run Notebooks",
-    "text": "How to Run Notebooks\n\nJupyter Notebook Server (Classic approach)\n\nWeb interface on localhost\n\nVS Code (Local development)\n\nJupyter extension for VS Code\nRun on your own machine\n\nGoogle Colab (Recommended)\n\nBrowser-based, no installation needed\nFree GPU access\nCan also access local GPU",
+    "text": "How to Run Notebooks\n\nJupyter Notebook Server (Classic approach)\n\nWeb interface on localhost\n\nVS Code (Local development)\n\nJupyter extension for VS Code\nRun on your own machine\n\nGoogle Colab (Recommended)\n\nBrowser-based, no installation needed\nFree(-ish) GPU access\nCan also access local GPU",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
@@ -758,53 +813,58 @@
     "href": "src/01/slides.html#references-1",
     "title": "Week 1: Foundations of Generative AI",
     "section": "References",
-    "text": "References\n\n\n\n\nBahdanau, Dzmitry, Kyunghyun Cho, and Yoshua Bengio. 2015. “Neural Machine Translation by Jointly Learning to Align and Translate.” In International Conference on Learning Representations. https://arxiv.org/abs/1409.0473.\n\n\nGage, Philip. 1994. “A New Algorithm for Data Compression.” The C Users Journal 12 (2): 23–38.\n\n\nMikolov, Tomas, Kai Chen, Greg Corrado, and Jeffrey Dean. 2013. “Efficient Estimation of Word Representations in Vector Space.” In International Conference on Learning Representations. https://arxiv.org/abs/1301.3781.\n\n\nMikolov, Tomas, Ilya Sutskever, Kai Chen, Greg S Corrado, and Jeff Dean. 2013. “Distributed Representations of Words and Phrases and Their Compositionality.” In Advances in Neural Information Processing Systems, 3111–19. https://arxiv.org/abs/1310.4546.\n\n\nSennrich, Rico, Barry Haddow, and Alexandra Birch. 2016. “Neural Machine Translation of Rare Words with Subword Units.” In Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), 1715–25. Berlin, Germany: Association for Computational Linguistics. https://doi.org/10.18653/v1/P16-1162.\n\n\nVaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Łukasz Kaiser, and Illia Polosukhin. 2017. “Attention Is All You Need.” In Advances in Neural Information Processing Systems. Vol. 30.",
+    "text": "References\n\n\n\n\nBahdanau, Dzmitry, Kyunghyun Cho, and Yoshua Bengio. 2015. “Neural Machine Translation by Jointly Learning to Align and Translate.” In International Conference on Learning Representations. https://arxiv.org/abs/1409.0473.\n\n\nGage, Philip. 1994. “A New Algorithm for Data Compression.” The C Users Journal 12 (2): 23–38.\n\n\nMikolov, Tomas, Kai Chen, Greg Corrado, and Jeffrey Dean. 2013. “Efficient Estimation of Word Representations in Vector Space.” In International Conference on Learning Representations. https://arxiv.org/abs/1301.3781.\n\n\nMikolov, Tomas, Ilya Sutskever, Kai Chen, Greg S Corrado, and Jeff Dean. 2013. “Distributed Representations of Words and Phrases and Their Compositionality.” In Advances in Neural Information Processing Systems, 3111–19. https://arxiv.org/abs/1310.4546.\n\n\nRadford, Alec, Karthik Narasimhan, Tim Salimans, and Ilya Sutskever. 2018. “Improving Language Understanding by Generative Pre-Training.” https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf.\n\n\nSennrich, Rico, Barry Haddow, and Alexandra Birch. 2016. “Neural Machine Translation of Rare Words with Subword Units.” In Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), 1715–25. Berlin, Germany: Association for Computational Linguistics. https://doi.org/10.18653/v1/P16-1162.\n\n\nVaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Łukasz Kaiser, and Illia Polosukhin. 2017. “Attention Is All You Need.” In Advances in Neural Information Processing Systems. Vol. 30.",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
       "Slides"
     ]
   },
   {
-    "objectID": "src/01/hello-world.html",
-    "href": "src/01/hello-world.html",
+    "objectID": "src/01/notebooks/hello-world.html",
+    "href": "src/01/notebooks/hello-world.html",
     "title": "Hello World Notebook!",
     "section": "",
     "text": "This is an example of the Jupyter .ipynb document format\n# This is an executable cell\nprint(\"Hello World!\")\n\nHello World!\n# Setting variables in Python\nx = 42\nx\n\n42\n# Variables persist after being set in previously executed cells\nx\n\n42",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
-      "Hands-on Notebooks",
+      "Notebooks",
       "hello-world.ipynb"
     ]
   },
   {
-    "objectID": "src/01/hello-world.html#markdown-cells-support-rich-formatting",
-    "href": "src/01/hello-world.html#markdown-cells-support-rich-formatting",
+    "objectID": "src/01/notebooks/hello-world.html#markdown-cells-support-rich-formatting",
+    "href": "src/01/notebooks/hello-world.html#markdown-cells-support-rich-formatting",
     "title": "Hello World Notebook!",
     "section": "Markdown Cells Support Rich Formatting",
     "text": "Markdown Cells Support Rich Formatting\nYou can use: - Bold and italic text - Lists (like this one!) - Links - inline code - And even LaTeX math: \\(E = mc^2\\)\nThis makes notebooks great for explaining your code!\n\n# You can perform calculations across cells\ny = 10\nz = x + y\nprint(f\"x ({x}) + y ({y}) = {z}\")\n\n\n# Notebooks make it easy to import and use libraries\nimport math\nimport random\n\n# Generate a random number and calculate its square root\nnum = random.randint(1, 100)\nsqrt_num = math.sqrt(num)\nprint(f\"The square root of {num} is {sqrt_num:.2f}\")\n\nThe square root of 29 is 5.39\n\n\n\n# Visualizations appear inline!\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nx_values = np.linspace(0, 10, 100)\ny_values = np.sin(x_values)\n\nplt.figure(figsize=(8, 4))\nplt.plot(x_values, y_values)\nplt.title('Sine Wave')\nplt.xlabel('x')\nplt.ylabel('sin(x)')\nplt.grid(True)\nplt.show()",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
-      "Hands-on Notebooks",
+      "Notebooks",
       "hello-world.ipynb"
     ]
   },
   {
-    "objectID": "src/01/hello-world.html#what-happens-when-theres-an-error",
-    "href": "src/01/hello-world.html#what-happens-when-theres-an-error",
+    "objectID": "src/01/notebooks/hello-world.html#what-happens-when-theres-an-error",
+    "href": "src/01/notebooks/hello-world.html#what-happens-when-theres-an-error",
     "title": "Hello World Notebook!",
     "section": "What Happens When There’s an Error?",
     "text": "What Happens When There’s an Error?\nRun the cell below to see how notebooks handle errors.\nThe error appears in the output, but other cells continue to work.\n\n# This will cause an error\nresult = 10 / 0\n\n\n---------------------------------------------------------------------------\nZeroDivisionError                         Traceback (most recent call last)\nCell In[9], line 2\n      1 # This will cause an error\n----&gt; 2 result = 10 / 0\n\nZeroDivisionError: division by zero",
     "crumbs": [
       "Week 1: Foundations of Generative AI",
-      "Hands-on Notebooks",
+      "Notebooks",
       "hello-world.ipynb"
     ]
   },
   {
-    "objectID": "src/01/translation-transformer.html",
-    "href": "src/01/translation-transformer.html",
+    "objectID": "src/01/notebooks/translation-transformer.html",
+    "href": "src/01/notebooks/translation-transformer.html",
     "title": "Translation Transformer",
     "section": "",
-    "text": "In this notebook, we use a small transformer (Helsinki-NLP/opus-mt-fr-en) to translate from French to English.\n     \n\n# @title Load Model\n\nfrom transformers import AutoTokenizer, AutoModelForSeq2SeqLM\n\nmodel_name = \"Helsinki-NLP/opus-mt-fr-en\"\ntokenizer = AutoTokenizer.from_pretrained(model_name)\nmodel = AutoModelForSeq2SeqLM.from_pretrained(model_name)\n\n\n\n\n\n\n\n\n\n\n/Users/simon/Dev/CS-394/.venv/lib/python3.13/site-packages/transformers/models/marian/tokenization_marian.py:175: UserWarning: Recommended: pip install sacremoses.\n  warnings.warn(\"Recommended: pip install sacremoses.\")\n\n\n\n\n\n\n\n\n\n# @title Tokenize\n\nfrench_text = \"Bonjour, comment allez-vous?\"\ninput_ids = tokenizer.encode(french_text, return_tensors=\"pt\")\nprint(input_ids[0])\nprint(\"Tokens:\", tokenizer.convert_ids_to_tokens(input_ids[0]))\n\ntensor([8703,    2, 1027, 5682,   21,  682,   54,    0])\nTokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&gt;']\n\n\n\n# @title Demonstrate contextual vectors using the encoder\n\n# French: \"Bonjour , comment allez  - vous  ?\"\n#          ↓       ↓    ↓      ↓    ↓  ↓    ↓\n# Encoder: [v1]   [v2] [v3]  [v4] [v5][v6][v7]  ← 7 vectors, each 512-dim\n#          └─────────────────────────────────┘\n\nencoder = model.get_encoder()\nencoder_output = encoder(input_ids)\nprint(\"Encoder output shape:\", encoder_output.last_hidden_state.shape)\nprint(\"Encoder output:\", encoder_output)\n\nEncoder output shape: torch.Size([1, 8, 512])\nEncoder output: BaseModelOutput(last_hidden_state=tensor([[[-0.3943,  0.4660,  0.0190,  ..., -0.5069,  0.2120, -0.3190],\n         [ 0.0957,  0.0780,  0.1918,  ..., -0.0854,  0.2138,  0.1528],\n         [-0.6160,  0.0295,  0.1918,  ..., -0.3886,  0.0770,  0.2311],\n         ...,\n         [-0.1839, -0.3798,  0.1832,  ..., -0.0041, -0.3633, -0.5455],\n         [ 0.0153,  0.0264,  0.1122,  ...,  0.1966, -0.3027, -0.3659],\n         [-0.0484,  0.0147,  0.0078,  ..., -0.1359, -0.0295, -0.0799]]],\n       grad_fn=&lt;NativeLayerNormBackward0&gt;), hidden_states=None, attentions=None)\n\n\n\n# @title Run through transformer\n\noutput_ids = model.generate(input_ids)\nprint(output_ids)\n\ntensor([[59513, 10537,     2,   541,    52,    55,    54,     0]])\n\n\n\n# @title Decode back to tokens to complete the translation\n\nenglish_text = tokenizer.decode(output_ids[0], skip_special_tokens=True)\nprint(\"Translation:\", english_text)\n\nTranslation: Hello, how are you?"
+    "text": "In this notebook, we use a small transformer (Helsinki-NLP/opus-mt-fr-en) to translate from French to English.\n     \n\n# @title Load Model\n\nfrom transformers import AutoTokenizer, AutoModelForSeq2SeqLM\n\nmodel_name = \"Helsinki-NLP/opus-mt-fr-en\"\ntokenizer = AutoTokenizer.from_pretrained(model_name)\nmodel = AutoModelForSeq2SeqLM.from_pretrained(model_name)\n\n\n\n\n\n\n\n\n\n\n/Users/simon/Dev/CS-394/.venv/lib/python3.13/site-packages/transformers/models/marian/tokenization_marian.py:175: UserWarning: Recommended: pip install sacremoses.\n  warnings.warn(\"Recommended: pip install sacremoses.\")\n\n\n\n\n\n\n\n\n\n# @title Tokenize\n\nfrench_text = \"Bonjour, comment allez-vous?\"\ninput_ids = tokenizer.encode(french_text, return_tensors=\"pt\")\nprint(input_ids[0])\nprint(\"Tokens:\", tokenizer.convert_ids_to_tokens(input_ids[0]))\n\ntensor([8703,    2, 1027, 5682,   21,  682,   54,    0])\nTokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&gt;']\n\n\n\n# @title Demonstrate contextual vectors using the encoder\n\n# French: \"Bonjour , comment allez  - vous  ?\"\n#          ↓       ↓    ↓      ↓    ↓  ↓    ↓\n# Encoder: [v1]   [v2] [v3]  [v4] [v5][v6][v7]  ← 7 vectors, each 512-dim\n#          └─────────────────────────────────┘\n\nencoder = model.get_encoder()\nencoder_output = encoder(input_ids)\nprint(\"Encoder output shape:\", encoder_output.last_hidden_state.shape)\nprint(\"Encoder output:\", encoder_output)\n\nEncoder output shape: torch.Size([1, 8, 512])\nEncoder output: BaseModelOutput(last_hidden_state=tensor([[[-0.3943,  0.4660,  0.0190,  ..., -0.5069,  0.2120, -0.3190],\n         [ 0.0957,  0.0780,  0.1918,  ..., -0.0854,  0.2138,  0.1528],\n         [-0.6160,  0.0295,  0.1918,  ..., -0.3886,  0.0770,  0.2311],\n         ...,\n         [-0.1839, -0.3798,  0.1832,  ..., -0.0041, -0.3633, -0.5455],\n         [ 0.0153,  0.0264,  0.1122,  ...,  0.1966, -0.3027, -0.3659],\n         [-0.0484,  0.0147,  0.0078,  ..., -0.1359, -0.0295, -0.0799]]],\n       grad_fn=&lt;NativeLayerNormBackward0&gt;), hidden_states=None, attentions=None)\n\n\n\n# @title Run through transformer\n\noutput_ids = model.generate(input_ids)\nprint(output_ids)\n\ntensor([[59513, 10537,     2,   541,    52,    55,    54,     0]])\n\n\n\n# @title Decode back to tokens to complete the translation\n\nenglish_text = tokenizer.decode(output_ids[0], skip_special_tokens=True)\nprint(\"Translation:\", english_text)\n\nTranslation: Hello, how are you?",
+    "crumbs": [
+      "Week 1: Foundations of Generative AI",
+      "Notebooks",
+      "translation-transformer.ipynb"
+    ]
   }
 ]

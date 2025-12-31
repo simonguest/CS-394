@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -210,10 +210,6 @@
   <script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
   <script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
   <link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
-  
-  <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
-  <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -284,7 +280,7 @@
 </section>
 <section id="how-does-word2vec-work-1" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-1">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/notebooks/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-1">
 <div id="word-1" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a>word <span class="op">=</span> <span class="st">"cat"</span></span>
 <span id="cb1-2"><a></a>vector <span class="op">=</span> model[word] <span class="co"># type: ignore</span></span>
@@ -299,7 +295,7 @@
 </section>
 <section id="how-does-word2vec-work-2" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-2">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/notebooks/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-2">
 <div id="word-2" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>word <span class="op">=</span> <span class="st">"dog"</span></span>
 <span id="cb3-2"><a></a>vector <span class="op">=</span> model[word] <span class="co"># type: ignore</span></span>
@@ -314,7 +310,7 @@
 </section>
 <section id="how-does-word2vec-work-3" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-3">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/notebooks/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-3">
 <div id="word-3" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a>word <span class="op">=</span> <span class="st">"pizza"</span></span>
 <span id="cb5-2"><a></a>vector <span class="op">=</span> model[word] <span class="co"># type: ignore</span></span>
@@ -341,7 +337,7 @@
 </section>
 <section id="how-does-word2vec-work-4" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="similar-words">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/notebooks/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="similar-words">
 <div id="similar-words" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a>find_similar_words(<span class="st">"cat"</span>)</span>
 <span id="cb7-2"><a></a>find_similar_words(<span class="st">"dog"</span>)</span>
@@ -392,7 +388,7 @@ meatball_sandwich    | similarity: 0.6377</code></pre>
 </section>
 <section id="how-does-word2vec-work-5" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="compute-similarity">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/notebooks/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="compute-similarity">
 <div id="compute-similarity" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a>compute_similarity(<span class="st">'cat'</span>, <span class="st">'dog'</span>)</span>
 <span id="cb9-2"><a></a>compute_similarity(<span class="st">'cat'</span>, <span class="st">'kitten'</span>)</span>
@@ -411,7 +407,7 @@ Similarity between 'king' and 'queen': 0.6511</code></pre>
 </section>
 <section id="how-does-word2vec-work-6" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="vector-arithmetic">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/notebooks/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="vector-arithmetic">
 <div id="vector-arithmetic" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a>vector_arithmetic([<span class="st">'king'</span>, <span class="st">'woman'</span>], [<span class="st">'man'</span>])</span>
 <span id="cb11-2"><a></a>vector_arithmetic([<span class="st">'Paris'</span>, <span class="st">'Italy'</span>], [<span class="st">'France'</span>])</span>
@@ -447,12 +443,12 @@ paddling             | similarity: 0.6424</code></pre>
 </section>
 <section id="how-does-word2vec-work-7" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="2d-visualization">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/notebooks/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="2d-visualization">
 <div id="2d-visualization" class="cell" data-execution_count="18">
 <div class="cell-output cell-output-display">
 <div>
 <figure>
-<p><img data-src="slides_files/figure-revealjs/word2vec-cell-13-output-1.png"></p>
+<p><img data-src="slides_files/figure-revealjs/notebooks-word2vec-cell-13-output-1.png"></p>
 </figure>
 </div>
 </div>
@@ -624,7 +620,7 @@ paddling             | similarity: 0.6424</code></pre>
 </section>
 <section id="example" class="slide level2">
 <h2>Example</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="load-model">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/notebooks/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="load-model">
 <div id="load-model" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="co"># @title Load Model</span></span>
 <span id="cb13-2"><a></a></span>
@@ -663,7 +659,7 @@ paddling             | similarity: 0.6424</code></pre>
 </section>
 <section id="example-1" class="slide level2">
 <h2>Example</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="tokenize">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/notebooks/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="tokenize">
 <div id="tokenize" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="co"># @title Tokenize</span></span>
 <span id="cb14-2"><a></a></span>
@@ -680,7 +676,7 @@ Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&
 </section>
 <section id="example-2" class="slide level2">
 <h2>Example</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="transformer">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/notebooks/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="transformer">
 <div id="transformer" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a><span class="co"># @title Run through transformer</span></span>
 <span id="cb16-2"><a></a></span>
@@ -756,7 +752,7 @@ Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&
 </section>
 <section id="example-3" class="slide level2">
 <h2>Example</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="decode">
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/notebooks/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="decode">
 <div id="decode" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a><span class="co"># @title Decode back to tokens to complete the translation</span></span>
 <span id="cb18-2"><a></a></span>
@@ -767,18 +763,179 @@ Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&
 </div>
 </div>
 </div>
+</section></section>
+<section>
+<section id="origin-of-gpt" class="title-slide slide level1 center">
+<h1>2018: Origin of “GPT”</h1>
+
 </section>
-<section id="lead-into-gpt" class="slide level2">
-<h2>Lead into GPT</h2>
+<section id="origin-of-gpt-1" class="slide level2">
+<h2>2018: Origin of “GPT”</h2>
 <ul>
-<li class="fragment">TBD</li>
+<li class="fragment"><strong>Generative Pre-trained Transformer</strong></li>
+<li class="fragment">Name coined by OpenAI researchers (Alec Radford et. al) in “Improving Language Understanding by Generative Pre-Training” <span class="citation" data-cites="radford2018improving">(<a href="#/references-1" role="doc-biblioref" onclick="">Radford et al. 2018</a>)</span></li>
 </ul>
 </section>
-<section id="then-show-the-history" class="slide level2">
-<h2>Then show the history</h2>
+<section id="what-is-a-gpt" class="slide level2">
+<h2>What is a GPT?</h2>
 <ul>
-<li class="fragment">TBD</li>
+<li class="fragment">“Decoder-only” architecture
+<ul>
+<li class="fragment">Self attention is causal/masked - tokens can only attend to previous tokens, not future ones</li>
+</ul></li>
+<li class="fragment">Pre-training objective: Next token prediction
+<ul>
+<li class="fragment">Trained on a massive text corpora</li>
+<li class="fragment">Learns grammar, facts, reasoning patterns just from this objective</li>
+</ul></li>
 </ul>
+</section>
+<section id="what-is-a-gpt-1" class="slide level2">
+<h2>What is a GPT?</h2>
+<ul>
+<li class="fragment">Autoregressive generation
+<ul>
+<li class="fragment">Generates one token at a time, feeding back each output as input</li>
+<li class="fragment">Temperature and sampling strategies</li>
+<li class="fragment">Same prompt can produce different outputs</li>
+</ul></li>
+<li class="fragment">Context window
+<ul>
+<li class="fragment">Fixed maximum length (2048 for GPT-2)</li>
+<li class="fragment">Everything must fit within this window during generation</li>
+<li class="fragment">Introduced the concept of “context” vs.&nbsp;“knowledge” (prompt vs.&nbsp;training)</li>
+</ul></li>
+</ul>
+</section>
+<section id="gpt-2" class="slide level2">
+<h2>GPT-2</h2>
+<ul>
+<li class="fragment">Released in 2019 by OpenAI
+<ul>
+<li class="fragment">Initially, only 117M param model released in Feb 2019 due to safety concerns</li>
+<li class="fragment">Staged releases throughout the year, 1.5B in Nov 2019</li>
+</ul></li>
+<li class="fragment">Trained on WebText, 8 million web pages/40GB of text</li>
+<li class="fragment">Zero-shot task performance
+<ul>
+<li class="fragment">Did well on translation, summarization, and question answering without task-specific training</li>
+</ul></li>
+</ul>
+</section>
+<section id="example-4" class="slide level2">
+<h2>Example</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/notebooks/GPT-2.ipynb" data-notebook-title="Pre-trained GPT-2 Notebook" data-notebook-cellid="load-model">
+<div id="load-model" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a></a><span class="im">from</span> transformers <span class="im">import</span> GPT2LMHeadModel, GPT2Tokenizer</span>
+<span id="cb20-2"><a></a></span>
+<span id="cb20-3"><a></a><span class="co"># Load pre-trained GPT-2 model and tokenizer</span></span>
+<span id="cb20-4"><a></a>tokenizer <span class="op">=</span> GPT2Tokenizer.from_pretrained(<span class="st">"gpt2"</span>)</span>
+<span id="cb20-5"><a></a>model <span class="op">=</span> GPT2LMHeadModel.from_pretrained(<span class="st">"gpt2"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="example-5" class="slide level2">
+<h2>Example</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/notebooks/GPT-2.ipynb" data-notebook-title="Pre-trained GPT-2 Notebook" data-notebook-cellid="autocomplete">
+<div id="autocomplete" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a></a><span class="im">import</span> torch</span>
+<span id="cb21-2"><a></a></span>
+<span id="cb21-3"><a></a><span class="kw">def</span> autocomplete(prompt, max_length<span class="op">=</span><span class="dv">50</span>, temperature<span class="op">=</span><span class="fl">0.7</span>, top_k<span class="op">=</span><span class="dv">50</span>, top_p<span class="op">=</span><span class="fl">0.9</span>):</span>
+<span id="cb21-4"><a></a>    <span class="co"># Encode the prompt</span></span>
+<span id="cb21-5"><a></a>    input_ids <span class="op">=</span> tokenizer.encode(prompt, return_tensors<span class="op">=</span><span class="st">"pt"</span>)</span>
+<span id="cb21-6"><a></a></span>
+<span id="cb21-7"><a></a>    <span class="co"># Generate continuation</span></span>
+<span id="cb21-8"><a></a>    <span class="cf">with</span> torch.no_grad():</span>
+<span id="cb21-9"><a></a>        output <span class="op">=</span> model.generate(</span>
+<span id="cb21-10"><a></a>            input_ids,</span>
+<span id="cb21-11"><a></a>            max_length<span class="op">=</span>max_length,</span>
+<span id="cb21-12"><a></a>            temperature<span class="op">=</span>temperature,</span>
+<span id="cb21-13"><a></a>            top_k<span class="op">=</span>top_k,</span>
+<span id="cb21-14"><a></a>            top_p<span class="op">=</span>top_p,</span>
+<span id="cb21-15"><a></a>            do_sample<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb21-16"><a></a>            pad_token_id<span class="op">=</span>tokenizer.eos_token_id</span>
+<span id="cb21-17"><a></a>        )</span>
+<span id="cb21-18"><a></a></span>
+<span id="cb21-19"><a></a>    <span class="co"># Decode and return the generated text</span></span>
+<span id="cb21-20"><a></a>    generated_text <span class="op">=</span> tokenizer.decode(output[<span class="dv">0</span>], skip_special_tokens<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-21"><a></a>    <span class="cf">return</span> generated_text</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="example-6" class="slide level2">
+<h2>Example</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/notebooks/GPT-2.ipynb" data-notebook-title="Pre-trained GPT-2 Notebook" data-notebook-cellid="prompts">
+<div id="prompts" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="7decbea9-1b4b-4208-a441-a65f9be042d2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a></a>prompts <span class="op">=</span> [</span>
+<span id="cb22-2"><a></a>    <span class="st">"Mary had a little lamb"</span>,</span>
+<span id="cb22-3"><a></a>    <span class="st">"The future of artificial intelligence"</span>,</span>
+<span id="cb22-4"><a></a>    <span class="st">"In a galaxy far, far away"</span>,</span>
+<span id="cb22-5"><a></a>    <span class="st">"DigiPen is a place where"</span>,</span>
+<span id="cb22-6"><a></a>    <span class="st">"def calculate_fibonacci(n):"</span></span>
+<span id="cb22-7"><a></a>]</span>
+<span id="cb22-8"><a></a></span>
+<span id="cb22-9"><a></a><span class="cf">for</span> prompt <span class="kw">in</span> prompts:</span>
+<span id="cb22-10"><a></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Prompt: </span><span class="sc">{</span>prompt<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb22-11"><a></a>    <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">50</span>)</span>
+<span id="cb22-12"><a></a>    completion <span class="op">=</span> autocomplete(prompt, max_length<span class="op">=</span><span class="dv">80</span>)</span>
+<span id="cb22-13"><a></a>    <span class="bu">print</span>(<span class="ss">f"Output: </span><span class="sc">{</span>completion<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Prompt: Mary had a little lamb
+--------------------------------------------------
+Output: Mary had a little lamb on her lap and a little black bean, but I think she was just as happy to eat it as I was to drink it. She was quite surprised when I told her I had eaten it.
+
+"I've been saying that for a while now, but I've been talking to you all the time."
+
+"I didn't have any tea," said
+
+
+Prompt: The future of artificial intelligence
+--------------------------------------------------
+Output: The future of artificial intelligence is not so much a matter of what will happen to humans but rather what we do with them.
+
+In short, what's in your fridge?
+
+What's in your fridge?
+
+What's in your fridge?
+
+What's in your fridge?
+
+What's in your fridge?
+
+What's in your fridge?
+
+What's
+
+
+Prompt: In a galaxy far, far away
+--------------------------------------------------
+Output: In a galaxy far, far away, where the universe is a vast expanse of nothingness, the only place where life exists is at the bottom of the ocean.
+
+The only place where life exists is at the bottom of the ocean.
+
+The only place where life exists is at the bottom of the ocean.
+
+The only place where life exists is at the bottom of the
+
+
+Prompt: DigiPen is a place where
+--------------------------------------------------
+Output: DigiPen is a place where you can get the most out of your pen. It's not just about writing with pen tools or with pens. The main thing you will notice is that the pen is not just a pen, it's a pen. It's a pen.
+
+The pen is a pen. It's a pen.
+
+The pen is a pen. It's a
+
+
+Prompt: def calculate_fibonacci(n):
+--------------------------------------------------
+Output: def calculate_fibonacci(n): # calculate the Fibonacci number 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32
+</code></pre>
+</div>
+</div>
+</div>
 </section></section>
 <section id="lets-run-some-code" class="title-slide slide level1 center">
 <h1>Let’s Run Some Code!</h1>
@@ -786,11 +943,11 @@ Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&
 </section>
 
 <section>
-<section id="what-is-a-notebook" class="title-slide slide level1 center">
-<h1>What is a Notebook?</h1>
+<section id="introducing-notebooks" class="title-slide slide level1 center">
+<h1>Introducing Notebooks</h1>
 
 </section>
-<section id="what-is-a-notebook-1" class="slide level2">
+<section id="what-is-a-notebook" class="slide level2">
 <h2>What is a Notebook?</h2>
 <ul>
 <li class="fragment">An <strong>interactive document</strong> that combines:
@@ -863,7 +1020,7 @@ Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&
 <li class="fragment"><strong>Google Colab</strong> (Recommended)
 <ul>
 <li class="fragment">Browser-based, no installation needed</li>
-<li class="fragment">Free GPU access</li>
+<li class="fragment">Free(-ish) GPU access</li>
 <li class="fragment">Can also access local GPU</li>
 </ul></li>
 </ul>
@@ -889,6 +1046,11 @@ Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&
 <p>Hello World notebook in <strong>Colab</strong>, <strong>VS Code</strong>, and <strong>Local Jupyter server</strong></p>
 </section>
 
+<section id="hands-on" class="title-slide slide level1 center">
+<h1>Hands-On</h1>
+<p>Setup Colab, go through the notebooks for this week (hello-world, word2vec, translation-transformer, and GPT-2)</p>
+</section>
+
 <section>
 <section id="references" class="title-slide slide level1 center">
 <h1>References</h1>
@@ -910,6 +1072,9 @@ Mikolov, Tomas, Kai Chen, Greg Corrado, and Jeffrey Dean. 2013. <span>“Efficie
 </div>
 <div id="ref-mikolov2013distributed" class="csl-entry" role="listitem">
 Mikolov, Tomas, Ilya Sutskever, Kai Chen, Greg S Corrado, and Jeff Dean. 2013. <span>“Distributed Representations of Words and Phrases and Their Compositionality.”</span> In <em>Advances in Neural Information Processing Systems</em>, 3111–19. <a href="https://arxiv.org/abs/1310.4546">https://arxiv.org/abs/1310.4546</a>.
+</div>
+<div id="ref-radford2018improving" class="csl-entry" role="listitem">
+Radford, Alec, Karthik Narasimhan, Tim Salimans, and Ilya Sutskever. 2018. <span>“Improving Language Understanding by Generative Pre-Training.”</span> <a href="https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf">https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf</a>.
 </div>
 <div id="ref-sennrich-etal-2016-neural" class="csl-entry" role="listitem">
 Sennrich, Rico, Barry Haddow, and Alexandra Birch. 2016. <span>“Neural Machine Translation of Rare Words with Subword Units.”</span> In <em>Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)</em>, 1715–25. Berlin, Germany: Association for Computational Linguistics. <a href="https://doi.org/10.18653/v1/P16-1162">https://doi.org/10.18653/v1/P16-1162</a>.
