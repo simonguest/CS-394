@@ -2,38 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://simonguest.github.io/CS-394/src/01/word2vec.html</loc>
-    <lastmod>2025-12-30T18:40:29.231Z</lastmod>
-  </url>
-  <url>
-    <loc>https://simonguest.github.io/CS-394/src/01/hello-world.html</loc>
-    <lastmod>2025-12-30T18:40:29.230Z</lastmod>
-  </url>
-  <url>
-    <loc>https://simonguest.github.io/CS-394/src/01/slides.html</loc>
-    <lastmod>2025-12-30T18:40:29.230Z</lastmod>
-  </url>
-  <url>
-    <loc>https://simonguest.github.io/CS-394/src/01/assignment.html</loc>
-    <lastmod>2025-12-30T18:40:29.229Z</lastmod>
-  </url>
-  <url>
-    <loc>https://simonguest.github.io/CS-394/index.html</loc>
-    <lastmod>2025-12-30T18:40:29.229Z</lastmod>
-  </url>
-  <url>
-    <loc>https://simonguest.github.io/CS-394/src/00/slides.html</loc>
-    <lastmod>2025-12-30T18:40:29.229Z</lastmod>
-  </url>
-  <url>
-    <loc>https://simonguest.github.io/CS-394/src/01/resources.html</loc>
-    <lastmod>2025-12-30T18:40:29.230Z</lastmod>
-  </url>
-  <url>
-    <loc>https://simonguest.github.io/CS-394/src/01/GPT-2.html</loc>
-    <lastmod>2025-12-30T18:40:29.229Z</lastmod>
+    <lastmod>2025-12-29T01:23:57.915Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/01/sentence-transformer.html</loc>
-    <lastmod>2025-12-30T18:40:29.230Z</lastmod>
+    <lastmod>2025-12-24T21:43:53.900Z</lastmod>
+  </url>
+  <url>
+    <loc>https://simonguest.github.io/CS-394/src/01/GPT-2.html</loc>
+    <lastmod>2025-12-30T23:54:13.800Z</lastmod>
+  </url>
+  <url>
+    <loc>https://simonguest.github.io/CS-394/src/01/resources.html</loc>
+    <lastmod>2025-12-24T02:00:51.153Z</lastmod>
+  </url>
+  <url>
+    <loc>https://simonguest.github.io/CS-394/src/00/slides.html</loc>
+    <lastmod>2025-12-24T00:14:15.898Z</lastmod>
+  </url>
+  <url>
+    <loc>https://simonguest.github.io/CS-394/index.html</loc>
+    <lastmod>2025-12-21T20:35:30.008Z</lastmod>
+  </url>
+  <url>
+    <loc>https://simonguest.github.io/CS-394/src/01/assignment.html</loc>
+    <lastmod>2025-12-23T08:16:17.245Z</lastmod>
+  </url>
+  <url>
+    <loc>https://simonguest.github.io/CS-394/src/01/slides.html</loc>
+    <lastmod>2025-12-30T23:48:32.764Z</lastmod>
+  </url>
+  <url>
+    <loc>https://simonguest.github.io/CS-394/src/01/hello-world.html</loc>
+    <lastmod>2025-12-29T01:05:15.191Z</lastmod>
+  </url>
+  <url>
+    <loc>https://simonguest.github.io/CS-394/src/01/translation-transformer.html</loc>
+    <lastmod>2025-12-30T23:46:23.322Z</lastmod>
   </url>
 </urlset>

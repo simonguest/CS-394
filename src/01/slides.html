@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -206,6 +206,10 @@
       margin-right: 0; 
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+  
+  <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+  <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -276,7 +280,7 @@
 </section>
 <section id="how-does-word2vec-work-1" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-1">
+<div class="quarto-embed-nb-cell" data-notebook="/Users/simon/Dev/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-1">
 <div id="word-1" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a>word <span class="op">=</span> <span class="st">"cat"</span></span>
 <span id="cb1-2"><a></a>vector <span class="op">=</span> model[word] <span class="co"># type: ignore</span></span>
@@ -291,7 +295,7 @@
 </section>
 <section id="how-does-word2vec-work-2" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-2">
+<div class="quarto-embed-nb-cell" data-notebook="/Users/simon/Dev/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-2">
 <div id="word-2" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>word <span class="op">=</span> <span class="st">"dog"</span></span>
 <span id="cb3-2"><a></a>vector <span class="op">=</span> model[word] <span class="co"># type: ignore</span></span>
@@ -306,7 +310,7 @@
 </section>
 <section id="how-does-word2vec-work-3" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-3">
+<div class="quarto-embed-nb-cell" data-notebook="/Users/simon/Dev/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-3">
 <div id="word-3" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a>word <span class="op">=</span> <span class="st">"pizza"</span></span>
 <span id="cb5-2"><a></a>vector <span class="op">=</span> model[word] <span class="co"># type: ignore</span></span>
@@ -333,7 +337,7 @@
 </section>
 <section id="how-does-word2vec-work-4" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="similar-words">
+<div class="quarto-embed-nb-cell" data-notebook="/Users/simon/Dev/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="similar-words">
 <div id="similar-words" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a>find_similar_words(<span class="st">"cat"</span>)</span>
 <span id="cb7-2"><a></a>find_similar_words(<span class="st">"dog"</span>)</span>
@@ -384,7 +388,7 @@ meatball_sandwich    | similarity: 0.6377</code></pre>
 </section>
 <section id="how-does-word2vec-work-5" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="compute-similarity">
+<div class="quarto-embed-nb-cell" data-notebook="/Users/simon/Dev/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="compute-similarity">
 <div id="compute-similarity" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a>compute_similarity(<span class="st">'cat'</span>, <span class="st">'dog'</span>)</span>
 <span id="cb9-2"><a></a>compute_similarity(<span class="st">'cat'</span>, <span class="st">'kitten'</span>)</span>
@@ -403,7 +407,7 @@ Similarity between 'king' and 'queen': 0.6511</code></pre>
 </section>
 <section id="how-does-word2vec-work-6" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="vector-arithmetic">
+<div class="quarto-embed-nb-cell" data-notebook="/Users/simon/Dev/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="vector-arithmetic">
 <div id="vector-arithmetic" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a>vector_arithmetic([<span class="st">'king'</span>, <span class="st">'woman'</span>], [<span class="st">'man'</span>])</span>
 <span id="cb11-2"><a></a>vector_arithmetic([<span class="st">'Paris'</span>, <span class="st">'Italy'</span>], [<span class="st">'France'</span>])</span>
@@ -439,7 +443,7 @@ paddling             | similarity: 0.6424</code></pre>
 </section>
 <section id="how-does-word2vec-work-7" class="slide level2">
 <h2>How does Word2Vec Work?</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="2d-visualization">
+<div class="quarto-embed-nb-cell" data-notebook="/Users/simon/Dev/CS-394/src/01/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="2d-visualization">
 <div id="2d-visualization" class="cell" data-execution_count="18">
 <div class="cell-output cell-output-display">
 <div>
@@ -536,96 +540,124 @@ paddling             | similarity: 0.6424</code></pre>
 <li class="fragment">Achieved State Of The Art (SOTA) performance on language translation, while also being faster to train</li>
 </ul></li>
 </ul>
-</section>
-<section id="introducing-the-transformer" class="slide level2">
-<h2>Introducing the Transformer</h2>
+</section></section>
+<section>
+<section id="introducing-the-transformer" class="title-slide slide level1 center">
+<h1>Introducing the Transformer</h1>
 
-<img data-src="slides_files/figure-revealjs/mermaid-figure-1.png" class="r-stretch"></section>
+</section>
 <section id="introducing-the-transformer-1" class="slide level2">
 <h2>Introducing the Transformer</h2>
 
-<img data-src="slides_files/figure-revealjs/mermaid-figure-4.png" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/mermaid-figure-1.png" class="r-stretch"></section>
 <section id="introducing-the-transformer-2" class="slide level2">
 <h2>Introducing the Transformer</h2>
 
-<img data-src="slides_files/figure-revealjs/mermaid-figure-3.png" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/mermaid-figure-4.png" class="r-stretch"></section>
 <section id="introducing-the-transformer-3" class="slide level2">
 <h2>Introducing the Transformer</h2>
 
-<img data-src="slides_files/figure-revealjs/mermaid-figure-2.png" class="r-stretch"></section>
+<img data-src="slides_files/figure-revealjs/mermaid-figure-3.png" class="r-stretch"></section>
 <section id="example" class="slide level2">
 <h2>Example</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/sentence-transformer.ipynb" data-notebook-title="Sentence Transformer" data-notebook-cellid="sentence-1">
-<div id="sentence-1" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a>embeddings <span class="op">=</span> model.encode(<span class="st">"The cat sat on the mat"</span>)</span>
-<span id="cb13-2"><a></a>embeddings[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>array([ 0.13040183, -0.01187013, -0.02811704,  0.05123864, -0.05597447,
-        0.03019154,  0.0301613 ,  0.02469837, -0.01837057,  0.05876679],
-      dtype=float32)</code></pre>
+<div class="quarto-embed-nb-cell" data-notebook="/Users/simon/Dev/CS-394/src/01/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="load-model">
+<div id="load-model" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="co"># @title Load Model</span></span>
+<span id="cb13-2"><a></a></span>
+<span id="cb13-3"><a></a><span class="im">from</span> transformers <span class="im">import</span> AutoTokenizer, AutoModelForSeq2SeqLM</span>
+<span id="cb13-4"><a></a></span>
+<span id="cb13-5"><a></a>model_name <span class="op">=</span> <span class="st">"Helsinki-NLP/opus-mt-fr-en"</span></span>
+<span id="cb13-6"><a></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(model_name)</span>
+<span id="cb13-7"><a></a>model <span class="op">=</span> AutoModelForSeq2SeqLM.from_pretrained(model_name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"554eae15412f407392def18a94e2cdf3","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"980e33c84ae642ee80074c3d4d7f19d5","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"39a1afb6c66a4bdb9618b8d7fbebc31b","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"247f590ae2df430782f38916467e2989","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"5c46def7aa704024a5d1c6d1fef58711","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
 </div>
 </div>
 </div>
 </section>
 <section id="example-1" class="slide level2">
 <h2>Example</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/sentence-transformer.ipynb" data-notebook-title="Sentence Transformer" data-notebook-cellid="sentence-2">
-<div id="sentence-2" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a>embeddings <span class="op">=</span> model.encode(<span class="st">"The dog rested on the rug"</span>)</span>
-<span id="cb15-2"><a></a>embeddings[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>array([ 0.05627272,  0.02632686,  0.05896206,  0.12019245, -0.00399702,
-        0.08970873, -0.02332847, -0.01548103,  0.00939427,  0.01598458],
-      dtype=float32)</code></pre>
+<div class="quarto-embed-nb-cell" data-notebook="/Users/simon/Dev/CS-394/src/01/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="tokenize">
+<div id="tokenize" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="co"># @title Tokenize</span></span>
+<span id="cb14-2"><a></a></span>
+<span id="cb14-3"><a></a>french_text <span class="op">=</span> <span class="st">"Bonjour, comment allez-vous?"</span></span>
+<span id="cb14-4"><a></a>input_ids <span class="op">=</span> tokenizer.encode(french_text, return_tensors<span class="op">=</span><span class="st">"pt"</span>)</span>
+<span id="cb14-5"><a></a><span class="bu">print</span>(input_ids[<span class="dv">0</span>])</span>
+<span id="cb14-6"><a></a><span class="bu">print</span>(<span class="st">"Tokens:"</span>, tokenizer.convert_ids_to_tokens(input_ids[<span class="dv">0</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tensor([8703,    2, 1027, 5682,   21,  682,   54,    0])
+Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&gt;']</code></pre>
 </div>
 </div>
 </div>
 </section>
 <section id="example-2" class="slide level2">
 <h2>Example</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/sentence-transformer.ipynb" data-notebook-title="Sentence Transformer" data-notebook-cellid="sentence-3">
-<div id="sentence-3" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a>embeddings <span class="op">=</span> model.encode(<span class="st">"I love pizza!"</span>)</span>
-<span id="cb17-2"><a></a>embeddings[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>array([-0.09438416,  0.02385838,  0.00920313,  0.04992779, -0.09533099,
-        0.0061356 ,  0.03513189,  0.00850056,  0.0105693 , -0.0578883 ],
-      dtype=float32)</code></pre>
+<div class="quarto-embed-nb-cell" data-notebook="/Users/simon/Dev/CS-394/src/01/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="transformer">
+<div id="transformer" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a><span class="co"># @title Run through transformer</span></span>
+<span id="cb16-2"><a></a></span>
+<span id="cb16-3"><a></a>output_ids <span class="op">=</span> model.generate(input_ids)</span>
+<span id="cb16-4"><a></a><span class="bu">print</span>(output_ids)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tensor([[59513, 10537,     2,   541,    52,    55,    54,     0]])</code></pre>
 </div>
 </div>
 </div>
 </section>
-<section id="are-they-similar" class="slide level2">
-<h2>Are They Similar?</h2>
+<section id="how-does-the-encoderdecoder-work" class="slide level2">
+<h2>How Does the Encoder/Decoder Work?</h2>
+<p><code>output_ids = model.generate(input_ids)</code></p>
 <ul>
-<li class="fragment">We can test with <strong>cosine similarity</strong></li>
-<li class="fragment">Measures the angle between two vectors:
+<li class="fragment">Takes input ids, runs through encoder
 <ul>
-<li class="fragment">Same direction = very similar (similarity close to 1)</li>
-<li class="fragment">Opposite direction = very different (similarity of -1)</li>
+<li class="fragment">Generates contextual vectors using self attention across input tokens</li>
 </ul></li>
-<li class="fragment">Cosine similarity focuses on the angle of the vector vs.&nbsp;length
+<li class="fragment">Runs the decoder iteratively to generate <strong>one token at a time</strong>
 <ul>
-<li class="fragment">Useful for comparing texts of different sizes</li>
+<li class="fragment">Uses self attention on previously generated tokens</li>
+<li class="fragment">Uses cross-attention to attend to encoder output</li>
 </ul></li>
+<li class="fragment">Continues until it generates an end-of-sequence token or hits max length</li>
 </ul>
 </section>
-<section id="are-they-similar-1" class="slide level2">
-<h2>Are They Similar?</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/sentence-transformer.ipynb" data-notebook-title="Sentence Transformer" data-notebook-cellid="similarity">
-<div id="similarity" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a><span class="im">from</span> sklearn.metrics.pairwise <span class="im">import</span> cosine_similarity</span>
-<span id="cb19-2"><a></a></span>
-<span id="cb19-3"><a></a>sentences <span class="op">=</span> [<span class="st">'The cat sat on the mat'</span>, </span>
-<span id="cb19-4"><a></a>             <span class="st">'The dog rested on the rug'</span>,</span>
-<span id="cb19-5"><a></a>             <span class="st">'I love pizza'</span>]</span>
-<span id="cb19-6"><a></a>embeddings <span class="op">=</span> model.encode(sentences)</span>
-<span id="cb19-7"><a></a></span>
-<span id="cb19-8"><a></a><span class="bu">print</span>(cosine_similarity(embeddings))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="introducing-the-transformer-4" class="slide level2">
+<h2>Introducing the Transformer</h2>
+
+<img data-src="slides_files/figure-revealjs/mermaid-figure-2.png" class="r-stretch"></section>
+<section id="example-3" class="slide level2">
+<h2>Example</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/Users/simon/Dev/CS-394/src/01/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="decode">
+<div id="decode" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a><span class="co"># @title Decode back to tokens to complete the translation</span></span>
+<span id="cb18-2"><a></a></span>
+<span id="cb18-3"><a></a>english_text <span class="op">=</span> tokenizer.decode(output_ids[<span class="dv">0</span>], skip_special_tokens<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb18-4"><a></a><span class="bu">print</span>(<span class="st">"Translation:"</span>, english_text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[[ 1.0000002   0.47530937  0.00155361]
- [ 0.47530937  1.         -0.04451237]
- [ 0.00155361 -0.04451237  1.        ]]</code></pre>
+<pre><code>Translation: Hello, how are you?</code></pre>
 </div>
 </div>
 </div>
