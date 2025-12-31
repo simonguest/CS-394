@@ -452,12 +452,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><strong>Hint:</strong></p>
 <p>For best results, use a larger GPT-2 model on Colab.</p>
-<div id="842723bc" class="cell">
+<div id="dad1cb31" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> GPT2Tokenizer.from_pretrained(<span class="st">"gpt2-medium"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> GPT2LMHeadModel.from_pretrained(<span class="st">"gpt2-medium"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Remember GPT-2 is a completion model (not instruction tuned), so you’ll need to create a template that provides examples for the model:</p>
-<div id="13ad3cdf" class="cell">
+<div id="ee79f922" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>prompt_template <span class="op">=</span> <span class="st">"""Rewrite sentences as a pirate would say them:</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">Normal: I'm going to the market.</span></span>
