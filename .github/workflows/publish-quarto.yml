@@ -16,6 +16,13 @@ jobs:
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          version: 1.8.26
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2

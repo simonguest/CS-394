@@ -5,7 +5,7 @@ description = "Code and content for DigiPen CS-394"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "quarto-cli>=1.7.31",
+    "quarto-cli>=1.8.26",
 ]
 
 [tool.uv.workspace]
