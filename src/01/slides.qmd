@@ -19,10 +19,10 @@ bibliography: references.bib
 ## Lesson Objectives
 
 - Explore the history of vector embeddings and tokenization
-- Understand the transformer architecture and how it works at a high level
-- Use a simple sentence transformer to create vector embeddings and test for similarity
+- Understand the transformer architecture at a high level
+- Use our first transformer to translate language
 - Cover a brief history of early generative transformers
-- Setup and use Colab Pro, and start becoming familiar with the basics of notebooks and Python (if you haven’t used them already)
+- Setup and use Colab, and become familiar with the basics of notebooks and Python (if you haven’t used them already)
 
 # Let's Rewind To 2013...
 
@@ -47,7 +47,7 @@ bibliography: references.bib
 ## How does Word2Vec Work?
 
 - Word Embeddings are **meaningful numerical representations** of words
-  - Representations where words (or sentences) are encoded into multi-dimensional space
+  - Representations where words are encoded into multi-dimensional space
   - Large number of dimensions (200-500 is typical)
   - Similar words have similar numbers
 
@@ -86,6 +86,75 @@ bibliography: references.bib
 ## How does Word2Vec Work?
 
 {{< embed notebooks/word2vec.ipynb#2d-visualization >}}
+
+# Let's Run Some Code!
+
+# Introducing Notebooks
+
+## What is a Notebook?
+
+- An **interactive document** that combines:
+  - Live code that can be executed
+  - Rich text explanations (markdown)
+  - Visualizations and outputs
+- Think of it as a **computational narrative**
+  - Tell a story with code, data, and explanations
+- Originally designed for data science and research
+- Also used for learning, experimenting, and sharing results
+
+## A Brief History of Notebooks
+
+- **2011**: IPython Notebook project begins
+  - Interactive Python shell → web-based notebook
+- **2014**: Renamed to **Jupyter** (Julia, Python, R)
+  - Now supports 40+ programming languages
+  - Python is most popular by far
+- **2017**: Google launches **Colab**
+  - Free cloud-based Jupyter notebooks
+  - Free access to GPUs and TPUs
+- **Today**: Industry standard for ML/AI development
+
+## Anatomy of a Python Notebook
+
+- **Format**: Extension is .ipynb
+  - JSON format, using Jupyter Document Schema
+- **Cells**: Building blocks of notebooks
+  - **Code cells**: Executable Python code
+  - **Markdown cells**: Text, headings, images, equations
+- **Kernel**: The computational engine running your code
+  - Maintains state between cell executions
+- **Outputs**: Results appear directly below code cells
+  - Text, tables, plots, interactive widgets
+
+## How to Run Notebooks
+
+- **Jupyter Notebook Server** (Classic approach)
+   - Web interface on localhost
+- **VS Code** (Local development)
+   - Jupyter extension for VS Code
+   - Run on your own machine
+- **Google Colab** (Recommended)
+   - Browser-based, no installation needed
+   - Free(-ish) GPU access
+   - Can also access local GPU
+
+## Advantages of Google Colab
+
+- Access to GPUs and TPUs for AI-based tasks
+  - e.g., A100 and H100 with 40Gb/80Gb VRAM
+- Model downloaded between cloud vendors
+  - vs. downloading large models via the DigiPen network
+- Many libraries pre-installed
+- Easy to share notebooks with others
+- Generous (free) GPU limits for students!
+
+# Demo
+
+Hello World and Word2Vec notebooks in **Colab**, **VS Code**, and **Local Jupyter server**
+
+# Hands-On
+
+Setup Colab, get the two notebooks up and running (hello-world, word2vec)
 
 ## Challenges with Word Embeddings
 
@@ -149,6 +218,30 @@ bibliography: references.bib
 %%| file: diagrams/transformer-1.mmd
 ```
 
+## Example
+
+{{< embed notebooks/translation-transformer.ipynb#load-model echo=true >}}
+
+## Example
+
+{{< embed notebooks/translation-transformer.ipynb#tokenize echo=true >}}
+
+## Example
+
+{{< embed notebooks/translation-transformer.ipynb#transformer echo=true >}}
+
+## Example
+
+{{< embed notebooks/translation-transformer.ipynb#decode echo=true >}}
+
+## Introducing the Transformer
+
+```{mermaid}
+%%| fig-height: 100%
+%%| label: transformer-1
+%%| file: diagrams/transformer-1.mmd
+```
+
 ## Introducing the Transformer
 
 ```{mermaid}
@@ -164,18 +257,6 @@ bibliography: references.bib
 %%| label: transformer-3
 %%| file: diagrams/transformer-3.mmd
 ```
-
-## Example
-
-{{< embed notebooks/translation-transformer.ipynb#load-model echo=true >}}
-
-## Example
-
-{{< embed notebooks/translation-transformer.ipynb#tokenize echo=true >}}
-
-## Example
-
-{{< embed notebooks/translation-transformer.ipynb#transformer echo=true >}}
 
 ## How Does the Encoder/Decoder Work?
 
@@ -196,16 +277,20 @@ bibliography: references.bib
 %%| file: diagrams/transformer-4.mmd
 ```
 
-## Example
+# Demo
 
-{{< embed notebooks/translation-transformer.ipynb#decode echo=true >}}
+Translation Transformer in Colab
+
+# Hands-On
+
+Experiment with your own phrases in the translation-transformer.ipynb notebook
 
 # 2018: Origin of "GPT"
 
 ## 2018: Origin of "GPT"
 
-- **Generative Pre-trained Transformer**
-- Name coined by OpenAI researchers (Alec Radford et. al) in "Improving Language Understanding by Generative Pre-Training" [@radford2018improving]
+- **G**enerative **P**re-trained **T**ransformer
+- Name coined by OpenAI researchers in "Improving Language Understanding by Generative Pre-Training" [@radford2018improving]
 
 ## What is a GPT?
 
@@ -247,73 +332,13 @@ bibliography: references.bib
 
 {{< embed notebooks/GPT-2.ipynb#prompts echo=true >}}
 
-# Let's Run Some Code!
-
-# Introducing Notebooks
-
-## What is a Notebook?
-
-- An **interactive document** that combines:
-  - Live code that can be executed
-  - Rich text explanations (markdown)
-  - Visualizations and outputs
-- Think of it as a **computational narrative**
-  - Tell a story with code, data, and explanations
-- Originally designed for data science and research
-- Also used for learning, experimenting, and sharing results
-
-## A Brief History of Notebooks
-
-- **2011**: IPython Notebook project begins
-  - Interactive Python shell → web-based notebook
-- **2014**: Renamed to **Jupyter** (Julia, Python, R)
-  - Now supports 40+ programming languages
-- **2017**: Google launches **Colab**
-  - Free cloud-based Jupyter notebooks
-  - Free access to GPUs and TPUs
-- **Today**: Industry standard for ML/AI development
-
-## Anatomy of a Notebook
-
-- **Format**: Extension is .ipynb
-  - JSON format, using Jupyter Document Schema
-- **Cells**: Building blocks of notebooks
-  - **Code cells**: Executable Python code
-  - **Markdown cells**: Text, headings, images, equations
-- **Kernel**: The computational engine running your code
-  - Maintains state between cell executions
-- **Outputs**: Results appear directly below code cells
-  - Text, tables, plots, interactive widgets
-
-## How to Run Notebooks
-
-- **Jupyter Notebook Server** (Classic approach)
-   - Web interface on localhost
-- **VS Code** (Local development)
-   - Jupyter extension for VS Code
-   - Run on your own machine
-- **Google Colab** (Recommended)
-   - Browser-based, no installation needed
-   - Free(-ish) GPU access
-   - Can also access local GPU
-
-## Advantages of Google Colab
-
-- Access to GPUs and TPUs for AI-based tasks
-  - e.g., A100 and H100 with 40Gb/80Gb VRAM
-- Model downloaded between cloud vendors
-  - vs. downloading large models via the DigiPen network
-- Many libraries pre-installed
-- Easy to share notebooks with others
-- Generous (free) GPU limits for students!
-
 # Demo
 
-Hello World notebook in **Colab**, **VS Code**, and **Local Jupyter server**
+GPT-2 notebook in Colab
 
 # Hands-On
 
-Setup Colab, go through the notebooks for this week (hello-world, word2vec, translation-transformer, and GPT-2)
+Experiment with your own phrases in the GPT-2.ipynb notebook
 
 # References
 
