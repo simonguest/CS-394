@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 1 Assignment - Build Your Own Text Continuation Style – CS-394</title>
+<title>Week 1 Assignment - Experiment with Text Continuation Styles – CS-394</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -418,7 +418,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/01/slides.html">Week 1: Foundations of Generative AI</a></li><li class="breadcrumb-item"><a href="../../src/01/assignment.html">Assignment</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Week 1 Assignment - Build Your Own Text Continuation Style</h1>
+<h1 class="title">Week 1 Assignment - Experiment with Text Continuation Styles</h1>
 </div>
 
 
@@ -435,14 +435,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><strong>Objective:</strong> Create a Colab notebook that uses GPT-2 to generate creative text continuations with different “personalities” or styles.</p>
+<p><strong>Objective:</strong> Create a Colab notebook that uses GPT-2 to generate creative text continuations with different styles.</p>
 <p><strong>Requirements:</strong></p>
 <ul>
-<li>Load a pre-trained GPT-2 model (using HuggingFace transformers - same to what was demonstrated in GPT-2.ipynb)</li>
-<li>Create 3 different prompt templates that guide the model toward different styles (e.g., “Write like a pirate:”, “Explain like I’m 5:”, “As a news reporter:”)</li>
-<li>For each template, generate text using two different sampling strategies (e.g., greedy vs.&nbsp;temperature sampling)</li>
-<li>Compare and document the outputs (using Markdown in the notebook) - what differences do you notice?</li>
-<li><strong>Creative component:</strong> Design your own custom prompt that produces interesting or useful outputs</li>
+<li>Load a pre-trained GPT-2 model (using HuggingFace transformers - same approach as used in GPT-2.ipynb)</li>
+<li>Create 3 different story starters in different genres/styles. For example:
+<ul>
+<li>Fantasy/Adventure: “In a land of dragons and magic…”</li>
+<li>Sci-fi: “The year is 2157. Humanity has just…”</li>
+<li>Mystery: “The detective examined the crime scene and noticed…”</li>
+<li>(or choose your own three)</li>
+</ul></li>
+<li>Then adjust for:
+<ul>
+<li>Greedy decoding vs.&nbsp;sampling</li>
+<li>Different temperature values</li>
+<li>How the opening sentence shapes the continuation (e.g., short vs.&nbsp;long)</li>
+</ul></li>
+<li>Document your observations (using Markdown in the notebook)
+<ul>
+<li>What differences do you notice between the strategies?</li>
+<li>What worked well (or surprised you!)</li>
+<li>What didn’t work that well</li>
+</ul></li>
 </ul>
 <p><strong>Deliverable: A Colab/Jupyter notebook with:</strong></p>
 <ul>
@@ -451,27 +466,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Markdown cells explaining what each sampling strategy does and any observations</li>
 </ul>
 <p><strong>Hint:</strong></p>
-<p>For best results, use a larger GPT-2 model on Colab.</p>
-<div id="dad1cb31" class="cell">
+<p>For better results, use a larger GPT-2 model on Colab T4.</p>
+<div id="ce17097a" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> GPT2Tokenizer.from_pretrained(<span class="st">"gpt2-medium"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> GPT2LMHeadModel.from_pretrained(<span class="st">"gpt2-medium"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Remember GPT-2 is a completion model (not instruction tuned), so you’ll need to create a template that provides examples for the model:</p>
-<div id="ee79f922" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>prompt_template <span class="op">=</span> <span class="st">"""Rewrite sentences as a pirate would say them:</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">Normal: I'm going to the market.</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="st">Pirate: Arrr, I be sailin' to the marketplace, matey!</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">Normal: That's a beautiful ship.</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">Pirate: Shiver me timbers, that be a fine vessel!</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="st">Normal: </span><span class="sc">{user_input}</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="st">Pirate:"""</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage:</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>user_input <span class="op">=</span> <span class="st">"Can you help me find my keys?"</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> prompt_template.<span class="bu">format</span>(user_input<span class="op">=</span>user_input)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 
