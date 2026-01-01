@@ -1,4 +1,9 @@
-# Week 1 Resources
+---
+title: "Resources"
+format: html
+execute:
+  enabled: false
+---
 
 ## Vector Embeddings
 

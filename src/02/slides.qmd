@@ -1,0 +1,104 @@
+---
+title: "Week 2: Exploring Hosted LLMs"
+format:
+  revealjs:
+    slide-number: true
+    incremental: true
+    center-title-slide: true
+    theme: [default, ../../theme/digipen.scss]
+    highlight-style: github
+    width: 1050
+    height: 700
+    margin: 0.15
+    mermaid:
+      theme: neutral
+logo: ../../theme/logos/DigiPen_RGB_Red.png
+bibliography: references.bib
+---
+
+## Recap of Last Week's Lecture
+
+- Explored the history of vector embeddings and tokenization
+- Understood the transformer architecture at a high level
+- Used our first transformer to translate language
+- Covered a brief history of early generative transformers
+- Setup and used Colab, and became familiar with the basics of notebooks and Python
+
+## Lesson Objectives
+
+- Understand instruction-tuned models and how they work
+- Cover the different licenses for hosted models
+- Explore the OpenAI API specification for calling hosted models
+- Setup and use OpenRouter for calling hosted models
+- Create and share a simple chatbot using Gradio
+
+# From GPT-2 to GPT-3.5
+
+## From GPT-2 to GPT-3.5
+
+```{mermaid}
+timeline
+    Feb 2019 : OpenAI releases GPT-2
+             : 1.5B parameters
+             : Initially withheld full model due to concerns about misuse
+             : Demonstrates impressive text generation capabilities with minimal fine-tuning
+
+    May 2020 : OpenAI releases GPT-3
+             : 175B parameters
+             : Demonstrates strong few-shot learning capabilities
+             : Marks a significant leap in model capabilities and scale
+
+    June 2020 : GPT-3 available through OpenAI API
+              : Still a completion model, not instruction-tuned
+
+    2021 : InstructGPT Development
+          : Built on GPT-3 with RLHF fine-tuning
+          : Trained to follow instructions and understand user intent
+          : Key innovation enabling ChatGPT
+    
+    Jan 2021 : Anthropic Founded
+             : Founded by Dario & Daniela Amodei with ~7 senior OpenAI employees
+             : Dario led GPT-2/3 development and co-invented RLHF
+
+    Nov 2022 : ChatGPT Launch
+              : Built on GPT-3.5 using RLHF
+              : 1M+ users in 5 days
+              : Sparked widespread interest in generative AI
+```
+
+## Completion vs. Instruction-Tuned
+
+- Completion Model just predicts the next token
+  - Input prompt: `Mary had a little`
+  - Max total tokens: `50`
+  - Temperature: `0 - 1.0`
+  - top_k: consider only the top k tokens in the response
+  - top_p: Nucleus sampling (probability cut off - 0 and 1.0)
+- Output
+  - `Mary had a little lamb, its fleece was white as snow...`  (up to max tokens)
+
+## Completion vs. Instruction-Tuned
+
+- You can't really converse with it
+- `What is the capital of France?` (max tokens = 50)
+- `What is the capital of France? Paris. What is the capital of Spain? Madrid. What is the capital of`
+
+## Instruction-Tuned Models
+
+- Supervised Fine-Tuning
+  - Large datasets of questions/answers, tasks/completions, demonstrating helpful assistant behavior
+- RLHF (Reinforcement Learning from Human Feedback)
+  - Human raters rank different model responses, training a reward model
+- Chat Templates
+  - Structured formats to distinguish speakers in a dialog: Typically system, user, and assistant
+
+# Looking Ahead to Next Week
+
+## Looking Ahead to Next Week
+
+- [This week's assignment!](https://simonguest.github.io/CS-394/src/02/assignment.html){.external target="_blank"}
+- TBD
+
+# References
+
+## References
