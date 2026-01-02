@@ -317,11 +317,11 @@
     ]
   },
   {
-    "objectID": "src/00/slides.html#syllabus-overview-1",
-    "href": "src/00/slides.html#syllabus-overview-1",
+    "objectID": "src/00/slides.html#syllabus-1",
+    "href": "src/00/slides.html#syllabus-1",
     "title": "Welcome to CS-394/594!",
-    "section": "Syllabus Overview",
-    "text": "Syllabus Overview\n\nTBD",
+    "section": "Syllabus",
+    "text": "Syllabus\n\nSyllabus on OneDrive",
     "crumbs": [
       "**Welcome**",
       "Slides"
@@ -332,7 +332,7 @@
     "href": "src/00/slides.html#schedule",
     "title": "Welcome to CS-394/594!",
     "section": "Schedule",
-    "text": "Schedule\n\nEvery Friday (Curie); 2pm - 4.50pm\n~1.5 hours of lecture, together with hands-on exercises\n~1.5 hours for in-class lab time, working on assignments\nExpectation of after-class work, especially for final project",
+    "text": "Schedule\n\nEvery Friday (Curie); 2pm - 4.50pm\n~1.5 hours of lecture\n~1.5 hours for in-class hands-on lab time and assignments\nExpectation of after-class work for assignments\nNo structured lectures for the weeks of the final project (3 hours of in-class lab time)\n\nAlthough we may do mini-lectures for common topics",
     "crumbs": [
       "**Welcome**",
       "Slides"
@@ -343,7 +343,7 @@
     "href": "src/00/slides.html#during-class",
     "title": "Welcome to CS-394/594!",
     "section": "During Class",
-    "text": "During Class\n\nStrive for conversation and interactivity\n\nPlease ask questions, even mid-slide!\nI enjoy going off on tangents / on the whiteboard\nUse lab time to seek input / troubleshoot code",
+    "text": "During Class\n\nStrive for conversation and interactivity\n\nPlease ask questions, even mid-slide!\nI enjoy going off on tangents / on the whiteboard\nUse hands on lab time to seek input / troubleshoot code",
     "crumbs": [
       "**Welcome**",
       "Slides"
@@ -376,7 +376,7 @@
     "href": "src/00/slides.html#ai-policy",
     "title": "Welcome to CS-394/594!",
     "section": "AI Policy",
-    "text": "AI Policy\n\nPermitted AI Usage\n\nYou may use AI tools to assist in understanding course materials. However, all work submitted must be your own.\nIf AI is used to generate code, your must test and validate the code, must understand and be able to answer questions about the generated code, and include proper citations.\n\nCitations\n\nIf AI tools are used to assist with any part of an assignment, you must clearly cite the AI tool and explain how it was used.",
+    "text": "AI Policy\n\nPermitted AI Usage\n\nYou may use AI tools to assist in understanding course materials. However, all work submitted must be your own.\nIf AI is used to generate code, your must test and validate the code, must understand and be able to answer questions about the generated code, and include proper citations.\nIf AI tools are used to assist with any part of an assignment, you must clearly cite the AI tool and explain how it was used.",
     "crumbs": [
       "**Welcome**",
       "Slides"
