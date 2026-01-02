@@ -49,27 +49,29 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 - Focus on augmentation vs. automation
 - Build a cool final project that you can add to your portfolio!
 
-# Syllabus Overview
+# Syllabus
 
-## Syllabus Overview
+## Syllabus
 
-- TBD
+- [Syllabus on OneDrive](https://digipen824-my.sharepoint.com/:w:/g/personal/simon_guest_digipen_edu/IQDAYiVI08LMTaiWEhdq_j20AcJ8XmaTkdu4fQHdBJh86yQ?e=Cw9CTh){.external target="_blank"}
 
 # What to Expect in Each Class
 
 ## Schedule
 
 - Every Friday (Curie); 2pm - 4.50pm
-- ~1.5 hours of lecture, together with hands-on exercises
-- ~1.5 hours for in-class lab time, working on assignments
-- Expectation of after-class work, especially for final project
+- ~1.5 hours of lecture
+- ~1.5 hours for in-class hands-on lab time and assignments
+- Expectation of after-class work for assignments
+- No structured lectures for the weeks of the final project (3 hours of in-class lab time)
+  - Although we may do mini-lectures for common topics
 
 ## During Class
 
 - Strive for conversation and interactivity
   - Please ask questions, even mid-slide!
   - I enjoy going off on tangents / on the whiteboard
-  - Use lab time to seek input / troubleshoot code
+  - Use hands on lab time to seek input / troubleshoot code
 
 ## Handing in Work
 
@@ -96,8 +98,7 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 - Permitted AI Usage
   - You may use AI tools to assist in understanding course materials. However, all work submitted must be your own.
   - If AI is used to generate code, your must test and validate the code, must understand and be able to answer questions about the generated code, and include proper citations. 
-- Citations
-  -  If AI tools are used to assist with any part of an assignment, you must clearly cite the AI tool and explain how it was used.
+  - If AI tools are used to assist with any part of an assignment, you must clearly cite the AI tool and explain how it was used.
 
 # Tools, Languages, and Hardware
 

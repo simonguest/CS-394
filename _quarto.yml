@@ -23,6 +23,9 @@ website:
     contents:
       - text: "CS-394/594"
         href: index.qmd
+      - text: "Syllabus"
+        href: https://digipen824-my.sharepoint.com/:w:/g/personal/simon_guest_digipen_edu/IQDAYiVI08LMTaiWEhdq_j20AcJ8XmaTkdu4fQHdBJh86yQ?e=Cw9CTh
+        target: blank
       - text: "---"
       - section: "**Welcome**"
         contents:
