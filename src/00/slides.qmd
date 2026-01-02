@@ -93,7 +93,11 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 
 ## AI Policy
 
-- TBD
+- Permitted AI Usage
+  - You may use AI tools to assist in understanding course materials. However, all work submitted must be your own.
+  - If AI is used to generate code, your must test and validate the code, must understand and be able to answer questions about the generated code, and include proper citations. 
+- Citations
+  -  If AI tools are used to assist with any part of an assignment, you must clearly cite the AI tool and explain how it was used.
 
 # Tools, Languages, and Hardware
 
