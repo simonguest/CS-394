@@ -23,15 +23,19 @@ website:
     contents:
       - text: "CS-394/594"
         href: index.qmd
-      - text: "Syllabus"
-        href: https://digipen824-my.sharepoint.com/:w:/g/personal/simon_guest_digipen_edu/IQDAYiVI08LMTaiWEhdq_j20AcJ8XmaTkdu4fQHdBJh86yQ?e=Cw9CTh
-        target: blank
       - text: "---"
       - section: "**Welcome**"
         contents:
           - text: "Slides"
             href: src/00/slides.qmd
             target: blank
+          - text: "Syllabus"
+            href: https://digipen824-my.sharepoint.com/:w:/g/personal/simon_guest_digipen_edu/IQDAYiVI08LMTaiWEhdq_j20AcJ8XmaTkdu4fQHdBJh86yQ?e=Cw9CTh
+            target: blank
+          - text: "Rubric (Weekly Assignments)"
+            href: src/00/weekly-rubric.qmd
+          - text: "Rubric (Final Project)"
+            href: src/00/final-rubric.qmd
       - section: "**Week 1:** Foundations of Generative AI"
         contents:
           - text: "Slides"

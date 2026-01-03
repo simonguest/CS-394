@@ -45,9 +45,9 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 
 ## Overall
 
-- Provide a level of understanding beyond where most professional software developers are today
 - Focus on augmentation vs. automation
-- Build a cool final project that you can add to your portfolio!
+- Provide a level of understanding beyond where most professional software developers are today
+- Build an exciting final project that you can add to your portfolio!
 
 # Syllabus
 
@@ -70,33 +70,39 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 
 - Strive for conversation and interactivity
   - Please ask questions, even mid-slide!
+  - There are no wrong or bad questions!
   - I enjoy going off on tangents / on the whiteboard
   - Use hands on lab time to seek input / troubleshoot code
+
+## Grading
+
+- Weekly Assignments: 40% of grade (8 x 5%)
+- Final Project: 60% of grade
+- [Rubric for the weekly assignments](weekly-rubric.qmd){.external target="_blank"}
+- [Rubric for the final project](final-rubric.qmd){.external target="_blank"}
 
 ## Handing in Work
 
 - Everything submitted via GitHub
-  - Recommend creating a repo for in-class assignments
-  - And another repo for your final project 
+  - Recommend creating a repo for weekly assignments
+    - For most weeks, submission will be one Python notebook
+  - And (eventually) another repo for your final project 
   - Don't forget to give me permissions! @simonguest
-- Graded Course
-  - General rubric for the in-class assignments
-  - Complete rubric for the final project
+  
+## Deadlines
 
-## Handing in Work
-
-- Deadlines (In-class Assignments)
+- Weekly Assignments
   - Assignments are due by the following week's lesson
   - i.e., you get a week for each assignment
   - If you need more time/exception, please reach out via Teams
-- Deadlines (Final Project)
+- Final Project
   - Up until Week 15 presentations
   - (We'll cover in detail later in the semester)
 
 ## AI Policy
 
 - Permitted AI Usage
-  - You may use AI tools to assist in understanding course materials. However, all work submitted must be your own.
+  - You may use AI tools to assist in understanding course materials.
   - If AI is used to generate code, your must test and validate the code, must understand and be able to answer questions about the generated code, and include proper citations. 
   - If AI tools are used to assist with any part of an assignment, you must clearly cite the AI tool and explain how it was used.
 
@@ -107,21 +113,21 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 - We will be introducing many tools
   - Colab Pro, OpenRouter, Hugging Face, etc.
   - Most will be free
-  - Expect to need about $10-25 in OpenRouter API credits
+  - Expect to need about $25 in credits throughout the semester
 
 ## Languages
 
 - We will be using (and learning) a lot of Python!
   - Most of the in-class assignments will be in Python
   - Don't worry if you are new to Python as we'll introduce concepts gradually
-    - Although recommend investing extra time (see resources in Week 1)
+  - Although recommend investing extra time (see resources in Week 1)
 - Final Project
   - Can be any language
   - Probably depending on what you choose to create
 
 ## Hardware
 
-- Will will be training small models (SLMs) later in the semester
+- Will will be training SLMs (Small Language Models) later in the semester
 - This training will require a decent GPU and VRAM
   - Colab Pro (CUDA)
   - Your own NVIDIA-based laptop (CUDA)
@@ -131,12 +137,11 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 
 ## Need Help?
 
-- Everything we cover will be on my GitHub repo
-  - [https://simonguest.github.io/CS-394](https://simonguest.github.io/CS-394){.external target="_blank"}
-  - Slides (current and prior lectures), Demo code, Resources
+- [https://simonguest.github.io/CS-394](https://simonguest.github.io/CS-394){.external target="_blank"}
+  - Slides (current and prior lectures), Demo code, Resources, Rubrics, Assignments
+  - I will repost assignments and rubrics to Moodle. (Grades will also be in Moodle.)
 - Office Hours
-  - Thursdays 1pm - 3pm
-  - Either on campus or virtually via Teams
+  - Thursdays 1pm - 3pm (On campus or virtually via Teams)
 - Teams
   - Primary mechanism for updates, ask questions, request office hours, etc.
 
@@ -157,8 +162,10 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 
 ## Fast Moving Space
 
-- There will be areas/questions that I don't have experience of
-  - e.g., multiple new models are launched every week
+- There will be areas/questions I don't have experience of
+  - multiple new models are launched every week
+  - or equations/algorithms that I don't know
+- We may be learning some things together!
 - But that's what makes it exciting!
 
 # Questions?

@@ -1,0 +1,10 @@
+---
+title: "Rubric (Weekly Assignments)"
+format: html
+execute:
+  enabled: false
+---
+
+| 1% | 2% | 3% | 4% | 5% |
+|---|---|---|---|---|
+| The submission is missing or fails to showcase any working features.  The solution is practically unusable due to issues. | Only a few features are functional. Significant missing work or issues with the submission. | Major issues impact key features, but some functionality is evident.  Noticeable gaps or confusing submission. | Minor issues or bugs are present but do not significantly impact the functionality.  Very few gaps, and a near-complete submission. | All features are fully functional.  A complete submission that meets all requirements of the assignment. |
