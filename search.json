@@ -108,6 +108,270 @@
     ]
   },
   {
+    "objectID": "src/08/slides.html#recap-of-last-weeks-lecture",
+    "href": "src/08/slides.html#recap-of-last-weeks-lecture",
+    "title": "Week 8: Ethics, IP, and Safety",
+    "section": "Recap of Last Week’s Lecture",
+    "text": "Recap of Last Week’s Lecture\n\nUsed generated synthetic data to fine-tune a 1B parameter model\nUsed W&B (Weights and Biases) to observe parameters during the training run\nPost-training, used W&B to use cosine similarity and LLM-as-a-Judge to evaluate the accuracy of our trained model\nTrained smaller models (270M parameters) and compared the results\nUnderstood and created a model card, uploaded the model to Hugging Face and shared",
+    "crumbs": [
+      "**Week 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#lesson-objectives",
+    "href": "src/08/slides.html#lesson-objectives",
+    "title": "Week 8: Ethics, IP, and Safety",
+    "section": "Lesson Objectives",
+    "text": "Lesson Objectives\n\nDiscuss ethical, IP, and safety concerns for Generative AI\nUse an evidence-based approach to explore ethical implications and potential mitigations\nUse an evidence-based approach to explore IP implications and potential mitigations\nUse an evidence-based approach to explore safety implications and potential mitigations\nResearch a theme (or media claim) and author a paper confirming or challenging it",
+    "crumbs": [
+      "**Week 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#looking-ahead-to-next-week-1",
+    "href": "src/08/slides.html#looking-ahead-to-next-week-1",
+    "title": "Week 8: Ethics, IP, and Safety",
+    "section": "Looking Ahead to Next Week",
+    "text": "Looking Ahead to Next Week\n\nThis week’s assignment!\nTBD",
+    "crumbs": [
+      "**Week 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#references-1",
+    "href": "src/08/slides.html#references-1",
+    "title": "Week 8: Ethics, IP, and Safety",
+    "section": "References",
+    "text": "References",
+    "crumbs": [
+      "**Week 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/assignment.html",
+    "href": "src/08/assignment.html",
+    "title": "Week 8 Assignment",
+    "section": "",
+    "text": "TBD",
+    "crumbs": [
+      "**Week 8:** Ethics, IP, and Safety",
+      "Assignment"
+    ]
+  },
+  {
+    "objectID": "src/08/assignment.html#assignment",
+    "href": "src/08/assignment.html#assignment",
+    "title": "Week 8 Assignment",
+    "section": "",
+    "text": "TBD",
+    "crumbs": [
+      "**Week 8:** Ethics, IP, and Safety",
+      "Assignment"
+    ]
+  },
+  {
+    "objectID": "src/07/resources.html",
+    "href": "src/07/resources.html",
+    "title": "Week 7 Resources",
+    "section": "",
+    "text": "TBD",
+    "crumbs": [
+      "**Week 7:** Increasing Model Accuracy (Part 2)",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/07/resources.html#resources",
+    "href": "src/07/resources.html#resources",
+    "title": "Week 7 Resources",
+    "section": "",
+    "text": "TBD",
+    "crumbs": [
+      "**Week 7:** Increasing Model Accuracy (Part 2)",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/06/slides.html#recap-of-last-weeks-lecture",
+    "href": "src/06/slides.html#recap-of-last-weeks-lecture",
+    "title": "Week 6: Increasing Model Accuracy (Part 1)",
+    "section": "Recap of Last Week’s Lecture",
+    "text": "Recap of Last Week’s Lecture\n\nUnderstood the use cases, advantages/disadvantages for running models on local hardware - desktop, web, mobile\nUnderstood hardware requirements and architectures for model inference - e.g., CUDA vs. ONNX vs. MLX vs. WebGPU\nExplored how quantization works and understood techniques and formats for quantizing existing models\nUsed llama.cpp to quantize and run an SLM on local hardware/gaming PC\nIntegrated a quantized model within Unity/Unreal/WebAssembly",
+    "crumbs": [
+      "**Week 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/06/slides.html#lesson-objectives",
+    "href": "src/06/slides.html#lesson-objectives",
+    "title": "Week 6: Increasing Model Accuracy (Part 1)",
+    "section": "Lesson Objectives",
+    "text": "Lesson Objectives\n\nUnderstand model training, dataset curation, what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy\nExplore use cases, advantages, and disadvantages of prompt engineering\nIntroduce and implement RAG (Retrieval Augmented Generation) to increase the accuracy of a limited SLM\nStart the exploration of how to fine-tune models using LoRA (Low Ranked Adaptation)\nUse a foundational model to generate synthetic data for fine-tuning a 1B parameter model",
+    "crumbs": [
+      "**Week 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/06/slides.html#looking-ahead-to-next-week-1",
+    "href": "src/06/slides.html#looking-ahead-to-next-week-1",
+    "title": "Week 6: Increasing Model Accuracy (Part 1)",
+    "section": "Looking Ahead to Next Week",
+    "text": "Looking Ahead to Next Week\n\nThis week’s assignment!\nTBD",
+    "crumbs": [
+      "**Week 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/06/slides.html#references-1",
+    "href": "src/06/slides.html#references-1",
+    "title": "Week 6: Increasing Model Accuracy (Part 1)",
+    "section": "References",
+    "text": "References",
+    "crumbs": [
+      "**Week 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/06/assignment.html",
+    "href": "src/06/assignment.html",
+    "title": "Week 6 Assignment",
+    "section": "",
+    "text": "TBD",
+    "crumbs": [
+      "**Week 6:** Increasing Model Accuracy (Part 1)",
+      "Assignment"
+    ]
+  },
+  {
+    "objectID": "src/06/assignment.html#assignment",
+    "href": "src/06/assignment.html#assignment",
+    "title": "Week 6 Assignment",
+    "section": "",
+    "text": "TBD",
+    "crumbs": [
+      "**Week 6:** Increasing Model Accuracy (Part 1)",
+      "Assignment"
+    ]
+  },
+  {
+    "objectID": "src/05/resources.html",
+    "href": "src/05/resources.html",
+    "title": "Week 5 Resources",
+    "section": "",
+    "text": "TBD",
+    "crumbs": [
+      "**Week 5:** Running Models on Local Hardware",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/05/resources.html#resources",
+    "href": "src/05/resources.html#resources",
+    "title": "Week 5 Resources",
+    "section": "",
+    "text": "TBD",
+    "crumbs": [
+      "**Week 5:** Running Models on Local Hardware",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#recap-of-last-weeks-lecture",
+    "href": "src/04/slides.html#recap-of-last-weeks-lecture",
+    "title": "Week 4: Multimedia and Multimodal Models",
+    "section": "Recap of Last Week’s Lecture",
+    "text": "Recap of Last Week’s Lecture\n\nDescribed the fundamental concepts behind Agents/Agentic AI\nExplored and provided feedback on an existing multi-agent setup\nUnderstood available agent SDKs, how they differ, and advantages/disadvantages\nUsed the OpenAI Agents SDK to build a multi-agent system from scratch, including document indexing and retrieval\nUnderstood and implemented tool calls using OpenAI’s function calling and via MCP",
+    "crumbs": [
+      "**Week 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#lesson-objectives",
+    "href": "src/04/slides.html#lesson-objectives",
+    "title": "Week 4: Multimedia and Multimodal Models",
+    "section": "Lesson Objectives",
+    "text": "Lesson Objectives\n\nUnderstand the fundamentals and history of diffuser models\nExplore and use models that demonstrate text-to-image, image-to-image, inpainting, outpainting, and ControlNet\nSetup and use Replicate to create a custom pipeline of production-grade models\nUnderstand the fundamentals and history of Vision Encoders and VLMs\nImplement/test a local VLM model for on-device inference",
+    "crumbs": [
+      "**Week 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#looking-ahead-to-next-week-1",
+    "href": "src/04/slides.html#looking-ahead-to-next-week-1",
+    "title": "Week 4: Multimedia and Multimodal Models",
+    "section": "Looking Ahead to Next Week",
+    "text": "Looking Ahead to Next Week\n\nThis week’s assignment!\nTBD",
+    "crumbs": [
+      "**Week 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#references-1",
+    "href": "src/04/slides.html#references-1",
+    "title": "Week 4: Multimedia and Multimodal Models",
+    "section": "References",
+    "text": "References",
+    "crumbs": [
+      "**Week 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/assignment.html",
+    "href": "src/04/assignment.html",
+    "title": "Week 4 Assignment",
+    "section": "",
+    "text": "TBD",
+    "crumbs": [
+      "**Week 4:** Multimedia and Multimodal Models",
+      "Assignment"
+    ]
+  },
+  {
+    "objectID": "src/04/assignment.html#assignment",
+    "href": "src/04/assignment.html#assignment",
+    "title": "Week 4 Assignment",
+    "section": "",
+    "text": "TBD",
+    "crumbs": [
+      "**Week 4:** Multimedia and Multimodal Models",
+      "Assignment"
+    ]
+  },
+  {
+    "objectID": "src/03/resources.html",
+    "href": "src/03/resources.html",
+    "title": "Resources",
+    "section": "",
+    "text": "References Slide",
+    "crumbs": [
+      "**Week 3:** Agents and Tools",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/03/resources.html#citations",
+    "href": "src/03/resources.html#citations",
+    "title": "Resources",
+    "section": "",
+    "text": "References Slide",
+    "crumbs": [
+      "**Week 3:** Agents and Tools",
+      "Resources"
+    ]
+  },
+  {
     "objectID": "src/02/slides.html#recap-of-last-weeks-lecture",
     "href": "src/02/slides.html#recap-of-last-weeks-lecture",
     "title": "Week 2: Exploring Hosted LLMs",
@@ -123,7 +387,7 @@
     "href": "src/02/slides.html#lesson-objectives",
     "title": "Week 2: Exploring Hosted LLMs",
     "section": "Lesson Objectives",
-    "text": "Lesson Objectives\n\nUnderstand instruction-tuned models and how they work\nCover the different licenses for hosted models\nExplore the OpenAI API specification for calling hosted models\nSetup and use OpenRouter for calling hosted models\nCreate and share a simple chatbot using Gradio",
+    "text": "Lesson Objectives\n\nUnderstand the evolution and licensing of models from GPT-2 through to modern day\nUnderstand instruction-tuned models, how they work, and how to configure\nSetup and use OpenRouter for accessing hosted models\nUnderstand the OpenAI API specification, the request/response payload, parameters, streaming, and structured output\nCreate and share a chatbot using a Gradio-based UI",
     "crumbs": [
       "**Week 2:** Exploring Hosted LLMs",
       "Slides"
@@ -430,6 +694,17 @@
     "title": "Welcome to CS-394/594!",
     "section": "Schedule",
     "text": "Schedule\n\nEvery Friday (Curie); 2pm - 4.50pm\n~1.5 hours of lecture\n~1.5 hours for in-class hands-on lab time and assignments\nExpectation of after-class work for assignments\nNo structured lectures for the weeks of the final project (3 hours of in-class lab time)\n\nAlthough we may do mini-lectures for common topics",
+    "crumbs": [
+      "**Welcome**",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/00/slides.html#schedule-1",
+    "href": "src/00/slides.html#schedule-1",
+    "title": "Welcome to CS-394/594!",
+    "section": "Schedule",
+    "text": "Schedule\n\nWeeks 1 through 4\nFeb 6 is Founders Day, so no classes\nWeeks 5 through 8\nMar 9 - 13 is Spring Break\nWeeks 9 through 14\nFinal presentations w/o Apr 20-24",
     "crumbs": [
       "**Welcome**",
       "Slides"
@@ -1114,6 +1389,248 @@
     "text": "References Slide",
     "crumbs": [
       "**Week 2:** Exploring Hosted LLMs",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#recap-of-last-weeks-lecture",
+    "href": "src/03/slides.html#recap-of-last-weeks-lecture",
+    "title": "Week 3: Agents and Tools",
+    "section": "Recap of Last Week’s Lecture",
+    "text": "Recap of Last Week’s Lecture\n\nUnderstood the evolution and licensing of models from GPT-2 through to modern day\nUnderstood instruction-tuned models, how they work, and how to configure\nSetup and used OpenRouter for accessing hosted models\nUnderstood the OpenAI API specification, the request/response payload, parameters, streaming, and structured output\nCreated and shared a chatbot using a Gradio-based UI",
+    "crumbs": [
+      "**Week 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#lesson-objectives",
+    "href": "src/03/slides.html#lesson-objectives",
+    "title": "Week 3: Agents and Tools",
+    "section": "Lesson Objectives",
+    "text": "Lesson Objectives\n\nDescribe the fundamental concepts behind Agents/Agentic AI\nExplore and provide feedback on an existing multi-agent setup\nUnderstand available agent SDKs, how they differ, and advantages/disadvantages\nUse the OpenAI Agents SDK to build an multi-agent system from scratch, including document indexing and retrieval\nUnderstand and implement tool calls and implement using OpenAI’s function calling and via MCP",
+    "crumbs": [
+      "**Week 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#looking-ahead-to-next-week-1",
+    "href": "src/03/slides.html#looking-ahead-to-next-week-1",
+    "title": "Week 3: Agents and Tools",
+    "section": "Looking Ahead to Next Week",
+    "text": "Looking Ahead to Next Week\n\nThis week’s assignment!\nTBD",
+    "crumbs": [
+      "**Week 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#references-1",
+    "href": "src/03/slides.html#references-1",
+    "title": "Week 3: Agents and Tools",
+    "section": "References",
+    "text": "References",
+    "crumbs": [
+      "**Week 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/resources.html",
+    "href": "src/04/resources.html",
+    "title": "Week 4 Resources",
+    "section": "",
+    "text": "TBD",
+    "crumbs": [
+      "**Week 4:** Multimedia and Multimodal Models",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/04/resources.html#resources",
+    "href": "src/04/resources.html#resources",
+    "title": "Week 4 Resources",
+    "section": "",
+    "text": "TBD",
+    "crumbs": [
+      "**Week 4:** Multimedia and Multimodal Models",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/05/assignment.html",
+    "href": "src/05/assignment.html",
+    "title": "Week 5 Assignment",
+    "section": "",
+    "text": "TBD",
+    "crumbs": [
+      "**Week 5:** Running Models on Local Hardware",
+      "Assignment"
+    ]
+  },
+  {
+    "objectID": "src/05/assignment.html#assignment",
+    "href": "src/05/assignment.html#assignment",
+    "title": "Week 5 Assignment",
+    "section": "",
+    "text": "TBD",
+    "crumbs": [
+      "**Week 5:** Running Models on Local Hardware",
+      "Assignment"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#recap-of-last-weeks-lecture",
+    "href": "src/05/slides.html#recap-of-last-weeks-lecture",
+    "title": "Week 5: Running Models on Local Hardware",
+    "section": "Recap of Last Week’s Lecture",
+    "text": "Recap of Last Week’s Lecture\n\nUnderstood the fundamentals and history of diffuser models\nExplored and used models that demonstrate text-to-image, image-to-image, inpainting, outpainting, and ControlNet\nSetup and used Replicate to create a custom pipeline of production-grade models\nUnderstood the fundamentals and history of Vision Encoders and VLMs\nImplemented/tested a local VLM model for on-device inference",
+    "crumbs": [
+      "**Week 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#lesson-objectives",
+    "href": "src/05/slides.html#lesson-objectives",
+    "title": "Week 5: Running Models on Local Hardware",
+    "section": "Lesson Objectives",
+    "text": "Lesson Objectives\n\nUnderstand the use cases, advantages/disadvantages for running models on local hardware - desktop, web, mobile\nUnderstand hardware requirements and architectures for model inference - e.g., CUDA vs. ONNX vs. MLX vs. WebGPU\nExplore how quantization works and understand techniques and formats for quantizing existing models\nUse llama.cpp to quantize and run an SLM on local hardware/gaming PC\nIntegrate a quantized model within Unity/Unreal/WebAssembly",
+    "crumbs": [
+      "**Week 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#looking-ahead-to-next-week-1",
+    "href": "src/05/slides.html#looking-ahead-to-next-week-1",
+    "title": "Week 5: Running Models on Local Hardware",
+    "section": "Looking Ahead to Next Week",
+    "text": "Looking Ahead to Next Week\n\nThis week’s assignment!\nTBD",
+    "crumbs": [
+      "**Week 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#references-1",
+    "href": "src/05/slides.html#references-1",
+    "title": "Week 5: Running Models on Local Hardware",
+    "section": "References",
+    "text": "References",
+    "crumbs": [
+      "**Week 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/06/resources.html",
+    "href": "src/06/resources.html",
+    "title": "Week 6 Resources",
+    "section": "",
+    "text": "TBD",
+    "crumbs": [
+      "**Week 6:** Increasing Model Accuracy (Part 1)",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/06/resources.html#resources",
+    "href": "src/06/resources.html#resources",
+    "title": "Week 6 Resources",
+    "section": "",
+    "text": "TBD",
+    "crumbs": [
+      "**Week 6:** Increasing Model Accuracy (Part 1)",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/07/assignment.html",
+    "href": "src/07/assignment.html",
+    "title": "Week 7 Assignment",
+    "section": "",
+    "text": "TBD",
+    "crumbs": [
+      "**Week 7:** Increasing Model Accuracy (Part 2)",
+      "Assignment"
+    ]
+  },
+  {
+    "objectID": "src/07/assignment.html#assignment",
+    "href": "src/07/assignment.html#assignment",
+    "title": "Week 7 Assignment",
+    "section": "",
+    "text": "TBD",
+    "crumbs": [
+      "**Week 7:** Increasing Model Accuracy (Part 2)",
+      "Assignment"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#recap-of-last-weeks-lecture",
+    "href": "src/07/slides.html#recap-of-last-weeks-lecture",
+    "title": "Week 7: Increasing Model Accuracy (Part 2)",
+    "section": "Recap of Last Week’s Lecture",
+    "text": "Recap of Last Week’s Lecture\n\nUnderstood model training, dataset curation, what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy\nExplored use cases, advantages, and disadvantages of prompt engineering\nIntroduced and implemented RAG (Retrieval Augmented Generation) to increase the accuracy of a limited SLM\nStarted the exploration of how to fine-tune models using LoRA (Low Ranked Adaptation)\nUsed a foundational model to generate synthetic data for fine-tuning a 1B parameter model",
+    "crumbs": [
+      "**Week 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#lesson-objectives",
+    "href": "src/07/slides.html#lesson-objectives",
+    "title": "Week 7: Increasing Model Accuracy (Part 2)",
+    "section": "Lesson Objectives",
+    "text": "Lesson Objectives\n\nUse generated synthetic data to fine-tune a 1B parameter model\nUse W&B (Weights and Biases) to observe parameters during the training run\nPost-training, use W&B to use cosine similarity and LLM-as-a-Judge to evaluate the accuracy of our trained model\nTrain smaller models (270M parameters) and compare the results\nUnderstand and create a model card, upload the model to Hugging Face and share",
+    "crumbs": [
+      "**Week 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#looking-ahead-to-next-week-1",
+    "href": "src/07/slides.html#looking-ahead-to-next-week-1",
+    "title": "Week 7: Increasing Model Accuracy (Part 2)",
+    "section": "Looking Ahead to Next Week",
+    "text": "Looking Ahead to Next Week\n\nThis week’s assignment!\nTBD",
+    "crumbs": [
+      "**Week 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#references-1",
+    "href": "src/07/slides.html#references-1",
+    "title": "Week 7: Increasing Model Accuracy (Part 2)",
+    "section": "References",
+    "text": "References",
+    "crumbs": [
+      "**Week 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/resources.html",
+    "href": "src/08/resources.html",
+    "title": "Week 8 Resources",
+    "section": "",
+    "text": "TBD",
+    "crumbs": [
+      "**Week 8:** Ethics, IP, and Safety",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/08/resources.html#resources",
+    "href": "src/08/resources.html#resources",
+    "title": "Week 8 Resources",
+    "section": "",
+    "text": "TBD",
+    "crumbs": [
+      "**Week 8:** Ethics, IP, and Safety",
       "Resources"
     ]
   },

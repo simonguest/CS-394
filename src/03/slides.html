@@ -9,7 +9,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.26">
 
-  <title>CS-394 – Week 2: Exploring Hosted LLMs</title>
+  <title>CS-394 – Week 3: Agents and Tools</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -120,17 +120,13 @@
       margin-right: 0; 
     }
   </style>
-  <meta name="mermaid-theme" content="neutral">
-  <script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
-  <script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
-  <link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Week 2: Exploring Hosted LLMs</h1>
+  <h1 class="title">Week 3: Agents and Tools</h1>
 
 <div class="quarto-title-authors">
 </div>
@@ -139,111 +135,23 @@
 <section id="recap-of-last-weeks-lecture" class="slide level2">
 <h2>Recap of Last Week’s Lecture</h2>
 <ul>
-<li class="fragment">Explored the history of vector embeddings and tokenization</li>
-<li class="fragment">Understood the transformer architecture at a high level</li>
-<li class="fragment">Used our first transformer to translate language</li>
-<li class="fragment">Covered a brief history of early generative transformers</li>
-<li class="fragment">Setup and used Colab, and became familiar with the basics of notebooks and Python</li>
+<li class="fragment">Understood the evolution and licensing of models from GPT-2 through to modern day</li>
+<li class="fragment">Understood instruction-tuned models, how they work, and how to configure</li>
+<li class="fragment">Setup and used OpenRouter for accessing hosted models</li>
+<li class="fragment">Understood the OpenAI API specification, the request/response payload, parameters, streaming, and structured output</li>
+<li class="fragment">Created and shared a chatbot using a Gradio-based UI</li>
 </ul>
 </section>
 <section id="lesson-objectives" class="slide level2">
 <h2>Lesson Objectives</h2>
 <ul>
-<li class="fragment">Understand the evolution and licensing of models from GPT-2 through to modern day</li>
-<li class="fragment">Understand instruction-tuned models, how they work, and how to configure</li>
-<li class="fragment">Setup and use OpenRouter for accessing hosted models</li>
-<li class="fragment">Understand the OpenAI API specification, the request/response payload, parameters, streaming, and structured output</li>
-<li class="fragment">Create and share a chatbot using a Gradio-based UI</li>
+<li class="fragment">Describe the fundamental concepts behind Agents/Agentic AI</li>
+<li class="fragment">Explore and provide feedback on an existing multi-agent setup</li>
+<li class="fragment">Understand available agent SDKs, how they differ, and advantages/disadvantages</li>
+<li class="fragment">Use the OpenAI Agents SDK to build an multi-agent system from scratch, including document indexing and retrieval</li>
+<li class="fragment">Understand and implement tool calls and implement using OpenAI’s function calling and via MCP</li>
 </ul>
 </section>
-<section>
-<section id="from-gpt-2-to-gpt-3.5" class="title-slide slide level1 center">
-<h1>From GPT-2 to GPT-3.5</h1>
-
-</section>
-<section id="from-gpt-2-to-gpt-3.5-1" class="slide level2">
-<h2>From GPT-2 to GPT-3.5</h2>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">timeline
-    Feb 2019 : OpenAI releases GPT-2
-             : 1.5B parameters
-             : Initially withheld full model due to concerns about misuse
-             : Demonstrates impressive text generation capabilities with minimal fine-tuning
-
-    May 2020 : OpenAI releases GPT-3
-             : 175B parameters
-             : Demonstrates strong few-shot learning capabilities
-             : Marks a significant leap in model capabilities and scale
-
-    June 2020 : GPT-3 available through OpenAI API
-              : Still a completion model, not instruction-tuned
-
-    2021 : InstructGPT Development
-          : Built on GPT-3 with RLHF fine-tuning
-          : Trained to follow instructions and understand user intent
-          : Key innovation enabling ChatGPT
-    
-    Jan 2021 : Anthropic Founded
-             : Founded by Dario &amp; Daniela Amodei with ~7 senior OpenAI employees
-             : Dario led GPT-2/3 development and co-invented RLHF
-
-    Nov 2022 : ChatGPT Launch
-              : Built on GPT-3.5 using RLHF
-              : 1M+ users in 5 days
-              : Sparked widespread interest in generative AI
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</section>
-<section id="completion-vs.-instruction-tuned" class="slide level2">
-<h2>Completion vs.&nbsp;Instruction-Tuned</h2>
-<ul>
-<li class="fragment">Completion Model just predicts the next token
-<ul>
-<li class="fragment">Input prompt: <code>Mary had a little</code></li>
-<li class="fragment">Max total tokens: <code>50</code></li>
-<li class="fragment">Temperature: <code>0 - 1.0</code></li>
-<li class="fragment">top_k: consider only the top k tokens in the response</li>
-<li class="fragment">top_p: Nucleus sampling (probability cut off - 0 and 1.0)</li>
-</ul></li>
-<li class="fragment">Output
-<ul>
-<li class="fragment"><code>Mary had a little lamb, its fleece was white as snow...</code> (up to max tokens)</li>
-</ul></li>
-</ul>
-</section>
-<section id="completion-vs.-instruction-tuned-1" class="slide level2">
-<h2>Completion vs.&nbsp;Instruction-Tuned</h2>
-<ul>
-<li class="fragment">You can’t really converse with it</li>
-<li class="fragment"><code>What is the capital of France?</code> (max tokens = 50)</li>
-<li class="fragment"><code>What is the capital of France? Paris. What is the capital of Spain? Madrid. What is the capital of</code></li>
-</ul>
-</section>
-<section id="instruction-tuned-models" class="slide level2">
-<h2>Instruction-Tuned Models</h2>
-<ul>
-<li class="fragment">Supervised Fine-Tuning
-<ul>
-<li class="fragment">Large datasets of questions/answers, tasks/completions, demonstrating helpful assistant behavior</li>
-</ul></li>
-<li class="fragment">RLHF (Reinforcement Learning from Human Feedback)
-<ul>
-<li class="fragment">Human raters rank different model responses, training a reward model</li>
-</ul></li>
-<li class="fragment">Chat Templates
-<ul>
-<li class="fragment">Structured formats to distinguish speakers in a dialog: Typically system, user, and assistant</li>
-</ul></li>
-</ul>
-</section></section>
 <section>
 <section id="looking-ahead-to-next-week" class="title-slide slide level1 center">
 <h1>Looking Ahead to Next Week</h1>
@@ -252,7 +160,7 @@
 <section id="looking-ahead-to-next-week-1" class="slide level2">
 <h2>Looking Ahead to Next Week</h2>
 <ul>
-<li class="fragment"><a href="https://simonguest.github.io/CS-394/src/02/assignment.html" class="external" target="_blank">This week’s assignment!</a></li>
+<li class="fragment"><a href="https://simonguest.github.io/CS-394/src/03/assignment.html" class="external" target="_blank">This week’s assignment!</a></li>
 <li class="fragment">TBD</li>
 </ul>
 </section></section>
