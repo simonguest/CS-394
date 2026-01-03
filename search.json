@@ -262,6 +262,103 @@
     ]
   },
   {
+    "objectID": "src/00/weekly-rubric.html",
+    "href": "src/00/weekly-rubric.html",
+    "title": "Rubric (Weekly Assignments)",
+    "section": "",
+    "text": "1%\n2%\n3%\n4%\n5%\n\n\n\n\nThe submission is missing or fails to showcase any working features. The solution is practically unusable due to issues.\nOnly a few features are functional. Significant missing work or issues with the submission.\nMajor issues impact key features, but some functionality is evident. Noticeable gaps or confusing submission.\nMinor issues or bugs are present but do not significantly impact the functionality. Very few gaps, and a near-complete submission.\nAll features are fully functional. A complete submission that meets all requirements of the assignment.",
+    "crumbs": [
+      "**Welcome**",
+      "Rubric (Weekly Assignments)"
+    ]
+  },
+  {
+    "objectID": "src/00/final-rubric.html",
+    "href": "src/00/final-rubric.html",
+    "title": "Rubric (Final Project)",
+    "section": "",
+    "text": "2%\n4%\n6%\n8%\n10%\n\n\n\n\nOnly one AI model integrated with minimal effort or inappropriate model choice. Integration is superficial with no optimization.\nTwo AI models present but poorly integrated or not well-suited to their tasks. Limited optimization effort shown.\nTwo appropriate AI models integrated with basic functionality. Some optimization attempted but significant improvements possible.\nTwo well-chosen AI models effectively integrated and optimized for their respective tasks. Clear rationale for model selection.\nExcellent integration of multiple AI techniques with sophisticated optimization. Models are perfectly suited to tasks with exceptional implementation.",
+    "crumbs": [
+      "**Welcome**",
+      "Rubric (Final Project)"
+    ]
+  },
+  {
+    "objectID": "src/00/final-rubric.html#integration-of-ai-models-10",
+    "href": "src/00/final-rubric.html#integration-of-ai-models-10",
+    "title": "Rubric (Final Project)",
+    "section": "",
+    "text": "2%\n4%\n6%\n8%\n10%\n\n\n\n\nOnly one AI model integrated with minimal effort or inappropriate model choice. Integration is superficial with no optimization.\nTwo AI models present but poorly integrated or not well-suited to their tasks. Limited optimization effort shown.\nTwo appropriate AI models integrated with basic functionality. Some optimization attempted but significant improvements possible.\nTwo well-chosen AI models effectively integrated and optimized for their respective tasks. Clear rationale for model selection.\nExcellent integration of multiple AI techniques with sophisticated optimization. Models are perfectly suited to tasks with exceptional implementation.",
+    "crumbs": [
+      "**Welcome**",
+      "Rubric (Final Project)"
+    ]
+  },
+  {
+    "objectID": "src/00/final-rubric.html#functionality-10",
+    "href": "src/00/final-rubric.html#functionality-10",
+    "title": "Rubric (Final Project)",
+    "section": "Functionality (10%)",
+    "text": "Functionality (10%)\n\n\n\n\n\n\n\n\n\n\n2%\n4%\n6%\n8%\n10%\n\n\n\n\nProject is largely non-functional with AI components not working. Major bugs and errors prevent basic usage.\nProject runs but AI components frequently fail or produce incorrect results. Significant functionality issues present.\nProject is functional with AI components working in most cases. Some bugs or limitations affect user experience.\nProject is fully working with AI components functioning reliably as intended. Minor issues may exist but don’t impact core functionality.\nProject is fully functional with flawless AI integration. All components work seamlessly together with robust error handling.",
+    "crumbs": [
+      "**Welcome**",
+      "Rubric (Final Project)"
+    ]
+  },
+  {
+    "objectID": "src/00/final-rubric.html#innovation-and-creativity-10",
+    "href": "src/00/final-rubric.html#innovation-and-creativity-10",
+    "title": "Rubric (Final Project)",
+    "section": "Innovation and Creativity (10%)",
+    "text": "Innovation and Creativity (10%)\n\n\n\n\n\n\n\n\n\n\n2%\n4%\n6%\n8%\n10%\n\n\n\n\nGeneric AI usage with no creative application. Design is basic with poor aesthetics and no meaningful AI enhancement.\nAI used in conventional ways with limited creativity. Design shows some effort but AI doesn’t meaningfully enhance the experience.\nCreative AI application with interesting use cases. Design is competent with AI providing noticeable visual or interactive improvements.\nInnovative AI usage providing unique and compelling experiences. Strong aesthetic and functional design that effectively leverages AI capabilities.\nExceptional creativity with groundbreaking AI applications. Outstanding design that seamlessly integrates AI to create truly unique and compelling experiences.",
+    "crumbs": [
+      "**Welcome**",
+      "Rubric (Final Project)"
+    ]
+  },
+  {
+    "objectID": "src/00/final-rubric.html#ethical-analysis-10",
+    "href": "src/00/final-rubric.html#ethical-analysis-10",
+    "title": "Rubric (Final Project)",
+    "section": "Ethical Analysis (10%)",
+    "text": "Ethical Analysis (10%)\n\n\n\n\n\n\n\n\n\n\n2%\n4%\n6%\n8%\n10%\n\n\n\n\nNo ethical analysis provided or only superficial acknowledgment of issues. No consideration of biases or societal impacts.\nLimited ethical analysis with minimal identification of potential issues. Brief mention of biases but no mitigation strategies proposed.\nAdequate evaluation of biases and ethical implications with some discussion of societal impacts. Basic mitigation proposals included.\nThorough evaluation of potential biases, ethical implications, and societal impacts. Clear and practical proposals for mitigating identified risks.\nComprehensive and insightful ethical analysis demonstrating deep understanding of AI implications. Sophisticated mitigation strategies with consideration of broader societal impacts.",
+    "crumbs": [
+      "**Welcome**",
+      "Rubric (Final Project)"
+    ]
+  },
+  {
+    "objectID": "src/00/final-rubric.html#presentation-20",
+    "href": "src/00/final-rubric.html#presentation-20",
+    "title": "Rubric (Final Project)",
+    "section": "Presentation (20%)",
+    "text": "Presentation (20%)\n\n\n\n\n\n\n\n\n\n\n4%\n8%\n12%\n16%\n20%\n\n\n\n\nPresentation is unclear and disorganized with minimal explanation of AI features. If in a team, roles were undefined and collaboration issues evident.\nPresentation covers basic points but lacks engagement or clear explanation of AI integration process. If in a team, some team member contributions unclear.\nClear presentation highlighting main AI features and challenges faced. If in a team, collaboration is adequate with most roles and contributions identifiable.\nClear and engaging presentation effectively showcasing AI features and their purpose. Comprehensive explanation of integration process including model selection and solutions, with well-defined team roles (if applicable).\nOutstanding presentation that captivates audience while thoroughly explaining AI implementation. Exceptional teamwork (if applicable) with seamless collaboration and clearly articulated individual contributions.",
+    "crumbs": [
+      "**Welcome**",
+      "Rubric (Final Project)"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "CS-394/594: How Generative AI Works",
+    "section": "",
+    "text": "This site contains a collection of slides, code, and other resources for lectures held within the 25/26 CS-394/594 course.",
+    "crumbs": [
+      "CS-394/594"
+    ]
+  },
+  {
+    "objectID": "index.html#about",
+    "href": "index.html#about",
+    "title": "CS-394/594: How Generative AI Works",
+    "section": "",
+    "text": "This site contains a collection of slides, code, and other resources for lectures held within the 25/26 CS-394/594 course.",
+    "crumbs": [
+      "CS-394/594"
+    ]
+  },
+  {
     "objectID": "src/00/slides.html#course-description",
     "href": "src/00/slides.html#course-description",
     "title": "Welcome to CS-394/594!",
@@ -310,7 +407,7 @@
     "href": "src/00/slides.html#overall",
     "title": "Welcome to CS-394/594!",
     "section": "Overall",
-    "text": "Overall\n\nProvide a level of understanding beyond where most professional software developers are today\nFocus on augmentation vs. automation\nBuild a cool final project that you can add to your portfolio!",
+    "text": "Overall\n\nFocus on augmentation vs. automation\nProvide a level of understanding beyond where most professional software developers are today\nBuild an exciting final project that you can add to your portfolio!",
     "crumbs": [
       "**Welcome**",
       "Slides"
@@ -343,7 +440,18 @@
     "href": "src/00/slides.html#during-class",
     "title": "Welcome to CS-394/594!",
     "section": "During Class",
-    "text": "During Class\n\nStrive for conversation and interactivity\n\nPlease ask questions, even mid-slide!\nI enjoy going off on tangents / on the whiteboard\nUse hands on lab time to seek input / troubleshoot code",
+    "text": "During Class\n\nStrive for conversation and interactivity\n\nPlease ask questions, even mid-slide!\nThere are no wrong or bad questions!\nI enjoy going off on tangents / on the whiteboard\nUse hands on lab time to seek input / troubleshoot code",
+    "crumbs": [
+      "**Welcome**",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/00/slides.html#grading",
+    "href": "src/00/slides.html#grading",
+    "title": "Welcome to CS-394/594!",
+    "section": "Grading",
+    "text": "Grading\n\nWeekly Assignments: 40% of grade (8 x 5%)\nFinal Project: 60% of grade\nRubric for the weekly assignments\nRubric for the final project",
     "crumbs": [
       "**Welcome**",
       "Slides"
@@ -354,18 +462,18 @@
     "href": "src/00/slides.html#handing-in-work",
     "title": "Welcome to CS-394/594!",
     "section": "Handing in Work",
-    "text": "Handing in Work\n\nEverything submitted via GitHub\n\nRecommend creating a repo for in-class assignments\nAnd another repo for your final project\nDon’t forget to give me permissions! @simonguest\n\nGraded Course\n\nGeneral rubric for the in-class assignments\nComplete rubric for the final project",
+    "text": "Handing in Work\n\nEverything submitted via GitHub\n\nRecommend creating a repo for weekly assignments\n\nFor most weeks, submission will be one Python notebook\n\nAnd (eventually) another repo for your final project\nDon’t forget to give me permissions! @simonguest",
     "crumbs": [
       "**Welcome**",
       "Slides"
     ]
   },
   {
-    "objectID": "src/00/slides.html#handing-in-work-1",
-    "href": "src/00/slides.html#handing-in-work-1",
+    "objectID": "src/00/slides.html#deadlines",
+    "href": "src/00/slides.html#deadlines",
     "title": "Welcome to CS-394/594!",
-    "section": "Handing in Work",
-    "text": "Handing in Work\n\nDeadlines (In-class Assignments)\n\nAssignments are due by the following week’s lesson\ni.e., you get a week for each assignment\nIf you need more time/exception, please reach out via Teams\n\nDeadlines (Final Project)\n\nUp until Week 15 presentations\n(We’ll cover in detail later in the semester)",
+    "section": "Deadlines",
+    "text": "Deadlines\n\nWeekly Assignments\n\nAssignments are due by the following week’s lesson\ni.e., you get a week for each assignment\nIf you need more time/exception, please reach out via Teams\n\nFinal Project\n\nUp until Week 15 presentations\n(We’ll cover in detail later in the semester)",
     "crumbs": [
       "**Welcome**",
       "Slides"
@@ -376,7 +484,7 @@
     "href": "src/00/slides.html#ai-policy",
     "title": "Welcome to CS-394/594!",
     "section": "AI Policy",
-    "text": "AI Policy\n\nPermitted AI Usage\n\nYou may use AI tools to assist in understanding course materials. However, all work submitted must be your own.\nIf AI is used to generate code, your must test and validate the code, must understand and be able to answer questions about the generated code, and include proper citations.\nIf AI tools are used to assist with any part of an assignment, you must clearly cite the AI tool and explain how it was used.",
+    "text": "AI Policy\n\nPermitted AI Usage\n\nYou may use AI tools to assist in understanding course materials.\nIf AI is used to generate code, your must test and validate the code, must understand and be able to answer questions about the generated code, and include proper citations.\nIf AI tools are used to assist with any part of an assignment, you must clearly cite the AI tool and explain how it was used.",
     "crumbs": [
       "**Welcome**",
       "Slides"
@@ -387,7 +495,7 @@
     "href": "src/00/slides.html#tools",
     "title": "Welcome to CS-394/594!",
     "section": "Tools",
-    "text": "Tools\n\nWe will be introducing many tools\n\nColab Pro, OpenRouter, Hugging Face, etc.\nMost will be free\nExpect to need about $10-25 in OpenRouter API credits",
+    "text": "Tools\n\nWe will be introducing many tools\n\nColab Pro, OpenRouter, Hugging Face, etc.\nMost will be free\nExpect to need about $25 in credits throughout the semester",
     "crumbs": [
       "**Welcome**",
       "Slides"
@@ -398,7 +506,7 @@
     "href": "src/00/slides.html#languages",
     "title": "Welcome to CS-394/594!",
     "section": "Languages",
-    "text": "Languages\n\nWe will be using (and learning) a lot of Python!\n\nMost of the in-class assignments will be in Python\nDon’t worry if you are new to Python as we’ll introduce concepts gradually\n\nAlthough recommend investing extra time (see resources in Week 1)\n\n\nFinal Project\n\nCan be any language\nProbably depending on what you choose to create",
+    "text": "Languages\n\nWe will be using (and learning) a lot of Python!\n\nMost of the in-class assignments will be in Python\nDon’t worry if you are new to Python as we’ll introduce concepts gradually\nAlthough recommend investing extra time (see resources in Week 1)\n\nFinal Project\n\nCan be any language\nProbably depending on what you choose to create",
     "crumbs": [
       "**Welcome**",
       "Slides"
@@ -409,7 +517,7 @@
     "href": "src/00/slides.html#hardware",
     "title": "Welcome to CS-394/594!",
     "section": "Hardware",
-    "text": "Hardware\n\nWill will be training small models (SLMs) later in the semester\nThis training will require a decent GPU and VRAM\n\nColab Pro (CUDA)\nYour own NVIDIA-based laptop (CUDA)\nPotential of using MLX for any Mac users",
+    "text": "Hardware\n\nWill will be training SLMs (Small Language Models) later in the semester\nThis training will require a decent GPU and VRAM\n\nColab Pro (CUDA)\nYour own NVIDIA-based laptop (CUDA)\nPotential of using MLX for any Mac users",
     "crumbs": [
       "**Welcome**",
       "Slides"
@@ -420,7 +528,7 @@
     "href": "src/00/slides.html#need-help-1",
     "title": "Welcome to CS-394/594!",
     "section": "Need Help?",
-    "text": "Need Help?\n\nEverything we cover will be on my GitHub repo\n\nhttps://simonguest.github.io/CS-394\nSlides (current and prior lectures), Demo code, Resources\n\nOffice Hours\n\nThursdays 1pm - 3pm\nEither on campus or virtually via Teams\n\nTeams\n\nPrimary mechanism for updates, ask questions, request office hours, etc.",
+    "text": "Need Help?\n\nhttps://simonguest.github.io/CS-394\n\nSlides (current and prior lectures), Demo code, Resources, Rubrics, Assignments\nI will repost assignments and rubrics to Moodle. (Grades will also be in Moodle.)\n\nOffice Hours\n\nThursdays 1pm - 3pm (On campus or virtually via Teams)\n\nTeams\n\nPrimary mechanism for updates, ask questions, request office hours, etc.",
     "crumbs": [
       "**Welcome**",
       "Slides"
@@ -453,30 +561,10 @@
     "href": "src/00/slides.html#fast-moving-space",
     "title": "Welcome to CS-394/594!",
     "section": "Fast Moving Space",
-    "text": "Fast Moving Space\n\nThere will be areas/questions that I don’t have experience of\n\ne.g., multiple new models are launched every week\n\nBut that’s what makes it exciting!",
+    "text": "Fast Moving Space\n\nThere will be areas/questions I don’t have experience of\n\nmultiple new models are launched every week\nor equations/algorithms that I don’t know\n\nWe may be learning some things together!\nBut that’s what makes it exciting!",
     "crumbs": [
       "**Welcome**",
       "Slides"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "CS-394/594: How Generative AI Works",
-    "section": "",
-    "text": "This site contains a collection of slides, code, and other resources for lectures held within the 25/26 CS-394/594 course.",
-    "crumbs": [
-      "CS-394/594"
-    ]
-  },
-  {
-    "objectID": "index.html#about",
-    "href": "index.html#about",
-    "title": "CS-394/594: How Generative AI Works",
-    "section": "",
-    "text": "This site contains a collection of slides, code, and other resources for lectures held within the 25/26 CS-394/594 course.",
-    "crumbs": [
-      "CS-394/594"
     ]
   },
   {
