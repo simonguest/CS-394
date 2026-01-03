@@ -9,7 +9,7 @@ execute:
 
 | 2% | 4% | 6% | 8% | 10% |
 |---|---|---|---|---|
-| Only one AI model integrated with minimal effort or inappropriate model choice. Integration is superficial with no optimization. | Two AI models present but poorly integrated or not well-suited to their tasks. Limited optimization effort shown. | Two appropriate AI models integrated with basic functionality. Some optimization attempted but significant improvements possible. | Two well-chosen AI models effectively integrated and optimized for their respective tasks. Clear rationale for model selection. | Excellent integration of multiple AI techniques with sophisticated optimization. Models are perfectly suited to tasks with exceptional implementation. |
+| Only one AI technique integrated with minimal effort or inappropriate model choice. Integration is superficial with no optimization. | Two AI techniques used but poorly integrated or not well-suited to their tasks. Limited optimization effort shown. | Two appropriate AI techniques integrated with basic functionality. Some optimization attempted but significant improvements possible. | Two well-chosen AI techniques effectively integrated and optimized for their respective tasks. Clear rationale for model selection. | Excellent integration of multiple AI techniques with sophisticated optimization. Models are perfectly suited to tasks with exceptional implementation. |
 
 ## Functionality (10%)
 
