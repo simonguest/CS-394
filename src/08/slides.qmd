@@ -1,0 +1,44 @@
+---
+title: "Week 8: Ethics, IP, and Safety"
+format:
+  revealjs:
+    slide-number: true
+    incremental: true
+    center-title-slide: true
+    theme: [default, ../../theme/digipen.scss]
+    highlight-style: github
+    width: 1050
+    height: 700
+    margin: 0.15
+    mermaid:
+      theme: neutral
+logo: ../../theme/logos/DigiPen_RGB_Red.png
+bibliography: references.bib
+---
+
+## Recap of Last Week's Lecture
+
+- Used generated synthetic data to fine-tune a 1B parameter model
+- Used W&B (Weights and Biases) to observe parameters during the training run
+- Post-training, used W&B to use cosine similarity and LLM-as-a-Judge to evaluate the accuracy of our trained model
+- Trained smaller models (270M parameters) and compared the results
+- Understood and created a model card, uploaded the model to Hugging Face and shared
+
+## Lesson Objectives
+
+- Discuss ethical, IP, and safety concerns for Generative AI
+- Use an evidence-based approach to explore ethical implications and potential mitigations
+- Use an evidence-based approach to explore IP implications and potential mitigations
+- Use an evidence-based approach to explore safety implications and potential mitigations
+- Research a theme (or media claim) and author a paper confirming or challenging it
+
+# Looking Ahead to Next Week
+
+## Looking Ahead to Next Week
+
+- [This week's assignment!](https://simonguest.github.io/CS-394/src/08/assignment.html){.external target="_blank"}
+- TBD
+
+# References
+
+## References

@@ -66,3 +66,69 @@ website:
             contents:
           - text: "Assignment"
             href: src/02/assignment.qmd
+      - section: "**Week 3:** Agents and Tools"
+        contents:
+          - text: "Slides"
+            href: src/03/slides.qmd
+            target: blank
+          - text: "Resources"
+            href: src/03/resources.qmd
+          - section: "Notebooks"
+            contents:
+          - text: "Assignment"
+            href: src/03/assignment.qmd
+      - section: "**Week 4:** Multimedia and Multimodal Models"
+        contents:
+          - text: "Slides"
+            href: src/04/slides.qmd
+            target: blank
+          - text: "Resources"
+            href: src/04/resources.qmd
+          - section: "Notebooks"
+            contents:
+          - text: "Assignment"
+            href: src/04/assignment.qmd
+      - section: "**Week 5:** Running Models on Local Hardware"
+        contents:
+          - text: "Slides"
+            href: src/05/slides.qmd
+            target: blank
+          - text: "Resources"
+            href: src/05/resources.qmd
+          - section: "Notebooks"
+            contents:
+          - text: "Assignment"
+            href: src/05/assignment.qmd
+      - section: "**Week 6:** Increasing Model Accuracy (Part 1)"
+        contents:
+          - text: "Slides"
+            href: src/06/slides.qmd
+            target: blank
+          - text: "Resources"
+            href: src/06/resources.qmd
+          - section: "Notebooks"
+            contents:
+          - text: "Assignment"
+            href: src/06/assignment.qmd
+      - section: "**Week 7:** Increasing Model Accuracy (Part 2)"
+        contents:
+          - text: "Slides"
+            href: src/07/slides.qmd
+            target: blank
+          - text: "Resources"
+            href: src/07/resources.qmd
+          - section: "Notebooks"
+            contents:
+          - text: "Assignment"
+            href: src/07/assignment.qmd
+      - section: "**Week 8:** Ethics, IP, and Safety"
+        contents:
+          - text: "Slides"
+            href: src/08/slides.qmd
+            target: blank
+          - text: "Resources"
+            href: src/08/resources.qmd
+          - section: "Notebooks"
+            contents:
+          - text: "Assignment"
+            href: src/08/assignment.qmd

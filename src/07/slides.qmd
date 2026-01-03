@@ -1,0 +1,44 @@
+---
+title: "Week 7: Increasing Model Accuracy (Part 2)"
+format:
+  revealjs:
+    slide-number: true
+    incremental: true
+    center-title-slide: true
+    theme: [default, ../../theme/digipen.scss]
+    highlight-style: github
+    width: 1050
+    height: 700
+    margin: 0.15
+    mermaid:
+      theme: neutral
+logo: ../../theme/logos/DigiPen_RGB_Red.png
+bibliography: references.bib
+---
+
+## Recap of Last Week's Lecture
+
+- Understood model training, dataset curation, what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy
+- Explored use cases, advantages, and disadvantages of prompt engineering
+- Introduced and implemented RAG (Retrieval Augmented Generation) to increase the accuracy of a limited SLM
+- Started the exploration of how to fine-tune models using LoRA (Low Ranked Adaptation)
+- Used a foundational model to generate synthetic data for fine-tuning a 1B parameter model
+
+## Lesson Objectives
+
+- Use generated synthetic data to fine-tune a 1B parameter model
+- Use W&B (Weights and Biases) to observe parameters during the training run
+- Post-training, use W&B to use cosine similarity and LLM-as-a-Judge to evaluate the accuracy of our trained model
+- Train smaller models (270M parameters) and compare the results
+- Understand and create a model card, upload the model to Hugging Face and share
+
+# Looking Ahead to Next Week
+
+## Looking Ahead to Next Week
+
+- [This week's assignment!](https://simonguest.github.io/CS-394/src/07/assignment.html){.external target="_blank"}
+- TBD
+
+# References
+
+## References

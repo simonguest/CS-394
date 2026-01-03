@@ -1,0 +1,10 @@
+---
+title: "Resources"
+format: html
+execute:
+  enabled: false
+---
+
+## Citations
+
+- [References Slide](https://simonguest.github.io/CS-394/src/03/slides.html#/references-1){.external target="_blank"}

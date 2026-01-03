@@ -1,0 +1,44 @@
+---
+title: "Week 4: Multimedia and Multimodal Models"
+format:
+  revealjs:
+    slide-number: true
+    incremental: true
+    center-title-slide: true
+    theme: [default, ../../theme/digipen.scss]
+    highlight-style: github
+    width: 1050
+    height: 700
+    margin: 0.15
+    mermaid:
+      theme: neutral
+logo: ../../theme/logos/DigiPen_RGB_Red.png
+bibliography: references.bib
+---
+
+## Recap of Last Week's Lecture
+
+- Described the fundamental concepts behind Agents/Agentic AI
+- Explored and provided feedback on an existing multi-agent setup
+- Understood available agent SDKs, how they differ, and advantages/disadvantages
+- Used the OpenAI Agents SDK to build a multi-agent system from scratch, including document indexing and retrieval
+- Understood and implemented tool calls using OpenAI's function calling and via MCP
+
+## Lesson Objectives
+
+- Understand the fundamentals and history of diffuser models
+- Explore and use models that demonstrate text-to-image, image-to-image, inpainting, outpainting, and ControlNet
+- Setup and use Replicate to create a custom pipeline of production-grade models
+- Understand the fundamentals and history of Vision Encoders and VLMs
+- Implement/test a local VLM model for on-device inference
+
+# Looking Ahead to Next Week
+
+## Looking Ahead to Next Week
+
+- [This week's assignment!](https://simonguest.github.io/CS-394/src/04/assignment.html){.external target="_blank"}
+- TBD
+
+# References
+
+## References

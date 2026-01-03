@@ -66,6 +66,15 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 - No structured lectures for the weeks of the final project (3 hours of in-class lab time)
   - Although we may do mini-lectures for common topics
 
+## Schedule
+
+- Weeks 1 through 4
+- Feb 6 is Founders Day, so no classes
+- Weeks 5 through 8
+- Mar 9 - 13 is Spring Break
+- Weeks 9 through 14
+- Final presentations w/o Apr 20-24
+
 ## During Class
 
 - Strive for conversation and interactivity

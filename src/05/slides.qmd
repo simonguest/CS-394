@@ -1,0 +1,44 @@
+---
+title: "Week 5: Running Models on Local Hardware"
+format:
+  revealjs:
+    slide-number: true
+    incremental: true
+    center-title-slide: true
+    theme: [default, ../../theme/digipen.scss]
+    highlight-style: github
+    width: 1050
+    height: 700
+    margin: 0.15
+    mermaid:
+      theme: neutral
+logo: ../../theme/logos/DigiPen_RGB_Red.png
+bibliography: references.bib
+---
+
+## Recap of Last Week's Lecture
+
+- Understood the fundamentals and history of diffuser models
+- Explored and used models that demonstrate text-to-image, image-to-image, inpainting, outpainting, and ControlNet
+- Setup and used Replicate to create a custom pipeline of production-grade models
+- Understood the fundamentals and history of Vision Encoders and VLMs
+- Implemented/tested a local VLM model for on-device inference
+
+## Lesson Objectives
+
+- Understand the use cases, advantages/disadvantages for running models on local hardware - desktop, web, mobile
+- Understand hardware requirements and architectures for model inference - e.g., CUDA vs. ONNX vs. MLX vs. WebGPU
+- Explore how quantization works and understand techniques and formats for quantizing existing models
+- Use llama.cpp to quantize and run an SLM on local hardware/gaming PC
+- Integrate a quantized model within Unity/Unreal/WebAssembly
+
+# Looking Ahead to Next Week
+
+## Looking Ahead to Next Week
+
+- [This week's assignment!](https://simonguest.github.io/CS-394/src/05/assignment.html){.external target="_blank"}
+- TBD
+
+# References
+
+## References
