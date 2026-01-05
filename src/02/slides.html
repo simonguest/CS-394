@@ -995,13 +995,142 @@ I can build you a **day‑by‑day itinerary** just for your trip.</code></pre>
 </div>
 </div>
 </section></section>
+<section>
 <section id="structured-output" class="title-slide slide level1 center">
 <h1>Structured Output</h1>
 
 </section>
-
-<section id="on-to-gradio" class="title-slide slide level1 center">
-<h1>On to Gradio</h1>
+<section id="structured-output-1" class="slide level2">
+<h2>Structured Output</h2>
+<ul>
+<li class="fragment">So far, the models have generated non-structured output (i.e., free-form text)</li>
+<li class="fragment">Sometimes, paragraph. Sometimes, numbered list.</li>
+<li class="fragment">Sometimes, you just need structure
+<ul>
+<li class="fragment">“Return your result in JSON format”</li>
+<li class="fragment">“Give me the coordinates for Paris”</li>
+<li class="fragment">“What’s the temperature in Paris right now?”</li>
+</ul></li>
+</ul>
+</section>
+<section id="structured-output-2" class="slide level2">
+<h2>Structured Output</h2>
+<ul>
+<li class="fragment">You can try to use the system prompt
+<ul>
+<li class="fragment">“Return the result in JSON only”</li>
+</ul></li>
+<li class="fragment">But… it doesn’t always work
+<ul>
+<li class="fragment">Early/small models struggle with correct JSON formatting</li>
+<li class="fragment">Even larger models make mistakes (e.g., missing closing brace)</li>
+</ul></li>
+<li class="fragment">Sometimes the models just forget!
+<ul>
+<li class="fragment">“RETURN THE RESULT IN JSON ONLY. NO OTHER TEXT!!!”</li>
+</ul></li>
+</ul>
+</section>
+<section id="structured-output-in-openai-api" class="slide level2">
+<h2>Structured Output in OpenAI API</h2>
+<ul>
+<li class="fragment">Nov 2023: OpenAI added JSON mode
+<ul>
+<li class="fragment"><code>response_format: {"type": "json_object"}</code></li>
+<li class="fragment">Guaranteed valid JSON, but didn’t enforce schema</li>
+<li class="fragment">Sometimes mixed up/missed fields</li>
+</ul></li>
+<li class="fragment">Aug 2024: <strong>Structured Outputs</strong> launched
+<ul>
+<li class="fragment"><code>response_format: {"type": "json_object", ...}</code></li>
+<li class="fragment">100% reliability that output matches the your schema</li>
+</ul></li>
+</ul>
+</section>
+<section id="how-structured-outputs-work" class="slide level2">
+<h2>How Structured Outputs Work</h2>
+<ul>
+<li class="fragment">Constrained Decoding
+<ul>
+<li class="fragment">When generating responses, the model normally samples from all possible next tokens</li>
+<li class="fragment">With <strong>constrained decoding</strong>, the next token is <strong>dynamically filtered</strong> to only allow tokens that keep the output schema valid
+<ul>
+<li class="fragment">e.g., if schema requires an integer, string tokens are masked out from the probably distribution</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="how-structured-outputs-work-1" class="slide level2">
+<h2>How Structured Outputs Work</h2>
+<ul>
+<li class="fragment">Slightly slower token generation due to computational overhead</li>
+<li class="fragment">Technically, mathematically impossible to generate invalid output
+<ul>
+<li class="fragment">(Real world: I see 7000:1 error rates with GPT-5.1 chat)</li>
+</ul></li>
+</ul>
+</section>
+<section id="implementing-structured-outputs" class="slide level2">
+<h2>Implementing Structured Outputs</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/structured-outputs.ipynb" data-notebook-title="Structured Outputs" data-notebook-cellid="model">
+<div id="model" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel</span>
+<span id="cb21-2"><a></a></span>
+<span id="cb21-3"><a></a><span class="co"># Define the model for a geographic location</span></span>
+<span id="cb21-4"><a></a><span class="kw">class</span> Location(BaseModel):</span>
+<span id="cb21-5"><a></a>  name: <span class="bu">str</span></span>
+<span id="cb21-6"><a></a>  country: <span class="bu">str</span></span>
+<span id="cb21-7"><a></a>  latitude: <span class="bu">float</span></span>
+<span id="cb21-8"><a></a>  longitude: <span class="bu">float</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="implementing-structured-outputs-1" class="slide level2">
+<h2>Implementing Structured Outputs</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/structured-outputs.ipynb" data-notebook-title="Structured Outputs" data-notebook-cellid="request">
+<div id="request" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a></a>MODEL <span class="op">=</span> <span class="st">'openai/gpt-5.2-chat'</span> <span class="co">#@param ["openai/gpt-5.2-chat", "anthropic/claude-sonnet-4.5", "google/gemini-2.5-pro"]</span></span>
+<span id="cb22-2"><a></a></span>
+<span id="cb22-3"><a></a>response <span class="op">=</span> client.chat.completions.parse(</span>
+<span id="cb22-4"><a></a>    model<span class="op">=</span>MODEL,</span>
+<span id="cb22-5"><a></a>    messages<span class="op">=</span>[</span>
+<span id="cb22-6"><a></a>        {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"What are the GPS coordinates for Paris?"</span>},</span>
+<span id="cb22-7"><a></a>    ],</span>
+<span id="cb22-8"><a></a>    response_format<span class="op">=</span>Location</span>
+<span id="cb22-9"><a></a>)</span>
+<span id="cb22-10"><a></a></span>
+<span id="cb22-11"><a></a>completion <span class="op">=</span> response.choices[<span class="dv">0</span>].message</span>
+<span id="cb22-12"><a></a><span class="bu">print</span>(completion)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ParsedChatCompletionMessage[Location](content='{"name":"Paris","country":"France","latitude":48.8566,"longitude":2.3522}', refusal=None, role='assistant', annotations=None, audio=None, function_call=None, tool_calls=None, parsed=Location(name='Paris', country='France', latitude=48.8566, longitude=2.3522), reasoning=None)</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="implementing-structured-outputs-2" class="slide level2">
+<h2>Implementing Structured Outputs</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/structured-outputs.ipynb" data-notebook-title="Structured Outputs" data-notebook-cellid="display">
+<div id="display" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a></a><span class="co"># Display the JSON repesentation</span></span>
+<span id="cb24-2"><a></a><span class="bu">print</span>(completion.content)</span>
+<span id="cb24-3"><a></a></span>
+<span id="cb24-4"><a></a><span class="co"># Display the parsed type</span></span>
+<span id="cb24-5"><a></a><span class="bu">print</span>(completion.parsed)</span>
+<span id="cb24-6"><a></a></span>
+<span id="cb24-7"><a></a><span class="co"># Pretty-print</span></span>
+<span id="cb24-8"><a></a><span class="cf">if</span> completion.parsed:</span>
+<span id="cb24-9"><a></a>  location: Location <span class="op">=</span> completion.parsed</span>
+<span id="cb24-10"><a></a>  <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>location<span class="sc">.</span>name<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>location<span class="sc">.</span>country<span class="sc">}</span><span class="ss"> has GPS coordinates of </span><span class="sc">{</span>location<span class="sc">.</span>latitude<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>location<span class="sc">.</span>longitude<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{"name":"Paris","country":"France","latitude":48.8566,"longitude":2.3522}
+name='Paris' country='France' latitude=48.8566 longitude=2.3522
+Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
+</div>
+</div>
+</div>
+</section></section>
+<section id="bringing-together-with-gradio" class="title-slide slide level1 center">
+<h1>Bringing Together with Gradio</h1>
 
 </section>
 
