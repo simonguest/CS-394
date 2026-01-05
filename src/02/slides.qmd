@@ -329,9 +329,63 @@ Data sent as chunks, prefixed with `data:` and separated by double newlines
 
 {{< embed notebooks/token-streaming.ipynb#request echo=true >}}
 
-
 # Structured Output
-# On to Gradio
+
+## Structured Output
+
+- So far, the models have generated non-structured output (i.e., free-form text)
+- Sometimes, paragraph. Sometimes, numbered list.
+- Sometimes, you just need structure
+  - "Return your result in JSON format"
+  - "Give me the coordinates for Paris"
+  - "What's the temperature in Paris right now?"
+
+## Structured Output
+
+- You can try to use the system prompt
+  - "Return the result in JSON only"
+- But... it doesn't always work
+  - Early/small models struggle with correct JSON formatting
+  - Even larger models make mistakes (e.g., missing closing brace)
+- Sometimes the models just forget!
+  - "RETURN THE RESULT IN JSON ONLY. NO OTHER TEXT!!!"
+
+## Structured Output in OpenAI API
+
+- Nov 2023: OpenAI added JSON mode
+  - `response_format: {"type": "json_object"}`
+  - Guaranteed valid JSON, but didn't enforce schema
+  - Sometimes mixed up/missed fields
+- Aug 2024: **Structured Outputs** launched
+  - `response_format: {"type": "json_object", ...}`
+  - 100% reliability that output matches the your schema
+
+## How Structured Outputs Work
+
+- Constrained Decoding
+  - When generating responses, the model normally samples from all possible next tokens
+  - With **constrained decoding**, the next token is **dynamically filtered** to only allow tokens that keep the output schema valid
+    - e.g., if schema requires an integer, string tokens are masked out from the probably distribution
+
+## How Structured Outputs Work
+
+- Slightly slower token generation due to computational overhead
+- Technically, mathematically impossible to generate invalid output
+  - (Real world: I see 7000:1 error rates with GPT-5.1 chat)
+
+## Implementing Structured Outputs
+
+{{< embed notebooks/structured-outputs.ipynb#model echo=true >}}
+
+## Implementing Structured Outputs
+
+{{< embed notebooks/structured-outputs.ipynb#request echo=true >}}
+
+## Implementing Structured Outputs
+
+{{< embed notebooks/structured-outputs.ipynb#display echo=true >}}
+
+# Bringing Together with Gradio
 
 # Looking Ahead to Next Week
 
