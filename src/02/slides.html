@@ -559,6 +559,34 @@ Great question! On your next trip to Paris, you can start by visiting the iconic
 </ul></li>
 </ul>
 </section>
+<section id="accessing-closed-models-1" class="slide level2">
+<h2>Accessing Closed Models</h2>
+<ul>
+<li class="fragment">How much is going to cost?
+<ul>
+<li class="fragment">Token estimators (e.g., tiktoken from OpenAI)</li>
+<li class="fragment">Or napkin math: 100 tokens ~= 75 English words</li>
+</ul></li>
+</ul>
+</section>
+<section id="accessing-closed-models-2" class="slide level2">
+<h2>Accessing Closed Models</h2>
+<ul>
+<li class="fragment">Example
+<ul>
+<li class="fragment">Input from user = 75 words (100 tokens)</li>
+<li class="fragment">Output from model = 150 words (200 tokens)</li>
+<li class="fragment">Total cost = 100 input tokens + 200 output tokens</li>
+<li class="fragment">Total cost = $0.000175 + $0.0028 = $0.002975</li>
+</ul></li>
+<li class="fragment">At scale
+<ul>
+<li class="fragment">10,000 users / 1 request per month ~= $29.75/mo<br>
+</li>
+<li class="fragment">10,000 users / 1 request per day ~= $892.50/mo</li>
+</ul></li>
+</ul>
+</section>
 <section id="accessing-open-models" class="slide level2">
 <h2>Accessing Open Models</h2>
 <ul>
@@ -1058,7 +1086,7 @@ I can build you a **day‑by‑day itinerary** just for your trip.</code></pre>
 <li class="fragment">When generating responses, the model normally samples from all possible next tokens</li>
 <li class="fragment">With <strong>constrained decoding</strong>, the next token is <strong>dynamically filtered</strong> to only allow tokens that keep the output schema valid
 <ul>
-<li class="fragment">e.g., if schema requires an integer, string tokens are masked out from the probably distribution</li>
+<li class="fragment">e.g., if schema requires an integer, string tokens are masked out from the probability distribution</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -1302,8 +1330,8 @@ Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
 </div>
 </div>
 </section>
-<section id="example-2-streaming-chat-interface" class="slide level2">
-<h2>Example 2: Streaming Chat Interface</h2>
+<section id="example-3-streaming-chat-interface-1" class="slide level2">
+<h2>Example 3: Streaming Chat Interface</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-3">
 <div id="example-3" class="cell" data-execution_count="19">
 <div class="cell-output cell-output-stdout">

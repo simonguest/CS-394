@@ -606,6 +606,28 @@
     ]
   },
   {
+    "objectID": "src/02/slides.html#accessing-closed-models-1",
+    "href": "src/02/slides.html#accessing-closed-models-1",
+    "title": "Week 2: Exploring Hosted LLMs",
+    "section": "Accessing Closed Models",
+    "text": "Accessing Closed Models\n\nHow much is going to cost?\n\nToken estimators (e.g., tiktoken from OpenAI)\nOr napkin math: 100 tokens ~= 75 English words",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/02/slides.html#accessing-closed-models-2",
+    "href": "src/02/slides.html#accessing-closed-models-2",
+    "title": "Week 2: Exploring Hosted LLMs",
+    "section": "Accessing Closed Models",
+    "text": "Accessing Closed Models\n\nExample\n\nInput from user = 75 words (100 tokens)\nOutput from model = 150 words (200 tokens)\nTotal cost = 100 input tokens + 200 output tokens\nTotal cost = $0.000175 + $0.0028 = $0.002975\n\nAt scale\n\n10,000 users / 1 request per month ~= $29.75/mo\n\n10,000 users / 1 request per day ~= $892.50/mo",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "src/02/slides.html#accessing-open-models",
     "href": "src/02/slides.html#accessing-open-models",
     "title": "Week 2: Exploring Hosted LLMs",
@@ -808,7 +830,7 @@
     "href": "src/02/slides.html#how-structured-outputs-work",
     "title": "Week 2: Exploring Hosted LLMs",
     "section": "How Structured Outputs Work",
-    "text": "How Structured Outputs Work\n\nConstrained Decoding\n\nWhen generating responses, the model normally samples from all possible next tokens\nWith constrained decoding, the next token is dynamically filtered to only allow tokens that keep the output schema valid\n\ne.g., if schema requires an integer, string tokens are masked out from the probably distribution",
+    "text": "How Structured Outputs Work\n\nConstrained Decoding\n\nWhen generating responses, the model normally samples from all possible next tokens\nWith constrained decoding, the next token is dynamically filtered to only allow tokens that keep the output schema valid\n\ne.g., if schema requires an integer, string tokens are masked out from the probability distribution",
     "crumbs": [
       "**Week 2:** Exploring Hosted LLMs",
       "Slides"
@@ -958,11 +980,11 @@
     ]
   },
   {
-    "objectID": "src/02/slides.html#example-2-streaming-chat-interface",
-    "href": "src/02/slides.html#example-2-streaming-chat-interface",
+    "objectID": "src/02/slides.html#example-3-streaming-chat-interface-1",
+    "href": "src/02/slides.html#example-3-streaming-chat-interface-1",
     "title": "Week 2: Exploring Hosted LLMs",
-    "section": "Example 2: Streaming Chat Interface",
-    "text": "Example 2: Streaming Chat Interface\n\n\n\n* Running on local URL:  http://127.0.0.1:7872\n* To create a public link, set `share=True` in `launch()`.",
+    "section": "Example 3: Streaming Chat Interface",
+    "text": "Example 3: Streaming Chat Interface\n\n\n\n* Running on local URL:  http://127.0.0.1:7872\n* To create a public link, set `share=True` in `launch()`.",
     "crumbs": [
       "**Week 2:** Exploring Hosted LLMs",
       "Slides"
@@ -2228,7 +2250,12 @@
     "href": "src/02/notebooks/gradio.html",
     "title": "Gradio with OpenAI API (via OpenRouter)",
     "section": "",
-    "text": "# @title Install required packages\n!uv add gradio openai\n\n\n# @title Set the OpenRouter API Key from Colab Secrets\n\nfrom google.colab import userdata\nOPENROUTER_API_KEY = userdata.get('OPENROUTER_API_KEY')\n\n\n# @title Or grab the OpenRouter API Key from dotenv\n\nimport os\nfrom dotenv import load_dotenv\nload_dotenv()\n\nOPENROUTER_API_KEY = os.environ.get(\"OPENROUTER_API_KEY\")\n\n\n# @title Initialize the OpenAI Client\n\nimport openai\n\n# Initialize OpenAI client\nclient = openai.OpenAI(\n    base_url='https://openrouter.ai/api/v1',\n    api_key=OPENROUTER_API_KEY,\n)\n\n\n# @title Example 1: Basic Gradio interface\n\nimport gradio as gr\n\ndef image_classifier(inp):\n    return {'cat': 0.3, 'dog': 0.7}\n\ndemo = gr.Interface(fn=image_classifier, inputs=\"image\", outputs=\"label\")\ndemo.launch()\n\n* Running on local URL:  http://127.0.0.1:7870\n* To create a public link, set `share=True` in `launch()`.\n\n\n\n\n\n\n\n\n\n# @title Example 2: Basic chat interface with conversation history\n\nimport gradio as gr\n\ndef chat_with_history(message, history):\n    # Add current message\n    messages = history + [{\"role\": \"user\", \"content\": message}]\n    \n    # Get response from API\n    response = client.chat.completions.create(\n        model='openai/gpt-5.2-chat',\n        messages=messages,\n    )\n    \n    return response.choices[0].message.content\n\n# Create a chat interface\ndemo = gr.ChatInterface(\n    fn=chat_with_history,\n    title=\"Basic Chat with Conversation History\"\n)\n\ndemo.launch()\n\n* Running on local URL:  http://127.0.0.1:7871\n* To create a public link, set `share=True` in `launch()`.\n\n\n\n\n\n\n\n\n\n# @title Example 3: Streaming chat interface\n\ndef chat_with_streaming(message, history):\n    messages = history + [{\"role\": \"user\", \"content\": message}]\n    \n    # Stream the response\n    stream = client.chat.completions.create(\n        model='openai/gpt-5.2-chat',\n        messages=messages,\n        stream=True,\n    )\n    \n    response_text = \"\"\n    for chunk in stream:\n        if chunk.choices[0].delta.content is not None:\n            token = chunk.choices[0].delta.content\n            response_text += token\n            yield response_text\n\n# Create streaming chat interface\ndemo = gr.ChatInterface(\n    fn=chat_with_streaming,\n    title=\"AI Chat with Streaming\",\n)\n\ndemo.launch()\n\n* Running on local URL:  http://127.0.0.1:7872\n* To create a public link, set `share=True` in `launch()`."
+    "text": "# @title Install required packages\n!uv add gradio openai\n\n\n# @title Set the OpenRouter API Key from Colab Secrets\n\nfrom google.colab import userdata\nOPENROUTER_API_KEY = userdata.get('OPENROUTER_API_KEY')\n\n\n# @title Or grab the OpenRouter API Key from dotenv\n\nimport os\nfrom dotenv import load_dotenv\nload_dotenv()\n\nOPENROUTER_API_KEY = os.environ.get(\"OPENROUTER_API_KEY\")\n\n\n# @title Initialize the OpenAI Client\n\nimport openai\n\n# Initialize OpenAI client\nclient = openai.OpenAI(\n    base_url='https://openrouter.ai/api/v1',\n    api_key=OPENROUTER_API_KEY,\n)\n\n\n# @title Example 1: Basic Gradio interface\n\nimport gradio as gr\n\ndef image_classifier(inp):\n    return {'cat': 0.3, 'dog': 0.7}\n\ndemo = gr.Interface(fn=image_classifier, inputs=\"image\", outputs=\"label\")\ndemo.launch()\n\n* Running on local URL:  http://127.0.0.1:7870\n* To create a public link, set `share=True` in `launch()`.\n\n\n\n\n\n\n\n\n\n# @title Example 2: Basic chat interface with conversation history\n\nimport gradio as gr\n\ndef chat_with_history(message, history):\n    # Add current message\n    messages = history + [{\"role\": \"user\", \"content\": message}]\n    \n    # Get response from API\n    response = client.chat.completions.create(\n        model='openai/gpt-5.2-chat',\n        messages=messages,\n    )\n    \n    return response.choices[0].message.content\n\n# Create a chat interface\ndemo = gr.ChatInterface(\n    fn=chat_with_history,\n    title=\"Basic Chat with Conversation History\"\n)\n\ndemo.launch()\n\n* Running on local URL:  http://127.0.0.1:7871\n* To create a public link, set `share=True` in `launch()`.\n\n\n\n\n\n\n\n\n\n# @title Example 3: Streaming chat interface\n\ndef chat_with_streaming(message, history):\n    messages = history + [{\"role\": \"user\", \"content\": message}]\n    \n    # Stream the response\n    stream = client.chat.completions.create(\n        model='openai/gpt-5.2-chat',\n        messages=messages,\n        stream=True,\n    )\n    \n    response_text = \"\"\n    for chunk in stream:\n        if chunk.choices[0].delta.content is not None:\n            token = chunk.choices[0].delta.content\n            response_text += token\n            yield response_text\n\n# Create streaming chat interface\ndemo = gr.ChatInterface(\n    fn=chat_with_streaming,\n    title=\"AI Chat with Streaming\",\n)\n\ndemo.launch()\n\n* Running on local URL:  http://127.0.0.1:7872\n* To create a public link, set `share=True` in `launch()`.",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Notebooks",
+      "gradio.ipynb"
+    ]
   },
   {
     "objectID": "src/02/notebooks/structured-outputs.html",
