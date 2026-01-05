@@ -385,14 +385,84 @@ Data sent as chunks, prefixed with `data:` and separated by double newlines
 
 {{< embed notebooks/structured-outputs.ipynb#display echo=true >}}
 
-# Bringing Together with Gradio
+# Demo
+
+Token Streaming and Structured Outputs
+
+# Hands-On
+
+Investigate token-streaming.ipynb and structured-outputs.ipynb. Try adding an additional field to the Location model.
+
+# Creating a Chat UI
+
+## Creating a Chat UI
+
+- Up to now, we've been making requests and printing the responses
+- Good for learning concepts, but not a "product" that others can use
+- We want to build a UI that supports conversation threads, streaming, rich inputs/outputs, etc.
+- But we don't want to start from scratch!
+
+## Introducing Gradio
+
+![Source: https://www.gradio.app/](images/gradio-website.png)
+
+## What is Gradio?
+
+- **Created in 2019:** Startup called Gradio developing demos for research/academia
+- **Acquired by Hugging Face in 2021:** became the standard interface for Hugging Face Spaces
+- **Now industry standard:** For ML demos - used by researchers, startups to showcase models without front-end expertise
+
+## What is Gradio?
+
+- Rapid UI creation with minimal code
+  - 5-10 lines of Python for an interactive interface. No HTML, CSS, JS required.
+- Rich input/output types
+  - Text, images, audio, video, files, dataframes, etc.
+- ML workflows
+  - Supports streaming, queue management (for server-side deployment), flagging/feedback collection
+- Deployment flexibility
+  - Can run locally, create temporary public links, or embed in production apps
+
+## Example 1: Basic Interface
+
+{{< embed notebooks/gradio.ipynb#example-1 echo=true outputs=false >}}
+
+## Example 1: Basic Interface
+
+{{< embed notebooks/gradio.ipynb#example-1 echo=false >}}
+
+## Example 2: Basic Chat Interface
+
+{{< embed notebooks/gradio.ipynb#example-2 echo=true outputs=false >}}
+
+## Example 2: Basic Chat Interface
+
+{{< embed notebooks/gradio.ipynb#example-2 echo=false >}}
+
+## Example 3: Streaming Chat Interface
+
+{{< embed notebooks/gradio.ipynb#example-3 echo=true outputs=false >}}
+
+## Example 2: Streaming Chat Interface
+
+{{< embed notebooks/gradio.ipynb#example-3 echo=false >}}
+
+# Demo
+
+Gradio Notebook
+
+# Hands-On
+
+Explore the three examples in gradio.ipynb. 
 
 # Looking Ahead to Next Week
 
 ## Looking Ahead to Next Week
 
 - [This week's assignment!](https://simonguest.github.io/CS-394/src/02/assignment.html){.external target="_blank"}
-- TBD
+- Explore the world of AI Agents
+- Create agents, building upon our knowledge of Gradio
+- Give the agent tools to perform functions beyond what an LLM can do
 
 # References
 

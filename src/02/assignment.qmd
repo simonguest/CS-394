@@ -1,6 +1,23 @@
 ---
-title: "Week 2 Assignment - TBD"
+title: "Week 2 Assignment - Gradio Travel Planner"
 format: html
 execute:
   enabled: false
 ---
+**Objective:** Build a Gradio chat interface (in a separate Colab notebook) that helps users plan trips.
+
+**Requirements:**
+
+- Gradio chat interface with streaming responses
+- System prompt that defines the AI as a travel planning expert
+- Use at least 2 different models via OpenRouter as a dropdown in Gradio. Try to pick a large (foundational model) and a much smaller open source model to compare the differences.
+
+**Deliverable: A Colab/Jupyter notebook with:**
+
+- Code cells with your implementation
+- Uses OPENROUTER_API_KEY for the API token (do not include your API key in your notebook!)
+- Markdown cells explaining what the notebook does and any observations
+
+** Stretch Goal (Non-graded)**
+- After the conversation, a "Generate Itinerary" button that uses structured outputs to create a formatted itinerary
+- Structured output schema: Trip with fields like destination, duration_days, activities (list), budget_level, daily_schedule (list of day objects)
