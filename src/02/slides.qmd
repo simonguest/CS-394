@@ -215,6 +215,23 @@ timeline
   - Charged for tokens sent to the model and tokens returned from the model
   - GPT 5.2 Chat = $1.75 per million tokens input; $14 per million tokens output
 
+## Accessing Closed Models
+
+- How much is going to cost?
+  - Token estimators (e.g., tiktoken from OpenAI)
+  - Or napkin math: 100 tokens ~= 75 English words
+
+## Accessing Closed Models
+
+- Example
+  - Input from user = 75 words (100 tokens)
+  - Output from model = 150 words (200 tokens)
+  - Total cost = 100 input tokens + 200 output tokens
+  - Total cost = $0.000175 + $0.0028 = $0.002975
+- At scale
+  - 10,000 users / 1 request per month ~= $29.75/mo   
+  - 10,000 users / 1 request per day ~= $892.50/mo
+
 ## Accessing Open Models
 
 - Download and run on your own hardware
@@ -365,7 +382,7 @@ Data sent as chunks, prefixed with `data:` and separated by double newlines
 - Constrained Decoding
   - When generating responses, the model normally samples from all possible next tokens
   - With **constrained decoding**, the next token is **dynamically filtered** to only allow tokens that keep the output schema valid
-    - e.g., if schema requires an integer, string tokens are masked out from the probably distribution
+    - e.g., if schema requires an integer, string tokens are masked out from the probability distribution
 
 ## How Structured Outputs Work
 
@@ -443,7 +460,7 @@ Investigate token-streaming.ipynb and structured-outputs.ipynb. Try adding an ad
 
 {{< embed notebooks/gradio.ipynb#example-3 echo=true outputs=false >}}
 
-## Example 2: Streaming Chat Interface
+## Example 3: Streaming Chat Interface
 
 {{< embed notebooks/gradio.ipynb#example-3 echo=false >}}
 
