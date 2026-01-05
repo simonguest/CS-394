@@ -289,8 +289,8 @@
 <h2>Completion vs.&nbsp;Instruction-Tuned</h2>
 <ul>
 <li class="fragment">You can’t really converse with it</li>
-<li class="fragment"><code>What is the capital of France?</code> (max tokens = 50)</li>
-<li class="fragment"><code>What is the capital of France? Paris. What is the capital of Spain? Madrid. What is the capital of</code></li>
+<li class="fragment"><code>What should I do on my upcoming trip to Paris?</code> (max tokens = 75)</li>
+<li class="fragment"><code>What should I do on my upcoming trip to Paris? Please provide a detailed plan of action to help me plan my trip to Paris. 1. Research the best time to travel to Paris:</code></li>
 </ul>
 </section>
 <section id="instruction-tuned-models" class="slide level2">
@@ -306,98 +306,45 @@
 </ul></li>
 <li class="fragment">Chat Templates
 <ul>
-<li class="fragment">Structured formats to distinguish speakers in a dialog: Typically system, user, and assistant</li>
+<li class="fragment">Structured format to distinguish speakers in a conversation: Typically <strong>system</strong>, <strong>user</strong>, and <strong>assistant</strong></li>
 </ul></li>
 </ul>
 </section>
-<section id="instruction-tuned-models-1" class="slide level2">
-<h2>Instruction-Tuned Models</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/instruction-tuned.ipynb" data-notebook-title="Base Model vs. Instruction-Tuned Model" data-notebook-cellid="base-model">
-<div id="base-model" class="cell" data-execution_count="12">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="co"># @title Base (Completion) Model Output</span></span>
-<span id="cb1-2"><a></a></span>
-<span id="cb1-3"><a></a>base_inputs <span class="op">=</span> base_tokenizer(prompt, return_tensors<span class="op">=</span><span class="st">"pt"</span>)</span>
-<span id="cb1-4"><a></a>base_outputs <span class="op">=</span> base_model.generate(</span>
-<span id="cb1-5"><a></a>    <span class="op">**</span>base_inputs,</span>
-<span id="cb1-6"><a></a>    max_new_tokens<span class="op">=</span><span class="dv">150</span>,</span>
-<span id="cb1-7"><a></a>    temperature<span class="op">=</span><span class="fl">0.7</span>,</span>
-<span id="cb1-8"><a></a>    do_sample<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb1-9"><a></a>    pad_token_id<span class="op">=</span>base_tokenizer.eos_token_id</span>
-<span id="cb1-10"><a></a>)</span>
-<span id="cb1-11"><a></a>base_response <span class="op">=</span> base_tokenizer.decode(base_outputs[<span class="dv">0</span>], skip_special_tokens<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb1-12"><a></a><span class="bu">print</span>(base_response)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Write a Python function to calculate factorial of a given number.
-def factorial(n):
-    if n == 0:
-        return 1
-    else:
-        return n * factorial(n-1)</code></pre>
-</div>
-</div>
-</div>
+<section id="system-user-assistant" class="slide level2">
+<h2>System, User, Assistant</h2>
+<ul>
+<li class="fragment"><strong>System</strong> prompt sets the intention for the model, guiding the output
+<ul>
+<li class="fragment">“You are a helpful assistant”</li>
+<li class="fragment">“You help students with their math homework”</li>
+<li class="fragment">“You help travelers make plans for their trips”</li>
+<li class="fragment">Has to come first in the conversation</li>
+<li class="fragment">Only one system prompt</li>
+<li class="fragment">Optional for some models</li>
+</ul></li>
+</ul>
 </section>
-<section id="instruction-tuned-models-2" class="slide level2">
-<h2>Instruction-Tuned Models</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/instruction-tuned.ipynb" data-notebook-title="Base Model vs. Instruction-Tuned Model" data-notebook-cellid="it-model">
-<div id="it-model" class="cell" data-execution_count="15">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="co"># @title Instruction-Tuned Model Output</span></span>
-<span id="cb3-2"><a></a></span>
-<span id="cb3-3"><a></a>messages <span class="op">=</span> [</span>
-<span id="cb3-4"><a></a>    {</span>
-<span id="cb3-5"><a></a>        <span class="st">"role"</span>: <span class="st">"system"</span>,</span>
-<span id="cb3-6"><a></a>        <span class="st">"content"</span>: <span class="st">"You are an expert Python programmer who writes clean, documented code."</span>,</span>
-<span id="cb3-7"><a></a>    },</span>
-<span id="cb3-8"><a></a>    {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: prompt},</span>
-<span id="cb3-9"><a></a>]</span>
-<span id="cb3-10"><a></a>instruct_text <span class="op">=</span> instruct_tokenizer.apply_chat_template(</span>
-<span id="cb3-11"><a></a>    messages, tokenize<span class="op">=</span><span class="va">False</span>, add_generation_prompt<span class="op">=</span><span class="va">True</span></span>
-<span id="cb3-12"><a></a>)</span>
-<span id="cb3-13"><a></a>instruct_inputs <span class="op">=</span> instruct_tokenizer(instruct_text, return_tensors<span class="op">=</span><span class="st">"pt"</span>)</span>
-<span id="cb3-14"><a></a>instruct_outputs <span class="op">=</span> instruct_model.generate(</span>
-<span id="cb3-15"><a></a>    <span class="op">**</span>instruct_inputs,</span>
-<span id="cb3-16"><a></a>    max_new_tokens<span class="op">=</span><span class="dv">150</span>,</span>
-<span id="cb3-17"><a></a>    temperature<span class="op">=</span><span class="fl">0.7</span>,</span>
-<span id="cb3-18"><a></a>    do_sample<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb3-19"><a></a>    pad_token_id<span class="op">=</span>instruct_tokenizer.eos_token_id,</span>
-<span id="cb3-20"><a></a>)</span>
-<span id="cb3-21"><a></a>instruct_response <span class="op">=</span> instruct_tokenizer.decode(</span>
-<span id="cb3-22"><a></a>    instruct_outputs[<span class="dv">0</span>], skip_special_tokens<span class="op">=</span><span class="va">True</span></span>
-<span id="cb3-23"><a></a>)</span>
-<span id="cb3-24"><a></a><span class="bu">print</span>(instruct_response)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>system
-You are an expert Python programmer who writes clean, documented code.
-user
-Write a Python function to calculate factorial
-assistant
-Certainly! The factorial of a non-negative integer \( n \), denoted as \( n! \), is the product of all positive integers less than or equal to \( n \). For example:
-
-- \( 5! = 5 \times 4 \times 3 \times 2 \times 1 = 120 \)
-- \( 0! = 1 \)
-
-Here's how you can implement this in Python:
-
-```python
-def factorial(n):
-    """
-    Calculate the factorial of a given non-negative integer.
-
-    Args:
-        n (int): A non-negative integer whose factorial is to be calculated.
-
-    Returns:
-        int: The factorial of the input number.
-    """
-    if n == </code></pre>
-</div>
-</div>
-</div>
+<section id="system-user-assistant-1" class="slide level2">
+<h2>System, User, Assistant</h2>
+<ul>
+<li class="fragment"><strong>User</strong> prompt is the message (request) from the user
+<ul>
+<li class="fragment">“How many ’r’s in Strawberry?”</li>
+<li class="fragment">“What is linear algebra?”</li>
+<li class="fragment">“What should I do on my upcoming trip to Paris?”</li>
+</ul></li>
+<li class="fragment"><strong>Assistant</strong> prompt is the message (reply) from the model
+<ul>
+<li class="fragment">“There are three r’s in Strawberry”</li>
+<li class="fragment">“Linear algebra is the branch of mathematics that studies vectors, etc.”</li>
+<li class="fragment">“Here are some suggestions for your upcoming trip to Paris: 1. Explore the Louvre Museum: etc.”</li>
+</ul></li>
+</ul>
 </section>
 <section id="whats-a-chat-template" class="slide level2">
 <h2>What’s a Chat Template?</h2>
 <ul>
-<li class="fragment">Instruction-tuned models are trained on conversations with specific formatting</li>
+<li class="fragment">The format used to train instructional models on conversations involving system, user, and assistant prompts.</li>
 <li class="fragment">Each model family uses a different format (there is no universal standard)</li>
 <li class="fragment">Wrong format will likely generate nonsense/garbage</li>
 </ul>
@@ -405,38 +352,228 @@ def factorial(n):
 <section id="chatml-gpt-3.5-and-other-models" class="slide level2">
 <h2>ChatML (GPT-3.5 and other models)</h2>
 <pre><code>&lt;|im_start|&gt;system
-You are a helpful assistant&lt;|im_end|&gt;
+You help travelers make plans for their trips&lt;|im_end|&gt;
 &lt;|im_start|&gt;user
 Hello&lt;|im_end|&gt;
-&lt;|im_start|&gt;assistant</code></pre>
-</section>
-<section id="qwen" class="slide level2">
-<h2>Qwen</h2>
-<pre><code>&lt;|im_start|&gt;system
-You are a helpful assistant&lt;|im_end|&gt;
+&lt;|im_start|&gt;assistant
+Hi there! How can I help you?&lt;|im_end|&gt;
 &lt;|im_start|&gt;user
-Hello&lt;|im_end|&gt;
-&lt;|im_start|&gt;assistant</code></pre>
-</section>
-<section id="llama-3" class="slide level2">
-<h2>Llama 3</h2>
-<pre><code>&lt;|begin_of_text|&gt;&lt;|start_header_id|&gt;user&lt;|end_header_id|&gt;
-Hello&lt;|eot_id|&gt;&lt;|start_header_id|&gt;assistant&lt;|end_header_id|&gt;</code></pre>
+What should I do on my upcoming trip to Paris?&lt;|im_end|&gt;
+&lt;|im_start|&gt;assistant
+</code></pre>
 </section>
 <section id="chat-templates-in-practice" class="slide level2">
 <h2>Chat Templates in Practice</h2>
-<pre><code>messages = [
-    {"role": "system", "content": "You are a helpful assistant"},
-    {"role": "user", "content": "Hello"},
-    {"role": "assistant", "content": "Hi there!"},
-    {"role": "user", "content": "What's 2+2?"}
-]
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/instruction-tuned.ipynb" data-notebook-title="Base Model vs. Instruction-Tuned Model" data-notebook-cellid="chat-template">
+<div id="chat-template" class="cell" data-execution_count="46">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="co"># @title Qwen's Chat Template</span></span>
+<span id="cb2-2"><a></a></span>
+<span id="cb2-3"><a></a>messages <span class="op">=</span> [</span>
+<span id="cb2-4"><a></a>    {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You help travelers make plans for their trips"</span>},</span>
+<span id="cb2-5"><a></a>    {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"Hello"</span>},</span>
+<span id="cb2-6"><a></a>    {<span class="st">"role"</span>: <span class="st">"assistant"</span>, <span class="st">"content"</span>: <span class="st">"Hi there!"</span>},</span>
+<span id="cb2-7"><a></a>    {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"What should I do on my upcoming trip to Paris?"</span>}</span>
+<span id="cb2-8"><a></a>]</span>
+<span id="cb2-9"><a></a></span>
+<span id="cb2-10"><a></a>instruct_tokenizer.apply_chat_template(</span>
+<span id="cb2-11"><a></a>    messages, </span>
+<span id="cb2-12"><a></a>    tokenize<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb2-13"><a></a>    add_generation_prompt<span class="op">=</span><span class="va">True</span>  <span class="co"># Adds the assistant prompt</span></span>
+<span id="cb2-14"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="46">
+<pre><code>'&lt;|im_start|&gt;system\nYou help travelers make plans for their trips&lt;|im_end|&gt;\n&lt;|im_start|&gt;user\nHello&lt;|im_end|&gt;\n&lt;|im_start|&gt;assistant\nHi there!&lt;|im_end|&gt;\n&lt;|im_start|&gt;user\nWhat should I do on my upcoming trip to Paris?&lt;|im_end|&gt;\n&lt;|im_start|&gt;assistant\n'</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="putting-this-together" class="slide level2">
+<h2>Putting This Together</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/instruction-tuned.ipynb" data-notebook-title="Base Model vs. Instruction-Tuned Model" data-notebook-cellid="base-model">
+<div id="base-model" class="cell" data-execution_count="42">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="co"># @title Base (Completion) Model Output</span></span>
+<span id="cb4-2"><a></a></span>
+<span id="cb4-3"><a></a>base_inputs <span class="op">=</span> base_tokenizer(<span class="st">"What should I do on my upcoming trip to Paris?"</span>, return_tensors<span class="op">=</span><span class="st">"pt"</span>)</span>
+<span id="cb4-4"><a></a>base_outputs <span class="op">=</span> base_model.generate(</span>
+<span id="cb4-5"><a></a>    <span class="op">**</span>base_inputs,</span>
+<span id="cb4-6"><a></a>    max_new_tokens<span class="op">=</span><span class="dv">150</span>,</span>
+<span id="cb4-7"><a></a>    temperature<span class="op">=</span><span class="fl">0.7</span>,</span>
+<span id="cb4-8"><a></a>    do_sample<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb4-9"><a></a>    pad_token_id<span class="op">=</span>base_tokenizer.eos_token_id</span>
+<span id="cb4-10"><a></a>)</span>
+<span id="cb4-11"><a></a>base_response <span class="op">=</span> base_tokenizer.decode(base_outputs[<span class="dv">0</span>], skip_special_tokens<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-12"><a></a><span class="bu">print</span>(base_response)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>What should I do on my upcoming trip to Paris? I think it would be better if you could give more specific information about where you plan to go and when you plan to arrive. Also, can you suggest any specific tips or recommendations for traveling to Paris other than walking around the city?
 
-formatted = tokenizer.apply_chat_template(
-    messages, 
-    tokenize=False,
-    add_generation_prompt=True  # Adds the assistant prompt
-)</code></pre>
+I'm sorry, but as an AI language model, I don't have any specific information about your upcoming trip to Paris. However, I can suggest some general tips and recommendations for traveling to Paris other than walking around the city:
+
+1. Plan your itinerary ahead of time to avoid getting lost or getting in over your head.
+2. Book your flights or accommodations in advance to avoid being stuck in traffic or waiting for a delayed flight.
+3. Purchase a travel insurance policy to protect your belongings and reduce the risk of</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="putting-this-together-1" class="slide level2">
+<h2>Putting This Together</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/instruction-tuned.ipynb" data-notebook-title="Base Model vs. Instruction-Tuned Model" data-notebook-cellid="it-model">
+<div id="it-model" class="cell" data-execution_count="43">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="co"># @title Instruction-Tuned Model Output</span></span>
+<span id="cb6-2"><a></a></span>
+<span id="cb6-3"><a></a>messages <span class="op">=</span> [</span>
+<span id="cb6-4"><a></a>    {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You help travelers make plans for their trips."</span>},</span>
+<span id="cb6-5"><a></a>    {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"Hello"</span>},</span>
+<span id="cb6-6"><a></a>    {<span class="st">"role"</span>: <span class="st">"assistant"</span>, <span class="st">"content"</span>: <span class="st">"Hi there!"</span>},</span>
+<span id="cb6-7"><a></a>    {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"What should I do on my upcoming trip to Paris?"</span>}</span>
+<span id="cb6-8"><a></a>]</span>
+<span id="cb6-9"><a></a>instruct_text <span class="op">=</span> instruct_tokenizer.apply_chat_template(</span>
+<span id="cb6-10"><a></a>    messages, tokenize<span class="op">=</span><span class="va">False</span>, add_generation_prompt<span class="op">=</span><span class="va">True</span></span>
+<span id="cb6-11"><a></a>)</span>
+<span id="cb6-12"><a></a>instruct_inputs <span class="op">=</span> instruct_tokenizer(instruct_text, return_tensors<span class="op">=</span><span class="st">"pt"</span>)</span>
+<span id="cb6-13"><a></a>instruct_outputs <span class="op">=</span> instruct_model.generate(</span>
+<span id="cb6-14"><a></a>    <span class="op">**</span>instruct_inputs,</span>
+<span id="cb6-15"><a></a>    max_new_tokens<span class="op">=</span><span class="dv">150</span>,</span>
+<span id="cb6-16"><a></a>    temperature<span class="op">=</span><span class="fl">0.7</span>,</span>
+<span id="cb6-17"><a></a>    do_sample<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb6-18"><a></a>    pad_token_id<span class="op">=</span>instruct_tokenizer.eos_token_id,</span>
+<span id="cb6-19"><a></a>)</span>
+<span id="cb6-20"><a></a>instruct_response <span class="op">=</span> instruct_tokenizer.decode(</span>
+<span id="cb6-21"><a></a>    instruct_outputs[<span class="dv">0</span>], skip_special_tokens<span class="op">=</span><span class="va">True</span></span>
+<span id="cb6-22"><a></a>)</span>
+<span id="cb6-23"><a></a><span class="bu">print</span>(instruct_response)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>system
+You help travelers make plans for their trips.
+user
+Hello
+assistant
+Hi there!
+user
+What should I do on my upcoming trip to Paris?
+assistant
+Great question! On your next trip to Paris, you can start by visiting the iconic Eiffel Tower and the Louvre Museum. Don't miss exploring the Notre-Dame Cathedral and its stunning stained glass windows. For a bit of a break, consider visiting Montmartre for some beautiful art and architecture. If you're looking for something more adventurous, you could take a stroll through the charming streets of Montmartre or explore the vibrant nightlife of Le Marais. Have fun planning your trip to Paris!</code></pre>
+</div>
+</div>
+</div>
+</section></section>
+<section id="demo" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p>Base vs.&nbsp;Instruction-Tuned Model notebook in Colab</p>
+</section>
+
+<section id="hands-on" class="title-slide slide level1 center">
+<h1>Hands-On</h1>
+<p>Experiment with your own phrases in the instruction-tuned.ipynb notebook</p>
+</section>
+
+<section>
+<section id="model-evolution" class="title-slide slide level1 center">
+<h1>Model Evolution</h1>
+
+</section>
+<section id="model-evolution-gpt-3.5-onwards" class="slide level2">
+<h2>Model Evolution (GPT 3.5 onwards)</h2>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">timeline
+    Nov 2022 : ChatGPT Launch
+                  : Built on GPT-3.5 using RLHF
+                  : 1M+ users in 5 days
+                  : Sparked widespread interest in generative AI
+
+    Feb 2023 : Llama 1 Released
+                  : Meta's LLaMA (7B, 13B, 33B, 65B parameters)
+                  : 13B model exceeded GPT-3 (175B) on most benchmarks
+                  : Limited researcher access
+                  : Text completion only (Alpaca fine-tune added instructions)
+
+    Jul 2023 : Llama 2 Released
+              : Available in 7B, 13B, 70B sizes
+              : Trained on 40% more data than Llama 1
+              : First open-weights Llama for commercial use
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="closed-vs.-open-models" class="slide level2">
+<h2>Closed vs.&nbsp;Open Models</h2>
+<ul>
+<li class="fragment"><strong>Closed Source:</strong>
+<ul>
+<li class="fragment">Hosted models</li>
+<li class="fragment">No ability to inspect the weights of the models</li>
+<li class="fragment">No ability to download the models</li>
+<li class="fragment">OpenAI GPT-5, Claude Sonnet 4.5, Google’s Gemini</li>
+<li class="fragment">Very large models; often referred to as <strong>foundational</strong> models or <strong>frontier</strong> models</li>
+</ul></li>
+</ul>
+</section>
+<section id="closed-vs.-open-models-1" class="slide level2">
+<h2>Closed vs.&nbsp;Open Models</h2>
+<ul>
+<li class="fragment"><strong>Open Weight:</strong>
+<ul>
+<li class="fragment">Downloadable model files</li>
+<li class="fragment">You can download the model files with pretrained weights, but no training data</li>
+<li class="fragment">No training data == No ability to recreate the model from scratch</li>
+<li class="fragment">Meta’s Llama, Google’s Gemma, Alibaba’s Qwen, OpenAI gpt-oss-120b</li>
+<li class="fragment">Range from small to medium in size (1Gb - 500Gb+)</li>
+</ul></li>
+</ul>
+</section>
+<section id="closed-vs.-open-models-2" class="slide level2">
+<h2>Closed vs.&nbsp;Open Models</h2>
+<ul>
+<li class="fragment"><strong>Open Source:</strong>
+<ul>
+<li class="fragment">Models with access to the training data set</li>
+<li class="fragment">You can download the model files with pretrained weights <strong>and</strong> the training data used to train it</li>
+<li class="fragment">i.e., you could create the model from scratch</li>
+<li class="fragment">Examples: AI2’s OLMo</li>
+</ul></li>
+</ul>
+</section>
+<section id="accessing-closed-models" class="slide level2">
+<h2>Accessing Closed Models</h2>
+<ul>
+<li class="fragment">Consumer Website / App
+<ul>
+<li class="fragment">e.g., ChatGPT website or AppStore App</li>
+<li class="fragment">Limited free tier; monthly subscription for more usage</li>
+</ul></li>
+<li class="fragment">API Access
+<ul>
+<li class="fragment">OpenAI’s API Platform; Create a developer account</li>
+<li class="fragment">Credit card required</li>
+<li class="fragment">Charged for tokens sent to the model and tokens returned from the model</li>
+<li class="fragment">GPT 5.2 Chat = $1.75 per million tokens input; $14 per million tokens output</li>
+</ul></li>
+</ul>
+</section>
+<section id="accessing-open-models" class="slide level2">
+<h2>Accessing Open Models</h2>
+<ul>
+<li class="fragment">Download and run on your own hardware
+<ul>
+<li class="fragment">Or download them and run them on Colab, as we’ve been doing in our demos</li>
+<li class="fragment">(We’ll be covering this later on in the course)</li>
+</ul></li>
+<li class="fragment">Also access them (via an API), hosted on someone else’s hardware</li>
+</ul>
+</section></section>
+<section>
+<section id="openai-api-specification" class="title-slide slide level1 center">
+<h1>OpenAI API Specification</h1>
+
+</section>
+<section id="openai-api-specification-1" class="slide level2">
+<h2>OpenAI API Specification</h2>
 </section></section>
 <section>
 <section id="looking-ahead-to-next-week" class="title-slide slide level1 center">
