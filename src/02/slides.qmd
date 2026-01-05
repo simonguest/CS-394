@@ -14,6 +14,8 @@ format:
       theme: neutral
 logo: ../../theme/logos/DigiPen_RGB_Red.png
 bibliography: references.bib
+execute:
+  enabled: false
 ---
 
 ## Recap of Last Week's Lecture
@@ -80,8 +82,8 @@ timeline
 ## Completion vs. Instruction-Tuned
 
 - You can't really converse with it
-- `What is the capital of France?` (max tokens = 50)
-- `What is the capital of France? Paris. What is the capital of Spain? Madrid. What is the capital of`
+- `What should I do on my upcoming trip to Paris?` (max tokens = 75)
+- `What should I do on my upcoming trip to Paris? Please provide a detailed plan of action to help me plan my trip to Paris. 1. Research the best time to travel to Paris:`
 
 ## Instruction-Tuned Models
 
@@ -90,19 +92,32 @@ timeline
 - RLHF (Reinforcement Learning from Human Feedback)
   - Human raters rank different model responses, training a reward model
 - Chat Templates
-  - Structured formats to distinguish speakers in a dialog: Typically system, user, and assistant
+  - Structured format to distinguish speakers in a conversation: Typically **system**, **user**, and **assistant**
 
-## Instruction-Tuned Models
+## System, User, Assistant
 
-{{< embed notebooks/instruction-tuned.ipynb#base-model echo=true >}}
+- **System** prompt sets the intention for the model, guiding the output
+  - "You are a helpful assistant"
+  - "You help students with their math homework"
+  - "You help travelers make plans for their trips"
+  - Has to come first in the conversation
+  - Only one system prompt
+  - Optional for some models
 
-## Instruction-Tuned Models
+## System, User, Assistant
 
-{{< embed notebooks/instruction-tuned.ipynb#it-model echo=true >}}
+- **User** prompt is the message (request) from the user
+  - "How many 'r's in Strawberry?"
+  - "What is linear algebra?"
+  - "What should I do on my upcoming trip to Paris?"
+- **Assistant** prompt is the message (reply) from the model
+  - "There are three r's in Strawberry"
+  - "Linear algebra is the branch of mathematics that studies vectors, etc."
+  - "Here are some suggestions for your upcoming trip to Paris: 1. Explore the Louvre Museum: etc."
 
 ## What's a Chat Template?
 
-- Instruction-tuned models are trained on conversations with specific formatting
+- The format used to train instructional models on conversations involving system, user, and assistant prompts.
 - Each model family uses a different format (there is no universal standard)
 - Wrong format will likely generate nonsense/garbage
 
@@ -110,46 +125,109 @@ timeline
 
 ```
 <|im_start|>system
-You are a helpful assistant<|im_end|>
+You help travelers make plans for their trips<|im_end|>
 <|im_start|>user
 Hello<|im_end|>
 <|im_start|>assistant
-```
-
-## Qwen
-
-```
-<|im_start|>system
-You are a helpful assistant<|im_end|>
+Hi there! How can I help you?<|im_end|>
 <|im_start|>user
-Hello<|im_end|>
+What should I do on my upcoming trip to Paris?<|im_end|>
 <|im_start|>assistant
-```
-
-## Llama 3
 
 ```
-<|begin_of_text|><|start_header_id|>user<|end_header_id|>
-Hello<|eot_id|><|start_header_id|>assistant<|end_header_id|>
-```
-
 ## Chat Templates in Practice
 
-```
-messages = [
-    {"role": "system", "content": "You are a helpful assistant"},
-    {"role": "user", "content": "Hello"},
-    {"role": "assistant", "content": "Hi there!"},
-    {"role": "user", "content": "What's 2+2?"}
-]
+{{< embed notebooks/instruction-tuned.ipynb#chat-template echo=true >}}
 
-formatted = tokenizer.apply_chat_template(
-    messages, 
-    tokenize=False,
-    add_generation_prompt=True  # Adds the assistant prompt
-)
+## Putting This Together
+
+{{< embed notebooks/instruction-tuned.ipynb#base-model echo=true >}}
+
+## Putting This Together
+
+{{< embed notebooks/instruction-tuned.ipynb#it-model echo=true >}}
+
+# Demo
+
+Base vs. Instruction-Tuned Model notebook in Colab
+
+# Hands-On
+
+Experiment with your own phrases in the instruction-tuned.ipynb notebook
+
+# Model Evolution
+
+## Model Evolution (GPT 3.5 onwards)
+
+```{mermaid}
+timeline
+    Nov 2022 : ChatGPT Launch
+                  : Built on GPT-3.5 using RLHF
+                  : 1M+ users in 5 days
+                  : Sparked widespread interest in generative AI
+
+    Feb 2023 : Llama 1 Released
+                  : Meta's LLaMA (7B, 13B, 33B, 65B parameters)
+                  : 13B model exceeded GPT-3 (175B) on most benchmarks
+                  : Limited researcher access
+                  : Text completion only (Alpaca fine-tune added instructions)
+
+    Jul 2023 : Llama 2 Released
+              : Available in 7B, 13B, 70B sizes
+              : Trained on 40% more data than Llama 1
+              : First open-weights Llama for commercial use
 ```
-  
+
+## Closed vs. Open Models
+
+- **Closed Source:** 
+  - Hosted models
+  - No ability to inspect the weights of the models
+  - No ability to download the models
+  - OpenAI GPT-5, Claude Sonnet 4.5, Google's Gemini
+  - Very large models; often referred to as **foundational** models or **frontier** models
+
+## Closed vs. Open Models
+
+- **Open Weight:** 
+  - Downloadable model files
+  - You can download the model files with pretrained weights, but no training data
+  - No training data == No ability to recreate the model from scratch
+  - Meta's Llama, Google's Gemma, Alibaba's Qwen, OpenAI gpt-oss-120b 
+  - Range from small to medium in size (1Gb - 500Gb+)
+
+## Closed vs. Open Models
+
+- **Open Source:** 
+  - Models with access to the training data set
+  - You can download the model files with pretrained weights **and** the training data used to train it
+  - i.e., you could create the model from scratch
+  - Examples: AI2's OLMo
+
+## Accessing Closed Models
+
+- Consumer Website / App
+  - e.g., ChatGPT website or AppStore App
+  - Limited free tier; monthly subscription for more usage
+- API Access
+  - OpenAI's API Platform; Create a developer account
+  - Credit card required
+  - Charged for tokens sent to the model and tokens returned from the model
+  - GPT 5.2 Chat = $1.75 per million tokens input; $14 per million tokens output
+
+## Accessing Open Models
+
+- Download and run on your own hardware
+  - Or download them and run them on Colab, as we've been doing in our demos
+  - (We'll be covering this later on in the course)
+- Also access them (via an API), hosted on someone else's hardware
+
+# OpenAI API Specification
+
+## OpenAI API Specification
+
+
+
 
 # Looking Ahead to Next Week
 
