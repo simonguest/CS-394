@@ -222,12 +222,84 @@ timeline
   - (We'll be covering this later on in the course)
 - Also access them (via an API), hosted on someone else's hardware
 
-# OpenAI API Specification
+# Calling Models via APIs
 
-## OpenAI API Specification
+## OpenAI Chat Completions API
+
+- 2020: OpenAI launched GPT-3 API with a `/completions` endpoint.
+  - First major LLM API
+- 2022: ChatGPT launch; massive adoption
+- 2023 `/chat/completions` endpoint released, becomes the dominant interface
+- 2023-2024: Other providers use the same API format for their own models vs. inventing their own
+  - Build on the OpenAI developer ecosystem
+  - "OpenAI-compatible" became a selling point
+
+## OpenAI Chat Completions API
+
+- Who uses the OpenAI Chat Completions API format?
+  - Anthropic (Claude API is very similar, with minor differences)
+  - OpenRouter, an inference provider for many models
+  - Open source tools: LiteLLM, LangChain
+  - Local serving: Ollama, vLLM, llama.cpp are all "OpenAI-compatible"
+
+## Using the Chat Completions API
+
+{{< embed notebooks/chat-completion-openai.ipynb#init echo=true >}}
+
+## Using the Chat Completions API
+
+{{< embed notebooks/chat-completion-openai.ipynb#request echo=true >}}
+
+## Using the Chat Completions API
+
+{{< embed notebooks/chat-completion-openai.ipynb#response echo=true >}}
+
+# Calling Other Models
+
+## Calling Other Models
+
+- We could just duplicate our notebook, change the URL to another provider (e.g., Claude, Google, etc.), but:
+  - A separate account with each provider
+  - A separate credit card with each provider
+  - A separate API key to use for each provider
+  - Duplicate notebooks for each provider
+- Wouldn't it be nice to have a single service (inference provider) that exposed lots of different models
+
+## Introducing OpenRouter
+
+- Introducing OpenRouter (https://openrouter.ai)
+  - A unified API to hundreds of AI models through a single endpoint
+  - (Using OpenAI's Chat Completion API)
+  - OpenAI, Claude, Gemini, Grok, Nova, Llama, DeepSeek, Qwen, and many others.
+  - Pay per API call, often same cost as the provider
+  - Newer APIs tend to be free for a short period
+
+## Using OpenRouter
+
+{{< embed notebooks/chat-completion-openrouter.ipynb#init echo=true >}}
+
+## Using OpenRouter
+
+{{< embed notebooks/chat-completion-openrouter.ipynb#request echo=true >}}
+
+## Using OpenRouter
+
+{{< embed notebooks/chat-completion-openrouter.ipynb#response echo=true >}}
+
+# Demo
+
+OpenRouter overview, OpenRouter Notebook, and setting secrets in Colab
+
+# Hands-On
+
+Register for an OpenRouter account, create an API key, import into the OpenRouter Notebook and experiment with different models
 
 
 
+
+# Streaming Support
+# Structured Output
+# On to Gradio
 
 # Looking Ahead to Next Week
 
