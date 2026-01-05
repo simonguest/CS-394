@@ -72,6 +72,8 @@ website:
                 href: src/02/notebooks/chat-completion-openrouter.ipynb
               - text: "token-streaming.ipynb"
                 href: src/02/notebooks/token-streaming.ipynb
+              - text: "structured-outputs.ipynb"
+                href: src/02/notebooks/structured-outputs.ipynb
           - text: "Assignment"
             href: src/02/assignment.qmd
       - section: "**Week 3:** Agents and Tools"
