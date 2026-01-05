@@ -294,10 +294,42 @@ OpenRouter overview, OpenRouter Notebook, and setting secrets in Colab
 
 Register for an OpenRouter account, create an API key, import into the OpenRouter Notebook (chat-completion-openrouter.ipynb) and experiment with different models
 
+# Token Streaming and Structured Output
+
+## Token Streaming
+
+- In our notebooks, responses can take a few seconds to be returned
+  - Not the best user experience, especially for consumer products
+- Need a way to support streaming of tokens as they are generated (a.k.a. "typewriter effect")
+  - Streaming added to Chat Completions API in early 2023
+  - Supported by other major vendors (Anthropic, Cohere, etc.)
+  - Now expected as a baseline feature
+
+## How Does Token Streaming Work?
+
+- Uses SSE (Server-Sent Events)
+  - Unidirectional (server to client)
+  - Uses standard HTTP/1.1 or HTTP/2
+  - Server sends a response with a `text/event-stream` MIME type
+  - Client uses built-in `EventSource` API to open the connection, listen to messages, and handle events.
+
+## SSE Data Format
+
+```
+data: {"choices":[{"delta":{"content":"Hello"}}]}
+
+data: {"choices":[{"delta":{"content":" world"}}]}
+  
+data: [DONE]
+```
+
+Data sent as chunks, prefixed with `data:` and separated by double newlines
+
+## Implementing Token Streaming
+
+{{< embed notebooks/token-streaming.ipynb#request echo=true >}}
 
 
-
-# Streaming Support
 # Structured Output
 # On to Gradio
 
