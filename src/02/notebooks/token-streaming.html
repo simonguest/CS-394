@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Chat Completion API (via OpenRouter) – CS-394</title>
+<title>Token Streaming – CS-394</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
-<link href="../../../src/02/notebooks/token-streaming.html" rel="next">
-<link href="../../../src/02/notebooks/chat-completion-openai.html" rel="prev">
+<link href="../../../src/02/assignment.html" rel="next">
+<link href="../../../src/02/notebooks/chat-completion-openrouter.html" rel="prev">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -284,7 +284,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/02/slides.html"><strong>Week 2:</strong> Exploring Hosted LLMs</a></li><li class="breadcrumb-item"><a href="../../../src/02/notebooks/instruction-tuned.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../src/02/notebooks/chat-completion-openrouter.html">chat-completion-openrouter.ipynb</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/02/slides.html"><strong>Week 2:</strong> Exploring Hosted LLMs</a></li><li class="breadcrumb-item"><a href="../../../src/02/notebooks/instruction-tuned.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../src/02/notebooks/token-streaming.html">token-streaming.ipynb</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -463,13 +463,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/02/notebooks/chat-completion-openrouter.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../src/02/notebooks/chat-completion-openrouter.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">chat-completion-openrouter.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/02/notebooks/token-streaming.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/02/notebooks/token-streaming.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">token-streaming.ipynb</span></a>
   </div>
 </li>
@@ -691,9 +691,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/02/slides.html"><strong>Week 2:</strong> Exploring Hosted LLMs</a></li><li class="breadcrumb-item"><a href="../../../src/02/notebooks/instruction-tuned.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../src/02/notebooks/chat-completion-openrouter.html">chat-completion-openrouter.ipynb</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/02/slides.html"><strong>Week 2:</strong> Exploring Hosted LLMs</a></li><li class="breadcrumb-item"><a href="../../../src/02/notebooks/instruction-tuned.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../src/02/notebooks/token-streaming.html">token-streaming.ipynb</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Chat Completion API (via OpenRouter)</h1>
+<h1 class="title">Token Streaming</h1>
 </div>
 
 
@@ -710,14 +710,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><a target="_blank" href="https://colab.research.google.com/github/simonguest/CS-394/blob/main/src/02/notebooks/chat-completion-openrouter.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"> </a> <a target="_blank" href="https://github.com/simonguest/CS-394/raw/refs/heads/main/src/02/notebooks/chat-completion-openrouter.ipynb"> <img src="https://img.shields.io/badge/Download_.ipynb-blue" alt="Download .ipynb"> </a></p>
+<p><a target="_blank" href="https://colab.research.google.com/github/simonguest/CS-394/blob/main/src/02/notebooks/token-streaming.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"> </a> <a target="_blank" href="https://github.com/simonguest/CS-394/raw/refs/heads/main/src/02/notebooks/token-streaming.ipynb"> <img src="https://img.shields.io/badge/Download_.ipynb-blue" alt="Download .ipynb"> </a></p>
 <div id="cell-2" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Set the OpenRouter API Key from Colab Secrets</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.colab <span class="im">import</span> userdata</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>OPENROUTER_API_KEY <span class="op">=</span> userdata.get(<span class="st">'OPENROUTER_API_KEY'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-3" class="cell" data-execution_count="2">
+<div id="cell-3" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Or grab the OpenRouter API Key from dotenv</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
@@ -726,139 +726,78 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>OPENROUTER_API_KEY <span class="op">=</span> os.environ.get(<span class="st">"OPENROUTER_API_KEY"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-4" class="cell" data-cellview="form" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Logging functions to pretty print the API request to the console</span></span>
+<div id="init" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="0c9cd662-ed23-4cda-979e-c02a10b55eab" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Create the OpenAI client with OpenRouter URL</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> log_request(request):</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== REQUEST ==="</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="ss">f"URL: </span><span class="sc">{</span>request<span class="sc">.</span>url<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="ss">f"Method: </span><span class="sc">{</span>request<span class="sc">.</span>method<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> request.content:</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>      body <span class="op">=</span> json.loads(request.content.decode(<span class="st">'utf-8'</span>))</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Body:"</span>)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(json.dumps(body, indent<span class="op">=</span><span class="dv">2</span>))</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span>:</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Body:"</span>)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(request.content.decode(<span class="st">'utf-8'</span>))</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"="</span> <span class="op">*</span> <span class="dv">50</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the OpenAI client with event hooks</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> openai.OpenAI(</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    base_url<span class="op">=</span><span class="st">'https://openrouter.ai/api/v1'</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    api_key<span class="op">=</span>OPENROUTER_API_KEY,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="init" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="0c9cd662-ed23-4cda-979e-c02a10b55eab" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># @title Call OpenAI via the SDK</span></span>
+<div id="request" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>MODEL <span class="op">=</span> <span class="st">'openai/gpt-5.2-chat'</span> <span class="co">#@param ["openai/gpt-5.2-chat", "anthropic/claude-sonnet-4.5", "google/gemini-2.5-pro"]</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> httpx</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the OpenAI client with event hooks</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> openai.OpenAI(</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    base_url<span class="op">=</span><span class="st">'https://openrouter.ai/api/v1'</span>,</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    api_key<span class="op">=</span>OPENROUTER_API_KEY,</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    http_client<span class="op">=</span>httpx.Client(event_hooks<span class="op">=</span>{<span class="st">"request"</span>: [log_request]}),</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div id="request" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>MODEL <span class="op">=</span> <span class="st">'openai/gpt-5.2-chat'</span> <span class="co">#@param ["openai/gpt-5.2-chat", "anthropic/claude-sonnet-4.5", "google/gemini-2.5-pro"]</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.chat.completions.create(</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span>MODEL,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    messages<span class="op">=</span>[</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You help travelers make plans for their trips."</span>},</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"Hello"</span>},</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"role"</span>: <span class="st">"assistant"</span>, <span class="st">"content"</span>: <span class="st">"Hi there!"</span>},</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"What should I do on my upcoming trip to Paris?"</span>},</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span>MODEL,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    messages<span class="op">=</span>[</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You help travelers make plans for their trips."</span>},</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"Hello"</span>},</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"role"</span>: <span class="st">"assistant"</span>, <span class="st">"content"</span>: <span class="st">"Hi there!"</span>},</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"What should I do on my upcoming trip to Paris?"</span>},</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    ],</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    stream<span class="op">=</span><span class="va">True</span>, <span class="co"># Enable streaming</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Iterate through the stream and print each token as it arrives</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> chunk <span class="kw">in</span> response:</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Each chunk contains a delta with the new content</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> chunk.choices[<span class="dv">0</span>].delta.content <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        token <span class="op">=</span> chunk.choices[<span class="dv">0</span>].delta.content</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(token, end<span class="op">=</span><span class="st">''</span>, flush<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>
-=== REQUEST ===
-URL: https://openrouter.ai/api/v1/chat/completions
-Method: POST
+<pre><code>Paris has something for almost every type of traveler, so I’ll give you a well‑rounded starting plan. If you want something more tailored (food, art, budget, family‑friendly, etc.), just tell me.
 
-Body:
-{
-  "messages": [
-    {
-      "role": "system",
-      "content": "You help travelers make plans for their trips."
-    },
-    {
-      "role": "user",
-      "content": "Hello"
-    },
-    {
-      "role": "assistant",
-      "content": "Hi there!"
-    },
-    {
-      "role": "user",
-      "content": "What should I do on my upcoming trip to Paris?"
-    }
-  ],
-  "model": "openai/gpt-5.2-chat"
-}
-==================================================</code></pre>
-</div>
-</div>
-<div id="response" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== RESPONSE ==="</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.model_dump_json(indent<span class="op">=</span><span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-=== RESPONSE ===
-{
-  "id": "gen-1767585819-snubWxcK6sJM3RdE9rJX",
-  "choices": [
-    {
-      "finish_reason": "stop",
-      "index": 0,
-      "logprobs": null,
-      "message": {
-        "content": "Paris has something for almost every kind of traveler! Here’s a well‑rounded starting plan, and then I can tailor it more if you tell me your interests, travel dates, and how long you’ll be there.\n\n### Must‑See Highlights\n- **Eiffel Tower** – Go up for the views or enjoy it from below at Trocadéro or Champ de Mars.\n- **Louvre Museum** – Even if you don’t love museums, seeing the Mona Lisa and the building itself is worth it.\n- **Notre‑Dame Cathedral** – Admire the exterior and surroundings; interior access is gradually reopening.\n- **Montmartre &amp; Sacré‑Cœur** – Charming streets, artists, and great city views.\n\n### Classic Paris Experiences\n- **Stroll along the Seine** – Especially at sunset.\n- **Café culture** – Sit at a café with a coffee or glass of wine and people‑watch.\n- **Boulangeries &amp; pastries** – Try croissants, pain au chocolat, macarons.\n- **Seine river cruise** – Relaxing and great for first‑time visitors.\n\n### Art, History &amp; Culture\n- **Musée d’Orsay** – Impressionist masterpieces in a stunning former train station.\n- **Le Marais** – Historic district with boutiques, museums, and lively streets.\n- **Latin Quarter** – Bookshops, old streets, and student energy.\n\n### Food &amp; Drink\n- **Bistro dining** – Try classic French dishes like boeuf bourguignon or duck confit.\n- **Food markets** – Marché des Enfants Rouges is a favorite.\n- **Wine &amp; cheese tasting** – Many small shops offer guided tastings.\n\n### Day Trips (if you have extra time)\n- **Versailles** – Palace and gardens (half‑day or full‑day trip).\n- **Giverny** – Monet’s gardens (spring/summer).\n- **Champagne region** – For wine lovers.\n\n### Practical Tips\n- Buy museum tickets in advance.\n- Walk as much as possible—Paris is very walkable.\n- Learn a few French phrases; locals appreciate the effort.\n\nIf you’d like, tell me:\n- How many days you’ll be there  \n- Your interests (food, art, history, shopping, nightlife, romance, family travel)  \n- Your budget level  \n\nAnd I’ll create a personalized day‑by‑day itinerary for you.",
-        "refusal": null,
-        "role": "assistant",
-        "annotations": null,
-        "audio": null,
-        "function_call": null,
-        "tool_calls": null,
-        "reasoning": null
-      },
-      "native_finish_reason": "completed"
-    }
-  ],
-  "created": 1767585819,
-  "model": "openai/gpt-5.2-chat",
-  "object": "chat.completion",
-  "service_tier": null,
-  "system_fingerprint": null,
-  "usage": {
-    "completion_tokens": 506,
-    "prompt_tokens": 44,
-    "total_tokens": 550,
-    "completion_tokens_details": {
-      "accepted_prediction_tokens": null,
-      "audio_tokens": null,
-      "reasoning_tokens": 0,
-      "rejected_prediction_tokens": null,
-      "image_tokens": 0
-    },
-    "prompt_tokens_details": {
-      "audio_tokens": 0,
-      "cached_tokens": 0,
-      "video_tokens": 0
-    },
-    "cost": 0.007161,
-    "is_byok": false,
-    "cost_details": {
-      "upstream_inference_cost": null,
-      "upstream_inference_prompt_cost": 0.000077,
-      "upstream_inference_completions_cost": 0.007084
-    }
-  },
-  "provider": "OpenAI"
-}</code></pre>
+### Must‑See Classics
+- **Eiffel Tower** – Go up if it’s your first time, or enjoy views from **Trocadéro** or **Champ de Mars**.
+- **Louvre Museum** – Even a 2–3 hour focused visit is worthwhile (book tickets in advance).
+- **Notre‑Dame Cathedral** – Admire the exterior and nearby **Île de la Cité**; check reopening status for interior access.
+- **Arc de Triomphe** – Climb to the top for one of the best city views.
+
+### Neighborhoods to Explore
+- **Montmartre** – Artistic vibes, Sacré‑Cœur, charming streets.
+- **Le Marais** – Trendy shops, historic mansions, great food.
+- **Latin Quarter** – Lively, student energy, bookshops, cafés.
+- **Saint‑Germain‑des‑Prés** – Classic cafés and upscale shopping.
+
+### Food &amp; Drink Experiences
+- Eat at a **local bistro** (look for a fixed‑price *menu du jour*).
+- Try **croissants &amp; pain au chocolat** from a neighborhood bakery.
+- Visit a **fromagerie** and **wine bar**.
+- Enjoy café culture: sit outside, order a coffee or wine, and people‑watch.
+- Don’t miss **crêpes**, **macarons**, and **cheese**.
+
+### Cultural &amp; Unique Experiences
+- **Seine River cruise** (especially at night).
+- **Musée d’Orsay** for Impressionist art.
+- **Versailles** day trip for palace and gardens.
+- **Cooking class** or **food tour**.
+- Wander without a plan—Paris is best discovered on foot.
+
+### Practical Tips
+- Buy museum tickets in advance to skip lines.
+- Learn a few French phrases—it goes a long way.
+- Dress comfortably but stylishly; Parisians walk a lot.
+- Use public transport (metro is fast and affordable).
+
+If you’d like, tell me:
+- How many days you’ll be there  
+- Time of year  
+- Your interests (food, museums, nightlife, romance, budget travel)
+
+I can build you a **day‑by‑day itinerary** just for your trip.</code></pre>
 </div>
 </div>
 
@@ -1280,13 +1219,13 @@ Body:
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../src/02/notebooks/chat-completion-openai.html" class="pagination-link" aria-label="chat-completion-openai.ipynb">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">chat-completion-openai.ipynb</span>
+      <a href="../../../src/02/notebooks/chat-completion-openrouter.html" class="pagination-link" aria-label="chat-completion-openrouter.ipynb">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">chat-completion-openrouter.ipynb</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../src/02/notebooks/token-streaming.html" class="pagination-link" aria-label="token-streaming.ipynb">
-        <span class="nav-page-text">token-streaming.ipynb</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../../src/02/assignment.html" class="pagination-link" aria-label="Assignment">
+        <span class="nav-page-text">Assignment</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

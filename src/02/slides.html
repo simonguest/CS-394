@@ -886,11 +886,115 @@ Body:
 <p>Register for an OpenRouter account, create an API key, import into the OpenRouter Notebook (chat-completion-openrouter.ipynb) and experiment with different models</p>
 </section>
 
-<section id="streaming-support" class="title-slide slide level1 center">
-<h1>Streaming Support</h1>
+<section>
+<section id="token-streaming-and-structured-output" class="title-slide slide level1 center">
+<h1>Token Streaming and Structured Output</h1>
 
 </section>
+<section id="token-streaming" class="slide level2">
+<h2>Token Streaming</h2>
+<ul>
+<li class="fragment">In our notebooks, responses can take a few seconds to be returned
+<ul>
+<li class="fragment">Not the best user experience, especially for consumer products</li>
+</ul></li>
+<li class="fragment">Need a way to support streaming of tokens as they are generated (a.k.a. “typewriter effect”)
+<ul>
+<li class="fragment">Streaming added to Chat Completions API in early 2023</li>
+<li class="fragment">Supported by other major vendors (Anthropic, Cohere, etc.)</li>
+<li class="fragment">Now expected as a baseline feature</li>
+</ul></li>
+</ul>
+</section>
+<section id="how-does-token-streaming-work" class="slide level2">
+<h2>How Does Token Streaming Work?</h2>
+<ul>
+<li class="fragment">Uses SSE (Server-Sent Events)
+<ul>
+<li class="fragment">Unidirectional (server to client)</li>
+<li class="fragment">Uses standard HTTP/1.1 or HTTP/2</li>
+<li class="fragment">Server sends a response with a <code>text/event-stream</code> MIME type</li>
+<li class="fragment">Client uses built-in <code>EventSource</code> API to open the connection, listen to messages, and handle events.</li>
+</ul></li>
+</ul>
+</section>
+<section id="sse-data-format" class="slide level2">
+<h2>SSE Data Format</h2>
+<pre><code>data: {"choices":[{"delta":{"content":"Hello"}}]}
 
+data: {"choices":[{"delta":{"content":" world"}}]}
+  
+data: [DONE]</code></pre>
+<p>Data sent as chunks, prefixed with <code>data:</code> and separated by double newlines</p>
+</section>
+<section id="implementing-token-streaming" class="slide level2">
+<h2>Implementing Token Streaming</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/token-streaming.ipynb" data-notebook-title="Token Streaming" data-notebook-cellid="request">
+<div id="request" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a>MODEL <span class="op">=</span> <span class="st">'openai/gpt-5.2-chat'</span> <span class="co">#@param ["openai/gpt-5.2-chat", "anthropic/claude-sonnet-4.5", "google/gemini-2.5-pro"]</span></span>
+<span id="cb19-2"><a></a></span>
+<span id="cb19-3"><a></a>response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb19-4"><a></a>    model<span class="op">=</span>MODEL,</span>
+<span id="cb19-5"><a></a>    messages<span class="op">=</span>[</span>
+<span id="cb19-6"><a></a>        {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You help travelers make plans for their trips."</span>},</span>
+<span id="cb19-7"><a></a>        {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"Hello"</span>},</span>
+<span id="cb19-8"><a></a>        {<span class="st">"role"</span>: <span class="st">"assistant"</span>, <span class="st">"content"</span>: <span class="st">"Hi there!"</span>},</span>
+<span id="cb19-9"><a></a>        {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"What should I do on my upcoming trip to Paris?"</span>},</span>
+<span id="cb19-10"><a></a>    ],</span>
+<span id="cb19-11"><a></a>    stream<span class="op">=</span><span class="va">True</span>, <span class="co"># Enable streaming</span></span>
+<span id="cb19-12"><a></a>)</span>
+<span id="cb19-13"><a></a></span>
+<span id="cb19-14"><a></a><span class="co"># Iterate through the stream and print each token as it arrives</span></span>
+<span id="cb19-15"><a></a><span class="cf">for</span> chunk <span class="kw">in</span> response:</span>
+<span id="cb19-16"><a></a>    <span class="co"># Each chunk contains a delta with the new content</span></span>
+<span id="cb19-17"><a></a>    <span class="cf">if</span> chunk.choices[<span class="dv">0</span>].delta.content <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb19-18"><a></a>        token <span class="op">=</span> chunk.choices[<span class="dv">0</span>].delta.content</span>
+<span id="cb19-19"><a></a>        <span class="bu">print</span>(token, end<span class="op">=</span><span class="st">''</span>, flush<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Paris has something for almost every type of traveler, so I’ll give you a well‑rounded starting plan. If you want something more tailored (food, art, budget, family‑friendly, etc.), just tell me.
+
+### Must‑See Classics
+- **Eiffel Tower** – Go up if it’s your first time, or enjoy views from **Trocadéro** or **Champ de Mars**.
+- **Louvre Museum** – Even a 2–3 hour focused visit is worthwhile (book tickets in advance).
+- **Notre‑Dame Cathedral** – Admire the exterior and nearby **Île de la Cité**; check reopening status for interior access.
+- **Arc de Triomphe** – Climb to the top for one of the best city views.
+
+### Neighborhoods to Explore
+- **Montmartre** – Artistic vibes, Sacré‑Cœur, charming streets.
+- **Le Marais** – Trendy shops, historic mansions, great food.
+- **Latin Quarter** – Lively, student energy, bookshops, cafés.
+- **Saint‑Germain‑des‑Prés** – Classic cafés and upscale shopping.
+
+### Food &amp; Drink Experiences
+- Eat at a **local bistro** (look for a fixed‑price *menu du jour*).
+- Try **croissants &amp; pain au chocolat** from a neighborhood bakery.
+- Visit a **fromagerie** and **wine bar**.
+- Enjoy café culture: sit outside, order a coffee or wine, and people‑watch.
+- Don’t miss **crêpes**, **macarons**, and **cheese**.
+
+### Cultural &amp; Unique Experiences
+- **Seine River cruise** (especially at night).
+- **Musée d’Orsay** for Impressionist art.
+- **Versailles** day trip for palace and gardens.
+- **Cooking class** or **food tour**.
+- Wander without a plan—Paris is best discovered on foot.
+
+### Practical Tips
+- Buy museum tickets in advance to skip lines.
+- Learn a few French phrases—it goes a long way.
+- Dress comfortably but stylishly; Parisians walk a lot.
+- Use public transport (metro is fast and affordable).
+
+If you’d like, tell me:
+- How many days you’ll be there  
+- Time of year  
+- Your interests (food, museums, nightlife, romance, budget travel)
+
+I can build you a **day‑by‑day itinerary** just for your trip.</code></pre>
+</div>
+</div>
+</div>
+</section></section>
 <section id="structured-output" class="title-slide slide level1 center">
 <h1>Structured Output</h1>
 
