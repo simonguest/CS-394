@@ -64,6 +64,12 @@ website:
             href: src/02/resources.qmd
           - section: "Notebooks"
             contents:
+              - text: "instruction-tuned.ipynb"
+                href: src/02/notebooks/instruction-tuned.ipynb
+              - text: "chat-completion-openai.ipynb"
+                href: src/02/notebooks/chat-completion-openai.ipynb
+              - text: "chat-completion-openrouter.ipynb"
+                href: src/02/notebooks/chat-completion-openrouter.ipynb
           - text: "Assignment"
             href: src/02/assignment.qmd
       - section: "**Week 3:** Agents and Tools"

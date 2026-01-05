@@ -292,7 +292,7 @@ OpenRouter overview, OpenRouter Notebook, and setting secrets in Colab
 
 # Hands-On
 
-Register for an OpenRouter account, create an API key, import into the OpenRouter Notebook and experiment with different models
+Register for an OpenRouter account, create an API key, import into the OpenRouter Notebook (chat-completion-openrouter.ipynb) and experiment with different models
 
 
 
