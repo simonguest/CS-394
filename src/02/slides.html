@@ -568,13 +568,339 @@ Great question! On your next trip to Paris, you can start by visiting the iconic
 </ul>
 </section></section>
 <section>
-<section id="openai-api-specification" class="title-slide slide level1 center">
-<h1>OpenAI API Specification</h1>
+<section id="calling-models-via-apis" class="title-slide slide level1 center">
+<h1>Calling Models via APIs</h1>
 
 </section>
-<section id="openai-api-specification-1" class="slide level2">
-<h2>OpenAI API Specification</h2>
+<section id="openai-chat-completions-api" class="slide level2">
+<h2>OpenAI Chat Completions API</h2>
+<ul>
+<li class="fragment">2020: OpenAI launched GPT-3 API with a <code>/completions</code> endpoint.
+<ul>
+<li class="fragment">First major LLM API</li>
+</ul></li>
+<li class="fragment">2022: ChatGPT launch; massive adoption</li>
+<li class="fragment">2023 <code>/chat/completions</code> endpoint released, becomes the dominant interface</li>
+<li class="fragment">2023-2024: Other providers use the same API format for their own models vs.&nbsp;inventing their own
+<ul>
+<li class="fragment">Build on the OpenAI developer ecosystem</li>
+<li class="fragment">“OpenAI-compatible” became a selling point</li>
+</ul></li>
+</ul>
+</section>
+<section id="openai-chat-completions-api-1" class="slide level2">
+<h2>OpenAI Chat Completions API</h2>
+<ul>
+<li class="fragment">Who uses the OpenAI Chat Completions API format?
+<ul>
+<li class="fragment">Anthropic (Claude API is very similar, with minor differences)</li>
+<li class="fragment">OpenRouter, an inference provider for many models</li>
+<li class="fragment">Open source tools: LiteLLM, LangChain</li>
+<li class="fragment">Local serving: Ollama, vLLM, llama.cpp are all “OpenAI-compatible”</li>
+</ul></li>
+</ul>
+</section>
+<section id="using-the-chat-completions-api" class="slide level2">
+<h2>Using the Chat Completions API</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/chat-completion-openai.ipynb" data-notebook-title="Chat Completion API (via OpenAI)" data-notebook-cellid="init">
+<div id="init" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="0c9cd662-ed23-4cda-979e-c02a10b55eab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="co"># @title Call OpenAI via the SDK</span></span>
+<span id="cb8-2"><a></a></span>
+<span id="cb8-3"><a></a><span class="im">import</span> openai</span>
+<span id="cb8-4"><a></a><span class="im">import</span> httpx</span>
+<span id="cb8-5"><a></a></span>
+<span id="cb8-6"><a></a><span class="co"># Initialize the OpenAI client with event hooks</span></span>
+<span id="cb8-7"><a></a>client <span class="op">=</span> openai.OpenAI(</span>
+<span id="cb8-8"><a></a>    api_key<span class="op">=</span>OPENAI_API_KEY,</span>
+<span id="cb8-9"><a></a>    http_client<span class="op">=</span>httpx.Client(event_hooks<span class="op">=</span>{<span class="st">"request"</span>: [log_request]}),</span>
+<span id="cb8-10"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="using-the-chat-completions-api-1" class="slide level2">
+<h2>Using the Chat Completions API</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/chat-completion-openai.ipynb" data-notebook-title="Chat Completion API (via OpenAI)" data-notebook-cellid="request">
+<div id="request" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a>response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb9-2"><a></a>    model<span class="op">=</span><span class="st">"gpt-5"</span>,</span>
+<span id="cb9-3"><a></a>    messages<span class="op">=</span>[</span>
+<span id="cb9-4"><a></a>        {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You help travelers make plans for their trips."</span>},</span>
+<span id="cb9-5"><a></a>        {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"Hello"</span>},</span>
+<span id="cb9-6"><a></a>        {<span class="st">"role"</span>: <span class="st">"assistant"</span>, <span class="st">"content"</span>: <span class="st">"Hi there!"</span>},</span>
+<span id="cb9-7"><a></a>        {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"What should I do on my upcoming trip to Paris?"</span>},</span>
+<span id="cb9-8"><a></a>    ],</span>
+<span id="cb9-9"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+=== REQUEST ===
+URL: https://api.openai.com/v1/chat/completions
+Method: POST
+
+Body:
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "You help travelers make plans for their trips."
+    },
+    {
+      "role": "user",
+      "content": "Hello"
+    },
+    {
+      "role": "assistant",
+      "content": "Hi there!"
+    },
+    {
+      "role": "user",
+      "content": "What should I do on my upcoming trip to Paris?"
+    }
+  ],
+  "model": "gpt-5"
+}
+==================================================</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="using-the-chat-completions-api-2" class="slide level2">
+<h2>Using the Chat Completions API</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/chat-completion-openai.ipynb" data-notebook-title="Chat Completion API (via OpenAI)" data-notebook-cellid="response">
+<div id="response" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== RESPONSE ==="</span>)</span>
+<span id="cb11-2"><a></a><span class="bu">print</span>(response.model_dump_json(indent<span class="op">=</span><span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+=== RESPONSE ===
+{
+  "id": "chatcmpl-CuVn7EYuGJUEUEQ18Cl0SM2nNz9Mj",
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "Awesome! I can tailor a plan, but a few quick questions help:\n- When are you going and for how many days?\n- First time in Paris?\n- Main interests (art, food, fashion, history, photography, nightlife, kid-friendly, etc.) and preferred pace (relaxed vs. packed)?\n- Any must-sees or hard no’s?\n- Rough budget and food needs (vegetarian, kosher/halal, allergies)?\n- Where are you staying (neighborhood) and are day trips okay (Versailles, Champagne, Giverny, Disneyland)?\n\nIf you want a quick starter plan, here’s a flexible 4-day outline you can reshuffle by weather and museum closures:\n\nDay 1 – Islands + Latin Quarter\n- Île de la Cité: Notre-Dame exterior, Sainte-Chapelle (timed ticket), Conciergerie.\n- Stroll the Latin Quarter: Shakespeare &amp; Company, Sorbonne, Luxembourg Gardens.\n- Evening: Seine cruise or sunset along the river.\n\nDay 2 – Louvre to Arc de Triomphe\n- Morning: Louvre (timed entry). Tuileries and Palais-Royal gardens.\n- Covered passages (Véronique/Grand Cerf/Jouffroy) and Opéra Garnier.\n- Sunset view: Arc de Triomphe rooftop or Galeries Lafayette/Printemps terrace.\n\nDay 3 – Montmartre + Left Bank art\n- Montmartre: Sacré-Cœur, Place du Tertre, quieter backstreets (Rue de l’Abreuvoir).\n- Afternoon: Musée d’Orsay and/or Orangerie.\n- Evening: Saint-Germain wine bar or jazz.\n\nDay 4 – Le Marais or Day Trip\n- Marais walk: Place des Vosges, Musée Carnavalet, Picasso Museum (check hours), Jewish quarter, trendy boutiques.\n- Optional day trip: Versailles (palace + gardens; get the timed passport ticket).\n- Night: Eiffel Tower area (view from Trocadéro or Champ de Mars; book tower tickets if going up).\n\nOther great adds by interest\n- Art/architecture: Rodin Museum; Bourse de Commerce; Fondation Louis Vuitton. Note: check Centre Pompidou’s renovation status.\n- Food: Morning market (Aligre or Rue Cler), cheese/wine tasting, pastry crawl, bistro lunch, cooking class.\n- Unique: Catacombs (book ahead), Père Lachaise Cemetery, Canal Saint-Martin, covered markets (Le Marché des Enfants Rouges).\n- With kids: Jardin des Plantes (zoo + galleries), Cité des Sciences, Jardin d’Acclimatation, Parc de la Villette.\n- Day trips: Giverny (Apr–Oct), Reims/Epernay for Champagne, Fontainebleau, Auvers-sur-Oise, Disneyland Paris.\n\nBook these in advance\n- Eiffel Tower, Louvre, Sainte-Chapelle, Catacombs, Versailles, Palais Garnier tours, popular restaurants.\n- Consider the Paris Museum Pass (2/4/6 days) if you’ll visit several museums; the Louvre still needs a timed reservation even with the pass.\n\nPractical tips\n- Closures: Many museums close one day/week (e.g., Orsay Mon, some Tue). Check hours.\n- Getting around: The Métro is fastest. Use a contactless bank card to tap in, or get a reloadable Navigo Easy. For a Monday–Sunday stay with lots of rides, a Navigo Découverte weekly pass can be good value.\n- Dining: Reserve for dinner, especially weekends. Tipping is minimal (service included); round up or leave 5–10% for great service.\n- Safety: Watch for pickpockets in crowded areas and on the Metro.\n\nShare your dates, length of stay, and interests, and I’ll turn this into a detailed day-by-day plan with mapped routes and restaurant picks near each stop.",
+        "refusal": null,
+        "role": "assistant",
+        "annotations": [],
+        "audio": null,
+        "function_call": null,
+        "tool_calls": null
+      }
+    }
+  ],
+  "created": 1767584609,
+  "model": "gpt-5-2025-08-07",
+  "object": "chat.completion",
+  "service_tier": "default",
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 2224,
+    "prompt_tokens": 44,
+    "total_tokens": 2268,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 1408,
+      "rejected_prediction_tokens": 0
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 0
+    }
+  }
+}</code></pre>
+</div>
+</div>
+</div>
 </section></section>
+<section>
+<section id="calling-other-models" class="title-slide slide level1 center">
+<h1>Calling Other Models</h1>
+
+</section>
+<section id="calling-other-models-1" class="slide level2">
+<h2>Calling Other Models</h2>
+<ul>
+<li class="fragment">We could just duplicate our notebook, change the URL to another provider (e.g., Claude, Google, etc.), but:
+<ul>
+<li class="fragment">A separate account with each provider</li>
+<li class="fragment">A separate credit card with each provider</li>
+<li class="fragment">A separate API key to use for each provider</li>
+<li class="fragment">Duplicate notebooks for each provider</li>
+</ul></li>
+<li class="fragment">Wouldn’t it be nice to have a single service (inference provider) that exposed lots of different models</li>
+</ul>
+</section>
+<section id="introducing-openrouter" class="slide level2">
+<h2>Introducing OpenRouter</h2>
+<ul>
+<li class="fragment">Introducing OpenRouter (https://openrouter.ai)
+<ul>
+<li class="fragment">A unified API to hundreds of AI models through a single endpoint</li>
+<li class="fragment">(Using OpenAI’s Chat Completion API)</li>
+<li class="fragment">OpenAI, Claude, Gemini, Grok, Nova, Llama, DeepSeek, Qwen, and many others.</li>
+<li class="fragment">Pay per API call, often same cost as the provider</li>
+<li class="fragment">Newer APIs tend to be free for a short period</li>
+</ul></li>
+</ul>
+</section>
+<section id="using-openrouter" class="slide level2">
+<h2>Using OpenRouter</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/chat-completion-openrouter.ipynb" data-notebook-title="Chat Completion API (via OpenRouter)" data-notebook-cellid="init">
+<div id="init" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="0c9cd662-ed23-4cda-979e-c02a10b55eab" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="co"># @title Call OpenAI via the SDK</span></span>
+<span id="cb13-2"><a></a></span>
+<span id="cb13-3"><a></a><span class="im">import</span> openai</span>
+<span id="cb13-4"><a></a><span class="im">import</span> httpx</span>
+<span id="cb13-5"><a></a></span>
+<span id="cb13-6"><a></a><span class="co"># Initialize the OpenAI client with event hooks</span></span>
+<span id="cb13-7"><a></a>client <span class="op">=</span> openai.OpenAI(</span>
+<span id="cb13-8"><a></a>    base_url<span class="op">=</span><span class="st">'https://openrouter.ai/api/v1'</span>,</span>
+<span id="cb13-9"><a></a>    api_key<span class="op">=</span>OPENROUTER_API_KEY,</span>
+<span id="cb13-10"><a></a>    http_client<span class="op">=</span>httpx.Client(event_hooks<span class="op">=</span>{<span class="st">"request"</span>: [log_request]}),</span>
+<span id="cb13-11"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="using-openrouter-1" class="slide level2">
+<h2>Using OpenRouter</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/chat-completion-openrouter.ipynb" data-notebook-title="Chat Completion API (via OpenRouter)" data-notebook-cellid="request">
+<div id="request" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a>MODEL <span class="op">=</span> <span class="st">'openai/gpt-5.2-chat'</span> <span class="co">#@param ["openai/gpt-5.2-chat", "anthropic/claude-sonnet-4.5", "google/gemini-2.5-pro"]</span></span>
+<span id="cb14-2"><a></a></span>
+<span id="cb14-3"><a></a>response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb14-4"><a></a>    model<span class="op">=</span>MODEL,</span>
+<span id="cb14-5"><a></a>    messages<span class="op">=</span>[</span>
+<span id="cb14-6"><a></a>        {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You help travelers make plans for their trips."</span>},</span>
+<span id="cb14-7"><a></a>        {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"Hello"</span>},</span>
+<span id="cb14-8"><a></a>        {<span class="st">"role"</span>: <span class="st">"assistant"</span>, <span class="st">"content"</span>: <span class="st">"Hi there!"</span>},</span>
+<span id="cb14-9"><a></a>        {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"What should I do on my upcoming trip to Paris?"</span>},</span>
+<span id="cb14-10"><a></a>    ],</span>
+<span id="cb14-11"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+=== REQUEST ===
+URL: https://openrouter.ai/api/v1/chat/completions
+Method: POST
+
+Body:
+{
+  "messages": [
+    {
+      "role": "system",
+      "content": "You help travelers make plans for their trips."
+    },
+    {
+      "role": "user",
+      "content": "Hello"
+    },
+    {
+      "role": "assistant",
+      "content": "Hi there!"
+    },
+    {
+      "role": "user",
+      "content": "What should I do on my upcoming trip to Paris?"
+    }
+  ],
+  "model": "openai/gpt-5.2-chat"
+}
+==================================================</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="using-openrouter-2" class="slide level2">
+<h2>Using OpenRouter</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/chat-completion-openrouter.ipynb" data-notebook-title="Chat Completion API (via OpenRouter)" data-notebook-cellid="response">
+<div id="response" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">=== RESPONSE ==="</span>)</span>
+<span id="cb16-2"><a></a><span class="bu">print</span>(response.model_dump_json(indent<span class="op">=</span><span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+=== RESPONSE ===
+{
+  "id": "gen-1767585819-snubWxcK6sJM3RdE9rJX",
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "Paris has something for almost every kind of traveler! Here’s a well‑rounded starting plan, and then I can tailor it more if you tell me your interests, travel dates, and how long you’ll be there.\n\n### Must‑See Highlights\n- **Eiffel Tower** – Go up for the views or enjoy it from below at Trocadéro or Champ de Mars.\n- **Louvre Museum** – Even if you don’t love museums, seeing the Mona Lisa and the building itself is worth it.\n- **Notre‑Dame Cathedral** – Admire the exterior and surroundings; interior access is gradually reopening.\n- **Montmartre &amp; Sacré‑Cœur** – Charming streets, artists, and great city views.\n\n### Classic Paris Experiences\n- **Stroll along the Seine** – Especially at sunset.\n- **Café culture** – Sit at a café with a coffee or glass of wine and people‑watch.\n- **Boulangeries &amp; pastries** – Try croissants, pain au chocolat, macarons.\n- **Seine river cruise** – Relaxing and great for first‑time visitors.\n\n### Art, History &amp; Culture\n- **Musée d’Orsay** – Impressionist masterpieces in a stunning former train station.\n- **Le Marais** – Historic district with boutiques, museums, and lively streets.\n- **Latin Quarter** – Bookshops, old streets, and student energy.\n\n### Food &amp; Drink\n- **Bistro dining** – Try classic French dishes like boeuf bourguignon or duck confit.\n- **Food markets** – Marché des Enfants Rouges is a favorite.\n- **Wine &amp; cheese tasting** – Many small shops offer guided tastings.\n\n### Day Trips (if you have extra time)\n- **Versailles** – Palace and gardens (half‑day or full‑day trip).\n- **Giverny** – Monet’s gardens (spring/summer).\n- **Champagne region** – For wine lovers.\n\n### Practical Tips\n- Buy museum tickets in advance.\n- Walk as much as possible—Paris is very walkable.\n- Learn a few French phrases; locals appreciate the effort.\n\nIf you’d like, tell me:\n- How many days you’ll be there  \n- Your interests (food, art, history, shopping, nightlife, romance, family travel)  \n- Your budget level  \n\nAnd I’ll create a personalized day‑by‑day itinerary for you.",
+        "refusal": null,
+        "role": "assistant",
+        "annotations": null,
+        "audio": null,
+        "function_call": null,
+        "tool_calls": null,
+        "reasoning": null
+      },
+      "native_finish_reason": "completed"
+    }
+  ],
+  "created": 1767585819,
+  "model": "openai/gpt-5.2-chat",
+  "object": "chat.completion",
+  "service_tier": null,
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 506,
+    "prompt_tokens": 44,
+    "total_tokens": 550,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": null,
+      "audio_tokens": null,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": null,
+      "image_tokens": 0
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost": 0.007161,
+    "is_byok": false,
+    "cost_details": {
+      "upstream_inference_cost": null,
+      "upstream_inference_prompt_cost": 0.000077,
+      "upstream_inference_completions_cost": 0.007084
+    }
+  },
+  "provider": "OpenAI"
+}</code></pre>
+</div>
+</div>
+</div>
+</section></section>
+<section id="demo-1" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p>OpenRouter overview, OpenRouter Notebook, and setting secrets in Colab</p>
+</section>
+
+<section id="hands-on-1" class="title-slide slide level1 center">
+<h1>Hands-On</h1>
+<p>Register for an OpenRouter account, create an API key, import into the OpenRouter Notebook and experiment with different models</p>
+</section>
+
+<section id="streaming-support" class="title-slide slide level1 center">
+<h1>Streaming Support</h1>
+
+</section>
+
+<section id="structured-output" class="title-slide slide level1 center">
+<h1>Structured Output</h1>
+
+</section>
+
+<section id="on-to-gradio" class="title-slide slide level1 center">
+<h1>On to Gradio</h1>
+
+</section>
+
 <section>
 <section id="looking-ahead-to-next-week" class="title-slide slide level1 center">
 <h1>Looking Ahead to Next Week</h1>
