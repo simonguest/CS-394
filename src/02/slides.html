@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -190,6 +190,9 @@
   <script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
   <script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
   <link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+  
+  <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -1129,9 +1132,201 @@ Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
 </div>
 </div>
 </section></section>
-<section id="bringing-together-with-gradio" class="title-slide slide level1 center">
-<h1>Bringing Together with Gradio</h1>
+<section id="demo-2" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p>Token Streaming and Structured Outputs</p>
+</section>
 
+<section id="hands-on-2" class="title-slide slide level1 center">
+<h1>Hands-On</h1>
+<p>Investigate token-streaming.ipynb and structured-outputs.ipynb. Try adding an additional field to the Location model.</p>
+</section>
+
+<section>
+<section id="creating-a-chat-ui" class="title-slide slide level1 center">
+<h1>Creating a Chat UI</h1>
+
+</section>
+<section id="creating-a-chat-ui-1" class="slide level2">
+<h2>Creating a Chat UI</h2>
+<ul>
+<li class="fragment">Up to now, we’ve been making requests and printing the responses</li>
+<li class="fragment">Good for learning concepts, but not a “product” that others can use</li>
+<li class="fragment">We want to build a UI that supports conversation threads, streaming, rich inputs/outputs, etc.</li>
+<li class="fragment">But we don’t want to start from scratch!</li>
+</ul>
+</section>
+<section id="introducing-gradio" class="slide level2">
+<h2>Introducing Gradio</h2>
+
+<img data-src="images/gradio-website.png" class="r-stretch quarto-figure-center"><p class="caption">Source: https://www.gradio.app/</p></section>
+<section id="what-is-gradio" class="slide level2">
+<h2>What is Gradio?</h2>
+<ul>
+<li class="fragment"><strong>Created in 2019:</strong> Startup called Gradio developing demos for research/academia</li>
+<li class="fragment"><strong>Acquired by Hugging Face in 2021:</strong> became the standard interface for Hugging Face Spaces</li>
+<li class="fragment"><strong>Now industry standard:</strong> For ML demos - used by researchers, startups to showcase models without front-end expertise</li>
+</ul>
+</section>
+<section id="what-is-gradio-1" class="slide level2">
+<h2>What is Gradio?</h2>
+<ul>
+<li class="fragment">Rapid UI creation with minimal code
+<ul>
+<li class="fragment">5-10 lines of Python for an interactive interface. No HTML, CSS, JS required.</li>
+</ul></li>
+<li class="fragment">Rich input/output types
+<ul>
+<li class="fragment">Text, images, audio, video, files, dataframes, etc.</li>
+</ul></li>
+<li class="fragment">ML workflows
+<ul>
+<li class="fragment">Supports streaming, queue management (for server-side deployment), flagging/feedback collection</li>
+</ul></li>
+<li class="fragment">Deployment flexibility
+<ul>
+<li class="fragment">Can run locally, create temporary public links, or embed in production apps</li>
+</ul></li>
+</ul>
+</section>
+<section id="example-1-basic-interface" class="slide level2">
+<h2>Example 1: Basic Interface</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-1">
+<div id="example-1" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a></a><span class="co"># @title Example 1: Basic Gradio interface</span></span>
+<span id="cb26-2"><a></a></span>
+<span id="cb26-3"><a></a><span class="im">import</span> gradio <span class="im">as</span> gr</span>
+<span id="cb26-4"><a></a></span>
+<span id="cb26-5"><a></a><span class="kw">def</span> image_classifier(inp):</span>
+<span id="cb26-6"><a></a>    <span class="cf">return</span> {<span class="st">'cat'</span>: <span class="fl">0.3</span>, <span class="st">'dog'</span>: <span class="fl">0.7</span>}</span>
+<span id="cb26-7"><a></a></span>
+<span id="cb26-8"><a></a>demo <span class="op">=</span> gr.Interface(fn<span class="op">=</span>image_classifier, inputs<span class="op">=</span><span class="st">"image"</span>, outputs<span class="op">=</span><span class="st">"label"</span>)</span>
+<span id="cb26-9"><a></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="example-1-basic-interface-1" class="slide level2">
+<h2>Example 1: Basic Interface</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-1">
+<div id="example-1" class="cell" data-execution_count="17">
+<div class="cell-output cell-output-stdout">
+<pre><code>* Running on local URL:  http://127.0.0.1:7870
+* To create a public link, set `share=True` in `launch()`.</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div><iframe src="http://127.0.0.1:7870/" width="100%" height="500" allow="autoplay; camera; microphone; clipboard-read; clipboard-write;" frameborder="0" allowfullscreen=""></iframe></div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code></code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="example-2-basic-chat-interface" class="slide level2">
+<h2>Example 2: Basic Chat Interface</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-2">
+<div id="example-2" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a></a><span class="co"># @title Example 2: Basic chat interface with conversation history</span></span>
+<span id="cb29-2"><a></a></span>
+<span id="cb29-3"><a></a><span class="im">import</span> gradio <span class="im">as</span> gr</span>
+<span id="cb29-4"><a></a></span>
+<span id="cb29-5"><a></a><span class="kw">def</span> chat_with_history(message, history):</span>
+<span id="cb29-6"><a></a>    <span class="co"># Add current message</span></span>
+<span id="cb29-7"><a></a>    messages <span class="op">=</span> history <span class="op">+</span> [{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: message}]</span>
+<span id="cb29-8"><a></a>    </span>
+<span id="cb29-9"><a></a>    <span class="co"># Get response from API</span></span>
+<span id="cb29-10"><a></a>    response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb29-11"><a></a>        model<span class="op">=</span><span class="st">'openai/gpt-5.2-chat'</span>,</span>
+<span id="cb29-12"><a></a>        messages<span class="op">=</span>messages,</span>
+<span id="cb29-13"><a></a>    )</span>
+<span id="cb29-14"><a></a>    </span>
+<span id="cb29-15"><a></a>    <span class="cf">return</span> response.choices[<span class="dv">0</span>].message.content</span>
+<span id="cb29-16"><a></a></span>
+<span id="cb29-17"><a></a><span class="co"># Create a chat interface</span></span>
+<span id="cb29-18"><a></a>demo <span class="op">=</span> gr.ChatInterface(</span>
+<span id="cb29-19"><a></a>    fn<span class="op">=</span>chat_with_history,</span>
+<span id="cb29-20"><a></a>    title<span class="op">=</span><span class="st">"Basic Chat with Conversation History"</span></span>
+<span id="cb29-21"><a></a>)</span>
+<span id="cb29-22"><a></a></span>
+<span id="cb29-23"><a></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="example-2-basic-chat-interface-1" class="slide level2">
+<h2>Example 2: Basic Chat Interface</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-2">
+<div id="example-2" class="cell" data-execution_count="18">
+<div class="cell-output cell-output-stdout">
+<pre><code>* Running on local URL:  http://127.0.0.1:7871
+* To create a public link, set `share=True` in `launch()`.</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div><iframe src="http://127.0.0.1:7871/" width="100%" height="500" allow="autoplay; camera; microphone; clipboard-read; clipboard-write;" frameborder="0" allowfullscreen=""></iframe></div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code></code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="example-3-streaming-chat-interface" class="slide level2">
+<h2>Example 3: Streaming Chat Interface</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-3">
+<div id="example-3" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a></a><span class="co"># @title Example 3: Streaming chat interface</span></span>
+<span id="cb32-2"><a></a></span>
+<span id="cb32-3"><a></a><span class="kw">def</span> chat_with_streaming(message, history):</span>
+<span id="cb32-4"><a></a>    messages <span class="op">=</span> history <span class="op">+</span> [{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: message}]</span>
+<span id="cb32-5"><a></a>    </span>
+<span id="cb32-6"><a></a>    <span class="co"># Stream the response</span></span>
+<span id="cb32-7"><a></a>    stream <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb32-8"><a></a>        model<span class="op">=</span><span class="st">'openai/gpt-5.2-chat'</span>,</span>
+<span id="cb32-9"><a></a>        messages<span class="op">=</span>messages,</span>
+<span id="cb32-10"><a></a>        stream<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb32-11"><a></a>    )</span>
+<span id="cb32-12"><a></a>    </span>
+<span id="cb32-13"><a></a>    response_text <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb32-14"><a></a>    <span class="cf">for</span> chunk <span class="kw">in</span> stream:</span>
+<span id="cb32-15"><a></a>        <span class="cf">if</span> chunk.choices[<span class="dv">0</span>].delta.content <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb32-16"><a></a>            token <span class="op">=</span> chunk.choices[<span class="dv">0</span>].delta.content</span>
+<span id="cb32-17"><a></a>            response_text <span class="op">+=</span> token</span>
+<span id="cb32-18"><a></a>            <span class="cf">yield</span> response_text</span>
+<span id="cb32-19"><a></a></span>
+<span id="cb32-20"><a></a><span class="co"># Create streaming chat interface</span></span>
+<span id="cb32-21"><a></a>demo <span class="op">=</span> gr.ChatInterface(</span>
+<span id="cb32-22"><a></a>    fn<span class="op">=</span>chat_with_streaming,</span>
+<span id="cb32-23"><a></a>    title<span class="op">=</span><span class="st">"AI Chat with Streaming"</span>,</span>
+<span id="cb32-24"><a></a>)</span>
+<span id="cb32-25"><a></a></span>
+<span id="cb32-26"><a></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="example-2-streaming-chat-interface" class="slide level2">
+<h2>Example 2: Streaming Chat Interface</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-3">
+<div id="example-3" class="cell" data-execution_count="19">
+<div class="cell-output cell-output-stdout">
+<pre><code>* Running on local URL:  http://127.0.0.1:7872
+* To create a public link, set `share=True` in `launch()`.</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div><iframe src="http://127.0.0.1:7872/" width="100%" height="500" allow="autoplay; camera; microphone; clipboard-read; clipboard-write;" frameborder="0" allowfullscreen=""></iframe></div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<pre><code></code></pre>
+</div>
+</div>
+</div>
+</section></section>
+<section id="demo-3" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p>Gradio Notebook</p>
+</section>
+
+<section id="hands-on-3" class="title-slide slide level1 center">
+<h1>Hands-On</h1>
+<p>Explore the three examples in gradio.ipynb.</p>
 </section>
 
 <section>
@@ -1143,7 +1338,9 @@ Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
 <h2>Looking Ahead to Next Week</h2>
 <ul>
 <li class="fragment"><a href="https://simonguest.github.io/CS-394/src/02/assignment.html" class="external" target="_blank">This week’s assignment!</a></li>
-<li class="fragment">TBD</li>
+<li class="fragment">Explore the world of AI Agents</li>
+<li class="fragment">Create agents, building upon our knowledge of Gradio</li>
+<li class="fragment">Give the agent tools to perform functions beyond what an LLM can do</li>
 </ul>
 </section></section>
 <section>

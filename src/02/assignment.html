@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 2 Assignment - TBD – CS-394</title>
+<title>Week 2 Assignment - Gradio Travel Planner – CS-394</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -664,7 +664,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/02/slides.html"><strong>Week 2:</strong> Exploring Hosted LLMs</a></li><li class="breadcrumb-item"><a href="../../src/02/assignment.html">Assignment</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Week 2 Assignment - TBD</h1>
+<h1 class="title">Week 2 Assignment - Gradio Travel Planner</h1>
 </div>
 
 
@@ -681,6 +681,20 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p><strong>Objective:</strong> Build a Gradio chat interface (in a separate Colab notebook) that helps users plan trips.</p>
+<p><strong>Requirements:</strong></p>
+<ul>
+<li>Gradio chat interface with streaming responses</li>
+<li>System prompt that defines the AI as a travel planning expert</li>
+<li>Use at least 2 different models via OpenRouter as a dropdown in Gradio. Try to pick a large (foundational model) and a much smaller open source model to compare the differences.</li>
+</ul>
+<p><strong>Deliverable: A Colab/Jupyter notebook with:</strong></p>
+<ul>
+<li>Code cells with your implementation</li>
+<li>Uses OPENROUTER_API_KEY for the API token (do not include your API key in your notebook!)</li>
+<li>Markdown cells explaining what the notebook does and any observations</li>
+</ul>
+<p>** Stretch Goal (Non-graded)** - After the conversation, a “Generate Itinerary” button that uses structured outputs to create a formatted itinerary - Structured output schema: Trip with fields like destination, duration_days, activities (list), budget_level, daily_schedule (list of day objects)</p>
 
 
 
