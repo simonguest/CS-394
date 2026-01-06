@@ -5,9 +5,54 @@ execute:
   enabled: false
 ---
 
+## Model History and Background
+
+- [GPT-2 Release Blog Post](https://openai.com/index/better-language-models/) - OpenAI's original GPT-2 announcement
+- [GPT-3 Paper](https://arxiv.org/abs/2005.14165) - "Language Models are Few-Shot Learners"
+- [InstructGPT Paper](https://arxiv.org/abs/2203.02155) - "Training language models to follow instructions with human feedback"
+- [Meta's Llama Models](https://www.llama.com/) - Official Llama model family page
+
+## Chat Templates and Model Formats
+
+- [Hugging Face Chat Templates Guide](https://huggingface.co/docs/transformers/main/en/chat_templating) - Comprehensive guide to chat templates
+
+## OpenAI API
+
+- [OpenAI Platform](https://platform.openai.com/) - Create an account and get API keys
+- [OpenAI API Documentation](https://platform.openai.com/docs/api-reference) - Official API reference
+- [Chat Completions Guide](https://platform.openai.com/docs/guides/chat-completions) - How to use the chat completions endpoint
+- [Structured Outputs Guide](https://platform.openai.com/docs/guides/structured-outputs) - Guide to structured outputs
+
+## OpenRouter
+
+- [OpenRouter Home Page](https://openrouter.ai) - Unified API for hundreds of models
+- [OpenRouter Documentation](https://openrouter.ai/docs) - API docs and model listings
+- [OpenRouter Models](https://openrouter.ai/models) - Browse available models and pricing
+
+## Server-Sent Events (SSE) and Streaming
+
+- [MDN: Server-Sent Events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) - Technical overview of SSE
+- [EventSource API](https://developer.mozilla.org/en-US/docs/Web/API/EventSource) - Browser API for SSE
+- [OpenAI Streaming Guide](https://platform.openai.com/docs/api-reference/streaming) - How to implement streaming with OpenAI API
+
 ## Gradio
 
 - [Gradio Home Page](https://gradio.app)
+- [Gradio Documentation](https://www.gradio.app/docs) - Official documentation
+- [Gradio ChatInterface](https://www.gradio.app/docs/gradio/chatinterface) - Chat interface component documentation
+- [Gradio Guides](https://www.gradio.app/guides) - Tutorials and examples
+- [Hugging Face Spaces](https://huggingface.co/spaces) - Platform for deploying Gradio apps
+
+## RLHF and Model Training
+
+- [RLHF Explainer](https://huggingface.co/blog/rlhf) - Hugging Face's comprehensive guide to RLHF
+- [Reinforcement Learning from Human Feedback Paper](https://arxiv.org/abs/1706.03741) - Original RLHF research
+
+## Context Windows and Token Management
+
+- [Understanding Context Windows](https://www.anthropic.com/index/100k-context-windows) - Anthropic's post on long context
+- [Token Counting Best Practices](https://cookbook.openai.com/examples/how_to_count_tokens_with_tiktoken) - OpenAI cookbook example
+- [Tiktoken](https://github.com/openai/tiktoken) - Token counting library for estimating costs
 
 ## Citations
 

@@ -106,6 +106,13 @@ timeline
 
 ## System, User, Assistant
 
+- System Prompt best practices
+  - **Be specific**: "You are a Python programming tutor who explains concepts using simple analogies and provides code examples."
+  - **Define output**: "List no more than 3 suggestions. Always show your work step by step."
+  - **Set boundaries**: "If you are asked questions outside coding, politely redirect the student back to the task."
+
+## System, User, Assistant
+
 - **User** prompt is the message (request) from the user
   - "How many 'r's in Strawberry?"
   - "What is linear algebra?"
@@ -125,7 +132,7 @@ timeline
 
 ```
 <|im_start|>system
-You help travelers make plans for their trips<|im_end|>
+You help travelers make plans for their trips.<|im_end|>
 <|im_start|>user
 Hello<|im_end|>
 <|im_start|>assistant
@@ -271,6 +278,31 @@ timeline
 
 {{< embed notebooks/chat-completion-openai.ipynb#response echo=true >}}
 
+## Chat History Management
+
+- Key Considerations
+  - Models don't hold any state
+  - API sends **full** conversation on every request and the model reads through the full conversation on every call
+  - The size of the conversation is known as the context
+  - The maximum size the model can process is referred to as the **context window**
+
+## Chat History Management
+
+- Context window sizes
+  - Nano models ~= 32k tokens
+  - Small models ~= 120k tokens
+  - Frontier models ~= ~= 1M tokens
+- Large conversations can cause challenges
+  - They are expensive (you pay per token for whole conversation every time)
+  - Small models often forget early details in long conversation histories
+
+## Chat History Management
+
+- Mitigation Strategies
+  - Remove older messages from the history
+  - Implement sliding window across the conversation history
+  - Summarize older messages and rewrite the history
+  
 # Calling Other Models
 
 ## Calling Other Models
