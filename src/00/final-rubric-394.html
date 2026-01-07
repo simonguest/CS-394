@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Word2Vec – CS-394</title>
+<title>Rubric (Final Project CS-394) – CS-394</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,68 +20,33 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<link href="../../../src/01/notebooks/translation-transformer.html" rel="next">
-<link href="../../../src/01/notebooks/hello-world.html" rel="prev">
-<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-fb7c9abc17d36d8f171624f5bcedd762.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark-452555fb2cd10fd46433dc67f9b82a1c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../../site_libs/bootstrap/bootstrap-fb7c9abc17d36d8f171624f5bcedd762.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../src/00/final-rubric-594.html" rel="next">
+<link href="../../src/00/weekly-rubric.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-fb7c9abc17d36d8f171624f5bcedd762.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-452555fb2cd10fd46433dc67f9b82a1c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-fb7c9abc17d36d8f171624f5bcedd762.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -284,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/01/slides.html"><strong>Module 1:</strong> Foundations of Generative AI</a></li><li class="breadcrumb-item"><a href="../../../src/01/notebooks/hello-world.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../src/01/notebooks/word2vec.html">word2vec.ipynb</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/00/slides.html"><strong>Welcome</strong></a></li><li class="breadcrumb-item"><a href="../../src/00/final-rubric-394.html">Rubric (Final Project for CS-394)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -298,9 +263,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../../../index.html" class="sidebar-logo-link">
-      <img src="../../../theme/logos/DigiPen_Dragon_Shield_RGB_Black.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="../../../theme/logos/DigiPen_Dragon_Shield_RGB_Black.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../theme/logos/DigiPen_Dragon_Shield_RGB_Black.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../../theme/logos/DigiPen_Dragon_Shield_RGB_Black.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
@@ -315,7 +280,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CS-394/594</span></a>
   </div>
 </li>
@@ -331,7 +296,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/00/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../src/00/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
@@ -343,19 +308,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/00/weekly-rubric.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/00/weekly-rubric.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Rubric (Weekly Assignments)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/00/final-rubric-394.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/00/final-rubric-394.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Rubric (Final Project for CS-394)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/00/final-rubric-594.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/00/final-rubric-594.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Rubric (Final Project for CS-594)</span></a>
   </div>
 </li>
@@ -372,46 +337,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/01/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../src/01/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/01/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/01/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Notebooks</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/01/notebooks/hello-world.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/01/notebooks/hello-world.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">hello-world.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/01/notebooks/word2vec.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../src/01/notebooks/word2vec.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">word2vec.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/01/notebooks/translation-transformer.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/01/notebooks/translation-transformer.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">translation-transformer.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/01/notebooks/GPT-2.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/01/notebooks/GPT-2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GPT-2.ipynb</span></a>
   </div>
 </li>
@@ -419,7 +384,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/01/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/01/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -436,13 +401,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/02/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../src/02/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/02/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/02/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -457,37 +422,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/02/notebooks/instruction-tuned.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/02/notebooks/instruction-tuned.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">instruction-tuned.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/02/notebooks/chat-completion-openai.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/02/notebooks/chat-completion-openai.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">chat-completion-openai.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/02/notebooks/chat-completion-openrouter.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/02/notebooks/chat-completion-openrouter.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">chat-completion-openrouter.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/02/notebooks/token-streaming.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/02/notebooks/token-streaming.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">token-streaming.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/02/notebooks/structured-outputs.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/02/notebooks/structured-outputs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">structured-outputs.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/02/notebooks/gradio.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/02/notebooks/gradio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">gradio.ipynb</span></a>
   </div>
 </li>
@@ -495,7 +460,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/02/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/02/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -512,13 +477,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/03/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../src/03/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/03/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/03/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -528,7 +493,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/03/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/03/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -545,13 +510,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/04/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../src/04/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/04/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/04/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -561,7 +526,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/04/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/04/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -578,13 +543,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/05/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../src/05/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/05/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/05/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -594,7 +559,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/05/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/05/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -611,13 +576,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/06/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../src/06/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/06/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/06/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -627,7 +592,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/06/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/06/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -644,13 +609,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/07/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../src/07/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/07/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/07/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -660,7 +625,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/07/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/07/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -677,13 +642,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/08/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../src/08/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/08/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/08/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -693,7 +658,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/08/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/08/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -709,9 +674,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/01/slides.html"><strong>Module 1:</strong> Foundations of Generative AI</a></li><li class="breadcrumb-item"><a href="../../../src/01/notebooks/hello-world.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../src/01/notebooks/word2vec.html">word2vec.ipynb</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/00/slides.html"><strong>Welcome</strong></a></li><li class="breadcrumb-item"><a href="../../src/00/final-rubric-394.html">Rubric (Final Project for CS-394)</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Word2Vec</h1>
+<h1 class="title">Rubric (Final Project CS-394)</h1>
 </div>
 
 
@@ -728,252 +693,155 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This notebook explores Word2Vec embeddings to understand how they capture semantic relationships.</p>
-<p>Uses pre-trained embeddings from Google News (trained on ~100 billion words).</p>
-<p><a target="_blank" href="https://colab.research.google.com/github/simonguest/CS-394/blob/main/src/01/notebooks/word2vec.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"> </a> <a target="_blank" href="https://github.com/simonguest/CS-394/raw/refs/heads/main/src/01/notebooks/word2vec.ipynb"> <img src="https://img.shields.io/badge/Download_.ipynb-blue" alt="Download .ipynb"> </a></p>
-<section id="install-required-packages" class="level2">
-<h2 class="anchored" data-anchor-id="install-required-packages">Install required packages</h2>
-<div id="cell-3" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>uv pip install gensim numpy matplotlib scikit<span class="op">-</span>learn <span class="op">-</span>q</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<section id="integration-of-ai-models-10" class="level2">
+<h2 class="anchored" data-anchor-id="integration-of-ai-models-10">Integration of AI Models (10%)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>2%</th>
+<th>4%</th>
+<th>6%</th>
+<th>8%</th>
+<th>10%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Only one AI technique integrated with minimal effort or inappropriate model choice. Integration is superficial with no optimization.</td>
+<td>Two AI techniques used but poorly integrated or not well-suited to their tasks. Limited optimization effort shown.</td>
+<td>Two appropriate AI techniques integrated with basic functionality. Some optimization attempted but significant improvements possible.</td>
+<td>Two well-chosen AI techniques effectively integrated and optimized for their respective tasks. Clear rationale for model selection.</td>
+<td>Excellent integration of multiple AI techniques with sophisticated optimization. Models are perfectly suited to tasks with exceptional implementation.</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="load-pretrained-word2vec-model" class="level2">
-<h2 class="anchored" data-anchor-id="load-pretrained-word2vec-model">Load pretrained Word2Vec model</h2>
-<div id="cell-5" class="cell" data-execution_count="11">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gensim.downloader <span class="im">as</span> api</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.manifold <span class="im">import</span> TSNE</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Load pre-trained Word2Vec model (Google News, 300-dimensional vectors)</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Loading Word2Vec model..."</span>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> api.load(<span class="st">'word2vec-google-news-300'</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Model loaded. Vocabulary size: </span><span class="sc">{</span><span class="bu">len</span>(model)<span class="sc">}</span><span class="ss"> words"</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Vector dimension: </span><span class="sc">{</span>model<span class="sc">.</span>vector_size<span class="sc">}</span><span class="ss">"</span>) <span class="co"># type: ignore</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Loading Word2Vec model...
-Model loaded. Vocabulary size: 3000000 words
-Vector dimension: 300</code></pre>
-</div>
-</div>
-<div id="word-1" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>word <span class="op">=</span> <span class="st">"cat"</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>vector <span class="op">=</span> model[word]</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>vector[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
-<pre><code>array([ 0.0123291 ,  0.20410156, -0.28515625,  0.21679688,  0.11816406,
-        0.08300781,  0.04980469, -0.00952148,  0.22070312, -0.12597656],
-      dtype=float32)</code></pre>
-</div>
-</div>
-<div id="word-2" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>word <span class="op">=</span> <span class="st">"dog"</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>vector <span class="op">=</span> model[word]</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>vector[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
-<pre><code>array([ 0.05126953, -0.02233887, -0.17285156,  0.16113281, -0.08447266,
-        0.05737305,  0.05859375, -0.08251953, -0.01538086, -0.06347656],
-      dtype=float32)</code></pre>
-</div>
-</div>
-<div id="word-3" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>word <span class="op">=</span> <span class="st">"pizza"</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>vector <span class="op">=</span> model[word]</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>vector[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
-<pre><code>array([-1.2597656e-01,  2.5390625e-02,  1.6699219e-01,  5.5078125e-01,
-       -7.6660156e-02,  1.2890625e-01,  1.0253906e-01, -3.9482117e-04,
-        1.2158203e-01,  4.3212891e-02], dtype=float32)</code></pre>
-</div>
-</div>
+<section id="functionality-10" class="level2">
+<h2 class="anchored" data-anchor-id="functionality-10">Functionality (10%)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>2%</th>
+<th>4%</th>
+<th>6%</th>
+<th>8%</th>
+<th>10%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Project is largely non-functional with AI components not working. Major bugs and errors prevent basic usage.</td>
+<td>Project runs but AI components frequently fail or produce incorrect results. Significant functionality issues present.</td>
+<td>Project is functional with AI components working in most cases. Some bugs or limitations affect user experience.</td>
+<td>Project is fully working with AI components functioning reliably as intended. Minor issues may exist but don’t impact core functionality.</td>
+<td>Project is fully functional with flawless AI integration. All components work seamlessly together with robust error handling.</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="find-similar-words" class="level2">
-<h2 class="anchored" data-anchor-id="find-similar-words">Find similar words</h2>
-<p>Words with similar meanings have similar vectors.</p>
-<div id="cell-10" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_similar_words(word, top_n<span class="op">=</span><span class="dv">10</span>):</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Find the most similar words to a given word."""</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        similar <span class="op">=</span> model.most_similar(word, topn<span class="op">=</span>top_n) <span class="co"># type: ignore</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Words most similar to '</span><span class="sc">{</span>word<span class="sc">}</span><span class="ss">':"</span>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">40</span>)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> similar_word, similarity <span class="kw">in</span> similar:</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>similar_word<span class="sc">:20s}</span><span class="ss"> | similarity: </span><span class="sc">{</span>similarity<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">KeyError</span>:</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Word '</span><span class="sc">{</span>word<span class="sc">}</span><span class="ss">' not in vocabulary"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div id="similar-words" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>find_similar_words(<span class="st">"cat"</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>find_similar_words(<span class="st">"dog"</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>find_similar_words(<span class="st">"pizza"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Words most similar to 'cat':
-----------------------------------------
-cats                 | similarity: 0.8099
-dog                  | similarity: 0.7609
-kitten               | similarity: 0.7465
-feline               | similarity: 0.7326
-beagle               | similarity: 0.7151
-puppy                | similarity: 0.7075
-pup                  | similarity: 0.6934
-pet                  | similarity: 0.6892
-felines              | similarity: 0.6756
-chihuahua            | similarity: 0.6710
-
-Words most similar to 'dog':
-----------------------------------------
-dogs                 | similarity: 0.8680
-puppy                | similarity: 0.8106
-pit_bull             | similarity: 0.7804
-pooch                | similarity: 0.7627
-cat                  | similarity: 0.7609
-golden_retriever     | similarity: 0.7501
-German_shepherd      | similarity: 0.7465
-Rottweiler           | similarity: 0.7438
-beagle               | similarity: 0.7419
-pup                  | similarity: 0.7407
-
-Words most similar to 'pizza':
-----------------------------------------
-pizzas               | similarity: 0.7863
-Domino_pizza         | similarity: 0.7343
-Pizza                | similarity: 0.6988
-pepperoni_pizza      | similarity: 0.6903
-sandwich             | similarity: 0.6840
-burger               | similarity: 0.6570
-sandwiches           | similarity: 0.6495
-takeout_pizza        | similarity: 0.6492
-gourmet_pizza        | similarity: 0.6401
-meatball_sandwich    | similarity: 0.6377</code></pre>
-</div>
-</div>
+<section id="innovation-and-creativity-10" class="level2">
+<h2 class="anchored" data-anchor-id="innovation-and-creativity-10">Innovation and Creativity (10%)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>2%</th>
+<th>4%</th>
+<th>6%</th>
+<th>8%</th>
+<th>10%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Generic AI usage with no creative application. Design is basic with poor aesthetics and no meaningful AI enhancement.</td>
+<td>AI used in conventional ways with limited creativity. Design shows some effort but AI doesn’t meaningfully enhance the experience.</td>
+<td>Creative AI application with interesting use cases. Design is competent with AI providing noticeable visual or interactive improvements.</td>
+<td>Innovative AI usage providing unique and compelling experiences. Strong aesthetic and functional design that effectively leverages AI capabilities.</td>
+<td>Exceptional creativity with groundbreaking AI applications. Outstanding design that seamlessly integrates AI to create truly unique and compelling experiences.</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="compute-similarity" class="level2">
-<h2 class="anchored" data-anchor-id="compute-similarity">Compute similarity</h2>
-<div id="cell-13" class="cell" data-execution_count="20">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_similarity(word1, word2):</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute cosine similarity between two words."""</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>        similarity <span class="op">=</span> model.similarity(word1, word2) <span class="co"># type: ignore</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Similarity between '</span><span class="sc">{</span>word1<span class="sc">}</span><span class="ss">' and '</span><span class="sc">{</span>word2<span class="sc">}</span><span class="ss">': </span><span class="sc">{</span>similarity<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">KeyError</span> <span class="im">as</span> e:</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Word not in vocabulary: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div id="compute-similarity" class="cell" data-execution_count="21">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>compute_similarity(<span class="st">'cat'</span>, <span class="st">'dog'</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>compute_similarity(<span class="st">'cat'</span>, <span class="st">'kitten'</span>)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>compute_similarity(<span class="st">'cat'</span>, <span class="st">'car'</span>)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>compute_similarity(<span class="st">'doctor'</span>, <span class="st">'hospital'</span>)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>compute_similarity(<span class="st">'king'</span>, <span class="st">'queen'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Similarity between 'cat' and 'dog': 0.7609
-Similarity between 'cat' and 'kitten': 0.7465
-Similarity between 'cat' and 'car': 0.2153
-Similarity between 'doctor' and 'hospital': 0.5143
-Similarity between 'king' and 'queen': 0.6511</code></pre>
-</div>
-</div>
+<section id="ethical-analysis-10" class="level2">
+<h2 class="anchored" data-anchor-id="ethical-analysis-10">Ethical Analysis (10%)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>2%</th>
+<th>4%</th>
+<th>6%</th>
+<th>8%</th>
+<th>10%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>No ethical analysis provided or only superficial acknowledgment of issues. No consideration of biases or societal impacts.</td>
+<td>Limited ethical analysis with minimal identification of potential issues. Brief mention of biases but no mitigation strategies proposed.</td>
+<td>Adequate evaluation of biases and ethical implications with some discussion of societal impacts. Basic mitigation proposals included.</td>
+<td>Thorough evaluation of potential biases, ethical implications, and societal impacts. Clear and practical proposals for mitigating identified risks.</td>
+<td>Comprehensive and insightful ethical analysis demonstrating deep understanding of AI implications. Sophisticated mitigation strategies with consideration of broader societal impacts.</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="vector-arithmetic" class="level2">
-<h2 class="anchored" data-anchor-id="vector-arithmetic">Vector arithmetic</h2>
-<div id="cell-16" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> vector_arithmetic(positive, negative, top_n<span class="op">=</span><span class="dv">5</span>):</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Perform vector arithmetic: positive words - negative words."""</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> model.most_similar(positive<span class="op">=</span>positive, negative<span class="op">=</span>negative, topn<span class="op">=</span>top_n) <span class="co"># type: ignore</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="sc">{</span><span class="st">' + '</span><span class="sc">.</span>join(positive)<span class="sc">}</span><span class="ss"> - </span><span class="sc">{</span><span class="st">' - '</span><span class="sc">.</span>join(negative)<span class="sc">}</span><span class="ss">:"</span>)</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">50</span>)</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> word, similarity <span class="kw">in</span> result:</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>word<span class="sc">:20s}</span><span class="ss"> | similarity: </span><span class="sc">{</span>similarity<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">KeyError</span> <span class="im">as</span> e:</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Word not in vocabulary: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div id="vector-arithmetic" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>vector_arithmetic([<span class="st">'king'</span>, <span class="st">'woman'</span>], [<span class="st">'man'</span>])</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>vector_arithmetic([<span class="st">'Paris'</span>, <span class="st">'Italy'</span>], [<span class="st">'France'</span>])</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>vector_arithmetic([<span class="st">'walking'</span>, <span class="st">'swim'</span>], [<span class="st">'walk'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-king + woman - man:
---------------------------------------------------
-queen                | similarity: 0.7118
-monarch              | similarity: 0.6190
-princess             | similarity: 0.5902
-crown_prince         | similarity: 0.5499
-prince               | similarity: 0.5377
-
-Paris + Italy - France:
---------------------------------------------------
-Milan                | similarity: 0.7222
-Rome                 | similarity: 0.7028
-Palermo_Sicily       | similarity: 0.5968
-Italian              | similarity: 0.5911
-Tuscany              | similarity: 0.5633
-
-walking + swim - walk:
---------------------------------------------------
-swimming             | similarity: 0.8246
-swam                 | similarity: 0.6807
-swims                | similarity: 0.6538
-swimmers             | similarity: 0.6495
-paddling             | similarity: 0.6424</code></pre>
-</div>
-</div>
-</section>
-<section id="d-visualization" class="level2">
-<h2 class="anchored" data-anchor-id="d-visualization">2D visualization</h2>
-<div id="2d-visualization" class="cell" data-execution_count="18">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> visualize_words(words, method<span class="op">=</span><span class="st">'tsne'</span>):</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Visualize word embeddings in 2D."""</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get vectors for words that exist in vocabulary</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    valid_words <span class="op">=</span> [w <span class="cf">for</span> w <span class="kw">in</span> words <span class="cf">if</span> w <span class="kw">in</span> model]</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">len</span>(valid_words) <span class="op">&lt;</span> <span class="dv">2</span>:</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Need at least 2 valid words to visualize"</span>)</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    vectors <span class="op">=</span> np.array([model[w] <span class="cf">for</span> w <span class="kw">in</span> valid_words])</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Reduce to 2D</span></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> method <span class="op">==</span> <span class="st">'tsne'</span>:</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>        reducer <span class="op">=</span> TSNE(n_components<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">42</span>, perplexity<span class="op">=</span><span class="bu">min</span>(<span class="dv">5</span>, <span class="bu">len</span>(valid_words)<span class="op">-</span><span class="dv">1</span>))</span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>        reducer <span class="op">=</span> PCA(n_components<span class="op">=</span><span class="dv">2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    vectors_2d <span class="op">=</span> reducer.fit_transform(vectors)</span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot</span></span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>    plt.scatter(vectors_2d[:, <span class="dv">0</span>], vectors_2d[:, <span class="dv">1</span>], s<span class="op">=</span><span class="dv">200</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)</span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, word <span class="kw">in</span> <span class="bu">enumerate</span>(valid_words):</span>
-<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>        plt.annotate(word, </span>
-<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>                    xy<span class="op">=</span>(vectors_2d[i, <span class="dv">0</span>], vectors_2d[i, <span class="dv">1</span>]),</span>
-<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>                    xytext<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>),</span>
-<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>                    textcoords<span class="op">=</span><span class="st">'offset points'</span>,</span>
-<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>                    fontsize<span class="op">=</span><span class="dv">12</span>,</span>
-<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>                    fontweight<span class="op">=</span><span class="st">'bold'</span>)</span>
-<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="ss">f'Word Embeddings Visualization (</span><span class="sc">{</span>method<span class="sc">.</span>upper()<span class="sc">}</span><span class="ss">)'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'Dimension 1'</span>)</span>
-<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'Dimension 2'</span>)</span>
-<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>    plt.grid(<span class="va">True</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
-<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
-<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>words <span class="op">=</span> [<span class="st">'cat'</span>, <span class="st">'dog'</span>, <span class="st">'kitten'</span>, <span class="st">'puppy'</span>, <span class="st">'lion'</span>, <span class="st">'tiger'</span>, <span class="st">'elephant'</span>, <span class="st">'mouse'</span>, <span class="st">'chicken'</span>, <span class="st">'rat'</span>]</span>
-<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>visualize_words(words)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="word2vec_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
+<section id="presentation-20" class="level2">
+<h2 class="anchored" data-anchor-id="presentation-20">Presentation (20%)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>4%</th>
+<th>8%</th>
+<th>12%</th>
+<th>16%</th>
+<th>20%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Presentation is unclear and disorganized with minimal explanation of AI features. If in a team, roles were undefined and collaboration issues evident.</td>
+<td>Presentation covers basic points but lacks engagement or clear explanation of AI integration process. If in a team, some team member contributions unclear.</td>
+<td>Clear presentation highlighting main AI features and challenges faced. If in a team, collaboration is adequate with most roles and contributions identifiable.</td>
+<td>Clear and engaging presentation effectively showcasing AI features and their purpose. Comprehensive explanation of integration process including model selection and solutions, with well-defined team roles (if applicable).</td>
+<td>Outstanding presentation that captivates audience while thoroughly explaining AI implementation. Exceptional teamwork (if applicable) with seamless collaboration and clearly articulated individual contributions.</td>
+</tr>
+</tbody>
+</table>
 
 
 </section>
@@ -1394,13 +1262,13 @@ paddling             | similarity: 0.6424</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../src/01/notebooks/hello-world.html" class="pagination-link" aria-label="hello-world.ipynb">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">hello-world.ipynb</span>
+      <a href="../../src/00/weekly-rubric.html" class="pagination-link" aria-label="Rubric (Weekly Assignments)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Rubric (Weekly Assignments)</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../src/01/notebooks/translation-transformer.html" class="pagination-link" aria-label="translation-transformer.ipynb">
-        <span class="nav-page-text">translation-transformer.ipynb</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../src/00/final-rubric-594.html" class="pagination-link" aria-label="Rubric (Final Project for CS-594)">
+        <span class="nav-page-text">Rubric (Final Project for CS-594)</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
