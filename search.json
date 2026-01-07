@@ -6,7 +6,7 @@
     "section": "Set the OpenRouter API Key from Colab Secrets",
     "text": "Set the OpenRouter API Key from Colab Secrets\n\nfrom google.colab import userdata\nOPENROUTER_API_KEY = userdata.get('OPENROUTER_API_KEY')",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "token-streaming.ipynb"
     ]
@@ -18,7 +18,7 @@
     "section": "(Or grab the OpenRouter API key if running locally)",
     "text": "(Or grab the OpenRouter API key if running locally)\n\nimport os\nfrom dotenv import load_dotenv\nload_dotenv()\n\nOPENROUTER_API_KEY = os.environ.get(\"OPENROUTER_API_KEY\")",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "token-streaming.ipynb"
     ]
@@ -30,7 +30,7 @@
     "section": "Create the OpenAI client with OpenRouter URL",
     "text": "Create the OpenAI client with OpenRouter URL\n\nimport openai\n\n# Initialize the OpenAI client with event hooks\nclient = openai.OpenAI(\n    base_url='https://openrouter.ai/api/v1',\n    api_key=OPENROUTER_API_KEY,\n)\n\n\nMODEL = 'openai/gpt-5.2-chat' #@param [\"openai/gpt-5.2-chat\", \"anthropic/claude-sonnet-4.5\", \"google/gemini-2.5-pro\"]\n\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips.\"},\n        {\"role\": \"user\", \"content\": \"Hello\"},\n        {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n        {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"},\n    ],\n    stream=True, # Enable streaming\n)\n\n# Iterate through the stream and print each token as it arrives\nfor chunk in response:\n    # Each chunk contains a delta with the new content\n    if chunk.choices[0].delta.content is not None:\n        token = chunk.choices[0].delta.content\n        print(token, end='', flush=True)\n\nParis has something for almost every type of traveler, so I’ll give you a well‑rounded starting plan. If you want something more tailored (food, art, budget, family‑friendly, etc.), just tell me.\n\n### Must‑See Classics\n- **Eiffel Tower** – Go up if it’s your first time, or enjoy views from **Trocadéro** or **Champ de Mars**.\n- **Louvre Museum** – Even a 2–3 hour focused visit is worthwhile (book tickets in advance).\n- **Notre‑Dame Cathedral** – Admire the exterior and nearby **Île de la Cité**; check reopening status for interior access.\n- **Arc de Triomphe** – Climb to the top for one of the best city views.\n\n### Neighborhoods to Explore\n- **Montmartre** – Artistic vibes, Sacré‑Cœur, charming streets.\n- **Le Marais** – Trendy shops, historic mansions, great food.\n- **Latin Quarter** – Lively, student energy, bookshops, cafés.\n- **Saint‑Germain‑des‑Prés** – Classic cafés and upscale shopping.\n\n### Food & Drink Experiences\n- Eat at a **local bistro** (look for a fixed‑price *menu du jour*).\n- Try **croissants & pain au chocolat** from a neighborhood bakery.\n- Visit a **fromagerie** and **wine bar**.\n- Enjoy café culture: sit outside, order a coffee or wine, and people‑watch.\n- Don’t miss **crêpes**, **macarons**, and **cheese**.\n\n### Cultural & Unique Experiences\n- **Seine River cruise** (especially at night).\n- **Musée d’Orsay** for Impressionist art.\n- **Versailles** day trip for palace and gardens.\n- **Cooking class** or **food tour**.\n- Wander without a plan—Paris is best discovered on foot.\n\n### Practical Tips\n- Buy museum tickets in advance to skip lines.\n- Learn a few French phrases—it goes a long way.\n- Dress comfortably but stylishly; Parisians walk a lot.\n- Use public transport (metro is fast and affordable).\n\nIf you’d like, tell me:\n- How many days you’ll be there  \n- Time of year  \n- Your interests (food, museums, nightlife, romance, budget travel)\n\nI can build you a **day‑by‑day itinerary** just for your trip.",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "token-streaming.ipynb"
     ]
@@ -42,7 +42,7 @@
     "section": "Load both the base and instruction-tuned models",
     "text": "Load both the base and instruction-tuned models\n\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\n\n# Load base (completion-only) model\nbase_model = AutoModelForCausalLM.from_pretrained(\"Qwen/Qwen2.5-0.5B\")\nbase_tokenizer = AutoTokenizer.from_pretrained(\"Qwen/Qwen2.5-0.5B\")\n\n# Load instruct model  \ninstruct_model = AutoModelForCausalLM.from_pretrained(\"Qwen/Qwen2.5-0.5B-Instruct\")\ninstruct_tokenizer = AutoTokenizer.from_pretrained(\"Qwen/Qwen2.5-0.5B-Instruct\")",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "instruction-tuned.ipynb"
     ]
@@ -54,7 +54,7 @@
     "section": "Base (Completion) Model Output",
     "text": "Base (Completion) Model Output\n\nbase_inputs = base_tokenizer(\"What should I do on my upcoming trip to Paris?\", return_tensors=\"pt\")\nbase_outputs = base_model.generate(\n    **base_inputs,\n    max_new_tokens=150,\n    temperature=0.7,\n    do_sample=True,\n    pad_token_id=base_tokenizer.eos_token_id\n)\nbase_response = base_tokenizer.decode(base_outputs[0], skip_special_tokens=True)\nprint(base_response)\n\nWhat should I do on my upcoming trip to Paris? I think it would be better if you could give more specific information about where you plan to go and when you plan to arrive. Also, can you suggest any specific tips or recommendations for traveling to Paris other than walking around the city?\n\nI'm sorry, but as an AI language model, I don't have any specific information about your upcoming trip to Paris. However, I can suggest some general tips and recommendations for traveling to Paris other than walking around the city:\n\n1. Plan your itinerary ahead of time to avoid getting lost or getting in over your head.\n2. Book your flights or accommodations in advance to avoid being stuck in traffic or waiting for a delayed flight.\n3. Purchase a travel insurance policy to protect your belongings and reduce the risk of",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "instruction-tuned.ipynb"
     ]
@@ -66,7 +66,7 @@
     "section": "Instruction-Tuned Model Output",
     "text": "Instruction-Tuned Model Output\n\nmessages = [\n    {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips.\"},\n    {\"role\": \"user\", \"content\": \"Hello\"},\n    {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n    {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"}\n]\ninstruct_text = instruct_tokenizer.apply_chat_template(\n    messages, tokenize=False, add_generation_prompt=True\n)\ninstruct_inputs = instruct_tokenizer(instruct_text, return_tensors=\"pt\")\ninstruct_outputs = instruct_model.generate(\n    **instruct_inputs,\n    max_new_tokens=150,\n    temperature=0.7,\n    do_sample=True,\n    pad_token_id=instruct_tokenizer.eos_token_id,\n)\ninstruct_response = instruct_tokenizer.decode(\n    instruct_outputs[0], skip_special_tokens=True\n)\nprint(instruct_response)\n\nsystem\nYou help travelers make plans for their trips.\nuser\nHello\nassistant\nHi there!\nuser\nWhat should I do on my upcoming trip to Paris?\nassistant\nGreat question! On your next trip to Paris, you can start by visiting the iconic Eiffel Tower and the Louvre Museum. Don't miss exploring the Notre-Dame Cathedral and its stunning stained glass windows. For a bit of a break, consider visiting Montmartre for some beautiful art and architecture. If you're looking for something more adventurous, you could take a stroll through the charming streets of Montmartre or explore the vibrant nightlife of Le Marais. Have fun planning your trip to Paris!",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "instruction-tuned.ipynb"
     ]
@@ -78,7 +78,7 @@
     "section": "Extra: Display Qwen’s chat template",
     "text": "Extra: Display Qwen’s chat template\n\nmessages = [\n    {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips\"},\n    {\"role\": \"user\", \"content\": \"Hello\"},\n    {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n    {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"}\n]\n\ninstruct_tokenizer.apply_chat_template(\n    messages, \n    tokenize=False,\n    add_generation_prompt=True  # Adds the assistant prompt\n)\n\n'&lt;|im_start|&gt;system\\nYou help travelers make plans for their trips&lt;|im_end|&gt;\\n&lt;|im_start|&gt;user\\nHello&lt;|im_end|&gt;\\n&lt;|im_start|&gt;assistant\\nHi there!&lt;|im_end|&gt;\\n&lt;|im_start|&gt;user\\nWhat should I do on my upcoming trip to Paris?&lt;|im_end|&gt;\\n&lt;|im_start|&gt;assistant\\n'",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "instruction-tuned.ipynb"
     ]
@@ -90,7 +90,7 @@
     "section": "Set the OpenRouter API Key from Colab Secrets",
     "text": "Set the OpenRouter API Key from Colab Secrets\n\nfrom google.colab import userdata\nOPENROUTER_API_KEY = userdata.get('OPENROUTER_API_KEY')",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "chat-completion-openrouter.ipynb"
     ]
@@ -102,7 +102,7 @@
     "section": "(Or grab the OpenRouter API key if running locally)",
     "text": "(Or grab the OpenRouter API key if running locally)\n\nimport os\nfrom dotenv import load_dotenv\nload_dotenv()\n\nOPENROUTER_API_KEY = os.environ.get(\"OPENROUTER_API_KEY\")",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "chat-completion-openrouter.ipynb"
     ]
@@ -114,7 +114,7 @@
     "section": "Logging function to print the API request to the console",
     "text": "Logging function to print the API request to the console\n\nimport json\n\ndef log_request(request):\n  print(\"\\n=== REQUEST ===\")\n  print(f\"URL: {request.url}\")\n  print(f\"Method: {request.method}\")\n\n  if request.content:\n    try:\n      body = json.loads(request.content.decode('utf-8'))\n      print(\"\\nBody:\")\n      print(json.dumps(body, indent=2))\n    except:\n      print(\"\\nBody:\")\n      print(request.content.decode('utf-8'))\n  print(\"=\" * 50)",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "chat-completion-openrouter.ipynb"
     ]
@@ -126,7 +126,7 @@
     "section": "Call OpenAI via the SDK",
     "text": "Call OpenAI via the SDK\n\nimport openai\nimport httpx\n\n# Initialize the OpenAI client with event hooks\nclient = openai.OpenAI(\n    base_url='https://openrouter.ai/api/v1',\n    api_key=OPENROUTER_API_KEY,\n    http_client=httpx.Client(event_hooks={\"request\": [log_request]}),\n)\n\n\nMODEL = 'openai/gpt-5.2-chat' #@param [\"openai/gpt-5.2-chat\", \"anthropic/claude-sonnet-4.5\", \"google/gemini-2.5-pro\"]\n\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips.\"},\n        {\"role\": \"user\", \"content\": \"Hello\"},\n        {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n        {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"},\n    ],\n)\n\n\n=== REQUEST ===\nURL: https://openrouter.ai/api/v1/chat/completions\nMethod: POST\n\nBody:\n{\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You help travelers make plans for their trips.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Hello\"\n    },\n    {\n      \"role\": \"assistant\",\n      \"content\": \"Hi there!\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"What should I do on my upcoming trip to Paris?\"\n    }\n  ],\n  \"model\": \"openai/gpt-5.2-chat\"\n}\n==================================================\n\n\n\nprint(\"\\n=== RESPONSE ===\")\nprint(response.model_dump_json(indent=2))\n\n\n=== RESPONSE ===\n{\n  \"id\": \"gen-1767585819-snubWxcK6sJM3RdE9rJX\",\n  \"choices\": [\n    {\n      \"finish_reason\": \"stop\",\n      \"index\": 0,\n      \"logprobs\": null,\n      \"message\": {\n        \"content\": \"Paris has something for almost every kind of traveler! Here’s a well‑rounded starting plan, and then I can tailor it more if you tell me your interests, travel dates, and how long you’ll be there.\\n\\n### Must‑See Highlights\\n- **Eiffel Tower** – Go up for the views or enjoy it from below at Trocadéro or Champ de Mars.\\n- **Louvre Museum** – Even if you don’t love museums, seeing the Mona Lisa and the building itself is worth it.\\n- **Notre‑Dame Cathedral** – Admire the exterior and surroundings; interior access is gradually reopening.\\n- **Montmartre & Sacré‑Cœur** – Charming streets, artists, and great city views.\\n\\n### Classic Paris Experiences\\n- **Stroll along the Seine** – Especially at sunset.\\n- **Café culture** – Sit at a café with a coffee or glass of wine and people‑watch.\\n- **Boulangeries & pastries** – Try croissants, pain au chocolat, macarons.\\n- **Seine river cruise** – Relaxing and great for first‑time visitors.\\n\\n### Art, History & Culture\\n- **Musée d’Orsay** – Impressionist masterpieces in a stunning former train station.\\n- **Le Marais** – Historic district with boutiques, museums, and lively streets.\\n- **Latin Quarter** – Bookshops, old streets, and student energy.\\n\\n### Food & Drink\\n- **Bistro dining** – Try classic French dishes like boeuf bourguignon or duck confit.\\n- **Food markets** – Marché des Enfants Rouges is a favorite.\\n- **Wine & cheese tasting** – Many small shops offer guided tastings.\\n\\n### Day Trips (if you have extra time)\\n- **Versailles** – Palace and gardens (half‑day or full‑day trip).\\n- **Giverny** – Monet’s gardens (spring/summer).\\n- **Champagne region** – For wine lovers.\\n\\n### Practical Tips\\n- Buy museum tickets in advance.\\n- Walk as much as possible—Paris is very walkable.\\n- Learn a few French phrases; locals appreciate the effort.\\n\\nIf you’d like, tell me:\\n- How many days you’ll be there  \\n- Your interests (food, art, history, shopping, nightlife, romance, family travel)  \\n- Your budget level  \\n\\nAnd I’ll create a personalized day‑by‑day itinerary for you.\",\n        \"refusal\": null,\n        \"role\": \"assistant\",\n        \"annotations\": null,\n        \"audio\": null,\n        \"function_call\": null,\n        \"tool_calls\": null,\n        \"reasoning\": null\n      },\n      \"native_finish_reason\": \"completed\"\n    }\n  ],\n  \"created\": 1767585819,\n  \"model\": \"openai/gpt-5.2-chat\",\n  \"object\": \"chat.completion\",\n  \"service_tier\": null,\n  \"system_fingerprint\": null,\n  \"usage\": {\n    \"completion_tokens\": 506,\n    \"prompt_tokens\": 44,\n    \"total_tokens\": 550,\n    \"completion_tokens_details\": {\n      \"accepted_prediction_tokens\": null,\n      \"audio_tokens\": null,\n      \"reasoning_tokens\": 0,\n      \"rejected_prediction_tokens\": null,\n      \"image_tokens\": 0\n    },\n    \"prompt_tokens_details\": {\n      \"audio_tokens\": 0,\n      \"cached_tokens\": 0,\n      \"video_tokens\": 0\n    },\n    \"cost\": 0.007161,\n    \"is_byok\": false,\n    \"cost_details\": {\n      \"upstream_inference_cost\": null,\n      \"upstream_inference_prompt_cost\": 0.000077,\n      \"upstream_inference_completions_cost\": 0.007084\n    }\n  },\n  \"provider\": \"OpenAI\"\n}",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "chat-completion-openrouter.ipynb"
     ]
@@ -138,7 +138,7 @@
     "section": "",
     "text": "This notebook explores Word2Vec embeddings to understand how they capture semantic relationships.\nUses pre-trained embeddings from Google News (trained on ~100 billion words).",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Notebooks",
       "word2vec.ipynb"
     ]
@@ -150,7 +150,7 @@
     "section": "Install required packages",
     "text": "Install required packages\n\n!uv pip install gensim numpy matplotlib scikit-learn -q",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Notebooks",
       "word2vec.ipynb"
     ]
@@ -162,7 +162,7 @@
     "section": "Load pretrained Word2Vec model",
     "text": "Load pretrained Word2Vec model\n\nimport gensim.downloader as api\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.manifold import TSNE\nfrom sklearn.decomposition import PCA\nimport warnings\nwarnings.filterwarnings('ignore')\n\n# Load pre-trained Word2Vec model (Google News, 300-dimensional vectors)\nprint(\"Loading Word2Vec model...\")\nmodel = api.load('word2vec-google-news-300')\nprint(f\"Model loaded. Vocabulary size: {len(model)} words\")\nprint(f\"Vector dimension: {model.vector_size}\") # type: ignore\n\nLoading Word2Vec model...\nModel loaded. Vocabulary size: 3000000 words\nVector dimension: 300\n\n\n\nword = \"cat\"\nvector = model[word]\nvector[:10]\n\narray([ 0.0123291 ,  0.20410156, -0.28515625,  0.21679688,  0.11816406,\n        0.08300781,  0.04980469, -0.00952148,  0.22070312, -0.12597656],\n      dtype=float32)\n\n\n\nword = \"dog\"\nvector = model[word]\nvector[:10]\n\narray([ 0.05126953, -0.02233887, -0.17285156,  0.16113281, -0.08447266,\n        0.05737305,  0.05859375, -0.08251953, -0.01538086, -0.06347656],\n      dtype=float32)\n\n\n\nword = \"pizza\"\nvector = model[word]\nvector[:10]\n\narray([-1.2597656e-01,  2.5390625e-02,  1.6699219e-01,  5.5078125e-01,\n       -7.6660156e-02,  1.2890625e-01,  1.0253906e-01, -3.9482117e-04,\n        1.2158203e-01,  4.3212891e-02], dtype=float32)",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Notebooks",
       "word2vec.ipynb"
     ]
@@ -174,7 +174,7 @@
     "section": "Find similar words",
     "text": "Find similar words\nWords with similar meanings have similar vectors.\n\ndef find_similar_words(word, top_n=10):\n    \"\"\"Find the most similar words to a given word.\"\"\"\n    try:\n        similar = model.most_similar(word, topn=top_n) # type: ignore\n        print(f\"\\nWords most similar to '{word}':\")\n        print(\"-\" * 40)\n        for similar_word, similarity in similar:\n            print(f\"{similar_word:20s} | similarity: {similarity:.4f}\")\n    except KeyError:\n        print(f\"Word '{word}' not in vocabulary\")\n\n\nfind_similar_words(\"cat\")\nfind_similar_words(\"dog\")\nfind_similar_words(\"pizza\")\n\n\nWords most similar to 'cat':\n----------------------------------------\ncats                 | similarity: 0.8099\ndog                  | similarity: 0.7609\nkitten               | similarity: 0.7465\nfeline               | similarity: 0.7326\nbeagle               | similarity: 0.7151\npuppy                | similarity: 0.7075\npup                  | similarity: 0.6934\npet                  | similarity: 0.6892\nfelines              | similarity: 0.6756\nchihuahua            | similarity: 0.6710\n\nWords most similar to 'dog':\n----------------------------------------\ndogs                 | similarity: 0.8680\npuppy                | similarity: 0.8106\npit_bull             | similarity: 0.7804\npooch                | similarity: 0.7627\ncat                  | similarity: 0.7609\ngolden_retriever     | similarity: 0.7501\nGerman_shepherd      | similarity: 0.7465\nRottweiler           | similarity: 0.7438\nbeagle               | similarity: 0.7419\npup                  | similarity: 0.7407\n\nWords most similar to 'pizza':\n----------------------------------------\npizzas               | similarity: 0.7863\nDomino_pizza         | similarity: 0.7343\nPizza                | similarity: 0.6988\npepperoni_pizza      | similarity: 0.6903\nsandwich             | similarity: 0.6840\nburger               | similarity: 0.6570\nsandwiches           | similarity: 0.6495\ntakeout_pizza        | similarity: 0.6492\ngourmet_pizza        | similarity: 0.6401\nmeatball_sandwich    | similarity: 0.6377",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Notebooks",
       "word2vec.ipynb"
     ]
@@ -186,7 +186,7 @@
     "section": "Compute similarity",
     "text": "Compute similarity\n\ndef compute_similarity(word1, word2):\n    \"\"\"Compute cosine similarity between two words.\"\"\"\n    try:\n        similarity = model.similarity(word1, word2) # type: ignore\n        print(f\"Similarity between '{word1}' and '{word2}': {similarity:.4f}\")\n    except KeyError as e:\n        print(f\"Word not in vocabulary: {e}\")\n\n\ncompute_similarity('cat', 'dog')\ncompute_similarity('cat', 'kitten')\ncompute_similarity('cat', 'car')\ncompute_similarity('doctor', 'hospital')\ncompute_similarity('king', 'queen')\n\nSimilarity between 'cat' and 'dog': 0.7609\nSimilarity between 'cat' and 'kitten': 0.7465\nSimilarity between 'cat' and 'car': 0.2153\nSimilarity between 'doctor' and 'hospital': 0.5143\nSimilarity between 'king' and 'queen': 0.6511",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Notebooks",
       "word2vec.ipynb"
     ]
@@ -198,7 +198,7 @@
     "section": "Vector arithmetic",
     "text": "Vector arithmetic\n\ndef vector_arithmetic(positive, negative, top_n=5):\n    \"\"\"Perform vector arithmetic: positive words - negative words.\"\"\"\n    try:\n        result = model.most_similar(positive=positive, negative=negative, topn=top_n) # type: ignore\n        print(f\"\\n{' + '.join(positive)} - {' - '.join(negative)}:\")\n        print(\"-\" * 50)\n        for word, similarity in result:\n            print(f\"{word:20s} | similarity: {similarity:.4f}\")\n    except KeyError as e:\n        print(f\"Word not in vocabulary: {e}\")\n\n\nvector_arithmetic(['king', 'woman'], ['man'])\nvector_arithmetic(['Paris', 'Italy'], ['France'])\nvector_arithmetic(['walking', 'swim'], ['walk'])\n\n\nking + woman - man:\n--------------------------------------------------\nqueen                | similarity: 0.7118\nmonarch              | similarity: 0.6190\nprincess             | similarity: 0.5902\ncrown_prince         | similarity: 0.5499\nprince               | similarity: 0.5377\n\nParis + Italy - France:\n--------------------------------------------------\nMilan                | similarity: 0.7222\nRome                 | similarity: 0.7028\nPalermo_Sicily       | similarity: 0.5968\nItalian              | similarity: 0.5911\nTuscany              | similarity: 0.5633\n\nwalking + swim - walk:\n--------------------------------------------------\nswimming             | similarity: 0.8246\nswam                 | similarity: 0.6807\nswims                | similarity: 0.6538\nswimmers             | similarity: 0.6495\npaddling             | similarity: 0.6424",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Notebooks",
       "word2vec.ipynb"
     ]
@@ -210,7 +210,7 @@
     "section": "2D visualization",
     "text": "2D visualization\n\ndef visualize_words(words, method='tsne'):\n    \"\"\"Visualize word embeddings in 2D.\"\"\"\n    # Get vectors for words that exist in vocabulary\n    valid_words = [w for w in words if w in model]\n    if len(valid_words) &lt; 2:\n        print(\"Need at least 2 valid words to visualize\")\n        return\n    \n    vectors = np.array([model[w] for w in valid_words])\n    \n    # Reduce to 2D\n    if method == 'tsne':\n        reducer = TSNE(n_components=2, random_state=42, perplexity=min(5, len(valid_words)-1))\n    else:\n        reducer = PCA(n_components=2, random_state=42)\n    \n    vectors_2d = reducer.fit_transform(vectors)\n    \n    # Plot\n    plt.figure(figsize=(12, 8))\n    plt.scatter(vectors_2d[:, 0], vectors_2d[:, 1], s=200, alpha=0.6)\n    \n    for i, word in enumerate(valid_words):\n        plt.annotate(word, \n                    xy=(vectors_2d[i, 0], vectors_2d[i, 1]),\n                    xytext=(5, 5),\n                    textcoords='offset points',\n                    fontsize=12,\n                    fontweight='bold')\n    \n    plt.title(f'Word Embeddings Visualization ({method.upper()})', fontsize=16)\n    plt.xlabel('Dimension 1')\n    plt.ylabel('Dimension 2')\n    plt.grid(True, alpha=0.3)\n    plt.tight_layout()\n    plt.show()\n\nwords = ['cat', 'dog', 'kitten', 'puppy', 'lion', 'tiger', 'elephant', 'mouse', 'chicken', 'rat']\nvisualize_words(words)",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Notebooks",
       "word2vec.ipynb"
     ]
@@ -222,7 +222,7 @@
     "section": "",
     "text": "This is an example of the Jupyter .ipynb document format\n# This is an executable cell\nprint(\"Hello World!\")\n\nHello World!\n# Setting variables in Python\nx = 42\nx\n\n42\n# Variables persist after being set in previously executed cells\nx\n\n42",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Notebooks",
       "hello-world.ipynb"
     ]
@@ -234,7 +234,7 @@
     "section": "Markdown Cells Support Rich Formatting",
     "text": "Markdown Cells Support Rich Formatting\nYou can use: - Bold and italic text - Lists (like this one!) - Links - inline code - And even LaTeX math: \\(E = mc^2\\)\nThis makes notebooks great for explaining your code!\n\n# You can perform calculations across cells\ny = 10\nz = x + y\nprint(f\"x ({x}) + y ({y}) = {z}\")\n\n\n# Notebooks make it easy to import and use libraries\nimport math\nimport random\n\n# Generate a random number and calculate its square root\nnum = random.randint(1, 100)\nsqrt_num = math.sqrt(num)\nprint(f\"The square root of {num} is {sqrt_num:.2f}\")\n\nThe square root of 29 is 5.39\n\n\n\n# Visualizations appear inline!\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nx_values = np.linspace(0, 10, 100)\ny_values = np.sin(x_values)\n\nplt.figure(figsize=(8, 4))\nplt.plot(x_values, y_values)\nplt.title('Sine Wave')\nplt.xlabel('x')\nplt.ylabel('sin(x)')\nplt.grid(True)\nplt.show()",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Notebooks",
       "hello-world.ipynb"
     ]
@@ -246,250 +246,250 @@
     "section": "What Happens When There’s an Error?",
     "text": "What Happens When There’s an Error?\nRun the cell below to see how notebooks handle errors.\nThe error appears in the output, but other cells continue to work.\n\n# This will cause an error\nresult = 10 / 0\n\n\n---------------------------------------------------------------------------\nZeroDivisionError                         Traceback (most recent call last)\nCell In[9], line 2\n      1 # This will cause an error\n----&gt; 2 result = 10 / 0\n\nZeroDivisionError: division by zero",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Notebooks",
       "hello-world.ipynb"
     ]
   },
   {
-    "objectID": "src/08/slides.html#recap-of-last-weeks-lecture",
-    "href": "src/08/slides.html#recap-of-last-weeks-lecture",
-    "title": "Week 8: Ethics, IP, and Safety",
-    "section": "Recap of Last Week’s Lecture",
-    "text": "Recap of Last Week’s Lecture\n\nUsed generated synthetic data to fine-tune a 1B parameter model\nUsed W&B (Weights and Biases) to observe parameters during the training run\nPost-training, used W&B to use cosine similarity and LLM-as-a-Judge to evaluate the accuracy of our trained model\nTrained smaller models (270M parameters) and compared the results\nUnderstood and created a model card, uploaded the model to Hugging Face and shared",
+    "objectID": "src/08/slides.html#recap",
+    "href": "src/08/slides.html#recap",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "Recap",
+    "text": "Recap\n\nUsed generated synthetic data to fine-tune a 1B parameter model\nUsed W&B (Weights and Biases) to observe parameters during the training run\nPost-training, used W&B to use cosine similarity and LLM-as-a-Judge to evaluate the accuracy of our trained model\nTrained smaller models (270M parameters) and compared the results\nUnderstood and created a model card, uploaded the model to Hugging Face and shared",
     "crumbs": [
-      "**Week 8:** Ethics, IP, and Safety",
+      "**Module 8:** Ethics, IP, and Safety",
       "Slides"
     ]
   },
   {
     "objectID": "src/08/slides.html#lesson-objectives",
     "href": "src/08/slides.html#lesson-objectives",
-    "title": "Week 8: Ethics, IP, and Safety",
+    "title": "Module 8: Ethics, IP, and Safety",
     "section": "Lesson Objectives",
     "text": "Lesson Objectives\n\nDiscuss ethical, IP, and safety concerns for Generative AI\nUse an evidence-based approach to explore ethical implications and potential mitigations\nUse an evidence-based approach to explore IP implications and potential mitigations\nUse an evidence-based approach to explore safety implications and potential mitigations\nResearch a theme (or media claim) and author a paper confirming or challenging it",
     "crumbs": [
-      "**Week 8:** Ethics, IP, and Safety",
+      "**Module 8:** Ethics, IP, and Safety",
       "Slides"
     ]
   },
   {
-    "objectID": "src/08/slides.html#looking-ahead-to-next-week-1",
-    "href": "src/08/slides.html#looking-ahead-to-next-week-1",
-    "title": "Week 8: Ethics, IP, and Safety",
-    "section": "Looking Ahead to Next Week",
-    "text": "Looking Ahead to Next Week\n\nThis week’s assignment!\nTBD",
+    "objectID": "src/08/slides.html#looking-ahead-1",
+    "href": "src/08/slides.html#looking-ahead-1",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "Looking Ahead",
+    "text": "Looking Ahead\n\nThis week’s assignment!\nTBD",
     "crumbs": [
-      "**Week 8:** Ethics, IP, and Safety",
+      "**Module 8:** Ethics, IP, and Safety",
       "Slides"
     ]
   },
   {
     "objectID": "src/08/slides.html#references-1",
     "href": "src/08/slides.html#references-1",
-    "title": "Week 8: Ethics, IP, and Safety",
+    "title": "Module 8: Ethics, IP, and Safety",
     "section": "References",
     "text": "References",
     "crumbs": [
-      "**Week 8:** Ethics, IP, and Safety",
+      "**Module 8:** Ethics, IP, and Safety",
       "Slides"
     ]
   },
   {
     "objectID": "src/08/assignment.html",
     "href": "src/08/assignment.html",
-    "title": "Week 8 Assignment",
+    "title": "Module 8 Assignment",
     "section": "",
     "text": "TBD",
     "crumbs": [
-      "**Week 8:** Ethics, IP, and Safety",
+      "**Module 8:** Ethics, IP, and Safety",
       "Assignment"
     ]
   },
   {
     "objectID": "src/08/assignment.html#assignment",
     "href": "src/08/assignment.html#assignment",
-    "title": "Week 8 Assignment",
+    "title": "Module 8 Assignment",
     "section": "",
     "text": "TBD",
     "crumbs": [
-      "**Week 8:** Ethics, IP, and Safety",
+      "**Module 8:** Ethics, IP, and Safety",
       "Assignment"
     ]
   },
   {
     "objectID": "src/07/resources.html",
     "href": "src/07/resources.html",
-    "title": "Week 7 Resources",
+    "title": "Resources",
     "section": "",
-    "text": "TBD",
+    "text": "References Slide",
     "crumbs": [
-      "**Week 7:** Increasing Model Accuracy (Part 2)",
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Resources"
     ]
   },
   {
-    "objectID": "src/07/resources.html#resources",
-    "href": "src/07/resources.html#resources",
-    "title": "Week 7 Resources",
+    "objectID": "src/07/resources.html#citations",
+    "href": "src/07/resources.html#citations",
+    "title": "Resources",
     "section": "",
-    "text": "TBD",
+    "text": "References Slide",
     "crumbs": [
-      "**Week 7:** Increasing Model Accuracy (Part 2)",
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Resources"
     ]
   },
   {
-    "objectID": "src/06/slides.html#recap-of-last-weeks-lecture",
-    "href": "src/06/slides.html#recap-of-last-weeks-lecture",
-    "title": "Week 6: Increasing Model Accuracy (Part 1)",
-    "section": "Recap of Last Week’s Lecture",
-    "text": "Recap of Last Week’s Lecture\n\nUnderstood the use cases, advantages/disadvantages for running models on local hardware - desktop, web, mobile\nUnderstood hardware requirements and architectures for model inference - e.g., CUDA vs. ONNX vs. MLX vs. WebGPU\nExplored how quantization works and understood techniques and formats for quantizing existing models\nUsed llama.cpp to quantize and run an SLM on local hardware/gaming PC\nIntegrated a quantized model within Unity/Unreal/WebAssembly",
+    "objectID": "src/06/slides.html#recap",
+    "href": "src/06/slides.html#recap",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
+    "section": "Recap",
+    "text": "Recap\n\nUnderstood the use cases, advantages/disadvantages for running models on local hardware - desktop, web, mobile\nUnderstood hardware requirements and architectures for model inference - e.g., CUDA vs. ONNX vs. MLX vs. WebGPU\nExplored how quantization works and understood techniques and formats for quantizing existing models\nUsed llama.cpp to quantize and run an SLM on local hardware/gaming PC\nIntegrated a quantized model within Unity/Unreal/WebAssembly",
     "crumbs": [
-      "**Week 6:** Increasing Model Accuracy (Part 1)",
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
     ]
   },
   {
     "objectID": "src/06/slides.html#lesson-objectives",
     "href": "src/06/slides.html#lesson-objectives",
-    "title": "Week 6: Increasing Model Accuracy (Part 1)",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Lesson Objectives",
     "text": "Lesson Objectives\n\nUnderstand model training, dataset curation, what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy\nExplore use cases, advantages, and disadvantages of prompt engineering\nIntroduce and implement RAG (Retrieval Augmented Generation) to increase the accuracy of a limited SLM\nStart the exploration of how to fine-tune models using LoRA (Low Ranked Adaptation)\nUse a foundational model to generate synthetic data for fine-tuning a 1B parameter model",
     "crumbs": [
-      "**Week 6:** Increasing Model Accuracy (Part 1)",
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/06/slides.html#looking-ahead-to-next-week-1",
-    "href": "src/06/slides.html#looking-ahead-to-next-week-1",
-    "title": "Week 6: Increasing Model Accuracy (Part 1)",
-    "section": "Looking Ahead to Next Week",
-    "text": "Looking Ahead to Next Week\n\nThis week’s assignment!\nTBD",
+    "objectID": "src/06/slides.html#looking-ahead-1",
+    "href": "src/06/slides.html#looking-ahead-1",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
+    "section": "Looking Ahead",
+    "text": "Looking Ahead\n\nThis week’s assignment!\nTBD",
     "crumbs": [
-      "**Week 6:** Increasing Model Accuracy (Part 1)",
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
     ]
   },
   {
     "objectID": "src/06/slides.html#references-1",
     "href": "src/06/slides.html#references-1",
-    "title": "Week 6: Increasing Model Accuracy (Part 1)",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "References",
     "text": "References",
     "crumbs": [
-      "**Week 6:** Increasing Model Accuracy (Part 1)",
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
     ]
   },
   {
     "objectID": "src/06/assignment.html",
     "href": "src/06/assignment.html",
-    "title": "Week 6 Assignment",
+    "title": "Module 6 Assignment",
     "section": "",
     "text": "TBD",
     "crumbs": [
-      "**Week 6:** Increasing Model Accuracy (Part 1)",
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Assignment"
     ]
   },
   {
     "objectID": "src/06/assignment.html#assignment",
     "href": "src/06/assignment.html#assignment",
-    "title": "Week 6 Assignment",
+    "title": "Module 6 Assignment",
     "section": "",
     "text": "TBD",
     "crumbs": [
-      "**Week 6:** Increasing Model Accuracy (Part 1)",
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Assignment"
     ]
   },
   {
     "objectID": "src/05/resources.html",
     "href": "src/05/resources.html",
-    "title": "Week 5 Resources",
+    "title": "Resources",
     "section": "",
-    "text": "TBD",
+    "text": "References Slide",
     "crumbs": [
-      "**Week 5:** Running Models on Local Hardware",
+      "**Module 5:** Running Models on Local Hardware",
       "Resources"
     ]
   },
   {
-    "objectID": "src/05/resources.html#resources",
-    "href": "src/05/resources.html#resources",
-    "title": "Week 5 Resources",
+    "objectID": "src/05/resources.html#citations",
+    "href": "src/05/resources.html#citations",
+    "title": "Resources",
     "section": "",
-    "text": "TBD",
+    "text": "References Slide",
     "crumbs": [
-      "**Week 5:** Running Models on Local Hardware",
+      "**Module 5:** Running Models on Local Hardware",
       "Resources"
     ]
   },
   {
-    "objectID": "src/04/slides.html#recap-of-last-weeks-lecture",
-    "href": "src/04/slides.html#recap-of-last-weeks-lecture",
-    "title": "Week 4: Multimedia and Multimodal Models",
-    "section": "Recap of Last Week’s Lecture",
-    "text": "Recap of Last Week’s Lecture\n\nDescribed the fundamental concepts behind Agents/Agentic AI\nExplored and provided feedback on an existing multi-agent setup\nUnderstood available agent SDKs, how they differ, and advantages/disadvantages\nUsed the OpenAI Agents SDK to build a multi-agent system from scratch, including document indexing and retrieval\nUnderstood and implemented tool calls using OpenAI’s function calling and via MCP",
+    "objectID": "src/04/slides.html#recap",
+    "href": "src/04/slides.html#recap",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Recap",
+    "text": "Recap\n\nDescribed the fundamental concepts behind Agents/Agentic AI\nExplored and provided feedback on an existing multi-agent setup\nUnderstood available agent SDKs, how they differ, and advantages/disadvantages\nUsed the OpenAI Agents SDK to build a multi-agent system from scratch, including document indexing and retrieval\nUnderstood and implemented tool calls using OpenAI’s function calling and via MCP",
     "crumbs": [
-      "**Week 4:** Multimedia and Multimodal Models",
+      "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
     ]
   },
   {
     "objectID": "src/04/slides.html#lesson-objectives",
     "href": "src/04/slides.html#lesson-objectives",
-    "title": "Week 4: Multimedia and Multimodal Models",
+    "title": "Module 4: Multimedia and Multimodal Models",
     "section": "Lesson Objectives",
     "text": "Lesson Objectives\n\nUnderstand the fundamentals and history of diffuser models\nExplore and use models that demonstrate text-to-image, image-to-image, inpainting, outpainting, and ControlNet\nSetup and use Replicate to create a custom pipeline of production-grade models\nUnderstand the fundamentals and history of Vision Encoders and VLMs\nImplement/test a local VLM model for on-device inference",
     "crumbs": [
-      "**Week 4:** Multimedia and Multimodal Models",
+      "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
     ]
   },
   {
-    "objectID": "src/04/slides.html#looking-ahead-to-next-week-1",
-    "href": "src/04/slides.html#looking-ahead-to-next-week-1",
-    "title": "Week 4: Multimedia and Multimodal Models",
-    "section": "Looking Ahead to Next Week",
-    "text": "Looking Ahead to Next Week\n\nThis week’s assignment!\nTBD",
+    "objectID": "src/04/slides.html#looking-ahead-1",
+    "href": "src/04/slides.html#looking-ahead-1",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Looking Ahead",
+    "text": "Looking Ahead\n\nThis week’s assignment!\nTBD",
     "crumbs": [
-      "**Week 4:** Multimedia and Multimodal Models",
+      "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
     ]
   },
   {
     "objectID": "src/04/slides.html#references-1",
     "href": "src/04/slides.html#references-1",
-    "title": "Week 4: Multimedia and Multimodal Models",
+    "title": "Module 4: Multimedia and Multimodal Models",
     "section": "References",
     "text": "References",
     "crumbs": [
-      "**Week 4:** Multimedia and Multimodal Models",
+      "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
     ]
   },
   {
     "objectID": "src/04/assignment.html",
     "href": "src/04/assignment.html",
-    "title": "Week 4 Assignment",
+    "title": "Module 4 Assignment",
     "section": "",
     "text": "TBD",
     "crumbs": [
-      "**Week 4:** Multimedia and Multimodal Models",
+      "**Module 4:** Multimedia and Multimodal Models",
       "Assignment"
     ]
   },
   {
     "objectID": "src/04/assignment.html#assignment",
     "href": "src/04/assignment.html#assignment",
-    "title": "Week 4 Assignment",
+    "title": "Module 4 Assignment",
     "section": "",
     "text": "TBD",
     "crumbs": [
-      "**Week 4:** Multimedia and Multimodal Models",
+      "**Module 4:** Multimedia and Multimodal Models",
       "Assignment"
     ]
   },
@@ -500,7 +500,7 @@
     "section": "",
     "text": "References Slide",
     "crumbs": [
-      "**Week 3:** Agents and Tools",
+      "**Module 3:** Agents and Tools",
       "Resources"
     ]
   },
@@ -511,667 +511,667 @@
     "section": "",
     "text": "References Slide",
     "crumbs": [
-      "**Week 3:** Agents and Tools",
+      "**Module 3:** Agents and Tools",
       "Resources"
     ]
   },
   {
-    "objectID": "src/02/slides.html#recap-of-last-weeks-lecture",
-    "href": "src/02/slides.html#recap-of-last-weeks-lecture",
-    "title": "Week 2: Exploring Hosted LLMs",
-    "section": "Recap of Last Week’s Lecture",
-    "text": "Recap of Last Week’s Lecture\n\nExplored the history of vector embeddings and tokenization\nUnderstood the transformer architecture at a high level\nUsed our first transformer to translate language\nCovered a brief history of early generative transformers\nSetup and used Colab, and became familiar with the basics of notebooks and Python",
+    "objectID": "src/02/slides.html#recap",
+    "href": "src/02/slides.html#recap",
+    "title": "Module 2: Exploring Hosted LLMs",
+    "section": "Recap",
+    "text": "Recap\n\nExplored the history of vector embeddings and tokenization\nUnderstood the transformer architecture at a high level\nUsed our first transformer to translate language\nCovered a brief history of early generative transformers\nSetup and used Colab, and became familiar with the basics of notebooks and Python",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#lesson-objectives",
     "href": "src/02/slides.html#lesson-objectives",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Lesson Objectives",
     "text": "Lesson Objectives\n\nUnderstand the evolution and licensing of models from GPT-2 through to modern day\nUnderstand instruction-tuned models, how they work, and how to configure\nSetup and use OpenRouter for accessing hosted models\nUnderstand the OpenAI API specification, the request/response payload, parameters, streaming, and structured output\nCreate and share a chatbot using a Gradio-based UI",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#from-gpt-2-to-gpt-3.5-1",
     "href": "src/02/slides.html#from-gpt-2-to-gpt-3.5-1",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "From GPT-2 to GPT-3.5",
     "text": "From GPT-2 to GPT-3.5\n\n\n\n\n\ntimeline\n    Feb 2019 : OpenAI releases GPT-2\n             : 1.5B parameters\n             : Initially withheld full model due to concerns about misuse\n             : Demonstrates impressive text generation capabilities with minimal fine-tuning\n\n    May 2020 : OpenAI releases GPT-3\n             : 175B parameters\n             : Demonstrates strong few-shot learning capabilities\n             : Marks a significant leap in model capabilities and scale\n\n    June 2020 : GPT-3 available through OpenAI API\n              : Still a completion model, not instruction-tuned\n\n    2021 : InstructGPT Development\n          : Built on GPT-3 with RLHF fine-tuning\n          : Trained to follow instructions and understand user intent\n          : Key innovation enabling ChatGPT\n    \n    Jan 2021 : Anthropic Founded\n             : Founded by Dario & Daniela Amodei with ~7 senior OpenAI employees\n             : Dario led GPT-2/3 development and co-invented RLHF\n\n    Nov 2022 : ChatGPT Launch\n              : Built on GPT-3.5 using RLHF\n              : 1M+ users in 5 days\n              : Sparked widespread interest in generative AI",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#completion-vs.-instruction-tuned",
     "href": "src/02/slides.html#completion-vs.-instruction-tuned",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Completion vs. Instruction-Tuned",
     "text": "Completion vs. Instruction-Tuned\n\nCompletion Model just predicts the next token\n\nInput prompt: Mary had a little\nMax total tokens: 50\nTemperature: 0 - 1.0\ntop_k: consider only the top k tokens in the response\ntop_p: Nucleus sampling (probability cut off - 0 and 1.0)\n\nOutput\n\nMary had a little lamb, its fleece was white as snow... (up to max tokens)",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#completion-vs.-instruction-tuned-1",
     "href": "src/02/slides.html#completion-vs.-instruction-tuned-1",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Completion vs. Instruction-Tuned",
     "text": "Completion vs. Instruction-Tuned\n\nYou can’t really converse with it\nWhat should I do on my upcoming trip to Paris? (max tokens = 75)\nWhat should I do on my upcoming trip to Paris? Please provide a detailed plan of action to help me plan my trip to Paris. 1. Research the best time to travel to Paris:",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#instruction-tuned-models",
     "href": "src/02/slides.html#instruction-tuned-models",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Instruction-Tuned Models",
     "text": "Instruction-Tuned Models\n\nSupervised Fine-Tuning\n\nLarge datasets of questions/answers, tasks/completions, demonstrating helpful assistant behavior\n\nRLHF (Reinforcement Learning from Human Feedback)\n\nHuman raters rank different model responses, training a reward model\n\nChat Templates\n\nStructured format to distinguish speakers in a conversation: Typically system, user, and assistant",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#system-user-assistant",
     "href": "src/02/slides.html#system-user-assistant",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "System, User, Assistant",
     "text": "System, User, Assistant\n\nSystem prompt sets the intention for the model, guiding the output\n\n“You are a helpful assistant”\n“You help students with their math homework”\n“You help travelers make plans for their trips”\nHas to come first in the conversation\nOnly one system prompt\nOptional for some models",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#system-user-assistant-1",
     "href": "src/02/slides.html#system-user-assistant-1",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "System, User, Assistant",
     "text": "System, User, Assistant\n\nSystem Prompt best practices\n\nBe specific: “You are a Python programming tutor who explains concepts using simple analogies and provides code examples.”\nDefine output: “List no more than 3 suggestions. Always show your work step by step.”\nSet boundaries: “If you are asked questions outside coding, politely redirect the student back to the task.”",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#system-user-assistant-2",
     "href": "src/02/slides.html#system-user-assistant-2",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "System, User, Assistant",
     "text": "System, User, Assistant\n\nUser prompt is the message (request) from the user\n\n“How many ’r’s in Strawberry?”\n“What is linear algebra?”\n“What should I do on my upcoming trip to Paris?”\n\nAssistant prompt is the message (reply) from the model\n\n“There are three r’s in Strawberry”\n“Linear algebra is the branch of mathematics that studies vectors, etc.”\n“Here are some suggestions for your upcoming trip to Paris: 1. Explore the Louvre Museum: etc.”",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#whats-a-chat-template",
     "href": "src/02/slides.html#whats-a-chat-template",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "What’s a Chat Template?",
     "text": "What’s a Chat Template?\n\nThe format used to train instructional models on conversations involving system, user, and assistant prompts.\nEach model family uses a different format (there is no universal standard)\nWrong format will likely generate nonsense/garbage",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#chatml-gpt-3.5-and-other-models",
     "href": "src/02/slides.html#chatml-gpt-3.5-and-other-models",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "ChatML (GPT-3.5 and other models)",
     "text": "ChatML (GPT-3.5 and other models)\n&lt;|im_start|&gt;system\nYou help travelers make plans for their trips.&lt;|im_end|&gt;\n&lt;|im_start|&gt;user\nHello&lt;|im_end|&gt;\n&lt;|im_start|&gt;assistant\nHi there! How can I help you?&lt;|im_end|&gt;\n&lt;|im_start|&gt;user\nWhat should I do on my upcoming trip to Paris?&lt;|im_end|&gt;\n&lt;|im_start|&gt;assistant",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#chat-templates-in-practice",
     "href": "src/02/slides.html#chat-templates-in-practice",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Chat Templates in Practice",
     "text": "Chat Templates in Practice\n\n\nmessages = [\n    {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips\"},\n    {\"role\": \"user\", \"content\": \"Hello\"},\n    {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n    {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"}\n]\n\ninstruct_tokenizer.apply_chat_template(\n    messages, \n    tokenize=False,\n    add_generation_prompt=True  # Adds the assistant prompt\n)\n\n'&lt;|im_start|&gt;system\\nYou help travelers make plans for their trips&lt;|im_end|&gt;\\n&lt;|im_start|&gt;user\\nHello&lt;|im_end|&gt;\\n&lt;|im_start|&gt;assistant\\nHi there!&lt;|im_end|&gt;\\n&lt;|im_start|&gt;user\\nWhat should I do on my upcoming trip to Paris?&lt;|im_end|&gt;\\n&lt;|im_start|&gt;assistant\\n'",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#putting-this-together",
     "href": "src/02/slides.html#putting-this-together",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Putting This Together",
     "text": "Putting This Together\n\n\nbase_inputs = base_tokenizer(\"What should I do on my upcoming trip to Paris?\", return_tensors=\"pt\")\nbase_outputs = base_model.generate(\n    **base_inputs,\n    max_new_tokens=150,\n    temperature=0.7,\n    do_sample=True,\n    pad_token_id=base_tokenizer.eos_token_id\n)\nbase_response = base_tokenizer.decode(base_outputs[0], skip_special_tokens=True)\nprint(base_response)\n\nWhat should I do on my upcoming trip to Paris? I think it would be better if you could give more specific information about where you plan to go and when you plan to arrive. Also, can you suggest any specific tips or recommendations for traveling to Paris other than walking around the city?\n\nI'm sorry, but as an AI language model, I don't have any specific information about your upcoming trip to Paris. However, I can suggest some general tips and recommendations for traveling to Paris other than walking around the city:\n\n1. Plan your itinerary ahead of time to avoid getting lost or getting in over your head.\n2. Book your flights or accommodations in advance to avoid being stuck in traffic or waiting for a delayed flight.\n3. Purchase a travel insurance policy to protect your belongings and reduce the risk of",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#putting-this-together-1",
     "href": "src/02/slides.html#putting-this-together-1",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Putting This Together",
     "text": "Putting This Together\n\n\nmessages = [\n    {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips.\"},\n    {\"role\": \"user\", \"content\": \"Hello\"},\n    {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n    {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"}\n]\ninstruct_text = instruct_tokenizer.apply_chat_template(\n    messages, tokenize=False, add_generation_prompt=True\n)\ninstruct_inputs = instruct_tokenizer(instruct_text, return_tensors=\"pt\")\ninstruct_outputs = instruct_model.generate(\n    **instruct_inputs,\n    max_new_tokens=150,\n    temperature=0.7,\n    do_sample=True,\n    pad_token_id=instruct_tokenizer.eos_token_id,\n)\ninstruct_response = instruct_tokenizer.decode(\n    instruct_outputs[0], skip_special_tokens=True\n)\nprint(instruct_response)\n\nsystem\nYou help travelers make plans for their trips.\nuser\nHello\nassistant\nHi there!\nuser\nWhat should I do on my upcoming trip to Paris?\nassistant\nGreat question! On your next trip to Paris, you can start by visiting the iconic Eiffel Tower and the Louvre Museum. Don't miss exploring the Notre-Dame Cathedral and its stunning stained glass windows. For a bit of a break, consider visiting Montmartre for some beautiful art and architecture. If you're looking for something more adventurous, you could take a stroll through the charming streets of Montmartre or explore the vibrant nightlife of Le Marais. Have fun planning your trip to Paris!",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#model-evolution-gpt-3.5-onwards",
     "href": "src/02/slides.html#model-evolution-gpt-3.5-onwards",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Model Evolution (GPT 3.5 onwards)",
     "text": "Model Evolution (GPT 3.5 onwards)\n\n\n\n\n\ntimeline\n    Nov 2022 : ChatGPT Launch\n                  : Built on GPT-3.5 using RLHF\n                  : 1M+ users in 5 days\n                  : Sparked widespread interest in generative AI\n\n    Feb 2023 : Llama 1 Released\n                  : Meta's LLaMA (7B, 13B, 33B, 65B parameters)\n                  : 13B model exceeded GPT-3 (175B) on most benchmarks\n                  : Limited researcher access\n                  : Text completion only (Alpaca fine-tune added instructions)\n\n    Jul 2023 : Llama 2 Released\n              : Available in 7B, 13B, 70B sizes\n              : Trained on 40% more data than Llama 1\n              : First open-weights Llama for commercial use",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#closed-vs.-open-models",
     "href": "src/02/slides.html#closed-vs.-open-models",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Closed vs. Open Models",
     "text": "Closed vs. Open Models\n\nClosed Source:\n\nHosted models\nNo ability to inspect the weights of the models\nNo ability to download the models\nOpenAI GPT-5, Claude Sonnet 4.5, Google’s Gemini\nVery large models; often referred to as foundational models or frontier models",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#closed-vs.-open-models-1",
     "href": "src/02/slides.html#closed-vs.-open-models-1",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Closed vs. Open Models",
     "text": "Closed vs. Open Models\n\nOpen Weight:\n\nDownloadable model files\nYou can download the model files with pretrained weights, but no training data\nNo training data == No ability to recreate the model from scratch\nMeta’s Llama, Google’s Gemma, Alibaba’s Qwen, OpenAI gpt-oss-120b\nRange from small to medium in size (1Gb - 500Gb+)",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#closed-vs.-open-models-2",
     "href": "src/02/slides.html#closed-vs.-open-models-2",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Closed vs. Open Models",
     "text": "Closed vs. Open Models\n\nOpen Source:\n\nModels with access to the training data set\nYou can download the model files with pretrained weights and the training data used to train it\ni.e., you could create the model from scratch\nExamples: AI2’s OLMo",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#accessing-closed-models",
     "href": "src/02/slides.html#accessing-closed-models",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Accessing Closed Models",
     "text": "Accessing Closed Models\n\nConsumer Website / App\n\ne.g., ChatGPT website or AppStore App\nLimited free tier; monthly subscription for more usage\n\nAPI Access\n\nOpenAI’s API Platform; Create a developer account\nCredit card required\nCharged for tokens sent to the model and tokens returned from the model\nGPT 5.2 Chat = $1.75 per million tokens input; $14 per million tokens output",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#accessing-closed-models-1",
     "href": "src/02/slides.html#accessing-closed-models-1",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Accessing Closed Models",
     "text": "Accessing Closed Models\n\nHow much is going to cost?\n\nToken estimators (e.g., tiktoken from OpenAI)\nOr napkin math: 100 tokens ~= 75 English words",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#accessing-closed-models-2",
     "href": "src/02/slides.html#accessing-closed-models-2",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Accessing Closed Models",
     "text": "Accessing Closed Models\n\nExample\n\nInput from user = 75 words (100 tokens)\nOutput from model = 150 words (200 tokens)\nTotal cost = 100 input tokens + 200 output tokens\nTotal cost = $0.000175 + $0.0028 = $0.002975\n\nAt scale\n\n10,000 users / 1 request per month ~= $29.75/mo\n\n10,000 users / 1 request per day ~= $892.50/mo",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#accessing-open-models",
     "href": "src/02/slides.html#accessing-open-models",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Accessing Open Models",
     "text": "Accessing Open Models\n\nDownload and run on your own hardware\n\nOr download them and run them on Colab, as we’ve been doing in our demos\n(We’ll be covering this later on in the course)\n\nAlso access them (via an API), hosted on someone else’s hardware",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#openai-chat-completions-api",
     "href": "src/02/slides.html#openai-chat-completions-api",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "OpenAI Chat Completions API",
     "text": "OpenAI Chat Completions API\n\n2020: OpenAI launched GPT-3 API with a /completions endpoint.\n\nFirst major LLM API\n\n2022: ChatGPT launch; massive adoption\n2023 /chat/completions endpoint released, becomes the dominant interface\n2023-2024: Other providers use the same API format for their own models vs. inventing their own\n\nBuild on the OpenAI developer ecosystem\n“OpenAI-compatible” became a selling point",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#openai-chat-completions-api-1",
     "href": "src/02/slides.html#openai-chat-completions-api-1",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "OpenAI Chat Completions API",
     "text": "OpenAI Chat Completions API\n\nWho uses the OpenAI Chat Completions API format?\n\nAnthropic (Claude API is very similar, with minor differences)\nOpenRouter, an inference provider for many models\nOpen source tools: LiteLLM, LangChain\nLocal serving: Ollama, vLLM, llama.cpp are all “OpenAI-compatible”",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#using-the-chat-completions-api",
     "href": "src/02/slides.html#using-the-chat-completions-api",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Using the Chat Completions API",
     "text": "Using the Chat Completions API\n\n\nimport openai\nimport httpx\n\n# Initialize the OpenAI client with event hooks\nclient = openai.OpenAI(\n    api_key=OPENAI_API_KEY,\n    http_client=httpx.Client(event_hooks={\"request\": [log_request]}),\n)",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#using-the-chat-completions-api-1",
     "href": "src/02/slides.html#using-the-chat-completions-api-1",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Using the Chat Completions API",
     "text": "Using the Chat Completions API\n\n\nresponse = client.chat.completions.create(\n    model=\"gpt-5\",\n    messages=[\n        {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips.\"},\n        {\"role\": \"user\", \"content\": \"Hello\"},\n        {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n        {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"},\n    ],\n)\n\n\n=== REQUEST ===\nURL: https://api.openai.com/v1/chat/completions\nMethod: POST\n\nBody:\n{\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You help travelers make plans for their trips.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Hello\"\n    },\n    {\n      \"role\": \"assistant\",\n      \"content\": \"Hi there!\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"What should I do on my upcoming trip to Paris?\"\n    }\n  ],\n  \"model\": \"gpt-5\"\n}\n==================================================",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#using-the-chat-completions-api-2",
     "href": "src/02/slides.html#using-the-chat-completions-api-2",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Using the Chat Completions API",
     "text": "Using the Chat Completions API\n\n\nprint(\"\\n=== RESPONSE ===\")\nprint(response.model_dump_json(indent=2))\n\n\n=== RESPONSE ===\n{\n  \"id\": \"chatcmpl-CuVn7EYuGJUEUEQ18Cl0SM2nNz9Mj\",\n  \"choices\": [\n    {\n      \"finish_reason\": \"stop\",\n      \"index\": 0,\n      \"logprobs\": null,\n      \"message\": {\n        \"content\": \"Awesome! I can tailor a plan, but a few quick questions help:\\n- When are you going and for how many days?\\n- First time in Paris?\\n- Main interests (art, food, fashion, history, photography, nightlife, kid-friendly, etc.) and preferred pace (relaxed vs. packed)?\\n- Any must-sees or hard no’s?\\n- Rough budget and food needs (vegetarian, kosher/halal, allergies)?\\n- Where are you staying (neighborhood) and are day trips okay (Versailles, Champagne, Giverny, Disneyland)?\\n\\nIf you want a quick starter plan, here’s a flexible 4-day outline you can reshuffle by weather and museum closures:\\n\\nDay 1 – Islands + Latin Quarter\\n- Île de la Cité: Notre-Dame exterior, Sainte-Chapelle (timed ticket), Conciergerie.\\n- Stroll the Latin Quarter: Shakespeare & Company, Sorbonne, Luxembourg Gardens.\\n- Evening: Seine cruise or sunset along the river.\\n\\nDay 2 – Louvre to Arc de Triomphe\\n- Morning: Louvre (timed entry). Tuileries and Palais-Royal gardens.\\n- Covered passages (Véronique/Grand Cerf/Jouffroy) and Opéra Garnier.\\n- Sunset view: Arc de Triomphe rooftop or Galeries Lafayette/Printemps terrace.\\n\\nDay 3 – Montmartre + Left Bank art\\n- Montmartre: Sacré-Cœur, Place du Tertre, quieter backstreets (Rue de l’Abreuvoir).\\n- Afternoon: Musée d’Orsay and/or Orangerie.\\n- Evening: Saint-Germain wine bar or jazz.\\n\\nDay 4 – Le Marais or Day Trip\\n- Marais walk: Place des Vosges, Musée Carnavalet, Picasso Museum (check hours), Jewish quarter, trendy boutiques.\\n- Optional day trip: Versailles (palace + gardens; get the timed passport ticket).\\n- Night: Eiffel Tower area (view from Trocadéro or Champ de Mars; book tower tickets if going up).\\n\\nOther great adds by interest\\n- Art/architecture: Rodin Museum; Bourse de Commerce; Fondation Louis Vuitton. Note: check Centre Pompidou’s renovation status.\\n- Food: Morning market (Aligre or Rue Cler), cheese/wine tasting, pastry crawl, bistro lunch, cooking class.\\n- Unique: Catacombs (book ahead), Père Lachaise Cemetery, Canal Saint-Martin, covered markets (Le Marché des Enfants Rouges).\\n- With kids: Jardin des Plantes (zoo + galleries), Cité des Sciences, Jardin d’Acclimatation, Parc de la Villette.\\n- Day trips: Giverny (Apr–Oct), Reims/Epernay for Champagne, Fontainebleau, Auvers-sur-Oise, Disneyland Paris.\\n\\nBook these in advance\\n- Eiffel Tower, Louvre, Sainte-Chapelle, Catacombs, Versailles, Palais Garnier tours, popular restaurants.\\n- Consider the Paris Museum Pass (2/4/6 days) if you’ll visit several museums; the Louvre still needs a timed reservation even with the pass.\\n\\nPractical tips\\n- Closures: Many museums close one day/week (e.g., Orsay Mon, some Tue). Check hours.\\n- Getting around: The Métro is fastest. Use a contactless bank card to tap in, or get a reloadable Navigo Easy. For a Monday–Sunday stay with lots of rides, a Navigo Découverte weekly pass can be good value.\\n- Dining: Reserve for dinner, especially weekends. Tipping is minimal (service included); round up or leave 5–10% for great service.\\n- Safety: Watch for pickpockets in crowded areas and on the Metro.\\n\\nShare your dates, length of stay, and interests, and I’ll turn this into a detailed day-by-day plan with mapped routes and restaurant picks near each stop.\",\n        \"refusal\": null,\n        \"role\": \"assistant\",\n        \"annotations\": [],\n        \"audio\": null,\n        \"function_call\": null,\n        \"tool_calls\": null\n      }\n    }\n  ],\n  \"created\": 1767584609,\n  \"model\": \"gpt-5-2025-08-07\",\n  \"object\": \"chat.completion\",\n  \"service_tier\": \"default\",\n  \"system_fingerprint\": null,\n  \"usage\": {\n    \"completion_tokens\": 2224,\n    \"prompt_tokens\": 44,\n    \"total_tokens\": 2268,\n    \"completion_tokens_details\": {\n      \"accepted_prediction_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"reasoning_tokens\": 1408,\n      \"rejected_prediction_tokens\": 0\n    },\n    \"prompt_tokens_details\": {\n      \"audio_tokens\": 0,\n      \"cached_tokens\": 0\n    }\n  }\n}",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#chat-history-management",
     "href": "src/02/slides.html#chat-history-management",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Chat History Management",
     "text": "Chat History Management\n\nKey Considerations\n\nModels don’t hold any state\nAPI sends full conversation on every request and the model reads through the full conversation on every call\nThe size of the conversation is known as the context\nThe maximum size the model can process is referred to as the context window",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#chat-history-management-1",
     "href": "src/02/slides.html#chat-history-management-1",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Chat History Management",
     "text": "Chat History Management\n\nContext window sizes\n\nNano models ~= 32k tokens\nSmall models ~= 120k tokens\nFrontier models ~= ~= 1M tokens\n\nLarge conversations can cause challenges\n\nThey are expensive (you pay per token for whole conversation every time)\nSmall models often forget early details in long conversation histories",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#chat-history-management-2",
     "href": "src/02/slides.html#chat-history-management-2",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Chat History Management",
     "text": "Chat History Management\n\nMitigation Strategies\n\nRemove older messages from the history\nImplement sliding window across the conversation history\nSummarize older messages and rewrite the history",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#calling-other-models-1",
     "href": "src/02/slides.html#calling-other-models-1",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Calling Other Models",
     "text": "Calling Other Models\n\nWe could just duplicate our notebook, change the URL to another provider (e.g., Claude, Google, etc.), but:\n\nA separate account with each provider\nA separate credit card with each provider\nA separate API key to use for each provider\nDuplicate notebooks for each provider\n\nWouldn’t it be nice to have a single service (inference provider) that exposed lots of different models",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#introducing-openrouter",
     "href": "src/02/slides.html#introducing-openrouter",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Introducing OpenRouter",
     "text": "Introducing OpenRouter\n\nIntroducing OpenRouter (https://openrouter.ai)\n\nA unified API to hundreds of AI models through a single endpoint\n(Using OpenAI’s Chat Completion API)\nOpenAI, Claude, Gemini, Grok, Nova, Llama, DeepSeek, Qwen, and many others.\nPay per API call, often same cost as the provider\nNewer APIs tend to be free for a short period",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#using-openrouter",
     "href": "src/02/slides.html#using-openrouter",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Using OpenRouter",
     "text": "Using OpenRouter\n\n\nimport openai\nimport httpx\n\n# Initialize the OpenAI client with event hooks\nclient = openai.OpenAI(\n    base_url='https://openrouter.ai/api/v1',\n    api_key=OPENROUTER_API_KEY,\n    http_client=httpx.Client(event_hooks={\"request\": [log_request]}),\n)",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#using-openrouter-1",
     "href": "src/02/slides.html#using-openrouter-1",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Using OpenRouter",
     "text": "Using OpenRouter\n\n\nMODEL = 'openai/gpt-5.2-chat' #@param [\"openai/gpt-5.2-chat\", \"anthropic/claude-sonnet-4.5\", \"google/gemini-2.5-pro\"]\n\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips.\"},\n        {\"role\": \"user\", \"content\": \"Hello\"},\n        {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n        {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"},\n    ],\n)\n\n\n=== REQUEST ===\nURL: https://openrouter.ai/api/v1/chat/completions\nMethod: POST\n\nBody:\n{\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You help travelers make plans for their trips.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Hello\"\n    },\n    {\n      \"role\": \"assistant\",\n      \"content\": \"Hi there!\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"What should I do on my upcoming trip to Paris?\"\n    }\n  ],\n  \"model\": \"openai/gpt-5.2-chat\"\n}\n==================================================",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#using-openrouter-2",
     "href": "src/02/slides.html#using-openrouter-2",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Using OpenRouter",
     "text": "Using OpenRouter\n\n\nprint(\"\\n=== RESPONSE ===\")\nprint(response.model_dump_json(indent=2))\n\n\n=== RESPONSE ===\n{\n  \"id\": \"gen-1767585819-snubWxcK6sJM3RdE9rJX\",\n  \"choices\": [\n    {\n      \"finish_reason\": \"stop\",\n      \"index\": 0,\n      \"logprobs\": null,\n      \"message\": {\n        \"content\": \"Paris has something for almost every kind of traveler! Here’s a well‑rounded starting plan, and then I can tailor it more if you tell me your interests, travel dates, and how long you’ll be there.\\n\\n### Must‑See Highlights\\n- **Eiffel Tower** – Go up for the views or enjoy it from below at Trocadéro or Champ de Mars.\\n- **Louvre Museum** – Even if you don’t love museums, seeing the Mona Lisa and the building itself is worth it.\\n- **Notre‑Dame Cathedral** – Admire the exterior and surroundings; interior access is gradually reopening.\\n- **Montmartre & Sacré‑Cœur** – Charming streets, artists, and great city views.\\n\\n### Classic Paris Experiences\\n- **Stroll along the Seine** – Especially at sunset.\\n- **Café culture** – Sit at a café with a coffee or glass of wine and people‑watch.\\n- **Boulangeries & pastries** – Try croissants, pain au chocolat, macarons.\\n- **Seine river cruise** – Relaxing and great for first‑time visitors.\\n\\n### Art, History & Culture\\n- **Musée d’Orsay** – Impressionist masterpieces in a stunning former train station.\\n- **Le Marais** – Historic district with boutiques, museums, and lively streets.\\n- **Latin Quarter** – Bookshops, old streets, and student energy.\\n\\n### Food & Drink\\n- **Bistro dining** – Try classic French dishes like boeuf bourguignon or duck confit.\\n- **Food markets** – Marché des Enfants Rouges is a favorite.\\n- **Wine & cheese tasting** – Many small shops offer guided tastings.\\n\\n### Day Trips (if you have extra time)\\n- **Versailles** – Palace and gardens (half‑day or full‑day trip).\\n- **Giverny** – Monet’s gardens (spring/summer).\\n- **Champagne region** – For wine lovers.\\n\\n### Practical Tips\\n- Buy museum tickets in advance.\\n- Walk as much as possible—Paris is very walkable.\\n- Learn a few French phrases; locals appreciate the effort.\\n\\nIf you’d like, tell me:\\n- How many days you’ll be there  \\n- Your interests (food, art, history, shopping, nightlife, romance, family travel)  \\n- Your budget level  \\n\\nAnd I’ll create a personalized day‑by‑day itinerary for you.\",\n        \"refusal\": null,\n        \"role\": \"assistant\",\n        \"annotations\": null,\n        \"audio\": null,\n        \"function_call\": null,\n        \"tool_calls\": null,\n        \"reasoning\": null\n      },\n      \"native_finish_reason\": \"completed\"\n    }\n  ],\n  \"created\": 1767585819,\n  \"model\": \"openai/gpt-5.2-chat\",\n  \"object\": \"chat.completion\",\n  \"service_tier\": null,\n  \"system_fingerprint\": null,\n  \"usage\": {\n    \"completion_tokens\": 506,\n    \"prompt_tokens\": 44,\n    \"total_tokens\": 550,\n    \"completion_tokens_details\": {\n      \"accepted_prediction_tokens\": null,\n      \"audio_tokens\": null,\n      \"reasoning_tokens\": 0,\n      \"rejected_prediction_tokens\": null,\n      \"image_tokens\": 0\n    },\n    \"prompt_tokens_details\": {\n      \"audio_tokens\": 0,\n      \"cached_tokens\": 0,\n      \"video_tokens\": 0\n    },\n    \"cost\": 0.007161,\n    \"is_byok\": false,\n    \"cost_details\": {\n      \"upstream_inference_cost\": null,\n      \"upstream_inference_prompt_cost\": 0.000077,\n      \"upstream_inference_completions_cost\": 0.007084\n    }\n  },\n  \"provider\": \"OpenAI\"\n}",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#token-streaming",
     "href": "src/02/slides.html#token-streaming",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Token Streaming",
     "text": "Token Streaming\n\nIn our notebooks, responses can take a few seconds to be returned\n\nNot the best user experience, especially for consumer products\n\nNeed a way to support streaming of tokens as they are generated (a.k.a. “typewriter effect”)\n\nStreaming added to Chat Completions API in early 2023\nSupported by other major vendors (Anthropic, Cohere, etc.)\nNow expected as a baseline feature",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#how-does-token-streaming-work",
     "href": "src/02/slides.html#how-does-token-streaming-work",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "How Does Token Streaming Work?",
     "text": "How Does Token Streaming Work?\n\nUses SSE (Server-Sent Events)\n\nUnidirectional (server to client)\nUses standard HTTP/1.1 or HTTP/2\nServer sends a response with a text/event-stream MIME type\nClient uses built-in EventSource API to open the connection, listen to messages, and handle events.",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#sse-data-format",
     "href": "src/02/slides.html#sse-data-format",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "SSE Data Format",
     "text": "SSE Data Format\ndata: {\"choices\":[{\"delta\":{\"content\":\"Hello\"}}]}\n\ndata: {\"choices\":[{\"delta\":{\"content\":\" world\"}}]}\n  \ndata: [DONE]\nData sent as chunks, prefixed with data: and separated by double newlines",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#implementing-token-streaming",
     "href": "src/02/slides.html#implementing-token-streaming",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Implementing Token Streaming",
     "text": "Implementing Token Streaming\n\n\nMODEL = 'openai/gpt-5.2-chat' #@param [\"openai/gpt-5.2-chat\", \"anthropic/claude-sonnet-4.5\", \"google/gemini-2.5-pro\"]\n\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips.\"},\n        {\"role\": \"user\", \"content\": \"Hello\"},\n        {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n        {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"},\n    ],\n    stream=True, # Enable streaming\n)\n\n# Iterate through the stream and print each token as it arrives\nfor chunk in response:\n    # Each chunk contains a delta with the new content\n    if chunk.choices[0].delta.content is not None:\n        token = chunk.choices[0].delta.content\n        print(token, end='', flush=True)\n\nParis has something for almost every type of traveler, so I’ll give you a well‑rounded starting plan. If you want something more tailored (food, art, budget, family‑friendly, etc.), just tell me.\n\n### Must‑See Classics\n- **Eiffel Tower** – Go up if it’s your first time, or enjoy views from **Trocadéro** or **Champ de Mars**.\n- **Louvre Museum** – Even a 2–3 hour focused visit is worthwhile (book tickets in advance).\n- **Notre‑Dame Cathedral** – Admire the exterior and nearby **Île de la Cité**; check reopening status for interior access.\n- **Arc de Triomphe** – Climb to the top for one of the best city views.\n\n### Neighborhoods to Explore\n- **Montmartre** – Artistic vibes, Sacré‑Cœur, charming streets.\n- **Le Marais** – Trendy shops, historic mansions, great food.\n- **Latin Quarter** – Lively, student energy, bookshops, cafés.\n- **Saint‑Germain‑des‑Prés** – Classic cafés and upscale shopping.\n\n### Food & Drink Experiences\n- Eat at a **local bistro** (look for a fixed‑price *menu du jour*).\n- Try **croissants & pain au chocolat** from a neighborhood bakery.\n- Visit a **fromagerie** and **wine bar**.\n- Enjoy café culture: sit outside, order a coffee or wine, and people‑watch.\n- Don’t miss **crêpes**, **macarons**, and **cheese**.\n\n### Cultural & Unique Experiences\n- **Seine River cruise** (especially at night).\n- **Musée d’Orsay** for Impressionist art.\n- **Versailles** day trip for palace and gardens.\n- **Cooking class** or **food tour**.\n- Wander without a plan—Paris is best discovered on foot.\n\n### Practical Tips\n- Buy museum tickets in advance to skip lines.\n- Learn a few French phrases—it goes a long way.\n- Dress comfortably but stylishly; Parisians walk a lot.\n- Use public transport (metro is fast and affordable).\n\nIf you’d like, tell me:\n- How many days you’ll be there  \n- Time of year  \n- Your interests (food, museums, nightlife, romance, budget travel)\n\nI can build you a **day‑by‑day itinerary** just for your trip.",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#structured-output-1",
     "href": "src/02/slides.html#structured-output-1",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Structured Output",
     "text": "Structured Output\n\nSo far, the models have generated non-structured output (i.e., free-form text)\nSometimes, paragraph. Sometimes, numbered list.\nSometimes, you just need structure\n\n“Return your result in JSON format”\n“Give me the coordinates for Paris”\n“What’s the temperature in Paris right now?”",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#structured-output-2",
     "href": "src/02/slides.html#structured-output-2",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Structured Output",
     "text": "Structured Output\n\nYou can try to use the system prompt\n\n“Return the result in JSON only”\n\nBut… it doesn’t always work\n\nEarly/small models struggle with correct JSON formatting\nEven larger models make mistakes (e.g., missing closing brace)\n\nSometimes the models just forget!\n\n“RETURN THE RESULT IN JSON ONLY. NO OTHER TEXT!!!”",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#structured-output-in-openai-api",
     "href": "src/02/slides.html#structured-output-in-openai-api",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Structured Output in OpenAI API",
     "text": "Structured Output in OpenAI API\n\nNov 2023: OpenAI added JSON mode\n\nresponse_format: {\"type\": \"json_object\"}\nGuaranteed valid JSON, but didn’t enforce schema\nSometimes mixed up/missed fields\n\nAug 2024: Structured Outputs launched\n\nresponse_format: {\"type\": \"json_object\", ...}\n100% reliability that output matches the your schema",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#how-structured-outputs-work",
     "href": "src/02/slides.html#how-structured-outputs-work",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "How Structured Outputs Work",
     "text": "How Structured Outputs Work\n\nConstrained Decoding\n\nWhen generating responses, the model normally samples from all possible next tokens\nWith constrained decoding, the next token is dynamically filtered to only allow tokens that keep the output schema valid\n\ne.g., if schema requires an integer, string tokens are masked out from the probability distribution",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#how-structured-outputs-work-1",
     "href": "src/02/slides.html#how-structured-outputs-work-1",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "How Structured Outputs Work",
     "text": "How Structured Outputs Work\n\nSlightly slower token generation due to computational overhead\nTechnically, mathematically impossible to generate invalid output\n\n(Real world: I see 7000:1 error rates with GPT-5.1 chat)",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#implementing-structured-outputs",
     "href": "src/02/slides.html#implementing-structured-outputs",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Implementing Structured Outputs",
     "text": "Implementing Structured Outputs\n\n\nfrom pydantic import BaseModel\n\n# Define the model for a geographic location\nclass Location(BaseModel):\n  name: str\n  country: str\n  latitude: float\n  longitude: float",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#implementing-structured-outputs-1",
     "href": "src/02/slides.html#implementing-structured-outputs-1",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Implementing Structured Outputs",
     "text": "Implementing Structured Outputs\n\n\nMODEL = 'openai/gpt-5.2-chat' #@param [\"openai/gpt-5.2-chat\", \"anthropic/claude-sonnet-4.5\", \"google/gemini-2.5-pro\"]\n\nresponse = client.chat.completions.parse(\n    model=MODEL,\n    messages=[\n        {\"role\": \"user\", \"content\": \"What are the GPS coordinates for Paris?\"},\n    ],\n    response_format=Location\n)\n\ncompletion = response.choices[0].message\nprint(completion)\n\nParsedChatCompletionMessage[Location](content='{\"name\":\"Paris\",\"country\":\"France\",\"latitude\":48.8566,\"longitude\":2.3522}', refusal=None, role='assistant', annotations=None, audio=None, function_call=None, tool_calls=None, parsed=Location(name='Paris', country='France', latitude=48.8566, longitude=2.3522), reasoning=None)",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#implementing-structured-outputs-2",
     "href": "src/02/slides.html#implementing-structured-outputs-2",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Implementing Structured Outputs",
     "text": "Implementing Structured Outputs\n\n\n# Display the JSON repesentation\nprint(completion.content)\n\n# Display the parsed type\nprint(completion.parsed)\n\n# Pretty-print\nif completion.parsed:\n  location: Location = completion.parsed\n  print(f\"{location.name}, {location.country} has GPS coordinates of {location.latitude}, {location.longitude}\")\n\n{\"name\":\"Paris\",\"country\":\"France\",\"latitude\":48.8566,\"longitude\":2.3522}\nname='Paris' country='France' latitude=48.8566 longitude=2.3522\nParis, France has GPS coordinates of 48.8566, 2.3522",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#creating-a-chat-ui-1",
     "href": "src/02/slides.html#creating-a-chat-ui-1",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Creating a Chat UI",
     "text": "Creating a Chat UI\n\nUp to now, we’ve been making requests and printing the responses\nGood for learning concepts, but not a “product” that others can use\nWe want to build a UI that supports conversation threads, streaming, rich inputs/outputs, etc.\nBut we don’t want to start from scratch!",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#introducing-gradio",
     "href": "src/02/slides.html#introducing-gradio",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Introducing Gradio",
     "text": "Introducing Gradio\n\nSource: https://www.gradio.app/",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#what-is-gradio",
     "href": "src/02/slides.html#what-is-gradio",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "What is Gradio?",
     "text": "What is Gradio?\n\nCreated in 2019: Startup called Gradio developing demos for research/academia\nAcquired by Hugging Face in 2021: became the standard interface for Hugging Face Spaces\nNow industry standard: For ML demos - used by researchers, startups to showcase models without front-end expertise",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#what-is-gradio-1",
     "href": "src/02/slides.html#what-is-gradio-1",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "What is Gradio?",
     "text": "What is Gradio?\n\nRapid UI creation with minimal code\n\n5-10 lines of Python for an interactive interface. No HTML, CSS, JS required.\n\nRich input/output types\n\nText, images, audio, video, files, dataframes, etc.\n\nML workflows\n\nSupports streaming, queue management (for server-side deployment), flagging/feedback collection\n\nDeployment flexibility\n\nCan run locally, create temporary public links, or embed in production apps",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#example-1-basic-interface",
     "href": "src/02/slides.html#example-1-basic-interface",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Example 1: Basic Interface",
     "text": "Example 1: Basic Interface\n\n\nimport gradio as gr\n\ndef image_classifier(inp):\n    return {'cat': 0.3, 'dog': 0.7}\n\ndemo = gr.Interface(fn=image_classifier, inputs=\"image\", outputs=\"label\")\ndemo.launch()",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#example-1-basic-interface-1",
     "href": "src/02/slides.html#example-1-basic-interface-1",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Example 1: Basic Interface",
     "text": "Example 1: Basic Interface\n\n\n\n* Running on local URL:  http://127.0.0.1:7870\n* To create a public link, set `share=True` in `launch()`.",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#example-2-basic-chat-interface",
     "href": "src/02/slides.html#example-2-basic-chat-interface",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Example 2: Basic Chat Interface",
     "text": "Example 2: Basic Chat Interface\n\n\nimport gradio as gr\n\ndef chat_with_history(message, history):\n    # Add current message\n    messages = history + [{\"role\": \"user\", \"content\": message}]\n    \n    # Get response from API\n    response = client.chat.completions.create(\n        model='openai/gpt-5.2-chat',\n        messages=messages,\n    )\n    \n    return response.choices[0].message.content\n\n# Create a chat interface\ndemo = gr.ChatInterface(\n    fn=chat_with_history,\n    title=\"Basic Chat with Conversation History\"\n)\n\ndemo.launch()",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#example-2-basic-chat-interface-1",
     "href": "src/02/slides.html#example-2-basic-chat-interface-1",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Example 2: Basic Chat Interface",
     "text": "Example 2: Basic Chat Interface\n\n\n\n* Running on local URL:  http://127.0.0.1:7871\n* To create a public link, set `share=True` in `launch()`.",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#example-3-streaming-chat-interface",
     "href": "src/02/slides.html#example-3-streaming-chat-interface",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Example 3: Streaming Chat Interface",
     "text": "Example 3: Streaming Chat Interface\n\n\ndef chat_with_streaming(message, history):\n    messages = history + [{\"role\": \"user\", \"content\": message}]\n    \n    # Stream the response\n    stream = client.chat.completions.create(\n        model='openai/gpt-5.2-chat',\n        messages=messages,\n        stream=True,\n    )\n    \n    response_text = \"\"\n    for chunk in stream:\n        if chunk.choices[0].delta.content is not None:\n            token = chunk.choices[0].delta.content\n            response_text += token\n            yield response_text\n\n# Create streaming chat interface\ndemo = gr.ChatInterface(\n    fn=chat_with_streaming,\n    title=\"AI Chat with Streaming\",\n)\n\ndemo.launch()",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#example-3-streaming-chat-interface-1",
     "href": "src/02/slides.html#example-3-streaming-chat-interface-1",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "Example 3: Streaming Chat Interface",
     "text": "Example 3: Streaming Chat Interface\n\n\n\n* Running on local URL:  http://127.0.0.1:7872\n* To create a public link, set `share=True` in `launch()`.",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
-    "objectID": "src/02/slides.html#looking-ahead-to-next-week-1",
-    "href": "src/02/slides.html#looking-ahead-to-next-week-1",
-    "title": "Week 2: Exploring Hosted LLMs",
-    "section": "Looking Ahead to Next Week",
-    "text": "Looking Ahead to Next Week\n\nThis week’s assignment!\nExplore the world of AI Agents\nCreate agents, building upon our knowledge of Gradio\nGive the agent tools to perform functions beyond what an LLM can do",
+    "objectID": "src/02/slides.html#looking-ahead-1",
+    "href": "src/02/slides.html#looking-ahead-1",
+    "title": "Module 2: Exploring Hosted LLMs",
+    "section": "Looking Ahead",
+    "text": "Looking Ahead\n\nThis week’s assignment!\nExplore the world of AI Agents\nCreate agents, building upon our knowledge of Gradio\nGive the agent tools to perform functions beyond what an LLM can do",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/slides.html#references-1",
     "href": "src/02/slides.html#references-1",
-    "title": "Week 2: Exploring Hosted LLMs",
+    "title": "Module 2: Exploring Hosted LLMs",
     "section": "References",
     "text": "References",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
     "objectID": "src/02/assignment.html",
     "href": "src/02/assignment.html",
-    "title": "Week 2 Assignment - Gradio Travel Planner",
+    "title": "Module 2 Assignment - Gradio Travel Planner",
     "section": "",
-    "text": "Objective: Build a Gradio chat interface (in a separate Colab notebook) that helps users plan trips.\nRequirements:\n\nGradio chat interface with streaming responses\nSystem prompt that defines the AI as a travel planning expert\nUse at least 2 different models via OpenRouter as a dropdown in Gradio. Try to pick a large (foundational model) and a much smaller open source model to compare the differences.\n\nDeliverable: A Colab/Jupyter notebook with:\n\nCode cells with your implementation\nUses OPENROUTER_API_KEY for the API token (do not include your API key in your notebook!)\nMarkdown cells explaining what the notebook does and any observations\n\n** Stretch Goal (Non-graded)** - After the conversation, a “Generate Itinerary” button that uses structured outputs to create a formatted itinerary - Structured output schema: Trip with fields like destination, duration_days, activities (list), budget_level, daily_schedule (list of day objects)",
+    "text": "Objective: Build a Gradio chat interface (in a separate Colab notebook) that helps users plan trips.\nRequirements:\n\nGradio chat interface with streaming responses\nSystem prompt that defines the AI as a travel planning expert\nUse at least 2 different system prompts (short and long) and share observations\nUse at least 2 different models via OpenRouter as a dropdown in Gradio. Try to pick a large (foundational model) and a much smaller open source model to compare the differences.\n\nDeliverable: A Colab/Jupyter notebook with:\n\nCode cells with your implementation\nUses OPENROUTER_API_KEY for the API token (do not include your API key in your notebook!)\nMarkdown cells explaining what the notebook does and any observations\n\n** Stretch Goal (Non-graded)** - After the conversation, a “Generate Itinerary” button that uses structured outputs to create a formatted itinerary - Structured output schema: Trip with fields like destination, duration_days, activities (list), budget_level, daily_schedule (list of day objects)",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Assignment"
     ]
   },
@@ -1182,7 +1182,7 @@
     "section": "",
     "text": "Visualize embeddings in 3D space, powered by EmbeddingGemma and Transformers.js\nOriginal Word2Vec Papers - Google Code archive with original papers\nWord2Vec Tutorial - The Skip-Gram Model - Chris McCormick’s detailed tutorial\nGensim Word2Vec Tutorial - Popular Python library for word embeddings\nA Visual Introduction to Vector Embeddings, Pamela Fox\nA Visual Exploration of Vectors, Pamela Fox",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Resources"
     ]
   },
@@ -1193,7 +1193,7 @@
     "section": "",
     "text": "Visualize embeddings in 3D space, powered by EmbeddingGemma and Transformers.js\nOriginal Word2Vec Papers - Google Code archive with original papers\nWord2Vec Tutorial - The Skip-Gram Model - Chris McCormick’s detailed tutorial\nGensim Word2Vec Tutorial - Popular Python library for word embeddings\nA Visual Introduction to Vector Embeddings, Pamela Fox\nA Visual Exploration of Vectors, Pamela Fox",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Resources"
     ]
   },
@@ -1204,7 +1204,7 @@
     "section": "Tokenization and Byte Pair Encoding",
     "text": "Tokenization and Byte Pair Encoding\n\nBPE Original Paper (1994) - Philip Gage’s original compression algorithm\nNeural Machine Translation with BPE - 2016 paper adapting BPE for NLP\nHugging Face Tokenizers - Understanding different tokenization strategies\nOpenAI Tokenizer Tool - Interactive tool to see how text is tokenized",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Resources"
     ]
   },
@@ -1215,7 +1215,7 @@
     "section": "Transformers",
     "text": "Transformers\n\nThe Illustrated Transformer - Jay Alammar’s visual guide\n“Attention is All You Need” Paper - The original transformer paper (2017)\nThe Annotated Transformer - Harvard NLP’s line-by-line implementation guide\nTransformer Math 101 - Understanding transformer computation\nAttention Mechanism Explained - Visual explanation of attention",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Resources"
     ]
   },
@@ -1226,7 +1226,7 @@
     "section": "GPT and Language Models",
     "text": "GPT and Language Models\n\nGPT-1 Paper: “Improving Language Understanding” - Original GPT paper (2018)\nGPT-2 Paper: “Language Models are Unsupervised Multitask Learners” - GPT-2 paper (2019)\nGPT-2 Release Blog Post - OpenAI’s staged release announcement\nUnderstanding Decoder-Only Models - Sebastian Raschka’s explanation\nAndrej Karpathy’s “Let’s build GPT” - Building GPT from scratch",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Resources"
     ]
   },
@@ -1237,7 +1237,7 @@
     "section": "Python and Programming Basics",
     "text": "Python and Programming Basics\n\nLearn Python with Jupyter, Serena Bonaretti\nPython Official Documentation - Official Python 3 documentation\nPython for Beginners - Python.org’s getting started guide\nAutomate the Boring Stuff with Python - Free online book for Python beginners",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Resources"
     ]
   },
@@ -1248,7 +1248,7 @@
     "section": "Python Package Management",
     "text": "Python Package Management\n\npip Documentation - Python’s standard package installer\nuv Documentation - Modern, fast Python package manager\nPyPI - Python Package Index - Repository of 500K+ Python packages",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Resources"
     ]
   },
@@ -1259,7 +1259,7 @@
     "section": "Notebooks and Development Environment",
     "text": "Notebooks and Development Environment\n\nGoogle Colab Sign-up Page\nGoogle Colab Tips and Tricks - Making the most of Colab\nProject Jupyter Page\nJupyter Notebook Beginner Guide - Getting started with Jupyter\nVS Code Jupyter Extension - Run notebooks in VS Code",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Resources"
     ]
   },
@@ -1270,7 +1270,7 @@
     "section": "Citations",
     "text": "Citations\n\nReferences Slide",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Resources"
     ]
   },
@@ -1453,7 +1453,7 @@
     "href": "src/00/slides.html#schedule-1",
     "title": "Welcome to CS-394/594!",
     "section": "Schedule",
-    "text": "Schedule\n\nWeeks 1 through 4\nFeb 6 is Founders Day, so no classes\nWeeks 5 through 8\nMar 9 - 13 is Spring Break\nWeeks 9 through 14\nFinal presentations w/o Apr 20-24",
+    "text": "Schedule\n\nModules 1 through 4\nFeb 6 is Founders Day, so no classes\nModules 5 through 8\nMar 9 - 13 is Spring Break\nWeeks 9 through 14\nFinal presentations w/o Apr 20-24",
     "crumbs": [
       "**Welcome**",
       "Slides"
@@ -1475,7 +1475,7 @@
     "href": "src/00/slides.html#grading",
     "title": "Welcome to CS-394/594!",
     "section": "Grading",
-    "text": "Grading\n\nWeekly Assignments: 40% of grade (8 x 5%)\nFinal Project: 60% of grade\nRubric for the weekly assignments\nRubric for the final project",
+    "text": "Grading\n\nModule Assignments: 40% of grade (8 x 5%)\nFinal Project: 60% of grade\nRubric for the weekly assignments\nRubric for the final project",
     "crumbs": [
       "**Welcome**",
       "Slides"
@@ -1594,528 +1594,528 @@
   {
     "objectID": "src/01/assignment.html",
     "href": "src/01/assignment.html",
-    "title": "Week 1 Assignment - Experiment with Text Continuation Styles",
+    "title": "Module 1 Assignment - Experiment with Text Continuation Styles",
     "section": "",
     "text": "Objective: Create a Colab notebook that uses GPT-2 to generate creative text continuations with different styles.\nRequirements:\n\nLoad a pre-trained GPT-2 model (using HuggingFace transformers - same approach as used in GPT-2.ipynb)\nCreate 3 different story starters in different genres/styles. For example:\n\nFantasy/Adventure: “In a land of dragons and magic…”\nSci-fi: “The year is 2157. Humanity has just…”\nMystery: “The detective examined the crime scene and noticed…”\n(or choose your own three)\n\nThen adjust for:\n\nGreedy decoding vs. sampling\nDifferent temperature values\nHow the opening sentence shapes the continuation (e.g., short vs. long)\n\nDocument your observations (using Markdown in the notebook)\n\nWhat differences do you notice between the strategies?\nWhat worked well (or surprised you!)\nWhat didn’t work that well\n\n\nDeliverable: A Colab/Jupyter notebook with:\n\nCode cells with your implementation\nOutputs of generated text from GPT-2\nMarkdown cells explaining what each sampling strategy does and any observations\n\nHint:\nFor better results, use a larger GPT-2 model on Colab T4.\n\ntokenizer = GPT2Tokenizer.from_pretrained(\"gpt2-medium\")\nmodel = GPT2LMHeadModel.from_pretrained(\"gpt2-medium\")",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Assignment"
     ]
   },
   {
-    "objectID": "src/01/slides.html#lesson-objectives",
-    "href": "src/01/slides.html#lesson-objectives",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "Lesson Objectives",
-    "text": "Lesson Objectives\n\nExplore the history of vector embeddings and tokenization\nUnderstand the transformer architecture at a high level\nUse our first transformer to translate language\nCover a brief history of early generative transformers\nSetup and use Colab, and become familiar with the basics of notebooks and Python (if you haven’t used them already)",
+    "objectID": "src/01/slides.html#module-objectives",
+    "href": "src/01/slides.html#module-objectives",
+    "title": "Module 1: Foundations of Generative AI",
+    "section": "Module Objectives",
+    "text": "Module Objectives\n\nExplore the history of vector embeddings and tokenization\nUnderstand the transformer architecture at a high level\nUse our first transformer to translate language\nCover a brief history of early generative transformers\nSetup and use Colab, and become familiar with the basics of notebooks and Python (if you haven’t used them already)",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#rewind-to-2013",
     "href": "src/01/slides.html#rewind-to-2013",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "Rewind To 2013",
     "text": "Rewind To 2013\n\nNLP (Natural Language Processing) was the thing!\n\nSentiment analysis, named entity recognition, parsing, etc.\n\nBut, you had limited options…\n\nOne-hot encoding\nHand crafted features\nNeural language models",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#word2vec-released",
     "href": "src/01/slides.html#word2vec-released",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "2013: Word2Vec Released",
     "text": "2013: Word2Vec Released\n\nWord2Vec introduced by Mikolov and colleagues at Google Research in two papers\n\nSkip-gram and Continuous Bag-of-Words (CBOW) (Mikolov, Chen, et al. 2013)\nNegative sampling and subsampling techniques (Mikolov, Sutskever, et al. 2013)\n\nParadigm shift from count-based methods\n\nUsed Neural Networks (NNs) to predict words vs. large matrices\n\nFoundation for modern NLP tasks",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#how-does-word2vec-work",
     "href": "src/01/slides.html#how-does-word2vec-work",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "How does Word2Vec Work?",
     "text": "How does Word2Vec Work?\n\nWord Embeddings are meaningful numerical representations of words\n\nRepresentations where words are encoded into multi-dimensional space\nLarge number of dimensions (200-500 is typical)\nSimilar words have similar numbers",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#how-does-word2vec-work-1",
     "href": "src/01/slides.html#how-does-word2vec-work-1",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "How does Word2Vec Work?",
     "text": "How does Word2Vec Work?\n\n\nword = \"cat\"\nvector = model[word]\nvector[:10]\n\narray([ 0.0123291 ,  0.20410156, -0.28515625,  0.21679688,  0.11816406,\n        0.08300781,  0.04980469, -0.00952148,  0.22070312, -0.12597656],\n      dtype=float32)",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#how-does-word2vec-work-2",
     "href": "src/01/slides.html#how-does-word2vec-work-2",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "How does Word2Vec Work?",
     "text": "How does Word2Vec Work?\n\n\nword = \"dog\"\nvector = model[word]\nvector[:10]\n\narray([ 0.05126953, -0.02233887, -0.17285156,  0.16113281, -0.08447266,\n        0.05737305,  0.05859375, -0.08251953, -0.01538086, -0.06347656],\n      dtype=float32)",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#how-does-word2vec-work-3",
     "href": "src/01/slides.html#how-does-word2vec-work-3",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "How does Word2Vec Work?",
     "text": "How does Word2Vec Work?\n\n\nword = \"pizza\"\nvector = model[word]\nvector[:10]\n\narray([-1.2597656e-01,  2.5390625e-02,  1.6699219e-01,  5.5078125e-01,\n       -7.6660156e-02,  1.2890625e-01,  1.0253906e-01, -3.9482117e-04,\n        1.2158203e-01,  4.3212891e-02], dtype=float32)",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#why-do-this",
     "href": "src/01/slides.html#why-do-this",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "Why Do This?",
     "text": "Why Do This?\n\nMapping words to multi-dimensional vectors enables\n\nTest for similarity\nCompute similarity\nPerform vector arithmetic\nExplore sets of words through visualizations",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#how-does-word2vec-work-4",
     "href": "src/01/slides.html#how-does-word2vec-work-4",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "How does Word2Vec Work?",
     "text": "How does Word2Vec Work?\n\n\nfind_similar_words(\"cat\")\nfind_similar_words(\"dog\")\nfind_similar_words(\"pizza\")\n\n\nWords most similar to 'cat':\n----------------------------------------\ncats                 | similarity: 0.8099\ndog                  | similarity: 0.7609\nkitten               | similarity: 0.7465\nfeline               | similarity: 0.7326\nbeagle               | similarity: 0.7151\npuppy                | similarity: 0.7075\npup                  | similarity: 0.6934\npet                  | similarity: 0.6892\nfelines              | similarity: 0.6756\nchihuahua            | similarity: 0.6710\n\nWords most similar to 'dog':\n----------------------------------------\ndogs                 | similarity: 0.8680\npuppy                | similarity: 0.8106\npit_bull             | similarity: 0.7804\npooch                | similarity: 0.7627\ncat                  | similarity: 0.7609\ngolden_retriever     | similarity: 0.7501\nGerman_shepherd      | similarity: 0.7465\nRottweiler           | similarity: 0.7438\nbeagle               | similarity: 0.7419\npup                  | similarity: 0.7407\n\nWords most similar to 'pizza':\n----------------------------------------\npizzas               | similarity: 0.7863\nDomino_pizza         | similarity: 0.7343\nPizza                | similarity: 0.6988\npepperoni_pizza      | similarity: 0.6903\nsandwich             | similarity: 0.6840\nburger               | similarity: 0.6570\nsandwiches           | similarity: 0.6495\ntakeout_pizza        | similarity: 0.6492\ngourmet_pizza        | similarity: 0.6401\nmeatball_sandwich    | similarity: 0.6377",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#how-does-word2vec-work-5",
     "href": "src/01/slides.html#how-does-word2vec-work-5",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "How does Word2Vec Work?",
     "text": "How does Word2Vec Work?\n\n\ncompute_similarity('cat', 'dog')\ncompute_similarity('cat', 'kitten')\ncompute_similarity('cat', 'car')\ncompute_similarity('doctor', 'hospital')\ncompute_similarity('king', 'queen')\n\nSimilarity between 'cat' and 'dog': 0.7609\nSimilarity between 'cat' and 'kitten': 0.7465\nSimilarity between 'cat' and 'car': 0.2153\nSimilarity between 'doctor' and 'hospital': 0.5143\nSimilarity between 'king' and 'queen': 0.6511",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#how-does-word2vec-work-6",
     "href": "src/01/slides.html#how-does-word2vec-work-6",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "How does Word2Vec Work?",
     "text": "How does Word2Vec Work?\n\n\nvector_arithmetic(['king', 'woman'], ['man'])\nvector_arithmetic(['Paris', 'Italy'], ['France'])\nvector_arithmetic(['walking', 'swim'], ['walk'])\n\n\nking + woman - man:\n--------------------------------------------------\nqueen                | similarity: 0.7118\nmonarch              | similarity: 0.6190\nprincess             | similarity: 0.5902\ncrown_prince         | similarity: 0.5499\nprince               | similarity: 0.5377\n\nParis + Italy - France:\n--------------------------------------------------\nMilan                | similarity: 0.7222\nRome                 | similarity: 0.7028\nPalermo_Sicily       | similarity: 0.5968\nItalian              | similarity: 0.5911\nTuscany              | similarity: 0.5633\n\nwalking + swim - walk:\n--------------------------------------------------\nswimming             | similarity: 0.8246\nswam                 | similarity: 0.6807\nswims                | similarity: 0.6538\nswimmers             | similarity: 0.6495\npaddling             | similarity: 0.6424",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#how-does-word2vec-work-7",
     "href": "src/01/slides.html#how-does-word2vec-work-7",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "How does Word2Vec Work?",
     "text": "How does Word2Vec Work?",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#what-is-python",
     "href": "src/01/slides.html#what-is-python",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "What is Python?",
     "text": "What is Python?\n\nInterpreted language (vs. compiled like C++ or C#)\n\nNo compilation step - code runs directly\nInteractive and flexible, great for experimentation\n\nCreated by Guido van Rossum in 1991\n\nPython 2 (2000-2020), Python 3 (2008-present)\nWe’ll use Python 3.13\n\nCross-platform: Runs on Windows, macOS, Linux\nDynamically typed: No need to declare variable types\nThe language of AI/ML: Vast ecosystem of libraries (NumPy, TensorFlow, PyTorch, Transformers)",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#variables-and-data-types",
     "href": "src/01/slides.html#variables-and-data-types",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "Variables and Data Types",
     "text": "Variables and Data Types\n\nVariables store data (no type declaration needed)\n\nx = 42 (integer)\nname = \"Alice\" (string)\npi = 3.14 (float)\n\nLists hold multiple values\n\nnumbers = [1, 2, 3, 4, 5]\nwords = [\"cat\", \"dog\", \"bird\"]\n\nAccess with square brackets: numbers[0] returns 1",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#functions",
     "href": "src/01/slides.html#functions",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "Functions",
     "text": "Functions\n\nFunctions perform actions\n\nBuilt-in: print(\"Hello\"), len([1, 2, 3])\nDefine your own: def greet(name): return f\"Hello {name}\"\nIndentation vs. braces\nSupport for classes (although used rarely in AI/ML)",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#libraries-and-packages",
     "href": "src/01/slides.html#libraries-and-packages",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "Libraries and Packages",
     "text": "Libraries and Packages\n\nLibraries extend Python’s capabilities\n\nimport math - mathematical functions\nfrom transformers import AutoModel - import specific components\n\nUse dot notation to access: math.sqrt(16)\nPackage management\n\npip - standard package installer (similar to NuGet for C#)\nuv - modern, faster alternative to pip\nPyPI (Python Package Index) - central repository with 500K+ packages",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#what-is-a-notebook",
     "href": "src/01/slides.html#what-is-a-notebook",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "What is a Notebook?",
     "text": "What is a Notebook?\n\nAn interactive document that combines:\n\nLive code that can be executed\nRich text explanations (markdown)\nVisualizations and outputs\n\nThink of it as a computational narrative\n\nTell a story with code, data, and explanations\n\nOriginally designed for data science and research\nAlso used for learning, experimenting, and sharing results",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#a-brief-history-of-notebooks",
     "href": "src/01/slides.html#a-brief-history-of-notebooks",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "A Brief History of Notebooks",
     "text": "A Brief History of Notebooks\n\n2011: IPython Notebook project begins\n\nInteractive Python shell → web-based notebook\n\n2014: Renamed to Jupyter (Julia, Python, R)\n\nNow supports 40+ programming languages\nPython is most popular by far\n\n2017: Google launches Colab\n\nFree cloud-based Jupyter notebooks\nFree access to GPUs and TPUs\n\nToday: Industry standard for ML/AI development",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#anatomy-of-a-python-notebook",
     "href": "src/01/slides.html#anatomy-of-a-python-notebook",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "Anatomy of a Python Notebook",
     "text": "Anatomy of a Python Notebook\n\nFormat: Extension is .ipynb\n\nJSON format, using Jupyter Document Schema\n\nCells: Building blocks of notebooks\n\nCode cells: Executable Python code\nMarkdown cells: Text, headings, images, equations\n\nKernel: The computational engine running your code\n\nMaintains state between cell executions\n\nOutputs: Results appear directly below code cells\n\nText, tables, plots, interactive widgets",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#how-to-run-notebooks",
     "href": "src/01/slides.html#how-to-run-notebooks",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "How to Run Notebooks",
     "text": "How to Run Notebooks\n\nJupyter Notebook Server (Classic approach)\n\nWeb interface on localhost\n\nVS Code (Local development)\n\nJupyter extension for VS Code\nRun on your own machine\n\nGoogle Colab (Recommended)\n\nBrowser-based, no installation needed\nFree(-ish) GPU access\nCan also access local GPU",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#why-recommend-google-colab",
     "href": "src/01/slides.html#why-recommend-google-colab",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "Why Recommend Google Colab?",
     "text": "Why Recommend Google Colab?\n\nAccess to GPUs and TPUs for AI-based tasks\n\ne.g., A100 and H100 with 40Gb/80Gb VRAM\n\nModel downloaded between cloud vendors\n\nvs. downloading large models via the DigiPen network\n\nMany libraries pre-installed\nEasy to share notebooks with others\nGenerous (free) GPU limits for students!",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#challenges-with-word-embeddings-1",
     "href": "src/01/slides.html#challenges-with-word-embeddings-1",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "Challenges with Word Embeddings",
     "text": "Challenges with Word Embeddings\n\nLarge vocabularies\n\n100K+ words\nAnd not particularly friendly to non-English vocabularies\n\nLittle representation between certain words\n\n“Run” and “Running” should be related\n\nLack of context\n\nEmbedding for the word “bank” is the same, regardless of context\nRiver bank != Savings bank",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#challenges-with-word-embeddings-2",
     "href": "src/01/slides.html#challenges-with-word-embeddings-2",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "Challenges with Word Embeddings",
     "text": "Challenges with Word Embeddings\n\nSome researchers tried character-level models\n\nSmall vocabulary (26 letters + punctuation for English)\nBut very long sequences\nAnd hard to extract meaning",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#byte-pair-encoding-bpe",
     "href": "src/01/slides.html#byte-pair-encoding-bpe",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "2016: Byte Pair Encoding (BPE)",
     "text": "2016: Byte Pair Encoding (BPE)\n\nOriginally developed in 1994 as a simple compression algorithm (Gage 1994)\n\nFrequent pairs of adjacent bytes represented as a single byte\n\nIn 2016, adapted to neural machine translation (Sennrich, Haddow, and Birch 2016)\n\nApplied BPE to break words into subword units for better handling of rare words",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#byte-pair-encoding-bpe-1",
     "href": "src/01/slides.html#byte-pair-encoding-bpe-1",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "2016: Byte Pair Encoding (BPE)",
     "text": "2016: Byte Pair Encoding (BPE)\n\nBreaks words into frequent subword units (a.k.a. tokens)\n\n“unbelievable” → [“un”, “believ”, “able”]\n\nBalance between word level (large vocab) and character level (long sequences)\n\nSupports related words: [“Run”] and [“Run”, “ning”]\n30-50K tokens vs. 100K, and works well for non-English languages\n\nFoundations of today’s tokenization\n\nAPI costs are measured in tokens\nDifferent models use different tokenizers",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#search-for-context",
     "href": "src/01/slides.html#search-for-context",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "Search for Context",
     "text": "Search for Context\n\nBPE provided efficiency and representation between words\nBut still didn’t solve context\n\ne.g., the River bank != Savings bank problem\n\nResearchers working on “attention tasks” using Recurrent Neural Networks (RNNs)\n\nBahdanau et al. introduce attention for translation (Bahdanau, Cho, and Bengio 2015)\nShowed that focusing on relevant parts of input improved translation quality",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#attention-is-all-you-need",
     "href": "src/01/slides.html#attention-is-all-you-need",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "2017: “Attention is all you need”",
     "text": "2017: “Attention is all you need”\n\nGoogle researchers publish “Attention is all you need” (Vaswani et al. 2017)\n\nIntroduced the Transformer a novel Neural Network (NN) architecture, eliminating the need for RNNs for sequence-to-sequence models\nUsed BPE tokenization, and creates contextual embeddings during training process\nAttention mechanism allows the model to weigh the importance of words in a sequence\nAchieved State Of The Art (SOTA) performance on language translation, while also being faster to train",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#introducing-the-transformer-1",
     "href": "src/01/slides.html#introducing-the-transformer-1",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "Introducing the Transformer",
     "text": "Introducing the Transformer\n\n\n\n\ngraph LR\n    Input[\"Input: 'Bonjour, comment allez-vous?'\"]\n    Transformer[Transformer]\n    Output[\"Output: 'Hello, how are you?'\"]\n    \n    Input --&gt; Tokenize --&gt; Transformer --&gt; Decode --&gt; Output",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#example",
     "href": "src/01/slides.html#example",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "Example",
     "text": "Example\n\n\nfrom transformers import AutoTokenizer, AutoModelForSeq2SeqLM\n\nmodel_name = \"Helsinki-NLP/opus-mt-fr-en\"\ntokenizer = AutoTokenizer.from_pretrained(model_name)\nmodel = AutoModelForSeq2SeqLM.from_pretrained(model_name)",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#example-1",
     "href": "src/01/slides.html#example-1",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "Example",
     "text": "Example\n\n\nfrench_text = \"Bonjour, comment allez-vous?\"\ninput_ids = tokenizer.encode(french_text, return_tensors=\"pt\")\nprint(input_ids[0])\nprint(\"Tokens:\", tokenizer.convert_ids_to_tokens(input_ids[0]))\n\ntensor([8703,    2, 1027, 5682,   21,  682,   54,    0])\nTokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&gt;']",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#example-2",
     "href": "src/01/slides.html#example-2",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "Example",
     "text": "Example\n\n\noutput_ids = model.generate(input_ids)\nprint(output_ids)\n\ntensor([[59513, 10537,     2,   541,    52,    55,    54,     0]])",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#example-3",
     "href": "src/01/slides.html#example-3",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "Example",
     "text": "Example\n\n\nenglish_text = tokenizer.decode(output_ids[0], skip_special_tokens=True)\nprint(\"Translation:\", english_text)\n\nTranslation: Hello, how are you?",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#introducing-the-transformer-2",
     "href": "src/01/slides.html#introducing-the-transformer-2",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "Introducing the Transformer",
     "text": "Introducing the Transformer\n\n\n\n\ngraph LR\n    Input[\"Input: 'Bonjour, comment allez-vous?'\"]\n    Transformer[Transformer]\n    Output[\"Output: 'Hello, how are you?'\"]\n    \n    Input --&gt; Tokenize --&gt; Transformer --&gt; Decode --&gt; Output",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#introducing-the-transformer-3",
     "href": "src/01/slides.html#introducing-the-transformer-3",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "Introducing the Transformer",
     "text": "Introducing the Transformer\n\n\n\n\ngraph LR\n    Input[\"Input: 'Bonjour, comment allez-vous?'\"]\n    \n    subgraph Transformer\n        Encoder[Encoder]\n        Decoder[Decoder]\n        Encoder --&gt; Decoder\n    end\n    \n    Output[\"Output: 'Hello, how are you?'\"]\n    \n    Input --&gt; Tokenize --&gt; Encoder\n    Decoder --&gt; Decode --&gt; Output",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#introducing-the-transformer-4",
     "href": "src/01/slides.html#introducing-the-transformer-4",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "Introducing the Transformer",
     "text": "Introducing the Transformer\n\n\n\n\ngraph LR\n    Input[\"Input: 'Bonjour, comment allez-vous?'\"]\n    \n    subgraph Transformer\n        direction LR\n        subgraph \"Encoder Stack (N layers)\"\n            E[Encoder&lt;br/&gt;Layers&lt;br/&gt;1...N]\n        end\n        \n        subgraph \"Decoder Stack (N layers)\"\n            D[Decoder&lt;br/&gt;Layers&lt;br/&gt;1...N]\n        end\n        \n        E -.-&gt;|Context| D\n    end\n    \n    Output[\"Output: 'Hello, how are you?'\"]\n    \n    Input --&gt; Tokenize --&gt; E\n    D --&gt; Decode --&gt; Output",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#how-does-the-encoderdecoder-work",
     "href": "src/01/slides.html#how-does-the-encoderdecoder-work",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "How Does the Encoder/Decoder Work?",
     "text": "How Does the Encoder/Decoder Work?\noutput_ids = model.generate(input_ids)\n\nTakes input ids, runs through encoder\n\nGenerates contextual vectors using self attention across input tokens\n\nRuns the decoder iteratively to generate one token at a time\n\nUses self attention on previously generated tokens\nUses cross-attention to attend to encoder output\n\nContinues until it generates an end-of-sequence token or hits max length",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#introducing-the-transformer-5",
     "href": "src/01/slides.html#introducing-the-transformer-5",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "Introducing the Transformer",
     "text": "Introducing the Transformer\n\n\n\n\ngraph LR\n    Input[\"Input: 'Bonjour, comment allez-vous?'\"]\n    \n    subgraph Transformer\n        direction TB\n        \n        subgraph \"Encoder Layer\"\n            direction TB\n            E_SelfAttn[Multi-Head&lt;br/&gt;Self-Attention]\n            E_AddNorm1[Add & Norm]\n            E_FFN[Feed-Forward&lt;br/&gt;Network]\n            E_AddNorm2[Add & Norm]\n            \n            E_SelfAttn --&gt; E_AddNorm1 --&gt; E_FFN --&gt; E_AddNorm2\n        end\n        \n        subgraph \"Decoder Layer\"\n            direction TB\n            D_SelfAttn[Masked Multi-Head&lt;br/&gt;Self-Attention]\n            D_AddNorm1[Add & Norm]\n            D_CrossAttn[Multi-Head&lt;br/&gt;Cross-Attention]\n            D_AddNorm2[Add & Norm]\n            D_FFN[Feed-Forward&lt;br/&gt;Network]\n            D_AddNorm3[Add & Norm]\n            \n            D_SelfAttn --&gt; D_AddNorm1 --&gt; D_CrossAttn --&gt; D_AddNorm2 --&gt; D_FFN --&gt; D_AddNorm3\n        end\n        \n        E_AddNorm2 -.-&gt;|Encoder&lt;br/&gt;Output| D_CrossAttn\n    end\n    \n    Output[\"Output: 'Hello, how are you?'\"]\n    \n    Input --&gt; E_SelfAttn\n    D_AddNorm3 --&gt; Output",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#origin-of-gpt-1",
     "href": "src/01/slides.html#origin-of-gpt-1",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "2018: Origin of “GPT”",
     "text": "2018: Origin of “GPT”\n\nGenerative Pre-trained Transformer\nName coined by OpenAI researchers in “Improving Language Understanding by Generative Pre-Training” (Radford et al. 2018)",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#what-is-a-gpt",
     "href": "src/01/slides.html#what-is-a-gpt",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "What is a GPT?",
     "text": "What is a GPT?\n\n“Decoder-only” architecture\n\nSelf attention is causal/masked - tokens can only attend to previous tokens, not future ones\n\nPre-training objective: Next token prediction\n\nTrained on a massive text corpora\nLearns grammar, facts, reasoning patterns just from this objective",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#what-is-a-gpt-1",
     "href": "src/01/slides.html#what-is-a-gpt-1",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "What is a GPT?",
     "text": "What is a GPT?\n\nAutoregressive generation\n\nGenerates one token at a time, feeding back each output as input\nTemperature and sampling strategies\nSame prompt can produce different outputs\n\nContext window\n\nFixed maximum length (2048 for GPT-2)\nEverything must fit within this window during generation\nIntroduced the concept of “context” vs. “knowledge” (prompt vs. training)",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#gpt-2",
     "href": "src/01/slides.html#gpt-2",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "GPT-2",
     "text": "GPT-2\n\nReleased in 2019 by OpenAI\n\nInitially, only 117M param model released in Feb 2019 due to safety concerns\nStaged releases throughout the year, 1.5B in Nov 2019\n\nTrained on WebText, 8 million web pages/40GB of text\nZero-shot task performance\n\nDid well on translation, summarization, and question answering without task-specific training",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#example-4",
     "href": "src/01/slides.html#example-4",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "Example",
     "text": "Example\n\n\nfrom transformers import GPT2LMHeadModel, GPT2Tokenizer\n\n# Load pre-trained GPT-2 model and tokenizer\ntokenizer = GPT2Tokenizer.from_pretrained(\"gpt2\")\nmodel = GPT2LMHeadModel.from_pretrained(\"gpt2\")\n\n# Set pad token\ntokenizer.pad_token = tokenizer.eos_token",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#example-5",
     "href": "src/01/slides.html#example-5",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "Example",
     "text": "Example\n\n\nimport torch\n\ndef autocomplete(prompt, max_length=50, temperature=0.7, top_k=50, top_p=0.9):\n    # Encode the prompt with attention mask\n    inputs = tokenizer(prompt, return_tensors=\"pt\")\n    \n    # Generate continuation\n    with torch.no_grad():\n        output = model.generate(\n            inputs['input_ids'],\n            attention_mask=inputs['attention_mask'],\n            max_length=max_length,\n            temperature=temperature,\n            top_k=top_k,\n            top_p=top_p,\n            do_sample=True,\n            pad_token_id=tokenizer.eos_token_id\n        )\n    \n    # Decode and return the generated text\n    generated_text = tokenizer.decode(output[0], skip_special_tokens=True)\n    return generated_text",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#example-6",
     "href": "src/01/slides.html#example-6",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "Example",
     "text": "Example\n\n\nprompt = \"Mary had a little lamb\"\ncompletion = autocomplete(prompt, max_length=80)\nprint(completion)\n\nMary had a little lamb, and the young woman asked her for a little lamb, and they gave it to her.\n\n\"Oh, my child, it is good to have a little lamb,\" said he, \"but it is not to be bought, for it is hard to make, and it is much more difficult to make.\n\n\"When you have a little lamb, it",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#limitations-of-gpt-2-1",
     "href": "src/01/slides.html#limitations-of-gpt-2-1",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "Limitations of GPT-2",
     "text": "Limitations of GPT-2\n\nHallucinations / factual errors\nNo real-world grounding\nRepetition issues\nOnwards to GPT-3 and beyond…",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
-    "objectID": "src/01/slides.html#looking-ahead-to-next-week-1",
-    "href": "src/01/slides.html#looking-ahead-to-next-week-1",
-    "title": "Week 1: Foundations of Generative AI",
-    "section": "Looking Ahead to Next Week",
-    "text": "Looking Ahead to Next Week\n\nThis week’s assignment!\nNew to Python?\n\nLearn Python with Jupyter\n\nNext Week’s Topics\n\nInstruction-tuned models\nOpenAI specification\nGradio for chat-based UIs",
+    "objectID": "src/01/slides.html#looking-ahead-1",
+    "href": "src/01/slides.html#looking-ahead-1",
+    "title": "Module 1: Foundations of Generative AI",
+    "section": "Looking Ahead",
+    "text": "Looking Ahead\n\nThis week’s assignment!\nNew to Python?\n\nLearn Python with Jupyter\n\nInstruction-tuned models\nOpenAI specification\nGradio for chat-based UIs",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
   {
     "objectID": "src/01/slides.html#references-1",
     "href": "src/01/slides.html#references-1",
-    "title": "Week 1: Foundations of Generative AI",
+    "title": "Module 1: Foundations of Generative AI",
     "section": "References",
     "text": "References\n\n\n\n\nBahdanau, Dzmitry, Kyunghyun Cho, and Yoshua Bengio. 2015. “Neural Machine Translation by Jointly Learning to Align and Translate.” In International Conference on Learning Representations. https://arxiv.org/abs/1409.0473.\n\n\nGage, Philip. 1994. “A New Algorithm for Data Compression.” The C Users Journal 12 (2): 23–38.\n\n\nMikolov, Tomas, Kai Chen, Greg Corrado, and Jeffrey Dean. 2013. “Efficient Estimation of Word Representations in Vector Space.” In International Conference on Learning Representations. https://arxiv.org/abs/1301.3781.\n\n\nMikolov, Tomas, Ilya Sutskever, Kai Chen, Greg S Corrado, and Jeff Dean. 2013. “Distributed Representations of Words and Phrases and Their Compositionality.” In Advances in Neural Information Processing Systems, 3111–19. https://arxiv.org/abs/1310.4546.\n\n\nRadford, Alec, Karthik Narasimhan, Tim Salimans, and Ilya Sutskever. 2018. “Improving Language Understanding by Generative Pre-Training.” https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf.\n\n\nSennrich, Rico, Barry Haddow, and Alexandra Birch. 2016. “Neural Machine Translation of Rare Words with Subword Units.” In Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), 1715–25. Berlin, Germany: Association for Computational Linguistics. https://doi.org/10.18653/v1/P16-1162.\n\n\nVaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Łukasz Kaiser, and Illia Polosukhin. 2017. “Attention Is All You Need.” In Advances in Neural Information Processing Systems. Vol. 30.",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Slides"
     ]
   },
@@ -2126,7 +2126,7 @@
     "section": "",
     "text": "GPT-2 Release Blog Post - OpenAI’s original GPT-2 announcement\nGPT-3 Paper - “Language Models are Few-Shot Learners”\nInstructGPT Paper - “Training language models to follow instructions with human feedback”\nMeta’s Llama Models - Official Llama model family page",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Resources"
     ]
   },
@@ -2137,7 +2137,7 @@
     "section": "",
     "text": "GPT-2 Release Blog Post - OpenAI’s original GPT-2 announcement\nGPT-3 Paper - “Language Models are Few-Shot Learners”\nInstructGPT Paper - “Training language models to follow instructions with human feedback”\nMeta’s Llama Models - Official Llama model family page",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Resources"
     ]
   },
@@ -2148,7 +2148,7 @@
     "section": "Chat Templates and Model Formats",
     "text": "Chat Templates and Model Formats\n\nHugging Face Chat Templates Guide - Comprehensive guide to chat templates",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Resources"
     ]
   },
@@ -2159,7 +2159,7 @@
     "section": "OpenAI API",
     "text": "OpenAI API\n\nOpenAI Platform - Create an account and get API keys\nOpenAI API Documentation - Official API reference\nChat Completions Guide - How to use the chat completions endpoint\nStructured Outputs Guide - Guide to structured outputs",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Resources"
     ]
   },
@@ -2170,7 +2170,7 @@
     "section": "OpenRouter",
     "text": "OpenRouter\n\nOpenRouter Home Page - Unified API for hundreds of models\nOpenRouter Documentation - API docs and model listings\nOpenRouter Models - Browse available models and pricing",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Resources"
     ]
   },
@@ -2181,7 +2181,7 @@
     "section": "Server-Sent Events (SSE) and Streaming",
     "text": "Server-Sent Events (SSE) and Streaming\n\nMDN: Server-Sent Events - Technical overview of SSE\nEventSource API - Browser API for SSE\nOpenAI Streaming Guide - How to implement streaming with OpenAI API",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Resources"
     ]
   },
@@ -2192,7 +2192,7 @@
     "section": "Gradio",
     "text": "Gradio\n\nGradio Home Page\nGradio Documentation - Official documentation\nGradio ChatInterface - Chat interface component documentation\nGradio Guides - Tutorials and examples\nHugging Face Spaces - Platform for deploying Gradio apps",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Resources"
     ]
   },
@@ -2203,7 +2203,7 @@
     "section": "RLHF and Model Training",
     "text": "RLHF and Model Training\n\nRLHF Explainer - Hugging Face’s comprehensive guide to RLHF\nReinforcement Learning from Human Feedback Paper - Original RLHF research",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Resources"
     ]
   },
@@ -2214,7 +2214,7 @@
     "section": "Context Windows and Token Management",
     "text": "Context Windows and Token Management\n\nUnderstanding Context Windows - Anthropic’s post on long context\nToken Counting Best Practices - OpenAI cookbook example\nTiktoken - Token counting library for estimating costs",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Resources"
     ]
   },
@@ -2225,249 +2225,249 @@
     "section": "Citations",
     "text": "Citations\n\nReferences Slide",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Resources"
     ]
   },
   {
-    "objectID": "src/03/slides.html#recap-of-last-weeks-lecture",
-    "href": "src/03/slides.html#recap-of-last-weeks-lecture",
-    "title": "Week 3: Agents and Tools",
-    "section": "Recap of Last Week’s Lecture",
-    "text": "Recap of Last Week’s Lecture\n\nUnderstood the evolution and licensing of models from GPT-2 through to modern day\nUnderstood instruction-tuned models, how they work, and how to configure\nSetup and used OpenRouter for accessing hosted models\nUnderstood the OpenAI API specification, the request/response payload, parameters, streaming, and structured output\nCreated and shared a chatbot using a Gradio-based UI",
+    "objectID": "src/03/slides.html#recap",
+    "href": "src/03/slides.html#recap",
+    "title": "Module 3: Agents and Tools",
+    "section": "Recap",
+    "text": "Recap\n\nUnderstood the evolution and licensing of models from GPT-2 through to modern day\nUnderstood instruction-tuned models, how they work, and how to configure\nSetup and used OpenRouter for accessing hosted models\nUnderstood the OpenAI API specification, the request/response payload, parameters, streaming, and structured output\nCreated and shared a chatbot using a Gradio-based UI",
     "crumbs": [
-      "**Week 3:** Agents and Tools",
+      "**Module 3:** Agents and Tools",
       "Slides"
     ]
   },
   {
     "objectID": "src/03/slides.html#lesson-objectives",
     "href": "src/03/slides.html#lesson-objectives",
-    "title": "Week 3: Agents and Tools",
+    "title": "Module 3: Agents and Tools",
     "section": "Lesson Objectives",
     "text": "Lesson Objectives\n\nDescribe the fundamental concepts behind Agents/Agentic AI\nExplore and provide feedback on an existing multi-agent setup\nUnderstand available agent SDKs, how they differ, and advantages/disadvantages\nUse the OpenAI Agents SDK to build an multi-agent system from scratch, including document indexing and retrieval\nUnderstand and implement tool calls and implement using OpenAI’s function calling and via MCP",
     "crumbs": [
-      "**Week 3:** Agents and Tools",
+      "**Module 3:** Agents and Tools",
       "Slides"
     ]
   },
   {
-    "objectID": "src/03/slides.html#looking-ahead-to-next-week-1",
-    "href": "src/03/slides.html#looking-ahead-to-next-week-1",
-    "title": "Week 3: Agents and Tools",
-    "section": "Looking Ahead to Next Week",
-    "text": "Looking Ahead to Next Week\n\nThis week’s assignment!\nTBD",
+    "objectID": "src/03/slides.html#looking-ahead-1",
+    "href": "src/03/slides.html#looking-ahead-1",
+    "title": "Module 3: Agents and Tools",
+    "section": "Looking Ahead",
+    "text": "Looking Ahead\n\nThis week’s assignment!\nTBD",
     "crumbs": [
-      "**Week 3:** Agents and Tools",
+      "**Module 3:** Agents and Tools",
       "Slides"
     ]
   },
   {
     "objectID": "src/03/slides.html#references-1",
     "href": "src/03/slides.html#references-1",
-    "title": "Week 3: Agents and Tools",
+    "title": "Module 3: Agents and Tools",
     "section": "References",
     "text": "References",
     "crumbs": [
-      "**Week 3:** Agents and Tools",
+      "**Module 3:** Agents and Tools",
       "Slides"
     ]
   },
   {
     "objectID": "src/04/resources.html",
     "href": "src/04/resources.html",
-    "title": "Week 4 Resources",
+    "title": "Resources",
     "section": "",
-    "text": "TBD",
+    "text": "References Slide",
     "crumbs": [
-      "**Week 4:** Multimedia and Multimodal Models",
+      "**Module 4:** Multimedia and Multimodal Models",
       "Resources"
     ]
   },
   {
-    "objectID": "src/04/resources.html#resources",
-    "href": "src/04/resources.html#resources",
-    "title": "Week 4 Resources",
+    "objectID": "src/04/resources.html#citations",
+    "href": "src/04/resources.html#citations",
+    "title": "Resources",
     "section": "",
-    "text": "TBD",
+    "text": "References Slide",
     "crumbs": [
-      "**Week 4:** Multimedia and Multimodal Models",
+      "**Module 4:** Multimedia and Multimodal Models",
       "Resources"
     ]
   },
   {
     "objectID": "src/05/assignment.html",
     "href": "src/05/assignment.html",
-    "title": "Week 5 Assignment",
+    "title": "Module 5 Assignment",
     "section": "",
     "text": "TBD",
     "crumbs": [
-      "**Week 5:** Running Models on Local Hardware",
+      "**Module 5:** Running Models on Local Hardware",
       "Assignment"
     ]
   },
   {
     "objectID": "src/05/assignment.html#assignment",
     "href": "src/05/assignment.html#assignment",
-    "title": "Week 5 Assignment",
+    "title": "Module 5 Assignment",
     "section": "",
     "text": "TBD",
     "crumbs": [
-      "**Week 5:** Running Models on Local Hardware",
+      "**Module 5:** Running Models on Local Hardware",
       "Assignment"
     ]
   },
   {
-    "objectID": "src/05/slides.html#recap-of-last-weeks-lecture",
-    "href": "src/05/slides.html#recap-of-last-weeks-lecture",
-    "title": "Week 5: Running Models on Local Hardware",
-    "section": "Recap of Last Week’s Lecture",
-    "text": "Recap of Last Week’s Lecture\n\nUnderstood the fundamentals and history of diffuser models\nExplored and used models that demonstrate text-to-image, image-to-image, inpainting, outpainting, and ControlNet\nSetup and used Replicate to create a custom pipeline of production-grade models\nUnderstood the fundamentals and history of Vision Encoders and VLMs\nImplemented/tested a local VLM model for on-device inference",
+    "objectID": "src/05/slides.html#recap",
+    "href": "src/05/slides.html#recap",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "Recap",
+    "text": "Recap\n\nUnderstood the fundamentals and history of diffuser models\nExplored and used models that demonstrate text-to-image, image-to-image, inpainting, outpainting, and ControlNet\nSetup and used Replicate to create a custom pipeline of production-grade models\nUnderstood the fundamentals and history of Vision Encoders and VLMs\nImplemented/tested a local VLM model for on-device inference",
     "crumbs": [
-      "**Week 5:** Running Models on Local Hardware",
+      "**Module 5:** Running Models on Local Hardware",
       "Slides"
     ]
   },
   {
     "objectID": "src/05/slides.html#lesson-objectives",
     "href": "src/05/slides.html#lesson-objectives",
-    "title": "Week 5: Running Models on Local Hardware",
+    "title": "Module 5: Running Models on Local Hardware",
     "section": "Lesson Objectives",
     "text": "Lesson Objectives\n\nUnderstand the use cases, advantages/disadvantages for running models on local hardware - desktop, web, mobile\nUnderstand hardware requirements and architectures for model inference - e.g., CUDA vs. ONNX vs. MLX vs. WebGPU\nExplore how quantization works and understand techniques and formats for quantizing existing models\nUse llama.cpp to quantize and run an SLM on local hardware/gaming PC\nIntegrate a quantized model within Unity/Unreal/WebAssembly",
     "crumbs": [
-      "**Week 5:** Running Models on Local Hardware",
+      "**Module 5:** Running Models on Local Hardware",
       "Slides"
     ]
   },
   {
-    "objectID": "src/05/slides.html#looking-ahead-to-next-week-1",
-    "href": "src/05/slides.html#looking-ahead-to-next-week-1",
-    "title": "Week 5: Running Models on Local Hardware",
-    "section": "Looking Ahead to Next Week",
-    "text": "Looking Ahead to Next Week\n\nThis week’s assignment!\nTBD",
+    "objectID": "src/05/slides.html#looking-ahead-1",
+    "href": "src/05/slides.html#looking-ahead-1",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "Looking Ahead",
+    "text": "Looking Ahead\n\nThis week’s assignment!\nTBD",
     "crumbs": [
-      "**Week 5:** Running Models on Local Hardware",
+      "**Module 5:** Running Models on Local Hardware",
       "Slides"
     ]
   },
   {
     "objectID": "src/05/slides.html#references-1",
     "href": "src/05/slides.html#references-1",
-    "title": "Week 5: Running Models on Local Hardware",
+    "title": "Module 5: Running Models on Local Hardware",
     "section": "References",
     "text": "References",
     "crumbs": [
-      "**Week 5:** Running Models on Local Hardware",
+      "**Module 5:** Running Models on Local Hardware",
       "Slides"
     ]
   },
   {
     "objectID": "src/06/resources.html",
     "href": "src/06/resources.html",
-    "title": "Week 6 Resources",
+    "title": "Resources",
     "section": "",
-    "text": "TBD",
+    "text": "References Slide",
     "crumbs": [
-      "**Week 6:** Increasing Model Accuracy (Part 1)",
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Resources"
     ]
   },
   {
-    "objectID": "src/06/resources.html#resources",
-    "href": "src/06/resources.html#resources",
-    "title": "Week 6 Resources",
+    "objectID": "src/06/resources.html#citations",
+    "href": "src/06/resources.html#citations",
+    "title": "Resources",
     "section": "",
-    "text": "TBD",
+    "text": "References Slide",
     "crumbs": [
-      "**Week 6:** Increasing Model Accuracy (Part 1)",
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Resources"
     ]
   },
   {
     "objectID": "src/07/assignment.html",
     "href": "src/07/assignment.html",
-    "title": "Week 7 Assignment",
+    "title": "Module 7 Assignment",
     "section": "",
     "text": "TBD",
     "crumbs": [
-      "**Week 7:** Increasing Model Accuracy (Part 2)",
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Assignment"
     ]
   },
   {
     "objectID": "src/07/assignment.html#assignment",
     "href": "src/07/assignment.html#assignment",
-    "title": "Week 7 Assignment",
+    "title": "Module 7 Assignment",
     "section": "",
     "text": "TBD",
     "crumbs": [
-      "**Week 7:** Increasing Model Accuracy (Part 2)",
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Assignment"
     ]
   },
   {
-    "objectID": "src/07/slides.html#recap-of-last-weeks-lecture",
-    "href": "src/07/slides.html#recap-of-last-weeks-lecture",
-    "title": "Week 7: Increasing Model Accuracy (Part 2)",
-    "section": "Recap of Last Week’s Lecture",
-    "text": "Recap of Last Week’s Lecture\n\nUnderstood model training, dataset curation, what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy\nExplored use cases, advantages, and disadvantages of prompt engineering\nIntroduced and implemented RAG (Retrieval Augmented Generation) to increase the accuracy of a limited SLM\nStarted the exploration of how to fine-tune models using LoRA (Low Ranked Adaptation)\nUsed a foundational model to generate synthetic data for fine-tuning a 1B parameter model",
+    "objectID": "src/07/slides.html#recap",
+    "href": "src/07/slides.html#recap",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Recap",
+    "text": "Recap\n\nUnderstood model training, dataset curation, what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy\nExplored use cases, advantages, and disadvantages of prompt engineering\nIntroduced and implemented RAG (Retrieval Augmented Generation) to increase the accuracy of a limited SLM\nStarted the exploration of how to fine-tune models using LoRA (Low Ranked Adaptation)\nUsed a foundational model to generate synthetic data for fine-tuning a 1B parameter model",
     "crumbs": [
-      "**Week 7:** Increasing Model Accuracy (Part 2)",
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
     "objectID": "src/07/slides.html#lesson-objectives",
     "href": "src/07/slides.html#lesson-objectives",
-    "title": "Week 7: Increasing Model Accuracy (Part 2)",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Lesson Objectives",
     "text": "Lesson Objectives\n\nUse generated synthetic data to fine-tune a 1B parameter model\nUse W&B (Weights and Biases) to observe parameters during the training run\nPost-training, use W&B to use cosine similarity and LLM-as-a-Judge to evaluate the accuracy of our trained model\nTrain smaller models (270M parameters) and compare the results\nUnderstand and create a model card, upload the model to Hugging Face and share",
     "crumbs": [
-      "**Week 7:** Increasing Model Accuracy (Part 2)",
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#looking-ahead-to-next-week-1",
-    "href": "src/07/slides.html#looking-ahead-to-next-week-1",
-    "title": "Week 7: Increasing Model Accuracy (Part 2)",
-    "section": "Looking Ahead to Next Week",
-    "text": "Looking Ahead to Next Week\n\nThis week’s assignment!\nTBD",
+    "objectID": "src/07/slides.html#looking-ahead-1",
+    "href": "src/07/slides.html#looking-ahead-1",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Looking Ahead",
+    "text": "Looking Ahead\n\nThis week’s assignment!\nTBD",
     "crumbs": [
-      "**Week 7:** Increasing Model Accuracy (Part 2)",
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
     "objectID": "src/07/slides.html#references-1",
     "href": "src/07/slides.html#references-1",
-    "title": "Week 7: Increasing Model Accuracy (Part 2)",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "References",
     "text": "References",
     "crumbs": [
-      "**Week 7:** Increasing Model Accuracy (Part 2)",
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
     "objectID": "src/08/resources.html",
     "href": "src/08/resources.html",
-    "title": "Week 8 Resources",
+    "title": "Resources",
     "section": "",
-    "text": "TBD",
+    "text": "References Slide",
     "crumbs": [
-      "**Week 8:** Ethics, IP, and Safety",
+      "**Module 8:** Ethics, IP, and Safety",
       "Resources"
     ]
   },
   {
-    "objectID": "src/08/resources.html#resources",
-    "href": "src/08/resources.html#resources",
-    "title": "Week 8 Resources",
+    "objectID": "src/08/resources.html#citations",
+    "href": "src/08/resources.html#citations",
+    "title": "Resources",
     "section": "",
-    "text": "TBD",
+    "text": "References Slide",
     "crumbs": [
-      "**Week 8:** Ethics, IP, and Safety",
+      "**Module 8:** Ethics, IP, and Safety",
       "Resources"
     ]
   },
@@ -2478,7 +2478,7 @@
     "section": "",
     "text": "from transformers import GPT2LMHeadModel, GPT2Tokenizer\n\n# Load pre-trained GPT-2 model and tokenizer\ntokenizer = GPT2Tokenizer.from_pretrained(\"gpt2\")\nmodel = GPT2LMHeadModel.from_pretrained(\"gpt2\")\n\n# Set pad token\ntokenizer.pad_token = tokenizer.eos_token\n\n\nimport torch\n\ndef autocomplete(prompt, max_length=50, temperature=0.7, top_k=50, top_p=0.9):\n    # Encode the prompt with attention mask\n    inputs = tokenizer(prompt, return_tensors=\"pt\")\n    \n    # Generate continuation\n    with torch.no_grad():\n        output = model.generate(\n            inputs['input_ids'],\n            attention_mask=inputs['attention_mask'],\n            max_length=max_length,\n            temperature=temperature,\n            top_k=top_k,\n            top_p=top_p,\n            do_sample=True,\n            pad_token_id=tokenizer.eos_token_id\n        )\n    \n    # Decode and return the generated text\n    generated_text = tokenizer.decode(output[0], skip_special_tokens=True)\n    return generated_text\n\n\nprompt = \"Mary had a little lamb\"\ncompletion = autocomplete(prompt, max_length=80)\nprint(completion)\n\nMary had a little lamb, and the young woman asked her for a little lamb, and they gave it to her.\n\n\"Oh, my child, it is good to have a little lamb,\" said he, \"but it is not to be bought, for it is hard to make, and it is much more difficult to make.\n\n\"When you have a little lamb, it\n\n\n\nprompts = [\n    \"Mary had a little lamb\",\n    \"The future of artificial intelligence\",\n    \"In a galaxy far, far away\",\n    \"DigiPen is a place where\",\n    \"def calculate_fibonacci(n):\"\n]\n\nfor prompt in prompts:\n    print(f\"\\nPrompt: {prompt}\")\n    print(\"-\" * 50)\n    completion = autocomplete(prompt, max_length=80)\n    print(f\"Output: {completion}\\n\")\n\n\nPrompt: Mary had a little lamb\n--------------------------------------------------\nOutput: Mary had a little lamb, and the child was very hungry, and so he took a small lamb and brought it to her, and she and the child were very merry. So the child went home and the lamb was brought to her. So she and the child went to the priest and he gave her a piece of bread and said to her, \"This is good bread for you, but what\n\n\nPrompt: The future of artificial intelligence\n--------------------------------------------------\nOutput: The future of artificial intelligence is uncertain, but its future is bright.\n\nAnd so, we are all waiting for a breakthrough.\n\nAnd that's why I think that it's important to understand how AI is coming to the table.\n\nOne of the big questions we have right now is how AI will be able to take over a world, and how it will be able to take\n\n\nPrompt: In a galaxy far, far away\n--------------------------------------------------\nOutput: In a galaxy far, far away, there is only one thing that matters. The fate of our galaxy.\n\nAnd it matters only to you.\n\nA New Frontier for Space\n\nIt's been almost two years since I first wrote a post about this book. And that's because I've been busy.\n\nIn the last month or so, I've been working on an\n\n\nPrompt: DigiPen is a place where\n--------------------------------------------------\nOutput: DigiPen is a place where you can share your creations.\n\nDon't let the name fool you. This is the place to share your creations and to share your creativity.\n\nDon't let the name fool you. This is the place to share your creations and to share your creativity.\n\nDon't let the name fool you. This is the place to share your creations and\n\n\nPrompt: def calculate_fibonacci(n):\n--------------------------------------------------\nOutput: def calculate_fibonacci(n):\n\nfibonacci(n) = 0.01\n\nreturn f(n)\n\ndef calculate_fibonacci(n):\n\nfibonacci(n) = 0.01\n\nreturn f(n)\n\ndef calculate_fibonacci(n):\n\nfibonacci",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Notebooks",
       "GPT-2.ipynb"
     ]
@@ -2490,7 +2490,7 @@
     "section": "",
     "text": "In this notebook, we use a small transformer (Helsinki-NLP/opus-mt-fr-en) to translate from French to English.",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Notebooks",
       "translation-transformer.ipynb"
     ]
@@ -2502,7 +2502,7 @@
     "section": "Load model",
     "text": "Load model\n\nfrom transformers import AutoTokenizer, AutoModelForSeq2SeqLM\n\nmodel_name = \"Helsinki-NLP/opus-mt-fr-en\"\ntokenizer = AutoTokenizer.from_pretrained(model_name)\nmodel = AutoModelForSeq2SeqLM.from_pretrained(model_name)\n\n\n\n\n\n\n\n\n\n\n/Users/simon/Dev/CS-394/.venv/lib/python3.13/site-packages/transformers/models/marian/tokenization_marian.py:175: UserWarning: Recommended: pip install sacremoses.\n  warnings.warn(\"Recommended: pip install sacremoses.\")",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Notebooks",
       "translation-transformer.ipynb"
     ]
@@ -2514,7 +2514,7 @@
     "section": "Tokenize",
     "text": "Tokenize\n\nfrench_text = \"Bonjour, comment allez-vous?\"\ninput_ids = tokenizer.encode(french_text, return_tensors=\"pt\")\nprint(input_ids[0])\nprint(\"Tokens:\", tokenizer.convert_ids_to_tokens(input_ids[0]))\n\ntensor([8703,    2, 1027, 5682,   21,  682,   54,    0])\nTokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&gt;']\n\n\n\n# @title Demonstrate contextual vectors using the encoder\n\n# French: \"Bonjour , comment allez  - vous  ?\"\n#          ↓       ↓    ↓      ↓    ↓  ↓    ↓\n# Encoder: [v1]   [v2] [v3]  [v4] [v5][v6][v7]  ← 7 vectors, each 512-dim\n#          └─────────────────────────────────┘\n\nencoder = model.get_encoder()\nencoder_output = encoder(input_ids)\nprint(\"Encoder output shape:\", encoder_output.last_hidden_state.shape)\nprint(\"Encoder output:\", encoder_output)\n\nEncoder output shape: torch.Size([1, 8, 512])\nEncoder output: BaseModelOutput(last_hidden_state=tensor([[[-0.3943,  0.4660,  0.0190,  ..., -0.5069,  0.2120, -0.3190],\n         [ 0.0957,  0.0780,  0.1918,  ..., -0.0854,  0.2138,  0.1528],\n         [-0.6160,  0.0295,  0.1918,  ..., -0.3886,  0.0770,  0.2311],\n         ...,\n         [-0.1839, -0.3798,  0.1832,  ..., -0.0041, -0.3633, -0.5455],\n         [ 0.0153,  0.0264,  0.1122,  ...,  0.1966, -0.3027, -0.3659],\n         [-0.0484,  0.0147,  0.0078,  ..., -0.1359, -0.0295, -0.0799]]],\n       grad_fn=&lt;NativeLayerNormBackward0&gt;), hidden_states=None, attentions=None)",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Notebooks",
       "translation-transformer.ipynb"
     ]
@@ -2526,7 +2526,7 @@
     "section": "Run through tokenizer",
     "text": "Run through tokenizer\n\noutput_ids = model.generate(input_ids)\nprint(output_ids)\n\ntensor([[59513, 10537,     2,   541,    52,    55,    54,     0]])",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Notebooks",
       "translation-transformer.ipynb"
     ]
@@ -2538,7 +2538,7 @@
     "section": "Decode back to tokens to complete the translation",
     "text": "Decode back to tokens to complete the translation\n\nenglish_text = tokenizer.decode(output_ids[0], skip_special_tokens=True)\nprint(\"Translation:\", english_text)\n\nTranslation: Hello, how are you?",
     "crumbs": [
-      "**Week 1:** Foundations of Generative AI",
+      "**Module 1:** Foundations of Generative AI",
       "Notebooks",
       "translation-transformer.ipynb"
     ]
@@ -2550,7 +2550,7 @@
     "section": "(Or grab the OpenAI API key if running locally)",
     "text": "(Or grab the OpenAI API key if running locally)\n\nimport os\nfrom dotenv import load_dotenv\nload_dotenv()\n\nOPENAI_API_KEY = os.environ.get(\"OPENAI_API_KEY\")",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "chat-completion-openai.ipynb"
     ]
@@ -2562,7 +2562,7 @@
     "section": "Logging function to print the API request to the console",
     "text": "Logging function to print the API request to the console\n\nimport json\n\ndef log_request(request):\n  print(\"\\n=== REQUEST ===\")\n  print(f\"URL: {request.url}\")\n  print(f\"Method: {request.method}\")\n\n  if request.content:\n    try:\n      body = json.loads(request.content.decode('utf-8'))\n      print(\"\\nBody:\")\n      print(json.dumps(body, indent=2))\n    except:\n      print(\"\\nBody:\")\n      print(request.content.decode('utf-8'))\n  print(\"=\" * 50)",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "chat-completion-openai.ipynb"
     ]
@@ -2574,7 +2574,7 @@
     "section": "Call OpenAI via the SDK",
     "text": "Call OpenAI via the SDK\n\nimport openai\nimport httpx\n\n# Initialize the OpenAI client with event hooks\nclient = openai.OpenAI(\n    api_key=OPENAI_API_KEY,\n    http_client=httpx.Client(event_hooks={\"request\": [log_request]}),\n)\n\n\nresponse = client.chat.completions.create(\n    model=\"gpt-5\",\n    messages=[\n        {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips.\"},\n        {\"role\": \"user\", \"content\": \"Hello\"},\n        {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n        {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"},\n    ],\n)\n\n\n=== REQUEST ===\nURL: https://api.openai.com/v1/chat/completions\nMethod: POST\n\nBody:\n{\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You help travelers make plans for their trips.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Hello\"\n    },\n    {\n      \"role\": \"assistant\",\n      \"content\": \"Hi there!\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"What should I do on my upcoming trip to Paris?\"\n    }\n  ],\n  \"model\": \"gpt-5\"\n}\n==================================================\n\n\n\nprint(\"\\n=== RESPONSE ===\")\nprint(response.model_dump_json(indent=2))\n\n\n=== RESPONSE ===\n{\n  \"id\": \"chatcmpl-CuVn7EYuGJUEUEQ18Cl0SM2nNz9Mj\",\n  \"choices\": [\n    {\n      \"finish_reason\": \"stop\",\n      \"index\": 0,\n      \"logprobs\": null,\n      \"message\": {\n        \"content\": \"Awesome! I can tailor a plan, but a few quick questions help:\\n- When are you going and for how many days?\\n- First time in Paris?\\n- Main interests (art, food, fashion, history, photography, nightlife, kid-friendly, etc.) and preferred pace (relaxed vs. packed)?\\n- Any must-sees or hard no’s?\\n- Rough budget and food needs (vegetarian, kosher/halal, allergies)?\\n- Where are you staying (neighborhood) and are day trips okay (Versailles, Champagne, Giverny, Disneyland)?\\n\\nIf you want a quick starter plan, here’s a flexible 4-day outline you can reshuffle by weather and museum closures:\\n\\nDay 1 – Islands + Latin Quarter\\n- Île de la Cité: Notre-Dame exterior, Sainte-Chapelle (timed ticket), Conciergerie.\\n- Stroll the Latin Quarter: Shakespeare & Company, Sorbonne, Luxembourg Gardens.\\n- Evening: Seine cruise or sunset along the river.\\n\\nDay 2 – Louvre to Arc de Triomphe\\n- Morning: Louvre (timed entry). Tuileries and Palais-Royal gardens.\\n- Covered passages (Véronique/Grand Cerf/Jouffroy) and Opéra Garnier.\\n- Sunset view: Arc de Triomphe rooftop or Galeries Lafayette/Printemps terrace.\\n\\nDay 3 – Montmartre + Left Bank art\\n- Montmartre: Sacré-Cœur, Place du Tertre, quieter backstreets (Rue de l’Abreuvoir).\\n- Afternoon: Musée d’Orsay and/or Orangerie.\\n- Evening: Saint-Germain wine bar or jazz.\\n\\nDay 4 – Le Marais or Day Trip\\n- Marais walk: Place des Vosges, Musée Carnavalet, Picasso Museum (check hours), Jewish quarter, trendy boutiques.\\n- Optional day trip: Versailles (palace + gardens; get the timed passport ticket).\\n- Night: Eiffel Tower area (view from Trocadéro or Champ de Mars; book tower tickets if going up).\\n\\nOther great adds by interest\\n- Art/architecture: Rodin Museum; Bourse de Commerce; Fondation Louis Vuitton. Note: check Centre Pompidou’s renovation status.\\n- Food: Morning market (Aligre or Rue Cler), cheese/wine tasting, pastry crawl, bistro lunch, cooking class.\\n- Unique: Catacombs (book ahead), Père Lachaise Cemetery, Canal Saint-Martin, covered markets (Le Marché des Enfants Rouges).\\n- With kids: Jardin des Plantes (zoo + galleries), Cité des Sciences, Jardin d’Acclimatation, Parc de la Villette.\\n- Day trips: Giverny (Apr–Oct), Reims/Epernay for Champagne, Fontainebleau, Auvers-sur-Oise, Disneyland Paris.\\n\\nBook these in advance\\n- Eiffel Tower, Louvre, Sainte-Chapelle, Catacombs, Versailles, Palais Garnier tours, popular restaurants.\\n- Consider the Paris Museum Pass (2/4/6 days) if you’ll visit several museums; the Louvre still needs a timed reservation even with the pass.\\n\\nPractical tips\\n- Closures: Many museums close one day/week (e.g., Orsay Mon, some Tue). Check hours.\\n- Getting around: The Métro is fastest. Use a contactless bank card to tap in, or get a reloadable Navigo Easy. For a Monday–Sunday stay with lots of rides, a Navigo Découverte weekly pass can be good value.\\n- Dining: Reserve for dinner, especially weekends. Tipping is minimal (service included); round up or leave 5–10% for great service.\\n- Safety: Watch for pickpockets in crowded areas and on the Metro.\\n\\nShare your dates, length of stay, and interests, and I’ll turn this into a detailed day-by-day plan with mapped routes and restaurant picks near each stop.\",\n        \"refusal\": null,\n        \"role\": \"assistant\",\n        \"annotations\": [],\n        \"audio\": null,\n        \"function_call\": null,\n        \"tool_calls\": null\n      }\n    }\n  ],\n  \"created\": 1767584609,\n  \"model\": \"gpt-5-2025-08-07\",\n  \"object\": \"chat.completion\",\n  \"service_tier\": \"default\",\n  \"system_fingerprint\": null,\n  \"usage\": {\n    \"completion_tokens\": 2224,\n    \"prompt_tokens\": 44,\n    \"total_tokens\": 2268,\n    \"completion_tokens_details\": {\n      \"accepted_prediction_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"reasoning_tokens\": 1408,\n      \"rejected_prediction_tokens\": 0\n    },\n    \"prompt_tokens_details\": {\n      \"audio_tokens\": 0,\n      \"cached_tokens\": 0\n    }\n  }\n}",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "chat-completion-openai.ipynb"
     ]
@@ -2586,7 +2586,7 @@
     "section": "Install required packages",
     "text": "Install required packages\n\n!uv add gradio openai",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "gradio.ipynb"
     ]
@@ -2598,7 +2598,7 @@
     "section": "Set the OpenRouter API Key from Colab Secrets",
     "text": "Set the OpenRouter API Key from Colab Secrets\n\nfrom google.colab import userdata\nOPENROUTER_API_KEY = userdata.get('OPENROUTER_API_KEY')",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "gradio.ipynb"
     ]
@@ -2610,7 +2610,7 @@
     "section": "(Or grab the OpenRouter API key if running locally)",
     "text": "(Or grab the OpenRouter API key if running locally)\n\nimport os\nfrom dotenv import load_dotenv\nload_dotenv()\n\nOPENROUTER_API_KEY = os.environ.get(\"OPENROUTER_API_KEY\")",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "gradio.ipynb"
     ]
@@ -2622,7 +2622,7 @@
     "section": "Initialize the OpenAI client",
     "text": "Initialize the OpenAI client\n\nimport openai\n\n# Initialize OpenAI client\nclient = openai.OpenAI(\n    base_url='https://openrouter.ai/api/v1',\n    api_key=OPENROUTER_API_KEY,\n)",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "gradio.ipynb"
     ]
@@ -2634,7 +2634,7 @@
     "section": "Example 1: Basic Gradio interface",
     "text": "Example 1: Basic Gradio interface\n\nimport gradio as gr\n\ndef image_classifier(inp):\n    return {'cat': 0.3, 'dog': 0.7}\n\ndemo = gr.Interface(fn=image_classifier, inputs=\"image\", outputs=\"label\")\ndemo.launch()\n\n* Running on local URL:  http://127.0.0.1:7870\n* To create a public link, set `share=True` in `launch()`.",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "gradio.ipynb"
     ]
@@ -2646,7 +2646,7 @@
     "section": "Example 2: Basic chat interface with conversation history",
     "text": "Example 2: Basic chat interface with conversation history\n\nimport gradio as gr\n\ndef chat_with_history(message, history):\n    # Add current message\n    messages = history + [{\"role\": \"user\", \"content\": message}]\n    \n    # Get response from API\n    response = client.chat.completions.create(\n        model='openai/gpt-5.2-chat',\n        messages=messages,\n    )\n    \n    return response.choices[0].message.content\n\n# Create a chat interface\ndemo = gr.ChatInterface(\n    fn=chat_with_history,\n    title=\"Basic Chat with Conversation History\"\n)\n\ndemo.launch()\n\n* Running on local URL:  http://127.0.0.1:7871\n* To create a public link, set `share=True` in `launch()`.",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "gradio.ipynb"
     ]
@@ -2658,7 +2658,7 @@
     "section": "Example 3: Streaming chat interface",
     "text": "Example 3: Streaming chat interface\n\ndef chat_with_streaming(message, history):\n    messages = history + [{\"role\": \"user\", \"content\": message}]\n    \n    # Stream the response\n    stream = client.chat.completions.create(\n        model='openai/gpt-5.2-chat',\n        messages=messages,\n        stream=True,\n    )\n    \n    response_text = \"\"\n    for chunk in stream:\n        if chunk.choices[0].delta.content is not None:\n            token = chunk.choices[0].delta.content\n            response_text += token\n            yield response_text\n\n# Create streaming chat interface\ndemo = gr.ChatInterface(\n    fn=chat_with_streaming,\n    title=\"AI Chat with Streaming\",\n)\n\ndemo.launch()\n\n* Running on local URL:  http://127.0.0.1:7872\n* To create a public link, set `share=True` in `launch()`.",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "gradio.ipynb"
     ]
@@ -2670,7 +2670,7 @@
     "section": "Set the OpenRouter API Key from Colab Secrets",
     "text": "Set the OpenRouter API Key from Colab Secrets\n\nfrom google.colab import userdata\nOPENROUTER_API_KEY = userdata.get('OPENROUTER_API_KEY')",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "structured-outputs.ipynb"
     ]
@@ -2682,7 +2682,7 @@
     "section": "(Or grab the OpenRouter API key if running locally)",
     "text": "(Or grab the OpenRouter API key if running locally)\n\nimport os\nfrom dotenv import load_dotenv\nload_dotenv()\n\nOPENROUTER_API_KEY = os.environ.get(\"OPENROUTER_API_KEY\")",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "structured-outputs.ipynb"
     ]
@@ -2694,7 +2694,7 @@
     "section": "Create the OpenAI client with OpenRouter URL",
     "text": "Create the OpenAI client with OpenRouter URL\n\nimport openai\n\n# Initialize the OpenAI client with event hooks\nclient = openai.OpenAI(\n    base_url='https://openrouter.ai/api/v1',\n    api_key=OPENROUTER_API_KEY,\n)",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "structured-outputs.ipynb"
     ]
@@ -2706,7 +2706,7 @@
     "section": "Create the “Location” type",
     "text": "Create the “Location” type\n\nfrom pydantic import BaseModel\n\n# Define the model for a geographic location\nclass Location(BaseModel):\n  name: str\n  country: str\n  latitude: float\n  longitude: float",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "structured-outputs.ipynb"
     ]
@@ -2718,7 +2718,7 @@
     "section": "Send request with response_format set",
     "text": "Send request with response_format set\n\nMODEL = 'openai/gpt-5.2-chat' #@param [\"openai/gpt-5.2-chat\", \"anthropic/claude-sonnet-4.5\", \"google/gemini-2.5-pro\"]\n\nresponse = client.chat.completions.parse(\n    model=MODEL,\n    messages=[\n        {\"role\": \"user\", \"content\": \"What are the GPS coordinates for Paris?\"},\n    ],\n    response_format=Location\n)\n\ncompletion = response.choices[0].message\nprint(completion)\n\nParsedChatCompletionMessage[Location](content='{\"name\":\"Paris\",\"country\":\"France\",\"latitude\":48.8566,\"longitude\":2.3522}', refusal=None, role='assistant', annotations=None, audio=None, function_call=None, tool_calls=None, parsed=Location(name='Paris', country='France', latitude=48.8566, longitude=2.3522), reasoning=None)\n\n\n\n# Display the JSON repesentation\nprint(completion.content)\n\n# Display the parsed type\nprint(completion.parsed)\n\n# Pretty-print\nif completion.parsed:\n  location: Location = completion.parsed\n  print(f\"{location.name}, {location.country} has GPS coordinates of {location.latitude}, {location.longitude}\")\n\n{\"name\":\"Paris\",\"country\":\"France\",\"latitude\":48.8566,\"longitude\":2.3522}\nname='Paris' country='France' latitude=48.8566 longitude=2.3522\nParis, France has GPS coordinates of 48.8566, 2.3522",
     "crumbs": [
-      "**Week 2:** Exploring Hosted LLMs",
+      "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
       "structured-outputs.ipynb"
     ]
