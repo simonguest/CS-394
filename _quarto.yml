@@ -36,7 +36,7 @@ website:
             href: src/00/weekly-rubric.qmd
           - text: "Rubric (Final Project)"
             href: src/00/final-rubric.qmd
-      - section: "**Week 1:** Foundations of Generative AI"
+      - section: "**Module 1:** Foundations of Generative AI"
         contents:
           - text: "Slides"
             href: src/01/slides.qmd
@@ -55,7 +55,7 @@ website:
                 href: src/01/notebooks/GPT-2.ipynb
           - text: "Assignment"
             href: src/01/assignment.qmd
-      - section: "**Week 2:** Exploring Hosted LLMs"
+      - section: "**Module 2:** Exploring Hosted LLMs"
         contents:
           - text: "Slides"
             href: src/02/slides.qmd
@@ -78,7 +78,7 @@ website:
                 href: src/02/notebooks/gradio.ipynb
           - text: "Assignment"
             href: src/02/assignment.qmd
-      - section: "**Week 3:** Agents and Tools"
+      - section: "**Module 3:** Agents and Tools"
         contents:
           - text: "Slides"
             href: src/03/slides.qmd
@@ -89,7 +89,7 @@ website:
             contents:
           - text: "Assignment"
             href: src/03/assignment.qmd
-      - section: "**Week 4:** Multimedia and Multimodal Models"
+      - section: "**Module 4:** Multimedia and Multimodal Models"
         contents:
           - text: "Slides"
             href: src/04/slides.qmd
@@ -100,7 +100,7 @@ website:
             contents:
           - text: "Assignment"
             href: src/04/assignment.qmd
-      - section: "**Week 5:** Running Models on Local Hardware"
+      - section: "**Module 5:** Running Models on Local Hardware"
         contents:
           - text: "Slides"
             href: src/05/slides.qmd
@@ -111,7 +111,7 @@ website:
             contents:
           - text: "Assignment"
             href: src/05/assignment.qmd
-      - section: "**Week 6:** Increasing Model Accuracy (Part 1)"
+      - section: "**Module 6:** Increasing Model Accuracy (Part 1)"
         contents:
           - text: "Slides"
             href: src/06/slides.qmd
@@ -122,7 +122,7 @@ website:
             contents:
           - text: "Assignment"
             href: src/06/assignment.qmd
-      - section: "**Week 7:** Increasing Model Accuracy (Part 2)"
+      - section: "**Module 7:** Increasing Model Accuracy (Part 2)"
         contents:
           - text: "Slides"
             href: src/07/slides.qmd
@@ -133,7 +133,7 @@ website:
             contents:
           - text: "Assignment"
             href: src/07/assignment.qmd
-      - section: "**Week 8:** Ethics, IP, and Safety"
+      - section: "**Module 8:** Ethics, IP, and Safety"
         contents:
           - text: "Slides"
             href: src/08/slides.qmd

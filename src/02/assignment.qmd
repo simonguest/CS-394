@@ -1,5 +1,5 @@
 ---
-title: "Week 2 Assignment - Gradio Travel Planner"
+title: "Module 2 Assignment - Gradio Travel Planner"
 format: html
 execute:
   enabled: false
@@ -10,6 +10,7 @@ execute:
 
 - Gradio chat interface with streaming responses
 - System prompt that defines the AI as a travel planning expert
+- Use at least 2 different system prompts (short and long) and share observations
 - Use at least 2 different models via OpenRouter as a dropdown in Gradio. Try to pick a large (foundational model) and a much smaller open source model to compare the differences.
 
 **Deliverable: A Colab/Jupyter notebook with:**

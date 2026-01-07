@@ -1,5 +1,5 @@
 ---
-title: "Week 3: Agents and Tools"
+title: "Module 3: Agents and Tools"
 format:
   revealjs:
     slide-number: true
@@ -16,7 +16,7 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 bibliography: references.bib
 ---
 
-## Recap of Last Week's Lecture
+## Recap
 
 - Understood the evolution and licensing of models from GPT-2 through to modern day
 - Understood instruction-tuned models, how they work, and how to configure
@@ -32,9 +32,9 @@ bibliography: references.bib
 - Use the OpenAI Agents SDK to build an multi-agent system from scratch, including document indexing and retrieval
 - Understand and implement tool calls and implement using OpenAI’s function calling and via MCP
 
-# Looking Ahead to Next Week
+# Looking Ahead
 
-## Looking Ahead to Next Week
+## Looking Ahead
 
 - [This week's assignment!](https://simonguest.github.io/CS-394/src/03/assignment.html){.external target="_blank"}
 - TBD

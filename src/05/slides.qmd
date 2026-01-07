@@ -1,5 +1,5 @@
 ---
-title: "Week 5: Running Models on Local Hardware"
+title: "Module 5: Running Models on Local Hardware"
 format:
   revealjs:
     slide-number: true
@@ -16,7 +16,7 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 bibliography: references.bib
 ---
 
-## Recap of Last Week's Lecture
+## Recap
 
 - Understood the fundamentals and history of diffuser models
 - Explored and used models that demonstrate text-to-image, image-to-image, inpainting, outpainting, and ControlNet
@@ -32,9 +32,9 @@ bibliography: references.bib
 - Use llama.cpp to quantize and run an SLM on local hardware/gaming PC
 - Integrate a quantized model within Unity/Unreal/WebAssembly
 
-# Looking Ahead to Next Week
+# Looking Ahead
 
-## Looking Ahead to Next Week
+## Looking Ahead
 
 - [This week's assignment!](https://simonguest.github.io/CS-394/src/05/assignment.html){.external target="_blank"}
 - TBD

@@ -1,7 +1,7 @@
 [project]
 name = "01"
 version = "0.1.0"
-description = "Week 1 Demo Code"
+description = "Module 1 Demo Code"
 requires-python = ">=3.13"
 dependencies = [
     "ipywidgets>=8.1.8",

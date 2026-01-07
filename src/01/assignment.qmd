@@ -1,5 +1,5 @@
 ---
-title: "Week 1 Assignment - Experiment with Text Continuation Styles"
+title: "Module 1 Assignment - Experiment with Text Continuation Styles"
 format: html
 execute:
   enabled: false

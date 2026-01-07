@@ -68,9 +68,9 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 
 ## Schedule
 
-- Weeks 1 through 4
+- Modules 1 through 4
 - Feb 6 is Founders Day, so no classes
-- Weeks 5 through 8
+- Modules 5 through 8
 - Mar 9 - 13 is Spring Break
 - Weeks 9 through 14
 - Final presentations w/o Apr 20-24
@@ -85,7 +85,7 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 
 ## Grading
 
-- Weekly Assignments: 40% of grade (8 x 5%)
+- Module Assignments: 40% of grade (8 x 5%)
 - Final Project: 60% of grade
 - [Rubric for the weekly assignments](weekly-rubric.qmd){.external target="_blank"}
 - [Rubric for the final project](final-rubric.qmd){.external target="_blank"}

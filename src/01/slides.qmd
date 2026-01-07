@@ -1,5 +1,5 @@
 ---
-title: "Week 1: Foundations of Generative AI"
+title: "Module 1: Foundations of Generative AI"
 format:
   revealjs:
     slide-number: true
@@ -16,7 +16,7 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 bibliography: references.bib
 ---
 
-## Lesson Objectives
+## Module Objectives
 
 - Explore the history of vector embeddings and tokenization
 - Understand the transformer architecture at a high level
@@ -396,17 +396,16 @@ Experiment with your own phrases in the GPT-2.ipynb notebook
 - Repetition issues
 - Onwards to GPT-3 and beyond...
 
-# Looking Ahead to Next Week
+# Looking Ahead
 
-## Looking Ahead to Next Week
+## Looking Ahead
 
 - [This week's assignment!](https://simonguest.github.io/CS-394/src/01/assignment.html){.external target="_blank"}
 - New to Python?
   - [Learn Python with Jupyter](https://www.learnpythonwithjupyter.com/){.external target="_blank"}
-- Next Week's Topics
-  - Instruction-tuned models
-  - OpenAI specification
-  - Gradio for chat-based UIs
+- Instruction-tuned models
+- OpenAI specification
+- Gradio for chat-based UIs
 
 # References
 

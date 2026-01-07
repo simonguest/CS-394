@@ -1,5 +1,5 @@
 ---
-title: "Week 8: Ethics, IP, and Safety"
+title: "Module 8: Ethics, IP, and Safety"
 format:
   revealjs:
     slide-number: true
@@ -16,7 +16,7 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 bibliography: references.bib
 ---
 
-## Recap of Last Week's Lecture
+## Recap
 
 - Used generated synthetic data to fine-tune a 1B parameter model
 - Used W&B (Weights and Biases) to observe parameters during the training run
@@ -32,9 +32,9 @@ bibliography: references.bib
 - Use an evidence-based approach to explore safety implications and potential mitigations
 - Research a theme (or media claim) and author a paper confirming or challenging it
 
-# Looking Ahead to Next Week
+# Looking Ahead
 
-## Looking Ahead to Next Week
+## Looking Ahead
 
 - [This week's assignment!](https://simonguest.github.io/CS-394/src/08/assignment.html){.external target="_blank"}
 - TBD

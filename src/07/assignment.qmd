@@ -1,5 +1,5 @@
 ---
-title: "Week 7 Assignment"
+title: "Module 7 Assignment"
 ---
 
 ## Assignment

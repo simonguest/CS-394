@@ -1,5 +1,5 @@
 ---
-title: "Week 7: Increasing Model Accuracy (Part 2)"
+title: "Module 7: Increasing Model Accuracy (Part 2)"
 format:
   revealjs:
     slide-number: true
@@ -16,7 +16,7 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 bibliography: references.bib
 ---
 
-## Recap of Last Week's Lecture
+## Recap
 
 - Understood model training, dataset curation, what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy
 - Explored use cases, advantages, and disadvantages of prompt engineering
@@ -32,9 +32,9 @@ bibliography: references.bib
 - Train smaller models (270M parameters) and compare the results
 - Understand and create a model card, upload the model to Hugging Face and share
 
-# Looking Ahead to Next Week
+# Looking Ahead
 
-## Looking Ahead to Next Week
+## Looking Ahead
 
 - [This week's assignment!](https://simonguest.github.io/CS-394/src/07/assignment.html){.external target="_blank"}
 - TBD

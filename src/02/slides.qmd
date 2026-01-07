@@ -1,5 +1,5 @@
 ---
-title: "Week 2: Exploring Hosted LLMs"
+title: "Module 2: Exploring Hosted LLMs"
 format:
   revealjs:
     slide-number: true
@@ -18,7 +18,7 @@ execute:
   enabled: false
 ---
 
-## Recap of Last Week's Lecture
+## Recap
 
 - Explored the history of vector embeddings and tokenization
 - Understood the transformer architecture at a high level
@@ -504,9 +504,9 @@ Gradio Notebook
 
 Explore the three examples in gradio.ipynb. 
 
-# Looking Ahead to Next Week
+# Looking Ahead
 
-## Looking Ahead to Next Week
+## Looking Ahead
 
 - [This week's assignment!](https://simonguest.github.io/CS-394/src/02/assignment.html){.external target="_blank"}
 - Explore the world of AI Agents

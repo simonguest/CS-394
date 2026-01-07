@@ -1,5 +1,5 @@
 ---
-title: "Week 4: Multimedia and Multimodal Models"
+title: "Module 4: Multimedia and Multimodal Models"
 format:
   revealjs:
     slide-number: true
@@ -16,7 +16,7 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 bibliography: references.bib
 ---
 
-## Recap of Last Week's Lecture
+## Recap
 
 - Described the fundamental concepts behind Agents/Agentic AI
 - Explored and provided feedback on an existing multi-agent setup
@@ -32,9 +32,9 @@ bibliography: references.bib
 - Understand the fundamentals and history of Vision Encoders and VLMs
 - Implement/test a local VLM model for on-device inference
 
-# Looking Ahead to Next Week
+# Looking Ahead
 
-## Looking Ahead to Next Week
+## Looking Ahead
 
 - [This week's assignment!](https://simonguest.github.io/CS-394/src/04/assignment.html){.external target="_blank"}
 - TBD

@@ -1,5 +1,5 @@
 ---
-title: "Week 6: Increasing Model Accuracy (Part 1)"
+title: "Module 6: Increasing Model Accuracy (Part 1)"
 format:
   revealjs:
     slide-number: true
@@ -16,7 +16,7 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 bibliography: references.bib
 ---
 
-## Recap of Last Week's Lecture
+## Recap
 
 - Understood the use cases, advantages/disadvantages for running models on local hardware - desktop, web, mobile
 - Understood hardware requirements and architectures for model inference - e.g., CUDA vs. ONNX vs. MLX vs. WebGPU
@@ -32,9 +32,9 @@ bibliography: references.bib
 - Start the exploration of how to fine-tune models using LoRA (Low Ranked Adaptation)
 - Use a foundational model to generate synthetic data for fine-tuning a 1B parameter model
 
-# Looking Ahead to Next Week
+# Looking Ahead
 
-## Looking Ahead to Next Week
+## Looking Ahead
 
 - [This week's assignment!](https://simonguest.github.io/CS-394/src/06/assignment.html){.external target="_blank"}
 - TBD
