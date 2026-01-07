@@ -1,5 +1,5 @@
 ---
-title: "Rubric (Final Project)"
+title: "Rubric (Final Project CS-394)"
 format: html
 execute:
   enabled: false
