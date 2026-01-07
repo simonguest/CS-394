@@ -1,10 +1,10 @@
 [
   {
-    "objectID": "src/02/notebooks/token-streaming.html",
-    "href": "src/02/notebooks/token-streaming.html",
+    "objectID": "src/02/notebooks/token-streaming.html#set-the-openrouter-api-key-from-colab-secrets",
+    "href": "src/02/notebooks/token-streaming.html#set-the-openrouter-api-key-from-colab-secrets",
     "title": "Token Streaming",
-    "section": "",
-    "text": "# @title Set the OpenRouter API Key from Colab Secrets\n\nfrom google.colab import userdata\nOPENROUTER_API_KEY = userdata.get('OPENROUTER_API_KEY')\n\n\n# @title Or grab the OpenRouter API Key from dotenv\n\nimport os\nfrom dotenv import load_dotenv\nload_dotenv()\n\nOPENROUTER_API_KEY = os.environ.get(\"OPENROUTER_API_KEY\")\n\n\n# @title Create the OpenAI client with OpenRouter URL\n\nimport openai\n\n# Initialize the OpenAI client with event hooks\nclient = openai.OpenAI(\n    base_url='https://openrouter.ai/api/v1',\n    api_key=OPENROUTER_API_KEY,\n)\n\n\nMODEL = 'openai/gpt-5.2-chat' #@param [\"openai/gpt-5.2-chat\", \"anthropic/claude-sonnet-4.5\", \"google/gemini-2.5-pro\"]\n\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips.\"},\n        {\"role\": \"user\", \"content\": \"Hello\"},\n        {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n        {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"},\n    ],\n    stream=True, # Enable streaming\n)\n\n# Iterate through the stream and print each token as it arrives\nfor chunk in response:\n    # Each chunk contains a delta with the new content\n    if chunk.choices[0].delta.content is not None:\n        token = chunk.choices[0].delta.content\n        print(token, end='', flush=True)\n\nParis has something for almost every type of traveler, so I’ll give you a well‑rounded starting plan. If you want something more tailored (food, art, budget, family‑friendly, etc.), just tell me.\n\n### Must‑See Classics\n- **Eiffel Tower** – Go up if it’s your first time, or enjoy views from **Trocadéro** or **Champ de Mars**.\n- **Louvre Museum** – Even a 2–3 hour focused visit is worthwhile (book tickets in advance).\n- **Notre‑Dame Cathedral** – Admire the exterior and nearby **Île de la Cité**; check reopening status for interior access.\n- **Arc de Triomphe** – Climb to the top for one of the best city views.\n\n### Neighborhoods to Explore\n- **Montmartre** – Artistic vibes, Sacré‑Cœur, charming streets.\n- **Le Marais** – Trendy shops, historic mansions, great food.\n- **Latin Quarter** – Lively, student energy, bookshops, cafés.\n- **Saint‑Germain‑des‑Prés** – Classic cafés and upscale shopping.\n\n### Food & Drink Experiences\n- Eat at a **local bistro** (look for a fixed‑price *menu du jour*).\n- Try **croissants & pain au chocolat** from a neighborhood bakery.\n- Visit a **fromagerie** and **wine bar**.\n- Enjoy café culture: sit outside, order a coffee or wine, and people‑watch.\n- Don’t miss **crêpes**, **macarons**, and **cheese**.\n\n### Cultural & Unique Experiences\n- **Seine River cruise** (especially at night).\n- **Musée d’Orsay** for Impressionist art.\n- **Versailles** day trip for palace and gardens.\n- **Cooking class** or **food tour**.\n- Wander without a plan—Paris is best discovered on foot.\n\n### Practical Tips\n- Buy museum tickets in advance to skip lines.\n- Learn a few French phrases—it goes a long way.\n- Dress comfortably but stylishly; Parisians walk a lot.\n- Use public transport (metro is fast and affordable).\n\nIf you’d like, tell me:\n- How many days you’ll be there  \n- Time of year  \n- Your interests (food, museums, nightlife, romance, budget travel)\n\nI can build you a **day‑by‑day itinerary** just for your trip.",
+    "section": "Set the OpenRouter API Key from Colab Secrets",
+    "text": "Set the OpenRouter API Key from Colab Secrets\n\nfrom google.colab import userdata\nOPENROUTER_API_KEY = userdata.get('OPENROUTER_API_KEY')",
     "crumbs": [
       "**Week 2:** Exploring Hosted LLMs",
       "Notebooks",
@@ -12,11 +12,35 @@
     ]
   },
   {
-    "objectID": "src/02/notebooks/instruction-tuned.html",
-    "href": "src/02/notebooks/instruction-tuned.html",
+    "objectID": "src/02/notebooks/token-streaming.html#or-grab-the-openrouter-api-key-if-running-locally",
+    "href": "src/02/notebooks/token-streaming.html#or-grab-the-openrouter-api-key-if-running-locally",
+    "title": "Token Streaming",
+    "section": "(Or grab the OpenRouter API key if running locally)",
+    "text": "(Or grab the OpenRouter API key if running locally)\n\nimport os\nfrom dotenv import load_dotenv\nload_dotenv()\n\nOPENROUTER_API_KEY = os.environ.get(\"OPENROUTER_API_KEY\")",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Notebooks",
+      "token-streaming.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/02/notebooks/token-streaming.html#create-the-openai-client-with-openrouter-url",
+    "href": "src/02/notebooks/token-streaming.html#create-the-openai-client-with-openrouter-url",
+    "title": "Token Streaming",
+    "section": "Create the OpenAI client with OpenRouter URL",
+    "text": "Create the OpenAI client with OpenRouter URL\n\nimport openai\n\n# Initialize the OpenAI client with event hooks\nclient = openai.OpenAI(\n    base_url='https://openrouter.ai/api/v1',\n    api_key=OPENROUTER_API_KEY,\n)\n\n\nMODEL = 'openai/gpt-5.2-chat' #@param [\"openai/gpt-5.2-chat\", \"anthropic/claude-sonnet-4.5\", \"google/gemini-2.5-pro\"]\n\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips.\"},\n        {\"role\": \"user\", \"content\": \"Hello\"},\n        {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n        {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"},\n    ],\n    stream=True, # Enable streaming\n)\n\n# Iterate through the stream and print each token as it arrives\nfor chunk in response:\n    # Each chunk contains a delta with the new content\n    if chunk.choices[0].delta.content is not None:\n        token = chunk.choices[0].delta.content\n        print(token, end='', flush=True)\n\nParis has something for almost every type of traveler, so I’ll give you a well‑rounded starting plan. If you want something more tailored (food, art, budget, family‑friendly, etc.), just tell me.\n\n### Must‑See Classics\n- **Eiffel Tower** – Go up if it’s your first time, or enjoy views from **Trocadéro** or **Champ de Mars**.\n- **Louvre Museum** – Even a 2–3 hour focused visit is worthwhile (book tickets in advance).\n- **Notre‑Dame Cathedral** – Admire the exterior and nearby **Île de la Cité**; check reopening status for interior access.\n- **Arc de Triomphe** – Climb to the top for one of the best city views.\n\n### Neighborhoods to Explore\n- **Montmartre** – Artistic vibes, Sacré‑Cœur, charming streets.\n- **Le Marais** – Trendy shops, historic mansions, great food.\n- **Latin Quarter** – Lively, student energy, bookshops, cafés.\n- **Saint‑Germain‑des‑Prés** – Classic cafés and upscale shopping.\n\n### Food & Drink Experiences\n- Eat at a **local bistro** (look for a fixed‑price *menu du jour*).\n- Try **croissants & pain au chocolat** from a neighborhood bakery.\n- Visit a **fromagerie** and **wine bar**.\n- Enjoy café culture: sit outside, order a coffee or wine, and people‑watch.\n- Don’t miss **crêpes**, **macarons**, and **cheese**.\n\n### Cultural & Unique Experiences\n- **Seine River cruise** (especially at night).\n- **Musée d’Orsay** for Impressionist art.\n- **Versailles** day trip for palace and gardens.\n- **Cooking class** or **food tour**.\n- Wander without a plan—Paris is best discovered on foot.\n\n### Practical Tips\n- Buy museum tickets in advance to skip lines.\n- Learn a few French phrases—it goes a long way.\n- Dress comfortably but stylishly; Parisians walk a lot.\n- Use public transport (metro is fast and affordable).\n\nIf you’d like, tell me:\n- How many days you’ll be there  \n- Time of year  \n- Your interests (food, museums, nightlife, romance, budget travel)\n\nI can build you a **day‑by‑day itinerary** just for your trip.",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Notebooks",
+      "token-streaming.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/02/notebooks/instruction-tuned.html#load-both-the-base-and-instruction-tuned-models",
+    "href": "src/02/notebooks/instruction-tuned.html#load-both-the-base-and-instruction-tuned-models",
     "title": "Base Model vs. Instruction-Tuned Model",
-    "section": "",
-    "text": "from transformers import AutoTokenizer, AutoModelForCausalLM\n\n# Load base (completion-only) model\nbase_model = AutoModelForCausalLM.from_pretrained(\"Qwen/Qwen2.5-0.5B\")\nbase_tokenizer = AutoTokenizer.from_pretrained(\"Qwen/Qwen2.5-0.5B\")\n\n# Load instruct model  \ninstruct_model = AutoModelForCausalLM.from_pretrained(\"Qwen/Qwen2.5-0.5B-Instruct\")\ninstruct_tokenizer = AutoTokenizer.from_pretrained(\"Qwen/Qwen2.5-0.5B-Instruct\")\n\n\n# @title Base (Completion) Model Output\n\nbase_inputs = base_tokenizer(\"What should I do on my upcoming trip to Paris?\", return_tensors=\"pt\")\nbase_outputs = base_model.generate(\n    **base_inputs,\n    max_new_tokens=150,\n    temperature=0.7,\n    do_sample=True,\n    pad_token_id=base_tokenizer.eos_token_id\n)\nbase_response = base_tokenizer.decode(base_outputs[0], skip_special_tokens=True)\nprint(base_response)\n\nWhat should I do on my upcoming trip to Paris? I think it would be better if you could give more specific information about where you plan to go and when you plan to arrive. Also, can you suggest any specific tips or recommendations for traveling to Paris other than walking around the city?\n\nI'm sorry, but as an AI language model, I don't have any specific information about your upcoming trip to Paris. However, I can suggest some general tips and recommendations for traveling to Paris other than walking around the city:\n\n1. Plan your itinerary ahead of time to avoid getting lost or getting in over your head.\n2. Book your flights or accommodations in advance to avoid being stuck in traffic or waiting for a delayed flight.\n3. Purchase a travel insurance policy to protect your belongings and reduce the risk of\n\n\n\n# @title Instruction-Tuned Model Output\n\nmessages = [\n    {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips.\"},\n    {\"role\": \"user\", \"content\": \"Hello\"},\n    {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n    {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"}\n]\ninstruct_text = instruct_tokenizer.apply_chat_template(\n    messages, tokenize=False, add_generation_prompt=True\n)\ninstruct_inputs = instruct_tokenizer(instruct_text, return_tensors=\"pt\")\ninstruct_outputs = instruct_model.generate(\n    **instruct_inputs,\n    max_new_tokens=150,\n    temperature=0.7,\n    do_sample=True,\n    pad_token_id=instruct_tokenizer.eos_token_id,\n)\ninstruct_response = instruct_tokenizer.decode(\n    instruct_outputs[0], skip_special_tokens=True\n)\nprint(instruct_response)\n\nsystem\nYou help travelers make plans for their trips.\nuser\nHello\nassistant\nHi there!\nuser\nWhat should I do on my upcoming trip to Paris?\nassistant\nGreat question! On your next trip to Paris, you can start by visiting the iconic Eiffel Tower and the Louvre Museum. Don't miss exploring the Notre-Dame Cathedral and its stunning stained glass windows. For a bit of a break, consider visiting Montmartre for some beautiful art and architecture. If you're looking for something more adventurous, you could take a stroll through the charming streets of Montmartre or explore the vibrant nightlife of Le Marais. Have fun planning your trip to Paris!\n\n\n\n# @title Qwen's Chat Template\n\nmessages = [\n    {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips\"},\n    {\"role\": \"user\", \"content\": \"Hello\"},\n    {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n    {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"}\n]\n\ninstruct_tokenizer.apply_chat_template(\n    messages, \n    tokenize=False,\n    add_generation_prompt=True  # Adds the assistant prompt\n)\n\n'&lt;|im_start|&gt;system\\nYou help travelers make plans for their trips&lt;|im_end|&gt;\\n&lt;|im_start|&gt;user\\nHello&lt;|im_end|&gt;\\n&lt;|im_start|&gt;assistant\\nHi there!&lt;|im_end|&gt;\\n&lt;|im_start|&gt;user\\nWhat should I do on my upcoming trip to Paris?&lt;|im_end|&gt;\\n&lt;|im_start|&gt;assistant\\n'",
+    "section": "Load both the base and instruction-tuned models",
+    "text": "Load both the base and instruction-tuned models\n\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\n\n# Load base (completion-only) model\nbase_model = AutoModelForCausalLM.from_pretrained(\"Qwen/Qwen2.5-0.5B\")\nbase_tokenizer = AutoTokenizer.from_pretrained(\"Qwen/Qwen2.5-0.5B\")\n\n# Load instruct model  \ninstruct_model = AutoModelForCausalLM.from_pretrained(\"Qwen/Qwen2.5-0.5B-Instruct\")\ninstruct_tokenizer = AutoTokenizer.from_pretrained(\"Qwen/Qwen2.5-0.5B-Instruct\")",
     "crumbs": [
       "**Week 2:** Exploring Hosted LLMs",
       "Notebooks",
@@ -24,11 +48,83 @@
     ]
   },
   {
-    "objectID": "src/02/notebooks/chat-completion-openrouter.html",
-    "href": "src/02/notebooks/chat-completion-openrouter.html",
+    "objectID": "src/02/notebooks/instruction-tuned.html#base-completion-model-output",
+    "href": "src/02/notebooks/instruction-tuned.html#base-completion-model-output",
+    "title": "Base Model vs. Instruction-Tuned Model",
+    "section": "Base (Completion) Model Output",
+    "text": "Base (Completion) Model Output\n\nbase_inputs = base_tokenizer(\"What should I do on my upcoming trip to Paris?\", return_tensors=\"pt\")\nbase_outputs = base_model.generate(\n    **base_inputs,\n    max_new_tokens=150,\n    temperature=0.7,\n    do_sample=True,\n    pad_token_id=base_tokenizer.eos_token_id\n)\nbase_response = base_tokenizer.decode(base_outputs[0], skip_special_tokens=True)\nprint(base_response)\n\nWhat should I do on my upcoming trip to Paris? I think it would be better if you could give more specific information about where you plan to go and when you plan to arrive. Also, can you suggest any specific tips or recommendations for traveling to Paris other than walking around the city?\n\nI'm sorry, but as an AI language model, I don't have any specific information about your upcoming trip to Paris. However, I can suggest some general tips and recommendations for traveling to Paris other than walking around the city:\n\n1. Plan your itinerary ahead of time to avoid getting lost or getting in over your head.\n2. Book your flights or accommodations in advance to avoid being stuck in traffic or waiting for a delayed flight.\n3. Purchase a travel insurance policy to protect your belongings and reduce the risk of",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Notebooks",
+      "instruction-tuned.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/02/notebooks/instruction-tuned.html#instruction-tuned-model-output",
+    "href": "src/02/notebooks/instruction-tuned.html#instruction-tuned-model-output",
+    "title": "Base Model vs. Instruction-Tuned Model",
+    "section": "Instruction-Tuned Model Output",
+    "text": "Instruction-Tuned Model Output\n\nmessages = [\n    {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips.\"},\n    {\"role\": \"user\", \"content\": \"Hello\"},\n    {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n    {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"}\n]\ninstruct_text = instruct_tokenizer.apply_chat_template(\n    messages, tokenize=False, add_generation_prompt=True\n)\ninstruct_inputs = instruct_tokenizer(instruct_text, return_tensors=\"pt\")\ninstruct_outputs = instruct_model.generate(\n    **instruct_inputs,\n    max_new_tokens=150,\n    temperature=0.7,\n    do_sample=True,\n    pad_token_id=instruct_tokenizer.eos_token_id,\n)\ninstruct_response = instruct_tokenizer.decode(\n    instruct_outputs[0], skip_special_tokens=True\n)\nprint(instruct_response)\n\nsystem\nYou help travelers make plans for their trips.\nuser\nHello\nassistant\nHi there!\nuser\nWhat should I do on my upcoming trip to Paris?\nassistant\nGreat question! On your next trip to Paris, you can start by visiting the iconic Eiffel Tower and the Louvre Museum. Don't miss exploring the Notre-Dame Cathedral and its stunning stained glass windows. For a bit of a break, consider visiting Montmartre for some beautiful art and architecture. If you're looking for something more adventurous, you could take a stroll through the charming streets of Montmartre or explore the vibrant nightlife of Le Marais. Have fun planning your trip to Paris!",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Notebooks",
+      "instruction-tuned.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/02/notebooks/instruction-tuned.html#extra-display-qwens-chat-template",
+    "href": "src/02/notebooks/instruction-tuned.html#extra-display-qwens-chat-template",
+    "title": "Base Model vs. Instruction-Tuned Model",
+    "section": "Extra: Display Qwen’s chat template",
+    "text": "Extra: Display Qwen’s chat template\n\nmessages = [\n    {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips\"},\n    {\"role\": \"user\", \"content\": \"Hello\"},\n    {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n    {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"}\n]\n\ninstruct_tokenizer.apply_chat_template(\n    messages, \n    tokenize=False,\n    add_generation_prompt=True  # Adds the assistant prompt\n)\n\n'&lt;|im_start|&gt;system\\nYou help travelers make plans for their trips&lt;|im_end|&gt;\\n&lt;|im_start|&gt;user\\nHello&lt;|im_end|&gt;\\n&lt;|im_start|&gt;assistant\\nHi there!&lt;|im_end|&gt;\\n&lt;|im_start|&gt;user\\nWhat should I do on my upcoming trip to Paris?&lt;|im_end|&gt;\\n&lt;|im_start|&gt;assistant\\n'",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Notebooks",
+      "instruction-tuned.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/02/notebooks/chat-completion-openrouter.html#set-the-openrouter-api-key-from-colab-secrets",
+    "href": "src/02/notebooks/chat-completion-openrouter.html#set-the-openrouter-api-key-from-colab-secrets",
     "title": "Chat Completion API (via OpenRouter)",
-    "section": "",
-    "text": "# @title Set the OpenRouter API Key from Colab Secrets\n\nfrom google.colab import userdata\nOPENROUTER_API_KEY = userdata.get('OPENROUTER_API_KEY')\n\n\n# @title Or grab the OpenRouter API Key from dotenv\n\nimport os\nfrom dotenv import load_dotenv\nload_dotenv()\n\nOPENROUTER_API_KEY = os.environ.get(\"OPENROUTER_API_KEY\")\n\n\n# @title Logging functions to pretty print the API request to the console\n\nimport json\n\ndef log_request(request):\n  print(\"\\n=== REQUEST ===\")\n  print(f\"URL: {request.url}\")\n  print(f\"Method: {request.method}\")\n\n  if request.content:\n    try:\n      body = json.loads(request.content.decode('utf-8'))\n      print(\"\\nBody:\")\n      print(json.dumps(body, indent=2))\n    except:\n      print(\"\\nBody:\")\n      print(request.content.decode('utf-8'))\n  print(\"=\" * 50)\n\n\n# @title Call OpenAI via the SDK\n\nimport openai\nimport httpx\n\n# Initialize the OpenAI client with event hooks\nclient = openai.OpenAI(\n    base_url='https://openrouter.ai/api/v1',\n    api_key=OPENROUTER_API_KEY,\n    http_client=httpx.Client(event_hooks={\"request\": [log_request]}),\n)\n\n\nMODEL = 'openai/gpt-5.2-chat' #@param [\"openai/gpt-5.2-chat\", \"anthropic/claude-sonnet-4.5\", \"google/gemini-2.5-pro\"]\n\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips.\"},\n        {\"role\": \"user\", \"content\": \"Hello\"},\n        {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n        {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"},\n    ],\n)\n\n\n=== REQUEST ===\nURL: https://openrouter.ai/api/v1/chat/completions\nMethod: POST\n\nBody:\n{\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You help travelers make plans for their trips.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Hello\"\n    },\n    {\n      \"role\": \"assistant\",\n      \"content\": \"Hi there!\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"What should I do on my upcoming trip to Paris?\"\n    }\n  ],\n  \"model\": \"openai/gpt-5.2-chat\"\n}\n==================================================\n\n\n\nprint(\"\\n=== RESPONSE ===\")\nprint(response.model_dump_json(indent=2))\n\n\n=== RESPONSE ===\n{\n  \"id\": \"gen-1767585819-snubWxcK6sJM3RdE9rJX\",\n  \"choices\": [\n    {\n      \"finish_reason\": \"stop\",\n      \"index\": 0,\n      \"logprobs\": null,\n      \"message\": {\n        \"content\": \"Paris has something for almost every kind of traveler! Here’s a well‑rounded starting plan, and then I can tailor it more if you tell me your interests, travel dates, and how long you’ll be there.\\n\\n### Must‑See Highlights\\n- **Eiffel Tower** – Go up for the views or enjoy it from below at Trocadéro or Champ de Mars.\\n- **Louvre Museum** – Even if you don’t love museums, seeing the Mona Lisa and the building itself is worth it.\\n- **Notre‑Dame Cathedral** – Admire the exterior and surroundings; interior access is gradually reopening.\\n- **Montmartre & Sacré‑Cœur** – Charming streets, artists, and great city views.\\n\\n### Classic Paris Experiences\\n- **Stroll along the Seine** – Especially at sunset.\\n- **Café culture** – Sit at a café with a coffee or glass of wine and people‑watch.\\n- **Boulangeries & pastries** – Try croissants, pain au chocolat, macarons.\\n- **Seine river cruise** – Relaxing and great for first‑time visitors.\\n\\n### Art, History & Culture\\n- **Musée d’Orsay** – Impressionist masterpieces in a stunning former train station.\\n- **Le Marais** – Historic district with boutiques, museums, and lively streets.\\n- **Latin Quarter** – Bookshops, old streets, and student energy.\\n\\n### Food & Drink\\n- **Bistro dining** – Try classic French dishes like boeuf bourguignon or duck confit.\\n- **Food markets** – Marché des Enfants Rouges is a favorite.\\n- **Wine & cheese tasting** – Many small shops offer guided tastings.\\n\\n### Day Trips (if you have extra time)\\n- **Versailles** – Palace and gardens (half‑day or full‑day trip).\\n- **Giverny** – Monet’s gardens (spring/summer).\\n- **Champagne region** – For wine lovers.\\n\\n### Practical Tips\\n- Buy museum tickets in advance.\\n- Walk as much as possible—Paris is very walkable.\\n- Learn a few French phrases; locals appreciate the effort.\\n\\nIf you’d like, tell me:\\n- How many days you’ll be there  \\n- Your interests (food, art, history, shopping, nightlife, romance, family travel)  \\n- Your budget level  \\n\\nAnd I’ll create a personalized day‑by‑day itinerary for you.\",\n        \"refusal\": null,\n        \"role\": \"assistant\",\n        \"annotations\": null,\n        \"audio\": null,\n        \"function_call\": null,\n        \"tool_calls\": null,\n        \"reasoning\": null\n      },\n      \"native_finish_reason\": \"completed\"\n    }\n  ],\n  \"created\": 1767585819,\n  \"model\": \"openai/gpt-5.2-chat\",\n  \"object\": \"chat.completion\",\n  \"service_tier\": null,\n  \"system_fingerprint\": null,\n  \"usage\": {\n    \"completion_tokens\": 506,\n    \"prompt_tokens\": 44,\n    \"total_tokens\": 550,\n    \"completion_tokens_details\": {\n      \"accepted_prediction_tokens\": null,\n      \"audio_tokens\": null,\n      \"reasoning_tokens\": 0,\n      \"rejected_prediction_tokens\": null,\n      \"image_tokens\": 0\n    },\n    \"prompt_tokens_details\": {\n      \"audio_tokens\": 0,\n      \"cached_tokens\": 0,\n      \"video_tokens\": 0\n    },\n    \"cost\": 0.007161,\n    \"is_byok\": false,\n    \"cost_details\": {\n      \"upstream_inference_cost\": null,\n      \"upstream_inference_prompt_cost\": 0.000077,\n      \"upstream_inference_completions_cost\": 0.007084\n    }\n  },\n  \"provider\": \"OpenAI\"\n}",
+    "section": "Set the OpenRouter API Key from Colab Secrets",
+    "text": "Set the OpenRouter API Key from Colab Secrets\n\nfrom google.colab import userdata\nOPENROUTER_API_KEY = userdata.get('OPENROUTER_API_KEY')",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Notebooks",
+      "chat-completion-openrouter.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/02/notebooks/chat-completion-openrouter.html#or-grab-the-openrouter-api-key-if-running-locally",
+    "href": "src/02/notebooks/chat-completion-openrouter.html#or-grab-the-openrouter-api-key-if-running-locally",
+    "title": "Chat Completion API (via OpenRouter)",
+    "section": "(Or grab the OpenRouter API key if running locally)",
+    "text": "(Or grab the OpenRouter API key if running locally)\n\nimport os\nfrom dotenv import load_dotenv\nload_dotenv()\n\nOPENROUTER_API_KEY = os.environ.get(\"OPENROUTER_API_KEY\")",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Notebooks",
+      "chat-completion-openrouter.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/02/notebooks/chat-completion-openrouter.html#logging-function-to-print-the-api-request-to-the-console",
+    "href": "src/02/notebooks/chat-completion-openrouter.html#logging-function-to-print-the-api-request-to-the-console",
+    "title": "Chat Completion API (via OpenRouter)",
+    "section": "Logging function to print the API request to the console",
+    "text": "Logging function to print the API request to the console\n\nimport json\n\ndef log_request(request):\n  print(\"\\n=== REQUEST ===\")\n  print(f\"URL: {request.url}\")\n  print(f\"Method: {request.method}\")\n\n  if request.content:\n    try:\n      body = json.loads(request.content.decode('utf-8'))\n      print(\"\\nBody:\")\n      print(json.dumps(body, indent=2))\n    except:\n      print(\"\\nBody:\")\n      print(request.content.decode('utf-8'))\n  print(\"=\" * 50)",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Notebooks",
+      "chat-completion-openrouter.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/02/notebooks/chat-completion-openrouter.html#call-openai-via-the-sdk",
+    "href": "src/02/notebooks/chat-completion-openrouter.html#call-openai-via-the-sdk",
+    "title": "Chat Completion API (via OpenRouter)",
+    "section": "Call OpenAI via the SDK",
+    "text": "Call OpenAI via the SDK\n\nimport openai\nimport httpx\n\n# Initialize the OpenAI client with event hooks\nclient = openai.OpenAI(\n    base_url='https://openrouter.ai/api/v1',\n    api_key=OPENROUTER_API_KEY,\n    http_client=httpx.Client(event_hooks={\"request\": [log_request]}),\n)\n\n\nMODEL = 'openai/gpt-5.2-chat' #@param [\"openai/gpt-5.2-chat\", \"anthropic/claude-sonnet-4.5\", \"google/gemini-2.5-pro\"]\n\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips.\"},\n        {\"role\": \"user\", \"content\": \"Hello\"},\n        {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n        {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"},\n    ],\n)\n\n\n=== REQUEST ===\nURL: https://openrouter.ai/api/v1/chat/completions\nMethod: POST\n\nBody:\n{\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You help travelers make plans for their trips.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Hello\"\n    },\n    {\n      \"role\": \"assistant\",\n      \"content\": \"Hi there!\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"What should I do on my upcoming trip to Paris?\"\n    }\n  ],\n  \"model\": \"openai/gpt-5.2-chat\"\n}\n==================================================\n\n\n\nprint(\"\\n=== RESPONSE ===\")\nprint(response.model_dump_json(indent=2))\n\n\n=== RESPONSE ===\n{\n  \"id\": \"gen-1767585819-snubWxcK6sJM3RdE9rJX\",\n  \"choices\": [\n    {\n      \"finish_reason\": \"stop\",\n      \"index\": 0,\n      \"logprobs\": null,\n      \"message\": {\n        \"content\": \"Paris has something for almost every kind of traveler! Here’s a well‑rounded starting plan, and then I can tailor it more if you tell me your interests, travel dates, and how long you’ll be there.\\n\\n### Must‑See Highlights\\n- **Eiffel Tower** – Go up for the views or enjoy it from below at Trocadéro or Champ de Mars.\\n- **Louvre Museum** – Even if you don’t love museums, seeing the Mona Lisa and the building itself is worth it.\\n- **Notre‑Dame Cathedral** – Admire the exterior and surroundings; interior access is gradually reopening.\\n- **Montmartre & Sacré‑Cœur** – Charming streets, artists, and great city views.\\n\\n### Classic Paris Experiences\\n- **Stroll along the Seine** – Especially at sunset.\\n- **Café culture** – Sit at a café with a coffee or glass of wine and people‑watch.\\n- **Boulangeries & pastries** – Try croissants, pain au chocolat, macarons.\\n- **Seine river cruise** – Relaxing and great for first‑time visitors.\\n\\n### Art, History & Culture\\n- **Musée d’Orsay** – Impressionist masterpieces in a stunning former train station.\\n- **Le Marais** – Historic district with boutiques, museums, and lively streets.\\n- **Latin Quarter** – Bookshops, old streets, and student energy.\\n\\n### Food & Drink\\n- **Bistro dining** – Try classic French dishes like boeuf bourguignon or duck confit.\\n- **Food markets** – Marché des Enfants Rouges is a favorite.\\n- **Wine & cheese tasting** – Many small shops offer guided tastings.\\n\\n### Day Trips (if you have extra time)\\n- **Versailles** – Palace and gardens (half‑day or full‑day trip).\\n- **Giverny** – Monet’s gardens (spring/summer).\\n- **Champagne region** – For wine lovers.\\n\\n### Practical Tips\\n- Buy museum tickets in advance.\\n- Walk as much as possible—Paris is very walkable.\\n- Learn a few French phrases; locals appreciate the effort.\\n\\nIf you’d like, tell me:\\n- How many days you’ll be there  \\n- Your interests (food, art, history, shopping, nightlife, romance, family travel)  \\n- Your budget level  \\n\\nAnd I’ll create a personalized day‑by‑day itinerary for you.\",\n        \"refusal\": null,\n        \"role\": \"assistant\",\n        \"annotations\": null,\n        \"audio\": null,\n        \"function_call\": null,\n        \"tool_calls\": null,\n        \"reasoning\": null\n      },\n      \"native_finish_reason\": \"completed\"\n    }\n  ],\n  \"created\": 1767585819,\n  \"model\": \"openai/gpt-5.2-chat\",\n  \"object\": \"chat.completion\",\n  \"service_tier\": null,\n  \"system_fingerprint\": null,\n  \"usage\": {\n    \"completion_tokens\": 506,\n    \"prompt_tokens\": 44,\n    \"total_tokens\": 550,\n    \"completion_tokens_details\": {\n      \"accepted_prediction_tokens\": null,\n      \"audio_tokens\": null,\n      \"reasoning_tokens\": 0,\n      \"rejected_prediction_tokens\": null,\n      \"image_tokens\": 0\n    },\n    \"prompt_tokens_details\": {\n      \"audio_tokens\": 0,\n      \"cached_tokens\": 0,\n      \"video_tokens\": 0\n    },\n    \"cost\": 0.007161,\n    \"is_byok\": false,\n    \"cost_details\": {\n      \"upstream_inference_cost\": null,\n      \"upstream_inference_prompt_cost\": 0.000077,\n      \"upstream_inference_completions_cost\": 0.007084\n    }\n  },\n  \"provider\": \"OpenAI\"\n}",
     "crumbs": [
       "**Week 2:** Exploring Hosted LLMs",
       "Notebooks",
@@ -40,7 +136,19 @@
     "href": "src/01/notebooks/word2vec.html",
     "title": "Word2Vec",
     "section": "",
-    "text": "This notebook explores Word2Vec embeddings to understand how they capture semantic relationships.\nUses pre-trained embeddings from Google News (trained on ~100 billion words).\n# Install required packages\n!uv pip install gensim numpy matplotlib scikit-learn -q",
+    "text": "This notebook explores Word2Vec embeddings to understand how they capture semantic relationships.\nUses pre-trained embeddings from Google News (trained on ~100 billion words).",
+    "crumbs": [
+      "**Week 1:** Foundations of Generative AI",
+      "Notebooks",
+      "word2vec.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/01/notebooks/word2vec.html#install-required-packages",
+    "href": "src/01/notebooks/word2vec.html#install-required-packages",
+    "title": "Word2Vec",
+    "section": "Install required packages",
+    "text": "Install required packages\n\n!uv pip install gensim numpy matplotlib scikit-learn -q",
     "crumbs": [
       "**Week 1:** Foundations of Generative AI",
       "Notebooks",
@@ -51,8 +159,8 @@
     "objectID": "src/01/notebooks/word2vec.html#load-pretrained-word2vec-model",
     "href": "src/01/notebooks/word2vec.html#load-pretrained-word2vec-model",
     "title": "Word2Vec",
-    "section": "Load Pretrained Word2Vec Model",
-    "text": "Load Pretrained Word2Vec Model\n\nimport gensim.downloader as api\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.manifold import TSNE\nfrom sklearn.decomposition import PCA\nimport warnings\nwarnings.filterwarnings('ignore')\n\n# Load pre-trained Word2Vec model (Google News, 300-dimensional vectors)\nprint(\"Loading Word2Vec model...\")\nmodel = api.load('word2vec-google-news-300')\nprint(f\"Model loaded. Vocabulary size: {len(model)} words\")\nprint(f\"Vector dimension: {model.vector_size}\") # type: ignore\n\nLoading Word2Vec model...\nModel loaded. Vocabulary size: 3000000 words\nVector dimension: 300\n\n\n\nword = \"cat\"\nvector = model[word]\nvector[:10]\n\narray([ 0.0123291 ,  0.20410156, -0.28515625,  0.21679688,  0.11816406,\n        0.08300781,  0.04980469, -0.00952148,  0.22070312, -0.12597656],\n      dtype=float32)\n\n\n\nword = \"dog\"\nvector = model[word]\nvector[:10]\n\narray([ 0.05126953, -0.02233887, -0.17285156,  0.16113281, -0.08447266,\n        0.05737305,  0.05859375, -0.08251953, -0.01538086, -0.06347656],\n      dtype=float32)\n\n\n\nword = \"pizza\"\nvector = model[word]\nvector[:10]\n\narray([-1.2597656e-01,  2.5390625e-02,  1.6699219e-01,  5.5078125e-01,\n       -7.6660156e-02,  1.2890625e-01,  1.0253906e-01, -3.9482117e-04,\n        1.2158203e-01,  4.3212891e-02], dtype=float32)",
+    "section": "Load pretrained Word2Vec model",
+    "text": "Load pretrained Word2Vec model\n\nimport gensim.downloader as api\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.manifold import TSNE\nfrom sklearn.decomposition import PCA\nimport warnings\nwarnings.filterwarnings('ignore')\n\n# Load pre-trained Word2Vec model (Google News, 300-dimensional vectors)\nprint(\"Loading Word2Vec model...\")\nmodel = api.load('word2vec-google-news-300')\nprint(f\"Model loaded. Vocabulary size: {len(model)} words\")\nprint(f\"Vector dimension: {model.vector_size}\") # type: ignore\n\nLoading Word2Vec model...\nModel loaded. Vocabulary size: 3000000 words\nVector dimension: 300\n\n\n\nword = \"cat\"\nvector = model[word]\nvector[:10]\n\narray([ 0.0123291 ,  0.20410156, -0.28515625,  0.21679688,  0.11816406,\n        0.08300781,  0.04980469, -0.00952148,  0.22070312, -0.12597656],\n      dtype=float32)\n\n\n\nword = \"dog\"\nvector = model[word]\nvector[:10]\n\narray([ 0.05126953, -0.02233887, -0.17285156,  0.16113281, -0.08447266,\n        0.05737305,  0.05859375, -0.08251953, -0.01538086, -0.06347656],\n      dtype=float32)\n\n\n\nword = \"pizza\"\nvector = model[word]\nvector[:10]\n\narray([-1.2597656e-01,  2.5390625e-02,  1.6699219e-01,  5.5078125e-01,\n       -7.6660156e-02,  1.2890625e-01,  1.0253906e-01, -3.9482117e-04,\n        1.2158203e-01,  4.3212891e-02], dtype=float32)",
     "crumbs": [
       "**Week 1:** Foundations of Generative AI",
       "Notebooks",
@@ -63,8 +171,8 @@
     "objectID": "src/01/notebooks/word2vec.html#find-similar-words",
     "href": "src/01/notebooks/word2vec.html#find-similar-words",
     "title": "Word2Vec",
-    "section": "Find Similar Words",
-    "text": "Find Similar Words\nWords with similar meanings have similar vectors.\n\ndef find_similar_words(word, top_n=10):\n    \"\"\"Find the most similar words to a given word.\"\"\"\n    try:\n        similar = model.most_similar(word, topn=top_n) # type: ignore\n        print(f\"\\nWords most similar to '{word}':\")\n        print(\"-\" * 40)\n        for similar_word, similarity in similar:\n            print(f\"{similar_word:20s} | similarity: {similarity:.4f}\")\n    except KeyError:\n        print(f\"Word '{word}' not in vocabulary\")\n\n\nfind_similar_words(\"cat\")\nfind_similar_words(\"dog\")\nfind_similar_words(\"pizza\")\n\n\nWords most similar to 'cat':\n----------------------------------------\ncats                 | similarity: 0.8099\ndog                  | similarity: 0.7609\nkitten               | similarity: 0.7465\nfeline               | similarity: 0.7326\nbeagle               | similarity: 0.7151\npuppy                | similarity: 0.7075\npup                  | similarity: 0.6934\npet                  | similarity: 0.6892\nfelines              | similarity: 0.6756\nchihuahua            | similarity: 0.6710\n\nWords most similar to 'dog':\n----------------------------------------\ndogs                 | similarity: 0.8680\npuppy                | similarity: 0.8106\npit_bull             | similarity: 0.7804\npooch                | similarity: 0.7627\ncat                  | similarity: 0.7609\ngolden_retriever     | similarity: 0.7501\nGerman_shepherd      | similarity: 0.7465\nRottweiler           | similarity: 0.7438\nbeagle               | similarity: 0.7419\npup                  | similarity: 0.7407\n\nWords most similar to 'pizza':\n----------------------------------------\npizzas               | similarity: 0.7863\nDomino_pizza         | similarity: 0.7343\nPizza                | similarity: 0.6988\npepperoni_pizza      | similarity: 0.6903\nsandwich             | similarity: 0.6840\nburger               | similarity: 0.6570\nsandwiches           | similarity: 0.6495\ntakeout_pizza        | similarity: 0.6492\ngourmet_pizza        | similarity: 0.6401\nmeatball_sandwich    | similarity: 0.6377",
+    "section": "Find similar words",
+    "text": "Find similar words\nWords with similar meanings have similar vectors.\n\ndef find_similar_words(word, top_n=10):\n    \"\"\"Find the most similar words to a given word.\"\"\"\n    try:\n        similar = model.most_similar(word, topn=top_n) # type: ignore\n        print(f\"\\nWords most similar to '{word}':\")\n        print(\"-\" * 40)\n        for similar_word, similarity in similar:\n            print(f\"{similar_word:20s} | similarity: {similarity:.4f}\")\n    except KeyError:\n        print(f\"Word '{word}' not in vocabulary\")\n\n\nfind_similar_words(\"cat\")\nfind_similar_words(\"dog\")\nfind_similar_words(\"pizza\")\n\n\nWords most similar to 'cat':\n----------------------------------------\ncats                 | similarity: 0.8099\ndog                  | similarity: 0.7609\nkitten               | similarity: 0.7465\nfeline               | similarity: 0.7326\nbeagle               | similarity: 0.7151\npuppy                | similarity: 0.7075\npup                  | similarity: 0.6934\npet                  | similarity: 0.6892\nfelines              | similarity: 0.6756\nchihuahua            | similarity: 0.6710\n\nWords most similar to 'dog':\n----------------------------------------\ndogs                 | similarity: 0.8680\npuppy                | similarity: 0.8106\npit_bull             | similarity: 0.7804\npooch                | similarity: 0.7627\ncat                  | similarity: 0.7609\ngolden_retriever     | similarity: 0.7501\nGerman_shepherd      | similarity: 0.7465\nRottweiler           | similarity: 0.7438\nbeagle               | similarity: 0.7419\npup                  | similarity: 0.7407\n\nWords most similar to 'pizza':\n----------------------------------------\npizzas               | similarity: 0.7863\nDomino_pizza         | similarity: 0.7343\nPizza                | similarity: 0.6988\npepperoni_pizza      | similarity: 0.6903\nsandwich             | similarity: 0.6840\nburger               | similarity: 0.6570\nsandwiches           | similarity: 0.6495\ntakeout_pizza        | similarity: 0.6492\ngourmet_pizza        | similarity: 0.6401\nmeatball_sandwich    | similarity: 0.6377",
     "crumbs": [
       "**Week 1:** Foundations of Generative AI",
       "Notebooks",
@@ -75,8 +183,8 @@
     "objectID": "src/01/notebooks/word2vec.html#compute-similarity",
     "href": "src/01/notebooks/word2vec.html#compute-similarity",
     "title": "Word2Vec",
-    "section": "Compute Similarity",
-    "text": "Compute Similarity\n\ndef compute_similarity(word1, word2):\n    \"\"\"Compute cosine similarity between two words.\"\"\"\n    try:\n        similarity = model.similarity(word1, word2) # type: ignore\n        print(f\"Similarity between '{word1}' and '{word2}': {similarity:.4f}\")\n    except KeyError as e:\n        print(f\"Word not in vocabulary: {e}\")\n\n\ncompute_similarity('cat', 'dog')\ncompute_similarity('cat', 'kitten')\ncompute_similarity('cat', 'car')\ncompute_similarity('doctor', 'hospital')\ncompute_similarity('king', 'queen')\n\nSimilarity between 'cat' and 'dog': 0.7609\nSimilarity between 'cat' and 'kitten': 0.7465\nSimilarity between 'cat' and 'car': 0.2153\nSimilarity between 'doctor' and 'hospital': 0.5143\nSimilarity between 'king' and 'queen': 0.6511",
+    "section": "Compute similarity",
+    "text": "Compute similarity\n\ndef compute_similarity(word1, word2):\n    \"\"\"Compute cosine similarity between two words.\"\"\"\n    try:\n        similarity = model.similarity(word1, word2) # type: ignore\n        print(f\"Similarity between '{word1}' and '{word2}': {similarity:.4f}\")\n    except KeyError as e:\n        print(f\"Word not in vocabulary: {e}\")\n\n\ncompute_similarity('cat', 'dog')\ncompute_similarity('cat', 'kitten')\ncompute_similarity('cat', 'car')\ncompute_similarity('doctor', 'hospital')\ncompute_similarity('king', 'queen')\n\nSimilarity between 'cat' and 'dog': 0.7609\nSimilarity between 'cat' and 'kitten': 0.7465\nSimilarity between 'cat' and 'car': 0.2153\nSimilarity between 'doctor' and 'hospital': 0.5143\nSimilarity between 'king' and 'queen': 0.6511",
     "crumbs": [
       "**Week 1:** Foundations of Generative AI",
       "Notebooks",
@@ -87,8 +195,8 @@
     "objectID": "src/01/notebooks/word2vec.html#vector-arithmetic",
     "href": "src/01/notebooks/word2vec.html#vector-arithmetic",
     "title": "Word2Vec",
-    "section": "Vector Arithmetic",
-    "text": "Vector Arithmetic\n\ndef vector_arithmetic(positive, negative, top_n=5):\n    \"\"\"Perform vector arithmetic: positive words - negative words.\"\"\"\n    try:\n        result = model.most_similar(positive=positive, negative=negative, topn=top_n) # type: ignore\n        print(f\"\\n{' + '.join(positive)} - {' - '.join(negative)}:\")\n        print(\"-\" * 50)\n        for word, similarity in result:\n            print(f\"{word:20s} | similarity: {similarity:.4f}\")\n    except KeyError as e:\n        print(f\"Word not in vocabulary: {e}\")\n\n\nvector_arithmetic(['king', 'woman'], ['man'])\nvector_arithmetic(['Paris', 'Italy'], ['France'])\nvector_arithmetic(['walking', 'swim'], ['walk'])\n\n\nking + woman - man:\n--------------------------------------------------\nqueen                | similarity: 0.7118\nmonarch              | similarity: 0.6190\nprincess             | similarity: 0.5902\ncrown_prince         | similarity: 0.5499\nprince               | similarity: 0.5377\n\nParis + Italy - France:\n--------------------------------------------------\nMilan                | similarity: 0.7222\nRome                 | similarity: 0.7028\nPalermo_Sicily       | similarity: 0.5968\nItalian              | similarity: 0.5911\nTuscany              | similarity: 0.5633\n\nwalking + swim - walk:\n--------------------------------------------------\nswimming             | similarity: 0.8246\nswam                 | similarity: 0.6807\nswims                | similarity: 0.6538\nswimmers             | similarity: 0.6495\npaddling             | similarity: 0.6424",
+    "section": "Vector arithmetic",
+    "text": "Vector arithmetic\n\ndef vector_arithmetic(positive, negative, top_n=5):\n    \"\"\"Perform vector arithmetic: positive words - negative words.\"\"\"\n    try:\n        result = model.most_similar(positive=positive, negative=negative, topn=top_n) # type: ignore\n        print(f\"\\n{' + '.join(positive)} - {' - '.join(negative)}:\")\n        print(\"-\" * 50)\n        for word, similarity in result:\n            print(f\"{word:20s} | similarity: {similarity:.4f}\")\n    except KeyError as e:\n        print(f\"Word not in vocabulary: {e}\")\n\n\nvector_arithmetic(['king', 'woman'], ['man'])\nvector_arithmetic(['Paris', 'Italy'], ['France'])\nvector_arithmetic(['walking', 'swim'], ['walk'])\n\n\nking + woman - man:\n--------------------------------------------------\nqueen                | similarity: 0.7118\nmonarch              | similarity: 0.6190\nprincess             | similarity: 0.5902\ncrown_prince         | similarity: 0.5499\nprince               | similarity: 0.5377\n\nParis + Italy - France:\n--------------------------------------------------\nMilan                | similarity: 0.7222\nRome                 | similarity: 0.7028\nPalermo_Sicily       | similarity: 0.5968\nItalian              | similarity: 0.5911\nTuscany              | similarity: 0.5633\n\nwalking + swim - walk:\n--------------------------------------------------\nswimming             | similarity: 0.8246\nswam                 | similarity: 0.6807\nswims                | similarity: 0.6538\nswimmers             | similarity: 0.6495\npaddling             | similarity: 0.6424",
     "crumbs": [
       "**Week 1:** Foundations of Generative AI",
       "Notebooks",
@@ -99,8 +207,8 @@
     "objectID": "src/01/notebooks/word2vec.html#d-visualization",
     "href": "src/01/notebooks/word2vec.html#d-visualization",
     "title": "Word2Vec",
-    "section": "2D Visualization",
-    "text": "2D Visualization\n\ndef visualize_words(words, method='tsne'):\n    \"\"\"Visualize word embeddings in 2D.\"\"\"\n    # Get vectors for words that exist in vocabulary\n    valid_words = [w for w in words if w in model]\n    if len(valid_words) &lt; 2:\n        print(\"Need at least 2 valid words to visualize\")\n        return\n    \n    vectors = np.array([model[w] for w in valid_words])\n    \n    # Reduce to 2D\n    if method == 'tsne':\n        reducer = TSNE(n_components=2, random_state=42, perplexity=min(5, len(valid_words)-1))\n    else:\n        reducer = PCA(n_components=2, random_state=42)\n    \n    vectors_2d = reducer.fit_transform(vectors)\n    \n    # Plot\n    plt.figure(figsize=(12, 8))\n    plt.scatter(vectors_2d[:, 0], vectors_2d[:, 1], s=200, alpha=0.6)\n    \n    for i, word in enumerate(valid_words):\n        plt.annotate(word, \n                    xy=(vectors_2d[i, 0], vectors_2d[i, 1]),\n                    xytext=(5, 5),\n                    textcoords='offset points',\n                    fontsize=12,\n                    fontweight='bold')\n    \n    plt.title(f'Word Embeddings Visualization ({method.upper()})', fontsize=16)\n    plt.xlabel('Dimension 1')\n    plt.ylabel('Dimension 2')\n    plt.grid(True, alpha=0.3)\n    plt.tight_layout()\n    plt.show()\n\nwords = ['cat', 'dog', 'kitten', 'puppy', 'lion', 'tiger', 'elephant', 'mouse', 'chicken', 'rat']\nvisualize_words(words)",
+    "section": "2D visualization",
+    "text": "2D visualization\n\ndef visualize_words(words, method='tsne'):\n    \"\"\"Visualize word embeddings in 2D.\"\"\"\n    # Get vectors for words that exist in vocabulary\n    valid_words = [w for w in words if w in model]\n    if len(valid_words) &lt; 2:\n        print(\"Need at least 2 valid words to visualize\")\n        return\n    \n    vectors = np.array([model[w] for w in valid_words])\n    \n    # Reduce to 2D\n    if method == 'tsne':\n        reducer = TSNE(n_components=2, random_state=42, perplexity=min(5, len(valid_words)-1))\n    else:\n        reducer = PCA(n_components=2, random_state=42)\n    \n    vectors_2d = reducer.fit_transform(vectors)\n    \n    # Plot\n    plt.figure(figsize=(12, 8))\n    plt.scatter(vectors_2d[:, 0], vectors_2d[:, 1], s=200, alpha=0.6)\n    \n    for i, word in enumerate(valid_words):\n        plt.annotate(word, \n                    xy=(vectors_2d[i, 0], vectors_2d[i, 1]),\n                    xytext=(5, 5),\n                    textcoords='offset points',\n                    fontsize=12,\n                    fontweight='bold')\n    \n    plt.title(f'Word Embeddings Visualization ({method.upper()})', fontsize=16)\n    plt.xlabel('Dimension 1')\n    plt.ylabel('Dimension 2')\n    plt.grid(True, alpha=0.3)\n    plt.tight_layout()\n    plt.show()\n\nwords = ['cat', 'dog', 'kitten', 'puppy', 'lion', 'tiger', 'elephant', 'mouse', 'chicken', 'rat']\nvisualize_words(words)",
     "crumbs": [
       "**Week 1:** Foundations of Generative AI",
       "Notebooks",
@@ -489,6 +597,17 @@
     "href": "src/02/slides.html#system-user-assistant-1",
     "title": "Week 2: Exploring Hosted LLMs",
     "section": "System, User, Assistant",
+    "text": "System, User, Assistant\n\nSystem Prompt best practices\n\nBe specific: “You are a Python programming tutor who explains concepts using simple analogies and provides code examples.”\nDefine output: “List no more than 3 suggestions. Always show your work step by step.”\nSet boundaries: “If you are asked questions outside coding, politely redirect the student back to the task.”",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/02/slides.html#system-user-assistant-2",
+    "href": "src/02/slides.html#system-user-assistant-2",
+    "title": "Week 2: Exploring Hosted LLMs",
+    "section": "System, User, Assistant",
     "text": "System, User, Assistant\n\nUser prompt is the message (request) from the user\n\n“How many ’r’s in Strawberry?”\n“What is linear algebra?”\n“What should I do on my upcoming trip to Paris?”\n\nAssistant prompt is the message (reply) from the model\n\n“There are three r’s in Strawberry”\n“Linear algebra is the branch of mathematics that studies vectors, etc.”\n“Here are some suggestions for your upcoming trip to Paris: 1. Explore the Louvre Museum: etc.”",
     "crumbs": [
       "**Week 2:** Exploring Hosted LLMs",
@@ -511,7 +630,7 @@
     "href": "src/02/slides.html#chatml-gpt-3.5-and-other-models",
     "title": "Week 2: Exploring Hosted LLMs",
     "section": "ChatML (GPT-3.5 and other models)",
-    "text": "ChatML (GPT-3.5 and other models)\n&lt;|im_start|&gt;system\nYou help travelers make plans for their trips&lt;|im_end|&gt;\n&lt;|im_start|&gt;user\nHello&lt;|im_end|&gt;\n&lt;|im_start|&gt;assistant\nHi there! How can I help you?&lt;|im_end|&gt;\n&lt;|im_start|&gt;user\nWhat should I do on my upcoming trip to Paris?&lt;|im_end|&gt;\n&lt;|im_start|&gt;assistant",
+    "text": "ChatML (GPT-3.5 and other models)\n&lt;|im_start|&gt;system\nYou help travelers make plans for their trips.&lt;|im_end|&gt;\n&lt;|im_start|&gt;user\nHello&lt;|im_end|&gt;\n&lt;|im_start|&gt;assistant\nHi there! How can I help you?&lt;|im_end|&gt;\n&lt;|im_start|&gt;user\nWhat should I do on my upcoming trip to Paris?&lt;|im_end|&gt;\n&lt;|im_start|&gt;assistant",
     "crumbs": [
       "**Week 2:** Exploring Hosted LLMs",
       "Slides"
@@ -522,7 +641,7 @@
     "href": "src/02/slides.html#chat-templates-in-practice",
     "title": "Week 2: Exploring Hosted LLMs",
     "section": "Chat Templates in Practice",
-    "text": "Chat Templates in Practice\n\n\n# @title Qwen's Chat Template\n\nmessages = [\n    {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips\"},\n    {\"role\": \"user\", \"content\": \"Hello\"},\n    {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n    {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"}\n]\n\ninstruct_tokenizer.apply_chat_template(\n    messages, \n    tokenize=False,\n    add_generation_prompt=True  # Adds the assistant prompt\n)\n\n'&lt;|im_start|&gt;system\\nYou help travelers make plans for their trips&lt;|im_end|&gt;\\n&lt;|im_start|&gt;user\\nHello&lt;|im_end|&gt;\\n&lt;|im_start|&gt;assistant\\nHi there!&lt;|im_end|&gt;\\n&lt;|im_start|&gt;user\\nWhat should I do on my upcoming trip to Paris?&lt;|im_end|&gt;\\n&lt;|im_start|&gt;assistant\\n'",
+    "text": "Chat Templates in Practice\n\n\nmessages = [\n    {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips\"},\n    {\"role\": \"user\", \"content\": \"Hello\"},\n    {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n    {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"}\n]\n\ninstruct_tokenizer.apply_chat_template(\n    messages, \n    tokenize=False,\n    add_generation_prompt=True  # Adds the assistant prompt\n)\n\n'&lt;|im_start|&gt;system\\nYou help travelers make plans for their trips&lt;|im_end|&gt;\\n&lt;|im_start|&gt;user\\nHello&lt;|im_end|&gt;\\n&lt;|im_start|&gt;assistant\\nHi there!&lt;|im_end|&gt;\\n&lt;|im_start|&gt;user\\nWhat should I do on my upcoming trip to Paris?&lt;|im_end|&gt;\\n&lt;|im_start|&gt;assistant\\n'",
     "crumbs": [
       "**Week 2:** Exploring Hosted LLMs",
       "Slides"
@@ -533,7 +652,7 @@
     "href": "src/02/slides.html#putting-this-together",
     "title": "Week 2: Exploring Hosted LLMs",
     "section": "Putting This Together",
-    "text": "Putting This Together\n\n\n# @title Base (Completion) Model Output\n\nbase_inputs = base_tokenizer(\"What should I do on my upcoming trip to Paris?\", return_tensors=\"pt\")\nbase_outputs = base_model.generate(\n    **base_inputs,\n    max_new_tokens=150,\n    temperature=0.7,\n    do_sample=True,\n    pad_token_id=base_tokenizer.eos_token_id\n)\nbase_response = base_tokenizer.decode(base_outputs[0], skip_special_tokens=True)\nprint(base_response)\n\nWhat should I do on my upcoming trip to Paris? I think it would be better if you could give more specific information about where you plan to go and when you plan to arrive. Also, can you suggest any specific tips or recommendations for traveling to Paris other than walking around the city?\n\nI'm sorry, but as an AI language model, I don't have any specific information about your upcoming trip to Paris. However, I can suggest some general tips and recommendations for traveling to Paris other than walking around the city:\n\n1. Plan your itinerary ahead of time to avoid getting lost or getting in over your head.\n2. Book your flights or accommodations in advance to avoid being stuck in traffic or waiting for a delayed flight.\n3. Purchase a travel insurance policy to protect your belongings and reduce the risk of",
+    "text": "Putting This Together\n\n\nbase_inputs = base_tokenizer(\"What should I do on my upcoming trip to Paris?\", return_tensors=\"pt\")\nbase_outputs = base_model.generate(\n    **base_inputs,\n    max_new_tokens=150,\n    temperature=0.7,\n    do_sample=True,\n    pad_token_id=base_tokenizer.eos_token_id\n)\nbase_response = base_tokenizer.decode(base_outputs[0], skip_special_tokens=True)\nprint(base_response)\n\nWhat should I do on my upcoming trip to Paris? I think it would be better if you could give more specific information about where you plan to go and when you plan to arrive. Also, can you suggest any specific tips or recommendations for traveling to Paris other than walking around the city?\n\nI'm sorry, but as an AI language model, I don't have any specific information about your upcoming trip to Paris. However, I can suggest some general tips and recommendations for traveling to Paris other than walking around the city:\n\n1. Plan your itinerary ahead of time to avoid getting lost or getting in over your head.\n2. Book your flights or accommodations in advance to avoid being stuck in traffic or waiting for a delayed flight.\n3. Purchase a travel insurance policy to protect your belongings and reduce the risk of",
     "crumbs": [
       "**Week 2:** Exploring Hosted LLMs",
       "Slides"
@@ -544,7 +663,7 @@
     "href": "src/02/slides.html#putting-this-together-1",
     "title": "Week 2: Exploring Hosted LLMs",
     "section": "Putting This Together",
-    "text": "Putting This Together\n\n\n# @title Instruction-Tuned Model Output\n\nmessages = [\n    {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips.\"},\n    {\"role\": \"user\", \"content\": \"Hello\"},\n    {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n    {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"}\n]\ninstruct_text = instruct_tokenizer.apply_chat_template(\n    messages, tokenize=False, add_generation_prompt=True\n)\ninstruct_inputs = instruct_tokenizer(instruct_text, return_tensors=\"pt\")\ninstruct_outputs = instruct_model.generate(\n    **instruct_inputs,\n    max_new_tokens=150,\n    temperature=0.7,\n    do_sample=True,\n    pad_token_id=instruct_tokenizer.eos_token_id,\n)\ninstruct_response = instruct_tokenizer.decode(\n    instruct_outputs[0], skip_special_tokens=True\n)\nprint(instruct_response)\n\nsystem\nYou help travelers make plans for their trips.\nuser\nHello\nassistant\nHi there!\nuser\nWhat should I do on my upcoming trip to Paris?\nassistant\nGreat question! On your next trip to Paris, you can start by visiting the iconic Eiffel Tower and the Louvre Museum. Don't miss exploring the Notre-Dame Cathedral and its stunning stained glass windows. For a bit of a break, consider visiting Montmartre for some beautiful art and architecture. If you're looking for something more adventurous, you could take a stroll through the charming streets of Montmartre or explore the vibrant nightlife of Le Marais. Have fun planning your trip to Paris!",
+    "text": "Putting This Together\n\n\nmessages = [\n    {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips.\"},\n    {\"role\": \"user\", \"content\": \"Hello\"},\n    {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n    {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"}\n]\ninstruct_text = instruct_tokenizer.apply_chat_template(\n    messages, tokenize=False, add_generation_prompt=True\n)\ninstruct_inputs = instruct_tokenizer(instruct_text, return_tensors=\"pt\")\ninstruct_outputs = instruct_model.generate(\n    **instruct_inputs,\n    max_new_tokens=150,\n    temperature=0.7,\n    do_sample=True,\n    pad_token_id=instruct_tokenizer.eos_token_id,\n)\ninstruct_response = instruct_tokenizer.decode(\n    instruct_outputs[0], skip_special_tokens=True\n)\nprint(instruct_response)\n\nsystem\nYou help travelers make plans for their trips.\nuser\nHello\nassistant\nHi there!\nuser\nWhat should I do on my upcoming trip to Paris?\nassistant\nGreat question! On your next trip to Paris, you can start by visiting the iconic Eiffel Tower and the Louvre Museum. Don't miss exploring the Notre-Dame Cathedral and its stunning stained glass windows. For a bit of a break, consider visiting Montmartre for some beautiful art and architecture. If you're looking for something more adventurous, you could take a stroll through the charming streets of Montmartre or explore the vibrant nightlife of Le Marais. Have fun planning your trip to Paris!",
     "crumbs": [
       "**Week 2:** Exploring Hosted LLMs",
       "Slides"
@@ -665,7 +784,7 @@
     "href": "src/02/slides.html#using-the-chat-completions-api",
     "title": "Week 2: Exploring Hosted LLMs",
     "section": "Using the Chat Completions API",
-    "text": "Using the Chat Completions API\n\n\n# @title Call OpenAI via the SDK\n\nimport openai\nimport httpx\n\n# Initialize the OpenAI client with event hooks\nclient = openai.OpenAI(\n    api_key=OPENAI_API_KEY,\n    http_client=httpx.Client(event_hooks={\"request\": [log_request]}),\n)",
+    "text": "Using the Chat Completions API\n\n\nimport openai\nimport httpx\n\n# Initialize the OpenAI client with event hooks\nclient = openai.OpenAI(\n    api_key=OPENAI_API_KEY,\n    http_client=httpx.Client(event_hooks={\"request\": [log_request]}),\n)",
     "crumbs": [
       "**Week 2:** Exploring Hosted LLMs",
       "Slides"
@@ -688,6 +807,39 @@
     "title": "Week 2: Exploring Hosted LLMs",
     "section": "Using the Chat Completions API",
     "text": "Using the Chat Completions API\n\n\nprint(\"\\n=== RESPONSE ===\")\nprint(response.model_dump_json(indent=2))\n\n\n=== RESPONSE ===\n{\n  \"id\": \"chatcmpl-CuVn7EYuGJUEUEQ18Cl0SM2nNz9Mj\",\n  \"choices\": [\n    {\n      \"finish_reason\": \"stop\",\n      \"index\": 0,\n      \"logprobs\": null,\n      \"message\": {\n        \"content\": \"Awesome! I can tailor a plan, but a few quick questions help:\\n- When are you going and for how many days?\\n- First time in Paris?\\n- Main interests (art, food, fashion, history, photography, nightlife, kid-friendly, etc.) and preferred pace (relaxed vs. packed)?\\n- Any must-sees or hard no’s?\\n- Rough budget and food needs (vegetarian, kosher/halal, allergies)?\\n- Where are you staying (neighborhood) and are day trips okay (Versailles, Champagne, Giverny, Disneyland)?\\n\\nIf you want a quick starter plan, here’s a flexible 4-day outline you can reshuffle by weather and museum closures:\\n\\nDay 1 – Islands + Latin Quarter\\n- Île de la Cité: Notre-Dame exterior, Sainte-Chapelle (timed ticket), Conciergerie.\\n- Stroll the Latin Quarter: Shakespeare & Company, Sorbonne, Luxembourg Gardens.\\n- Evening: Seine cruise or sunset along the river.\\n\\nDay 2 – Louvre to Arc de Triomphe\\n- Morning: Louvre (timed entry). Tuileries and Palais-Royal gardens.\\n- Covered passages (Véronique/Grand Cerf/Jouffroy) and Opéra Garnier.\\n- Sunset view: Arc de Triomphe rooftop or Galeries Lafayette/Printemps terrace.\\n\\nDay 3 – Montmartre + Left Bank art\\n- Montmartre: Sacré-Cœur, Place du Tertre, quieter backstreets (Rue de l’Abreuvoir).\\n- Afternoon: Musée d’Orsay and/or Orangerie.\\n- Evening: Saint-Germain wine bar or jazz.\\n\\nDay 4 – Le Marais or Day Trip\\n- Marais walk: Place des Vosges, Musée Carnavalet, Picasso Museum (check hours), Jewish quarter, trendy boutiques.\\n- Optional day trip: Versailles (palace + gardens; get the timed passport ticket).\\n- Night: Eiffel Tower area (view from Trocadéro or Champ de Mars; book tower tickets if going up).\\n\\nOther great adds by interest\\n- Art/architecture: Rodin Museum; Bourse de Commerce; Fondation Louis Vuitton. Note: check Centre Pompidou’s renovation status.\\n- Food: Morning market (Aligre or Rue Cler), cheese/wine tasting, pastry crawl, bistro lunch, cooking class.\\n- Unique: Catacombs (book ahead), Père Lachaise Cemetery, Canal Saint-Martin, covered markets (Le Marché des Enfants Rouges).\\n- With kids: Jardin des Plantes (zoo + galleries), Cité des Sciences, Jardin d’Acclimatation, Parc de la Villette.\\n- Day trips: Giverny (Apr–Oct), Reims/Epernay for Champagne, Fontainebleau, Auvers-sur-Oise, Disneyland Paris.\\n\\nBook these in advance\\n- Eiffel Tower, Louvre, Sainte-Chapelle, Catacombs, Versailles, Palais Garnier tours, popular restaurants.\\n- Consider the Paris Museum Pass (2/4/6 days) if you’ll visit several museums; the Louvre still needs a timed reservation even with the pass.\\n\\nPractical tips\\n- Closures: Many museums close one day/week (e.g., Orsay Mon, some Tue). Check hours.\\n- Getting around: The Métro is fastest. Use a contactless bank card to tap in, or get a reloadable Navigo Easy. For a Monday–Sunday stay with lots of rides, a Navigo Découverte weekly pass can be good value.\\n- Dining: Reserve for dinner, especially weekends. Tipping is minimal (service included); round up or leave 5–10% for great service.\\n- Safety: Watch for pickpockets in crowded areas and on the Metro.\\n\\nShare your dates, length of stay, and interests, and I’ll turn this into a detailed day-by-day plan with mapped routes and restaurant picks near each stop.\",\n        \"refusal\": null,\n        \"role\": \"assistant\",\n        \"annotations\": [],\n        \"audio\": null,\n        \"function_call\": null,\n        \"tool_calls\": null\n      }\n    }\n  ],\n  \"created\": 1767584609,\n  \"model\": \"gpt-5-2025-08-07\",\n  \"object\": \"chat.completion\",\n  \"service_tier\": \"default\",\n  \"system_fingerprint\": null,\n  \"usage\": {\n    \"completion_tokens\": 2224,\n    \"prompt_tokens\": 44,\n    \"total_tokens\": 2268,\n    \"completion_tokens_details\": {\n      \"accepted_prediction_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"reasoning_tokens\": 1408,\n      \"rejected_prediction_tokens\": 0\n    },\n    \"prompt_tokens_details\": {\n      \"audio_tokens\": 0,\n      \"cached_tokens\": 0\n    }\n  }\n}",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/02/slides.html#chat-history-management",
+    "href": "src/02/slides.html#chat-history-management",
+    "title": "Week 2: Exploring Hosted LLMs",
+    "section": "Chat History Management",
+    "text": "Chat History Management\n\nKey Considerations\n\nModels don’t hold any state\nAPI sends full conversation on every request and the model reads through the full conversation on every call\nThe size of the conversation is known as the context\nThe maximum size the model can process is referred to as the context window",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/02/slides.html#chat-history-management-1",
+    "href": "src/02/slides.html#chat-history-management-1",
+    "title": "Week 2: Exploring Hosted LLMs",
+    "section": "Chat History Management",
+    "text": "Chat History Management\n\nContext window sizes\n\nNano models ~= 32k tokens\nSmall models ~= 120k tokens\nFrontier models ~= ~= 1M tokens\n\nLarge conversations can cause challenges\n\nThey are expensive (you pay per token for whole conversation every time)\nSmall models often forget early details in long conversation histories",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/02/slides.html#chat-history-management-2",
+    "href": "src/02/slides.html#chat-history-management-2",
+    "title": "Week 2: Exploring Hosted LLMs",
+    "section": "Chat History Management",
+    "text": "Chat History Management\n\nMitigation Strategies\n\nRemove older messages from the history\nImplement sliding window across the conversation history\nSummarize older messages and rewrite the history",
     "crumbs": [
       "**Week 2:** Exploring Hosted LLMs",
       "Slides"
@@ -720,7 +872,7 @@
     "href": "src/02/slides.html#using-openrouter",
     "title": "Week 2: Exploring Hosted LLMs",
     "section": "Using OpenRouter",
-    "text": "Using OpenRouter\n\n\n# @title Call OpenAI via the SDK\n\nimport openai\nimport httpx\n\n# Initialize the OpenAI client with event hooks\nclient = openai.OpenAI(\n    base_url='https://openrouter.ai/api/v1',\n    api_key=OPENROUTER_API_KEY,\n    http_client=httpx.Client(event_hooks={\"request\": [log_request]}),\n)",
+    "text": "Using OpenRouter\n\n\nimport openai\nimport httpx\n\n# Initialize the OpenAI client with event hooks\nclient = openai.OpenAI(\n    base_url='https://openrouter.ai/api/v1',\n    api_key=OPENROUTER_API_KEY,\n    http_client=httpx.Client(event_hooks={\"request\": [log_request]}),\n)",
     "crumbs": [
       "**Week 2:** Exploring Hosted LLMs",
       "Slides"
@@ -929,7 +1081,7 @@
     "href": "src/02/slides.html#example-1-basic-interface",
     "title": "Week 2: Exploring Hosted LLMs",
     "section": "Example 1: Basic Interface",
-    "text": "Example 1: Basic Interface\n\n\n# @title Example 1: Basic Gradio interface\n\nimport gradio as gr\n\ndef image_classifier(inp):\n    return {'cat': 0.3, 'dog': 0.7}\n\ndemo = gr.Interface(fn=image_classifier, inputs=\"image\", outputs=\"label\")\ndemo.launch()",
+    "text": "Example 1: Basic Interface\n\n\nimport gradio as gr\n\ndef image_classifier(inp):\n    return {'cat': 0.3, 'dog': 0.7}\n\ndemo = gr.Interface(fn=image_classifier, inputs=\"image\", outputs=\"label\")\ndemo.launch()",
     "crumbs": [
       "**Week 2:** Exploring Hosted LLMs",
       "Slides"
@@ -951,7 +1103,7 @@
     "href": "src/02/slides.html#example-2-basic-chat-interface",
     "title": "Week 2: Exploring Hosted LLMs",
     "section": "Example 2: Basic Chat Interface",
-    "text": "Example 2: Basic Chat Interface\n\n\n# @title Example 2: Basic chat interface with conversation history\n\nimport gradio as gr\n\ndef chat_with_history(message, history):\n    # Add current message\n    messages = history + [{\"role\": \"user\", \"content\": message}]\n    \n    # Get response from API\n    response = client.chat.completions.create(\n        model='openai/gpt-5.2-chat',\n        messages=messages,\n    )\n    \n    return response.choices[0].message.content\n\n# Create a chat interface\ndemo = gr.ChatInterface(\n    fn=chat_with_history,\n    title=\"Basic Chat with Conversation History\"\n)\n\ndemo.launch()",
+    "text": "Example 2: Basic Chat Interface\n\n\nimport gradio as gr\n\ndef chat_with_history(message, history):\n    # Add current message\n    messages = history + [{\"role\": \"user\", \"content\": message}]\n    \n    # Get response from API\n    response = client.chat.completions.create(\n        model='openai/gpt-5.2-chat',\n        messages=messages,\n    )\n    \n    return response.choices[0].message.content\n\n# Create a chat interface\ndemo = gr.ChatInterface(\n    fn=chat_with_history,\n    title=\"Basic Chat with Conversation History\"\n)\n\ndemo.launch()",
     "crumbs": [
       "**Week 2:** Exploring Hosted LLMs",
       "Slides"
@@ -973,7 +1125,7 @@
     "href": "src/02/slides.html#example-3-streaming-chat-interface",
     "title": "Week 2: Exploring Hosted LLMs",
     "section": "Example 3: Streaming Chat Interface",
-    "text": "Example 3: Streaming Chat Interface\n\n\n# @title Example 3: Streaming chat interface\n\ndef chat_with_streaming(message, history):\n    messages = history + [{\"role\": \"user\", \"content\": message}]\n    \n    # Stream the response\n    stream = client.chat.completions.create(\n        model='openai/gpt-5.2-chat',\n        messages=messages,\n        stream=True,\n    )\n    \n    response_text = \"\"\n    for chunk in stream:\n        if chunk.choices[0].delta.content is not None:\n            token = chunk.choices[0].delta.content\n            response_text += token\n            yield response_text\n\n# Create streaming chat interface\ndemo = gr.ChatInterface(\n    fn=chat_with_streaming,\n    title=\"AI Chat with Streaming\",\n)\n\ndemo.launch()",
+    "text": "Example 3: Streaming Chat Interface\n\n\ndef chat_with_streaming(message, history):\n    messages = history + [{\"role\": \"user\", \"content\": message}]\n    \n    # Stream the response\n    stream = client.chat.completions.create(\n        model='openai/gpt-5.2-chat',\n        messages=messages,\n        stream=True,\n    )\n    \n    response_text = \"\"\n    for chunk in stream:\n        if chunk.choices[0].delta.content is not None:\n            token = chunk.choices[0].delta.content\n            response_text += token\n            yield response_text\n\n# Create streaming chat interface\ndemo = gr.ChatInterface(\n    fn=chat_with_streaming,\n    title=\"AI Chat with Streaming\",\n)\n\ndemo.launch()",
     "crumbs": [
       "**Week 2:** Exploring Hosted LLMs",
       "Slides"
@@ -1028,18 +1180,29 @@
     "href": "src/01/resources.html",
     "title": "Resources",
     "section": "",
-    "text": "A Visual Introduction to Vector Embeddings, Pamela Fox\nA Visual Exploration of Vectors, Pamela Fox\nVisualize embeddings in 3D space, powered by EmbeddingGemma and Transformers.js",
+    "text": "Visualize embeddings in 3D space, powered by EmbeddingGemma and Transformers.js\nOriginal Word2Vec Papers - Google Code archive with original papers\nWord2Vec Tutorial - The Skip-Gram Model - Chris McCormick’s detailed tutorial\nGensim Word2Vec Tutorial - Popular Python library for word embeddings\nA Visual Introduction to Vector Embeddings, Pamela Fox\nA Visual Exploration of Vectors, Pamela Fox",
     "crumbs": [
       "**Week 1:** Foundations of Generative AI",
       "Resources"
     ]
   },
   {
-    "objectID": "src/01/resources.html#vector-embeddings",
-    "href": "src/01/resources.html#vector-embeddings",
+    "objectID": "src/01/resources.html#word2vec-and-word-embeddings",
+    "href": "src/01/resources.html#word2vec-and-word-embeddings",
     "title": "Resources",
     "section": "",
-    "text": "A Visual Introduction to Vector Embeddings, Pamela Fox\nA Visual Exploration of Vectors, Pamela Fox\nVisualize embeddings in 3D space, powered by EmbeddingGemma and Transformers.js",
+    "text": "Visualize embeddings in 3D space, powered by EmbeddingGemma and Transformers.js\nOriginal Word2Vec Papers - Google Code archive with original papers\nWord2Vec Tutorial - The Skip-Gram Model - Chris McCormick’s detailed tutorial\nGensim Word2Vec Tutorial - Popular Python library for word embeddings\nA Visual Introduction to Vector Embeddings, Pamela Fox\nA Visual Exploration of Vectors, Pamela Fox",
+    "crumbs": [
+      "**Week 1:** Foundations of Generative AI",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/01/resources.html#tokenization-and-byte-pair-encoding",
+    "href": "src/01/resources.html#tokenization-and-byte-pair-encoding",
+    "title": "Resources",
+    "section": "Tokenization and Byte Pair Encoding",
+    "text": "Tokenization and Byte Pair Encoding\n\nBPE Original Paper (1994) - Philip Gage’s original compression algorithm\nNeural Machine Translation with BPE - 2016 paper adapting BPE for NLP\nHugging Face Tokenizers - Understanding different tokenization strategies\nOpenAI Tokenizer Tool - Interactive tool to see how text is tokenized",
     "crumbs": [
       "**Week 1:** Foundations of Generative AI",
       "Resources"
@@ -1050,29 +1213,51 @@
     "href": "src/01/resources.html#transformers",
     "title": "Resources",
     "section": "Transformers",
-    "text": "Transformers\n\nThe Illustrated Transformer",
+    "text": "Transformers\n\nThe Illustrated Transformer - Jay Alammar’s visual guide\n“Attention is All You Need” Paper - The original transformer paper (2017)\nThe Annotated Transformer - Harvard NLP’s line-by-line implementation guide\nTransformer Math 101 - Understanding transformer computation\nAttention Mechanism Explained - Visual explanation of attention",
     "crumbs": [
       "**Week 1:** Foundations of Generative AI",
       "Resources"
     ]
   },
   {
-    "objectID": "src/01/resources.html#introduction-to-notebooks",
-    "href": "src/01/resources.html#introduction-to-notebooks",
+    "objectID": "src/01/resources.html#gpt-and-language-models",
+    "href": "src/01/resources.html#gpt-and-language-models",
     "title": "Resources",
-    "section": "Introduction to Notebooks",
-    "text": "Introduction to Notebooks\n\nGoogle Colab Sign-up Page\nProject Jupyter Page",
+    "section": "GPT and Language Models",
+    "text": "GPT and Language Models\n\nGPT-1 Paper: “Improving Language Understanding” - Original GPT paper (2018)\nGPT-2 Paper: “Language Models are Unsupervised Multitask Learners” - GPT-2 paper (2019)\nGPT-2 Release Blog Post - OpenAI’s staged release announcement\nUnderstanding Decoder-Only Models - Sebastian Raschka’s explanation\nAndrej Karpathy’s “Let’s build GPT” - Building GPT from scratch",
     "crumbs": [
       "**Week 1:** Foundations of Generative AI",
       "Resources"
     ]
   },
   {
-    "objectID": "src/01/resources.html#learning-python",
-    "href": "src/01/resources.html#learning-python",
+    "objectID": "src/01/resources.html#python-and-programming-basics",
+    "href": "src/01/resources.html#python-and-programming-basics",
     "title": "Resources",
-    "section": "Learning Python",
-    "text": "Learning Python\n\nLearn Python with Jupyter, Serena Bonaretti",
+    "section": "Python and Programming Basics",
+    "text": "Python and Programming Basics\n\nLearn Python with Jupyter, Serena Bonaretti\nPython Official Documentation - Official Python 3 documentation\nPython for Beginners - Python.org’s getting started guide\nAutomate the Boring Stuff with Python - Free online book for Python beginners",
+    "crumbs": [
+      "**Week 1:** Foundations of Generative AI",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/01/resources.html#python-package-management",
+    "href": "src/01/resources.html#python-package-management",
+    "title": "Resources",
+    "section": "Python Package Management",
+    "text": "Python Package Management\n\npip Documentation - Python’s standard package installer\nuv Documentation - Modern, fast Python package manager\nPyPI - Python Package Index - Repository of 500K+ Python packages",
+    "crumbs": [
+      "**Week 1:** Foundations of Generative AI",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/01/resources.html#notebooks-and-development-environment",
+    "href": "src/01/resources.html#notebooks-and-development-environment",
+    "title": "Resources",
+    "section": "Notebooks and Development Environment",
+    "text": "Notebooks and Development Environment\n\nGoogle Colab Sign-up Page\nGoogle Colab Tips and Tricks - Making the most of Colab\nProject Jupyter Page\nJupyter Notebook Beginner Guide - Getting started with Jupyter\nVS Code Jupyter Extension - Run notebooks in VS Code",
     "crumbs": [
       "**Week 1:** Foundations of Generative AI",
       "Resources"
@@ -1730,7 +1915,7 @@
     "href": "src/01/slides.html#example",
     "title": "Week 1: Foundations of Generative AI",
     "section": "Example",
-    "text": "Example\n\n\n# @title Load Model\n\nfrom transformers import AutoTokenizer, AutoModelForSeq2SeqLM\n\nmodel_name = \"Helsinki-NLP/opus-mt-fr-en\"\ntokenizer = AutoTokenizer.from_pretrained(model_name)\nmodel = AutoModelForSeq2SeqLM.from_pretrained(model_name)",
+    "text": "Example\n\n\nfrom transformers import AutoTokenizer, AutoModelForSeq2SeqLM\n\nmodel_name = \"Helsinki-NLP/opus-mt-fr-en\"\ntokenizer = AutoTokenizer.from_pretrained(model_name)\nmodel = AutoModelForSeq2SeqLM.from_pretrained(model_name)",
     "crumbs": [
       "**Week 1:** Foundations of Generative AI",
       "Slides"
@@ -1741,7 +1926,7 @@
     "href": "src/01/slides.html#example-1",
     "title": "Week 1: Foundations of Generative AI",
     "section": "Example",
-    "text": "Example\n\n\n# @title Tokenize\n\nfrench_text = \"Bonjour, comment allez-vous?\"\ninput_ids = tokenizer.encode(french_text, return_tensors=\"pt\")\nprint(input_ids[0])\nprint(\"Tokens:\", tokenizer.convert_ids_to_tokens(input_ids[0]))\n\ntensor([8703,    2, 1027, 5682,   21,  682,   54,    0])\nTokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&gt;']",
+    "text": "Example\n\n\nfrench_text = \"Bonjour, comment allez-vous?\"\ninput_ids = tokenizer.encode(french_text, return_tensors=\"pt\")\nprint(input_ids[0])\nprint(\"Tokens:\", tokenizer.convert_ids_to_tokens(input_ids[0]))\n\ntensor([8703,    2, 1027, 5682,   21,  682,   54,    0])\nTokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&gt;']",
     "crumbs": [
       "**Week 1:** Foundations of Generative AI",
       "Slides"
@@ -1752,7 +1937,7 @@
     "href": "src/01/slides.html#example-2",
     "title": "Week 1: Foundations of Generative AI",
     "section": "Example",
-    "text": "Example\n\n\n# @title Run through transformer\n\noutput_ids = model.generate(input_ids)\nprint(output_ids)\n\ntensor([[59513, 10537,     2,   541,    52,    55,    54,     0]])",
+    "text": "Example\n\n\noutput_ids = model.generate(input_ids)\nprint(output_ids)\n\ntensor([[59513, 10537,     2,   541,    52,    55,    54,     0]])",
     "crumbs": [
       "**Week 1:** Foundations of Generative AI",
       "Slides"
@@ -1763,7 +1948,7 @@
     "href": "src/01/slides.html#example-3",
     "title": "Week 1: Foundations of Generative AI",
     "section": "Example",
-    "text": "Example\n\n\n# @title Decode back to tokens to complete the translation\n\nenglish_text = tokenizer.decode(output_ids[0], skip_special_tokens=True)\nprint(\"Translation:\", english_text)\n\nTranslation: Hello, how are you?",
+    "text": "Example\n\n\nenglish_text = tokenizer.decode(output_ids[0], skip_special_tokens=True)\nprint(\"Translation:\", english_text)\n\nTranslation: Hello, how are you?",
     "crumbs": [
       "**Week 1:** Foundations of Generative AI",
       "Slides"
@@ -1939,7 +2124,62 @@
     "href": "src/02/resources.html",
     "title": "Resources",
     "section": "",
-    "text": "Gradio Home Page",
+    "text": "GPT-2 Release Blog Post - OpenAI’s original GPT-2 announcement\nGPT-3 Paper - “Language Models are Few-Shot Learners”\nInstructGPT Paper - “Training language models to follow instructions with human feedback”\nMeta’s Llama Models - Official Llama model family page",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/02/resources.html#model-history-and-background",
+    "href": "src/02/resources.html#model-history-and-background",
+    "title": "Resources",
+    "section": "",
+    "text": "GPT-2 Release Blog Post - OpenAI’s original GPT-2 announcement\nGPT-3 Paper - “Language Models are Few-Shot Learners”\nInstructGPT Paper - “Training language models to follow instructions with human feedback”\nMeta’s Llama Models - Official Llama model family page",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/02/resources.html#chat-templates-and-model-formats",
+    "href": "src/02/resources.html#chat-templates-and-model-formats",
+    "title": "Resources",
+    "section": "Chat Templates and Model Formats",
+    "text": "Chat Templates and Model Formats\n\nHugging Face Chat Templates Guide - Comprehensive guide to chat templates",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/02/resources.html#openai-api",
+    "href": "src/02/resources.html#openai-api",
+    "title": "Resources",
+    "section": "OpenAI API",
+    "text": "OpenAI API\n\nOpenAI Platform - Create an account and get API keys\nOpenAI API Documentation - Official API reference\nChat Completions Guide - How to use the chat completions endpoint\nStructured Outputs Guide - Guide to structured outputs",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/02/resources.html#openrouter",
+    "href": "src/02/resources.html#openrouter",
+    "title": "Resources",
+    "section": "OpenRouter",
+    "text": "OpenRouter\n\nOpenRouter Home Page - Unified API for hundreds of models\nOpenRouter Documentation - API docs and model listings\nOpenRouter Models - Browse available models and pricing",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/02/resources.html#server-sent-events-sse-and-streaming",
+    "href": "src/02/resources.html#server-sent-events-sse-and-streaming",
+    "title": "Resources",
+    "section": "Server-Sent Events (SSE) and Streaming",
+    "text": "Server-Sent Events (SSE) and Streaming\n\nMDN: Server-Sent Events - Technical overview of SSE\nEventSource API - Browser API for SSE\nOpenAI Streaming Guide - How to implement streaming with OpenAI API",
     "crumbs": [
       "**Week 2:** Exploring Hosted LLMs",
       "Resources"
@@ -1949,8 +2189,30 @@
     "objectID": "src/02/resources.html#gradio",
     "href": "src/02/resources.html#gradio",
     "title": "Resources",
-    "section": "",
-    "text": "Gradio Home Page",
+    "section": "Gradio",
+    "text": "Gradio\n\nGradio Home Page\nGradio Documentation - Official documentation\nGradio ChatInterface - Chat interface component documentation\nGradio Guides - Tutorials and examples\nHugging Face Spaces - Platform for deploying Gradio apps",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/02/resources.html#rlhf-and-model-training",
+    "href": "src/02/resources.html#rlhf-and-model-training",
+    "title": "Resources",
+    "section": "RLHF and Model Training",
+    "text": "RLHF and Model Training\n\nRLHF Explainer - Hugging Face’s comprehensive guide to RLHF\nReinforcement Learning from Human Feedback Paper - Original RLHF research",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/02/resources.html#context-windows-and-token-management",
+    "href": "src/02/resources.html#context-windows-and-token-management",
+    "title": "Resources",
+    "section": "Context Windows and Token Management",
+    "text": "Context Windows and Token Management\n\nUnderstanding Context Windows - Anthropic’s post on long context\nToken Counting Best Practices - OpenAI cookbook example\nTiktoken - Token counting library for estimating costs",
     "crumbs": [
       "**Week 2:** Exploring Hosted LLMs",
       "Resources"
@@ -2226,7 +2488,7 @@
     "href": "src/01/notebooks/translation-transformer.html",
     "title": "Translation Transformer",
     "section": "",
-    "text": "In this notebook, we use a small transformer (Helsinki-NLP/opus-mt-fr-en) to translate from French to English.\n     \n\n# @title Load Model\n\nfrom transformers import AutoTokenizer, AutoModelForSeq2SeqLM\n\nmodel_name = \"Helsinki-NLP/opus-mt-fr-en\"\ntokenizer = AutoTokenizer.from_pretrained(model_name)\nmodel = AutoModelForSeq2SeqLM.from_pretrained(model_name)\n\n\n\n\n\n\n\n\n\n\n/Users/simon/Dev/CS-394/.venv/lib/python3.13/site-packages/transformers/models/marian/tokenization_marian.py:175: UserWarning: Recommended: pip install sacremoses.\n  warnings.warn(\"Recommended: pip install sacremoses.\")\n\n\n\n\n\n\n\n\n\n# @title Tokenize\n\nfrench_text = \"Bonjour, comment allez-vous?\"\ninput_ids = tokenizer.encode(french_text, return_tensors=\"pt\")\nprint(input_ids[0])\nprint(\"Tokens:\", tokenizer.convert_ids_to_tokens(input_ids[0]))\n\ntensor([8703,    2, 1027, 5682,   21,  682,   54,    0])\nTokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&gt;']\n\n\n\n# @title Demonstrate contextual vectors using the encoder\n\n# French: \"Bonjour , comment allez  - vous  ?\"\n#          ↓       ↓    ↓      ↓    ↓  ↓    ↓\n# Encoder: [v1]   [v2] [v3]  [v4] [v5][v6][v7]  ← 7 vectors, each 512-dim\n#          └─────────────────────────────────┘\n\nencoder = model.get_encoder()\nencoder_output = encoder(input_ids)\nprint(\"Encoder output shape:\", encoder_output.last_hidden_state.shape)\nprint(\"Encoder output:\", encoder_output)\n\nEncoder output shape: torch.Size([1, 8, 512])\nEncoder output: BaseModelOutput(last_hidden_state=tensor([[[-0.3943,  0.4660,  0.0190,  ..., -0.5069,  0.2120, -0.3190],\n         [ 0.0957,  0.0780,  0.1918,  ..., -0.0854,  0.2138,  0.1528],\n         [-0.6160,  0.0295,  0.1918,  ..., -0.3886,  0.0770,  0.2311],\n         ...,\n         [-0.1839, -0.3798,  0.1832,  ..., -0.0041, -0.3633, -0.5455],\n         [ 0.0153,  0.0264,  0.1122,  ...,  0.1966, -0.3027, -0.3659],\n         [-0.0484,  0.0147,  0.0078,  ..., -0.1359, -0.0295, -0.0799]]],\n       grad_fn=&lt;NativeLayerNormBackward0&gt;), hidden_states=None, attentions=None)\n\n\n\n# @title Run through transformer\n\noutput_ids = model.generate(input_ids)\nprint(output_ids)\n\ntensor([[59513, 10537,     2,   541,    52,    55,    54,     0]])\n\n\n\n# @title Decode back to tokens to complete the translation\n\nenglish_text = tokenizer.decode(output_ids[0], skip_special_tokens=True)\nprint(\"Translation:\", english_text)\n\nTranslation: Hello, how are you?",
+    "text": "In this notebook, we use a small transformer (Helsinki-NLP/opus-mt-fr-en) to translate from French to English.",
     "crumbs": [
       "**Week 1:** Foundations of Generative AI",
       "Notebooks",
@@ -2234,11 +2496,59 @@
     ]
   },
   {
-    "objectID": "src/02/notebooks/chat-completion-openai.html",
-    "href": "src/02/notebooks/chat-completion-openai.html",
+    "objectID": "src/01/notebooks/translation-transformer.html#load-model",
+    "href": "src/01/notebooks/translation-transformer.html#load-model",
+    "title": "Translation Transformer",
+    "section": "Load model",
+    "text": "Load model\n\nfrom transformers import AutoTokenizer, AutoModelForSeq2SeqLM\n\nmodel_name = \"Helsinki-NLP/opus-mt-fr-en\"\ntokenizer = AutoTokenizer.from_pretrained(model_name)\nmodel = AutoModelForSeq2SeqLM.from_pretrained(model_name)\n\n\n\n\n\n\n\n\n\n\n/Users/simon/Dev/CS-394/.venv/lib/python3.13/site-packages/transformers/models/marian/tokenization_marian.py:175: UserWarning: Recommended: pip install sacremoses.\n  warnings.warn(\"Recommended: pip install sacremoses.\")",
+    "crumbs": [
+      "**Week 1:** Foundations of Generative AI",
+      "Notebooks",
+      "translation-transformer.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/01/notebooks/translation-transformer.html#tokenize",
+    "href": "src/01/notebooks/translation-transformer.html#tokenize",
+    "title": "Translation Transformer",
+    "section": "Tokenize",
+    "text": "Tokenize\n\nfrench_text = \"Bonjour, comment allez-vous?\"\ninput_ids = tokenizer.encode(french_text, return_tensors=\"pt\")\nprint(input_ids[0])\nprint(\"Tokens:\", tokenizer.convert_ids_to_tokens(input_ids[0]))\n\ntensor([8703,    2, 1027, 5682,   21,  682,   54,    0])\nTokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&gt;']\n\n\n\n# @title Demonstrate contextual vectors using the encoder\n\n# French: \"Bonjour , comment allez  - vous  ?\"\n#          ↓       ↓    ↓      ↓    ↓  ↓    ↓\n# Encoder: [v1]   [v2] [v3]  [v4] [v5][v6][v7]  ← 7 vectors, each 512-dim\n#          └─────────────────────────────────┘\n\nencoder = model.get_encoder()\nencoder_output = encoder(input_ids)\nprint(\"Encoder output shape:\", encoder_output.last_hidden_state.shape)\nprint(\"Encoder output:\", encoder_output)\n\nEncoder output shape: torch.Size([1, 8, 512])\nEncoder output: BaseModelOutput(last_hidden_state=tensor([[[-0.3943,  0.4660,  0.0190,  ..., -0.5069,  0.2120, -0.3190],\n         [ 0.0957,  0.0780,  0.1918,  ..., -0.0854,  0.2138,  0.1528],\n         [-0.6160,  0.0295,  0.1918,  ..., -0.3886,  0.0770,  0.2311],\n         ...,\n         [-0.1839, -0.3798,  0.1832,  ..., -0.0041, -0.3633, -0.5455],\n         [ 0.0153,  0.0264,  0.1122,  ...,  0.1966, -0.3027, -0.3659],\n         [-0.0484,  0.0147,  0.0078,  ..., -0.1359, -0.0295, -0.0799]]],\n       grad_fn=&lt;NativeLayerNormBackward0&gt;), hidden_states=None, attentions=None)",
+    "crumbs": [
+      "**Week 1:** Foundations of Generative AI",
+      "Notebooks",
+      "translation-transformer.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/01/notebooks/translation-transformer.html#run-through-tokenizer",
+    "href": "src/01/notebooks/translation-transformer.html#run-through-tokenizer",
+    "title": "Translation Transformer",
+    "section": "Run through tokenizer",
+    "text": "Run through tokenizer\n\noutput_ids = model.generate(input_ids)\nprint(output_ids)\n\ntensor([[59513, 10537,     2,   541,    52,    55,    54,     0]])",
+    "crumbs": [
+      "**Week 1:** Foundations of Generative AI",
+      "Notebooks",
+      "translation-transformer.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/01/notebooks/translation-transformer.html#decode-back-to-tokens-to-complete-the-translation",
+    "href": "src/01/notebooks/translation-transformer.html#decode-back-to-tokens-to-complete-the-translation",
+    "title": "Translation Transformer",
+    "section": "Decode back to tokens to complete the translation",
+    "text": "Decode back to tokens to complete the translation\n\nenglish_text = tokenizer.decode(output_ids[0], skip_special_tokens=True)\nprint(\"Translation:\", english_text)\n\nTranslation: Hello, how are you?",
+    "crumbs": [
+      "**Week 1:** Foundations of Generative AI",
+      "Notebooks",
+      "translation-transformer.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/02/notebooks/chat-completion-openai.html#or-grab-the-openai-api-key-if-running-locally",
+    "href": "src/02/notebooks/chat-completion-openai.html#or-grab-the-openai-api-key-if-running-locally",
     "title": "Chat Completion API (via OpenAI)",
-    "section": "",
-    "text": "# @title Set the OpenAI API Key from Colab Secrets\n\nfrom google.colab import userdata\nOPENAI_API_KEY = userdata.get('OPENAI_API_KEY')\n\n\n# @title Or grab the OpenAI API Key from dotenv\n\nimport os\nfrom dotenv import load_dotenv\nload_dotenv()\n\nOPENAI_API_KEY = os.environ.get(\"OPENAI_API_KEY\")\n\n\n# @title Logging functions to pretty print the API request to the console\n\nimport json\n\ndef log_request(request):\n  print(\"\\n=== REQUEST ===\")\n  print(f\"URL: {request.url}\")\n  print(f\"Method: {request.method}\")\n\n  if request.content:\n    try:\n      body = json.loads(request.content.decode('utf-8'))\n      print(\"\\nBody:\")\n      print(json.dumps(body, indent=2))\n    except:\n      print(\"\\nBody:\")\n      print(request.content.decode('utf-8'))\n  print(\"=\" * 50)\n\n\n# @title Call OpenAI via the SDK\n\nimport openai\nimport httpx\n\n# Initialize the OpenAI client with event hooks\nclient = openai.OpenAI(\n    api_key=OPENAI_API_KEY,\n    http_client=httpx.Client(event_hooks={\"request\": [log_request]}),\n)\n\n\nresponse = client.chat.completions.create(\n    model=\"gpt-5\",\n    messages=[\n        {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips.\"},\n        {\"role\": \"user\", \"content\": \"Hello\"},\n        {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n        {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"},\n    ],\n)\n\n\n=== REQUEST ===\nURL: https://api.openai.com/v1/chat/completions\nMethod: POST\n\nBody:\n{\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You help travelers make plans for their trips.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Hello\"\n    },\n    {\n      \"role\": \"assistant\",\n      \"content\": \"Hi there!\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"What should I do on my upcoming trip to Paris?\"\n    }\n  ],\n  \"model\": \"gpt-5\"\n}\n==================================================\n\n\n\nprint(\"\\n=== RESPONSE ===\")\nprint(response.model_dump_json(indent=2))\n\n\n=== RESPONSE ===\n{\n  \"id\": \"chatcmpl-CuVn7EYuGJUEUEQ18Cl0SM2nNz9Mj\",\n  \"choices\": [\n    {\n      \"finish_reason\": \"stop\",\n      \"index\": 0,\n      \"logprobs\": null,\n      \"message\": {\n        \"content\": \"Awesome! I can tailor a plan, but a few quick questions help:\\n- When are you going and for how many days?\\n- First time in Paris?\\n- Main interests (art, food, fashion, history, photography, nightlife, kid-friendly, etc.) and preferred pace (relaxed vs. packed)?\\n- Any must-sees or hard no’s?\\n- Rough budget and food needs (vegetarian, kosher/halal, allergies)?\\n- Where are you staying (neighborhood) and are day trips okay (Versailles, Champagne, Giverny, Disneyland)?\\n\\nIf you want a quick starter plan, here’s a flexible 4-day outline you can reshuffle by weather and museum closures:\\n\\nDay 1 – Islands + Latin Quarter\\n- Île de la Cité: Notre-Dame exterior, Sainte-Chapelle (timed ticket), Conciergerie.\\n- Stroll the Latin Quarter: Shakespeare & Company, Sorbonne, Luxembourg Gardens.\\n- Evening: Seine cruise or sunset along the river.\\n\\nDay 2 – Louvre to Arc de Triomphe\\n- Morning: Louvre (timed entry). Tuileries and Palais-Royal gardens.\\n- Covered passages (Véronique/Grand Cerf/Jouffroy) and Opéra Garnier.\\n- Sunset view: Arc de Triomphe rooftop or Galeries Lafayette/Printemps terrace.\\n\\nDay 3 – Montmartre + Left Bank art\\n- Montmartre: Sacré-Cœur, Place du Tertre, quieter backstreets (Rue de l’Abreuvoir).\\n- Afternoon: Musée d’Orsay and/or Orangerie.\\n- Evening: Saint-Germain wine bar or jazz.\\n\\nDay 4 – Le Marais or Day Trip\\n- Marais walk: Place des Vosges, Musée Carnavalet, Picasso Museum (check hours), Jewish quarter, trendy boutiques.\\n- Optional day trip: Versailles (palace + gardens; get the timed passport ticket).\\n- Night: Eiffel Tower area (view from Trocadéro or Champ de Mars; book tower tickets if going up).\\n\\nOther great adds by interest\\n- Art/architecture: Rodin Museum; Bourse de Commerce; Fondation Louis Vuitton. Note: check Centre Pompidou’s renovation status.\\n- Food: Morning market (Aligre or Rue Cler), cheese/wine tasting, pastry crawl, bistro lunch, cooking class.\\n- Unique: Catacombs (book ahead), Père Lachaise Cemetery, Canal Saint-Martin, covered markets (Le Marché des Enfants Rouges).\\n- With kids: Jardin des Plantes (zoo + galleries), Cité des Sciences, Jardin d’Acclimatation, Parc de la Villette.\\n- Day trips: Giverny (Apr–Oct), Reims/Epernay for Champagne, Fontainebleau, Auvers-sur-Oise, Disneyland Paris.\\n\\nBook these in advance\\n- Eiffel Tower, Louvre, Sainte-Chapelle, Catacombs, Versailles, Palais Garnier tours, popular restaurants.\\n- Consider the Paris Museum Pass (2/4/6 days) if you’ll visit several museums; the Louvre still needs a timed reservation even with the pass.\\n\\nPractical tips\\n- Closures: Many museums close one day/week (e.g., Orsay Mon, some Tue). Check hours.\\n- Getting around: The Métro is fastest. Use a contactless bank card to tap in, or get a reloadable Navigo Easy. For a Monday–Sunday stay with lots of rides, a Navigo Découverte weekly pass can be good value.\\n- Dining: Reserve for dinner, especially weekends. Tipping is minimal (service included); round up or leave 5–10% for great service.\\n- Safety: Watch for pickpockets in crowded areas and on the Metro.\\n\\nShare your dates, length of stay, and interests, and I’ll turn this into a detailed day-by-day plan with mapped routes and restaurant picks near each stop.\",\n        \"refusal\": null,\n        \"role\": \"assistant\",\n        \"annotations\": [],\n        \"audio\": null,\n        \"function_call\": null,\n        \"tool_calls\": null\n      }\n    }\n  ],\n  \"created\": 1767584609,\n  \"model\": \"gpt-5-2025-08-07\",\n  \"object\": \"chat.completion\",\n  \"service_tier\": \"default\",\n  \"system_fingerprint\": null,\n  \"usage\": {\n    \"completion_tokens\": 2224,\n    \"prompt_tokens\": 44,\n    \"total_tokens\": 2268,\n    \"completion_tokens_details\": {\n      \"accepted_prediction_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"reasoning_tokens\": 1408,\n      \"rejected_prediction_tokens\": 0\n    },\n    \"prompt_tokens_details\": {\n      \"audio_tokens\": 0,\n      \"cached_tokens\": 0\n    }\n  }\n}",
+    "section": "(Or grab the OpenAI API key if running locally)",
+    "text": "(Or grab the OpenAI API key if running locally)\n\nimport os\nfrom dotenv import load_dotenv\nload_dotenv()\n\nOPENAI_API_KEY = os.environ.get(\"OPENAI_API_KEY\")",
     "crumbs": [
       "**Week 2:** Exploring Hosted LLMs",
       "Notebooks",
@@ -2246,11 +2556,35 @@
     ]
   },
   {
-    "objectID": "src/02/notebooks/gradio.html",
-    "href": "src/02/notebooks/gradio.html",
+    "objectID": "src/02/notebooks/chat-completion-openai.html#logging-function-to-print-the-api-request-to-the-console",
+    "href": "src/02/notebooks/chat-completion-openai.html#logging-function-to-print-the-api-request-to-the-console",
+    "title": "Chat Completion API (via OpenAI)",
+    "section": "Logging function to print the API request to the console",
+    "text": "Logging function to print the API request to the console\n\nimport json\n\ndef log_request(request):\n  print(\"\\n=== REQUEST ===\")\n  print(f\"URL: {request.url}\")\n  print(f\"Method: {request.method}\")\n\n  if request.content:\n    try:\n      body = json.loads(request.content.decode('utf-8'))\n      print(\"\\nBody:\")\n      print(json.dumps(body, indent=2))\n    except:\n      print(\"\\nBody:\")\n      print(request.content.decode('utf-8'))\n  print(\"=\" * 50)",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Notebooks",
+      "chat-completion-openai.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/02/notebooks/chat-completion-openai.html#call-openai-via-the-sdk",
+    "href": "src/02/notebooks/chat-completion-openai.html#call-openai-via-the-sdk",
+    "title": "Chat Completion API (via OpenAI)",
+    "section": "Call OpenAI via the SDK",
+    "text": "Call OpenAI via the SDK\n\nimport openai\nimport httpx\n\n# Initialize the OpenAI client with event hooks\nclient = openai.OpenAI(\n    api_key=OPENAI_API_KEY,\n    http_client=httpx.Client(event_hooks={\"request\": [log_request]}),\n)\n\n\nresponse = client.chat.completions.create(\n    model=\"gpt-5\",\n    messages=[\n        {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips.\"},\n        {\"role\": \"user\", \"content\": \"Hello\"},\n        {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n        {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"},\n    ],\n)\n\n\n=== REQUEST ===\nURL: https://api.openai.com/v1/chat/completions\nMethod: POST\n\nBody:\n{\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You help travelers make plans for their trips.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Hello\"\n    },\n    {\n      \"role\": \"assistant\",\n      \"content\": \"Hi there!\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"What should I do on my upcoming trip to Paris?\"\n    }\n  ],\n  \"model\": \"gpt-5\"\n}\n==================================================\n\n\n\nprint(\"\\n=== RESPONSE ===\")\nprint(response.model_dump_json(indent=2))\n\n\n=== RESPONSE ===\n{\n  \"id\": \"chatcmpl-CuVn7EYuGJUEUEQ18Cl0SM2nNz9Mj\",\n  \"choices\": [\n    {\n      \"finish_reason\": \"stop\",\n      \"index\": 0,\n      \"logprobs\": null,\n      \"message\": {\n        \"content\": \"Awesome! I can tailor a plan, but a few quick questions help:\\n- When are you going and for how many days?\\n- First time in Paris?\\n- Main interests (art, food, fashion, history, photography, nightlife, kid-friendly, etc.) and preferred pace (relaxed vs. packed)?\\n- Any must-sees or hard no’s?\\n- Rough budget and food needs (vegetarian, kosher/halal, allergies)?\\n- Where are you staying (neighborhood) and are day trips okay (Versailles, Champagne, Giverny, Disneyland)?\\n\\nIf you want a quick starter plan, here’s a flexible 4-day outline you can reshuffle by weather and museum closures:\\n\\nDay 1 – Islands + Latin Quarter\\n- Île de la Cité: Notre-Dame exterior, Sainte-Chapelle (timed ticket), Conciergerie.\\n- Stroll the Latin Quarter: Shakespeare & Company, Sorbonne, Luxembourg Gardens.\\n- Evening: Seine cruise or sunset along the river.\\n\\nDay 2 – Louvre to Arc de Triomphe\\n- Morning: Louvre (timed entry). Tuileries and Palais-Royal gardens.\\n- Covered passages (Véronique/Grand Cerf/Jouffroy) and Opéra Garnier.\\n- Sunset view: Arc de Triomphe rooftop or Galeries Lafayette/Printemps terrace.\\n\\nDay 3 – Montmartre + Left Bank art\\n- Montmartre: Sacré-Cœur, Place du Tertre, quieter backstreets (Rue de l’Abreuvoir).\\n- Afternoon: Musée d’Orsay and/or Orangerie.\\n- Evening: Saint-Germain wine bar or jazz.\\n\\nDay 4 – Le Marais or Day Trip\\n- Marais walk: Place des Vosges, Musée Carnavalet, Picasso Museum (check hours), Jewish quarter, trendy boutiques.\\n- Optional day trip: Versailles (palace + gardens; get the timed passport ticket).\\n- Night: Eiffel Tower area (view from Trocadéro or Champ de Mars; book tower tickets if going up).\\n\\nOther great adds by interest\\n- Art/architecture: Rodin Museum; Bourse de Commerce; Fondation Louis Vuitton. Note: check Centre Pompidou’s renovation status.\\n- Food: Morning market (Aligre or Rue Cler), cheese/wine tasting, pastry crawl, bistro lunch, cooking class.\\n- Unique: Catacombs (book ahead), Père Lachaise Cemetery, Canal Saint-Martin, covered markets (Le Marché des Enfants Rouges).\\n- With kids: Jardin des Plantes (zoo + galleries), Cité des Sciences, Jardin d’Acclimatation, Parc de la Villette.\\n- Day trips: Giverny (Apr–Oct), Reims/Epernay for Champagne, Fontainebleau, Auvers-sur-Oise, Disneyland Paris.\\n\\nBook these in advance\\n- Eiffel Tower, Louvre, Sainte-Chapelle, Catacombs, Versailles, Palais Garnier tours, popular restaurants.\\n- Consider the Paris Museum Pass (2/4/6 days) if you’ll visit several museums; the Louvre still needs a timed reservation even with the pass.\\n\\nPractical tips\\n- Closures: Many museums close one day/week (e.g., Orsay Mon, some Tue). Check hours.\\n- Getting around: The Métro is fastest. Use a contactless bank card to tap in, or get a reloadable Navigo Easy. For a Monday–Sunday stay with lots of rides, a Navigo Découverte weekly pass can be good value.\\n- Dining: Reserve for dinner, especially weekends. Tipping is minimal (service included); round up or leave 5–10% for great service.\\n- Safety: Watch for pickpockets in crowded areas and on the Metro.\\n\\nShare your dates, length of stay, and interests, and I’ll turn this into a detailed day-by-day plan with mapped routes and restaurant picks near each stop.\",\n        \"refusal\": null,\n        \"role\": \"assistant\",\n        \"annotations\": [],\n        \"audio\": null,\n        \"function_call\": null,\n        \"tool_calls\": null\n      }\n    }\n  ],\n  \"created\": 1767584609,\n  \"model\": \"gpt-5-2025-08-07\",\n  \"object\": \"chat.completion\",\n  \"service_tier\": \"default\",\n  \"system_fingerprint\": null,\n  \"usage\": {\n    \"completion_tokens\": 2224,\n    \"prompt_tokens\": 44,\n    \"total_tokens\": 2268,\n    \"completion_tokens_details\": {\n      \"accepted_prediction_tokens\": 0,\n      \"audio_tokens\": 0,\n      \"reasoning_tokens\": 1408,\n      \"rejected_prediction_tokens\": 0\n    },\n    \"prompt_tokens_details\": {\n      \"audio_tokens\": 0,\n      \"cached_tokens\": 0\n    }\n  }\n}",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Notebooks",
+      "chat-completion-openai.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/02/notebooks/gradio.html#install-required-packages",
+    "href": "src/02/notebooks/gradio.html#install-required-packages",
     "title": "Gradio with OpenAI API (via OpenRouter)",
-    "section": "",
-    "text": "# @title Install required packages\n!uv add gradio openai\n\n\n# @title Set the OpenRouter API Key from Colab Secrets\n\nfrom google.colab import userdata\nOPENROUTER_API_KEY = userdata.get('OPENROUTER_API_KEY')\n\n\n# @title Or grab the OpenRouter API Key from dotenv\n\nimport os\nfrom dotenv import load_dotenv\nload_dotenv()\n\nOPENROUTER_API_KEY = os.environ.get(\"OPENROUTER_API_KEY\")\n\n\n# @title Initialize the OpenAI Client\n\nimport openai\n\n# Initialize OpenAI client\nclient = openai.OpenAI(\n    base_url='https://openrouter.ai/api/v1',\n    api_key=OPENROUTER_API_KEY,\n)\n\n\n# @title Example 1: Basic Gradio interface\n\nimport gradio as gr\n\ndef image_classifier(inp):\n    return {'cat': 0.3, 'dog': 0.7}\n\ndemo = gr.Interface(fn=image_classifier, inputs=\"image\", outputs=\"label\")\ndemo.launch()\n\n* Running on local URL:  http://127.0.0.1:7870\n* To create a public link, set `share=True` in `launch()`.\n\n\n\n\n\n\n\n\n\n# @title Example 2: Basic chat interface with conversation history\n\nimport gradio as gr\n\ndef chat_with_history(message, history):\n    # Add current message\n    messages = history + [{\"role\": \"user\", \"content\": message}]\n    \n    # Get response from API\n    response = client.chat.completions.create(\n        model='openai/gpt-5.2-chat',\n        messages=messages,\n    )\n    \n    return response.choices[0].message.content\n\n# Create a chat interface\ndemo = gr.ChatInterface(\n    fn=chat_with_history,\n    title=\"Basic Chat with Conversation History\"\n)\n\ndemo.launch()\n\n* Running on local URL:  http://127.0.0.1:7871\n* To create a public link, set `share=True` in `launch()`.\n\n\n\n\n\n\n\n\n\n# @title Example 3: Streaming chat interface\n\ndef chat_with_streaming(message, history):\n    messages = history + [{\"role\": \"user\", \"content\": message}]\n    \n    # Stream the response\n    stream = client.chat.completions.create(\n        model='openai/gpt-5.2-chat',\n        messages=messages,\n        stream=True,\n    )\n    \n    response_text = \"\"\n    for chunk in stream:\n        if chunk.choices[0].delta.content is not None:\n            token = chunk.choices[0].delta.content\n            response_text += token\n            yield response_text\n\n# Create streaming chat interface\ndemo = gr.ChatInterface(\n    fn=chat_with_streaming,\n    title=\"AI Chat with Streaming\",\n)\n\ndemo.launch()\n\n* Running on local URL:  http://127.0.0.1:7872\n* To create a public link, set `share=True` in `launch()`.",
+    "section": "Install required packages",
+    "text": "Install required packages\n\n!uv add gradio openai",
     "crumbs": [
       "**Week 2:** Exploring Hosted LLMs",
       "Notebooks",
@@ -2258,11 +2592,131 @@
     ]
   },
   {
-    "objectID": "src/02/notebooks/structured-outputs.html",
-    "href": "src/02/notebooks/structured-outputs.html",
+    "objectID": "src/02/notebooks/gradio.html#set-the-openrouter-api-key-from-colab-secrets",
+    "href": "src/02/notebooks/gradio.html#set-the-openrouter-api-key-from-colab-secrets",
+    "title": "Gradio with OpenAI API (via OpenRouter)",
+    "section": "Set the OpenRouter API Key from Colab Secrets",
+    "text": "Set the OpenRouter API Key from Colab Secrets\n\nfrom google.colab import userdata\nOPENROUTER_API_KEY = userdata.get('OPENROUTER_API_KEY')",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Notebooks",
+      "gradio.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/02/notebooks/gradio.html#or-grab-the-openrouter-api-key-if-running-locally",
+    "href": "src/02/notebooks/gradio.html#or-grab-the-openrouter-api-key-if-running-locally",
+    "title": "Gradio with OpenAI API (via OpenRouter)",
+    "section": "(Or grab the OpenRouter API key if running locally)",
+    "text": "(Or grab the OpenRouter API key if running locally)\n\nimport os\nfrom dotenv import load_dotenv\nload_dotenv()\n\nOPENROUTER_API_KEY = os.environ.get(\"OPENROUTER_API_KEY\")",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Notebooks",
+      "gradio.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/02/notebooks/gradio.html#initialize-the-openai-client",
+    "href": "src/02/notebooks/gradio.html#initialize-the-openai-client",
+    "title": "Gradio with OpenAI API (via OpenRouter)",
+    "section": "Initialize the OpenAI client",
+    "text": "Initialize the OpenAI client\n\nimport openai\n\n# Initialize OpenAI client\nclient = openai.OpenAI(\n    base_url='https://openrouter.ai/api/v1',\n    api_key=OPENROUTER_API_KEY,\n)",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Notebooks",
+      "gradio.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/02/notebooks/gradio.html#example-1-basic-gradio-interface",
+    "href": "src/02/notebooks/gradio.html#example-1-basic-gradio-interface",
+    "title": "Gradio with OpenAI API (via OpenRouter)",
+    "section": "Example 1: Basic Gradio interface",
+    "text": "Example 1: Basic Gradio interface\n\nimport gradio as gr\n\ndef image_classifier(inp):\n    return {'cat': 0.3, 'dog': 0.7}\n\ndemo = gr.Interface(fn=image_classifier, inputs=\"image\", outputs=\"label\")\ndemo.launch()\n\n* Running on local URL:  http://127.0.0.1:7870\n* To create a public link, set `share=True` in `launch()`.",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Notebooks",
+      "gradio.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/02/notebooks/gradio.html#example-2-basic-chat-interface-with-conversation-history",
+    "href": "src/02/notebooks/gradio.html#example-2-basic-chat-interface-with-conversation-history",
+    "title": "Gradio with OpenAI API (via OpenRouter)",
+    "section": "Example 2: Basic chat interface with conversation history",
+    "text": "Example 2: Basic chat interface with conversation history\n\nimport gradio as gr\n\ndef chat_with_history(message, history):\n    # Add current message\n    messages = history + [{\"role\": \"user\", \"content\": message}]\n    \n    # Get response from API\n    response = client.chat.completions.create(\n        model='openai/gpt-5.2-chat',\n        messages=messages,\n    )\n    \n    return response.choices[0].message.content\n\n# Create a chat interface\ndemo = gr.ChatInterface(\n    fn=chat_with_history,\n    title=\"Basic Chat with Conversation History\"\n)\n\ndemo.launch()\n\n* Running on local URL:  http://127.0.0.1:7871\n* To create a public link, set `share=True` in `launch()`.",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Notebooks",
+      "gradio.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/02/notebooks/gradio.html#example-3-streaming-chat-interface",
+    "href": "src/02/notebooks/gradio.html#example-3-streaming-chat-interface",
+    "title": "Gradio with OpenAI API (via OpenRouter)",
+    "section": "Example 3: Streaming chat interface",
+    "text": "Example 3: Streaming chat interface\n\ndef chat_with_streaming(message, history):\n    messages = history + [{\"role\": \"user\", \"content\": message}]\n    \n    # Stream the response\n    stream = client.chat.completions.create(\n        model='openai/gpt-5.2-chat',\n        messages=messages,\n        stream=True,\n    )\n    \n    response_text = \"\"\n    for chunk in stream:\n        if chunk.choices[0].delta.content is not None:\n            token = chunk.choices[0].delta.content\n            response_text += token\n            yield response_text\n\n# Create streaming chat interface\ndemo = gr.ChatInterface(\n    fn=chat_with_streaming,\n    title=\"AI Chat with Streaming\",\n)\n\ndemo.launch()\n\n* Running on local URL:  http://127.0.0.1:7872\n* To create a public link, set `share=True` in `launch()`.",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Notebooks",
+      "gradio.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/02/notebooks/structured-outputs.html#set-the-openrouter-api-key-from-colab-secrets",
+    "href": "src/02/notebooks/structured-outputs.html#set-the-openrouter-api-key-from-colab-secrets",
     "title": "Structured Outputs",
-    "section": "",
-    "text": "# @title Set the OpenRouter API Key from Colab Secrets\n\nfrom google.colab import userdata\nOPENROUTER_API_KEY = userdata.get('OPENROUTER_API_KEY')\n\n\n# @title Or grab the OpenRouter API Key from dotenv\n\nimport os\nfrom dotenv import load_dotenv\nload_dotenv()\n\nOPENROUTER_API_KEY = os.environ.get(\"OPENROUTER_API_KEY\")\n\n\n# @title Create the OpenAI client with OpenRouter URL\n\nimport openai\n\n# Initialize the OpenAI client with event hooks\nclient = openai.OpenAI(\n    base_url='https://openrouter.ai/api/v1',\n    api_key=OPENROUTER_API_KEY,\n)\n\n\nfrom pydantic import BaseModel\n\n# Define the model for a geographic location\nclass Location(BaseModel):\n  name: str\n  country: str\n  latitude: float\n  longitude: float\n\n\nMODEL = 'openai/gpt-5.2-chat' #@param [\"openai/gpt-5.2-chat\", \"anthropic/claude-sonnet-4.5\", \"google/gemini-2.5-pro\"]\n\nresponse = client.chat.completions.parse(\n    model=MODEL,\n    messages=[\n        {\"role\": \"user\", \"content\": \"What are the GPS coordinates for Paris?\"},\n    ],\n    response_format=Location\n)\n\ncompletion = response.choices[0].message\nprint(completion)\n\nParsedChatCompletionMessage[Location](content='{\"name\":\"Paris\",\"country\":\"France\",\"latitude\":48.8566,\"longitude\":2.3522}', refusal=None, role='assistant', annotations=None, audio=None, function_call=None, tool_calls=None, parsed=Location(name='Paris', country='France', latitude=48.8566, longitude=2.3522), reasoning=None)\n\n\n\n# Display the JSON repesentation\nprint(completion.content)\n\n# Display the parsed type\nprint(completion.parsed)\n\n# Pretty-print\nif completion.parsed:\n  location: Location = completion.parsed\n  print(f\"{location.name}, {location.country} has GPS coordinates of {location.latitude}, {location.longitude}\")\n\n{\"name\":\"Paris\",\"country\":\"France\",\"latitude\":48.8566,\"longitude\":2.3522}\nname='Paris' country='France' latitude=48.8566 longitude=2.3522\nParis, France has GPS coordinates of 48.8566, 2.3522",
+    "section": "Set the OpenRouter API Key from Colab Secrets",
+    "text": "Set the OpenRouter API Key from Colab Secrets\n\nfrom google.colab import userdata\nOPENROUTER_API_KEY = userdata.get('OPENROUTER_API_KEY')",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Notebooks",
+      "structured-outputs.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/02/notebooks/structured-outputs.html#or-grab-the-openrouter-api-key-if-running-locally",
+    "href": "src/02/notebooks/structured-outputs.html#or-grab-the-openrouter-api-key-if-running-locally",
+    "title": "Structured Outputs",
+    "section": "(Or grab the OpenRouter API key if running locally)",
+    "text": "(Or grab the OpenRouter API key if running locally)\n\nimport os\nfrom dotenv import load_dotenv\nload_dotenv()\n\nOPENROUTER_API_KEY = os.environ.get(\"OPENROUTER_API_KEY\")",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Notebooks",
+      "structured-outputs.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/02/notebooks/structured-outputs.html#create-the-openai-client-with-openrouter-url",
+    "href": "src/02/notebooks/structured-outputs.html#create-the-openai-client-with-openrouter-url",
+    "title": "Structured Outputs",
+    "section": "Create the OpenAI client with OpenRouter URL",
+    "text": "Create the OpenAI client with OpenRouter URL\n\nimport openai\n\n# Initialize the OpenAI client with event hooks\nclient = openai.OpenAI(\n    base_url='https://openrouter.ai/api/v1',\n    api_key=OPENROUTER_API_KEY,\n)",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Notebooks",
+      "structured-outputs.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/02/notebooks/structured-outputs.html#create-the-location-type",
+    "href": "src/02/notebooks/structured-outputs.html#create-the-location-type",
+    "title": "Structured Outputs",
+    "section": "Create the “Location” type",
+    "text": "Create the “Location” type\n\nfrom pydantic import BaseModel\n\n# Define the model for a geographic location\nclass Location(BaseModel):\n  name: str\n  country: str\n  latitude: float\n  longitude: float",
+    "crumbs": [
+      "**Week 2:** Exploring Hosted LLMs",
+      "Notebooks",
+      "structured-outputs.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/02/notebooks/structured-outputs.html#send-request-with-response_format-set",
+    "href": "src/02/notebooks/structured-outputs.html#send-request-with-response_format-set",
+    "title": "Structured Outputs",
+    "section": "Send request with response_format set",
+    "text": "Send request with response_format set\n\nMODEL = 'openai/gpt-5.2-chat' #@param [\"openai/gpt-5.2-chat\", \"anthropic/claude-sonnet-4.5\", \"google/gemini-2.5-pro\"]\n\nresponse = client.chat.completions.parse(\n    model=MODEL,\n    messages=[\n        {\"role\": \"user\", \"content\": \"What are the GPS coordinates for Paris?\"},\n    ],\n    response_format=Location\n)\n\ncompletion = response.choices[0].message\nprint(completion)\n\nParsedChatCompletionMessage[Location](content='{\"name\":\"Paris\",\"country\":\"France\",\"latitude\":48.8566,\"longitude\":2.3522}', refusal=None, role='assistant', annotations=None, audio=None, function_call=None, tool_calls=None, parsed=Location(name='Paris', country='France', latitude=48.8566, longitude=2.3522), reasoning=None)\n\n\n\n# Display the JSON repesentation\nprint(completion.content)\n\n# Display the parsed type\nprint(completion.parsed)\n\n# Pretty-print\nif completion.parsed:\n  location: Location = completion.parsed\n  print(f\"{location.name}, {location.country} has GPS coordinates of {location.latitude}, {location.longitude}\")\n\n{\"name\":\"Paris\",\"country\":\"France\",\"latitude\":48.8566,\"longitude\":2.3522}\nname='Paris' country='France' latitude=48.8566 longitude=2.3522\nParis, France has GPS coordinates of 48.8566, 2.3522",
     "crumbs": [
       "**Week 2:** Exploring Hosted LLMs",
       "Notebooks",

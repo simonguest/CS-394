@@ -725,13 +725,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This notebook explores Word2Vec embeddings to understand how they capture semantic relationships.</p>
 <p>Uses pre-trained embeddings from Google News (trained on ~100 billion words).</p>
 <p><a target="_blank" href="https://colab.research.google.com/github/simonguest/CS-394/blob/main/src/01/notebooks/word2vec.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"> </a> <a target="_blank" href="https://github.com/simonguest/CS-394/raw/refs/heads/main/src/01/notebooks/word2vec.ipynb"> <img src="https://img.shields.io/badge/Download_.ipynb-blue" alt="Download .ipynb"> </a></p>
-<div id="cell-2" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install required packages</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>uv pip install gensim numpy matplotlib scikit<span class="op">-</span>learn <span class="op">-</span>q</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="install-required-packages" class="level2">
+<h2 class="anchored" data-anchor-id="install-required-packages">Install required packages</h2>
+<div id="cell-3" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>uv pip install gensim numpy matplotlib scikit<span class="op">-</span>learn <span class="op">-</span>q</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+</section>
 <section id="load-pretrained-word2vec-model" class="level2">
-<h2 class="anchored" data-anchor-id="load-pretrained-word2vec-model">Load Pretrained Word2Vec Model</h2>
-<div id="cell-4" class="cell" data-execution_count="11">
+<h2 class="anchored" data-anchor-id="load-pretrained-word2vec-model">Load pretrained Word2Vec model</h2>
+<div id="cell-5" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gensim.downloader <span class="im">as</span> api</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -783,9 +785,9 @@ Vector dimension: 300</code></pre>
 </div>
 </section>
 <section id="find-similar-words" class="level2">
-<h2 class="anchored" data-anchor-id="find-similar-words">Find Similar Words</h2>
+<h2 class="anchored" data-anchor-id="find-similar-words">Find similar words</h2>
 <p>Words with similar meanings have similar vectors.</p>
-<div id="cell-9" class="cell">
+<div id="cell-10" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_similar_words(word, top_n<span class="op">=</span><span class="dv">10</span>):</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Find the most similar words to a given word."""</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
@@ -845,8 +847,8 @@ meatball_sandwich    | similarity: 0.6377</code></pre>
 </div>
 </section>
 <section id="compute-similarity" class="level2">
-<h2 class="anchored" data-anchor-id="compute-similarity">Compute Similarity</h2>
-<div id="cell-12" class="cell" data-execution_count="20">
+<h2 class="anchored" data-anchor-id="compute-similarity">Compute similarity</h2>
+<div id="cell-13" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_similarity(word1, word2):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Compute cosine similarity between two words."""</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
@@ -871,8 +873,8 @@ Similarity between 'king' and 'queen': 0.6511</code></pre>
 </div>
 </section>
 <section id="vector-arithmetic" class="level2">
-<h2 class="anchored" data-anchor-id="vector-arithmetic">Vector Arithmetic</h2>
-<div id="cell-15" class="cell">
+<h2 class="anchored" data-anchor-id="vector-arithmetic">Vector arithmetic</h2>
+<div id="cell-16" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> vector_arithmetic(positive, negative, top_n<span class="op">=</span><span class="dv">5</span>):</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Perform vector arithmetic: positive words - negative words."""</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
@@ -917,7 +919,7 @@ paddling             | similarity: 0.6424</code></pre>
 </div>
 </section>
 <section id="d-visualization" class="level2">
-<h2 class="anchored" data-anchor-id="d-visualization">2D Visualization</h2>
+<h2 class="anchored" data-anchor-id="d-visualization">2D visualization</h2>
 <div id="2d-visualization" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> visualize_words(words, method<span class="op">=</span><span class="st">'tsne'</span>):</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Visualize word embeddings in 2D."""</span></span>

@@ -330,6 +330,17 @@
 <section id="system-user-assistant-1" class="slide level2">
 <h2>System, User, Assistant</h2>
 <ul>
+<li class="fragment">System Prompt best practices
+<ul>
+<li class="fragment"><strong>Be specific</strong>: “You are a Python programming tutor who explains concepts using simple analogies and provides code examples.”</li>
+<li class="fragment"><strong>Define output</strong>: “List no more than 3 suggestions. Always show your work step by step.”</li>
+<li class="fragment"><strong>Set boundaries</strong>: “If you are asked questions outside coding, politely redirect the student back to the task.”</li>
+</ul></li>
+</ul>
+</section>
+<section id="system-user-assistant-2" class="slide level2">
+<h2>System, User, Assistant</h2>
+<ul>
 <li class="fragment"><strong>User</strong> prompt is the message (request) from the user
 <ul>
 <li class="fragment">“How many ’r’s in Strawberry?”</li>
@@ -355,7 +366,7 @@
 <section id="chatml-gpt-3.5-and-other-models" class="slide level2">
 <h2>ChatML (GPT-3.5 and other models)</h2>
 <pre><code>&lt;|im_start|&gt;system
-You help travelers make plans for their trips&lt;|im_end|&gt;
+You help travelers make plans for their trips.&lt;|im_end|&gt;
 &lt;|im_start|&gt;user
 Hello&lt;|im_end|&gt;
 &lt;|im_start|&gt;assistant
@@ -368,21 +379,19 @@ What should I do on my upcoming trip to Paris?&lt;|im_end|&gt;
 <section id="chat-templates-in-practice" class="slide level2">
 <h2>Chat Templates in Practice</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/instruction-tuned.ipynb" data-notebook-title="Base Model vs. Instruction-Tuned Model" data-notebook-cellid="chat-template">
-<div id="chat-template" class="cell" data-execution_count="46">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="co"># @title Qwen's Chat Template</span></span>
-<span id="cb2-2"><a></a></span>
-<span id="cb2-3"><a></a>messages <span class="op">=</span> [</span>
-<span id="cb2-4"><a></a>    {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You help travelers make plans for their trips"</span>},</span>
-<span id="cb2-5"><a></a>    {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"Hello"</span>},</span>
-<span id="cb2-6"><a></a>    {<span class="st">"role"</span>: <span class="st">"assistant"</span>, <span class="st">"content"</span>: <span class="st">"Hi there!"</span>},</span>
-<span id="cb2-7"><a></a>    {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"What should I do on my upcoming trip to Paris?"</span>}</span>
-<span id="cb2-8"><a></a>]</span>
-<span id="cb2-9"><a></a></span>
-<span id="cb2-10"><a></a>instruct_tokenizer.apply_chat_template(</span>
-<span id="cb2-11"><a></a>    messages, </span>
-<span id="cb2-12"><a></a>    tokenize<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb2-13"><a></a>    add_generation_prompt<span class="op">=</span><span class="va">True</span>  <span class="co"># Adds the assistant prompt</span></span>
-<span id="cb2-14"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="chat-template" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a>messages <span class="op">=</span> [</span>
+<span id="cb2-2"><a></a>    {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You help travelers make plans for their trips"</span>},</span>
+<span id="cb2-3"><a></a>    {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"Hello"</span>},</span>
+<span id="cb2-4"><a></a>    {<span class="st">"role"</span>: <span class="st">"assistant"</span>, <span class="st">"content"</span>: <span class="st">"Hi there!"</span>},</span>
+<span id="cb2-5"><a></a>    {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"What should I do on my upcoming trip to Paris?"</span>}</span>
+<span id="cb2-6"><a></a>]</span>
+<span id="cb2-7"><a></a></span>
+<span id="cb2-8"><a></a>instruct_tokenizer.apply_chat_template(</span>
+<span id="cb2-9"><a></a>    messages, </span>
+<span id="cb2-10"><a></a>    tokenize<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb2-11"><a></a>    add_generation_prompt<span class="op">=</span><span class="va">True</span>  <span class="co"># Adds the assistant prompt</span></span>
+<span id="cb2-12"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="46">
 <pre><code>'&lt;|im_start|&gt;system\nYou help travelers make plans for their trips&lt;|im_end|&gt;\n&lt;|im_start|&gt;user\nHello&lt;|im_end|&gt;\n&lt;|im_start|&gt;assistant\nHi there!&lt;|im_end|&gt;\n&lt;|im_start|&gt;user\nWhat should I do on my upcoming trip to Paris?&lt;|im_end|&gt;\n&lt;|im_start|&gt;assistant\n'</code></pre>
 </div>
@@ -392,19 +401,17 @@ What should I do on my upcoming trip to Paris?&lt;|im_end|&gt;
 <section id="putting-this-together" class="slide level2">
 <h2>Putting This Together</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/instruction-tuned.ipynb" data-notebook-title="Base Model vs. Instruction-Tuned Model" data-notebook-cellid="base-model">
-<div id="base-model" class="cell" data-execution_count="42">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="co"># @title Base (Completion) Model Output</span></span>
-<span id="cb4-2"><a></a></span>
-<span id="cb4-3"><a></a>base_inputs <span class="op">=</span> base_tokenizer(<span class="st">"What should I do on my upcoming trip to Paris?"</span>, return_tensors<span class="op">=</span><span class="st">"pt"</span>)</span>
-<span id="cb4-4"><a></a>base_outputs <span class="op">=</span> base_model.generate(</span>
-<span id="cb4-5"><a></a>    <span class="op">**</span>base_inputs,</span>
-<span id="cb4-6"><a></a>    max_new_tokens<span class="op">=</span><span class="dv">150</span>,</span>
-<span id="cb4-7"><a></a>    temperature<span class="op">=</span><span class="fl">0.7</span>,</span>
-<span id="cb4-8"><a></a>    do_sample<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb4-9"><a></a>    pad_token_id<span class="op">=</span>base_tokenizer.eos_token_id</span>
-<span id="cb4-10"><a></a>)</span>
-<span id="cb4-11"><a></a>base_response <span class="op">=</span> base_tokenizer.decode(base_outputs[<span class="dv">0</span>], skip_special_tokens<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb4-12"><a></a><span class="bu">print</span>(base_response)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="base-model" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a>base_inputs <span class="op">=</span> base_tokenizer(<span class="st">"What should I do on my upcoming trip to Paris?"</span>, return_tensors<span class="op">=</span><span class="st">"pt"</span>)</span>
+<span id="cb4-2"><a></a>base_outputs <span class="op">=</span> base_model.generate(</span>
+<span id="cb4-3"><a></a>    <span class="op">**</span>base_inputs,</span>
+<span id="cb4-4"><a></a>    max_new_tokens<span class="op">=</span><span class="dv">150</span>,</span>
+<span id="cb4-5"><a></a>    temperature<span class="op">=</span><span class="fl">0.7</span>,</span>
+<span id="cb4-6"><a></a>    do_sample<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb4-7"><a></a>    pad_token_id<span class="op">=</span>base_tokenizer.eos_token_id</span>
+<span id="cb4-8"><a></a>)</span>
+<span id="cb4-9"><a></a>base_response <span class="op">=</span> base_tokenizer.decode(base_outputs[<span class="dv">0</span>], skip_special_tokens<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-10"><a></a><span class="bu">print</span>(base_response)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>What should I do on my upcoming trip to Paris? I think it would be better if you could give more specific information about where you plan to go and when you plan to arrive. Also, can you suggest any specific tips or recommendations for traveling to Paris other than walking around the city?
 
@@ -420,30 +427,28 @@ I'm sorry, but as an AI language model, I don't have any specific information ab
 <section id="putting-this-together-1" class="slide level2">
 <h2>Putting This Together</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/instruction-tuned.ipynb" data-notebook-title="Base Model vs. Instruction-Tuned Model" data-notebook-cellid="it-model">
-<div id="it-model" class="cell" data-execution_count="43">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="co"># @title Instruction-Tuned Model Output</span></span>
-<span id="cb6-2"><a></a></span>
-<span id="cb6-3"><a></a>messages <span class="op">=</span> [</span>
-<span id="cb6-4"><a></a>    {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You help travelers make plans for their trips."</span>},</span>
-<span id="cb6-5"><a></a>    {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"Hello"</span>},</span>
-<span id="cb6-6"><a></a>    {<span class="st">"role"</span>: <span class="st">"assistant"</span>, <span class="st">"content"</span>: <span class="st">"Hi there!"</span>},</span>
-<span id="cb6-7"><a></a>    {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"What should I do on my upcoming trip to Paris?"</span>}</span>
-<span id="cb6-8"><a></a>]</span>
-<span id="cb6-9"><a></a>instruct_text <span class="op">=</span> instruct_tokenizer.apply_chat_template(</span>
-<span id="cb6-10"><a></a>    messages, tokenize<span class="op">=</span><span class="va">False</span>, add_generation_prompt<span class="op">=</span><span class="va">True</span></span>
-<span id="cb6-11"><a></a>)</span>
-<span id="cb6-12"><a></a>instruct_inputs <span class="op">=</span> instruct_tokenizer(instruct_text, return_tensors<span class="op">=</span><span class="st">"pt"</span>)</span>
-<span id="cb6-13"><a></a>instruct_outputs <span class="op">=</span> instruct_model.generate(</span>
-<span id="cb6-14"><a></a>    <span class="op">**</span>instruct_inputs,</span>
-<span id="cb6-15"><a></a>    max_new_tokens<span class="op">=</span><span class="dv">150</span>,</span>
-<span id="cb6-16"><a></a>    temperature<span class="op">=</span><span class="fl">0.7</span>,</span>
-<span id="cb6-17"><a></a>    do_sample<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb6-18"><a></a>    pad_token_id<span class="op">=</span>instruct_tokenizer.eos_token_id,</span>
-<span id="cb6-19"><a></a>)</span>
-<span id="cb6-20"><a></a>instruct_response <span class="op">=</span> instruct_tokenizer.decode(</span>
-<span id="cb6-21"><a></a>    instruct_outputs[<span class="dv">0</span>], skip_special_tokens<span class="op">=</span><span class="va">True</span></span>
-<span id="cb6-22"><a></a>)</span>
-<span id="cb6-23"><a></a><span class="bu">print</span>(instruct_response)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="it-model" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a>messages <span class="op">=</span> [</span>
+<span id="cb6-2"><a></a>    {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You help travelers make plans for their trips."</span>},</span>
+<span id="cb6-3"><a></a>    {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"Hello"</span>},</span>
+<span id="cb6-4"><a></a>    {<span class="st">"role"</span>: <span class="st">"assistant"</span>, <span class="st">"content"</span>: <span class="st">"Hi there!"</span>},</span>
+<span id="cb6-5"><a></a>    {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"What should I do on my upcoming trip to Paris?"</span>}</span>
+<span id="cb6-6"><a></a>]</span>
+<span id="cb6-7"><a></a>instruct_text <span class="op">=</span> instruct_tokenizer.apply_chat_template(</span>
+<span id="cb6-8"><a></a>    messages, tokenize<span class="op">=</span><span class="va">False</span>, add_generation_prompt<span class="op">=</span><span class="va">True</span></span>
+<span id="cb6-9"><a></a>)</span>
+<span id="cb6-10"><a></a>instruct_inputs <span class="op">=</span> instruct_tokenizer(instruct_text, return_tensors<span class="op">=</span><span class="st">"pt"</span>)</span>
+<span id="cb6-11"><a></a>instruct_outputs <span class="op">=</span> instruct_model.generate(</span>
+<span id="cb6-12"><a></a>    <span class="op">**</span>instruct_inputs,</span>
+<span id="cb6-13"><a></a>    max_new_tokens<span class="op">=</span><span class="dv">150</span>,</span>
+<span id="cb6-14"><a></a>    temperature<span class="op">=</span><span class="fl">0.7</span>,</span>
+<span id="cb6-15"><a></a>    do_sample<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb6-16"><a></a>    pad_token_id<span class="op">=</span>instruct_tokenizer.eos_token_id,</span>
+<span id="cb6-17"><a></a>)</span>
+<span id="cb6-18"><a></a>instruct_response <span class="op">=</span> instruct_tokenizer.decode(</span>
+<span id="cb6-19"><a></a>    instruct_outputs[<span class="dv">0</span>], skip_special_tokens<span class="op">=</span><span class="va">True</span></span>
+<span id="cb6-20"><a></a>)</span>
+<span id="cb6-21"><a></a><span class="bu">print</span>(instruct_response)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>system
 You help travelers make plans for their trips.
@@ -635,16 +640,14 @@ Great question! On your next trip to Paris, you can start by visiting the iconic
 <h2>Using the Chat Completions API</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/chat-completion-openai.ipynb" data-notebook-title="Chat Completion API (via OpenAI)" data-notebook-cellid="init">
 <div id="init" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="0c9cd662-ed23-4cda-979e-c02a10b55eab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="co"># @title Call OpenAI via the SDK</span></span>
-<span id="cb8-2"><a></a></span>
-<span id="cb8-3"><a></a><span class="im">import</span> openai</span>
-<span id="cb8-4"><a></a><span class="im">import</span> httpx</span>
-<span id="cb8-5"><a></a></span>
-<span id="cb8-6"><a></a><span class="co"># Initialize the OpenAI client with event hooks</span></span>
-<span id="cb8-7"><a></a>client <span class="op">=</span> openai.OpenAI(</span>
-<span id="cb8-8"><a></a>    api_key<span class="op">=</span>OPENAI_API_KEY,</span>
-<span id="cb8-9"><a></a>    http_client<span class="op">=</span>httpx.Client(event_hooks<span class="op">=</span>{<span class="st">"request"</span>: [log_request]}),</span>
-<span id="cb8-10"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="im">import</span> openai</span>
+<span id="cb8-2"><a></a><span class="im">import</span> httpx</span>
+<span id="cb8-3"><a></a></span>
+<span id="cb8-4"><a></a><span class="co"># Initialize the OpenAI client with event hooks</span></span>
+<span id="cb8-5"><a></a>client <span class="op">=</span> openai.OpenAI(</span>
+<span id="cb8-6"><a></a>    api_key<span class="op">=</span>OPENAI_API_KEY,</span>
+<span id="cb8-7"><a></a>    http_client<span class="op">=</span>httpx.Client(event_hooks<span class="op">=</span>{<span class="st">"request"</span>: [log_request]}),</span>
+<span id="cb8-8"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -745,6 +748,45 @@ Body:
 </div>
 </div>
 </div>
+</section>
+<section id="chat-history-management" class="slide level2">
+<h2>Chat History Management</h2>
+<ul>
+<li class="fragment">Key Considerations
+<ul>
+<li class="fragment">Models don’t hold any state</li>
+<li class="fragment">API sends <strong>full</strong> conversation on every request and the model reads through the full conversation on every call</li>
+<li class="fragment">The size of the conversation is known as the context</li>
+<li class="fragment">The maximum size the model can process is referred to as the <strong>context window</strong></li>
+</ul></li>
+</ul>
+</section>
+<section id="chat-history-management-1" class="slide level2">
+<h2>Chat History Management</h2>
+<ul>
+<li class="fragment">Context window sizes
+<ul>
+<li class="fragment">Nano models ~= 32k tokens</li>
+<li class="fragment">Small models ~= 120k tokens</li>
+<li class="fragment">Frontier models ~= ~= 1M tokens</li>
+</ul></li>
+<li class="fragment">Large conversations can cause challenges
+<ul>
+<li class="fragment">They are expensive (you pay per token for whole conversation every time)</li>
+<li class="fragment">Small models often forget early details in long conversation histories</li>
+</ul></li>
+</ul>
+</section>
+<section id="chat-history-management-2" class="slide level2">
+<h2>Chat History Management</h2>
+<ul>
+<li class="fragment">Mitigation Strategies
+<ul>
+<li class="fragment">Remove older messages from the history</li>
+<li class="fragment">Implement sliding window across the conversation history</li>
+<li class="fragment">Summarize older messages and rewrite the history</li>
+</ul></li>
+</ul>
 </section></section>
 <section>
 <section id="calling-other-models" class="title-slide slide level1 center">
@@ -780,18 +822,16 @@ Body:
 <section id="using-openrouter" class="slide level2">
 <h2>Using OpenRouter</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/chat-completion-openrouter.ipynb" data-notebook-title="Chat Completion API (via OpenRouter)" data-notebook-cellid="init">
-<div id="init" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="0c9cd662-ed23-4cda-979e-c02a10b55eab" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="co"># @title Call OpenAI via the SDK</span></span>
-<span id="cb13-2"><a></a></span>
-<span id="cb13-3"><a></a><span class="im">import</span> openai</span>
-<span id="cb13-4"><a></a><span class="im">import</span> httpx</span>
-<span id="cb13-5"><a></a></span>
-<span id="cb13-6"><a></a><span class="co"># Initialize the OpenAI client with event hooks</span></span>
-<span id="cb13-7"><a></a>client <span class="op">=</span> openai.OpenAI(</span>
-<span id="cb13-8"><a></a>    base_url<span class="op">=</span><span class="st">'https://openrouter.ai/api/v1'</span>,</span>
-<span id="cb13-9"><a></a>    api_key<span class="op">=</span>OPENROUTER_API_KEY,</span>
-<span id="cb13-10"><a></a>    http_client<span class="op">=</span>httpx.Client(event_hooks<span class="op">=</span>{<span class="st">"request"</span>: [log_request]}),</span>
-<span id="cb13-11"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="init" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="0c9cd662-ed23-4cda-979e-c02a10b55eab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="im">import</span> openai</span>
+<span id="cb13-2"><a></a><span class="im">import</span> httpx</span>
+<span id="cb13-3"><a></a></span>
+<span id="cb13-4"><a></a><span class="co"># Initialize the OpenAI client with event hooks</span></span>
+<span id="cb13-5"><a></a>client <span class="op">=</span> openai.OpenAI(</span>
+<span id="cb13-6"><a></a>    base_url<span class="op">=</span><span class="st">'https://openrouter.ai/api/v1'</span>,</span>
+<span id="cb13-7"><a></a>    api_key<span class="op">=</span>OPENROUTER_API_KEY,</span>
+<span id="cb13-8"><a></a>    http_client<span class="op">=</span>httpx.Client(event_hooks<span class="op">=</span>{<span class="st">"request"</span>: [log_request]}),</span>
+<span id="cb13-9"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -1220,23 +1260,21 @@ Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
 <section id="example-1-basic-interface" class="slide level2">
 <h2>Example 1: Basic Interface</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-1">
-<div id="example-1" class="cell" data-execution_count="17">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a></a><span class="co"># @title Example 1: Basic Gradio interface</span></span>
+<div id="example-1" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a></a><span class="im">import</span> gradio <span class="im">as</span> gr</span>
 <span id="cb26-2"><a></a></span>
-<span id="cb26-3"><a></a><span class="im">import</span> gradio <span class="im">as</span> gr</span>
-<span id="cb26-4"><a></a></span>
-<span id="cb26-5"><a></a><span class="kw">def</span> image_classifier(inp):</span>
-<span id="cb26-6"><a></a>    <span class="cf">return</span> {<span class="st">'cat'</span>: <span class="fl">0.3</span>, <span class="st">'dog'</span>: <span class="fl">0.7</span>}</span>
-<span id="cb26-7"><a></a></span>
-<span id="cb26-8"><a></a>demo <span class="op">=</span> gr.Interface(fn<span class="op">=</span>image_classifier, inputs<span class="op">=</span><span class="st">"image"</span>, outputs<span class="op">=</span><span class="st">"label"</span>)</span>
-<span id="cb26-9"><a></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb26-3"><a></a><span class="kw">def</span> image_classifier(inp):</span>
+<span id="cb26-4"><a></a>    <span class="cf">return</span> {<span class="st">'cat'</span>: <span class="fl">0.3</span>, <span class="st">'dog'</span>: <span class="fl">0.7</span>}</span>
+<span id="cb26-5"><a></a></span>
+<span id="cb26-6"><a></a>demo <span class="op">=</span> gr.Interface(fn<span class="op">=</span>image_classifier, inputs<span class="op">=</span><span class="st">"image"</span>, outputs<span class="op">=</span><span class="st">"label"</span>)</span>
+<span id="cb26-7"><a></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
 <section id="example-1-basic-interface-1" class="slide level2">
 <h2>Example 1: Basic Interface</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-1">
-<div id="example-1" class="cell" data-execution_count="17">
+<div id="example-1" class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>* Running on local URL:  http://127.0.0.1:7870
 * To create a public link, set `share=True` in `launch()`.</code></pre>
@@ -1253,37 +1291,35 @@ Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
 <section id="example-2-basic-chat-interface" class="slide level2">
 <h2>Example 2: Basic Chat Interface</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-2">
-<div id="example-2" class="cell" data-execution_count="18">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a></a><span class="co"># @title Example 2: Basic chat interface with conversation history</span></span>
+<div id="example-2" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a></a><span class="im">import</span> gradio <span class="im">as</span> gr</span>
 <span id="cb29-2"><a></a></span>
-<span id="cb29-3"><a></a><span class="im">import</span> gradio <span class="im">as</span> gr</span>
-<span id="cb29-4"><a></a></span>
-<span id="cb29-5"><a></a><span class="kw">def</span> chat_with_history(message, history):</span>
-<span id="cb29-6"><a></a>    <span class="co"># Add current message</span></span>
-<span id="cb29-7"><a></a>    messages <span class="op">=</span> history <span class="op">+</span> [{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: message}]</span>
-<span id="cb29-8"><a></a>    </span>
-<span id="cb29-9"><a></a>    <span class="co"># Get response from API</span></span>
-<span id="cb29-10"><a></a>    response <span class="op">=</span> client.chat.completions.create(</span>
-<span id="cb29-11"><a></a>        model<span class="op">=</span><span class="st">'openai/gpt-5.2-chat'</span>,</span>
-<span id="cb29-12"><a></a>        messages<span class="op">=</span>messages,</span>
-<span id="cb29-13"><a></a>    )</span>
-<span id="cb29-14"><a></a>    </span>
-<span id="cb29-15"><a></a>    <span class="cf">return</span> response.choices[<span class="dv">0</span>].message.content</span>
-<span id="cb29-16"><a></a></span>
-<span id="cb29-17"><a></a><span class="co"># Create a chat interface</span></span>
-<span id="cb29-18"><a></a>demo <span class="op">=</span> gr.ChatInterface(</span>
-<span id="cb29-19"><a></a>    fn<span class="op">=</span>chat_with_history,</span>
-<span id="cb29-20"><a></a>    title<span class="op">=</span><span class="st">"Basic Chat with Conversation History"</span></span>
-<span id="cb29-21"><a></a>)</span>
-<span id="cb29-22"><a></a></span>
-<span id="cb29-23"><a></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb29-3"><a></a><span class="kw">def</span> chat_with_history(message, history):</span>
+<span id="cb29-4"><a></a>    <span class="co"># Add current message</span></span>
+<span id="cb29-5"><a></a>    messages <span class="op">=</span> history <span class="op">+</span> [{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: message}]</span>
+<span id="cb29-6"><a></a>    </span>
+<span id="cb29-7"><a></a>    <span class="co"># Get response from API</span></span>
+<span id="cb29-8"><a></a>    response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb29-9"><a></a>        model<span class="op">=</span><span class="st">'openai/gpt-5.2-chat'</span>,</span>
+<span id="cb29-10"><a></a>        messages<span class="op">=</span>messages,</span>
+<span id="cb29-11"><a></a>    )</span>
+<span id="cb29-12"><a></a>    </span>
+<span id="cb29-13"><a></a>    <span class="cf">return</span> response.choices[<span class="dv">0</span>].message.content</span>
+<span id="cb29-14"><a></a></span>
+<span id="cb29-15"><a></a><span class="co"># Create a chat interface</span></span>
+<span id="cb29-16"><a></a>demo <span class="op">=</span> gr.ChatInterface(</span>
+<span id="cb29-17"><a></a>    fn<span class="op">=</span>chat_with_history,</span>
+<span id="cb29-18"><a></a>    title<span class="op">=</span><span class="st">"Basic Chat with Conversation History"</span></span>
+<span id="cb29-19"><a></a>)</span>
+<span id="cb29-20"><a></a></span>
+<span id="cb29-21"><a></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
 <section id="example-2-basic-chat-interface-1" class="slide level2">
 <h2>Example 2: Basic Chat Interface</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-2">
-<div id="example-2" class="cell" data-execution_count="18">
+<div id="example-2" class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>* Running on local URL:  http://127.0.0.1:7871
 * To create a public link, set `share=True` in `launch()`.</code></pre>
@@ -1300,40 +1336,38 @@ Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
 <section id="example-3-streaming-chat-interface" class="slide level2">
 <h2>Example 3: Streaming Chat Interface</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-3">
-<div id="example-3" class="cell" data-execution_count="19">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a></a><span class="co"># @title Example 3: Streaming chat interface</span></span>
-<span id="cb32-2"><a></a></span>
-<span id="cb32-3"><a></a><span class="kw">def</span> chat_with_streaming(message, history):</span>
-<span id="cb32-4"><a></a>    messages <span class="op">=</span> history <span class="op">+</span> [{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: message}]</span>
-<span id="cb32-5"><a></a>    </span>
-<span id="cb32-6"><a></a>    <span class="co"># Stream the response</span></span>
-<span id="cb32-7"><a></a>    stream <span class="op">=</span> client.chat.completions.create(</span>
-<span id="cb32-8"><a></a>        model<span class="op">=</span><span class="st">'openai/gpt-5.2-chat'</span>,</span>
-<span id="cb32-9"><a></a>        messages<span class="op">=</span>messages,</span>
-<span id="cb32-10"><a></a>        stream<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb32-11"><a></a>    )</span>
-<span id="cb32-12"><a></a>    </span>
-<span id="cb32-13"><a></a>    response_text <span class="op">=</span> <span class="st">""</span></span>
-<span id="cb32-14"><a></a>    <span class="cf">for</span> chunk <span class="kw">in</span> stream:</span>
-<span id="cb32-15"><a></a>        <span class="cf">if</span> chunk.choices[<span class="dv">0</span>].delta.content <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb32-16"><a></a>            token <span class="op">=</span> chunk.choices[<span class="dv">0</span>].delta.content</span>
-<span id="cb32-17"><a></a>            response_text <span class="op">+=</span> token</span>
-<span id="cb32-18"><a></a>            <span class="cf">yield</span> response_text</span>
-<span id="cb32-19"><a></a></span>
-<span id="cb32-20"><a></a><span class="co"># Create streaming chat interface</span></span>
-<span id="cb32-21"><a></a>demo <span class="op">=</span> gr.ChatInterface(</span>
-<span id="cb32-22"><a></a>    fn<span class="op">=</span>chat_with_streaming,</span>
-<span id="cb32-23"><a></a>    title<span class="op">=</span><span class="st">"AI Chat with Streaming"</span>,</span>
-<span id="cb32-24"><a></a>)</span>
-<span id="cb32-25"><a></a></span>
-<span id="cb32-26"><a></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="example-3" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a></a><span class="kw">def</span> chat_with_streaming(message, history):</span>
+<span id="cb32-2"><a></a>    messages <span class="op">=</span> history <span class="op">+</span> [{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: message}]</span>
+<span id="cb32-3"><a></a>    </span>
+<span id="cb32-4"><a></a>    <span class="co"># Stream the response</span></span>
+<span id="cb32-5"><a></a>    stream <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb32-6"><a></a>        model<span class="op">=</span><span class="st">'openai/gpt-5.2-chat'</span>,</span>
+<span id="cb32-7"><a></a>        messages<span class="op">=</span>messages,</span>
+<span id="cb32-8"><a></a>        stream<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb32-9"><a></a>    )</span>
+<span id="cb32-10"><a></a>    </span>
+<span id="cb32-11"><a></a>    response_text <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb32-12"><a></a>    <span class="cf">for</span> chunk <span class="kw">in</span> stream:</span>
+<span id="cb32-13"><a></a>        <span class="cf">if</span> chunk.choices[<span class="dv">0</span>].delta.content <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb32-14"><a></a>            token <span class="op">=</span> chunk.choices[<span class="dv">0</span>].delta.content</span>
+<span id="cb32-15"><a></a>            response_text <span class="op">+=</span> token</span>
+<span id="cb32-16"><a></a>            <span class="cf">yield</span> response_text</span>
+<span id="cb32-17"><a></a></span>
+<span id="cb32-18"><a></a><span class="co"># Create streaming chat interface</span></span>
+<span id="cb32-19"><a></a>demo <span class="op">=</span> gr.ChatInterface(</span>
+<span id="cb32-20"><a></a>    fn<span class="op">=</span>chat_with_streaming,</span>
+<span id="cb32-21"><a></a>    title<span class="op">=</span><span class="st">"AI Chat with Streaming"</span>,</span>
+<span id="cb32-22"><a></a>)</span>
+<span id="cb32-23"><a></a></span>
+<span id="cb32-24"><a></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
 <section id="example-3-streaming-chat-interface-1" class="slide level2">
 <h2>Example 3: Streaming Chat Interface</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-3">
-<div id="example-3" class="cell" data-execution_count="19">
+<div id="example-3" class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>* Running on local URL:  http://127.0.0.1:7872
 * To create a public link, set `share=True` in `launch()`.</code></pre>
