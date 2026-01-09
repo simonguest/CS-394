@@ -1482,11 +1482,11 @@
     ]
   },
   {
-    "objectID": "src/00/slides.html#overall",
-    "href": "src/00/slides.html#overall",
+    "objectID": "src/00/slides.html#in-summary",
+    "href": "src/00/slides.html#in-summary",
     "title": "Welcome to CS-394/594!",
-    "section": "Overall",
-    "text": "Overall\n\nFocus on augmentation vs. automation\nProvide a level of understanding beyond where most professional software developers are today\nBuild an exciting final project that you can add to your portfolio!",
+    "section": "In Summary",
+    "text": "In Summary\n\nFocus on integration/augmentation vs. automation/using\nProvide a level of understanding beyond where most professional software developers are today\nBuild an exciting final project that you can add to your portfolio!",
     "crumbs": [
       "**Welcome**",
       "Slides"
@@ -1519,7 +1519,7 @@
     "href": "src/00/slides.html#schedule-1",
     "title": "Welcome to CS-394/594!",
     "section": "Schedule",
-    "text": "Schedule\n\nModules 1 through 4\nFeb 6 is Founders Day, so no classes\nModules 5 through 8\nMar 9 - 13 is Spring Break\nWeeks 9 through 14\nFinal presentations w/o Apr 20-24",
+    "text": "Schedule\n\nModules 1 through 4\nFeb 6 is Founders Day, so no classes\nModules 5 through 8\nMar 9 - 13 is Spring Break\nWeeks 9 through 14 - Final Project Work\nFinal presentations w/o Apr 20-24",
     "crumbs": [
       "**Welcome**",
       "Slides"
@@ -1541,7 +1541,7 @@
     "href": "src/00/slides.html#grading",
     "title": "Welcome to CS-394/594!",
     "section": "Grading",
-    "text": "Grading\n\nModule Assignments: 40% of grade (8 x 5%)\nFinal Project: 60% of grade\nRubric for the weekly assignments\nRubric for the final project",
+    "text": "Grading\n\nModule Assignments: 40% of grade (8 x 5%)\nFinal Project: 60% of grade\nRubric for the weekly assignments\nRubric for the final project (CS-394)\nRubric for the final project (CS-594)",
     "crumbs": [
       "**Welcome**",
       "Slides"
@@ -1552,7 +1552,7 @@
     "href": "src/00/slides.html#handing-in-work",
     "title": "Welcome to CS-394/594!",
     "section": "Handing in Work",
-    "text": "Handing in Work\n\nEverything submitted via GitHub\n\nRecommend creating a repo for weekly assignments\n\nFor most weeks, submission will be one Python notebook\n\nAnd (eventually) another repo for your final project\nDon’t forget to give me permissions! @simonguest",
+    "text": "Handing in Work\n\nEverything submitted via GitHub\n\nRecommend creating a repo for weekly assignments\n\nFor most weeks, submission will be one Python notebook\n\nAnd (eventually) another repo for your final project\n\nDon’t forget to give me permissions! @simonguest",
     "crumbs": [
       "**Welcome**",
       "Slides"
@@ -1574,7 +1574,7 @@
     "href": "src/00/slides.html#ai-policy",
     "title": "Welcome to CS-394/594!",
     "section": "AI Policy",
-    "text": "AI Policy\n\nPermitted AI Usage\n\nYou may use AI tools to assist in understanding course materials.\nIf AI is used to generate code, your must test and validate the code, must understand and be able to answer questions about the generated code, and include proper citations.\nIf AI tools are used to assist with any part of an assignment, you must clearly cite the AI tool and explain how it was used.",
+    "text": "AI Policy\n\nPermitted AI Usage\n\nYou may use AI tools to assist in understanding course materials\nIf AI is used to generate code, your must test and validate the code, must understand and be able to answer questions about the generated code, and include proper citations\nIf AI tools are used to assist with any part of an assignment, you must clearly cite the AI tool and explain how it was used",
     "crumbs": [
       "**Welcome**",
       "Slides"
@@ -1585,7 +1585,7 @@
     "href": "src/00/slides.html#tools",
     "title": "Welcome to CS-394/594!",
     "section": "Tools",
-    "text": "Tools\n\nWe will be introducing many tools\n\nColab Pro, OpenRouter, Hugging Face, etc.\nMost will be free\nExpect to need about $25 in credits throughout the semester",
+    "text": "Tools\n\nWe will be introducing many tools\n\nColab Pro, OpenRouter, Hugging Face, etc.\nMost will be free\nExpect to need about $25 in API credits throughout the semester",
     "crumbs": [
       "**Welcome**",
       "Slides"
@@ -1651,7 +1651,7 @@
     "href": "src/00/slides.html#fast-moving-space",
     "title": "Welcome to CS-394/594!",
     "section": "Fast Moving Space",
-    "text": "Fast Moving Space\n\nThere will be areas/questions I don’t have experience of\n\nmultiple new models are launched every week\nor equations/algorithms that I don’t know\n\nWe may be learning some things together!\nBut that’s what makes it exciting!",
+    "text": "Fast Moving Space\n\nThere will be areas/questions I don’t have experience of\n\nMultiple new models are launched every week\n…or equations/algorithms that I don’t know\n\nWe will be learning some things together!\nBut that’s what makes it exciting!",
     "crumbs": [
       "**Welcome**",
       "Slides"
