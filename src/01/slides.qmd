@@ -87,7 +87,7 @@ bibliography: references.bib
 
 {{< embed notebooks/word2vec.ipynb#2d-visualization >}}
 
-# Let's Run Some Code!
+# Let's Get Into Some Code!
 
 # Python Primer
 
@@ -194,7 +194,7 @@ bibliography: references.bib
 
 # Demo
 
-Hello World and Word2Vec notebooks in **Colab**, **VS Code**, and **Local Jupyter server**
+Hello World and Word2Vec notebooks in **Colab** and **VS Code**
 
 # Hands-On
 
@@ -342,14 +342,14 @@ Experiment with your own phrases in the translation-transformer.ipynb notebook
 ## What is a GPT?
 
 - "Decoder-only" architecture
-  - Self attention is causal/masked - tokens can only attend to previous tokens, not future ones
+  - Self attention is **causal**/masked - tokens can only attend to previous tokens, not future ones
 - Pre-training objective: Next token prediction
   - Trained on a massive text corpora
   - Learns grammar, facts, reasoning patterns just from this objective
 
 ## What is a GPT?
 
-- Autoregressive generation
+- **Autoregressive** generation
   - Generates one token at a time, feeding back each output as input
   - Temperature and sampling strategies
   - Same prompt can produce different outputs

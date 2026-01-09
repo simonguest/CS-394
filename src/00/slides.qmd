@@ -43,9 +43,9 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 - Explore and use multimodal models for image and audio recognition and generation
 - Create and deploy API-based clients, accessing LLMs hosted by different vendors (OpenAI, Meta, Google)
 
-## Overall
+## In Summary
 
-- Focus on augmentation vs. automation
+- Focus on integration/augmentation vs. automation/using
 - Provide a level of understanding beyond where most professional software developers are today
 - Build an exciting final project that you can add to your portfolio!
 
@@ -72,7 +72,7 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 - Feb 6 is Founders Day, so no classes
 - Modules 5 through 8
 - Mar 9 - 13 is Spring Break
-- Weeks 9 through 14
+- Weeks 9 through 14 - Final Project Work
 - Final presentations w/o Apr 20-24
 
 ## During Class
@@ -88,7 +88,8 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 - Module Assignments: 40% of grade (8 x 5%)
 - Final Project: 60% of grade
 - [Rubric for the weekly assignments](weekly-rubric.qmd){.external target="_blank"}
-- [Rubric for the final project](final-rubric.qmd){.external target="_blank"}
+- [Rubric for the final project (CS-394)](final-rubric-394.qmd){.external target="_blank"}
+- [Rubric for the final project (CS-594)](final-rubric-594.qmd){.external target="_blank"}
 
 ## Handing in Work
 
@@ -96,7 +97,7 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
   - Recommend creating a repo for weekly assignments
     - For most weeks, submission will be one Python notebook
   - And (eventually) another repo for your final project 
-  - Don't forget to give me permissions! @simonguest
+- Don't forget to give me permissions! @simonguest
   
 ## Deadlines
 
@@ -111,9 +112,9 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 ## AI Policy
 
 - Permitted AI Usage
-  - You may use AI tools to assist in understanding course materials.
-  - If AI is used to generate code, your must test and validate the code, must understand and be able to answer questions about the generated code, and include proper citations. 
-  - If AI tools are used to assist with any part of an assignment, you must clearly cite the AI tool and explain how it was used.
+  - You may use AI tools to assist in understanding course materials
+  - If AI is used to generate code, your must test and validate the code, must understand and be able to answer questions about the generated code, and include proper citations
+  - If AI tools are used to assist with any part of an assignment, you must clearly cite the AI tool and explain how it was used
 
 # Tools, Languages, and Hardware
 
@@ -122,7 +123,7 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 - We will be introducing many tools
   - Colab Pro, OpenRouter, Hugging Face, etc.
   - Most will be free
-  - Expect to need about $25 in credits throughout the semester
+  - Expect to need about $25 in API credits throughout the semester
 
 ## Languages
 
@@ -172,9 +173,9 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 ## Fast Moving Space
 
 - There will be areas/questions I don't have experience of
-  - multiple new models are launched every week
-  - or equations/algorithms that I don't know
-- We may be learning some things together!
+  - Multiple new models are launched every week
+  - ...or equations/algorithms that I don't know
+- We will be learning some things together!
 - But that's what makes it exciting!
 
 # Questions?
