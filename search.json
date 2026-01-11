@@ -2142,6 +2142,17 @@
     ]
   },
   {
+    "objectID": "src/01/slides.html#temperature-top_k-and-top_p",
+    "href": "src/01/slides.html#temperature-top_k-and-top_p",
+    "title": "Module 1: Foundations of Generative AI",
+    "section": "Temperature, top_k, and top_p",
+    "text": "Temperature, top_k, and top_p\n\nTemperature (0.0 - 1.0)\n\nLower for accuracy, factual summaries, etc.\nHigher for more creative, diverse ideas\n\ntop_k (top k tokens)\n\nNarrow the next tokens to the top k (ordered by probability)\n\ntop_p (cumulative probability)\n\nOnly return the top tokens whose culumative probability &lt; top_p",
+    "crumbs": [
+      "**Module 1:** Foundations of Generative AI",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "src/01/slides.html#example-6",
     "href": "src/01/slides.html#example-6",
     "title": "Module 1: Foundations of Generative AI",

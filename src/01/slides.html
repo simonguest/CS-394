@@ -1077,6 +1077,24 @@ Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&
 </div>
 </div>
 </section>
+<section id="temperature-top_k-and-top_p" class="slide level2">
+<h2>Temperature, top_k, and top_p</h2>
+<ul>
+<li class="fragment">Temperature (0.0 - 1.0)
+<ul>
+<li class="fragment">Lower for accuracy, factual summaries, etc.</li>
+<li class="fragment">Higher for more creative, diverse ideas</li>
+</ul></li>
+<li class="fragment">top_k (top k tokens)
+<ul>
+<li class="fragment">Narrow the next tokens to the top k (ordered by probability)</li>
+</ul></li>
+<li class="fragment">top_p (cumulative probability)
+<ul>
+<li class="fragment">Only return the top tokens whose culumative probability &lt; top_p</li>
+</ul></li>
+</ul>
+</section>
 <section id="example-6" class="slide level2">
 <h2>Example</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/01/notebooks/GPT-2.ipynb" data-notebook-title="Pre-trained GPT-2 Notebook" data-notebook-cellid="prompts">
