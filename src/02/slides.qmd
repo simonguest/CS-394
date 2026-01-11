@@ -148,11 +148,19 @@ What should I do on my upcoming trip to Paris?<|im_end|>
 
 ## Putting This Together
 
-{{< embed notebooks/instruction-tuned.ipynb#base-model echo=true >}}
+{{< embed notebooks/instruction-tuned.ipynb#base-model echo=true outputs=false >}}
 
 ## Putting This Together
 
-{{< embed notebooks/instruction-tuned.ipynb#it-model echo=true >}}
+{{< embed notebooks/instruction-tuned.ipynb#base-model >}}
+
+## Putting This Together
+
+{{< embed notebooks/instruction-tuned.ipynb#it-model echo=true outputs=false >}}
+
+## Putting This Together
+
+{{< embed notebooks/instruction-tuned.ipynb#it-model >}}
 
 # Demo
 
@@ -160,7 +168,9 @@ Base vs. Instruction-Tuned Model notebook in Colab
 
 # Hands-On
 
-Experiment with your own phrases in the instruction-tuned.ipynb notebook
+Experiment with your own phrases in the instruction-tuned.ipynb notebook. 
+
+Where is the base model similar? Where does instruction-tuned make a difference?
 
 # Model Evolution
 
@@ -176,7 +186,6 @@ timeline
     Feb 2023 : Llama 1 Released
                   : Meta's LLaMA (7B, 13B, 33B, 65B parameters)
                   : 13B model exceeded GPT-3 (175B) on most benchmarks
-                  : Limited researcher access
                   : Text completion only (Alpaca fine-tune added instructions)
 
     Jul 2023 : Llama 2 Released
@@ -209,7 +218,41 @@ timeline
   - Models with access to the training data set
   - You can download the model files with pretrained weights **and** the training data used to train it
   - i.e., you could create the model from scratch
-  - Examples: AI2's OLMo
+  - Examples: AI2's OLMo, NVIDIA Nemotron
+
+## Discovering Open Models
+
+![Source: https://huggingface.co](./images/huggingface.png)
+
+## What is Hugging Face?
+
+- It is to AI models what GitHub is to source code
+  - Explore, download models to run on local hardware
+  - Upload and share your own trained/fine-tuned models and datasets
+  - Create "Spaces" - web-based apps for accessing models
+
+# Demo
+
+Exploring [Qwen/Qwen2.5-0.5B-Instruct](https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct){.external target="_blank"} on Hugging Face
+
+## Hugging Face Transformers
+
+![Source: https://huggingface.co/docs/transformers](./images/transformers.png)
+
+## Hugging Face Transformers
+
+- What is the Hugging Face Transformers Library?
+- Open-source Python library to provide easy access to using various types of pre-trained transformer models
+- Brings together all of the different formats under one interface
+   - Different models, vendors, types, chat templates
+   - Different implementations: PyTorch, TensorFlow, JAX
+- A few lines of code to download and run the model
+
+# Hands-On
+
+In instruction-tuned.ipynb, explore swapping out Qwen-2.5 (base and instruct) for different models from HF
+
+# Accessing Closed Models
 
 ## Accessing Closed Models
 
@@ -278,6 +321,10 @@ timeline
 
 {{< embed notebooks/chat-completion-openai.ipynb#response echo=true >}}
 
+# Demo
+
+OpenAI Chat Completion API notebook
+
 ## Chat History Management
 
 - Key Considerations
@@ -289,9 +336,10 @@ timeline
 ## Chat History Management
 
 - Context window sizes
-  - Nano models ~= 32k tokens
-  - Small models ~= 120k tokens
-  - Frontier models ~= ~= 1M tokens
+  - GPT-2 = 2048 tokens
+  - Today's nano models ~= 32k tokens
+  - Today's small models ~= 120k tokens
+  - Today's frontier models ~= ~= 1M tokens
 - Large conversations can cause challenges
   - They are expensive (you pay per token for whole conversation every time)
   - Small models often forget early details in long conversation histories
@@ -337,7 +385,7 @@ timeline
 
 # Demo
 
-OpenRouter overview, OpenRouter Notebook, and setting secrets in Colab
+OpenRouter overview and notebook
 
 # Hands-On
 
@@ -376,7 +424,7 @@ Data sent as chunks, prefixed with `data:` and separated by double newlines
 
 ## Implementing Token Streaming
 
-{{< embed notebooks/token-streaming.ipynb#request echo=true >}}
+{{< embed notebooks/token-streaming.ipynb#request echo=true outputs=false >}}
 
 # Structured Output
 
@@ -440,7 +488,9 @@ Token Streaming and Structured Outputs
 
 # Hands-On
 
-Investigate token-streaming.ipynb and structured-outputs.ipynb. Try adding an additional field to the Location model.
+Investigate token-streaming.ipynb and structured-outputs.ipynb.
+
+Try creating changing the prompt and returning a different schema. Bonus points for a nested schema!
 
 # Creating a Chat UI
 
@@ -468,7 +518,7 @@ Investigate token-streaming.ipynb and structured-outputs.ipynb. Try adding an ad
 - Rich input/output types
   - Text, images, audio, video, files, dataframes, etc.
 - ML workflows
-  - Supports streaming, queue management (for server-side deployment), flagging/feedback collection
+  - Supports streaming, queues, flagging/feedback
 - Deployment flexibility
   - Can run locally, create temporary public links, or embed in production apps
 
@@ -498,20 +548,22 @@ Investigate token-streaming.ipynb and structured-outputs.ipynb. Try adding an ad
 
 # Demo
 
-Gradio Notebook
+Gradio Demo Notebook
 
 # Hands-On
 
-Explore the three examples in gradio.ipynb. 
+Explore the three examples in gradio.ipynb.
+
+Try enabling share=True and sharing with others.
 
 # Looking Ahead
 
 ## Looking Ahead
 
 - [This week's assignment!](https://simonguest.github.io/CS-394/src/02/assignment.html){.external target="_blank"}
-- Explore the world of AI Agents
+- Explore AI Agents
 - Create agents, building upon our knowledge of Gradio
-- Give the agent tools to perform functions beyond what an LLM can do
+- Give the agent documents and tools to perform functions beyond what an LLM can do
 
 # References
 
