@@ -693,21 +693,27 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Objective:</strong> Build a Gradio chat interface (in a separate Colab notebook) that helps users plan trips.</p>
+<p><strong>Objective:</strong> Build a chat interface (in a separate Colab notebook) that helps a user complete tasks.</p>
 <p><strong>Requirements:</strong></p>
 <ul>
 <li>Gradio chat interface with streaming responses</li>
-<li>System prompt that defines the AI as a travel planning expert</li>
-<li>Use at least 2 different system prompts (short and long) and share observations</li>
-<li>Use at least 2 different models via OpenRouter as a dropdown in Gradio. Try to pick a large (foundational model) and a much smaller open source model to compare the differences.</li>
+<li>System prompt that defines the AI as a travel planning expert (or pick your own scenario, if you have a better idea!)</li>
+<li>Implements a well-thought out system prompt (with feedback on the rationale behind it).</li>
+<li>Demonstrates at least 2 different models via OpenRouter as a dropdown in Gradio. (Not necessarily at the same time.)
+<ul>
+<li>Try to pick a large (foundational model) and a much smaller open source instruct model to compare the differences.</li>
+</ul></li>
+<li>Use structured outputs when returning results to the user (e.g., a downloadable itinerary that the user can download)
+<ul>
+<li>Example schema: Trip with fields like destination, duration_days, activities (list), budget_level, daily_schedule (list of day objects)</li>
+</ul></li>
 </ul>
 <p><strong>Deliverable: A Colab/Jupyter notebook with:</strong></p>
 <ul>
 <li>Code cells with your implementation</li>
-<li>Uses OPENROUTER_API_KEY for the API token (do not include your API key in your notebook!)</li>
+<li>Uses OPENROUTER_API_KEY for the API token. (Please do not include your API key in your notebook!)</li>
 <li>Markdown cells explaining what the notebook does and any observations</li>
 </ul>
-<p>** Stretch Goal (Non-graded)** - After the conversation, a “Generate Itinerary” button that uses structured outputs to create a formatted itinerary - Structured output schema: Trip with fields like destination, duration_days, activities (list), budget_level, daily_schedule (list of day objects)</p>
 
 
 

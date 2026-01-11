@@ -412,6 +412,13 @@ What should I do on my upcoming trip to Paris?&lt;|im_end|&gt;
 <span id="cb4-8"><a></a>)</span>
 <span id="cb4-9"><a></a>base_response <span class="op">=</span> base_tokenizer.decode(base_outputs[<span class="dv">0</span>], skip_special_tokens<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb4-10"><a></a><span class="bu">print</span>(base_response)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="putting-this-together-1" class="slide level2">
+<h2>Putting This Together</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/instruction-tuned.ipynb" data-notebook-title="Base Model vs. Instruction-Tuned Model" data-notebook-cellid="base-model">
+<div id="base-model" class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>What should I do on my upcoming trip to Paris? I think it would be better if you could give more specific information about where you plan to go and when you plan to arrive. Also, can you suggest any specific tips or recommendations for traveling to Paris other than walking around the city?
 
@@ -424,7 +431,7 @@ I'm sorry, but as an AI language model, I don't have any specific information ab
 </div>
 </div>
 </section>
-<section id="putting-this-together-1" class="slide level2">
+<section id="putting-this-together-2" class="slide level2">
 <h2>Putting This Together</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/instruction-tuned.ipynb" data-notebook-title="Base Model vs. Instruction-Tuned Model" data-notebook-cellid="it-model">
 <div id="it-model" class="cell">
@@ -449,6 +456,13 @@ I'm sorry, but as an AI language model, I don't have any specific information ab
 <span id="cb6-19"><a></a>    instruct_outputs[<span class="dv">0</span>], skip_special_tokens<span class="op">=</span><span class="va">True</span></span>
 <span id="cb6-20"><a></a>)</span>
 <span id="cb6-21"><a></a><span class="bu">print</span>(instruct_response)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="putting-this-together-3" class="slide level2">
+<h2>Putting This Together</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/instruction-tuned.ipynb" data-notebook-title="Base Model vs. Instruction-Tuned Model" data-notebook-cellid="it-model">
+<div id="it-model" class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>system
 You help travelers make plans for their trips.
@@ -471,7 +485,8 @@ Great question! On your next trip to Paris, you can start by visiting the iconic
 
 <section id="hands-on" class="title-slide slide level1 center">
 <h1>Hands-On</h1>
-<p>Experiment with your own phrases in the instruction-tuned.ipynb notebook</p>
+<p>Experiment with your own phrases in the instruction-tuned.ipynb notebook.</p>
+<p>Where is the base model similar? Where does instruction-tuned make a difference?</p>
 </section>
 
 <section>
@@ -495,7 +510,6 @@ Great question! On your next trip to Paris, you can start by visiting the iconic
     Feb 2023 : Llama 1 Released
                   : Meta's LLaMA (7B, 13B, 33B, 65B parameters)
                   : 13B model exceeded GPT-3 (175B) on most benchmarks
-                  : Limited researcher access
                   : Text completion only (Alpaca fine-tune added instructions)
 
     Jul 2023 : Llama 2 Released
@@ -543,11 +557,58 @@ Great question! On your next trip to Paris, you can start by visiting the iconic
 <li class="fragment">Models with access to the training data set</li>
 <li class="fragment">You can download the model files with pretrained weights <strong>and</strong> the training data used to train it</li>
 <li class="fragment">i.e., you could create the model from scratch</li>
-<li class="fragment">Examples: AI2’s OLMo</li>
+<li class="fragment">Examples: AI2’s OLMo, NVIDIA Nemotron</li>
 </ul></li>
 </ul>
 </section>
-<section id="accessing-closed-models" class="slide level2">
+<section id="discovering-open-models" class="slide level2">
+<h2>Discovering Open Models</h2>
+
+<img data-src="./images/huggingface.png" class="r-stretch quarto-figure-center"><p class="caption">Source: https://huggingface.co</p></section>
+<section id="what-is-hugging-face" class="slide level2">
+<h2>What is Hugging Face?</h2>
+<ul>
+<li class="fragment">It is to AI models what GitHub is to source code
+<ul>
+<li class="fragment">Explore, download models to run on local hardware</li>
+<li class="fragment">Upload and share your own trained/fine-tuned models and datasets</li>
+<li class="fragment">Create “Spaces” - web-based apps for accessing models</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="demo-1" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p>Exploring <a href="https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct" class="external" target="_blank">Qwen/Qwen2.5-0.5B-Instruct</a> on Hugging Face</p>
+</section>
+<section id="hugging-face-transformers" class="slide level2">
+<h2>Hugging Face Transformers</h2>
+
+<img data-src="./images/transformers.png" class="r-stretch quarto-figure-center"><p class="caption">Source: https://huggingface.co/docs/transformers</p></section>
+<section id="hugging-face-transformers-1" class="slide level2">
+<h2>Hugging Face Transformers</h2>
+<ul>
+<li class="fragment">What is the Hugging Face Transformers Library?</li>
+<li class="fragment">Open-source Python library to provide easy access to using various types of pre-trained transformer models</li>
+<li class="fragment">Brings together all of the different formats under one interface
+<ul>
+<li class="fragment">Different models, vendors, types, chat templates</li>
+<li class="fragment">Different implementations: PyTorch, TensorFlow, JAX</li>
+</ul></li>
+<li class="fragment">A few lines of code to download and run the model</li>
+</ul>
+</section></section>
+<section id="hands-on-1" class="title-slide slide level1 center">
+<h1>Hands-On</h1>
+<p>In instruction-tuned.ipynb, explore swapping out Qwen-2.5 (base and instruct) for different models from HF</p>
+</section>
+
+<section>
+<section id="accessing-closed-models" class="title-slide slide level1 center">
+<h1>Accessing Closed Models</h1>
+
+</section>
+<section id="accessing-closed-models-1" class="slide level2">
 <h2>Accessing Closed Models</h2>
 <ul>
 <li class="fragment">Consumer Website / App
@@ -564,7 +625,7 @@ Great question! On your next trip to Paris, you can start by visiting the iconic
 </ul></li>
 </ul>
 </section>
-<section id="accessing-closed-models-1" class="slide level2">
+<section id="accessing-closed-models-2" class="slide level2">
 <h2>Accessing Closed Models</h2>
 <ul>
 <li class="fragment">How much is going to cost?
@@ -574,7 +635,7 @@ Great question! On your next trip to Paris, you can start by visiting the iconic
 </ul></li>
 </ul>
 </section>
-<section id="accessing-closed-models-2" class="slide level2">
+<section id="accessing-closed-models-3" class="slide level2">
 <h2>Accessing Closed Models</h2>
 <ul>
 <li class="fragment">Example
@@ -748,6 +809,11 @@ Body:
 </div>
 </div>
 </div>
+</section></section>
+<section>
+<section id="demo-2" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p>OpenAI Chat Completion API notebook</p>
 </section>
 <section id="chat-history-management" class="slide level2">
 <h2>Chat History Management</h2>
@@ -766,9 +832,10 @@ Body:
 <ul>
 <li class="fragment">Context window sizes
 <ul>
-<li class="fragment">Nano models ~= 32k tokens</li>
-<li class="fragment">Small models ~= 120k tokens</li>
-<li class="fragment">Frontier models ~= ~= 1M tokens</li>
+<li class="fragment">GPT-2 = 2048 tokens</li>
+<li class="fragment">Today’s nano models ~= 32k tokens</li>
+<li class="fragment">Today’s small models ~= 120k tokens</li>
+<li class="fragment">Today’s frontier models ~= ~= 1M tokens</li>
 </ul></li>
 <li class="fragment">Large conversations can cause challenges
 <ul>
@@ -947,12 +1014,12 @@ Body:
 </div>
 </div>
 </section></section>
-<section id="demo-1" class="title-slide slide level1 center">
+<section id="demo-3" class="title-slide slide level1 center">
 <h1>Demo</h1>
-<p>OpenRouter overview, OpenRouter Notebook, and setting secrets in Colab</p>
+<p>OpenRouter overview and notebook</p>
 </section>
 
-<section id="hands-on-1" class="title-slide slide level1 center">
+<section id="hands-on-2" class="title-slide slide level1 center">
 <h1>Hands-On</h1>
 <p>Register for an OpenRouter account, create an API key, import into the OpenRouter Notebook (chat-completion-openrouter.ipynb) and experiment with different models</p>
 </section>
@@ -1021,48 +1088,6 @@ data: [DONE]</code></pre>
 <span id="cb19-17"><a></a>    <span class="cf">if</span> chunk.choices[<span class="dv">0</span>].delta.content <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
 <span id="cb19-18"><a></a>        token <span class="op">=</span> chunk.choices[<span class="dv">0</span>].delta.content</span>
 <span id="cb19-19"><a></a>        <span class="bu">print</span>(token, end<span class="op">=</span><span class="st">''</span>, flush<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Paris has something for almost every type of traveler, so I’ll give you a well‑rounded starting plan. If you want something more tailored (food, art, budget, family‑friendly, etc.), just tell me.
-
-### Must‑See Classics
-- **Eiffel Tower** – Go up if it’s your first time, or enjoy views from **Trocadéro** or **Champ de Mars**.
-- **Louvre Museum** – Even a 2–3 hour focused visit is worthwhile (book tickets in advance).
-- **Notre‑Dame Cathedral** – Admire the exterior and nearby **Île de la Cité**; check reopening status for interior access.
-- **Arc de Triomphe** – Climb to the top for one of the best city views.
-
-### Neighborhoods to Explore
-- **Montmartre** – Artistic vibes, Sacré‑Cœur, charming streets.
-- **Le Marais** – Trendy shops, historic mansions, great food.
-- **Latin Quarter** – Lively, student energy, bookshops, cafés.
-- **Saint‑Germain‑des‑Prés** – Classic cafés and upscale shopping.
-
-### Food &amp; Drink Experiences
-- Eat at a **local bistro** (look for a fixed‑price *menu du jour*).
-- Try **croissants &amp; pain au chocolat** from a neighborhood bakery.
-- Visit a **fromagerie** and **wine bar**.
-- Enjoy café culture: sit outside, order a coffee or wine, and people‑watch.
-- Don’t miss **crêpes**, **macarons**, and **cheese**.
-
-### Cultural &amp; Unique Experiences
-- **Seine River cruise** (especially at night).
-- **Musée d’Orsay** for Impressionist art.
-- **Versailles** day trip for palace and gardens.
-- **Cooking class** or **food tour**.
-- Wander without a plan—Paris is best discovered on foot.
-
-### Practical Tips
-- Buy museum tickets in advance to skip lines.
-- Learn a few French phrases—it goes a long way.
-- Dress comfortably but stylishly; Parisians walk a lot.
-- Use public transport (metro is fast and affordable).
-
-If you’d like, tell me:
-- How many days you’ll be there  
-- Time of year  
-- Your interests (food, museums, nightlife, romance, budget travel)
-
-I can build you a **day‑by‑day itinerary** just for your trip.</code></pre>
-</div>
 </div>
 </div>
 </section></section>
@@ -1145,14 +1170,14 @@ I can build you a **day‑by‑day itinerary** just for your trip.</code></pre>
 <h2>Implementing Structured Outputs</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/structured-outputs.ipynb" data-notebook-title="Structured Outputs" data-notebook-cellid="model">
 <div id="model" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel</span>
-<span id="cb21-2"><a></a></span>
-<span id="cb21-3"><a></a><span class="co"># Define the model for a geographic location</span></span>
-<span id="cb21-4"><a></a><span class="kw">class</span> Location(BaseModel):</span>
-<span id="cb21-5"><a></a>  name: <span class="bu">str</span></span>
-<span id="cb21-6"><a></a>  country: <span class="bu">str</span></span>
-<span id="cb21-7"><a></a>  latitude: <span class="bu">float</span></span>
-<span id="cb21-8"><a></a>  longitude: <span class="bu">float</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel</span>
+<span id="cb20-2"><a></a></span>
+<span id="cb20-3"><a></a><span class="co"># Define the model for a geographic location</span></span>
+<span id="cb20-4"><a></a><span class="kw">class</span> Location(BaseModel):</span>
+<span id="cb20-5"><a></a>  name: <span class="bu">str</span></span>
+<span id="cb20-6"><a></a>  country: <span class="bu">str</span></span>
+<span id="cb20-7"><a></a>  latitude: <span class="bu">float</span></span>
+<span id="cb20-8"><a></a>  longitude: <span class="bu">float</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -1160,18 +1185,18 @@ I can build you a **day‑by‑day itinerary** just for your trip.</code></pre>
 <h2>Implementing Structured Outputs</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/structured-outputs.ipynb" data-notebook-title="Structured Outputs" data-notebook-cellid="request">
 <div id="request" class="cell" data-execution_count="13">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a></a>MODEL <span class="op">=</span> <span class="st">'openai/gpt-5.2-chat'</span> <span class="co">#@param ["openai/gpt-5.2-chat", "anthropic/claude-sonnet-4.5", "google/gemini-2.5-pro"]</span></span>
-<span id="cb22-2"><a></a></span>
-<span id="cb22-3"><a></a>response <span class="op">=</span> client.chat.completions.parse(</span>
-<span id="cb22-4"><a></a>    model<span class="op">=</span>MODEL,</span>
-<span id="cb22-5"><a></a>    messages<span class="op">=</span>[</span>
-<span id="cb22-6"><a></a>        {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"What are the GPS coordinates for Paris?"</span>},</span>
-<span id="cb22-7"><a></a>    ],</span>
-<span id="cb22-8"><a></a>    response_format<span class="op">=</span>Location</span>
-<span id="cb22-9"><a></a>)</span>
-<span id="cb22-10"><a></a></span>
-<span id="cb22-11"><a></a>completion <span class="op">=</span> response.choices[<span class="dv">0</span>].message</span>
-<span id="cb22-12"><a></a><span class="bu">print</span>(completion)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a></a>MODEL <span class="op">=</span> <span class="st">'openai/gpt-5.2-chat'</span> <span class="co">#@param ["openai/gpt-5.2-chat", "anthropic/claude-sonnet-4.5", "google/gemini-2.5-pro"]</span></span>
+<span id="cb21-2"><a></a></span>
+<span id="cb21-3"><a></a>response <span class="op">=</span> client.chat.completions.parse(</span>
+<span id="cb21-4"><a></a>    model<span class="op">=</span>MODEL,</span>
+<span id="cb21-5"><a></a>    messages<span class="op">=</span>[</span>
+<span id="cb21-6"><a></a>        {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="st">"What are the GPS coordinates for Paris?"</span>},</span>
+<span id="cb21-7"><a></a>    ],</span>
+<span id="cb21-8"><a></a>    response_format<span class="op">=</span>Location</span>
+<span id="cb21-9"><a></a>)</span>
+<span id="cb21-10"><a></a></span>
+<span id="cb21-11"><a></a>completion <span class="op">=</span> response.choices[<span class="dv">0</span>].message</span>
+<span id="cb21-12"><a></a><span class="bu">print</span>(completion)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>ParsedChatCompletionMessage[Location](content='{"name":"Paris","country":"France","latitude":48.8566,"longitude":2.3522}', refusal=None, role='assistant', annotations=None, audio=None, function_call=None, tool_calls=None, parsed=Location(name='Paris', country='France', latitude=48.8566, longitude=2.3522), reasoning=None)</code></pre>
 </div>
@@ -1182,16 +1207,16 @@ I can build you a **day‑by‑day itinerary** just for your trip.</code></pre>
 <h2>Implementing Structured Outputs</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/structured-outputs.ipynb" data-notebook-title="Structured Outputs" data-notebook-cellid="display">
 <div id="display" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a></a><span class="co"># Display the JSON repesentation</span></span>
-<span id="cb24-2"><a></a><span class="bu">print</span>(completion.content)</span>
-<span id="cb24-3"><a></a></span>
-<span id="cb24-4"><a></a><span class="co"># Display the parsed type</span></span>
-<span id="cb24-5"><a></a><span class="bu">print</span>(completion.parsed)</span>
-<span id="cb24-6"><a></a></span>
-<span id="cb24-7"><a></a><span class="co"># Pretty-print</span></span>
-<span id="cb24-8"><a></a><span class="cf">if</span> completion.parsed:</span>
-<span id="cb24-9"><a></a>  location: Location <span class="op">=</span> completion.parsed</span>
-<span id="cb24-10"><a></a>  <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>location<span class="sc">.</span>name<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>location<span class="sc">.</span>country<span class="sc">}</span><span class="ss"> has GPS coordinates of </span><span class="sc">{</span>location<span class="sc">.</span>latitude<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>location<span class="sc">.</span>longitude<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a></a><span class="co"># Display the JSON repesentation</span></span>
+<span id="cb23-2"><a></a><span class="bu">print</span>(completion.content)</span>
+<span id="cb23-3"><a></a></span>
+<span id="cb23-4"><a></a><span class="co"># Display the parsed type</span></span>
+<span id="cb23-5"><a></a><span class="bu">print</span>(completion.parsed)</span>
+<span id="cb23-6"><a></a></span>
+<span id="cb23-7"><a></a><span class="co"># Pretty-print</span></span>
+<span id="cb23-8"><a></a><span class="cf">if</span> completion.parsed:</span>
+<span id="cb23-9"><a></a>  location: Location <span class="op">=</span> completion.parsed</span>
+<span id="cb23-10"><a></a>  <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>location<span class="sc">.</span>name<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>location<span class="sc">.</span>country<span class="sc">}</span><span class="ss"> has GPS coordinates of </span><span class="sc">{</span>location<span class="sc">.</span>latitude<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>location<span class="sc">.</span>longitude<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{"name":"Paris","country":"France","latitude":48.8566,"longitude":2.3522}
 name='Paris' country='France' latitude=48.8566 longitude=2.3522
@@ -1200,14 +1225,15 @@ Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
 </div>
 </div>
 </section></section>
-<section id="demo-2" class="title-slide slide level1 center">
+<section id="demo-4" class="title-slide slide level1 center">
 <h1>Demo</h1>
 <p>Token Streaming and Structured Outputs</p>
 </section>
 
-<section id="hands-on-2" class="title-slide slide level1 center">
+<section id="hands-on-3" class="title-slide slide level1 center">
 <h1>Hands-On</h1>
-<p>Investigate token-streaming.ipynb and structured-outputs.ipynb. Try adding an additional field to the Location model.</p>
+<p>Investigate token-streaming.ipynb and structured-outputs.ipynb.</p>
+<p>Try creating changing the prompt and returning a different schema. Bonus points for a nested schema!</p>
 </section>
 
 <section>
@@ -1249,7 +1275,7 @@ Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
 </ul></li>
 <li class="fragment">ML workflows
 <ul>
-<li class="fragment">Supports streaming, queue management (for server-side deployment), flagging/feedback collection</li>
+<li class="fragment">Supports streaming, queues, flagging/feedback</li>
 </ul></li>
 <li class="fragment">Deployment flexibility
 <ul>
@@ -1261,13 +1287,13 @@ Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
 <h2>Example 1: Basic Interface</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-1">
 <div id="example-1" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a></a><span class="im">import</span> gradio <span class="im">as</span> gr</span>
-<span id="cb26-2"><a></a></span>
-<span id="cb26-3"><a></a><span class="kw">def</span> image_classifier(inp):</span>
-<span id="cb26-4"><a></a>    <span class="cf">return</span> {<span class="st">'cat'</span>: <span class="fl">0.3</span>, <span class="st">'dog'</span>: <span class="fl">0.7</span>}</span>
-<span id="cb26-5"><a></a></span>
-<span id="cb26-6"><a></a>demo <span class="op">=</span> gr.Interface(fn<span class="op">=</span>image_classifier, inputs<span class="op">=</span><span class="st">"image"</span>, outputs<span class="op">=</span><span class="st">"label"</span>)</span>
-<span id="cb26-7"><a></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a></a><span class="im">import</span> gradio <span class="im">as</span> gr</span>
+<span id="cb25-2"><a></a></span>
+<span id="cb25-3"><a></a><span class="kw">def</span> image_classifier(inp):</span>
+<span id="cb25-4"><a></a>    <span class="cf">return</span> {<span class="st">'cat'</span>: <span class="fl">0.3</span>, <span class="st">'dog'</span>: <span class="fl">0.7</span>}</span>
+<span id="cb25-5"><a></a></span>
+<span id="cb25-6"><a></a>demo <span class="op">=</span> gr.Interface(fn<span class="op">=</span>image_classifier, inputs<span class="op">=</span><span class="st">"image"</span>, outputs<span class="op">=</span><span class="st">"label"</span>)</span>
+<span id="cb25-7"><a></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -1292,27 +1318,27 @@ Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
 <h2>Example 2: Basic Chat Interface</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-2">
 <div id="example-2" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a></a><span class="im">import</span> gradio <span class="im">as</span> gr</span>
-<span id="cb29-2"><a></a></span>
-<span id="cb29-3"><a></a><span class="kw">def</span> chat_with_history(message, history):</span>
-<span id="cb29-4"><a></a>    <span class="co"># Add current message</span></span>
-<span id="cb29-5"><a></a>    messages <span class="op">=</span> history <span class="op">+</span> [{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: message}]</span>
-<span id="cb29-6"><a></a>    </span>
-<span id="cb29-7"><a></a>    <span class="co"># Get response from API</span></span>
-<span id="cb29-8"><a></a>    response <span class="op">=</span> client.chat.completions.create(</span>
-<span id="cb29-9"><a></a>        model<span class="op">=</span><span class="st">'openai/gpt-5.2-chat'</span>,</span>
-<span id="cb29-10"><a></a>        messages<span class="op">=</span>messages,</span>
-<span id="cb29-11"><a></a>    )</span>
-<span id="cb29-12"><a></a>    </span>
-<span id="cb29-13"><a></a>    <span class="cf">return</span> response.choices[<span class="dv">0</span>].message.content</span>
-<span id="cb29-14"><a></a></span>
-<span id="cb29-15"><a></a><span class="co"># Create a chat interface</span></span>
-<span id="cb29-16"><a></a>demo <span class="op">=</span> gr.ChatInterface(</span>
-<span id="cb29-17"><a></a>    fn<span class="op">=</span>chat_with_history,</span>
-<span id="cb29-18"><a></a>    title<span class="op">=</span><span class="st">"Basic Chat with Conversation History"</span></span>
-<span id="cb29-19"><a></a>)</span>
-<span id="cb29-20"><a></a></span>
-<span id="cb29-21"><a></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a></a><span class="im">import</span> gradio <span class="im">as</span> gr</span>
+<span id="cb28-2"><a></a></span>
+<span id="cb28-3"><a></a><span class="kw">def</span> chat_with_history(message, history):</span>
+<span id="cb28-4"><a></a>    <span class="co"># Add current message</span></span>
+<span id="cb28-5"><a></a>    messages <span class="op">=</span> history <span class="op">+</span> [{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: message}]</span>
+<span id="cb28-6"><a></a>    </span>
+<span id="cb28-7"><a></a>    <span class="co"># Get response from API</span></span>
+<span id="cb28-8"><a></a>    response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb28-9"><a></a>        model<span class="op">=</span><span class="st">'openai/gpt-5.2-chat'</span>,</span>
+<span id="cb28-10"><a></a>        messages<span class="op">=</span>messages,</span>
+<span id="cb28-11"><a></a>    )</span>
+<span id="cb28-12"><a></a>    </span>
+<span id="cb28-13"><a></a>    <span class="cf">return</span> response.choices[<span class="dv">0</span>].message.content</span>
+<span id="cb28-14"><a></a></span>
+<span id="cb28-15"><a></a><span class="co"># Create a chat interface</span></span>
+<span id="cb28-16"><a></a>demo <span class="op">=</span> gr.ChatInterface(</span>
+<span id="cb28-17"><a></a>    fn<span class="op">=</span>chat_with_history,</span>
+<span id="cb28-18"><a></a>    title<span class="op">=</span><span class="st">"Basic Chat with Conversation History"</span></span>
+<span id="cb28-19"><a></a>)</span>
+<span id="cb28-20"><a></a></span>
+<span id="cb28-21"><a></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -1337,30 +1363,30 @@ Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
 <h2>Example 3: Streaming Chat Interface</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-3">
 <div id="example-3" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a></a><span class="kw">def</span> chat_with_streaming(message, history):</span>
-<span id="cb32-2"><a></a>    messages <span class="op">=</span> history <span class="op">+</span> [{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: message}]</span>
-<span id="cb32-3"><a></a>    </span>
-<span id="cb32-4"><a></a>    <span class="co"># Stream the response</span></span>
-<span id="cb32-5"><a></a>    stream <span class="op">=</span> client.chat.completions.create(</span>
-<span id="cb32-6"><a></a>        model<span class="op">=</span><span class="st">'openai/gpt-5.2-chat'</span>,</span>
-<span id="cb32-7"><a></a>        messages<span class="op">=</span>messages,</span>
-<span id="cb32-8"><a></a>        stream<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb32-9"><a></a>    )</span>
-<span id="cb32-10"><a></a>    </span>
-<span id="cb32-11"><a></a>    response_text <span class="op">=</span> <span class="st">""</span></span>
-<span id="cb32-12"><a></a>    <span class="cf">for</span> chunk <span class="kw">in</span> stream:</span>
-<span id="cb32-13"><a></a>        <span class="cf">if</span> chunk.choices[<span class="dv">0</span>].delta.content <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb32-14"><a></a>            token <span class="op">=</span> chunk.choices[<span class="dv">0</span>].delta.content</span>
-<span id="cb32-15"><a></a>            response_text <span class="op">+=</span> token</span>
-<span id="cb32-16"><a></a>            <span class="cf">yield</span> response_text</span>
-<span id="cb32-17"><a></a></span>
-<span id="cb32-18"><a></a><span class="co"># Create streaming chat interface</span></span>
-<span id="cb32-19"><a></a>demo <span class="op">=</span> gr.ChatInterface(</span>
-<span id="cb32-20"><a></a>    fn<span class="op">=</span>chat_with_streaming,</span>
-<span id="cb32-21"><a></a>    title<span class="op">=</span><span class="st">"AI Chat with Streaming"</span>,</span>
-<span id="cb32-22"><a></a>)</span>
-<span id="cb32-23"><a></a></span>
-<span id="cb32-24"><a></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a></a><span class="kw">def</span> chat_with_streaming(message, history):</span>
+<span id="cb31-2"><a></a>    messages <span class="op">=</span> history <span class="op">+</span> [{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: message}]</span>
+<span id="cb31-3"><a></a>    </span>
+<span id="cb31-4"><a></a>    <span class="co"># Stream the response</span></span>
+<span id="cb31-5"><a></a>    stream <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb31-6"><a></a>        model<span class="op">=</span><span class="st">'openai/gpt-5.2-chat'</span>,</span>
+<span id="cb31-7"><a></a>        messages<span class="op">=</span>messages,</span>
+<span id="cb31-8"><a></a>        stream<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb31-9"><a></a>    )</span>
+<span id="cb31-10"><a></a>    </span>
+<span id="cb31-11"><a></a>    response_text <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb31-12"><a></a>    <span class="cf">for</span> chunk <span class="kw">in</span> stream:</span>
+<span id="cb31-13"><a></a>        <span class="cf">if</span> chunk.choices[<span class="dv">0</span>].delta.content <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb31-14"><a></a>            token <span class="op">=</span> chunk.choices[<span class="dv">0</span>].delta.content</span>
+<span id="cb31-15"><a></a>            response_text <span class="op">+=</span> token</span>
+<span id="cb31-16"><a></a>            <span class="cf">yield</span> response_text</span>
+<span id="cb31-17"><a></a></span>
+<span id="cb31-18"><a></a><span class="co"># Create streaming chat interface</span></span>
+<span id="cb31-19"><a></a>demo <span class="op">=</span> gr.ChatInterface(</span>
+<span id="cb31-20"><a></a>    fn<span class="op">=</span>chat_with_streaming,</span>
+<span id="cb31-21"><a></a>    title<span class="op">=</span><span class="st">"AI Chat with Streaming"</span>,</span>
+<span id="cb31-22"><a></a>)</span>
+<span id="cb31-23"><a></a></span>
+<span id="cb31-24"><a></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -1381,14 +1407,15 @@ Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
 </div>
 </div>
 </section></section>
-<section id="demo-3" class="title-slide slide level1 center">
+<section id="demo-5" class="title-slide slide level1 center">
 <h1>Demo</h1>
-<p>Gradio Notebook</p>
+<p>Gradio Demo Notebook</p>
 </section>
 
-<section id="hands-on-3" class="title-slide slide level1 center">
+<section id="hands-on-4" class="title-slide slide level1 center">
 <h1>Hands-On</h1>
 <p>Explore the three examples in gradio.ipynb.</p>
+<p>Try enabling share=True and sharing with others.</p>
 </section>
 
 <section>
@@ -1400,9 +1427,9 @@ Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
 <h2>Looking Ahead</h2>
 <ul>
 <li class="fragment"><a href="https://simonguest.github.io/CS-394/src/02/assignment.html" class="external" target="_blank">This week’s assignment!</a></li>
-<li class="fragment">Explore the world of AI Agents</li>
+<li class="fragment">Explore AI Agents</li>
 <li class="fragment">Create agents, building upon our knowledge of Gradio</li>
-<li class="fragment">Give the agent tools to perform functions beyond what an LLM can do</li>
+<li class="fragment">Give the agent documents and tools to perform functions beyond what an LLM can do</li>
 </ul>
 </section></section>
 <section>
