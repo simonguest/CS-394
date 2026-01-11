@@ -375,6 +375,16 @@ Experiment with your own phrases in the translation-transformer.ipynb notebook
 
 {{< embed notebooks/GPT-2.ipynb#autocomplete echo=true >}}
 
+## Temperature, top_k, and top_p
+
+- Temperature (0.0 - 1.0)
+  - Lower for accuracy, factual summaries, etc.
+  - Higher for more creative, diverse ideas
+- top_k (top k tokens)
+  - Narrow the next tokens to the top k (ordered by probability)
+- top_p (cumulative probability)
+  - Only return the top tokens whose culumative probability < top_p
+
 ## Example
 
 {{< embed notebooks/GPT-2.ipynb#prompts echo=true >}}
