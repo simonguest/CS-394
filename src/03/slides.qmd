@@ -97,9 +97,9 @@ Imagine a __DigiPen Campus Assistant__: An AI agent that can help you navigate a
 4. Agents have **Persistence**
 
 - Agents often have memory systems beyond the current conversation
-- Broadly classified as short and long term memory 
-  - Short term memory could be the options at the Bytes Cafe
-  - Long term memory could be your food preferences
+- Broadly classified as short and long-term memory 
+  - Short-term memory could be your order request at the Bytes cafe
+  - Long-term memory could be your food preferences
 
 ## Five Characteristics of Agents
 
@@ -277,16 +277,116 @@ Get the Campus Agent Notebook up and running (campus-agent.ipynb)
 
 # Hands-On
 
-Pick your own scenario and create your own agents from scratch.
+Pick your own mini-scenario and create your own agents from scratch.
 
 # Multiple Agents
 
+## Why Multiple Agents?
 
-# Patterns
+- Context window limitations
+- Each agent can have a different system prompt (instructions)
+- Each agent can have a different underlying model
+  - Specialized models (e.g., a vision encoder)
+  - Or to blend cost
+- Makes tool separation cleaner and more accurate
 
-## Memory
+## Example of Multiple Agents
 
-- HANDS ON
+- Code generation
+  - Agents for 'architect', code writer, tester, debugger, etc.
+- Content generation
+  - Agent to create content, other agents to generate images, translate content, etc.
+- Travel booking
+  - Agent to book flights, hotels, cars, etc. for packages
+
+## Patterns for Agents
+
+- As you get deeper into building agents, patterns start to emerge
+  - Router (which is what we used in our demo) - hand off of tasks
+  - Orchestrator (using other agents as tools)
+  - Parallel agents (calling other agents in parallel and aggregating results)
+
+## Patterns for Agents
+
+![Source: https://www.anthropic.com/engineering/building-effective-agents](./images/agent-patterns.png)
+
+# Agent Memory
+
+## The Need for Memory
+
+- Just like API calls, agents need the conversation/context every call
+- This can be challenging with agents working on long-running tasks
+  - And/or agents working on multiple threads with other agents
+- Short-term and long-term memory
+
+## Short-term Memory
+
+- Used to store/retreive the current conversation thread
+- Built-in to most SDKs
+- In OpenAI Agents SDK called a `session`
+
+## Short-term Memory
+
+{{< embed notebooks/memory.ipynb#create-session echo=true >}}
+
+## Short-term Memory
+
+{{< embed notebooks/memory.ipynb#conversation-stored echo=true >}}
+
+## Short-term Memory
+
+{{< embed notebooks/memory.ipynb#conversation-retrieved echo=true >}}
+
+## Short-term Memory
+
+{{< embed notebooks/memory.ipynb#without-session echo=true >}}
+
+# Demo
+
+Short-Term memory in OpenAI Agents SDK (memory.ipynb)
+
+## Long-term Memory
+
+- More challenging
+- You don't want to store/retrieve the entire conversations
+- Long-term memory types
+  - **Factual**: General facts (e.g., name, address, seating preferences)
+  - **Episodic**: Past conversations (e.g., user booked a trip to Paris)
+  - **Procedural**: Learnings (e.g., the best hotel site to book accomodation)
+
+## Implementing Long-term Memory
+
+- Lots of startup options!
+  - [Supermemory](https://supermemory.ai){.external target="_blank"}
+  - [Letta](https://www.letta.com){.external target="_blank"}
+  - [mem0](https://github.com/mem0ai/mem0){.external target="_blank"}
+  - ...and lots more
+
+## Implementing Long-term Memory (mem0)
+
+```python
+from mem0 import Memory
+memory = Memory()
+
+# Create new memories from the conversation
+messages.append({"role": "assistant", "content": assistant_response})
+memory.add(messages, user_id=user_id)
+
+# Retrieve relevant memories
+relevant_memories = memory.search(query=message, user_id=user_id, limit=3)
+# (append these to the system prompt)
+```
+
+## Implementing Long-term Memory
+
+- Or "roll your own"
+- Long-term memory types
+  - **Factual**: General facts (e.g., name, address, seating preferences)
+  - **Episodic**: Past conversations (e.g., user booked a trip to Paris)
+  - **Procedural**: Learnings (e.g., the best hotel site to book accomodation)
+- Create tools for **factual** storage
+  - e.g., a profile tool with set/get options
+- Use LLM to summarize short-term session conversations to store **episodic** and **procedural** learnings.
 
 # Beyond Function Tooling
 

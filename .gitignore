@@ -28,3 +28,6 @@ __pycache__
 # ipynb checkpoints
 
 **/.ipynb_checkpoints
+
+# Data folders (for SQLite storage)
+.data
