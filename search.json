@@ -2,9 +2,30 @@
   {
     "objectID": "src/03/notebooks/memory.html",
     "href": "src/03/notebooks/memory.html",
-    "title": "CS-394",
+    "title": "Agent Memory",
     "section": "",
-    "text": "!uv add openai-agents\n\n\nResolved 188 packages in 1ms\n\nAudited 130 packages in 0.05ms\n\n\n\n\n\nfrom agents import Agent, Runner, SQLiteSession\n\nagent = Agent(name=\"Assistant\", instructions=\"Reply very concisely\")\n\nsession = SQLiteSession(\"conversation_123\", db_path=\"./test.sqlite\")\n\nresult1 = await Runner.run(agent, \"My name is Simon\", session=session)\nprint(result1.final_output)\n\nresult2 = await Runner.run(agent, \"What is my name?\", session=session)\nprint(result2.final_output)\n\nprint(session.db_path)\n\nYour name is Simon.\n./test.sqlite"
+    "text": "!uv add openai-agents==0.4.2\n\n\nResolved 190 packages in 1ms\n\nAudited 157 packages in 0.07ms"
+  },
+  {
+    "objectID": "src/03/notebooks/memory.html#set-the-db-folder",
+    "href": "src/03/notebooks/memory.html#set-the-db-folder",
+    "title": "Agent Memory",
+    "section": "Set the DB folder",
+    "text": "Set the DB folder\n\n# Create the .data directory for the SQLite db\n!mkdir -p .data\nSQLITE_DB = \"./.data/conversations.sqlite\""
+  },
+  {
+    "objectID": "src/03/notebooks/memory.html#create-the-session",
+    "href": "src/03/notebooks/memory.html#create-the-session",
+    "title": "Agent Memory",
+    "section": "Create the session",
+    "text": "Create the session\n\nfrom agents import Agent, Runner, SQLiteSession\n\nagent = Agent(name=\"Assistant\", instructions=\"Reply very concisely\")\nsession = SQLiteSession(\"conv_123\", db_path=SQLITE_DB)\n\n\nConversation stored in session\n\nresult = await Runner.run(agent, \"My name is Simon\", session=session)\nprint(result.final_output)\n\nNice to meet you, Simon!\n\n\n\n\nContext retrieved from session\n\nresult = await Runner.run(agent, \"What is my name?\", session=session)\nprint(result.final_output)\n\nYour name is Simon.\n\n\n\n\nWithout session\n\nresult = await Runner.run(agent, \"What is my name?\")\nprint(result.final_output)\n\nYou haven’t shared your name yet."
+  },
+  {
+    "objectID": "src/03/notebooks/memory.html#contents-of-sqlite-db",
+    "href": "src/03/notebooks/memory.html#contents-of-sqlite-db",
+    "title": "Agent Memory",
+    "section": "Contents of SQLite db",
+    "text": "Contents of SQLite db\n\nimport sqlite3\nimport pandas as pd\n\nconn = sqlite3.connect(SQLITE_DB)\n\nsessions_df = pd.read_sql_query(\"SELECT * FROM agent_sessions\", conn)\ndisplay(sessions_df)\n\nmessages_df = pd.read_sql_query(\"SELECT * FROM agent_messages\", conn)\ndisplay(messages_df)\n\nconn.close()\n\n\n\n\n\n\n\n\nsession_id\ncreated_at\nupdated_at\n\n\n\n\n0\nconv_123\n2026-01-15 21:39:00\n2026-01-15 21:39:37\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nid\nsession_id\nmessage_data\ncreated_at\n\n\n\n\n0\n1\nconv_123\n{\"content\": \"My name is Simon\", \"role\": \"user\"}\n2026-01-15 21:39:00\n\n\n1\n2\nconv_123\n{\"id\": \"msg_0f964931c939f4d70069695e75c99c8194...\n2026-01-15 21:39:02\n\n\n2\n3\nconv_123\n{\"content\": \"What is my name?\", \"role\": \"user\"}\n2026-01-15 21:39:04\n\n\n3\n4\nconv_123\n{\"id\": \"msg_0f964931c939f4d70069695e7955b88194...\n2026-01-15 21:39:05\n\n\n4\n5\nconv_123\n{\"content\": \"What is my name?\", \"role\": \"user\"}\n2026-01-15 21:39:36\n\n\n5\n6\nconv_123\n{\"id\": \"msg_0f964931c939f4d70069695e98f26c8194...\n2026-01-15 21:39:37"
   },
   {
     "objectID": "src/02/notebooks/token-streaming.html#set-the-openrouter-api-key-from-colab-secrets",
@@ -2538,7 +2559,7 @@
     "href": "src/03/slides.html#five-characteristics-of-agents-3",
     "title": "Module 3: Agents and Tools",
     "section": "Five Characteristics of Agents",
-    "text": "Five Characteristics of Agents\n\nAgents have Persistence\n\n\nAgents often have memory systems beyond the current conversation\nBroadly classified as short and long term memory\n\nShort term memory could be the options at the Bytes Cafe\nLong term memory could be your food preferences",
+    "text": "Five Characteristics of Agents\n\nAgents have Persistence\n\n\nAgents often have memory systems beyond the current conversation\nBroadly classified as short and long-term memory\n\nShort-term memory could be your order request at the Bytes cafe\nLong-term memory could be your food preferences",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Slides"
@@ -2780,7 +2801,7 @@
     "href": "src/03/slides.html#cafe-agent-tool",
     "title": "Module 3: Agents and Tools",
     "section": "Cafe Agent Tool",
-    "text": "Cafe Agent Tool\n\n\n@function_tool\ndef get_bytes_cafe_menu(date: str) -&gt; any:\n    return {\n        f\"{date}\": {\n            \"daily byte\": {\n                \"name\": \"Steak Quesadilla\",\n                \"price\": 12,\n                \"description\": \"Flank steak, mixed cheese in a flour tortilla served with air fried potatoes, sour cream and salsa\",\n            },\n            \"vegetarian\": {\n                \"name\": \"Impossible Quesadilla\",\n                \"price\": 12,\n                \"description\": \"Impossible plant based product, mixed cheese in a flour tortilla served with air fried potatoes, sour cream and salsa\",\n            },\n            \"international\": {\n                \"name\": \"Chicken Curry\",\n                \"price\": 12,\n                \"description\": \"Chicken thighs, onion, carrot, potato, curry sauce served over rice\",\n            },\n        }\n    }",
+    "text": "Cafe Agent Tool\n\n\nfrom agents import function_tool\n\n@function_tool\ndef get_bytes_cafe_menu(date: str) -&gt; any:\n    return {\n        f\"{date}\": {\n            \"daily byte\": {\n                \"name\": \"Steak Quesadilla\",\n                \"price\": 12,\n                \"description\": \"Flank steak, mixed cheese in a flour tortilla served with air fried potatoes, sour cream and salsa\",\n            },\n            \"vegetarian\": {\n                \"name\": \"Impossible Quesadilla\",\n                \"price\": 12,\n                \"description\": \"Impossible plant based product, mixed cheese in a flour tortilla served with air fried potatoes, sour cream and salsa\",\n            },\n            \"international\": {\n                \"name\": \"Chicken Curry\",\n                \"price\": 12,\n                \"description\": \"Chicken thighs, onion, carrot, potato, curry sauce served over rice\",\n            },\n        }\n    }",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Slides"
@@ -2809,11 +2830,154 @@
     ]
   },
   {
-    "objectID": "src/03/slides.html#memory",
-    "href": "src/03/slides.html#memory",
+    "objectID": "src/03/slides.html#why-multiple-agents",
+    "href": "src/03/slides.html#why-multiple-agents",
     "title": "Module 3: Agents and Tools",
-    "section": "Memory",
-    "text": "Memory\n\nHANDS ON",
+    "section": "Why Multiple Agents?",
+    "text": "Why Multiple Agents?\n\nContext window limitations\nEach agent can have a different system prompt (instructions)\nEach agent can have a different underlying model\n\nSpecialized models (e.g., a vision encoder)\nOr to blend cost\n\nMakes tool separation cleaner and more accurate",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#example-of-multiple-agents",
+    "href": "src/03/slides.html#example-of-multiple-agents",
+    "title": "Module 3: Agents and Tools",
+    "section": "Example of Multiple Agents",
+    "text": "Example of Multiple Agents\n\nCode generation\n\nAgents for ‘architect’, code writer, tester, debugger, etc.\n\nContent generation\n\nAgent to create content, other agents to generate images, translate content, etc.\n\nTravel booking\n\nAgent to book flights, hotels, cars, etc. for packages",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#patterns-for-agents",
+    "href": "src/03/slides.html#patterns-for-agents",
+    "title": "Module 3: Agents and Tools",
+    "section": "Patterns for Agents",
+    "text": "Patterns for Agents\n\nAs you get deeper into building agents, patterns start to emerge\n\nRouter (which is what we used in our demo) - hand off of tasks\nOrchestrator (using other agents as tools)\nParallel agents (calling other agents in parallel and aggregating results)",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#patterns-for-agents-1",
+    "href": "src/03/slides.html#patterns-for-agents-1",
+    "title": "Module 3: Agents and Tools",
+    "section": "Patterns for Agents",
+    "text": "Patterns for Agents\n\nSource: https://www.anthropic.com/engineering/building-effective-agents",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#the-need-for-memory",
+    "href": "src/03/slides.html#the-need-for-memory",
+    "title": "Module 3: Agents and Tools",
+    "section": "The Need for Memory",
+    "text": "The Need for Memory\n\nJust like API calls, agents need the conversation/context every call\nThis can be challenging with agents working on long-running tasks\n\nAnd/or agents working on multiple threads with other agents\n\nShort-term and long-term memory",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#short-term-memory",
+    "href": "src/03/slides.html#short-term-memory",
+    "title": "Module 3: Agents and Tools",
+    "section": "Short-term Memory",
+    "text": "Short-term Memory\n\nUsed to store/retreive the current conversation thread\nBuilt-in to most SDKs\nIn OpenAI Agents SDK called a session",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#short-term-memory-1",
+    "href": "src/03/slides.html#short-term-memory-1",
+    "title": "Module 3: Agents and Tools",
+    "section": "Short-term Memory",
+    "text": "Short-term Memory\n\n\nfrom agents import Agent, Runner, SQLiteSession\n\nagent = Agent(name=\"Assistant\", instructions=\"Reply very concisely\")\nsession = SQLiteSession(\"conv_123\", db_path=SQLITE_DB)",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#short-term-memory-2",
+    "href": "src/03/slides.html#short-term-memory-2",
+    "title": "Module 3: Agents and Tools",
+    "section": "Short-term Memory",
+    "text": "Short-term Memory\n\n\nresult = await Runner.run(agent, \"My name is Simon\", session=session)\nprint(result.final_output)\n\nNice to meet you, Simon!",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#short-term-memory-3",
+    "href": "src/03/slides.html#short-term-memory-3",
+    "title": "Module 3: Agents and Tools",
+    "section": "Short-term Memory",
+    "text": "Short-term Memory\n\n\nresult = await Runner.run(agent, \"What is my name?\", session=session)\nprint(result.final_output)\n\nYour name is Simon.",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#short-term-memory-4",
+    "href": "src/03/slides.html#short-term-memory-4",
+    "title": "Module 3: Agents and Tools",
+    "section": "Short-term Memory",
+    "text": "Short-term Memory\n\n\nresult = await Runner.run(agent, \"What is my name?\")\nprint(result.final_output)\n\nYou haven’t shared your name yet.",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#long-term-memory",
+    "href": "src/03/slides.html#long-term-memory",
+    "title": "Module 3: Agents and Tools",
+    "section": "Long-term Memory",
+    "text": "Long-term Memory\n\nMore challenging\nYou don’t want to store/retrieve the entire conversations\nLong-term memory types\n\nFactual: General facts (e.g., name, address, seating preferences)\nEpisodic: Past conversations (e.g., user booked a trip to Paris)\nProcedural: Learnings (e.g., the best hotel site to book accomodation)",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#implementing-long-term-memory",
+    "href": "src/03/slides.html#implementing-long-term-memory",
+    "title": "Module 3: Agents and Tools",
+    "section": "Implementing Long-term Memory",
+    "text": "Implementing Long-term Memory\n\nLots of startup options!\n\nSupermemory\nLetta\nmem0\n…and lots more",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#implementing-long-term-memory-mem0",
+    "href": "src/03/slides.html#implementing-long-term-memory-mem0",
+    "title": "Module 3: Agents and Tools",
+    "section": "Implementing Long-term Memory (mem0)",
+    "text": "Implementing Long-term Memory (mem0)\nfrom mem0 import Memory\nmemory = Memory()\n\n# Create new memories from the conversation\nmessages.append({\"role\": \"assistant\", \"content\": assistant_response})\nmemory.add(messages, user_id=user_id)\n\n# Retrieve relevant memories\nrelevant_memories = memory.search(query=message, user_id=user_id, limit=3)\n# (append these to the system prompt)",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#implementing-long-term-memory-1",
+    "href": "src/03/slides.html#implementing-long-term-memory-1",
+    "title": "Module 3: Agents and Tools",
+    "section": "Implementing Long-term Memory",
+    "text": "Implementing Long-term Memory\n\nOr “roll your own”\nLong-term memory types\n\nFactual: General facts (e.g., name, address, seating preferences)\nEpisodic: Past conversations (e.g., user booked a trip to Paris)\nProcedural: Learnings (e.g., the best hotel site to book accomodation)\n\nCreate tools for factual storage\n\ne.g., a profile tool with set/get options\n\nUse LLM to summarize short-term session conversations to store episodic and procedural learnings.",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Slides"
@@ -3329,14 +3493,14 @@
     "href": "src/03/notebooks/campus-agent.html#install-pre-requisites",
     "title": "DigiPen Campus Agent",
     "section": "Install pre-requisites",
-    "text": "Install pre-requisites\n\n!uv add openai-agents==0.4.2 gradio==5.49.1\n\n\nResolved 190 packages in 1ms\n\nInstalled 10 packages in 33ms12.0                           \n\n + colorama==0.4.6\n\n + cryptography==46.0.3\n\n + griffe==1.15.0\n\n + httpx-sse==0.4.3\n\n + mcp==1.25.0\n\n + openai-agents==0.4.2\n\n + pydantic-settings==2.12.0\n\n + pyjwt==2.10.1\n\n + sse-starlette==3.1.2\n\n + types-requests==2.32.4.20260107\n\n\n\n\n\nfrom agents import Agent, Runner, function_tool, FileSearchTool\n\nVECTOR_STORE_ID = \"vs_6896d8c959008191981d645850b42313\""
+    "text": "Install pre-requisites\n\n!uv add openai-agents==0.4.2 gradio==5.49.1\n\n\nResolved 190 packages in 1ms\n\nInstalled 10 packages in 33ms12.0                           \n\n + colorama==0.4.6\n\n + cryptography==46.0.3\n\n + griffe==1.15.0\n\n + httpx-sse==0.4.3\n\n + mcp==1.25.0\n\n + openai-agents==0.4.2\n\n + pydantic-settings==2.12.0\n\n + pyjwt==2.10.1\n\n + sse-starlette==3.1.2\n\n + types-requests==2.32.4.20260107"
   },
   {
     "objectID": "src/03/notebooks/campus-agent.html#agents",
     "href": "src/03/notebooks/campus-agent.html#agents",
     "title": "DigiPen Campus Agent",
     "section": "Agents",
-    "text": "Agents\n\nCafe Agent\n\n@function_tool\ndef get_bytes_cafe_menu(date: str) -&gt; any:\n    return {\n        f\"{date}\": {\n            \"daily byte\": {\n                \"name\": \"Steak Quesadilla\",\n                \"price\": 12,\n                \"description\": \"Flank steak, mixed cheese in a flour tortilla served with air fried potatoes, sour cream and salsa\",\n            },\n            \"vegetarian\": {\n                \"name\": \"Impossible Quesadilla\",\n                \"price\": 12,\n                \"description\": \"Impossible plant based product, mixed cheese in a flour tortilla served with air fried potatoes, sour cream and salsa\",\n            },\n            \"international\": {\n                \"name\": \"Chicken Curry\",\n                \"price\": 12,\n                \"description\": \"Chicken thighs, onion, carrot, potato, curry sauce served over rice\",\n            },\n        }\n    }\n\n\ncafe_agent = Agent(\n    name=\"Cafe Agent\",\n    instructions=\"You help students locate and provide information about the Bytes Cafe.\",\n    tools=[\n        get_bytes_cafe_menu,\n    ],\n)\n\n\n\nBuilding Agent\n\nbuilding_agent = Agent(\n    name=\"Building Agent\",\n    instructions=\"You help students locate and provide information about buildings and rooms on campus. Be descriptive when giving locations.\",\n    tools=[\n        FileSearchTool(\n            max_num_results=3,\n            vector_store_ids=[VECTOR_STORE_ID],\n            include_search_results=True,\n        )\n    ],\n)\n\n\n\nCourse Agent\n\ncourse_agent = Agent(\n    name=\"Course Agent\",\n    instructions=\"You help students find out information about courses held at DigiPen.\",\n    tools=[\n        FileSearchTool(\n            max_num_results=5,\n            vector_store_ids=[VECTOR_STORE_ID],\n            include_search_results=True,\n        )\n    ],\n)\n\n\n\nHandbook Agent\n\nhandbook_agent = Agent(\n    name=\"Handbook Agent\",\n    instructions=\"You help students navigate the school handbook, providing information about campus policies and student conduct.\",\n    tools=[\n        FileSearchTool(\n            max_num_results=5,\n            vector_store_ids=[VECTOR_STORE_ID],\n            include_search_results=True,\n        )\n    ],\n)\n\n\n\nCampus Agent\n\nagent = Agent(\n    name=\"DigiPen Campus Agent\",\n    instructions=\"You are a helpful campus agent that can plan and execute tasks for students at DigiPen. Please be concise and accurate in handing off tasks to other agents as needed.\",\n    handoffs=[building_agent, course_agent, handbook_agent, cafe_agent],\n)"
+    "text": "Agents\n\nfrom agents import Agent, Runner, FileSearchTool\n\n\nCafe Agent\n\nfrom agents import function_tool\n\n@function_tool\ndef get_bytes_cafe_menu(date: str) -&gt; any:\n    return {\n        f\"{date}\": {\n            \"daily byte\": {\n                \"name\": \"Steak Quesadilla\",\n                \"price\": 12,\n                \"description\": \"Flank steak, mixed cheese in a flour tortilla served with air fried potatoes, sour cream and salsa\",\n            },\n            \"vegetarian\": {\n                \"name\": \"Impossible Quesadilla\",\n                \"price\": 12,\n                \"description\": \"Impossible plant based product, mixed cheese in a flour tortilla served with air fried potatoes, sour cream and salsa\",\n            },\n            \"international\": {\n                \"name\": \"Chicken Curry\",\n                \"price\": 12,\n                \"description\": \"Chicken thighs, onion, carrot, potato, curry sauce served over rice\",\n            },\n        }\n    }\n\n\ncafe_agent = Agent(\n    name=\"Cafe Agent\",\n    instructions=\"You help students locate and provide information about the Bytes Cafe.\",\n    tools=[\n        get_bytes_cafe_menu,\n    ],\n)\n\n\n\nSet Vector Store\n\nVECTOR_STORE_ID = \"vs_6896d8c959008191981d645850b42313\"\n\n\n\nBuilding Agent\n\nbuilding_agent = Agent(\n    name=\"Building Agent\",\n    instructions=\"You help students locate and provide information about buildings and rooms on campus. Be descriptive when giving locations.\",\n    tools=[\n        FileSearchTool(\n            max_num_results=3,\n            vector_store_ids=[VECTOR_STORE_ID],\n            include_search_results=True,\n        )\n    ],\n)\n\n\n\nCourse Agent\n\ncourse_agent = Agent(\n    name=\"Course Agent\",\n    instructions=\"You help students find out information about courses held at DigiPen.\",\n    tools=[\n        FileSearchTool(\n            max_num_results=5,\n            vector_store_ids=[VECTOR_STORE_ID],\n            include_search_results=True,\n        )\n    ],\n)\n\n\n\nHandbook Agent\n\nhandbook_agent = Agent(\n    name=\"Handbook Agent\",\n    instructions=\"You help students navigate the school handbook, providing information about campus policies and student conduct.\",\n    tools=[\n        FileSearchTool(\n            max_num_results=5,\n            vector_store_ids=[VECTOR_STORE_ID],\n            include_search_results=True,\n        )\n    ],\n)\n\n\n\nCampus Agent\n\nagent = Agent(\n    name=\"DigiPen Campus Agent\",\n    instructions=\"You are a helpful campus agent that can plan and execute tasks for students at DigiPen. Please be concise and accurate in handing off tasks to other agents as needed.\",\n    handoffs=[building_agent, course_agent, handbook_agent, cafe_agent],\n)"
   },
   {
     "objectID": "src/03/notebooks/campus-agent.html#gradio-interface",

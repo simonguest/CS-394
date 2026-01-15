@@ -317,10 +317,10 @@
 </ol>
 <ul>
 <li class="fragment">Agents often have memory systems beyond the current conversation</li>
-<li class="fragment">Broadly classified as short and long term memory
+<li class="fragment">Broadly classified as short and long-term memory
 <ul>
-<li class="fragment">Short term memory could be the options at the Bytes Cafe</li>
-<li class="fragment">Long term memory could be your food preferences</li>
+<li class="fragment">Short-term memory could be your order request at the Bytes cafe</li>
+<li class="fragment">Long-term memory could be your food preferences</li>
 </ul></li>
 </ul>
 </section>
@@ -592,27 +592,29 @@
 <h2>Cafe Agent Tool</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/03/notebooks/campus-agent.ipynb" data-notebook-title="DigiPen Campus Agent" data-notebook-cellid="cafe-agent-tool">
 <div id="cafe-agent-tool" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="at">@function_tool</span></span>
-<span id="cb6-2"><a></a><span class="kw">def</span> get_bytes_cafe_menu(date: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">any</span>:</span>
-<span id="cb6-3"><a></a>    <span class="cf">return</span> {</span>
-<span id="cb6-4"><a></a>        <span class="ss">f"</span><span class="sc">{</span>date<span class="sc">}</span><span class="ss">"</span>: {</span>
-<span id="cb6-5"><a></a>            <span class="st">"daily byte"</span>: {</span>
-<span id="cb6-6"><a></a>                <span class="st">"name"</span>: <span class="st">"Steak Quesadilla"</span>,</span>
-<span id="cb6-7"><a></a>                <span class="st">"price"</span>: <span class="dv">12</span>,</span>
-<span id="cb6-8"><a></a>                <span class="st">"description"</span>: <span class="st">"Flank steak, mixed cheese in a flour tortilla served with air fried potatoes, sour cream and salsa"</span>,</span>
-<span id="cb6-9"><a></a>            },</span>
-<span id="cb6-10"><a></a>            <span class="st">"vegetarian"</span>: {</span>
-<span id="cb6-11"><a></a>                <span class="st">"name"</span>: <span class="st">"Impossible Quesadilla"</span>,</span>
-<span id="cb6-12"><a></a>                <span class="st">"price"</span>: <span class="dv">12</span>,</span>
-<span id="cb6-13"><a></a>                <span class="st">"description"</span>: <span class="st">"Impossible plant based product, mixed cheese in a flour tortilla served with air fried potatoes, sour cream and salsa"</span>,</span>
-<span id="cb6-14"><a></a>            },</span>
-<span id="cb6-15"><a></a>            <span class="st">"international"</span>: {</span>
-<span id="cb6-16"><a></a>                <span class="st">"name"</span>: <span class="st">"Chicken Curry"</span>,</span>
-<span id="cb6-17"><a></a>                <span class="st">"price"</span>: <span class="dv">12</span>,</span>
-<span id="cb6-18"><a></a>                <span class="st">"description"</span>: <span class="st">"Chicken thighs, onion, carrot, potato, curry sauce served over rice"</span>,</span>
-<span id="cb6-19"><a></a>            },</span>
-<span id="cb6-20"><a></a>        }</span>
-<span id="cb6-21"><a></a>    }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="im">from</span> agents <span class="im">import</span> function_tool</span>
+<span id="cb6-2"><a></a></span>
+<span id="cb6-3"><a></a><span class="at">@function_tool</span></span>
+<span id="cb6-4"><a></a><span class="kw">def</span> get_bytes_cafe_menu(date: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">any</span>:</span>
+<span id="cb6-5"><a></a>    <span class="cf">return</span> {</span>
+<span id="cb6-6"><a></a>        <span class="ss">f"</span><span class="sc">{</span>date<span class="sc">}</span><span class="ss">"</span>: {</span>
+<span id="cb6-7"><a></a>            <span class="st">"daily byte"</span>: {</span>
+<span id="cb6-8"><a></a>                <span class="st">"name"</span>: <span class="st">"Steak Quesadilla"</span>,</span>
+<span id="cb6-9"><a></a>                <span class="st">"price"</span>: <span class="dv">12</span>,</span>
+<span id="cb6-10"><a></a>                <span class="st">"description"</span>: <span class="st">"Flank steak, mixed cheese in a flour tortilla served with air fried potatoes, sour cream and salsa"</span>,</span>
+<span id="cb6-11"><a></a>            },</span>
+<span id="cb6-12"><a></a>            <span class="st">"vegetarian"</span>: {</span>
+<span id="cb6-13"><a></a>                <span class="st">"name"</span>: <span class="st">"Impossible Quesadilla"</span>,</span>
+<span id="cb6-14"><a></a>                <span class="st">"price"</span>: <span class="dv">12</span>,</span>
+<span id="cb6-15"><a></a>                <span class="st">"description"</span>: <span class="st">"Impossible plant based product, mixed cheese in a flour tortilla served with air fried potatoes, sour cream and salsa"</span>,</span>
+<span id="cb6-16"><a></a>            },</span>
+<span id="cb6-17"><a></a>            <span class="st">"international"</span>: {</span>
+<span id="cb6-18"><a></a>                <span class="st">"name"</span>: <span class="st">"Chicken Curry"</span>,</span>
+<span id="cb6-19"><a></a>                <span class="st">"price"</span>: <span class="dv">12</span>,</span>
+<span id="cb6-20"><a></a>                <span class="st">"description"</span>: <span class="st">"Chicken thighs, onion, carrot, potato, curry sauce served over rice"</span>,</span>
+<span id="cb6-21"><a></a>            },</span>
+<span id="cb6-22"><a></a>        }</span>
+<span id="cb6-23"><a></a>    }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section></section>
@@ -658,23 +660,188 @@
 
 <section id="hands-on-3" class="title-slide slide level1 center">
 <h1>Hands-On</h1>
-<p>Pick your own scenario and create your own agents from scratch.</p>
+<p>Pick your own mini-scenario and create your own agents from scratch.</p>
 </section>
 
+<section>
 <section id="multiple-agents" class="title-slide slide level1 center">
 <h1>Multiple Agents</h1>
 
 </section>
+<section id="why-multiple-agents" class="slide level2">
+<h2>Why Multiple Agents?</h2>
+<ul>
+<li class="fragment">Context window limitations</li>
+<li class="fragment">Each agent can have a different system prompt (instructions)</li>
+<li class="fragment">Each agent can have a different underlying model
+<ul>
+<li class="fragment">Specialized models (e.g., a vision encoder)</li>
+<li class="fragment">Or to blend cost</li>
+</ul></li>
+<li class="fragment">Makes tool separation cleaner and more accurate</li>
+</ul>
+</section>
+<section id="example-of-multiple-agents" class="slide level2">
+<h2>Example of Multiple Agents</h2>
+<ul>
+<li class="fragment">Code generation
+<ul>
+<li class="fragment">Agents for ‘architect’, code writer, tester, debugger, etc.</li>
+</ul></li>
+<li class="fragment">Content generation
+<ul>
+<li class="fragment">Agent to create content, other agents to generate images, translate content, etc.</li>
+</ul></li>
+<li class="fragment">Travel booking
+<ul>
+<li class="fragment">Agent to book flights, hotels, cars, etc. for packages</li>
+</ul></li>
+</ul>
+</section>
+<section id="patterns-for-agents" class="slide level2">
+<h2>Patterns for Agents</h2>
+<ul>
+<li class="fragment">As you get deeper into building agents, patterns start to emerge
+<ul>
+<li class="fragment">Router (which is what we used in our demo) - hand off of tasks</li>
+<li class="fragment">Orchestrator (using other agents as tools)</li>
+<li class="fragment">Parallel agents (calling other agents in parallel and aggregating results)</li>
+</ul></li>
+</ul>
+</section>
+<section id="patterns-for-agents-1" class="slide level2">
+<h2>Patterns for Agents</h2>
 
+<img data-src="./images/agent-patterns.png" class="r-stretch quarto-figure-center"><p class="caption">Source: https://www.anthropic.com/engineering/building-effective-agents</p></section></section>
 <section>
-<section id="patterns" class="title-slide slide level1 center">
-<h1>Patterns</h1>
+<section id="agent-memory" class="title-slide slide level1 center">
+<h1>Agent Memory</h1>
 
 </section>
-<section id="memory" class="slide level2">
-<h2>Memory</h2>
+<section id="the-need-for-memory" class="slide level2">
+<h2>The Need for Memory</h2>
 <ul>
-<li class="fragment">HANDS ON</li>
+<li class="fragment">Just like API calls, agents need the conversation/context every call</li>
+<li class="fragment">This can be challenging with agents working on long-running tasks
+<ul>
+<li class="fragment">And/or agents working on multiple threads with other agents</li>
+</ul></li>
+<li class="fragment">Short-term and long-term memory</li>
+</ul>
+</section>
+<section id="short-term-memory" class="slide level2">
+<h2>Short-term Memory</h2>
+<ul>
+<li class="fragment">Used to store/retreive the current conversation thread</li>
+<li class="fragment">Built-in to most SDKs</li>
+<li class="fragment">In OpenAI Agents SDK called a <code>session</code></li>
+</ul>
+</section>
+<section id="short-term-memory-1" class="slide level2">
+<h2>Short-term Memory</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/03/notebooks/memory.ipynb" data-notebook-title="Agent Memory" data-notebook-cellid="create-session">
+<div id="create-session" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="im">from</span> agents <span class="im">import</span> Agent, Runner, SQLiteSession</span>
+<span id="cb7-2"><a></a></span>
+<span id="cb7-3"><a></a>agent <span class="op">=</span> Agent(name<span class="op">=</span><span class="st">"Assistant"</span>, instructions<span class="op">=</span><span class="st">"Reply very concisely"</span>)</span>
+<span id="cb7-4"><a></a>session <span class="op">=</span> SQLiteSession(<span class="st">"conv_123"</span>, db_path<span class="op">=</span>SQLITE_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="short-term-memory-2" class="slide level2">
+<h2>Short-term Memory</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/03/notebooks/memory.ipynb" data-notebook-title="Agent Memory" data-notebook-cellid="conversation-stored">
+<div id="conversation-stored" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a>result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"My name is Simon"</span>, session<span class="op">=</span>session)</span>
+<span id="cb8-2"><a></a><span class="bu">print</span>(result.final_output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Nice to meet you, Simon!</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="short-term-memory-3" class="slide level2">
+<h2>Short-term Memory</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/03/notebooks/memory.ipynb" data-notebook-title="Agent Memory" data-notebook-cellid="conversation-retrieved">
+<div id="conversation-retrieved" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a>result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"What is my name?"</span>, session<span class="op">=</span>session)</span>
+<span id="cb10-2"><a></a><span class="bu">print</span>(result.final_output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Your name is Simon.</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="short-term-memory-4" class="slide level2">
+<h2>Short-term Memory</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/03/notebooks/memory.ipynb" data-notebook-title="Agent Memory" data-notebook-cellid="without-session">
+<div id="without-session" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a>result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"What is my name?"</span>)</span>
+<span id="cb12-2"><a></a><span class="bu">print</span>(result.final_output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>You haven’t shared your name yet.</code></pre>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="demo" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p>Short-Term memory in OpenAI Agents SDK (memory.ipynb)</p>
+</section>
+<section id="long-term-memory" class="slide level2">
+<h2>Long-term Memory</h2>
+<ul>
+<li class="fragment">More challenging</li>
+<li class="fragment">You don’t want to store/retrieve the entire conversations</li>
+<li class="fragment">Long-term memory types
+<ul>
+<li class="fragment"><strong>Factual</strong>: General facts (e.g., name, address, seating preferences)</li>
+<li class="fragment"><strong>Episodic</strong>: Past conversations (e.g., user booked a trip to Paris)</li>
+<li class="fragment"><strong>Procedural</strong>: Learnings (e.g., the best hotel site to book accomodation)</li>
+</ul></li>
+</ul>
+</section>
+<section id="implementing-long-term-memory" class="slide level2">
+<h2>Implementing Long-term Memory</h2>
+<ul>
+<li class="fragment">Lots of startup options!
+<ul>
+<li class="fragment"><a href="https://supermemory.ai" class="external" target="_blank">Supermemory</a></li>
+<li class="fragment"><a href="https://www.letta.com" class="external" target="_blank">Letta</a></li>
+<li class="fragment"><a href="https://github.com/mem0ai/mem0" class="external" target="_blank">mem0</a></li>
+<li class="fragment">…and lots more</li>
+</ul></li>
+</ul>
+</section>
+<section id="implementing-long-term-memory-mem0" class="slide level2">
+<h2>Implementing Long-term Memory (mem0)</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="im">from</span> mem0 <span class="im">import</span> Memory</span>
+<span id="cb14-2"><a></a>memory <span class="op">=</span> Memory()</span>
+<span id="cb14-3"><a></a></span>
+<span id="cb14-4"><a></a><span class="co"># Create new memories from the conversation</span></span>
+<span id="cb14-5"><a></a>messages.append({<span class="st">"role"</span>: <span class="st">"assistant"</span>, <span class="st">"content"</span>: assistant_response})</span>
+<span id="cb14-6"><a></a>memory.add(messages, user_id<span class="op">=</span>user_id)</span>
+<span id="cb14-7"><a></a></span>
+<span id="cb14-8"><a></a><span class="co"># Retrieve relevant memories</span></span>
+<span id="cb14-9"><a></a>relevant_memories <span class="op">=</span> memory.search(query<span class="op">=</span>message, user_id<span class="op">=</span>user_id, limit<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb14-10"><a></a><span class="co"># (append these to the system prompt)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="implementing-long-term-memory-1" class="slide level2">
+<h2>Implementing Long-term Memory</h2>
+<ul>
+<li class="fragment">Or “roll your own”</li>
+<li class="fragment">Long-term memory types
+<ul>
+<li class="fragment"><strong>Factual</strong>: General facts (e.g., name, address, seating preferences)</li>
+<li class="fragment"><strong>Episodic</strong>: Past conversations (e.g., user booked a trip to Paris)</li>
+<li class="fragment"><strong>Procedural</strong>: Learnings (e.g., the best hotel site to book accomodation)</li>
+</ul></li>
+<li class="fragment">Create tools for <strong>factual</strong> storage
+<ul>
+<li class="fragment">e.g., a profile tool with set/get options</li>
+</ul></li>
+<li class="fragment">Use LLM to summarize short-term session conversations to store <strong>episodic</strong> and <strong>procedural</strong> learnings.</li>
 </ul>
 </section></section>
 <section>
