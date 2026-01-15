@@ -550,6 +550,8 @@ Try creating changing the prompt and returning a different schema. Bonus points 
 
 Gradio Demo Notebook
 
+Note: We'll be using Gradio 5.x latest (vs. 6.x) throughout the semester.
+
 # Hands-On
 
 Explore the three examples in gradio.ipynb.
