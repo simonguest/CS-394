@@ -32,6 +32,284 @@ bibliography: references.bib
 - Use the OpenAI Agents SDK to build an multi-agent system from scratch, including document indexing and retrieval
 - Understand and implement tool calls and implement using OpenAI’s function calling and via MCP
 
+# Why Agents?
+
+## Why Agents?
+
+- Limitations of our prior chatbots
+  - Needs constant human input every turn; No ability to plan beyond a single interaction
+  - Single model with single context (conversation)
+  - No ability to interact with external systems
+
+# Introducing Agents
+
+## What is an Agent?
+
+![Source: https://www.youtube.com/watch?v=bwXaJXgezf4](./images/quote-1.png)
+
+## What is an Agent?
+
+![Source: https://www.weforum.org/stories/2025/06/cognitive-enterprise-agentic-business-revolution/](./images/quote-2.png)
+
+## What is an Agent?
+
+![Source: https://www.crn.com/news/ai/2025/10-hottest-agentic-ai-tools-and-agents-of-2025-so-far](./images/quote-3.png)
+
+## What is an Agent?
+
+![Source: https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027](./images/quote-4.png)
+
+## What is an Agent?
+
+Imagine a __DigiPen Campus Assistant__: An AI agent that can help you navigate anything and everything at DigiPen!
+
+- "Where can I find the 'Hopper' room?"
+- "Can you tell me more about FLM201?"
+- "Oh, and what's today's vegetarian option at the Bytes Cafe?"
+
+## Five Characteristics of Agents
+
+1. Agents are **Planners**
+
+- Agents are driven by goals
+- And they can put together a plan for the steps to complete that goal.
+  - "First, I will discover where course information is located"
+  - "Then I will search for any courses that reference FLM201"
+  - "Then I summarize all of the key points for the student"
+
+## Five Characteristics of Agents
+
+2. Agents are **Autonomous**
+
+- Agents can then go off and execute the plan, independent of human input
+- The concept of "human in the loop" still applies for confirmation
+  - e.g. "Do you really want to place this order at the Bytes Cafe?"
+
+## Five Characteristics of Agents
+
+3. Agents are **Reactive**
+
+- Agents can change mid-course depending on what they find and/or the environment.
+  - e.g. "I couldn't find any course information on FLM201. I'm going to check if there are other 200-level FLM courses before responding to the student."
+
+## Five Characteristics of Agents
+
+4. Agents have **Persistence**
+
+- Agents often have memory systems beyond the current conversation
+- Broadly classified as short and long term memory 
+  - Short term memory could be the options at the Bytes Cafe
+  - Long term memory could be your food preferences
+
+## Five Characteristics of Agents
+
+5. Agents can **Interact** with external systems
+
+- Agents can **delegate** to other agents for complex tasks
+  - (Or for tasks where other agents are better suited for.)
+  - e.g., Campus Agent -> delegating to a Course Agent
+- Agents can also be given access to external **tools**
+  - e.g., File search, Web search, access to the Bytes Cafe API
+
+# Hands-On
+
+Try the DigiPen Campus Agent!
+
+[**https://simonguest-campus-agent.hf.space/**](https://simonguest-campus-agent.hf.space/){.external target="_blank"}
+
+Q: What worked? What surprised you?
+
+Q: What didn't work? Where did the agent fail?
+
+# OpenAI Agents SDK
+
+## OpenAI Agents SDK
+
+- [Announced](https://openai.com/index/new-tools-for-building-agents/){.external target="_blank"} in Mar 2025
+  - Together with web search, file search, and computer use
+  - And a new Responses API (formerly Assistants API)
+
+## OpenAI Agents SDK
+
+- Created to address the gap between chat completions (what we were using last week) and multi-step systems
+  - vs. building your own, which a lot of developers were doing at the time
+- Integrates function calling, handoffs, and statement management in the same package
+- Supports Python and TypeScript; MIT licensed
+
+## Not the only Agent SDK in town!
+
+![Source: https://e2b.dev](./images/ai-agents-landscape.png)
+
+## LangGraph 
+- https://langchain-ai.github.io/langgraph/
+- Python only
+- MIT License
+- One of the first agent frameworks, building on LangChain
+  - IMO, too abstract/complex/bloated
+
+## Crew.ai
+
+- https://github.com/crewaiinc/crewai
+- Python only
+- One of the more popular commercial offerings
+  - (Although they do have an MIT License/freemium model)
+
+## Microsoft 
+
+- AutoGen
+  - https://microsoft.github.io/autogen/stable/
+  - Python (.NET coming soon)
+  - MIT License
+- Microsoft Semantic Kernel
+  - https://github.com/microsoft/semantic-kernel
+  - Python, .NET, Java
+  - MIT License
+
+## Microsoft
+
+- Now converging into the [Microsoft Agent Framework](https://github.com/microsoft/agent-framework){.external target="_blank"}
+- (One of the few agent SDKs to support .NET)
+
+# How Does the Campus Agent Work?
+
+## Agent Structure
+
+![Agents and tools for the DigiPen Campus Agent](./images/agent_graph.png)
+
+## Campus Agent
+
+{{< embed notebooks/campus-agent.ipynb#campus-agent echo=true outputs=false >}}
+
+## Building Agent
+
+{{< embed notebooks/campus-agent.ipynb#building-agent echo=true outputs=false >}}
+
+## Course Agent
+
+{{< embed notebooks/campus-agent.ipynb#course-agent echo=true outputs=false >}}
+
+## Handbook Agent
+
+{{< embed notebooks/campus-agent.ipynb#handbook-agent echo=true outputs=false >}}
+
+## What's a Vector Store?
+
+- A way to provide domain-specific knowledge beyond training data
+  - e.g., current semester course information that is newer than GPT-5.2's cutoff date
+- We could just insert these into the context window
+  - But doesn't scale to more than a few documents
+
+## What's a Vector Store?
+
+- Instead, we use a vector store
+  - Converts documents, paragraphs, or sentences into vector embeddings
+  - (Remember these from module 1? :)
+- Similar concepts are close to each other in vector space
+  - Which makes it efficient to query
+- Queries return the document (or pages within a document) that match
+  - e.g., "Michelangelo" returns "Page 1 of the floor map"
+
+## What's a Vector Store?
+
+- Foundation for RAG (Retrieval Augmented Generation)
+  - (Which we will cover in module 6)
+- Many different types of vectors stores/databases
+- For now, we will be using the OpenAI built in one
+
+## What's a Vector Store
+
+![](./images/openai-vector-store.png){.lightbox}
+
+## Agent Structure
+
+![Agents and tools for the DigiPen Campus Agent](./images/agent_graph.png)
+
+## Why Do Agents Need Tools?
+
+- The scope of the agents ability is contained within the model
+- Tools enable the agent to reach out to systems beyond the model
+- Examples
+  - Read a file from disk or search the web (built in)
+  - Calculator (because LLMs aren't great at math)
+  - Code interpreter (running code on the fly)
+
+## OpenAI Tool Calling
+
+- Introduced by OpenAI in June 2023
+- Originally called Function Calling
+- Models are fine-tuned to return a structured function_call JSON object, specifying which function to call and with what arguments.
+- Tools are provided as functions
+- Option for the LLM to decide when to call the tool (always, never, auto)
+
+## Cafe Agent
+
+{{< embed notebooks/campus-agent.ipynb#cafe-agent echo=true outputs=false >}}
+
+## Cafe Agent Tool
+
+{{< embed notebooks/campus-agent.ipynb#cafe-agent-tool echo=true outputs=false >}}
+
+# Let's Run the Campus Agent
+
+## Let's Run the Campus Agent
+
+- Does the OpenAI Agents SDK work with OpenRouter?
+  - Yes and No :)
+- Yes to core functionality
+  - Creating an agent, handoffs, calling custom tools
+- No to calling built-in OpenAI tools
+  - File search, Web search, Code interpreter 
+
+## Let's Run the Campus Agent
+
+- We'll need to create an OpenAI developer account
+- Potentially add some credits to it
+
+# Hands-On
+
+Create a new developer account at [https://platform.openai.com](https://platform.openai.com){.external target="_blank"}
+
+Create a new API key at [https://platform.openai.com/settings/organization/api-keys](https://platform.openai.com/settings/organization/api-keys){.external target="_blank"}
+
+# Hands-On
+
+Get the Campus Agent Notebook up and running (campus-agent.ipynb)
+
+# Hands-On
+
+Pick your own scenario and create your own agents from scratch.
+
+# Multiple Agents
+
+
+# Patterns
+
+## Memory
+
+- HANDS ON
+
+# Beyond Function Tooling
+
+## MCP (Model Context Protocol)
+
+- OpenAI's tool/function calling works if you have local access to the tools
+- But how about external systems?
+  - e.g., Access to calendar, other systems, hardware, etc.
+- You could build local tools to call APIs
+- MCP: Model Context Protocol
+- Standardized tooling interface, released by Anthropic in March 2024
+
+## MCP
+
+- HANDS ON
+
+## Hugging Face Spaces
+
+- Overview and HANDS ON
+
+
+
+
 # Looking Ahead
 
 ## Looking Ahead

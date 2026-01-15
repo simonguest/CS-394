@@ -5,6 +5,34 @@ execute:
   enabled: false
 ---
 
+## Agent Frameworks
+
+### OpenAI
+- [OpenAI Agents SDK (Python)](https://openai.github.io/openai-agents-python/) - Official OpenAI agents framework for Python
+- [OpenAI Agents Visualization](https://openai.github.io/openai-agents-python/visualization/#showing-the-graph) - Tool for visualizing agent graphs and interactions
+
+### LangChain
+- [LangGraph](https://langchain-ai.github.io/langgraph/) - Python framework for building stateful, multi-actor applications with LLMs
+
+### Crew AI
+- [Crew.ai](https://github.com/crewaiinc/crewai) - Framework for orchestrating role-playing, autonomous AI agents
+
+### Microsoft
+- [AutoGen](https://microsoft.github.io/autogen/stable/) - Microsoft's framework for building conversational AI systems
+- [Microsoft Semantic Kernel](https://github.com/microsoft/semantic-kernel) - SDK for integrating AI services with conventional programming languages
+
+## Protocols and Standards
+
+- [Model Context Protocol (MCP)](https://modelcontextprototcol.io) - Standardized protocol for connecting AI models with external tools and data sources
+
+## Articles and Industry Reports
+
+- [World Economic Forum - Cognitive Enterprise](https://www.weforum.org/stories/2025/06/cognitive-enterprise-agentic-business-revolution/) - Article on the agentic business revolution
+- [CRN - Hottest Agentic AI Tools](https://www.crn.com/news/ai/2025/10-hottest-agentic-ai-tools-and-agents-of-2025-so-far) - Overview of the top agentic AI tools of 2025
+- [Gartner Press Release](https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027) - Gartner's predictions about agentic AI project success rates
+- [Anthropic - Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents) - Engineering guide on building effective AI agents and patterns
+- [E2B - AI Agents Landscape](https://e2b.dev) - Overview of the AI agents ecosystem and available frameworks
+
 ## Citations
 
 - [References Slide](https://simonguest.github.io/CS-394/src/03/slides.html#/references-1){.external target="_blank"}
