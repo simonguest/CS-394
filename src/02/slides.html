@@ -1286,7 +1286,7 @@ Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
 <section id="example-1-basic-interface" class="slide level2">
 <h2>Example 1: Basic Interface</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-1">
-<div id="example-1" class="cell">
+<div id="example-1" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a></a><span class="im">import</span> gradio <span class="im">as</span> gr</span>
 <span id="cb25-2"><a></a></span>
 <span id="cb25-3"><a></a><span class="kw">def</span> image_classifier(inp):</span>
@@ -1300,15 +1300,15 @@ Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
 <section id="example-1-basic-interface-1" class="slide level2">
 <h2>Example 1: Basic Interface</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-1">
-<div id="example-1" class="cell">
+<div id="example-1" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-stdout">
-<pre><code>* Running on local URL:  http://127.0.0.1:7870
+<pre><code>* Running on local URL:  http://127.0.0.1:7860
 * To create a public link, set `share=True` in `launch()`.</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<div><iframe src="http://127.0.0.1:7870/" width="100%" height="500" allow="autoplay; camera; microphone; clipboard-read; clipboard-write;" frameborder="0" allowfullscreen=""></iframe></div>
+<div><iframe src="http://127.0.0.1:7860/" width="100%" height="500" allow="autoplay; camera; microphone; clipboard-read; clipboard-write;" frameborder="0" allowfullscreen=""></iframe></div>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code></code></pre>
 </div>
 </div>
@@ -1317,7 +1317,7 @@ Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
 <section id="example-2-basic-chat-interface" class="slide level2">
 <h2>Example 2: Basic Chat Interface</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-2">
-<div id="example-2" class="cell">
+<div id="example-2" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a></a><span class="im">import</span> gradio <span class="im">as</span> gr</span>
 <span id="cb28-2"><a></a></span>
 <span id="cb28-3"><a></a><span class="kw">def</span> chat_with_history(message, history):</span>
@@ -1345,15 +1345,15 @@ Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
 <section id="example-2-basic-chat-interface-1" class="slide level2">
 <h2>Example 2: Basic Chat Interface</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-2">
-<div id="example-2" class="cell">
+<div id="example-2" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-stdout">
-<pre><code>* Running on local URL:  http://127.0.0.1:7871
+<pre><code>* Running on local URL:  http://127.0.0.1:7861
 * To create a public link, set `share=True` in `launch()`.</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<div><iframe src="http://127.0.0.1:7871/" width="100%" height="500" allow="autoplay; camera; microphone; clipboard-read; clipboard-write;" frameborder="0" allowfullscreen=""></iframe></div>
+<div><iframe src="http://127.0.0.1:7861/" width="100%" height="500" allow="autoplay; camera; microphone; clipboard-read; clipboard-write;" frameborder="0" allowfullscreen=""></iframe></div>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="18">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code></code></pre>
 </div>
 </div>
@@ -1362,7 +1362,7 @@ Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
 <section id="example-3-streaming-chat-interface" class="slide level2">
 <h2>Example 3: Streaming Chat Interface</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-3">
-<div id="example-3" class="cell">
+<div id="example-3" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a></a><span class="kw">def</span> chat_with_streaming(message, history):</span>
 <span id="cb31-2"><a></a>    messages <span class="op">=</span> history <span class="op">+</span> [{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: message}]</span>
 <span id="cb31-3"><a></a>    </span>
@@ -1393,15 +1393,15 @@ Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
 <section id="example-3-streaming-chat-interface-1" class="slide level2">
 <h2>Example 3: Streaming Chat Interface</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-3">
-<div id="example-3" class="cell">
+<div id="example-3" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-stdout">
-<pre><code>* Running on local URL:  http://127.0.0.1:7872
+<pre><code>* Running on local URL:  http://127.0.0.1:7862
 * To create a public link, set `share=True` in `launch()`.</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<div><iframe src="http://127.0.0.1:7872/" width="100%" height="500" allow="autoplay; camera; microphone; clipboard-read; clipboard-write;" frameborder="0" allowfullscreen=""></iframe></div>
+<div><iframe src="http://127.0.0.1:7862/" width="100%" height="500" allow="autoplay; camera; microphone; clipboard-read; clipboard-write;" frameborder="0" allowfullscreen=""></iframe></div>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="19">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code></code></pre>
 </div>
 </div>
@@ -1410,6 +1410,7 @@ Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
 <section id="demo-5" class="title-slide slide level1 center">
 <h1>Demo</h1>
 <p>Gradio Demo Notebook</p>
+<p>Note: We’ll be using Gradio 5.x latest (vs.&nbsp;6.x) throughout the semester.</p>
 </section>
 
 <section id="hands-on-4" class="title-slide slide level1 center">

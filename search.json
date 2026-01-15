@@ -1158,7 +1158,7 @@
     "href": "src/02/slides.html#example-1-basic-interface-1",
     "title": "Module 2: Exploring Hosted LLMs",
     "section": "Example 1: Basic Interface",
-    "text": "Example 1: Basic Interface\n\n\n\n* Running on local URL:  http://127.0.0.1:7870\n* To create a public link, set `share=True` in `launch()`.",
+    "text": "Example 1: Basic Interface\n\n\n\n* Running on local URL:  http://127.0.0.1:7860\n* To create a public link, set `share=True` in `launch()`.",
     "crumbs": [
       "**Module 2:** Exploring Hosted LLMs",
       "Slides"
@@ -1180,7 +1180,7 @@
     "href": "src/02/slides.html#example-2-basic-chat-interface-1",
     "title": "Module 2: Exploring Hosted LLMs",
     "section": "Example 2: Basic Chat Interface",
-    "text": "Example 2: Basic Chat Interface\n\n\n\n* Running on local URL:  http://127.0.0.1:7871\n* To create a public link, set `share=True` in `launch()`.",
+    "text": "Example 2: Basic Chat Interface\n\n\n\n* Running on local URL:  http://127.0.0.1:7861\n* To create a public link, set `share=True` in `launch()`.",
     "crumbs": [
       "**Module 2:** Exploring Hosted LLMs",
       "Slides"
@@ -1202,7 +1202,7 @@
     "href": "src/02/slides.html#example-3-streaming-chat-interface-1",
     "title": "Module 2: Exploring Hosted LLMs",
     "section": "Example 3: Streaming Chat Interface",
-    "text": "Example 3: Streaming Chat Interface\n\n\n\n* Running on local URL:  http://127.0.0.1:7872\n* To create a public link, set `share=True` in `launch()`.",
+    "text": "Example 3: Streaming Chat Interface\n\n\n\n* Running on local URL:  http://127.0.0.1:7862\n* To create a public link, set `share=True` in `launch()`.",
     "crumbs": [
       "**Module 2:** Exploring Hosted LLMs",
       "Slides"
@@ -2727,7 +2727,7 @@
     "href": "src/02/notebooks/gradio.html#install-required-packages",
     "title": "Gradio with OpenAI API (via OpenRouter)",
     "section": "Install required packages",
-    "text": "Install required packages\n\n!uv add gradio openai",
+    "text": "Install required packages\n\n!uv add gradio==5.49.1 openai\n\n\nResolved 190 packages in 1ms\n\nInstalled 49 packages in 208ms                              \n\n + aiofiles==24.1.0\n\n + annotated-doc==0.0.4\n\n + annotated-types==0.7.0\n\n + audioop-lts==0.2.2\n\n + brotli==1.2.0\n\n + click==8.3.1\n\n + contourpy==1.3.3\n\n + cycler==0.12.1\n\n + distro==1.9.0\n\n + fastapi==0.128.0\n\n + ffmpy==1.0.0\n\n + filelock==3.20.1\n\n + fonttools==4.61.1\n\n + fsspec==2025.12.0\n\n + gradio==5.49.1\n\n + gradio-client==1.13.3\n\n + groovy==0.1.2\n\n + hf-xet==1.2.0\n\n + huggingface-hub==0.36.0\n\n + jiter==0.12.0\n\n + kiwisolver==1.4.9\n\n + markdown-it-py==4.0.0\n\n + matplotlib==3.10.8\n\n + mdurl==0.1.2\n\n + numpy==2.4.0\n\n + openai==2.14.0\n\n + orjson==3.11.5\n\n + pandas==2.3.3\n\n + pillow==11.3.0\n\n + pydantic==2.11.10\n\n + pydantic-core==2.33.2\n\n + pydub==0.25.1\n\n + pyparsing==3.3.1\n\n + python-dotenv==1.2.1\n\n + python-multipart==0.0.21\n\n + pytz==2025.2\n\n + rich==14.2.0\n\n + ruff==0.14.12\n\n + safehttpx==0.1.7\n\n + semantic-version==2.10.0\n\n + shellingham==1.5.4\n\n + sniffio==1.3.1\n\n + starlette==0.50.0\n\n + tomlkit==0.13.3\n\n + tqdm==4.67.1\n\n + typer==0.21.0\n\n + typing-inspection==0.4.2\n\n + uvicorn==0.40.0\n\n + websockets==15.0.1",
     "crumbs": [
       "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
@@ -2739,7 +2739,7 @@
     "href": "src/02/notebooks/gradio.html#set-the-openrouter-api-key-from-colab-secrets",
     "title": "Gradio with OpenAI API (via OpenRouter)",
     "section": "Set the OpenRouter API Key from Colab Secrets",
-    "text": "Set the OpenRouter API Key from Colab Secrets\n\nfrom google.colab import userdata\nOPENROUTER_API_KEY = userdata.get('OPENROUTER_API_KEY')",
+    "text": "Set the OpenRouter API Key from Colab Secrets\n\nfrom google.colab import userdata\nOPENROUTER_API_KEY = userdata.get('OPENROUTER_API_KEY')\n\n\n---------------------------------------------------------------------------\nModuleNotFoundError                       Traceback (most recent call last)\nCell In[2], line 1\n----&gt; 1 from google.colab import userdata\n      2 OPENROUTER_API_KEY = userdata.get('OPENROUTER_API_KEY')\n\nModuleNotFoundError: No module named 'google'",
     "crumbs": [
       "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
@@ -2775,7 +2775,7 @@
     "href": "src/02/notebooks/gradio.html#example-1-basic-gradio-interface",
     "title": "Gradio with OpenAI API (via OpenRouter)",
     "section": "Example 1: Basic Gradio interface",
-    "text": "Example 1: Basic Gradio interface\n\nimport gradio as gr\n\ndef image_classifier(inp):\n    return {'cat': 0.3, 'dog': 0.7}\n\ndemo = gr.Interface(fn=image_classifier, inputs=\"image\", outputs=\"label\")\ndemo.launch()\n\n* Running on local URL:  http://127.0.0.1:7870\n* To create a public link, set `share=True` in `launch()`.",
+    "text": "Example 1: Basic Gradio interface\n\nimport gradio as gr\n\ndef image_classifier(inp):\n    return {'cat': 0.3, 'dog': 0.7}\n\ndemo = gr.Interface(fn=image_classifier, inputs=\"image\", outputs=\"label\")\ndemo.launch()\n\n* Running on local URL:  http://127.0.0.1:7860\n* To create a public link, set `share=True` in `launch()`.",
     "crumbs": [
       "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
@@ -2787,7 +2787,7 @@
     "href": "src/02/notebooks/gradio.html#example-2-basic-chat-interface-with-conversation-history",
     "title": "Gradio with OpenAI API (via OpenRouter)",
     "section": "Example 2: Basic chat interface with conversation history",
-    "text": "Example 2: Basic chat interface with conversation history\n\nimport gradio as gr\n\ndef chat_with_history(message, history):\n    # Add current message\n    messages = history + [{\"role\": \"user\", \"content\": message}]\n    \n    # Get response from API\n    response = client.chat.completions.create(\n        model='openai/gpt-5.2-chat',\n        messages=messages,\n    )\n    \n    return response.choices[0].message.content\n\n# Create a chat interface\ndemo = gr.ChatInterface(\n    fn=chat_with_history,\n    title=\"Basic Chat with Conversation History\"\n)\n\ndemo.launch()\n\n* Running on local URL:  http://127.0.0.1:7871\n* To create a public link, set `share=True` in `launch()`.",
+    "text": "Example 2: Basic chat interface with conversation history\n\nimport gradio as gr\n\ndef chat_with_history(message, history):\n    # Add current message\n    messages = history + [{\"role\": \"user\", \"content\": message}]\n    \n    # Get response from API\n    response = client.chat.completions.create(\n        model='openai/gpt-5.2-chat',\n        messages=messages,\n    )\n    \n    return response.choices[0].message.content\n\n# Create a chat interface\ndemo = gr.ChatInterface(\n    fn=chat_with_history,\n    title=\"Basic Chat with Conversation History\"\n)\n\ndemo.launch()\n\n/Users/simon/Dev/CS-394/.venv/lib/python3.13/site-packages/gradio/chat_interface.py:347: UserWarning: The 'tuples' format for chatbot messages is deprecated and will be removed in a future version of Gradio. Please set type='messages' instead, which uses openai-style 'role' and 'content' keys.\n  self.chatbot = Chatbot(\n\n\n* Running on local URL:  http://127.0.0.1:7861\n* To create a public link, set `share=True` in `launch()`.",
     "crumbs": [
       "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
@@ -2799,7 +2799,7 @@
     "href": "src/02/notebooks/gradio.html#example-3-streaming-chat-interface",
     "title": "Gradio with OpenAI API (via OpenRouter)",
     "section": "Example 3: Streaming chat interface",
-    "text": "Example 3: Streaming chat interface\n\ndef chat_with_streaming(message, history):\n    messages = history + [{\"role\": \"user\", \"content\": message}]\n    \n    # Stream the response\n    stream = client.chat.completions.create(\n        model='openai/gpt-5.2-chat',\n        messages=messages,\n        stream=True,\n    )\n    \n    response_text = \"\"\n    for chunk in stream:\n        if chunk.choices[0].delta.content is not None:\n            token = chunk.choices[0].delta.content\n            response_text += token\n            yield response_text\n\n# Create streaming chat interface\ndemo = gr.ChatInterface(\n    fn=chat_with_streaming,\n    title=\"AI Chat with Streaming\",\n)\n\ndemo.launch()\n\n* Running on local URL:  http://127.0.0.1:7872\n* To create a public link, set `share=True` in `launch()`.",
+    "text": "Example 3: Streaming chat interface\n\ndef chat_with_streaming(message, history):\n    messages = history + [{\"role\": \"user\", \"content\": message}]\n    \n    # Stream the response\n    stream = client.chat.completions.create(\n        model='openai/gpt-5.2-chat',\n        messages=messages,\n        stream=True,\n    )\n    \n    response_text = \"\"\n    for chunk in stream:\n        if chunk.choices[0].delta.content is not None:\n            token = chunk.choices[0].delta.content\n            response_text += token\n            yield response_text\n\n# Create streaming chat interface\ndemo = gr.ChatInterface(\n    fn=chat_with_streaming,\n    title=\"AI Chat with Streaming\",\n)\n\ndemo.launch()\n\n/Users/simon/Dev/CS-394/.venv/lib/python3.13/site-packages/gradio/chat_interface.py:347: UserWarning: The 'tuples' format for chatbot messages is deprecated and will be removed in a future version of Gradio. Please set type='messages' instead, which uses openai-style 'role' and 'content' keys.\n  self.chatbot = Chatbot(\n\n\n* Running on local URL:  http://127.0.0.1:7862\n* To create a public link, set `share=True` in `launch()`.",
     "crumbs": [
       "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
