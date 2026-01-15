@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.26">
 
   <title>CS-394 – Module 3: Agents and Tools</title>
@@ -27,6 +30,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #24292e;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #24292e; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #6a737d; } /* Annotation */
+    code span.at { color: #d73a49; } /* Attribute */
+    code span.bn { color: #005cc5; } /* BaseN */
+    code span.bu { color: #d73a49; } /* BuiltIn */
+    code span.cf { color: #d73a49; } /* ControlFlow */
+    code span.ch { color: #032f62; } /* Char */
+    code span.cn { color: #005cc5; } /* Constant */
+    code span.co { color: #6a737d; } /* Comment */
+    code span.cv { color: #6a737d; } /* CommentVar */
+    code span.do { color: #6a737d; } /* Documentation */
+    code span.dt { color: #d73a49; } /* DataType */
+    code span.dv { color: #005cc5; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #d73a49; font-weight: bold; } /* Extension */
+    code span.fl { color: #005cc5; } /* Float */
+    code span.fu { color: #6f42c1; } /* Function */
+    code span.im { color: #032f62; } /* Import */
+    code span.in { color: #6a737d; } /* Information */
+    code span.kw { color: #d73a49; } /* Keyword */
+    code span.op { color: #24292e; } /* Operator */
+    code span.ot { color: #6f42c1; } /* Other */
+    code span.pp { color: #d73a49; } /* Preprocessor */
+    code span.re { color: #6a737d; } /* RegionMarker */
+    code span.sc { color: #005cc5; } /* SpecialChar */
+    code span.ss { color: #032f62; } /* SpecialString */
+    code span.st { color: #032f62; } /* String */
+    code span.va { color: #e36209; } /* Variable */
+    code span.vs { color: #032f62; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-eeafb82a00776dbd0312b01cd21cfa25.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -120,6 +189,9 @@
       margin-right: 0; 
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+  
+  <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -152,6 +224,489 @@
 <li class="fragment">Understand and implement tool calls and implement using OpenAI’s function calling and via MCP</li>
 </ul>
 </section>
+<section>
+<section id="why-agents" class="title-slide slide level1 center">
+<h1>Why Agents?</h1>
+
+</section>
+<section id="why-agents-1" class="slide level2">
+<h2>Why Agents?</h2>
+<ul>
+<li class="fragment">Limitations of our prior chatbots
+<ul>
+<li class="fragment">Needs constant human input every turn; No ability to plan beyond a single interaction</li>
+<li class="fragment">Single model with single context (conversation)</li>
+<li class="fragment">No ability to interact with external systems</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="introducing-agents" class="title-slide slide level1 center">
+<h1>Introducing Agents</h1>
+
+</section>
+<section id="what-is-an-agent" class="slide level2">
+<h2>What is an Agent?</h2>
+
+<img data-src="./images/quote-1.png" class="r-stretch quarto-figure-center"><p class="caption">Source: https://www.youtube.com/watch?v=bwXaJXgezf4</p></section>
+<section id="what-is-an-agent-1" class="slide level2">
+<h2>What is an Agent?</h2>
+
+<img data-src="./images/quote-2.png" class="r-stretch quarto-figure-center"><p class="caption">Source: https://www.weforum.org/stories/2025/06/cognitive-enterprise-agentic-business-revolution/</p></section>
+<section id="what-is-an-agent-2" class="slide level2">
+<h2>What is an Agent?</h2>
+
+<img data-src="./images/quote-3.png" class="r-stretch quarto-figure-center"><p class="caption">Source: https://www.crn.com/news/ai/2025/10-hottest-agentic-ai-tools-and-agents-of-2025-so-far</p></section>
+<section id="what-is-an-agent-3" class="slide level2">
+<h2>What is an Agent?</h2>
+
+<img data-src="./images/quote-4.png" class="r-stretch quarto-figure-center"><p class="caption">Source: https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027</p></section>
+<section id="what-is-an-agent-4" class="slide level2">
+<h2>What is an Agent?</h2>
+<p>Imagine a <strong>DigiPen Campus Assistant</strong>: An AI agent that can help you navigate anything and everything at DigiPen!</p>
+<ul>
+<li class="fragment">“Where can I find the ‘Hopper’ room?”</li>
+<li class="fragment">“Can you tell me more about FLM201?”</li>
+<li class="fragment">“Oh, and what’s today’s vegetarian option at the Bytes Cafe?”</li>
+</ul>
+</section>
+<section id="five-characteristics-of-agents" class="slide level2">
+<h2>Five Characteristics of Agents</h2>
+<ol type="1">
+<li class="fragment">Agents are <strong>Planners</strong></li>
+</ol>
+<ul>
+<li class="fragment">Agents are driven by goals</li>
+<li class="fragment">And they can put together a plan for the steps to complete that goal.
+<ul>
+<li class="fragment">“First, I will discover where course information is located”</li>
+<li class="fragment">“Then I will search for any courses that reference FLM201”</li>
+<li class="fragment">“Then I summarize all of the key points for the student”</li>
+</ul></li>
+</ul>
+</section>
+<section id="five-characteristics-of-agents-1" class="slide level2">
+<h2>Five Characteristics of Agents</h2>
+<ol start="2" type="1">
+<li class="fragment">Agents are <strong>Autonomous</strong></li>
+</ol>
+<ul>
+<li class="fragment">Agents can then go off and execute the plan, independent of human input</li>
+<li class="fragment">The concept of “human in the loop” still applies for confirmation
+<ul>
+<li class="fragment">e.g.&nbsp;“Do you really want to place this order at the Bytes Cafe?”</li>
+</ul></li>
+</ul>
+</section>
+<section id="five-characteristics-of-agents-2" class="slide level2">
+<h2>Five Characteristics of Agents</h2>
+<ol start="3" type="1">
+<li class="fragment">Agents are <strong>Reactive</strong></li>
+</ol>
+<ul>
+<li class="fragment">Agents can change mid-course depending on what they find and/or the environment.
+<ul>
+<li class="fragment">e.g.&nbsp;“I couldn’t find any course information on FLM201. I’m going to check if there are other 200-level FLM courses before responding to the student.”</li>
+</ul></li>
+</ul>
+</section>
+<section id="five-characteristics-of-agents-3" class="slide level2">
+<h2>Five Characteristics of Agents</h2>
+<ol start="4" type="1">
+<li class="fragment">Agents have <strong>Persistence</strong></li>
+</ol>
+<ul>
+<li class="fragment">Agents often have memory systems beyond the current conversation</li>
+<li class="fragment">Broadly classified as short and long term memory
+<ul>
+<li class="fragment">Short term memory could be the options at the Bytes Cafe</li>
+<li class="fragment">Long term memory could be your food preferences</li>
+</ul></li>
+</ul>
+</section>
+<section id="five-characteristics-of-agents-4" class="slide level2">
+<h2>Five Characteristics of Agents</h2>
+<ol start="5" type="1">
+<li class="fragment">Agents can <strong>Interact</strong> with external systems</li>
+</ol>
+<ul>
+<li class="fragment">Agents can <strong>delegate</strong> to other agents for complex tasks
+<ul>
+<li class="fragment">(Or for tasks where other agents are better suited for.)</li>
+<li class="fragment">e.g., Campus Agent -&gt; delegating to a Course Agent</li>
+</ul></li>
+<li class="fragment">Agents can also be given access to external <strong>tools</strong>
+<ul>
+<li class="fragment">e.g., File search, Web search, access to the Bytes Cafe API</li>
+</ul></li>
+</ul>
+</section></section>
+<section id="hands-on" class="title-slide slide level1 center">
+<h1>Hands-On</h1>
+<p>Try the DigiPen Campus Agent!</p>
+<p><a href="https://simonguest-campus-agent.hf.space/" class="external" target="_blank"><strong>https://simonguest-campus-agent.hf.space/</strong></a></p>
+<p>Q: What worked? What surprised you?</p>
+<p>Q: What didn’t work? Where did the agent fail?</p>
+</section>
+
+<section>
+<section id="openai-agents-sdk" class="title-slide slide level1 center">
+<h1>OpenAI Agents SDK</h1>
+
+</section>
+<section id="openai-agents-sdk-1" class="slide level2">
+<h2>OpenAI Agents SDK</h2>
+<ul>
+<li class="fragment"><a href="https://openai.com/index/new-tools-for-building-agents/" class="external" target="_blank">Announced</a> in Mar 2025
+<ul>
+<li class="fragment">Together with web search, file search, and computer use</li>
+<li class="fragment">And a new Responses API (formerly Assistants API)</li>
+</ul></li>
+</ul>
+</section>
+<section id="openai-agents-sdk-2" class="slide level2">
+<h2>OpenAI Agents SDK</h2>
+<ul>
+<li class="fragment">Created to address the gap between chat completions (what we were using last week) and multi-step systems
+<ul>
+<li class="fragment">vs.&nbsp;building your own, which a lot of developers were doing at the time</li>
+</ul></li>
+<li class="fragment">Integrates function calling, handoffs, and statement management in the same package</li>
+<li class="fragment">Supports Python and TypeScript; MIT licensed</li>
+</ul>
+</section>
+<section id="not-the-only-agent-sdk-in-town" class="slide level2">
+<h2>Not the only Agent SDK in town!</h2>
+
+<img data-src="./images/ai-agents-landscape.png" class="r-stretch quarto-figure-center"><p class="caption">Source: https://e2b.dev</p></section>
+<section id="langgraph" class="slide level2">
+<h2>LangGraph</h2>
+<ul>
+<li class="fragment">https://langchain-ai.github.io/langgraph/</li>
+<li class="fragment">Python only</li>
+<li class="fragment">MIT License</li>
+<li class="fragment">One of the first agent frameworks, building on LangChain
+<ul>
+<li class="fragment">IMO, too abstract/complex/bloated</li>
+</ul></li>
+</ul>
+</section>
+<section id="crew.ai" class="slide level2">
+<h2>Crew.ai</h2>
+<ul>
+<li class="fragment">https://github.com/crewaiinc/crewai</li>
+<li class="fragment">Python only</li>
+<li class="fragment">One of the more popular commercial offerings
+<ul>
+<li class="fragment">(Although they do have an MIT License/freemium model)</li>
+</ul></li>
+</ul>
+</section>
+<section id="microsoft" class="slide level2">
+<h2>Microsoft</h2>
+<ul>
+<li class="fragment">AutoGen
+<ul>
+<li class="fragment">https://microsoft.github.io/autogen/stable/</li>
+<li class="fragment">Python (.NET coming soon)</li>
+<li class="fragment">MIT License</li>
+</ul></li>
+<li class="fragment">Microsoft Semantic Kernel
+<ul>
+<li class="fragment">https://github.com/microsoft/semantic-kernel</li>
+<li class="fragment">Python, .NET, Java</li>
+<li class="fragment">MIT License</li>
+</ul></li>
+</ul>
+</section>
+<section id="microsoft-1" class="slide level2">
+<h2>Microsoft</h2>
+<ul>
+<li class="fragment">Now converging into the <a href="https://github.com/microsoft/agent-framework" class="external" target="_blank">Microsoft Agent Framework</a></li>
+<li class="fragment">(One of the few agent SDKs to support .NET)</li>
+</ul>
+</section></section>
+<section>
+<section id="how-does-the-campus-agent-work" class="title-slide slide level1 center">
+<h1>How Does the Campus Agent Work?</h1>
+
+</section>
+<section id="agent-structure" class="slide level2">
+<h2>Agent Structure</h2>
+
+<img data-src="./images/agent_graph.png" class="r-stretch quarto-figure-center"><p class="caption">Agents and tools for the DigiPen Campus Agent</p></section>
+<section id="campus-agent" class="slide level2">
+<h2>Campus Agent</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/03/notebooks/campus-agent.ipynb" data-notebook-title="DigiPen Campus Agent" data-notebook-cellid="campus-agent">
+<div id="campus-agent" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a>agent <span class="op">=</span> Agent(</span>
+<span id="cb1-2"><a></a>    name<span class="op">=</span><span class="st">"DigiPen Campus Agent"</span>,</span>
+<span id="cb1-3"><a></a>    instructions<span class="op">=</span><span class="st">"You are a helpful campus agent that can plan and execute tasks for students at DigiPen. Please be concise and accurate in handing off tasks to other agents as needed."</span>,</span>
+<span id="cb1-4"><a></a>    handoffs<span class="op">=</span>[building_agent, course_agent, handbook_agent, cafe_agent],</span>
+<span id="cb1-5"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="building-agent" class="slide level2">
+<h2>Building Agent</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/03/notebooks/campus-agent.ipynb" data-notebook-title="DigiPen Campus Agent" data-notebook-cellid="building-agent">
+<div id="building-agent" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a>building_agent <span class="op">=</span> Agent(</span>
+<span id="cb2-2"><a></a>    name<span class="op">=</span><span class="st">"Building Agent"</span>,</span>
+<span id="cb2-3"><a></a>    instructions<span class="op">=</span><span class="st">"You help students locate and provide information about buildings and rooms on campus. Be descriptive when giving locations."</span>,</span>
+<span id="cb2-4"><a></a>    tools<span class="op">=</span>[</span>
+<span id="cb2-5"><a></a>        FileSearchTool(</span>
+<span id="cb2-6"><a></a>            max_num_results<span class="op">=</span><span class="dv">3</span>,</span>
+<span id="cb2-7"><a></a>            vector_store_ids<span class="op">=</span>[VECTOR_STORE_ID],</span>
+<span id="cb2-8"><a></a>            include_search_results<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb2-9"><a></a>        )</span>
+<span id="cb2-10"><a></a>    ],</span>
+<span id="cb2-11"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="course-agent" class="slide level2">
+<h2>Course Agent</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/03/notebooks/campus-agent.ipynb" data-notebook-title="DigiPen Campus Agent" data-notebook-cellid="course-agent">
+<div id="course-agent" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>course_agent <span class="op">=</span> Agent(</span>
+<span id="cb3-2"><a></a>    name<span class="op">=</span><span class="st">"Course Agent"</span>,</span>
+<span id="cb3-3"><a></a>    instructions<span class="op">=</span><span class="st">"You help students find out information about courses held at DigiPen."</span>,</span>
+<span id="cb3-4"><a></a>    tools<span class="op">=</span>[</span>
+<span id="cb3-5"><a></a>        FileSearchTool(</span>
+<span id="cb3-6"><a></a>            max_num_results<span class="op">=</span><span class="dv">5</span>,</span>
+<span id="cb3-7"><a></a>            vector_store_ids<span class="op">=</span>[VECTOR_STORE_ID],</span>
+<span id="cb3-8"><a></a>            include_search_results<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb3-9"><a></a>        )</span>
+<span id="cb3-10"><a></a>    ],</span>
+<span id="cb3-11"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="handbook-agent" class="slide level2">
+<h2>Handbook Agent</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/03/notebooks/campus-agent.ipynb" data-notebook-title="DigiPen Campus Agent" data-notebook-cellid="handbook-agent">
+<div id="handbook-agent" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a>handbook_agent <span class="op">=</span> Agent(</span>
+<span id="cb4-2"><a></a>    name<span class="op">=</span><span class="st">"Handbook Agent"</span>,</span>
+<span id="cb4-3"><a></a>    instructions<span class="op">=</span><span class="st">"You help students navigate the school handbook, providing information about campus policies and student conduct."</span>,</span>
+<span id="cb4-4"><a></a>    tools<span class="op">=</span>[</span>
+<span id="cb4-5"><a></a>        FileSearchTool(</span>
+<span id="cb4-6"><a></a>            max_num_results<span class="op">=</span><span class="dv">5</span>,</span>
+<span id="cb4-7"><a></a>            vector_store_ids<span class="op">=</span>[VECTOR_STORE_ID],</span>
+<span id="cb4-8"><a></a>            include_search_results<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb4-9"><a></a>        )</span>
+<span id="cb4-10"><a></a>    ],</span>
+<span id="cb4-11"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="whats-a-vector-store" class="slide level2">
+<h2>What’s a Vector Store?</h2>
+<ul>
+<li class="fragment">A way to provide domain-specific knowledge beyond training data
+<ul>
+<li class="fragment">e.g., current semester course information that is newer than GPT-5.2’s cutoff date</li>
+</ul></li>
+<li class="fragment">We could just insert these into the context window
+<ul>
+<li class="fragment">But doesn’t scale to more than a few documents</li>
+</ul></li>
+</ul>
+</section>
+<section id="whats-a-vector-store-1" class="slide level2">
+<h2>What’s a Vector Store?</h2>
+<ul>
+<li class="fragment">Instead, we use a vector store
+<ul>
+<li class="fragment">Converts documents, paragraphs, or sentences into vector embeddings</li>
+<li class="fragment">(Remember these from module 1? :)</li>
+</ul></li>
+<li class="fragment">Similar concepts are close to each other in vector space
+<ul>
+<li class="fragment">Which makes it efficient to query</li>
+</ul></li>
+<li class="fragment">Queries return the document (or pages within a document) that match
+<ul>
+<li class="fragment">e.g., “Michelangelo” returns “Page 1 of the floor map”</li>
+</ul></li>
+</ul>
+</section>
+<section id="whats-a-vector-store-2" class="slide level2">
+<h2>What’s a Vector Store?</h2>
+<ul>
+<li class="fragment">Foundation for RAG (Retrieval Augmented Generation)
+<ul>
+<li class="fragment">(Which we will cover in module 6)</li>
+</ul></li>
+<li class="fragment">Many different types of vectors stores/databases</li>
+<li class="fragment">For now, we will be using the OpenAI built in one</li>
+</ul>
+</section>
+<section id="whats-a-vector-store-3" class="slide level2">
+<h2>What’s a Vector Store</h2>
+<p><a href="./images/openai-vector-store.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img data-src="./images/openai-vector-store.png"></a></p>
+</section>
+<section id="agent-structure-1" class="slide level2">
+<h2>Agent Structure</h2>
+
+<img data-src="./images/agent_graph.png" class="r-stretch quarto-figure-center"><p class="caption">Agents and tools for the DigiPen Campus Agent</p></section>
+<section id="why-do-agents-need-tools" class="slide level2">
+<h2>Why Do Agents Need Tools?</h2>
+<ul>
+<li class="fragment">The scope of the agents ability is contained within the model</li>
+<li class="fragment">Tools enable the agent to reach out to systems beyond the model</li>
+<li class="fragment">Examples
+<ul>
+<li class="fragment">Read a file from disk or search the web (built in)</li>
+<li class="fragment">Calculator (because LLMs aren’t great at math)</li>
+<li class="fragment">Code interpreter (running code on the fly)</li>
+</ul></li>
+</ul>
+</section>
+<section id="openai-tool-calling" class="slide level2">
+<h2>OpenAI Tool Calling</h2>
+<ul>
+<li class="fragment">Introduced by OpenAI in June 2023</li>
+<li class="fragment">Originally called Function Calling</li>
+<li class="fragment">Models are fine-tuned to return a structured function_call JSON object, specifying which function to call and with what arguments.</li>
+<li class="fragment">Tools are provided as functions</li>
+<li class="fragment">Option for the LLM to decide when to call the tool (always, never, auto)</li>
+</ul>
+</section>
+<section id="cafe-agent" class="slide level2">
+<h2>Cafe Agent</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/03/notebooks/campus-agent.ipynb" data-notebook-title="DigiPen Campus Agent" data-notebook-cellid="cafe-agent">
+<div id="cafe-agent" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a>cafe_agent <span class="op">=</span> Agent(</span>
+<span id="cb5-2"><a></a>    name<span class="op">=</span><span class="st">"Cafe Agent"</span>,</span>
+<span id="cb5-3"><a></a>    instructions<span class="op">=</span><span class="st">"You help students locate and provide information about the Bytes Cafe."</span>,</span>
+<span id="cb5-4"><a></a>    tools<span class="op">=</span>[</span>
+<span id="cb5-5"><a></a>        get_bytes_cafe_menu,</span>
+<span id="cb5-6"><a></a>    ],</span>
+<span id="cb5-7"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="cafe-agent-tool" class="slide level2">
+<h2>Cafe Agent Tool</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/03/notebooks/campus-agent.ipynb" data-notebook-title="DigiPen Campus Agent" data-notebook-cellid="cafe-agent-tool">
+<div id="cafe-agent-tool" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="at">@function_tool</span></span>
+<span id="cb6-2"><a></a><span class="kw">def</span> get_bytes_cafe_menu(date: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">any</span>:</span>
+<span id="cb6-3"><a></a>    <span class="cf">return</span> {</span>
+<span id="cb6-4"><a></a>        <span class="ss">f"</span><span class="sc">{</span>date<span class="sc">}</span><span class="ss">"</span>: {</span>
+<span id="cb6-5"><a></a>            <span class="st">"daily byte"</span>: {</span>
+<span id="cb6-6"><a></a>                <span class="st">"name"</span>: <span class="st">"Steak Quesadilla"</span>,</span>
+<span id="cb6-7"><a></a>                <span class="st">"price"</span>: <span class="dv">12</span>,</span>
+<span id="cb6-8"><a></a>                <span class="st">"description"</span>: <span class="st">"Flank steak, mixed cheese in a flour tortilla served with air fried potatoes, sour cream and salsa"</span>,</span>
+<span id="cb6-9"><a></a>            },</span>
+<span id="cb6-10"><a></a>            <span class="st">"vegetarian"</span>: {</span>
+<span id="cb6-11"><a></a>                <span class="st">"name"</span>: <span class="st">"Impossible Quesadilla"</span>,</span>
+<span id="cb6-12"><a></a>                <span class="st">"price"</span>: <span class="dv">12</span>,</span>
+<span id="cb6-13"><a></a>                <span class="st">"description"</span>: <span class="st">"Impossible plant based product, mixed cheese in a flour tortilla served with air fried potatoes, sour cream and salsa"</span>,</span>
+<span id="cb6-14"><a></a>            },</span>
+<span id="cb6-15"><a></a>            <span class="st">"international"</span>: {</span>
+<span id="cb6-16"><a></a>                <span class="st">"name"</span>: <span class="st">"Chicken Curry"</span>,</span>
+<span id="cb6-17"><a></a>                <span class="st">"price"</span>: <span class="dv">12</span>,</span>
+<span id="cb6-18"><a></a>                <span class="st">"description"</span>: <span class="st">"Chicken thighs, onion, carrot, potato, curry sauce served over rice"</span>,</span>
+<span id="cb6-19"><a></a>            },</span>
+<span id="cb6-20"><a></a>        }</span>
+<span id="cb6-21"><a></a>    }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="lets-run-the-campus-agent" class="title-slide slide level1 center">
+<h1>Let’s Run the Campus Agent</h1>
+
+</section>
+<section id="lets-run-the-campus-agent-1" class="slide level2">
+<h2>Let’s Run the Campus Agent</h2>
+<ul>
+<li class="fragment">Does the OpenAI Agents SDK work with OpenRouter?
+<ul>
+<li class="fragment">Yes and No :)</li>
+</ul></li>
+<li class="fragment">Yes to core functionality
+<ul>
+<li class="fragment">Creating an agent, handoffs, calling custom tools</li>
+</ul></li>
+<li class="fragment">No to calling built-in OpenAI tools
+<ul>
+<li class="fragment">File search, Web search, Code interpreter</li>
+</ul></li>
+</ul>
+</section>
+<section id="lets-run-the-campus-agent-2" class="slide level2">
+<h2>Let’s Run the Campus Agent</h2>
+<ul>
+<li class="fragment">We’ll need to create an OpenAI developer account</li>
+<li class="fragment">Potentially add some credits to it</li>
+</ul>
+</section></section>
+<section id="hands-on-1" class="title-slide slide level1 center">
+<h1>Hands-On</h1>
+<p>Create a new developer account at <a href="https://platform.openai.com" class="external" target="_blank">https://platform.openai.com</a></p>
+<p>Create a new API key at <a href="https://platform.openai.com/settings/organization/api-keys" class="external" target="_blank">https://platform.openai.com/settings/organization/api-keys</a></p>
+</section>
+
+<section id="hands-on-2" class="title-slide slide level1 center">
+<h1>Hands-On</h1>
+<p>Get the Campus Agent Notebook up and running (campus-agent.ipynb)</p>
+</section>
+
+<section id="hands-on-3" class="title-slide slide level1 center">
+<h1>Hands-On</h1>
+<p>Pick your own scenario and create your own agents from scratch.</p>
+</section>
+
+<section id="multiple-agents" class="title-slide slide level1 center">
+<h1>Multiple Agents</h1>
+
+</section>
+
+<section>
+<section id="patterns" class="title-slide slide level1 center">
+<h1>Patterns</h1>
+
+</section>
+<section id="memory" class="slide level2">
+<h2>Memory</h2>
+<ul>
+<li class="fragment">HANDS ON</li>
+</ul>
+</section></section>
+<section>
+<section id="beyond-function-tooling" class="title-slide slide level1 center">
+<h1>Beyond Function Tooling</h1>
+
+</section>
+<section id="mcp-model-context-protocol" class="slide level2">
+<h2>MCP (Model Context Protocol)</h2>
+<ul>
+<li class="fragment">OpenAI’s tool/function calling works if you have local access to the tools</li>
+<li class="fragment">But how about external systems?
+<ul>
+<li class="fragment">e.g., Access to calendar, other systems, hardware, etc.</li>
+</ul></li>
+<li class="fragment">You could build local tools to call APIs</li>
+<li class="fragment">MCP: Model Context Protocol</li>
+<li class="fragment">Standardized tooling interface, released by Anthropic in March 2024</li>
+</ul>
+</section>
+<section id="mcp" class="slide level2">
+<h2>MCP</h2>
+<ul>
+<li class="fragment">HANDS ON</li>
+</ul>
+</section>
+<section id="hugging-face-spaces" class="slide level2">
+<h2>Hugging Face Spaces</h2>
+<ul>
+<li class="fragment">Overview and HANDS ON</li>
+</ul>
+</section></section>
 <section>
 <section id="looking-ahead" class="title-slide slide level1 center">
 <h1>Looking Ahead</h1>
@@ -558,6 +1113,38 @@
         }
       });
       </script>
+    <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+    (function() {
+      let previousOnload = window.onload;
+      window.onload = () => {
+        if (previousOnload) {
+          previousOnload();
+        }
+        lightboxQuarto.on('slide_before_load', (data) => {
+          const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+          const href = trigger.getAttribute('href');
+          if (href !== null) {
+            const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+            if (imgEl !== null) {
+              const srcAttr = imgEl.getAttribute("src");
+              if (srcAttr && srcAttr.startsWith("data:")) {
+                slideConfig.href = srcAttr;
+              }
+            }
+          } 
+        });
+      
+        lightboxQuarto.on('slide_after_load', (data) => {
+          const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(slideNode);
+          }
+        });
+      
+      };
+      
+    })();
+              </script>
     
 
 </body></html>

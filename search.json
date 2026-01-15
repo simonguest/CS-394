@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "src/03/notebooks/memory.html",
+    "href": "src/03/notebooks/memory.html",
+    "title": "CS-394",
+    "section": "",
+    "text": "!uv add openai-agents\n\n\nResolved 188 packages in 1ms\n\nAudited 130 packages in 0.05ms\n\n\n\n\n\nfrom agents import Agent, Runner, SQLiteSession\n\nagent = Agent(name=\"Assistant\", instructions=\"Reply very concisely\")\n\nsession = SQLiteSession(\"conversation_123\", db_path=\"./test.sqlite\")\n\nresult1 = await Runner.run(agent, \"My name is Simon\", session=session)\nprint(result1.final_output)\n\nresult2 = await Runner.run(agent, \"What is my name?\", session=session)\nprint(result2.final_output)\n\nprint(session.db_path)\n\nYour name is Simon.\n./test.sqlite"
+  },
+  {
     "objectID": "src/02/notebooks/token-streaming.html#set-the-openrouter-api-key-from-colab-secrets",
     "href": "src/02/notebooks/token-streaming.html#set-the-openrouter-api-key-from-colab-secrets",
     "title": "Token Streaming",
@@ -498,7 +505,40 @@
     "href": "src/03/resources.html",
     "title": "Resources",
     "section": "",
-    "text": "References Slide",
+    "text": "OpenAI Agents SDK (Python) - Official OpenAI agents framework for Python\nOpenAI Agents Visualization - Tool for visualizing agent graphs and interactions\n\n\n\n\n\nLangGraph - Python framework for building stateful, multi-actor applications with LLMs\n\n\n\n\n\nCrew.ai - Framework for orchestrating role-playing, autonomous AI agents\n\n\n\n\n\nAutoGen - Microsoft’s framework for building conversational AI systems\nMicrosoft Semantic Kernel - SDK for integrating AI services with conventional programming languages",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/03/resources.html#agent-frameworks",
+    "href": "src/03/resources.html#agent-frameworks",
+    "title": "Resources",
+    "section": "",
+    "text": "OpenAI Agents SDK (Python) - Official OpenAI agents framework for Python\nOpenAI Agents Visualization - Tool for visualizing agent graphs and interactions\n\n\n\n\n\nLangGraph - Python framework for building stateful, multi-actor applications with LLMs\n\n\n\n\n\nCrew.ai - Framework for orchestrating role-playing, autonomous AI agents\n\n\n\n\n\nAutoGen - Microsoft’s framework for building conversational AI systems\nMicrosoft Semantic Kernel - SDK for integrating AI services with conventional programming languages",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/03/resources.html#protocols-and-standards",
+    "href": "src/03/resources.html#protocols-and-standards",
+    "title": "Resources",
+    "section": "Protocols and Standards",
+    "text": "Protocols and Standards\n\nModel Context Protocol (MCP) - Standardized protocol for connecting AI models with external tools and data sources",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/03/resources.html#articles-and-industry-reports",
+    "href": "src/03/resources.html#articles-and-industry-reports",
+    "title": "Resources",
+    "section": "Articles and Industry Reports",
+    "text": "Articles and Industry Reports\n\nWorld Economic Forum - Cognitive Enterprise - Article on the agentic business revolution\nCRN - Hottest Agentic AI Tools - Overview of the top agentic AI tools of 2025\nGartner Press Release - Gartner’s predictions about agentic AI project success rates\nAnthropic - Building Effective Agents - Engineering guide on building effective AI agents and patterns\nE2B - AI Agents Landscape - Overview of the AI agents ecosystem and available frameworks",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Resources"
@@ -508,8 +548,8 @@
     "objectID": "src/03/resources.html#citations",
     "href": "src/03/resources.html#citations",
     "title": "Resources",
-    "section": "",
-    "text": "References Slide",
+    "section": "Citations",
+    "text": "Citations\n\nReferences Slide",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Resources"
@@ -2395,6 +2435,424 @@
     ]
   },
   {
+    "objectID": "src/03/slides.html#why-agents-1",
+    "href": "src/03/slides.html#why-agents-1",
+    "title": "Module 3: Agents and Tools",
+    "section": "Why Agents?",
+    "text": "Why Agents?\n\nLimitations of our prior chatbots\n\nNeeds constant human input every turn; No ability to plan beyond a single interaction\nSingle model with single context (conversation)\nNo ability to interact with external systems",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#what-is-an-agent",
+    "href": "src/03/slides.html#what-is-an-agent",
+    "title": "Module 3: Agents and Tools",
+    "section": "What is an Agent?",
+    "text": "What is an Agent?\n\nSource: https://www.youtube.com/watch?v=bwXaJXgezf4",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#what-is-an-agent-1",
+    "href": "src/03/slides.html#what-is-an-agent-1",
+    "title": "Module 3: Agents and Tools",
+    "section": "What is an Agent?",
+    "text": "What is an Agent?\n\nSource: https://www.weforum.org/stories/2025/06/cognitive-enterprise-agentic-business-revolution/",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#what-is-an-agent-2",
+    "href": "src/03/slides.html#what-is-an-agent-2",
+    "title": "Module 3: Agents and Tools",
+    "section": "What is an Agent?",
+    "text": "What is an Agent?\n\nSource: https://www.crn.com/news/ai/2025/10-hottest-agentic-ai-tools-and-agents-of-2025-so-far",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#what-is-an-agent-3",
+    "href": "src/03/slides.html#what-is-an-agent-3",
+    "title": "Module 3: Agents and Tools",
+    "section": "What is an Agent?",
+    "text": "What is an Agent?\n\nSource: https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#what-is-an-agent-4",
+    "href": "src/03/slides.html#what-is-an-agent-4",
+    "title": "Module 3: Agents and Tools",
+    "section": "What is an Agent?",
+    "text": "What is an Agent?\nImagine a DigiPen Campus Assistant: An AI agent that can help you navigate anything and everything at DigiPen!\n\n“Where can I find the ‘Hopper’ room?”\n“Can you tell me more about FLM201?”\n“Oh, and what’s today’s vegetarian option at the Bytes Cafe?”",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#five-characteristics-of-agents",
+    "href": "src/03/slides.html#five-characteristics-of-agents",
+    "title": "Module 3: Agents and Tools",
+    "section": "Five Characteristics of Agents",
+    "text": "Five Characteristics of Agents\n\nAgents are Planners\n\n\nAgents are driven by goals\nAnd they can put together a plan for the steps to complete that goal.\n\n“First, I will discover where course information is located”\n“Then I will search for any courses that reference FLM201”\n“Then I summarize all of the key points for the student”",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#five-characteristics-of-agents-1",
+    "href": "src/03/slides.html#five-characteristics-of-agents-1",
+    "title": "Module 3: Agents and Tools",
+    "section": "Five Characteristics of Agents",
+    "text": "Five Characteristics of Agents\n\nAgents are Autonomous\n\n\nAgents can then go off and execute the plan, independent of human input\nThe concept of “human in the loop” still applies for confirmation\n\ne.g. “Do you really want to place this order at the Bytes Cafe?”",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#five-characteristics-of-agents-2",
+    "href": "src/03/slides.html#five-characteristics-of-agents-2",
+    "title": "Module 3: Agents and Tools",
+    "section": "Five Characteristics of Agents",
+    "text": "Five Characteristics of Agents\n\nAgents are Reactive\n\n\nAgents can change mid-course depending on what they find and/or the environment.\n\ne.g. “I couldn’t find any course information on FLM201. I’m going to check if there are other 200-level FLM courses before responding to the student.”",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#five-characteristics-of-agents-3",
+    "href": "src/03/slides.html#five-characteristics-of-agents-3",
+    "title": "Module 3: Agents and Tools",
+    "section": "Five Characteristics of Agents",
+    "text": "Five Characteristics of Agents\n\nAgents have Persistence\n\n\nAgents often have memory systems beyond the current conversation\nBroadly classified as short and long term memory\n\nShort term memory could be the options at the Bytes Cafe\nLong term memory could be your food preferences",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#five-characteristics-of-agents-4",
+    "href": "src/03/slides.html#five-characteristics-of-agents-4",
+    "title": "Module 3: Agents and Tools",
+    "section": "Five Characteristics of Agents",
+    "text": "Five Characteristics of Agents\n\nAgents can Interact with external systems\n\n\nAgents can delegate to other agents for complex tasks\n\n(Or for tasks where other agents are better suited for.)\ne.g., Campus Agent -&gt; delegating to a Course Agent\n\nAgents can also be given access to external tools\n\ne.g., File search, Web search, access to the Bytes Cafe API",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#openai-agents-sdk-1",
+    "href": "src/03/slides.html#openai-agents-sdk-1",
+    "title": "Module 3: Agents and Tools",
+    "section": "OpenAI Agents SDK",
+    "text": "OpenAI Agents SDK\n\nAnnounced in Mar 2025\n\nTogether with web search, file search, and computer use\nAnd a new Responses API (formerly Assistants API)",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#openai-agents-sdk-2",
+    "href": "src/03/slides.html#openai-agents-sdk-2",
+    "title": "Module 3: Agents and Tools",
+    "section": "OpenAI Agents SDK",
+    "text": "OpenAI Agents SDK\n\nCreated to address the gap between chat completions (what we were using last week) and multi-step systems\n\nvs. building your own, which a lot of developers were doing at the time\n\nIntegrates function calling, handoffs, and statement management in the same package\nSupports Python and TypeScript; MIT licensed",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#not-the-only-agent-sdk-in-town",
+    "href": "src/03/slides.html#not-the-only-agent-sdk-in-town",
+    "title": "Module 3: Agents and Tools",
+    "section": "Not the only Agent SDK in town!",
+    "text": "Not the only Agent SDK in town!\n\nSource: https://e2b.dev",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#langgraph",
+    "href": "src/03/slides.html#langgraph",
+    "title": "Module 3: Agents and Tools",
+    "section": "LangGraph",
+    "text": "LangGraph\n\nhttps://langchain-ai.github.io/langgraph/\nPython only\nMIT License\nOne of the first agent frameworks, building on LangChain\n\nIMO, too abstract/complex/bloated",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#crew.ai",
+    "href": "src/03/slides.html#crew.ai",
+    "title": "Module 3: Agents and Tools",
+    "section": "Crew.ai",
+    "text": "Crew.ai\n\nhttps://github.com/crewaiinc/crewai\nPython only\nOne of the more popular commercial offerings\n\n(Although they do have an MIT License/freemium model)",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#microsoft",
+    "href": "src/03/slides.html#microsoft",
+    "title": "Module 3: Agents and Tools",
+    "section": "Microsoft",
+    "text": "Microsoft\n\nAutoGen\n\nhttps://microsoft.github.io/autogen/stable/\nPython (.NET coming soon)\nMIT License\n\nMicrosoft Semantic Kernel\n\nhttps://github.com/microsoft/semantic-kernel\nPython, .NET, Java\nMIT License",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#microsoft-1",
+    "href": "src/03/slides.html#microsoft-1",
+    "title": "Module 3: Agents and Tools",
+    "section": "Microsoft",
+    "text": "Microsoft\n\nNow converging into the Microsoft Agent Framework\n(One of the few agent SDKs to support .NET)",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#agent-structure",
+    "href": "src/03/slides.html#agent-structure",
+    "title": "Module 3: Agents and Tools",
+    "section": "Agent Structure",
+    "text": "Agent Structure\n\nAgents and tools for the DigiPen Campus Agent",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#campus-agent",
+    "href": "src/03/slides.html#campus-agent",
+    "title": "Module 3: Agents and Tools",
+    "section": "Campus Agent",
+    "text": "Campus Agent\n\n\nagent = Agent(\n    name=\"DigiPen Campus Agent\",\n    instructions=\"You are a helpful campus agent that can plan and execute tasks for students at DigiPen. Please be concise and accurate in handing off tasks to other agents as needed.\",\n    handoffs=[building_agent, course_agent, handbook_agent, cafe_agent],\n)",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#building-agent",
+    "href": "src/03/slides.html#building-agent",
+    "title": "Module 3: Agents and Tools",
+    "section": "Building Agent",
+    "text": "Building Agent\n\n\nbuilding_agent = Agent(\n    name=\"Building Agent\",\n    instructions=\"You help students locate and provide information about buildings and rooms on campus. Be descriptive when giving locations.\",\n    tools=[\n        FileSearchTool(\n            max_num_results=3,\n            vector_store_ids=[VECTOR_STORE_ID],\n            include_search_results=True,\n        )\n    ],\n)",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#course-agent",
+    "href": "src/03/slides.html#course-agent",
+    "title": "Module 3: Agents and Tools",
+    "section": "Course Agent",
+    "text": "Course Agent\n\n\ncourse_agent = Agent(\n    name=\"Course Agent\",\n    instructions=\"You help students find out information about courses held at DigiPen.\",\n    tools=[\n        FileSearchTool(\n            max_num_results=5,\n            vector_store_ids=[VECTOR_STORE_ID],\n            include_search_results=True,\n        )\n    ],\n)",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#handbook-agent",
+    "href": "src/03/slides.html#handbook-agent",
+    "title": "Module 3: Agents and Tools",
+    "section": "Handbook Agent",
+    "text": "Handbook Agent\n\n\nhandbook_agent = Agent(\n    name=\"Handbook Agent\",\n    instructions=\"You help students navigate the school handbook, providing information about campus policies and student conduct.\",\n    tools=[\n        FileSearchTool(\n            max_num_results=5,\n            vector_store_ids=[VECTOR_STORE_ID],\n            include_search_results=True,\n        )\n    ],\n)",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#whats-a-vector-store",
+    "href": "src/03/slides.html#whats-a-vector-store",
+    "title": "Module 3: Agents and Tools",
+    "section": "What’s a Vector Store?",
+    "text": "What’s a Vector Store?\n\nA way to provide domain-specific knowledge beyond training data\n\ne.g., current semester course information that is newer than GPT-5.2’s cutoff date\n\nWe could just insert these into the context window\n\nBut doesn’t scale to more than a few documents",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#whats-a-vector-store-1",
+    "href": "src/03/slides.html#whats-a-vector-store-1",
+    "title": "Module 3: Agents and Tools",
+    "section": "What’s a Vector Store?",
+    "text": "What’s a Vector Store?\n\nInstead, we use a vector store\n\nConverts documents, paragraphs, or sentences into vector embeddings\n(Remember these from module 1? :)\n\nSimilar concepts are close to each other in vector space\n\nWhich makes it efficient to query\n\nQueries return the document (or pages within a document) that match\n\ne.g., “Michelangelo” returns “Page 1 of the floor map”",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#whats-a-vector-store-2",
+    "href": "src/03/slides.html#whats-a-vector-store-2",
+    "title": "Module 3: Agents and Tools",
+    "section": "What’s a Vector Store?",
+    "text": "What’s a Vector Store?\n\nFoundation for RAG (Retrieval Augmented Generation)\n\n(Which we will cover in module 6)\n\nMany different types of vectors stores/databases\nFor now, we will be using the OpenAI built in one",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#whats-a-vector-store-3",
+    "href": "src/03/slides.html#whats-a-vector-store-3",
+    "title": "Module 3: Agents and Tools",
+    "section": "What’s a Vector Store",
+    "text": "What’s a Vector Store",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#agent-structure-1",
+    "href": "src/03/slides.html#agent-structure-1",
+    "title": "Module 3: Agents and Tools",
+    "section": "Agent Structure",
+    "text": "Agent Structure\n\nAgents and tools for the DigiPen Campus Agent",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#why-do-agents-need-tools",
+    "href": "src/03/slides.html#why-do-agents-need-tools",
+    "title": "Module 3: Agents and Tools",
+    "section": "Why Do Agents Need Tools?",
+    "text": "Why Do Agents Need Tools?\n\nThe scope of the agents ability is contained within the model\nTools enable the agent to reach out to systems beyond the model\nExamples\n\nRead a file from disk or search the web (built in)\nCalculator (because LLMs aren’t great at math)\nCode interpreter (running code on the fly)",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#openai-tool-calling",
+    "href": "src/03/slides.html#openai-tool-calling",
+    "title": "Module 3: Agents and Tools",
+    "section": "OpenAI Tool Calling",
+    "text": "OpenAI Tool Calling\n\nIntroduced by OpenAI in June 2023\nOriginally called Function Calling\nModels are fine-tuned to return a structured function_call JSON object, specifying which function to call and with what arguments.\nTools are provided as functions\nOption for the LLM to decide when to call the tool (always, never, auto)",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#cafe-agent",
+    "href": "src/03/slides.html#cafe-agent",
+    "title": "Module 3: Agents and Tools",
+    "section": "Cafe Agent",
+    "text": "Cafe Agent\n\n\ncafe_agent = Agent(\n    name=\"Cafe Agent\",\n    instructions=\"You help students locate and provide information about the Bytes Cafe.\",\n    tools=[\n        get_bytes_cafe_menu,\n    ],\n)",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#cafe-agent-tool",
+    "href": "src/03/slides.html#cafe-agent-tool",
+    "title": "Module 3: Agents and Tools",
+    "section": "Cafe Agent Tool",
+    "text": "Cafe Agent Tool\n\n\n@function_tool\ndef get_bytes_cafe_menu(date: str) -&gt; any:\n    return {\n        f\"{date}\": {\n            \"daily byte\": {\n                \"name\": \"Steak Quesadilla\",\n                \"price\": 12,\n                \"description\": \"Flank steak, mixed cheese in a flour tortilla served with air fried potatoes, sour cream and salsa\",\n            },\n            \"vegetarian\": {\n                \"name\": \"Impossible Quesadilla\",\n                \"price\": 12,\n                \"description\": \"Impossible plant based product, mixed cheese in a flour tortilla served with air fried potatoes, sour cream and salsa\",\n            },\n            \"international\": {\n                \"name\": \"Chicken Curry\",\n                \"price\": 12,\n                \"description\": \"Chicken thighs, onion, carrot, potato, curry sauce served over rice\",\n            },\n        }\n    }",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#lets-run-the-campus-agent-1",
+    "href": "src/03/slides.html#lets-run-the-campus-agent-1",
+    "title": "Module 3: Agents and Tools",
+    "section": "Let’s Run the Campus Agent",
+    "text": "Let’s Run the Campus Agent\n\nDoes the OpenAI Agents SDK work with OpenRouter?\n\nYes and No :)\n\nYes to core functionality\n\nCreating an agent, handoffs, calling custom tools\n\nNo to calling built-in OpenAI tools\n\nFile search, Web search, Code interpreter",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#lets-run-the-campus-agent-2",
+    "href": "src/03/slides.html#lets-run-the-campus-agent-2",
+    "title": "Module 3: Agents and Tools",
+    "section": "Let’s Run the Campus Agent",
+    "text": "Let’s Run the Campus Agent\n\nWe’ll need to create an OpenAI developer account\nPotentially add some credits to it",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#memory",
+    "href": "src/03/slides.html#memory",
+    "title": "Module 3: Agents and Tools",
+    "section": "Memory",
+    "text": "Memory\n\nHANDS ON",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#mcp-model-context-protocol",
+    "href": "src/03/slides.html#mcp-model-context-protocol",
+    "title": "Module 3: Agents and Tools",
+    "section": "MCP (Model Context Protocol)",
+    "text": "MCP (Model Context Protocol)\n\nOpenAI’s tool/function calling works if you have local access to the tools\nBut how about external systems?\n\ne.g., Access to calendar, other systems, hardware, etc.\n\nYou could build local tools to call APIs\nMCP: Model Context Protocol\nStandardized tooling interface, released by Anthropic in March 2024",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#mcp",
+    "href": "src/03/slides.html#mcp",
+    "title": "Module 3: Agents and Tools",
+    "section": "MCP",
+    "text": "MCP\n\nHANDS ON",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#hugging-face-spaces",
+    "href": "src/03/slides.html#hugging-face-spaces",
+    "title": "Module 3: Agents and Tools",
+    "section": "Hugging Face Spaces",
+    "text": "Hugging Face Spaces\n\nOverview and HANDS ON",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "src/03/slides.html#looking-ahead-1",
     "href": "src/03/slides.html#looking-ahead-1",
     "title": "Module 3: Agents and Tools",
@@ -2865,5 +3323,26 @@
       "Notebooks",
       "structured-outputs.ipynb"
     ]
+  },
+  {
+    "objectID": "src/03/notebooks/campus-agent.html#install-pre-requisites",
+    "href": "src/03/notebooks/campus-agent.html#install-pre-requisites",
+    "title": "DigiPen Campus Agent",
+    "section": "Install pre-requisites",
+    "text": "Install pre-requisites\n\n!uv add openai-agents==0.4.2 gradio==5.49.1\n\n\nResolved 190 packages in 1ms\n\nInstalled 10 packages in 33ms12.0                           \n\n + colorama==0.4.6\n\n + cryptography==46.0.3\n\n + griffe==1.15.0\n\n + httpx-sse==0.4.3\n\n + mcp==1.25.0\n\n + openai-agents==0.4.2\n\n + pydantic-settings==2.12.0\n\n + pyjwt==2.10.1\n\n + sse-starlette==3.1.2\n\n + types-requests==2.32.4.20260107\n\n\n\n\n\nfrom agents import Agent, Runner, function_tool, FileSearchTool\n\nVECTOR_STORE_ID = \"vs_6896d8c959008191981d645850b42313\""
+  },
+  {
+    "objectID": "src/03/notebooks/campus-agent.html#agents",
+    "href": "src/03/notebooks/campus-agent.html#agents",
+    "title": "DigiPen Campus Agent",
+    "section": "Agents",
+    "text": "Agents\n\nCafe Agent\n\n@function_tool\ndef get_bytes_cafe_menu(date: str) -&gt; any:\n    return {\n        f\"{date}\": {\n            \"daily byte\": {\n                \"name\": \"Steak Quesadilla\",\n                \"price\": 12,\n                \"description\": \"Flank steak, mixed cheese in a flour tortilla served with air fried potatoes, sour cream and salsa\",\n            },\n            \"vegetarian\": {\n                \"name\": \"Impossible Quesadilla\",\n                \"price\": 12,\n                \"description\": \"Impossible plant based product, mixed cheese in a flour tortilla served with air fried potatoes, sour cream and salsa\",\n            },\n            \"international\": {\n                \"name\": \"Chicken Curry\",\n                \"price\": 12,\n                \"description\": \"Chicken thighs, onion, carrot, potato, curry sauce served over rice\",\n            },\n        }\n    }\n\n\ncafe_agent = Agent(\n    name=\"Cafe Agent\",\n    instructions=\"You help students locate and provide information about the Bytes Cafe.\",\n    tools=[\n        get_bytes_cafe_menu,\n    ],\n)\n\n\n\nBuilding Agent\n\nbuilding_agent = Agent(\n    name=\"Building Agent\",\n    instructions=\"You help students locate and provide information about buildings and rooms on campus. Be descriptive when giving locations.\",\n    tools=[\n        FileSearchTool(\n            max_num_results=3,\n            vector_store_ids=[VECTOR_STORE_ID],\n            include_search_results=True,\n        )\n    ],\n)\n\n\n\nCourse Agent\n\ncourse_agent = Agent(\n    name=\"Course Agent\",\n    instructions=\"You help students find out information about courses held at DigiPen.\",\n    tools=[\n        FileSearchTool(\n            max_num_results=5,\n            vector_store_ids=[VECTOR_STORE_ID],\n            include_search_results=True,\n        )\n    ],\n)\n\n\n\nHandbook Agent\n\nhandbook_agent = Agent(\n    name=\"Handbook Agent\",\n    instructions=\"You help students navigate the school handbook, providing information about campus policies and student conduct.\",\n    tools=[\n        FileSearchTool(\n            max_num_results=5,\n            vector_store_ids=[VECTOR_STORE_ID],\n            include_search_results=True,\n        )\n    ],\n)\n\n\n\nCampus Agent\n\nagent = Agent(\n    name=\"DigiPen Campus Agent\",\n    instructions=\"You are a helpful campus agent that can plan and execute tasks for students at DigiPen. Please be concise and accurate in handing off tasks to other agents as needed.\",\n    handoffs=[building_agent, course_agent, handbook_agent, cafe_agent],\n)"
+  },
+  {
+    "objectID": "src/03/notebooks/campus-agent.html#gradio-interface",
+    "href": "src/03/notebooks/campus-agent.html#gradio-interface",
+    "title": "DigiPen Campus Agent",
+    "section": "Gradio Interface",
+    "text": "Gradio Interface\n\nChat function and display of tool calls\n\nfrom gradio import ChatMessage\n\nasync def chat_with_agent(user_msg: str, history: list):\n    messages = [{\"role\": msg[\"role\"], \"content\": msg[\"content\"]} for msg in history]\n    messages.append({\"role\": \"user\", \"content\": user_msg})\n    responses = []\n    reply_created = False\n    active_agent = None\n\n    result = Runner.run_streamed(agent, messages)\n    async for event in result.stream_events():\n        if event.type == \"raw_response_event\":\n            if event.data.type == \"response.output_text.delta\":\n                if not reply_created:\n                    responses.append(ChatMessage(role=\"assistant\", content=\"\"))\n                    reply_created = True\n                responses[-1].content += event.data.delta\n        elif event.type == \"agent_updated_stream_event\":\n            active_agent = event.new_agent.name\n            responses.append(\n                ChatMessage(\n                    content=event.new_agent.name,\n                    metadata={\"title\": \"Agent Now Running\", \"id\": active_agent},\n                )\n            )\n        elif event.type == \"run_item_stream_event\":\n            if event.item.type == \"tool_call_item\":\n                if event.item.raw_item.type == \"file_search_call\":\n                    responses.append(\n                        ChatMessage(\n                            content=f\"Query used: {event.item.raw_item.queries}\",\n                            metadata={\n                                \"title\": \"File Search Completed\",\n                                \"parent_id\": active_agent,\n                            },\n                        )\n                    )\n                else:\n                    tool_name = getattr(event.item.raw_item, \"name\", \"unknown_tool\")\n                    tool_args = getattr(event.item.raw_item, \"arguments\", {})\n                    responses.append(\n                        ChatMessage(\n                            content=f\"Calling tool {tool_name} with arguments {tool_args}\",\n                            metadata={\"title\": \"Tool Call\", \"parent_id\": active_agent},\n                        )\n                    )\n            if event.item.type == \"tool_call_output_item\":\n                responses.append(\n                    ChatMessage(\n                        content=f\"Tool output: '{event.item.raw_item['output']}'\",\n                        metadata={\"title\": \"Tool Output\", \"parent_id\": active_agent},\n                    )\n                )\n            if event.item.type == \"handoff_call_item\":\n                responses.append(\n                    ChatMessage(\n                        content=f\"Name: {event.item.raw_item.name}\",\n                        metadata={\n                            \"title\": \"Handing Off Request\",\n                            \"parent_id\": active_agent,\n                        },\n                    )\n                )\n        yield responses\n\n\n\nLaunch Gradio\n\nimport gradio as gr\n\ndemo = gr.ChatInterface(\n    chat_with_agent,\n    title=\"DigiPen Campus Agent\",\n    theme=gr.themes.Soft(\n        primary_hue=\"red\", secondary_hue=\"slate\", font=[gr.themes.GoogleFont(\"Inter\")]\n    ),\n    examples=[\n        \"I'm trying to find the WANIC classrooms. Can you help?\",\n        \"What's the policy for eating in auditoriums?\",\n        \"What's today's vegetarian dish at the Bytes Cafe?\",\n        \"What are the prerequisites for FLM201?\"\n    ],\n    submit_btn=True,\n    flagging_mode=\"manual\",\n    flagging_options=[\"Like\", \"Spam\", \"Inappropriate\", \"Other\"],\n    type=\"messages\",\n    save_history=False,\n)\n\ndemo.launch(share=False, debug=True)\n\n* Running on local URL:  http://127.0.0.1:7863\n* To create a public link, set `share=True` in `launch()`.\n\n\n\n\n\nKeyboard interruption in main thread... closing server."
   }
 ]
