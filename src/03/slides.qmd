@@ -241,10 +241,6 @@ Q: What didn't work? Where did the agent fail?
 - Tools are provided as functions
 - Option for the LLM to decide when to call the tool (always, never, auto)
 
-## OpenAI Tool Calling
-
-- TBD: How tool calling works. quick explanation of how models are fine tuned for function calling.
-
 ## Cafe Agent
 
 {{< embed notebooks/campus-agent.ipynb#cafe-agent echo=true outputs=false >}}
@@ -252,6 +248,53 @@ Q: What didn't work? Where did the agent fail?
 ## Cafe Agent Tool
 
 {{< embed notebooks/campus-agent.ipynb#cafe-agent-tool echo=true outputs=false >}}
+
+## Sidebar: Fine-tuning models for Tools
+
+- How do models know when they should call a tool?
+  - Models are fine-tuned on conversations with tool call examples
+  - The model learns patterns like "when the user asks about the weather, call the get_weather tool"
+  - The request to call the tool is returned as a JSON payload
+
+## Sidebar: Fine-tuning models for Tools
+
+```json
+{
+  "role": "assistant",
+  "content": null,
+  "tool_calls": [
+    {
+      "id": "call_abc123",
+      "type": "function",
+      "function": {
+        "name": "get_weather",
+        "arguments": "{\"location\": \"San Francisco\", \"unit\": \"celsius\"}"
+      }
+    }
+  ]
+}
+```
+
+## Sidebar: Fine-tuning models for Tools
+
+- The client then calls the tool with the required parameters
+- And returns the result back to the model as a "tool" role message
+
+## Sidebar: Fine-tuning models for Tools
+
+```json
+{
+  "role": "tool",
+  "tool_call_id": "call_abc123",
+  "content": "{\"temperature\": 18, \"condition\": \"partly cloudy\", \"humidity\": 65, \"wind_speed\": 12}"
+}
+```
+
+## Sidebar: Fine-tuning models for Tools
+
+- RLHF is used for improve the accuracy for tool selection
+  - Rewards are given for correctly choosing the right tool for a task
+  - Or penalized for hallucinating tools and methods that don't exist
 
 # Let's Run the Campus Agent
 
@@ -406,6 +449,7 @@ relevant_memories = memory.search(query=message, user_id=user_id, limit=3)
 - Released by Anthropic in March 2024
 - Provides a standard interface for tools - akin to a USB standard for peripherals
 - Implementations are known as "MCP servers"
+  - A server exposes one or more tools (functions)
   - Uses JSON-RPC 2.0 as underlying RPC protocol
   - Servers can run remotely over HTTP (supports SSE)
   - Or can be hosted locally and accessed via stdio
@@ -447,25 +491,50 @@ Command: `npx -y open-meteo-mcp-server`
 ## Creating Your Own MCP Server
 
 - Multiple SDKs on [https://modelcontextprotocol.io/docs/sdk](https://modelcontextprotocol.io/docs/sdk){.external target="_blank"}
+  - Python, TypeScript, Go, Rust, C#, and more
 - Very similar to tool calling
   - Define your MCP server
   - Annotate your functions with `@mcp.tool()`
+  - Add descriptions to the tool methods to help the LLM select which tool to call
 
+## Example: micro:bit MCP Server
 
+![https://simonguest.com/p/microbit-mcp/](./images/microbit_mcp_sm.mp4){.lightbox}
+
+# Hugging Face Spaces
 
 ## Hugging Face Spaces
 
-- Overview and HANDS ON
+- We've been using Gradio, but hosting via notebooks isn't ideal
+  - Even with `share=True` you have to keep the notebook running
+- Wouldn't it be nice if we could easily host our Gradio app?
 
+## Hugging Face Spaces
 
+![](./images/hf-spaces.png){.lightbox}
 
+## Hugging Face Spaces
+
+- Free cloud hosting for ML demos and applications
+  - Supports Gradio, Streamlit, and static HTML/JS
+- For Gradio, either upload a `main.py` or a Docker configuration file
+- Hugging Face handles resource allocation
+  - Sleeps the space if it's inactive
+  - Integrates with the queuing mechanism of Gradio to batch requests
+  - Supports multiple GPU types (if signed up for Pro account)
+
+# Demo
+
+Hosting the DigiPen campus agent on Hugging Face Spaces
 
 # Looking Ahead
 
 ## Looking Ahead
 
 - [This week's assignment!](https://simonguest.github.io/CS-394/src/03/assignment.html){.external target="_blank"}
-- TBD
+- Leave text behind and explore image-based models!
+- Introduce the diffuser
+- And go other way with vision encoders
 
 # References
 
