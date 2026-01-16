@@ -241,6 +241,10 @@ Q: What didn't work? Where did the agent fail?
 - Tools are provided as functions
 - Option for the LLM to decide when to call the tool (always, never, auto)
 
+## OpenAI Tool Calling
+
+- TBD: How tool calling works. quick explanation of how models are fine tuned for function calling.
+
 ## Cafe Agent
 
 {{< embed notebooks/campus-agent.ipynb#cafe-agent echo=true outputs=false >}}
@@ -388,20 +392,66 @@ relevant_memories = memory.search(query=message, user_id=user_id, limit=3)
   - e.g., a profile tool with set/get options
 - Use LLM to summarize short-term session conversations to store **episodic** and **procedural** learnings.
 
-# Beyond Function Tooling
+# Beyond Tool Calling
+
+## Beyond Tool Calling
+
+- Tool calling is super useful, but...
+  - You need to write the function(s) yourself
+  - And then expose them to OpenAI using the `@function_tool` method
+- What if there was a way to standardize this?
 
 ## MCP (Model Context Protocol)
 
-- OpenAI's tool/function calling works if you have local access to the tools
-- But how about external systems?
-  - e.g., Access to calendar, other systems, hardware, etc.
-- You could build local tools to call APIs
-- MCP: Model Context Protocol
-- Standardized tooling interface, released by Anthropic in March 2024
+- Released by Anthropic in March 2024
+- Provides a standard interface for tools - akin to a USB standard for peripherals
+- Implementations are known as "MCP servers"
+  - Uses JSON-RPC 2.0 as underlying RPC protocol
+  - Servers can run remotely over HTTP (supports SSE)
+  - Or can be hosted locally and accessed via stdio
+  - Many servers hosted using Node.js
 
-## MCP
+## MCP (Model Context Protocol)
 
-- HANDS ON
+![](./images/awesome-mcp.png){.lightbox}
+
+## MCP (Model Context Protocol)
+
+![](./images/open-meteo.png){.lightbox}
+
+## MCP (Model Context Protocol)
+
+![](./images/open-meteo-mcp-server.png){.lightbox}
+
+# Demo
+
+MCP Model Inspector (`npx @modelcontextprotocol/inspector`)
+
+Command: `npx -y open-meteo-mcp-server`
+
+# OpenAI Agents SDK and MCP
+
+## OpenAI Agents SDK and MCP
+
+- MCP supported in OpenAI Agents SDK (as of Sep 2025)
+- Exposes `MCPServerStdio` and `MCPServerSse` to connect to local and remote servers
+
+## OpenAI Agents SDK and MCP
+
+{{< embed notebooks/open-meteo-mcp.ipynb#list-available-tools echo=true >}}
+
+## OpenAI Agents SDK and MCP
+
+{{< embed notebooks/open-meteo-mcp.ipynb#simple-query echo=true >}}
+
+## Creating Your Own MCP Server
+
+- Multiple SDKs on [https://modelcontextprotocol.io/docs/sdk](https://modelcontextprotocol.io/docs/sdk){.external target="_blank"}
+- Very similar to tool calling
+  - Define your MCP server
+  - Annotate your functions with `@mcp.tool()`
+
+
 
 ## Hugging Face Spaces
 
