@@ -1,6 +1,51 @@
 ---
-title: "Module 3 Assignment - TBD"
+title: "Module 3 Assignment: Extend the Campus Agent"
 format: html
 execute:
   enabled: false
 ---
+**Objective:** Extend the DigiPen Campus Agent by adding a new specialized agent that handles a specific domain.
+
+**Background:**
+
+The Campus Agent currently has four specialized agents: Building Agent, Course Agent, Handbook Agent, and Cafe Agent. Your task is to add a fifth agent that serves a new purpose on campus.
+
+**Suggested Agent Ideas (pick one, or propose your own):**
+
+- **Events Agent** - Helps students find information about campus events, club meetings, and activities
+- **IT Agent** - Assists with common IT issues, lab software, and printing
+- **Library Agent** - Helps students find resources, reserve study rooms, or check hours
+- **Career Services Agent** - Provides information about internships, resume reviews, and career fairs
+- **Transportation Agent** - Helps with parking, shuttle schedules, and commute options
+
+**Requirements:**
+
+1. **Create a new agent** with appropriate instructions (system prompt)
+2. **Implement knowledge retrieval** using one of these approaches:
+   - Add documents to the vector store and use `FileSearchTool`, OR
+   - Create a custom tool using `@function_tool` that returns relevant data OR
+   - Create a new (or select an existing) MCP server
+3. **Integrate with the main Campus Agent** via handoff
+4. **Test your agent** with at least 3 different queries and document the results
+5. **Use the OpenAI Traces Dashboard** to debug at least one interaction and include a screenshot or description of what you observed
+
+**Deliverable: A Colab/Jupyter notebook with:**
+
+- Code cells with your implementation (building on the campus-agent.ipynb starter)
+- Uses OPENAI_API_KEY for the API token. (Please do not include your API key in your notebook!)
+- Markdown cells explaining:
+  - What agent you chose and why
+  - How you implemented knowledge retrieval (vector store vs. custom tool)
+  - Your test queries and the agent's responses
+  - What you learned from the Traces Dashboard (what worked, what didn't, any debugging insights)
+
+**Bonus:**
+
+Deploy your extended Campus Agent to [Hugging Face Spaces](https://huggingface.co/spaces){.external target="_blank"} and include the URL in your submission. Remember to add your OPENAI_API_KEY as a secret in your Space settings (not in the code!).
+
+**Hints:**
+
+- Start by copying the campus-agent.ipynb notebook and modifying it
+- Keep your agent's scope focused - a narrower domain with good data works better than a broad domain with sparse data
+- If using the vector store, you can upload files via the [OpenAI Platform Storage](https://platform.openai.com/storage){.external target="_blank"}
+- If using a custom tool, remember that the function's docstring helps the LLM understand when to call it

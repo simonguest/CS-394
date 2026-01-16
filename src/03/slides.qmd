@@ -29,7 +29,7 @@ bibliography: references.bib
 - Describe the fundamental concepts behind Agents/Agentic AI
 - Explore and provide feedback on an existing multi-agent setup
 - Understand available agent SDKs, how they differ, and advantages/disadvantages
-- Use the OpenAI Agents SDK to build an multi-agent system from scratch, including document indexing and retrieval
+- Use the OpenAI Agents SDK to build a multi-agent system from scratch, including document indexing and retrieval
 - Understand and implement tool calls and implement using OpenAI’s function calling and via MCP
 
 # Why Agents?
@@ -133,7 +133,7 @@ Q: What didn't work? Where did the agent fail?
 
 - Created to address the gap between chat completions (what we were using last week) and multi-step systems
   - vs. building your own, which a lot of developers were doing at the time
-- Integrates function calling, handoffs, and statement management in the same package
+- Integrates function calling, handoffs, and session management in the same package
 - Supports Python and TypeScript; MIT licensed
 
 ## Not the only Agent SDK in town!
@@ -216,7 +216,7 @@ Q: What didn't work? Where did the agent fail?
 - Many different types of vectors stores/databases
 - For now, we will be using the OpenAI built in one
 
-## What's a Vector Store
+## What's a Vector Store?
 
 ![](./images/openai-vector-store.png){.lightbox}
 
@@ -226,7 +226,7 @@ Q: What didn't work? Where did the agent fail?
 
 ## Why Do Agents Need Tools?
 
-- The scope of the agents ability is contained within the model
+- The scope of the agent's ability is contained within the model
 - Tools enable the agent to reach out to systems beyond the model
 - Examples
   - Read a file from disk or search the web (built in)
@@ -292,7 +292,7 @@ Q: What didn't work? Where did the agent fail?
 
 ## Sidebar: Fine-tuning models for Tools
 
-- RLHF is used for improve the accuracy for tool selection
+- RLHF is used to improve the accuracy for tool selection
   - Rewards are given for correctly choosing the right tool for a task
   - Or penalized for hallucinating tools and methods that don't exist
 
@@ -332,10 +332,20 @@ Pick your own mini-scenario and create your own agents from scratch.
 
 - Context window limitations
 - Each agent can have a different system prompt (instructions)
+- Makes tool separation cleaner and more accurate
 - Each agent can have a different underlying model
   - Specialized models (e.g., a vision encoder)
   - Or to blend cost
-- Makes tool separation cleaner and more accurate
+
+## Why Multiple Agents?
+
+- Cost considerations are really important with agents
+  - Large number of tokens for reasoning
+  - Handoffs with multiple API calls
+  - Even more tokens with verbose tool calls
+- Mitigations
+  - Does every agent need full GPT / frontier model capability?
+  - Agents doing primarily function calling (e.g., file search) can be much smaller/cheaper
 
 ## Example of Multiple Agents
 
@@ -356,6 +366,30 @@ Pick your own mini-scenario and create your own agents from scratch.
 ## Patterns for Agents
 
 ![Source: https://www.anthropic.com/engineering/building-effective-agents](./images/agent-patterns.png)
+
+# When Things Go Wrong
+
+## When Things Go Wrong
+
+- Agents can be difficult to debug
+  - Incorrect handoffs
+  - Infinite loops can be common
+  - Failed to call the right tool at the right time
+  
+## When Things Go Wrong
+
+- OpenAI Agents SDK includes built-in tracing
+  - Actually enabled by default!
+- Comprehensive record of:
+  - generations
+  - tool calls
+  - handoffs
+  - guardrails
+  - custom events
+
+# Demo
+
+[Traces Dashboard](https://platform.openai.com/traces){.external target="_blank"}
 
 # Agent Memory
 
@@ -399,7 +433,7 @@ Short-Term memory in OpenAI Agents SDK (memory.ipynb)
 - Long-term memory types
   - **Factual**: General facts (e.g., name, address, seating preferences)
   - **Episodic**: Past conversations (e.g., user booked a trip to Paris)
-  - **Procedural**: Learnings (e.g., the best hotel site to book accomodation)
+  - **Procedural**: Learnings (e.g., the best hotel site to book accommodation)
 
 ## Implementing Long-term Memory
 
@@ -446,7 +480,7 @@ relevant_memories = memory.search(query=message, user_id=user_id, limit=3)
 
 ## MCP (Model Context Protocol)
 
-- Released by Anthropic in March 2024
+- Released by Anthropic in Nov 2024
 - Provides a standard interface for tools - akin to a USB standard for peripherals
 - Implementations are known as "MCP servers"
   - A server exposes one or more tools (functions)
