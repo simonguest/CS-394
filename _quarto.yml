@@ -89,6 +89,12 @@ website:
             href: src/03/resources.qmd
           - section: "Notebooks"
             contents:
+              - text: "campus-agent.ipynb"
+                href: src/03/notebooks/campus-agent.ipynb
+              - text: "memory.ipynb"
+                href: src/03/notebooks/memory.ipynb
+              - text: "open-meteo-mcp.ipynb"
+                href: src/03/notebooks/open-meteo-mcp.ipynb
           - text: "Assignment"
             href: src/03/assignment.qmd
       - section: "**Module 4:** Multimedia and Multimodal Models"
