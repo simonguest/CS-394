@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Module 3 Assignment - TBD – CS-394</title>
+<title>Module 3 Assignment: Extend the Campus Agent – CS-394</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -676,7 +676,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/03/slides.html"><strong>Module 3:</strong> Agents and Tools</a></li><li class="breadcrumb-item"><a href="../../src/03/assignment.html">Assignment</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Module 3 Assignment - TBD</h1>
+<h1 class="title">Module 3 Assignment: Extend the Campus Agent</h1>
 </div>
 
 
@@ -693,6 +693,51 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p><strong>Objective:</strong> Extend the DigiPen Campus Agent by adding a new specialized agent that handles a specific domain.</p>
+<p><strong>Background:</strong></p>
+<p>The Campus Agent currently has four specialized agents: Building Agent, Course Agent, Handbook Agent, and Cafe Agent. Your task is to add a fifth agent that serves a new purpose on campus.</p>
+<p><strong>Suggested Agent Ideas (pick one, or propose your own):</strong></p>
+<ul>
+<li><strong>Events Agent</strong> - Helps students find information about campus events, club meetings, and activities</li>
+<li><strong>IT Agent</strong> - Assists with common IT issues, lab software, and printing</li>
+<li><strong>Library Agent</strong> - Helps students find resources, reserve study rooms, or check hours</li>
+<li><strong>Career Services Agent</strong> - Provides information about internships, resume reviews, and career fairs</li>
+<li><strong>Transportation Agent</strong> - Helps with parking, shuttle schedules, and commute options</li>
+</ul>
+<p><strong>Requirements:</strong></p>
+<ol type="1">
+<li><strong>Create a new agent</strong> with appropriate instructions (system prompt)</li>
+<li><strong>Implement knowledge retrieval</strong> using one of these approaches:
+<ul>
+<li>Add documents to the vector store and use <code>FileSearchTool</code>, OR</li>
+<li>Create a custom tool using <code>@function_tool</code> that returns relevant data OR</li>
+<li>Create a new (or select an existing) MCP server</li>
+</ul></li>
+<li><strong>Integrate with the main Campus Agent</strong> via handoff</li>
+<li><strong>Test your agent</strong> with at least 3 different queries and document the results</li>
+<li><strong>Use the OpenAI Traces Dashboard</strong> to debug at least one interaction and include a screenshot or description of what you observed</li>
+</ol>
+<p><strong>Deliverable: A Colab/Jupyter notebook with:</strong></p>
+<ul>
+<li>Code cells with your implementation (building on the campus-agent.ipynb starter)</li>
+<li>Uses OPENAI_API_KEY for the API token. (Please do not include your API key in your notebook!)</li>
+<li>Markdown cells explaining:
+<ul>
+<li>What agent you chose and why</li>
+<li>How you implemented knowledge retrieval (vector store vs.&nbsp;custom tool)</li>
+<li>Your test queries and the agent’s responses</li>
+<li>What you learned from the Traces Dashboard (what worked, what didn’t, any debugging insights)</li>
+</ul></li>
+</ul>
+<p><strong>Bonus:</strong></p>
+<p>Deploy your extended Campus Agent to <a href="https://huggingface.co/spaces" class="external" target="_blank">Hugging Face Spaces</a> and include the URL in your submission. Remember to add your OPENAI_API_KEY as a secret in your Space settings (not in the code!).</p>
+<p><strong>Hints:</strong></p>
+<ul>
+<li>Start by copying the campus-agent.ipynb notebook and modifying it</li>
+<li>Keep your agent’s scope focused - a narrower domain with good data works better than a broad domain with sparse data</li>
+<li>If using the vector store, you can upload files via the <a href="https://platform.openai.com/storage" class="external" target="_blank">OpenAI Platform Storage</a></li>
+<li>If using a custom tool, remember that the function’s docstring helps the LLM understand when to call it</li>
+</ul>
 
 
 

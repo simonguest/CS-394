@@ -500,7 +500,7 @@
     "href": "src/03/slides.html#lesson-objectives",
     "title": "Module 3: Agents and Tools",
     "section": "Lesson Objectives",
-    "text": "Lesson Objectives\n\nDescribe the fundamental concepts behind Agents/Agentic AI\nExplore and provide feedback on an existing multi-agent setup\nUnderstand available agent SDKs, how they differ, and advantages/disadvantages\nUse the OpenAI Agents SDK to build an multi-agent system from scratch, including document indexing and retrieval\nUnderstand and implement tool calls and implement using OpenAI’s function calling and via MCP",
+    "text": "Lesson Objectives\n\nDescribe the fundamental concepts behind Agents/Agentic AI\nExplore and provide feedback on an existing multi-agent setup\nUnderstand available agent SDKs, how they differ, and advantages/disadvantages\nUse the OpenAI Agents SDK to build a multi-agent system from scratch, including document indexing and retrieval\nUnderstand and implement tool calls and implement using OpenAI’s function calling and via MCP",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Slides"
@@ -643,7 +643,7 @@
     "href": "src/03/slides.html#openai-agents-sdk-2",
     "title": "Module 3: Agents and Tools",
     "section": "OpenAI Agents SDK",
-    "text": "OpenAI Agents SDK\n\nCreated to address the gap between chat completions (what we were using last week) and multi-step systems\n\nvs. building your own, which a lot of developers were doing at the time\n\nIntegrates function calling, handoffs, and statement management in the same package\nSupports Python and TypeScript; MIT licensed",
+    "text": "OpenAI Agents SDK\n\nCreated to address the gap between chat completions (what we were using last week) and multi-step systems\n\nvs. building your own, which a lot of developers were doing at the time\n\nIntegrates function calling, handoffs, and session management in the same package\nSupports Python and TypeScript; MIT licensed",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Slides"
@@ -796,8 +796,8 @@
     "objectID": "src/03/slides.html#whats-a-vector-store-3",
     "href": "src/03/slides.html#whats-a-vector-store-3",
     "title": "Module 3: Agents and Tools",
-    "section": "What’s a Vector Store",
-    "text": "What’s a Vector Store",
+    "section": "What’s a Vector Store?",
+    "text": "What’s a Vector Store?",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Slides"
@@ -819,7 +819,7 @@
     "href": "src/03/slides.html#why-do-agents-need-tools",
     "title": "Module 3: Agents and Tools",
     "section": "Why Do Agents Need Tools?",
-    "text": "Why Do Agents Need Tools?\n\nThe scope of the agents ability is contained within the model\nTools enable the agent to reach out to systems beyond the model\nExamples\n\nRead a file from disk or search the web (built in)\nCalculator (because LLMs aren’t great at math)\nCode interpreter (running code on the fly)",
+    "text": "Why Do Agents Need Tools?\n\nThe scope of the agent’s ability is contained within the model\nTools enable the agent to reach out to systems beyond the model\nExamples\n\nRead a file from disk or search the web (built in)\nCalculator (because LLMs aren’t great at math)\nCode interpreter (running code on the fly)",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Slides"
@@ -907,7 +907,7 @@
     "href": "src/03/slides.html#sidebar-fine-tuning-models-for-tools-4",
     "title": "Module 3: Agents and Tools",
     "section": "Sidebar: Fine-tuning models for Tools",
-    "text": "Sidebar: Fine-tuning models for Tools\n\nRLHF is used for improve the accuracy for tool selection\n\nRewards are given for correctly choosing the right tool for a task\nOr penalized for hallucinating tools and methods that don’t exist",
+    "text": "Sidebar: Fine-tuning models for Tools\n\nRLHF is used to improve the accuracy for tool selection\n\nRewards are given for correctly choosing the right tool for a task\nOr penalized for hallucinating tools and methods that don’t exist",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Slides"
@@ -940,7 +940,18 @@
     "href": "src/03/slides.html#why-multiple-agents",
     "title": "Module 3: Agents and Tools",
     "section": "Why Multiple Agents?",
-    "text": "Why Multiple Agents?\n\nContext window limitations\nEach agent can have a different system prompt (instructions)\nEach agent can have a different underlying model\n\nSpecialized models (e.g., a vision encoder)\nOr to blend cost\n\nMakes tool separation cleaner and more accurate",
+    "text": "Why Multiple Agents?\n\nContext window limitations\nEach agent can have a different system prompt (instructions)\nMakes tool separation cleaner and more accurate\nEach agent can have a different underlying model\n\nSpecialized models (e.g., a vision encoder)\nOr to blend cost",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#why-multiple-agents-1",
+    "href": "src/03/slides.html#why-multiple-agents-1",
+    "title": "Module 3: Agents and Tools",
+    "section": "Why Multiple Agents?",
+    "text": "Why Multiple Agents?\n\nCost considerations are really important with agents\n\nLarge number of tokens for reasoning\nHandoffs with multiple API calls\nEven more tokens with verbose tool calls\n\nMitigations\n\nDoes every agent need full GPT / frontier model capability?\nAgents doing primarily function calling (e.g., file search) can be much smaller/cheaper",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Slides"
@@ -974,6 +985,28 @@
     "title": "Module 3: Agents and Tools",
     "section": "Patterns for Agents",
     "text": "Patterns for Agents\n\nSource: https://www.anthropic.com/engineering/building-effective-agents",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#when-things-go-wrong-1",
+    "href": "src/03/slides.html#when-things-go-wrong-1",
+    "title": "Module 3: Agents and Tools",
+    "section": "When Things Go Wrong",
+    "text": "When Things Go Wrong\n\nAgents can be difficult to debug\n\nIncorrect handoffs\nInfinite loops can be common\nFailed to call the right tool at the right time",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#when-things-go-wrong-2",
+    "href": "src/03/slides.html#when-things-go-wrong-2",
+    "title": "Module 3: Agents and Tools",
+    "section": "When Things Go Wrong",
+    "text": "When Things Go Wrong\n\nOpenAI Agents SDK includes built-in tracing\n\nActually enabled by default!\n\nComprehensive record of:\n\ngenerations\ntool calls\nhandoffs\nguardrails\ncustom events",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Slides"
@@ -1050,7 +1083,7 @@
     "href": "src/03/slides.html#long-term-memory",
     "title": "Module 3: Agents and Tools",
     "section": "Long-term Memory",
-    "text": "Long-term Memory\n\nMore challenging\nYou don’t want to store/retrieve the entire conversations\nLong-term memory types\n\nFactual: General facts (e.g., name, address, seating preferences)\nEpisodic: Past conversations (e.g., user booked a trip to Paris)\nProcedural: Learnings (e.g., the best hotel site to book accomodation)",
+    "text": "Long-term Memory\n\nMore challenging\nYou don’t want to store/retrieve the entire conversations\nLong-term memory types\n\nFactual: General facts (e.g., name, address, seating preferences)\nEpisodic: Past conversations (e.g., user booked a trip to Paris)\nProcedural: Learnings (e.g., the best hotel site to book accommodation)",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Slides"
@@ -1105,7 +1138,7 @@
     "href": "src/03/slides.html#mcp-model-context-protocol",
     "title": "Module 3: Agents and Tools",
     "section": "MCP (Model Context Protocol)",
-    "text": "MCP (Model Context Protocol)\n\nReleased by Anthropic in March 2024\nProvides a standard interface for tools - akin to a USB standard for peripherals\nImplementations are known as “MCP servers”\n\nA server exposes one or more tools (functions)\nUses JSON-RPC 2.0 as underlying RPC protocol\nServers can run remotely over HTTP (supports SSE)\nOr can be hosted locally and accessed via stdio\nMany servers hosted using Node.js",
+    "text": "MCP (Model Context Protocol)\n\nReleased by Anthropic in Nov 2024\nProvides a standard interface for tools - akin to a USB standard for peripherals\nImplementations are known as “MCP servers”\n\nA server exposes one or more tools (functions)\nUses JSON-RPC 2.0 as underlying RPC protocol\nServers can run remotely over HTTP (supports SSE)\nOr can be hosted locally and accessed via stdio\nMany servers hosted using Node.js",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Slides"
@@ -1252,6 +1285,17 @@
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/assignment.html",
+    "href": "src/03/assignment.html",
+    "title": "Module 3 Assignment: Extend the Campus Agent",
+    "section": "",
+    "text": "Objective: Extend the DigiPen Campus Agent by adding a new specialized agent that handles a specific domain.\nBackground:\nThe Campus Agent currently has four specialized agents: Building Agent, Course Agent, Handbook Agent, and Cafe Agent. Your task is to add a fifth agent that serves a new purpose on campus.\nSuggested Agent Ideas (pick one, or propose your own):\n\nEvents Agent - Helps students find information about campus events, club meetings, and activities\nIT Agent - Assists with common IT issues, lab software, and printing\nLibrary Agent - Helps students find resources, reserve study rooms, or check hours\nCareer Services Agent - Provides information about internships, resume reviews, and career fairs\nTransportation Agent - Helps with parking, shuttle schedules, and commute options\n\nRequirements:\n\nCreate a new agent with appropriate instructions (system prompt)\nImplement knowledge retrieval using one of these approaches:\n\nAdd documents to the vector store and use FileSearchTool, OR\nCreate a custom tool using @function_tool that returns relevant data OR\nCreate a new (or select an existing) MCP server\n\nIntegrate with the main Campus Agent via handoff\nTest your agent with at least 3 different queries and document the results\nUse the OpenAI Traces Dashboard to debug at least one interaction and include a screenshot or description of what you observed\n\nDeliverable: A Colab/Jupyter notebook with:\n\nCode cells with your implementation (building on the campus-agent.ipynb starter)\nUses OPENAI_API_KEY for the API token. (Please do not include your API key in your notebook!)\nMarkdown cells explaining:\n\nWhat agent you chose and why\nHow you implemented knowledge retrieval (vector store vs. custom tool)\nYour test queries and the agent’s responses\nWhat you learned from the Traces Dashboard (what worked, what didn’t, any debugging insights)\n\n\nBonus:\nDeploy your extended Campus Agent to Hugging Face Spaces and include the URL in your submission. Remember to add your OPENAI_API_KEY as a secret in your Space settings (not in the code!).\nHints:\n\nStart by copying the campus-agent.ipynb notebook and modifying it\nKeep your agent’s scope focused - a narrower domain with good data works better than a broad domain with sparse data\nIf using the vector store, you can upload files via the OpenAI Platform Storage\nIf using a custom tool, remember that the function’s docstring helps the LLM understand when to call it",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Assignment"
     ]
   },
   {
@@ -1895,7 +1939,7 @@
   {
     "objectID": "src/01/assignment.html",
     "href": "src/01/assignment.html",
-    "title": "Module 1 Assignment - Experiment with Text Continuation Styles",
+    "title": "Module 1 Assignment: Experiment with Text Continuation Styles",
     "section": "",
     "text": "Objective: Create a Colab notebook that uses GPT-2 to generate creative text continuations with different styles.\nRequirements:\n\nLoad a pre-trained GPT-2 model (using HuggingFace transformers - same approach as used in GPT-2.ipynb)\nCreate 3 different story starters in different genres/styles. For example:\n\nFantasy/Adventure: “In a land of dragons and magic…”\nSci-fi: “The year is 2157. Humanity has just…”\nMystery: “The detective examined the crime scene and noticed…”\n(or choose your own three)\n\nThen adjust for:\n\nGreedy decoding vs. sampling\nDifferent temperature values\nHow the opening sentence shapes the continuation (e.g., short vs. long)\n\nDocument your observations (using Markdown in the notebook)\n\nWhat differences do you notice between the strategies?\nWhat worked well (or surprised you!)\nWhat didn’t work that well\n\n\nDeliverable: A Colab/Jupyter notebook with:\n\nCode cells with your implementation\nOutputs of generated text from GPT-2\nMarkdown cells explaining what each sampling strategy does and any observations\n\nHint:\nFor better results, use a larger GPT-2 model on Colab T4.\n\ntokenizer = GPT2Tokenizer.from_pretrained(\"gpt2-medium\")\nmodel = GPT2LMHeadModel.from_pretrained(\"gpt2-medium\")",
     "crumbs": [
@@ -2388,7 +2432,7 @@
   {
     "objectID": "src/02/assignment.html",
     "href": "src/02/assignment.html",
-    "title": "Module 2 Assignment - Gradio Travel Planner",
+    "title": "Module 2 Assignment: Gradio Travel Planner",
     "section": "",
     "text": "Objective: Build a chat interface (in a separate Colab notebook) that helps a user complete tasks.\nRequirements:\n\nGradio chat interface with streaming responses\nSystem prompt that defines the AI as a travel planning expert (or pick your own scenario, if you have a better idea!)\nImplements a well-thought out system prompt (with feedback on the rationale behind it).\nDemonstrates at least 2 different models via OpenRouter as a dropdown in Gradio. (Not necessarily at the same time.)\n\nTry to pick a large (foundational model) and a much smaller open source instruct model to compare the differences.\n\nUse structured outputs when returning results to the user (e.g., a downloadable itinerary that the user can download)\n\nExample schema: Trip with fields like destination, duration_days, activities (list), budget_level, daily_schedule (list of day objects)\n\n\nDeliverable: A Colab/Jupyter notebook with:\n\nCode cells with your implementation\nUses OPENROUTER_API_KEY for the API token. (Please do not include your API key in your notebook!)\nMarkdown cells explaining what the notebook does and any observations",
     "crumbs": [
@@ -3116,7 +3160,7 @@
     "href": "src/03/resources.html",
     "title": "Resources",
     "section": "",
-    "text": "OpenAI Agents SDK (Python) - Official OpenAI agents framework for Python\nOpenAI Agents Visualization - Tool for visualizing agent graphs and interactions\n\n\n\n\n\nLangGraph - Python framework for building stateful, multi-actor applications with LLMs\n\n\n\n\n\nCrew.ai - Framework for orchestrating role-playing, autonomous AI agents\n\n\n\n\n\nAutoGen - Microsoft’s framework for building conversational AI systems\nMicrosoft Semantic Kernel - SDK for integrating AI services with conventional programming languages",
+    "text": "OpenAI Agents SDK (Python) - Official OpenAI agents framework for Python\nOpenAI Agents SDK Announcement - Blog post announcing the OpenAI Agents SDK (Mar 2025)\nOpenAI Agents Visualization - Tool for visualizing agent graphs and interactions\n\n\n\n\n\nLangGraph - Python framework for building stateful, multi-actor applications with LLMs\n\n\n\n\n\nCrew.ai - Framework for orchestrating role-playing, autonomous AI agents\n\n\n\n\n\nAutoGen - Microsoft’s framework for building conversational AI systems\nMicrosoft Semantic Kernel - SDK for integrating AI services with conventional programming languages\nMicrosoft Agent Framework - Converged agent framework supporting .NET",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Resources"
@@ -3127,7 +3171,7 @@
     "href": "src/03/resources.html#agent-frameworks",
     "title": "Resources",
     "section": "",
-    "text": "OpenAI Agents SDK (Python) - Official OpenAI agents framework for Python\nOpenAI Agents Visualization - Tool for visualizing agent graphs and interactions\n\n\n\n\n\nLangGraph - Python framework for building stateful, multi-actor applications with LLMs\n\n\n\n\n\nCrew.ai - Framework for orchestrating role-playing, autonomous AI agents\n\n\n\n\n\nAutoGen - Microsoft’s framework for building conversational AI systems\nMicrosoft Semantic Kernel - SDK for integrating AI services with conventional programming languages",
+    "text": "OpenAI Agents SDK (Python) - Official OpenAI agents framework for Python\nOpenAI Agents SDK Announcement - Blog post announcing the OpenAI Agents SDK (Mar 2025)\nOpenAI Agents Visualization - Tool for visualizing agent graphs and interactions\n\n\n\n\n\nLangGraph - Python framework for building stateful, multi-actor applications with LLMs\n\n\n\n\n\nCrew.ai - Framework for orchestrating role-playing, autonomous AI agents\n\n\n\n\n\nAutoGen - Microsoft’s framework for building conversational AI systems\nMicrosoft Semantic Kernel - SDK for integrating AI services with conventional programming languages\nMicrosoft Agent Framework - Converged agent framework supporting .NET",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Resources"
@@ -3138,7 +3182,40 @@
     "href": "src/03/resources.html#protocols-and-standards",
     "title": "Resources",
     "section": "Protocols and Standards",
-    "text": "Protocols and Standards\n\nModel Context Protocol (MCP) - Standardized protocol for connecting AI models with external tools and data sources",
+    "text": "Protocols and Standards\n\nModel Context Protocol (MCP) - Standardized protocol for connecting AI models with external tools and data sources\nMCP SDK Documentation - SDKs for building MCP servers in Python, TypeScript, Go, Rust, C#, and more",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/03/resources.html#agent-memory",
+    "href": "src/03/resources.html#agent-memory",
+    "title": "Resources",
+    "section": "Agent Memory",
+    "text": "Agent Memory\n\nSupermemory - Memory layer for AI applications\nLetta - Long-term memory for AI agents\nmem0 - Open source memory layer for AI applications",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/03/resources.html#openai-platform",
+    "href": "src/03/resources.html#openai-platform",
+    "title": "Resources",
+    "section": "OpenAI Platform",
+    "text": "OpenAI Platform\n\nOpenAI Platform - OpenAI developer platform for API access\nOpenAI Traces Dashboard - Built-in tracing for debugging OpenAI Agents SDK applications",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/03/resources.html#hosting-and-deployment",
+    "href": "src/03/resources.html#hosting-and-deployment",
+    "title": "Resources",
+    "section": "Hosting and Deployment",
+    "text": "Hosting and Deployment\n\nHugging Face Spaces - Free cloud hosting for ML demos and Gradio applications",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Resources"

@@ -217,7 +217,7 @@
 <li class="fragment">Describe the fundamental concepts behind Agents/Agentic AI</li>
 <li class="fragment">Explore and provide feedback on an existing multi-agent setup</li>
 <li class="fragment">Understand available agent SDKs, how they differ, and advantages/disadvantages</li>
-<li class="fragment">Use the OpenAI Agents SDK to build an multi-agent system from scratch, including document indexing and retrieval</li>
+<li class="fragment">Use the OpenAI Agents SDK to build a multi-agent system from scratch, including document indexing and retrieval</li>
 <li class="fragment">Understand and implement tool calls and implement using OpenAI’s function calling and via MCP</li>
 </ul>
 </section>
@@ -368,7 +368,7 @@
 <ul>
 <li class="fragment">vs.&nbsp;building your own, which a lot of developers were doing at the time</li>
 </ul></li>
-<li class="fragment">Integrates function calling, handoffs, and statement management in the same package</li>
+<li class="fragment">Integrates function calling, handoffs, and session management in the same package</li>
 <li class="fragment">Supports Python and TypeScript; MIT licensed</li>
 </ul>
 </section>
@@ -541,7 +541,7 @@
 </ul>
 </section>
 <section id="whats-a-vector-store-3" class="slide level2">
-<h2>What’s a Vector Store</h2>
+<h2>What’s a Vector Store?</h2>
 <p><a href="./images/openai-vector-store.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img data-src="./images/openai-vector-store.png"></a></p>
 </section>
 <section id="agent-structure-1" class="slide level2">
@@ -551,7 +551,7 @@
 <section id="why-do-agents-need-tools" class="slide level2">
 <h2>Why Do Agents Need Tools?</h2>
 <ul>
-<li class="fragment">The scope of the agents ability is contained within the model</li>
+<li class="fragment">The scope of the agent’s ability is contained within the model</li>
 <li class="fragment">Tools enable the agent to reach out to systems beyond the model</li>
 <li class="fragment">Examples
 <ul>
@@ -661,7 +661,7 @@
 <section id="sidebar-fine-tuning-models-for-tools-4" class="slide level2">
 <h2>Sidebar: Fine-tuning models for Tools</h2>
 <ul>
-<li class="fragment">RLHF is used for improve the accuracy for tool selection
+<li class="fragment">RLHF is used to improve the accuracy for tool selection
 <ul>
 <li class="fragment">Rewards are given for correctly choosing the right tool for a task</li>
 <li class="fragment">Or penalized for hallucinating tools and methods that don’t exist</li>
@@ -723,12 +723,28 @@
 <ul>
 <li class="fragment">Context window limitations</li>
 <li class="fragment">Each agent can have a different system prompt (instructions)</li>
+<li class="fragment">Makes tool separation cleaner and more accurate</li>
 <li class="fragment">Each agent can have a different underlying model
 <ul>
 <li class="fragment">Specialized models (e.g., a vision encoder)</li>
 <li class="fragment">Or to blend cost</li>
 </ul></li>
-<li class="fragment">Makes tool separation cleaner and more accurate</li>
+</ul>
+</section>
+<section id="why-multiple-agents-1" class="slide level2">
+<h2>Why Multiple Agents?</h2>
+<ul>
+<li class="fragment">Cost considerations are really important with agents
+<ul>
+<li class="fragment">Large number of tokens for reasoning</li>
+<li class="fragment">Handoffs with multiple API calls</li>
+<li class="fragment">Even more tokens with verbose tool calls</li>
+</ul></li>
+<li class="fragment">Mitigations
+<ul>
+<li class="fragment">Does every agent need full GPT / frontier model capability?</li>
+<li class="fragment">Agents doing primarily function calling (e.g., file search) can be much smaller/cheaper</li>
+</ul></li>
 </ul>
 </section>
 <section id="example-of-multiple-agents" class="slide level2">
@@ -763,6 +779,44 @@
 <h2>Patterns for Agents</h2>
 
 <img data-src="./images/agent-patterns.png" class="r-stretch quarto-figure-center"><p class="caption">Source: https://www.anthropic.com/engineering/building-effective-agents</p></section></section>
+<section>
+<section id="when-things-go-wrong" class="title-slide slide level1 center">
+<h1>When Things Go Wrong</h1>
+
+</section>
+<section id="when-things-go-wrong-1" class="slide level2">
+<h2>When Things Go Wrong</h2>
+<ul>
+<li class="fragment">Agents can be difficult to debug
+<ul>
+<li class="fragment">Incorrect handoffs</li>
+<li class="fragment">Infinite loops can be common</li>
+<li class="fragment">Failed to call the right tool at the right time</li>
+</ul></li>
+</ul>
+</section>
+<section id="when-things-go-wrong-2" class="slide level2">
+<h2>When Things Go Wrong</h2>
+<ul>
+<li class="fragment">OpenAI Agents SDK includes built-in tracing
+<ul>
+<li class="fragment">Actually enabled by default!</li>
+</ul></li>
+<li class="fragment">Comprehensive record of:
+<ul>
+<li class="fragment">generations</li>
+<li class="fragment">tool calls</li>
+<li class="fragment">handoffs</li>
+<li class="fragment">guardrails</li>
+<li class="fragment">custom events</li>
+</ul></li>
+</ul>
+</section></section>
+<section id="demo" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p><a href="https://platform.openai.com/traces" class="external" target="_blank">Traces Dashboard</a></p>
+</section>
+
 <section>
 <section id="agent-memory" class="title-slide slide level1 center">
 <h1>Agent Memory</h1>
@@ -835,7 +889,7 @@
 </div>
 </section></section>
 <section>
-<section id="demo" class="title-slide slide level1 center">
+<section id="demo-1" class="title-slide slide level1 center">
 <h1>Demo</h1>
 <p>Short-Term memory in OpenAI Agents SDK (memory.ipynb)</p>
 </section>
@@ -848,7 +902,7 @@
 <ul>
 <li class="fragment"><strong>Factual</strong>: General facts (e.g., name, address, seating preferences)</li>
 <li class="fragment"><strong>Episodic</strong>: Past conversations (e.g., user booked a trip to Paris)</li>
-<li class="fragment"><strong>Procedural</strong>: Learnings (e.g., the best hotel site to book accomodation)</li>
+<li class="fragment"><strong>Procedural</strong>: Learnings (e.g., the best hotel site to book accommodation)</li>
 </ul></li>
 </ul>
 </section>
@@ -913,7 +967,7 @@
 <section id="mcp-model-context-protocol" class="slide level2">
 <h2>MCP (Model Context Protocol)</h2>
 <ul>
-<li class="fragment">Released by Anthropic in March 2024</li>
+<li class="fragment">Released by Anthropic in Nov 2024</li>
 <li class="fragment">Provides a standard interface for tools - akin to a USB standard for peripherals</li>
 <li class="fragment">Implementations are known as “MCP servers”
 <ul>
@@ -937,7 +991,7 @@
 <h2>MCP (Model Context Protocol)</h2>
 <p><a href="./images/open-meteo-mcp-server.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img data-src="./images/open-meteo-mcp-server.png"></a></p>
 </section></section>
-<section id="demo-1" class="title-slide slide level1 center">
+<section id="demo-2" class="title-slide slide level1 center">
 <h1>Demo</h1>
 <p>MCP Model Inspector (<code>npx @modelcontextprotocol/inspector</code>)</p>
 <p>Command: <code>npx -y open-meteo-mcp-server</code></p>
@@ -1066,7 +1120,7 @@ If you need a forecast in Fahrenheit or more details (such as hourly data), just
 </ul></li>
 </ul>
 </section></section>
-<section id="demo-2" class="title-slide slide level1 center">
+<section id="demo-3" class="title-slide slide level1 center">
 <h1>Demo</h1>
 <p>Hosting the DigiPen campus agent on Hugging Face Spaces</p>
 </section>
