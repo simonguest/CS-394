@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Module 1 Assignment - Experiment with Text Continuation Styles – CS-394</title>
+<title>OpenAI Agents SDK with MCP Server – CS-394</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,30 +58,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../src/02/slides.html" rel="next">
-<link href="../../src/01/notebooks/GPT-2.html" rel="prev">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-fb7c9abc17d36d8f171624f5bcedd762.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-452555fb2cd10fd46433dc67f9b82a1c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-fb7c9abc17d36d8f171624f5bcedd762.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-fb7c9abc17d36d8f171624f5bcedd762.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-452555fb2cd10fd46433dc67f9b82a1c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-fb7c9abc17d36d8f171624f5bcedd762.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -284,7 +282,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/01/slides.html"><strong>Module 1:</strong> Foundations of Generative AI</a></li><li class="breadcrumb-item"><a href="../../src/01/assignment.html">Assignment</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">OpenAI Agents SDK with MCP Server</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -298,9 +296,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../../index.html" class="sidebar-logo-link">
-      <img src="../../theme/logos/DigiPen_Dragon_Shield_RGB_Black.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="../../theme/logos/DigiPen_Dragon_Shield_RGB_Black.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <a href="../../../index.html" class="sidebar-logo-link">
+      <img src="../../../theme/logos/DigiPen_Dragon_Shield_RGB_Black.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../../../theme/logos/DigiPen_Dragon_Shield_RGB_Black.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
@@ -315,7 +313,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CS-394/594</span></a>
   </div>
 </li>
@@ -331,7 +329,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/00/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/00/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
@@ -343,19 +341,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/00/weekly-rubric.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/00/weekly-rubric.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Rubric (Weekly Assignments)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/00/final-rubric-394.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/00/final-rubric-394.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Rubric (Final Project for CS-394)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/00/final-rubric-594.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/00/final-rubric-594.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Rubric (Final Project for CS-594)</span></a>
   </div>
 </li>
@@ -372,13 +370,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/01/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/01/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/01/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/01/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -393,25 +391,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/01/notebooks/hello-world.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/01/notebooks/hello-world.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">hello-world.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/01/notebooks/word2vec.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/01/notebooks/word2vec.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">word2vec.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/01/notebooks/translation-transformer.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/01/notebooks/translation-transformer.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">translation-transformer.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/01/notebooks/GPT-2.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/01/notebooks/GPT-2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GPT-2.ipynb</span></a>
   </div>
 </li>
@@ -419,7 +417,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/01/assignment.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../src/01/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -436,13 +434,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/02/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/02/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -457,37 +455,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/notebooks/instruction-tuned.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/02/notebooks/instruction-tuned.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">instruction-tuned.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/notebooks/chat-completion-openai.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/02/notebooks/chat-completion-openai.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">chat-completion-openai.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/notebooks/chat-completion-openrouter.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/02/notebooks/chat-completion-openrouter.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">chat-completion-openrouter.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/notebooks/token-streaming.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/02/notebooks/token-streaming.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">token-streaming.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/notebooks/structured-outputs.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/02/notebooks/structured-outputs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">structured-outputs.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/notebooks/gradio.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/02/notebooks/gradio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">gradio.ipynb</span></a>
   </div>
 </li>
@@ -495,7 +493,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/02/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -512,13 +510,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/03/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/03/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/03/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/03/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -528,7 +526,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/03/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/03/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -545,13 +543,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/04/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/04/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/04/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/04/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -561,7 +559,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/04/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/04/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -578,13 +576,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/05/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/05/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/05/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/05/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -594,7 +592,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/05/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/05/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -611,13 +609,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/06/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/06/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/06/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/06/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -627,7 +625,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/06/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/06/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -644,13 +642,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/07/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/07/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/07/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/07/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -660,7 +658,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/07/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/07/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -677,13 +675,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/08/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/08/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/08/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/08/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -693,7 +691,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/08/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/08/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -709,9 +707,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/01/slides.html"><strong>Module 1:</strong> Foundations of Generative AI</a></li><li class="breadcrumb-item"><a href="../../src/01/assignment.html">Assignment</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Module 1 Assignment - Experiment with Text Continuation Styles</h1>
+<h1 class="title">OpenAI Agents SDK with MCP Server</h1>
 </div>
 
 
@@ -728,44 +726,134 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><strong>Objective:</strong> Create a Colab notebook that uses GPT-2 to generate creative text continuations with different styles.</p>
-<p><strong>Requirements:</strong></p>
-<ul>
-<li>Load a pre-trained GPT-2 model (using HuggingFace transformers - same approach as used in GPT-2.ipynb)</li>
-<li>Create 3 different story starters in different genres/styles. For example:
-<ul>
-<li>Fantasy/Adventure: “In a land of dragons and magic…”</li>
-<li>Sci-fi: “The year is 2157. Humanity has just…”</li>
-<li>Mystery: “The detective examined the crime scene and noticed…”</li>
-<li>(or choose your own three)</li>
-</ul></li>
-<li>Then adjust for:
-<ul>
-<li>Greedy decoding vs.&nbsp;sampling</li>
-<li>Different temperature values</li>
-<li>How the opening sentence shapes the continuation (e.g., short vs.&nbsp;long)</li>
-</ul></li>
-<li>Document your observations (using Markdown in the notebook)
-<ul>
-<li>What differences do you notice between the strategies?</li>
-<li>What worked well (or surprised you!)</li>
-<li>What didn’t work that well</li>
-</ul></li>
-</ul>
-<p><strong>Deliverable: A Colab/Jupyter notebook with:</strong></p>
-<ul>
-<li>Code cells with your implementation</li>
-<li>Outputs of generated text from GPT-2</li>
-<li>Markdown cells explaining what each sampling strategy does and any observations</li>
-</ul>
-<p><strong>Hint:</strong></p>
-<p>For better results, use a larger GPT-2 model on Colab T4.</p>
-<div id="8352db47" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> GPT2Tokenizer.from_pretrained(<span class="st">"gpt2-medium"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> GPT2LMHeadModel.from_pretrained(<span class="st">"gpt2-medium"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><a target="_blank" href="https://colab.research.google.com/github/simonguest/CS-394/blob/main/src/03/notebooks/open-meteo-mcp.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"> </a> <a target="_blank" href="https://github.com/simonguest/CS-394/raw/refs/heads/main/src/03/notebooks/open-meteo-mcp.ipynb"> <img src="https://img.shields.io/badge/Download_.ipynb-blue" alt="Download .ipynb"> </a></p>
+<section id="install-pre-requisites" class="level2">
+<h2 class="anchored" data-anchor-id="install-pre-requisites">Install pre-requisites</h2>
+<div id="install" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>uv add openai<span class="op">-</span>agents<span class="op">==</span><span class="fl">0.4.2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="mcp-server-setup" class="level2">
+<h2 class="anchored" data-anchor-id="mcp-server-setup">MCP Server Setup</h2>
+<div id="imports" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> logging</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppress MCP client warnings about non-JSON messages from the server</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>logging.getLogger(<span class="st">"mcp"</span>).setLevel(logging.CRITICAL)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> agents <span class="im">import</span> Agent, Runner</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> agents.mcp <span class="im">import</span> MCPServerStdio</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="list-available-tools" class="level3">
+<h3 class="anchored" data-anchor-id="list-available-tools">List Available Tools</h3>
+<div id="list-available-tools" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="cf">with</span> MCPServerStdio(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"Open-Meteo Weather Server"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    params<span class="op">=</span>{</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"command"</span>: <span class="st">"npx"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"args"</span>: [<span class="st">"-y"</span>, <span class="st">"open-meteo-mcp-server"</span>],</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>) <span class="im">as</span> server:</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    tools <span class="op">=</span> <span class="cf">await</span> server.list_tools()</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Available tools: </span><span class="sc">{</span>[tool.name <span class="cf">for</span> tool <span class="kw">in</span> tools]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Available tools: ['weather_forecast', 'weather_archive', 'air_quality', 'marine_weather', 'elevation', 'flood_forecast', 'seasonal_forecast', 'climate_projection', 'ensemble_forecast', 'geocoding', 'dwd_icon_forecast', 'gfs_forecast', 'meteofrance_forecast', 'ecmwf_forecast', 'jma_forecast', 'metno_forecast', 'gem_forecast']</code></pre>
+</div>
+</div>
+</section>
+<section id="simple-weather-query" class="level3">
+<h3 class="anchored" data-anchor-id="simple-weather-query">Simple Weather Query</h3>
+<div id="simple-query" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="cf">with</span> MCPServerStdio(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"Open-Meteo Weather Server"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    params<span class="op">=</span>{</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"command"</span>: <span class="st">"npx"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"args"</span>: [<span class="st">"-y"</span>, <span class="st">"open-meteo-mcp-server"</span>],</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>) <span class="im">as</span> server:</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    agent <span class="op">=</span> Agent(</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        name<span class="op">=</span><span class="st">"Weather Agent"</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"gpt-5.2"</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        instructions<span class="op">=</span><span class="st">"You are a helpful weather assistant. Use the available tools to answer questions about weather forecasts, historical weather data, and air quality. Always provide clear, concise answers."</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        mcp_servers<span class="op">=</span>[server],</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"What's the weather forecast for Seattle this week?"</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(result.final_output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Here is the weather forecast for Seattle this week:
+
+- Maximum temperatures will range from about 8°C to 12°C.
+- Minimum temperatures will be between 3°C and 5°C.
+- Dry weather is expected all week, with no significant precipitation.
+- Most days will be partly cloudy to clear, with occasional cloudier periods.
+
+If you need a forecast in Fahrenheit or more details (such as hourly data), just ask!</code></pre>
+</div>
+</div>
+</section>
+<section id="air-quality-query" class="level3">
+<h3 class="anchored" data-anchor-id="air-quality-query">Air Quality Query</h3>
+<div id="air-quality" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="cf">with</span> MCPServerStdio(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"Open-Meteo Weather Server"</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    params<span class="op">=</span>{</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"command"</span>: <span class="st">"npx"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"args"</span>: [<span class="st">"-y"</span>, <span class="st">"open-meteo-mcp-server"</span>],</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>) <span class="im">as</span> server:</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    agent <span class="op">=</span> Agent(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        name<span class="op">=</span><span class="st">"Weather Agent"</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"gpt-5.2"</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        instructions<span class="op">=</span><span class="st">"You are a helpful weather assistant. Use the available tools to answer questions about weather forecasts, historical weather data, and air quality. Always provide clear, concise answers."</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        mcp_servers<span class="op">=</span>[server],</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"What's the current air quality in Los Angeles?"</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(result.final_output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Los Angeles air quality (latest hourly value, **2026-01-15 00:00** local time, America/Los_Angeles):
+
+- **PM2.5:** 22.6 µg/m³  
+- **PM10:** 22.7 µg/m³  
+- **Ozone (O₃):** 1 µg/m³  
+- **Nitrogen dioxide (NO₂):** 64.1 µg/m³  
+- **Carbon monoxide (CO):** 307 µg/m³  
+- **Sulphur dioxide (SO₂):** 9.7 µg/m³  
+
+If you want, tell me your neighborhood/ZIP in LA and I can check a closer point estimate (levels can vary a lot across the basin).</code></pre>
+</div>
+</div>
+</section>
+<section id="historical-weather-data" class="level3">
+<h3 class="anchored" data-anchor-id="historical-weather-data">Historical Weather Data</h3>
+<div id="historical" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">async</span> <span class="cf">with</span> MCPServerStdio(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">"Open-Meteo Weather Server"</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    params<span class="op">=</span>{</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">"command"</span>: <span class="st">"npx"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">"args"</span>: [<span class="st">"-y"</span>, <span class="st">"open-meteo-mcp-server"</span>],</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>) <span class="im">as</span> server:</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    agent <span class="op">=</span> Agent(</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        name<span class="op">=</span><span class="st">"Weather Agent"</span>,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">"gpt-5.2"</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        instructions<span class="op">=</span><span class="st">"You are a helpful weather assistant. Use the available tools to answer questions about weather forecasts, historical weather data, and air quality. Always provide clear, concise answers."</span>,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        mcp_servers<span class="op">=</span>[server],</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"What was the average temperature in Tokyo during January 2024?"</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(result.final_output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Using ERA5 reanalysis data for central Tokyo (Asia/Tokyo), the **average temperature in Tokyo during January 2024** was **about 5.8 °C**.
+
+(Computed as the mean of each day’s average temperature: \((T_{\max}+T_{\min})/2\) averaged over **2024-01-01 to 2024-01-31**.)</code></pre>
+</div>
 </div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1181,18 +1269,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../src/01/notebooks/GPT-2.html" class="pagination-link" aria-label="GPT-2.ipynb">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">GPT-2.ipynb</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../src/02/slides.html" class="pagination-link" aria-label="Slides">
-        <span class="nav-page-text">Slides</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -189,9 +189,6 @@
       margin-right: 0; 
     }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
-  
-  <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -574,6 +571,12 @@
 <li class="fragment">Option for the LLM to decide when to call the tool (always, never, auto)</li>
 </ul>
 </section>
+<section id="openai-tool-calling-1" class="slide level2">
+<h2>OpenAI Tool Calling</h2>
+<ul>
+<li class="fragment">TBD: How tool calling works. quick explanation of how models are fine tuned for function calling.</li>
+</ul>
+</section>
 <section id="cafe-agent" class="slide level2">
 <h2>Cafe Agent</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/03/notebooks/campus-agent.ipynb" data-notebook-title="DigiPen Campus Agent" data-notebook-cellid="cafe-agent">
@@ -845,27 +848,126 @@
 </ul>
 </section></section>
 <section>
-<section id="beyond-function-tooling" class="title-slide slide level1 center">
-<h1>Beyond Function Tooling</h1>
+<section id="beyond-tool-calling" class="title-slide slide level1 center">
+<h1>Beyond Tool Calling</h1>
 
+</section>
+<section id="beyond-tool-calling-1" class="slide level2">
+<h2>Beyond Tool Calling</h2>
+<ul>
+<li class="fragment">Tool calling is super useful, but…
+<ul>
+<li class="fragment">You need to write the function(s) yourself</li>
+<li class="fragment">And then expose them to OpenAI using the <code>@function_tool</code> method</li>
+</ul></li>
+<li class="fragment">What if there was a way to standardize this?</li>
+</ul>
 </section>
 <section id="mcp-model-context-protocol" class="slide level2">
 <h2>MCP (Model Context Protocol)</h2>
 <ul>
-<li class="fragment">OpenAI’s tool/function calling works if you have local access to the tools</li>
-<li class="fragment">But how about external systems?
+<li class="fragment">Released by Anthropic in March 2024</li>
+<li class="fragment">Provides a standard interface for tools - akin to a USB standard for peripherals</li>
+<li class="fragment">Implementations are known as “MCP servers”
 <ul>
-<li class="fragment">e.g., Access to calendar, other systems, hardware, etc.</li>
+<li class="fragment">Uses JSON-RPC 2.0 as underlying RPC protocol</li>
+<li class="fragment">Servers can run remotely over HTTP (supports SSE)</li>
+<li class="fragment">Or can be hosted locally and accessed via stdio</li>
+<li class="fragment">Many servers hosted using Node.js</li>
 </ul></li>
-<li class="fragment">You could build local tools to call APIs</li>
-<li class="fragment">MCP: Model Context Protocol</li>
-<li class="fragment">Standardized tooling interface, released by Anthropic in March 2024</li>
 </ul>
 </section>
-<section id="mcp" class="slide level2">
-<h2>MCP</h2>
+<section id="mcp-model-context-protocol-1" class="slide level2">
+<h2>MCP (Model Context Protocol)</h2>
+<p><a href="./images/awesome-mcp.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img data-src="./images/awesome-mcp.png"></a></p>
+</section>
+<section id="mcp-model-context-protocol-2" class="slide level2">
+<h2>MCP (Model Context Protocol)</h2>
+<p><a href="./images/open-meteo.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img data-src="./images/open-meteo.png"></a></p>
+</section>
+<section id="mcp-model-context-protocol-3" class="slide level2">
+<h2>MCP (Model Context Protocol)</h2>
+<p><a href="./images/open-meteo-mcp-server.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img data-src="./images/open-meteo-mcp-server.png"></a></p>
+</section></section>
+<section id="demo-1" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p>MCP Model Inspector (<code>npx @modelcontextprotocol/inspector</code>)</p>
+<p>Command: <code>npx -y open-meteo-mcp-server</code></p>
+</section>
+
+<section>
+<section id="openai-agents-sdk-and-mcp" class="title-slide slide level1 center">
+<h1>OpenAI Agents SDK and MCP</h1>
+
+</section>
+<section id="openai-agents-sdk-and-mcp-1" class="slide level2">
+<h2>OpenAI Agents SDK and MCP</h2>
 <ul>
-<li class="fragment">HANDS ON</li>
+<li class="fragment">MCP supported in OpenAI Agents SDK (as of Sep 2025)</li>
+<li class="fragment">Exposes <code>MCPServerStdio</code> and <code>MCPServerSse</code> to connect to local and remote servers</li>
+</ul>
+</section>
+<section id="openai-agents-sdk-and-mcp-2" class="slide level2">
+<h2>OpenAI Agents SDK and MCP</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/03/notebooks/open-meteo-mcp.ipynb" data-notebook-title="OpenAI Agents SDK with MCP Server" data-notebook-cellid="list-available-tools">
+<div id="list-available-tools" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a><span class="cf">async</span> <span class="cf">with</span> MCPServerStdio(</span>
+<span id="cb15-2"><a></a>    name<span class="op">=</span><span class="st">"Open-Meteo Weather Server"</span>,</span>
+<span id="cb15-3"><a></a>    params<span class="op">=</span>{</span>
+<span id="cb15-4"><a></a>        <span class="st">"command"</span>: <span class="st">"npx"</span>,</span>
+<span id="cb15-5"><a></a>        <span class="st">"args"</span>: [<span class="st">"-y"</span>, <span class="st">"open-meteo-mcp-server"</span>],</span>
+<span id="cb15-6"><a></a>    },</span>
+<span id="cb15-7"><a></a>) <span class="im">as</span> server:</span>
+<span id="cb15-8"><a></a>    tools <span class="op">=</span> <span class="cf">await</span> server.list_tools()</span>
+<span id="cb15-9"><a></a>    <span class="bu">print</span>(<span class="ss">f"Available tools: </span><span class="sc">{</span>[tool.name <span class="cf">for</span> tool <span class="kw">in</span> tools]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Available tools: ['weather_forecast', 'weather_archive', 'air_quality', 'marine_weather', 'elevation', 'flood_forecast', 'seasonal_forecast', 'climate_projection', 'ensemble_forecast', 'geocoding', 'dwd_icon_forecast', 'gfs_forecast', 'meteofrance_forecast', 'ecmwf_forecast', 'jma_forecast', 'metno_forecast', 'gem_forecast']</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="openai-agents-sdk-and-mcp-3" class="slide level2">
+<h2>OpenAI Agents SDK and MCP</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/03/notebooks/open-meteo-mcp.ipynb" data-notebook-title="OpenAI Agents SDK with MCP Server" data-notebook-cellid="simple-query">
+<div id="simple-query" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a><span class="cf">async</span> <span class="cf">with</span> MCPServerStdio(</span>
+<span id="cb17-2"><a></a>    name<span class="op">=</span><span class="st">"Open-Meteo Weather Server"</span>,</span>
+<span id="cb17-3"><a></a>    params<span class="op">=</span>{</span>
+<span id="cb17-4"><a></a>        <span class="st">"command"</span>: <span class="st">"npx"</span>,</span>
+<span id="cb17-5"><a></a>        <span class="st">"args"</span>: [<span class="st">"-y"</span>, <span class="st">"open-meteo-mcp-server"</span>],</span>
+<span id="cb17-6"><a></a>    },</span>
+<span id="cb17-7"><a></a>) <span class="im">as</span> server:</span>
+<span id="cb17-8"><a></a>    agent <span class="op">=</span> Agent(</span>
+<span id="cb17-9"><a></a>        name<span class="op">=</span><span class="st">"Weather Agent"</span>,</span>
+<span id="cb17-10"><a></a>        model<span class="op">=</span><span class="st">"gpt-5.2"</span>,</span>
+<span id="cb17-11"><a></a>        instructions<span class="op">=</span><span class="st">"You are a helpful weather assistant. Use the available tools to answer questions about weather forecasts, historical weather data, and air quality. Always provide clear, concise answers."</span>,</span>
+<span id="cb17-12"><a></a>        mcp_servers<span class="op">=</span>[server],</span>
+<span id="cb17-13"><a></a>    )</span>
+<span id="cb17-14"><a></a>    </span>
+<span id="cb17-15"><a></a>    result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"What's the weather forecast for Seattle this week?"</span>)</span>
+<span id="cb17-16"><a></a>    <span class="bu">print</span>(result.final_output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Here is the weather forecast for Seattle this week:
+
+- Maximum temperatures will range from about 8°C to 12°C.
+- Minimum temperatures will be between 3°C and 5°C.
+- Dry weather is expected all week, with no significant precipitation.
+- Most days will be partly cloudy to clear, with occasional cloudier periods.
+
+If you need a forecast in Fahrenheit or more details (such as hourly data), just ask!</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="creating-your-own-mcp-server" class="slide level2">
+<h2>Creating Your Own MCP Server</h2>
+<ul>
+<li class="fragment">Multiple SDKs on <a href="https://modelcontextprotocol.io/docs/sdk" class="external" target="_blank">https://modelcontextprotocol.io/docs/sdk</a></li>
+<li class="fragment">Very similar to tool calling
+<ul>
+<li class="fragment">Define your MCP server</li>
+<li class="fragment">Annotate your functions with <code>@mcp.tool()</code></li>
+</ul></li>
 </ul>
 </section>
 <section id="hugging-face-spaces" class="slide level2">
