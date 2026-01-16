@@ -303,15 +303,36 @@
 <ul>
 <li class="fragment">Large datasets of questions/answers, tasks/completions, demonstrating helpful assistant behavior</li>
 </ul></li>
-<li class="fragment">RLHF (Reinforcement Learning from Human Feedback)
-<ul>
-<li class="fragment">Human raters rank different model responses, training a reward model</li>
-</ul></li>
 <li class="fragment">Chat Templates
 <ul>
 <li class="fragment">Structured format to distinguish speakers in a conversation: Typically <strong>system</strong>, <strong>user</strong>, and <strong>assistant</strong></li>
 </ul></li>
+<li class="fragment">RLHF (Reinforcement Learning from Human Feedback)
+<ul>
+<li class="fragment">Human raters rank different model responses, training a reward model</li>
+</ul></li>
 </ul>
+</section>
+<section id="whats-a-chat-template" class="slide level2">
+<h2>What’s a Chat Template?</h2>
+<ul>
+<li class="fragment">The format used to train instructional models on conversations involving system, user, and assistant prompts.</li>
+<li class="fragment">Each model family uses a different format (there is no universal standard)</li>
+<li class="fragment">Wrong format will likely generate nonsense/garbage</li>
+</ul>
+</section>
+<section id="chatml-gpt-3.5-and-other-models" class="slide level2">
+<h2>ChatML (GPT-3.5 and other models)</h2>
+<pre><code>&lt;|im_start|&gt;system
+You help travelers make plans for their trips.&lt;|im_end|&gt;
+&lt;|im_start|&gt;user
+Hello&lt;|im_end|&gt;
+&lt;|im_start|&gt;assistant
+Hi there! How can I help you?&lt;|im_end|&gt;
+&lt;|im_start|&gt;user
+What should I do on my upcoming trip to Paris?&lt;|im_end|&gt;
+&lt;|im_start|&gt;assistant
+</code></pre>
 </section>
 <section id="system-user-assistant" class="slide level2">
 <h2>System, User, Assistant</h2>
@@ -355,27 +376,6 @@
 </ul></li>
 </ul>
 </section>
-<section id="whats-a-chat-template" class="slide level2">
-<h2>What’s a Chat Template?</h2>
-<ul>
-<li class="fragment">The format used to train instructional models on conversations involving system, user, and assistant prompts.</li>
-<li class="fragment">Each model family uses a different format (there is no universal standard)</li>
-<li class="fragment">Wrong format will likely generate nonsense/garbage</li>
-</ul>
-</section>
-<section id="chatml-gpt-3.5-and-other-models" class="slide level2">
-<h2>ChatML (GPT-3.5 and other models)</h2>
-<pre><code>&lt;|im_start|&gt;system
-You help travelers make plans for their trips.&lt;|im_end|&gt;
-&lt;|im_start|&gt;user
-Hello&lt;|im_end|&gt;
-&lt;|im_start|&gt;assistant
-Hi there! How can I help you?&lt;|im_end|&gt;
-&lt;|im_start|&gt;user
-What should I do on my upcoming trip to Paris?&lt;|im_end|&gt;
-&lt;|im_start|&gt;assistant
-</code></pre>
-</section>
 <section id="chat-templates-in-practice" class="slide level2">
 <h2>Chat Templates in Practice</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/instruction-tuned.ipynb" data-notebook-title="Base Model vs. Instruction-Tuned Model" data-notebook-cellid="chat-template">
@@ -398,8 +398,8 @@ What should I do on my upcoming trip to Paris?&lt;|im_end|&gt;
 </div>
 </div>
 </section>
-<section id="putting-this-together" class="slide level2">
-<h2>Putting This Together</h2>
+<section id="completion-vs.-instruction-tuned-2" class="slide level2">
+<h2>Completion vs.&nbsp;Instruction-Tuned</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/instruction-tuned.ipynb" data-notebook-title="Base Model vs. Instruction-Tuned Model" data-notebook-cellid="base-model">
 <div id="base-model" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a>base_inputs <span class="op">=</span> base_tokenizer(<span class="st">"What should I do on my upcoming trip to Paris?"</span>, return_tensors<span class="op">=</span><span class="st">"pt"</span>)</span>
@@ -415,8 +415,8 @@ What should I do on my upcoming trip to Paris?&lt;|im_end|&gt;
 </div>
 </div>
 </section>
-<section id="putting-this-together-1" class="slide level2">
-<h2>Putting This Together</h2>
+<section id="completion-vs.-instruction-tuned-3" class="slide level2">
+<h2>Completion vs.&nbsp;Instruction-Tuned</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/instruction-tuned.ipynb" data-notebook-title="Base Model vs. Instruction-Tuned Model" data-notebook-cellid="base-model">
 <div id="base-model" class="cell">
 <div class="cell-output cell-output-stdout">
@@ -431,8 +431,8 @@ I'm sorry, but as an AI language model, I don't have any specific information ab
 </div>
 </div>
 </section>
-<section id="putting-this-together-2" class="slide level2">
-<h2>Putting This Together</h2>
+<section id="completion-vs.-instruction-tuned-4" class="slide level2">
+<h2>Completion vs.&nbsp;Instruction-Tuned</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/instruction-tuned.ipynb" data-notebook-title="Base Model vs. Instruction-Tuned Model" data-notebook-cellid="it-model">
 <div id="it-model" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a>messages <span class="op">=</span> [</span>
@@ -459,8 +459,8 @@ I'm sorry, but as an AI language model, I don't have any specific information ab
 </div>
 </div>
 </section>
-<section id="putting-this-together-3" class="slide level2">
-<h2>Putting This Together</h2>
+<section id="completion-vs.-instruction-tuned-5" class="slide level2">
+<h2>Completion vs.&nbsp;Instruction-Tuned</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/instruction-tuned.ipynb" data-notebook-title="Base Model vs. Instruction-Tuned Model" data-notebook-cellid="it-model">
 <div id="it-model" class="cell">
 <div class="cell-output cell-output-stdout">
@@ -641,27 +641,16 @@ Great question! On your next trip to Paris, you can start by visiting the iconic
 <li class="fragment">Example
 <ul>
 <li class="fragment">Input from user = 75 words (100 tokens)</li>
-<li class="fragment">Output from model = 150 words (200 tokens)</li>
-<li class="fragment">Total cost = 100 input tokens + 200 output tokens</li>
-<li class="fragment">Total cost = $0.000175 + $0.0028 = $0.002975</li>
+<li class="fragment">Output from model = 1500 words (2000 tokens)</li>
+<li class="fragment">Total cost = 100 input tokens + 2000 output tokens</li>
+<li class="fragment">Total cost = $0.000175 + $0.028 = $0.028175</li>
 </ul></li>
 <li class="fragment">At scale
 <ul>
-<li class="fragment">10,000 users / 1 request per month ~= $29.75/mo<br>
+<li class="fragment">10,000 users / 1 request per month ~= $281.75/mo<br>
 </li>
-<li class="fragment">10,000 users / 1 request per day ~= $892.50/mo</li>
+<li class="fragment">10,000 users / 1 request per day ~= $8452.50/mo</li>
 </ul></li>
-</ul>
-</section>
-<section id="accessing-open-models" class="slide level2">
-<h2>Accessing Open Models</h2>
-<ul>
-<li class="fragment">Download and run on your own hardware
-<ul>
-<li class="fragment">Or download them and run them on Colab, as we’ve been doing in our demos</li>
-<li class="fragment">(We’ll be covering this later on in the course)</li>
-</ul></li>
-<li class="fragment">Also access them (via an API), hosted on someone else’s hardware</li>
 </ul>
 </section></section>
 <section>
@@ -835,7 +824,7 @@ Body:
 <li class="fragment">GPT-2 = 2048 tokens</li>
 <li class="fragment">Today’s nano models ~= 32k tokens</li>
 <li class="fragment">Today’s small models ~= 120k tokens</li>
-<li class="fragment">Today’s frontier models ~= ~= 1M tokens</li>
+<li class="fragment">Today’s frontier models ~= 1M tokens</li>
 </ul></li>
 <li class="fragment">Large conversations can cause challenges
 <ul>
@@ -1159,10 +1148,11 @@ data: [DONE]</code></pre>
 <section id="how-structured-outputs-work-1" class="slide level2">
 <h2>How Structured Outputs Work</h2>
 <ul>
+<li class="fragment">Runs on server (or in library) - not fine-tuning approach</li>
 <li class="fragment">Slightly slower token generation due to computational overhead</li>
-<li class="fragment">Technically, mathematically impossible to generate invalid output
+<li class="fragment">Technically, it’s mathematically impossible to generate invalid output
 <ul>
-<li class="fragment">(Real world: I see 7000:1 error rates with GPT-5.1 chat)</li>
+<li class="fragment">(Real world: I see ~1:7000 error rates with GPT-5.1 chat)</li>
 </ul></li>
 </ul>
 </section>

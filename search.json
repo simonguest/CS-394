@@ -2525,7 +2525,29 @@
     "href": "src/02/slides.html#instruction-tuned-models",
     "title": "Module 2: Exploring Hosted LLMs",
     "section": "Instruction-Tuned Models",
-    "text": "Instruction-Tuned Models\n\nSupervised Fine-Tuning\n\nLarge datasets of questions/answers, tasks/completions, demonstrating helpful assistant behavior\n\nRLHF (Reinforcement Learning from Human Feedback)\n\nHuman raters rank different model responses, training a reward model\n\nChat Templates\n\nStructured format to distinguish speakers in a conversation: Typically system, user, and assistant",
+    "text": "Instruction-Tuned Models\n\nSupervised Fine-Tuning\n\nLarge datasets of questions/answers, tasks/completions, demonstrating helpful assistant behavior\n\nChat Templates\n\nStructured format to distinguish speakers in a conversation: Typically system, user, and assistant\n\nRLHF (Reinforcement Learning from Human Feedback)\n\nHuman raters rank different model responses, training a reward model",
+    "crumbs": [
+      "**Module 2:** Exploring Hosted LLMs",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/02/slides.html#whats-a-chat-template",
+    "href": "src/02/slides.html#whats-a-chat-template",
+    "title": "Module 2: Exploring Hosted LLMs",
+    "section": "What’s a Chat Template?",
+    "text": "What’s a Chat Template?\n\nThe format used to train instructional models on conversations involving system, user, and assistant prompts.\nEach model family uses a different format (there is no universal standard)\nWrong format will likely generate nonsense/garbage",
+    "crumbs": [
+      "**Module 2:** Exploring Hosted LLMs",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/02/slides.html#chatml-gpt-3.5-and-other-models",
+    "href": "src/02/slides.html#chatml-gpt-3.5-and-other-models",
+    "title": "Module 2: Exploring Hosted LLMs",
+    "section": "ChatML (GPT-3.5 and other models)",
+    "text": "ChatML (GPT-3.5 and other models)\n&lt;|im_start|&gt;system\nYou help travelers make plans for their trips.&lt;|im_end|&gt;\n&lt;|im_start|&gt;user\nHello&lt;|im_end|&gt;\n&lt;|im_start|&gt;assistant\nHi there! How can I help you?&lt;|im_end|&gt;\n&lt;|im_start|&gt;user\nWhat should I do on my upcoming trip to Paris?&lt;|im_end|&gt;\n&lt;|im_start|&gt;assistant",
     "crumbs": [
       "**Module 2:** Exploring Hosted LLMs",
       "Slides"
@@ -2565,28 +2587,6 @@
     ]
   },
   {
-    "objectID": "src/02/slides.html#whats-a-chat-template",
-    "href": "src/02/slides.html#whats-a-chat-template",
-    "title": "Module 2: Exploring Hosted LLMs",
-    "section": "What’s a Chat Template?",
-    "text": "What’s a Chat Template?\n\nThe format used to train instructional models on conversations involving system, user, and assistant prompts.\nEach model family uses a different format (there is no universal standard)\nWrong format will likely generate nonsense/garbage",
-    "crumbs": [
-      "**Module 2:** Exploring Hosted LLMs",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/02/slides.html#chatml-gpt-3.5-and-other-models",
-    "href": "src/02/slides.html#chatml-gpt-3.5-and-other-models",
-    "title": "Module 2: Exploring Hosted LLMs",
-    "section": "ChatML (GPT-3.5 and other models)",
-    "text": "ChatML (GPT-3.5 and other models)\n&lt;|im_start|&gt;system\nYou help travelers make plans for their trips.&lt;|im_end|&gt;\n&lt;|im_start|&gt;user\nHello&lt;|im_end|&gt;\n&lt;|im_start|&gt;assistant\nHi there! How can I help you?&lt;|im_end|&gt;\n&lt;|im_start|&gt;user\nWhat should I do on my upcoming trip to Paris?&lt;|im_end|&gt;\n&lt;|im_start|&gt;assistant",
-    "crumbs": [
-      "**Module 2:** Exploring Hosted LLMs",
-      "Slides"
-    ]
-  },
-  {
     "objectID": "src/02/slides.html#chat-templates-in-practice",
     "href": "src/02/slides.html#chat-templates-in-practice",
     "title": "Module 2: Exploring Hosted LLMs",
@@ -2598,44 +2598,44 @@
     ]
   },
   {
-    "objectID": "src/02/slides.html#putting-this-together",
-    "href": "src/02/slides.html#putting-this-together",
+    "objectID": "src/02/slides.html#completion-vs.-instruction-tuned-2",
+    "href": "src/02/slides.html#completion-vs.-instruction-tuned-2",
     "title": "Module 2: Exploring Hosted LLMs",
-    "section": "Putting This Together",
-    "text": "Putting This Together\n\n\nbase_inputs = base_tokenizer(\"What should I do on my upcoming trip to Paris?\", return_tensors=\"pt\")\nbase_outputs = base_model.generate(\n    **base_inputs,\n    max_new_tokens=150,\n    temperature=0.7,\n    do_sample=True,\n    pad_token_id=base_tokenizer.eos_token_id\n)\nbase_response = base_tokenizer.decode(base_outputs[0], skip_special_tokens=True)\nprint(base_response)",
+    "section": "Completion vs. Instruction-Tuned",
+    "text": "Completion vs. Instruction-Tuned\n\n\nbase_inputs = base_tokenizer(\"What should I do on my upcoming trip to Paris?\", return_tensors=\"pt\")\nbase_outputs = base_model.generate(\n    **base_inputs,\n    max_new_tokens=150,\n    temperature=0.7,\n    do_sample=True,\n    pad_token_id=base_tokenizer.eos_token_id\n)\nbase_response = base_tokenizer.decode(base_outputs[0], skip_special_tokens=True)\nprint(base_response)",
     "crumbs": [
       "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
-    "objectID": "src/02/slides.html#putting-this-together-1",
-    "href": "src/02/slides.html#putting-this-together-1",
+    "objectID": "src/02/slides.html#completion-vs.-instruction-tuned-3",
+    "href": "src/02/slides.html#completion-vs.-instruction-tuned-3",
     "title": "Module 2: Exploring Hosted LLMs",
-    "section": "Putting This Together",
-    "text": "Putting This Together\n\n\n\nWhat should I do on my upcoming trip to Paris? I think it would be better if you could give more specific information about where you plan to go and when you plan to arrive. Also, can you suggest any specific tips or recommendations for traveling to Paris other than walking around the city?\n\nI'm sorry, but as an AI language model, I don't have any specific information about your upcoming trip to Paris. However, I can suggest some general tips and recommendations for traveling to Paris other than walking around the city:\n\n1. Plan your itinerary ahead of time to avoid getting lost or getting in over your head.\n2. Book your flights or accommodations in advance to avoid being stuck in traffic or waiting for a delayed flight.\n3. Purchase a travel insurance policy to protect your belongings and reduce the risk of",
+    "section": "Completion vs. Instruction-Tuned",
+    "text": "Completion vs. Instruction-Tuned\n\n\n\nWhat should I do on my upcoming trip to Paris? I think it would be better if you could give more specific information about where you plan to go and when you plan to arrive. Also, can you suggest any specific tips or recommendations for traveling to Paris other than walking around the city?\n\nI'm sorry, but as an AI language model, I don't have any specific information about your upcoming trip to Paris. However, I can suggest some general tips and recommendations for traveling to Paris other than walking around the city:\n\n1. Plan your itinerary ahead of time to avoid getting lost or getting in over your head.\n2. Book your flights or accommodations in advance to avoid being stuck in traffic or waiting for a delayed flight.\n3. Purchase a travel insurance policy to protect your belongings and reduce the risk of",
     "crumbs": [
       "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
-    "objectID": "src/02/slides.html#putting-this-together-2",
-    "href": "src/02/slides.html#putting-this-together-2",
+    "objectID": "src/02/slides.html#completion-vs.-instruction-tuned-4",
+    "href": "src/02/slides.html#completion-vs.-instruction-tuned-4",
     "title": "Module 2: Exploring Hosted LLMs",
-    "section": "Putting This Together",
-    "text": "Putting This Together\n\n\nmessages = [\n    {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips.\"},\n    {\"role\": \"user\", \"content\": \"Hello\"},\n    {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n    {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"}\n]\ninstruct_text = instruct_tokenizer.apply_chat_template(\n    messages, tokenize=False, add_generation_prompt=True\n)\ninstruct_inputs = instruct_tokenizer(instruct_text, return_tensors=\"pt\")\ninstruct_outputs = instruct_model.generate(\n    **instruct_inputs,\n    max_new_tokens=150,\n    temperature=0.7,\n    do_sample=True,\n    pad_token_id=instruct_tokenizer.eos_token_id,\n)\ninstruct_response = instruct_tokenizer.decode(\n    instruct_outputs[0], skip_special_tokens=True\n)\nprint(instruct_response)",
+    "section": "Completion vs. Instruction-Tuned",
+    "text": "Completion vs. Instruction-Tuned\n\n\nmessages = [\n    {\"role\": \"system\", \"content\": \"You help travelers make plans for their trips.\"},\n    {\"role\": \"user\", \"content\": \"Hello\"},\n    {\"role\": \"assistant\", \"content\": \"Hi there!\"},\n    {\"role\": \"user\", \"content\": \"What should I do on my upcoming trip to Paris?\"}\n]\ninstruct_text = instruct_tokenizer.apply_chat_template(\n    messages, tokenize=False, add_generation_prompt=True\n)\ninstruct_inputs = instruct_tokenizer(instruct_text, return_tensors=\"pt\")\ninstruct_outputs = instruct_model.generate(\n    **instruct_inputs,\n    max_new_tokens=150,\n    temperature=0.7,\n    do_sample=True,\n    pad_token_id=instruct_tokenizer.eos_token_id,\n)\ninstruct_response = instruct_tokenizer.decode(\n    instruct_outputs[0], skip_special_tokens=True\n)\nprint(instruct_response)",
     "crumbs": [
       "**Module 2:** Exploring Hosted LLMs",
       "Slides"
     ]
   },
   {
-    "objectID": "src/02/slides.html#putting-this-together-3",
-    "href": "src/02/slides.html#putting-this-together-3",
+    "objectID": "src/02/slides.html#completion-vs.-instruction-tuned-5",
+    "href": "src/02/slides.html#completion-vs.-instruction-tuned-5",
     "title": "Module 2: Exploring Hosted LLMs",
-    "section": "Putting This Together",
-    "text": "Putting This Together\n\n\n\nsystem\nYou help travelers make plans for their trips.\nuser\nHello\nassistant\nHi there!\nuser\nWhat should I do on my upcoming trip to Paris?\nassistant\nGreat question! On your next trip to Paris, you can start by visiting the iconic Eiffel Tower and the Louvre Museum. Don't miss exploring the Notre-Dame Cathedral and its stunning stained glass windows. For a bit of a break, consider visiting Montmartre for some beautiful art and architecture. If you're looking for something more adventurous, you could take a stroll through the charming streets of Montmartre or explore the vibrant nightlife of Le Marais. Have fun planning your trip to Paris!",
+    "section": "Completion vs. Instruction-Tuned",
+    "text": "Completion vs. Instruction-Tuned\n\n\n\nsystem\nYou help travelers make plans for their trips.\nuser\nHello\nassistant\nHi there!\nuser\nWhat should I do on my upcoming trip to Paris?\nassistant\nGreat question! On your next trip to Paris, you can start by visiting the iconic Eiffel Tower and the Louvre Museum. Don't miss exploring the Notre-Dame Cathedral and its stunning stained glass windows. For a bit of a break, consider visiting Montmartre for some beautiful art and architecture. If you're looking for something more adventurous, you could take a stroll through the charming streets of Montmartre or explore the vibrant nightlife of Le Marais. Have fun planning your trip to Paris!",
     "crumbs": [
       "**Module 2:** Exploring Hosted LLMs",
       "Slides"
@@ -2756,18 +2756,7 @@
     "href": "src/02/slides.html#accessing-closed-models-3",
     "title": "Module 2: Exploring Hosted LLMs",
     "section": "Accessing Closed Models",
-    "text": "Accessing Closed Models\n\nExample\n\nInput from user = 75 words (100 tokens)\nOutput from model = 150 words (200 tokens)\nTotal cost = 100 input tokens + 200 output tokens\nTotal cost = $0.000175 + $0.0028 = $0.002975\n\nAt scale\n\n10,000 users / 1 request per month ~= $29.75/mo\n\n10,000 users / 1 request per day ~= $892.50/mo",
-    "crumbs": [
-      "**Module 2:** Exploring Hosted LLMs",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/02/slides.html#accessing-open-models",
-    "href": "src/02/slides.html#accessing-open-models",
-    "title": "Module 2: Exploring Hosted LLMs",
-    "section": "Accessing Open Models",
-    "text": "Accessing Open Models\n\nDownload and run on your own hardware\n\nOr download them and run them on Colab, as we’ve been doing in our demos\n(We’ll be covering this later on in the course)\n\nAlso access them (via an API), hosted on someone else’s hardware",
+    "text": "Accessing Closed Models\n\nExample\n\nInput from user = 75 words (100 tokens)\nOutput from model = 1500 words (2000 tokens)\nTotal cost = 100 input tokens + 2000 output tokens\nTotal cost = $0.000175 + $0.028 = $0.028175\n\nAt scale\n\n10,000 users / 1 request per month ~= $281.75/mo\n\n10,000 users / 1 request per day ~= $8452.50/mo",
     "crumbs": [
       "**Module 2:** Exploring Hosted LLMs",
       "Slides"
@@ -2844,7 +2833,7 @@
     "href": "src/02/slides.html#chat-history-management-1",
     "title": "Module 2: Exploring Hosted LLMs",
     "section": "Chat History Management",
-    "text": "Chat History Management\n\nContext window sizes\n\nGPT-2 = 2048 tokens\nToday’s nano models ~= 32k tokens\nToday’s small models ~= 120k tokens\nToday’s frontier models ~= ~= 1M tokens\n\nLarge conversations can cause challenges\n\nThey are expensive (you pay per token for whole conversation every time)\nSmall models often forget early details in long conversation histories",
+    "text": "Chat History Management\n\nContext window sizes\n\nGPT-2 = 2048 tokens\nToday’s nano models ~= 32k tokens\nToday’s small models ~= 120k tokens\nToday’s frontier models ~= 1M tokens\n\nLarge conversations can cause challenges\n\nThey are expensive (you pay per token for whole conversation every time)\nSmall models often forget early details in long conversation histories",
     "crumbs": [
       "**Module 2:** Exploring Hosted LLMs",
       "Slides"
@@ -3009,7 +2998,7 @@
     "href": "src/02/slides.html#how-structured-outputs-work-1",
     "title": "Module 2: Exploring Hosted LLMs",
     "section": "How Structured Outputs Work",
-    "text": "How Structured Outputs Work\n\nSlightly slower token generation due to computational overhead\nTechnically, mathematically impossible to generate invalid output\n\n(Real world: I see 7000:1 error rates with GPT-5.1 chat)",
+    "text": "How Structured Outputs Work\n\nRuns on server (or in library) - not fine-tuning approach\nSlightly slower token generation due to computational overhead\nTechnically, it’s mathematically impossible to generate invalid output\n\n(Real world: I see ~1:7000 error rates with GPT-5.1 chat)",
     "crumbs": [
       "**Module 2:** Exploring Hosted LLMs",
       "Slides"
