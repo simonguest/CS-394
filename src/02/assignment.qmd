@@ -1,5 +1,5 @@
 ---
-title: "Module 2 Assignment - Gradio Travel Planner"
+title: "Module 2 Assignment: Gradio Travel Planner"
 format: html
 execute:
   enabled: false
