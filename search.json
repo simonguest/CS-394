@@ -837,17 +837,6 @@
     ]
   },
   {
-    "objectID": "src/03/slides.html#openai-tool-calling-1",
-    "href": "src/03/slides.html#openai-tool-calling-1",
-    "title": "Module 3: Agents and Tools",
-    "section": "OpenAI Tool Calling",
-    "text": "OpenAI Tool Calling\n\nTBD: How tool calling works. quick explanation of how models are fine tuned for function calling.",
-    "crumbs": [
-      "**Module 3:** Agents and Tools",
-      "Slides"
-    ]
-  },
-  {
     "objectID": "src/03/slides.html#cafe-agent",
     "href": "src/03/slides.html#cafe-agent",
     "title": "Module 3: Agents and Tools",
@@ -864,6 +853,61 @@
     "title": "Module 3: Agents and Tools",
     "section": "Cafe Agent Tool",
     "text": "Cafe Agent Tool\n\n\nfrom agents import function_tool\n\n@function_tool\ndef get_bytes_cafe_menu(date: str) -&gt; any:\n    return {\n        f\"{date}\": {\n            \"daily byte\": {\n                \"name\": \"Steak Quesadilla\",\n                \"price\": 12,\n                \"description\": \"Flank steak, mixed cheese in a flour tortilla served with air fried potatoes, sour cream and salsa\",\n            },\n            \"vegetarian\": {\n                \"name\": \"Impossible Quesadilla\",\n                \"price\": 12,\n                \"description\": \"Impossible plant based product, mixed cheese in a flour tortilla served with air fried potatoes, sour cream and salsa\",\n            },\n            \"international\": {\n                \"name\": \"Chicken Curry\",\n                \"price\": 12,\n                \"description\": \"Chicken thighs, onion, carrot, potato, curry sauce served over rice\",\n            },\n        }\n    }",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#sidebar-fine-tuning-models-for-tools",
+    "href": "src/03/slides.html#sidebar-fine-tuning-models-for-tools",
+    "title": "Module 3: Agents and Tools",
+    "section": "Sidebar: Fine-tuning models for Tools",
+    "text": "Sidebar: Fine-tuning models for Tools\n\nHow do models know when they should call a tool?\n\nModels are fine-tuned on conversations with tool call examples\nThe model learns patterns like “when the user asks about the weather, call the get_weather tool”\nThe request to call the tool is returned as a JSON payload",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#sidebar-fine-tuning-models-for-tools-1",
+    "href": "src/03/slides.html#sidebar-fine-tuning-models-for-tools-1",
+    "title": "Module 3: Agents and Tools",
+    "section": "Sidebar: Fine-tuning models for Tools",
+    "text": "Sidebar: Fine-tuning models for Tools\n{\n  \"role\": \"assistant\",\n  \"content\": null,\n  \"tool_calls\": [\n    {\n      \"id\": \"call_abc123\",\n      \"type\": \"function\",\n      \"function\": {\n        \"name\": \"get_weather\",\n        \"arguments\": \"{\\\"location\\\": \\\"San Francisco\\\", \\\"unit\\\": \\\"celsius\\\"}\"\n      }\n    }\n  ]\n}",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#sidebar-fine-tuning-models-for-tools-2",
+    "href": "src/03/slides.html#sidebar-fine-tuning-models-for-tools-2",
+    "title": "Module 3: Agents and Tools",
+    "section": "Sidebar: Fine-tuning models for Tools",
+    "text": "Sidebar: Fine-tuning models for Tools\n\nThe client then calls the tool with the required parameters\nAnd returns the result back to the model as a “tool” role message",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#sidebar-fine-tuning-models-for-tools-3",
+    "href": "src/03/slides.html#sidebar-fine-tuning-models-for-tools-3",
+    "title": "Module 3: Agents and Tools",
+    "section": "Sidebar: Fine-tuning models for Tools",
+    "text": "Sidebar: Fine-tuning models for Tools\n{\n  \"role\": \"tool\",\n  \"tool_call_id\": \"call_abc123\",\n  \"content\": \"{\\\"temperature\\\": 18, \\\"condition\\\": \\\"partly cloudy\\\", \\\"humidity\\\": 65, \\\"wind_speed\\\": 12}\"\n}",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#sidebar-fine-tuning-models-for-tools-4",
+    "href": "src/03/slides.html#sidebar-fine-tuning-models-for-tools-4",
+    "title": "Module 3: Agents and Tools",
+    "section": "Sidebar: Fine-tuning models for Tools",
+    "text": "Sidebar: Fine-tuning models for Tools\n\nRLHF is used for improve the accuracy for tool selection\n\nRewards are given for correctly choosing the right tool for a task\nOr penalized for hallucinating tools and methods that don’t exist",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Slides"
@@ -1061,7 +1105,7 @@
     "href": "src/03/slides.html#mcp-model-context-protocol",
     "title": "Module 3: Agents and Tools",
     "section": "MCP (Model Context Protocol)",
-    "text": "MCP (Model Context Protocol)\n\nReleased by Anthropic in March 2024\nProvides a standard interface for tools - akin to a USB standard for peripherals\nImplementations are known as “MCP servers”\n\nUses JSON-RPC 2.0 as underlying RPC protocol\nServers can run remotely over HTTP (supports SSE)\nOr can be hosted locally and accessed via stdio\nMany servers hosted using Node.js",
+    "text": "MCP (Model Context Protocol)\n\nReleased by Anthropic in March 2024\nProvides a standard interface for tools - akin to a USB standard for peripherals\nImplementations are known as “MCP servers”\n\nA server exposes one or more tools (functions)\nUses JSON-RPC 2.0 as underlying RPC protocol\nServers can run remotely over HTTP (supports SSE)\nOr can be hosted locally and accessed via stdio\nMany servers hosted using Node.js",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Slides"
@@ -1138,18 +1182,51 @@
     "href": "src/03/slides.html#creating-your-own-mcp-server",
     "title": "Module 3: Agents and Tools",
     "section": "Creating Your Own MCP Server",
-    "text": "Creating Your Own MCP Server\n\nMultiple SDKs on https://modelcontextprotocol.io/docs/sdk\nVery similar to tool calling\n\nDefine your MCP server\nAnnotate your functions with @mcp.tool()",
+    "text": "Creating Your Own MCP Server\n\nMultiple SDKs on https://modelcontextprotocol.io/docs/sdk\n\nPython, TypeScript, Go, Rust, C#, and more\n\nVery similar to tool calling\n\nDefine your MCP server\nAnnotate your functions with @mcp.tool()\nAdd descriptions to the tool methods to help the LLM select which tool to call",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Slides"
     ]
   },
   {
-    "objectID": "src/03/slides.html#hugging-face-spaces",
-    "href": "src/03/slides.html#hugging-face-spaces",
+    "objectID": "src/03/slides.html#example-microbit-mcp-server",
+    "href": "src/03/slides.html#example-microbit-mcp-server",
+    "title": "Module 3: Agents and Tools",
+    "section": "Example: micro:bit MCP Server",
+    "text": "Example: micro:bit MCP Server\n\n\nhttps://simonguest.com/p/microbit-mcp/\nhttps://simonguest.com/p/microbit-mcp/",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#hugging-face-spaces-1",
+    "href": "src/03/slides.html#hugging-face-spaces-1",
     "title": "Module 3: Agents and Tools",
     "section": "Hugging Face Spaces",
-    "text": "Hugging Face Spaces\n\nOverview and HANDS ON",
+    "text": "Hugging Face Spaces\n\nWe’ve been using Gradio, but hosting via notebooks isn’t ideal\n\nEven with share=True you have to keep the notebook running\n\nWouldn’t it be nice if we could easily host our Gradio app?",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#hugging-face-spaces-2",
+    "href": "src/03/slides.html#hugging-face-spaces-2",
+    "title": "Module 3: Agents and Tools",
+    "section": "Hugging Face Spaces",
+    "text": "Hugging Face Spaces",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/03/slides.html#hugging-face-spaces-3",
+    "href": "src/03/slides.html#hugging-face-spaces-3",
+    "title": "Module 3: Agents and Tools",
+    "section": "Hugging Face Spaces",
+    "text": "Hugging Face Spaces\n\nFree cloud hosting for ML demos and applications\n\nSupports Gradio, Streamlit, and static HTML/JS\n\nFor Gradio, either upload a main.py or a Docker configuration file\nHugging Face handles resource allocation\n\nSleeps the space if it’s inactive\nIntegrates with the queuing mechanism of Gradio to batch requests\nSupports multiple GPU types (if signed up for Pro account)",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Slides"
@@ -1160,7 +1237,7 @@
     "href": "src/03/slides.html#looking-ahead-1",
     "title": "Module 3: Agents and Tools",
     "section": "Looking Ahead",
-    "text": "Looking Ahead\n\nThis week’s assignment!\nTBD",
+    "text": "Looking Ahead\n\nThis week’s assignment!\nLeave text behind and explore image-based models!\nIntroduce the diffuser\nAnd go other way with vision encoders",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Slides"

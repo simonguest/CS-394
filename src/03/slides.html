@@ -571,12 +571,6 @@
 <li class="fragment">Option for the LLM to decide when to call the tool (always, never, auto)</li>
 </ul>
 </section>
-<section id="openai-tool-calling-1" class="slide level2">
-<h2>OpenAI Tool Calling</h2>
-<ul>
-<li class="fragment">TBD: How tool calling works. quick explanation of how models are fine tuned for function calling.</li>
-</ul>
-</section>
 <section id="cafe-agent" class="slide level2">
 <h2>Cafe Agent</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/03/notebooks/campus-agent.ipynb" data-notebook-title="DigiPen Campus Agent" data-notebook-cellid="cafe-agent">
@@ -620,6 +614,59 @@
 <span id="cb6-23"><a></a>    }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
+</section>
+<section id="sidebar-fine-tuning-models-for-tools" class="slide level2">
+<h2>Sidebar: Fine-tuning models for Tools</h2>
+<ul>
+<li class="fragment">How do models know when they should call a tool?
+<ul>
+<li class="fragment">Models are fine-tuned on conversations with tool call examples</li>
+<li class="fragment">The model learns patterns like “when the user asks about the weather, call the get_weather tool”</li>
+<li class="fragment">The request to call the tool is returned as a JSON payload</li>
+</ul></li>
+</ul>
+</section>
+<section id="sidebar-fine-tuning-models-for-tools-1" class="slide level2">
+<h2>Sidebar: Fine-tuning models for Tools</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb7-1"><a></a><span class="fu">{</span></span>
+<span id="cb7-2"><a></a>  <span class="dt">"role"</span><span class="fu">:</span> <span class="st">"assistant"</span><span class="fu">,</span></span>
+<span id="cb7-3"><a></a>  <span class="dt">"content"</span><span class="fu">:</span> <span class="kw">null</span><span class="fu">,</span></span>
+<span id="cb7-4"><a></a>  <span class="dt">"tool_calls"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb7-5"><a></a>    <span class="fu">{</span></span>
+<span id="cb7-6"><a></a>      <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"call_abc123"</span><span class="fu">,</span></span>
+<span id="cb7-7"><a></a>      <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"function"</span><span class="fu">,</span></span>
+<span id="cb7-8"><a></a>      <span class="dt">"function"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb7-9"><a></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"get_weather"</span><span class="fu">,</span></span>
+<span id="cb7-10"><a></a>        <span class="dt">"arguments"</span><span class="fu">:</span> <span class="st">"{</span><span class="ch">\"</span><span class="st">location</span><span class="ch">\"</span><span class="st">: </span><span class="ch">\"</span><span class="st">San Francisco</span><span class="ch">\"</span><span class="st">, </span><span class="ch">\"</span><span class="st">unit</span><span class="ch">\"</span><span class="st">: </span><span class="ch">\"</span><span class="st">celsius</span><span class="ch">\"</span><span class="st">}"</span></span>
+<span id="cb7-11"><a></a>      <span class="fu">}</span></span>
+<span id="cb7-12"><a></a>    <span class="fu">}</span></span>
+<span id="cb7-13"><a></a>  <span class="ot">]</span></span>
+<span id="cb7-14"><a></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="sidebar-fine-tuning-models-for-tools-2" class="slide level2">
+<h2>Sidebar: Fine-tuning models for Tools</h2>
+<ul>
+<li class="fragment">The client then calls the tool with the required parameters</li>
+<li class="fragment">And returns the result back to the model as a “tool” role message</li>
+</ul>
+</section>
+<section id="sidebar-fine-tuning-models-for-tools-3" class="slide level2">
+<h2>Sidebar: Fine-tuning models for Tools</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb8-1"><a></a><span class="fu">{</span></span>
+<span id="cb8-2"><a></a>  <span class="dt">"role"</span><span class="fu">:</span> <span class="st">"tool"</span><span class="fu">,</span></span>
+<span id="cb8-3"><a></a>  <span class="dt">"tool_call_id"</span><span class="fu">:</span> <span class="st">"call_abc123"</span><span class="fu">,</span></span>
+<span id="cb8-4"><a></a>  <span class="dt">"content"</span><span class="fu">:</span> <span class="st">"{</span><span class="ch">\"</span><span class="st">temperature</span><span class="ch">\"</span><span class="st">: 18, </span><span class="ch">\"</span><span class="st">condition</span><span class="ch">\"</span><span class="st">: </span><span class="ch">\"</span><span class="st">partly cloudy</span><span class="ch">\"</span><span class="st">, </span><span class="ch">\"</span><span class="st">humidity</span><span class="ch">\"</span><span class="st">: 65, </span><span class="ch">\"</span><span class="st">wind_speed</span><span class="ch">\"</span><span class="st">: 12}"</span></span>
+<span id="cb8-5"><a></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="sidebar-fine-tuning-models-for-tools-4" class="slide level2">
+<h2>Sidebar: Fine-tuning models for Tools</h2>
+<ul>
+<li class="fragment">RLHF is used for improve the accuracy for tool selection
+<ul>
+<li class="fragment">Rewards are given for correctly choosing the right tool for a task</li>
+<li class="fragment">Or penalized for hallucinating tools and methods that don’t exist</li>
+</ul></li>
+</ul>
 </section></section>
 <section>
 <section id="lets-run-the-campus-agent" class="title-slide slide level1 center">
@@ -744,10 +791,10 @@
 <h2>Short-term Memory</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/03/notebooks/memory.ipynb" data-notebook-title="Agent Memory" data-notebook-cellid="create-session">
 <div id="create-session" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="im">from</span> agents <span class="im">import</span> Agent, Runner, SQLiteSession</span>
-<span id="cb7-2"><a></a></span>
-<span id="cb7-3"><a></a>agent <span class="op">=</span> Agent(name<span class="op">=</span><span class="st">"Assistant"</span>, instructions<span class="op">=</span><span class="st">"Reply very concisely"</span>)</span>
-<span id="cb7-4"><a></a>session <span class="op">=</span> SQLiteSession(<span class="st">"conv_123"</span>, db_path<span class="op">=</span>SQLITE_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="im">from</span> agents <span class="im">import</span> Agent, Runner, SQLiteSession</span>
+<span id="cb9-2"><a></a></span>
+<span id="cb9-3"><a></a>agent <span class="op">=</span> Agent(name<span class="op">=</span><span class="st">"Assistant"</span>, instructions<span class="op">=</span><span class="st">"Reply very concisely"</span>)</span>
+<span id="cb9-4"><a></a>session <span class="op">=</span> SQLiteSession(<span class="st">"conv_123"</span>, db_path<span class="op">=</span>SQLITE_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -755,8 +802,8 @@
 <h2>Short-term Memory</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/03/notebooks/memory.ipynb" data-notebook-title="Agent Memory" data-notebook-cellid="conversation-stored">
 <div id="conversation-stored" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a>result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"My name is Simon"</span>, session<span class="op">=</span>session)</span>
-<span id="cb8-2"><a></a><span class="bu">print</span>(result.final_output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a>result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"My name is Simon"</span>, session<span class="op">=</span>session)</span>
+<span id="cb10-2"><a></a><span class="bu">print</span>(result.final_output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Nice to meet you, Simon!</code></pre>
 </div>
@@ -767,8 +814,8 @@
 <h2>Short-term Memory</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/03/notebooks/memory.ipynb" data-notebook-title="Agent Memory" data-notebook-cellid="conversation-retrieved">
 <div id="conversation-retrieved" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a>result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"What is my name?"</span>, session<span class="op">=</span>session)</span>
-<span id="cb10-2"><a></a><span class="bu">print</span>(result.final_output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a>result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"What is my name?"</span>, session<span class="op">=</span>session)</span>
+<span id="cb12-2"><a></a><span class="bu">print</span>(result.final_output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Your name is Simon.</code></pre>
 </div>
@@ -779,8 +826,8 @@
 <h2>Short-term Memory</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/03/notebooks/memory.ipynb" data-notebook-title="Agent Memory" data-notebook-cellid="without-session">
 <div id="without-session" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a>result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"What is my name?"</span>)</span>
-<span id="cb12-2"><a></a><span class="bu">print</span>(result.final_output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a>result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"What is my name?"</span>)</span>
+<span id="cb14-2"><a></a><span class="bu">print</span>(result.final_output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>You haven’t shared your name yet.</code></pre>
 </div>
@@ -819,16 +866,16 @@
 </section>
 <section id="implementing-long-term-memory-mem0" class="slide level2">
 <h2>Implementing Long-term Memory (mem0)</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="im">from</span> mem0 <span class="im">import</span> Memory</span>
-<span id="cb14-2"><a></a>memory <span class="op">=</span> Memory()</span>
-<span id="cb14-3"><a></a></span>
-<span id="cb14-4"><a></a><span class="co"># Create new memories from the conversation</span></span>
-<span id="cb14-5"><a></a>messages.append({<span class="st">"role"</span>: <span class="st">"assistant"</span>, <span class="st">"content"</span>: assistant_response})</span>
-<span id="cb14-6"><a></a>memory.add(messages, user_id<span class="op">=</span>user_id)</span>
-<span id="cb14-7"><a></a></span>
-<span id="cb14-8"><a></a><span class="co"># Retrieve relevant memories</span></span>
-<span id="cb14-9"><a></a>relevant_memories <span class="op">=</span> memory.search(query<span class="op">=</span>message, user_id<span class="op">=</span>user_id, limit<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb14-10"><a></a><span class="co"># (append these to the system prompt)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a><span class="im">from</span> mem0 <span class="im">import</span> Memory</span>
+<span id="cb16-2"><a></a>memory <span class="op">=</span> Memory()</span>
+<span id="cb16-3"><a></a></span>
+<span id="cb16-4"><a></a><span class="co"># Create new memories from the conversation</span></span>
+<span id="cb16-5"><a></a>messages.append({<span class="st">"role"</span>: <span class="st">"assistant"</span>, <span class="st">"content"</span>: assistant_response})</span>
+<span id="cb16-6"><a></a>memory.add(messages, user_id<span class="op">=</span>user_id)</span>
+<span id="cb16-7"><a></a></span>
+<span id="cb16-8"><a></a><span class="co"># Retrieve relevant memories</span></span>
+<span id="cb16-9"><a></a>relevant_memories <span class="op">=</span> memory.search(query<span class="op">=</span>message, user_id<span class="op">=</span>user_id, limit<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb16-10"><a></a><span class="co"># (append these to the system prompt)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="implementing-long-term-memory-1" class="slide level2">
 <h2>Implementing Long-term Memory</h2>
@@ -870,6 +917,7 @@
 <li class="fragment">Provides a standard interface for tools - akin to a USB standard for peripherals</li>
 <li class="fragment">Implementations are known as “MCP servers”
 <ul>
+<li class="fragment">A server exposes one or more tools (functions)</li>
 <li class="fragment">Uses JSON-RPC 2.0 as underlying RPC protocol</li>
 <li class="fragment">Servers can run remotely over HTTP (supports SSE)</li>
 <li class="fragment">Or can be hosted locally and accessed via stdio</li>
@@ -911,15 +959,15 @@
 <h2>OpenAI Agents SDK and MCP</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/03/notebooks/open-meteo-mcp.ipynb" data-notebook-title="OpenAI Agents SDK with MCP Server" data-notebook-cellid="list-available-tools">
 <div id="list-available-tools" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a><span class="cf">async</span> <span class="cf">with</span> MCPServerStdio(</span>
-<span id="cb15-2"><a></a>    name<span class="op">=</span><span class="st">"Open-Meteo Weather Server"</span>,</span>
-<span id="cb15-3"><a></a>    params<span class="op">=</span>{</span>
-<span id="cb15-4"><a></a>        <span class="st">"command"</span>: <span class="st">"npx"</span>,</span>
-<span id="cb15-5"><a></a>        <span class="st">"args"</span>: [<span class="st">"-y"</span>, <span class="st">"open-meteo-mcp-server"</span>],</span>
-<span id="cb15-6"><a></a>    },</span>
-<span id="cb15-7"><a></a>) <span class="im">as</span> server:</span>
-<span id="cb15-8"><a></a>    tools <span class="op">=</span> <span class="cf">await</span> server.list_tools()</span>
-<span id="cb15-9"><a></a>    <span class="bu">print</span>(<span class="ss">f"Available tools: </span><span class="sc">{</span>[tool.name <span class="cf">for</span> tool <span class="kw">in</span> tools]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a><span class="cf">async</span> <span class="cf">with</span> MCPServerStdio(</span>
+<span id="cb17-2"><a></a>    name<span class="op">=</span><span class="st">"Open-Meteo Weather Server"</span>,</span>
+<span id="cb17-3"><a></a>    params<span class="op">=</span>{</span>
+<span id="cb17-4"><a></a>        <span class="st">"command"</span>: <span class="st">"npx"</span>,</span>
+<span id="cb17-5"><a></a>        <span class="st">"args"</span>: [<span class="st">"-y"</span>, <span class="st">"open-meteo-mcp-server"</span>],</span>
+<span id="cb17-6"><a></a>    },</span>
+<span id="cb17-7"><a></a>) <span class="im">as</span> server:</span>
+<span id="cb17-8"><a></a>    tools <span class="op">=</span> <span class="cf">await</span> server.list_tools()</span>
+<span id="cb17-9"><a></a>    <span class="bu">print</span>(<span class="ss">f"Available tools: </span><span class="sc">{</span>[tool.name <span class="cf">for</span> tool <span class="kw">in</span> tools]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Available tools: ['weather_forecast', 'weather_archive', 'air_quality', 'marine_weather', 'elevation', 'flood_forecast', 'seasonal_forecast', 'climate_projection', 'ensemble_forecast', 'geocoding', 'dwd_icon_forecast', 'gfs_forecast', 'meteofrance_forecast', 'ecmwf_forecast', 'jma_forecast', 'metno_forecast', 'gem_forecast']</code></pre>
 </div>
@@ -930,22 +978,22 @@
 <h2>OpenAI Agents SDK and MCP</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/03/notebooks/open-meteo-mcp.ipynb" data-notebook-title="OpenAI Agents SDK with MCP Server" data-notebook-cellid="simple-query">
 <div id="simple-query" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a><span class="cf">async</span> <span class="cf">with</span> MCPServerStdio(</span>
-<span id="cb17-2"><a></a>    name<span class="op">=</span><span class="st">"Open-Meteo Weather Server"</span>,</span>
-<span id="cb17-3"><a></a>    params<span class="op">=</span>{</span>
-<span id="cb17-4"><a></a>        <span class="st">"command"</span>: <span class="st">"npx"</span>,</span>
-<span id="cb17-5"><a></a>        <span class="st">"args"</span>: [<span class="st">"-y"</span>, <span class="st">"open-meteo-mcp-server"</span>],</span>
-<span id="cb17-6"><a></a>    },</span>
-<span id="cb17-7"><a></a>) <span class="im">as</span> server:</span>
-<span id="cb17-8"><a></a>    agent <span class="op">=</span> Agent(</span>
-<span id="cb17-9"><a></a>        name<span class="op">=</span><span class="st">"Weather Agent"</span>,</span>
-<span id="cb17-10"><a></a>        model<span class="op">=</span><span class="st">"gpt-5.2"</span>,</span>
-<span id="cb17-11"><a></a>        instructions<span class="op">=</span><span class="st">"You are a helpful weather assistant. Use the available tools to answer questions about weather forecasts, historical weather data, and air quality. Always provide clear, concise answers."</span>,</span>
-<span id="cb17-12"><a></a>        mcp_servers<span class="op">=</span>[server],</span>
-<span id="cb17-13"><a></a>    )</span>
-<span id="cb17-14"><a></a>    </span>
-<span id="cb17-15"><a></a>    result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"What's the weather forecast for Seattle this week?"</span>)</span>
-<span id="cb17-16"><a></a>    <span class="bu">print</span>(result.final_output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a><span class="cf">async</span> <span class="cf">with</span> MCPServerStdio(</span>
+<span id="cb19-2"><a></a>    name<span class="op">=</span><span class="st">"Open-Meteo Weather Server"</span>,</span>
+<span id="cb19-3"><a></a>    params<span class="op">=</span>{</span>
+<span id="cb19-4"><a></a>        <span class="st">"command"</span>: <span class="st">"npx"</span>,</span>
+<span id="cb19-5"><a></a>        <span class="st">"args"</span>: [<span class="st">"-y"</span>, <span class="st">"open-meteo-mcp-server"</span>],</span>
+<span id="cb19-6"><a></a>    },</span>
+<span id="cb19-7"><a></a>) <span class="im">as</span> server:</span>
+<span id="cb19-8"><a></a>    agent <span class="op">=</span> Agent(</span>
+<span id="cb19-9"><a></a>        name<span class="op">=</span><span class="st">"Weather Agent"</span>,</span>
+<span id="cb19-10"><a></a>        model<span class="op">=</span><span class="st">"gpt-5.2"</span>,</span>
+<span id="cb19-11"><a></a>        instructions<span class="op">=</span><span class="st">"You are a helpful weather assistant. Use the available tools to answer questions about weather forecasts, historical weather data, and air quality. Always provide clear, concise answers."</span>,</span>
+<span id="cb19-12"><a></a>        mcp_servers<span class="op">=</span>[server],</span>
+<span id="cb19-13"><a></a>    )</span>
+<span id="cb19-14"><a></a>    </span>
+<span id="cb19-15"><a></a>    result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"What's the weather forecast for Seattle this week?"</span>)</span>
+<span id="cb19-16"><a></a>    <span class="bu">print</span>(result.final_output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Here is the weather forecast for Seattle this week:
 
@@ -962,20 +1010,67 @@ If you need a forecast in Fahrenheit or more details (such as hourly data), just
 <section id="creating-your-own-mcp-server" class="slide level2">
 <h2>Creating Your Own MCP Server</h2>
 <ul>
-<li class="fragment">Multiple SDKs on <a href="https://modelcontextprotocol.io/docs/sdk" class="external" target="_blank">https://modelcontextprotocol.io/docs/sdk</a></li>
+<li class="fragment">Multiple SDKs on <a href="https://modelcontextprotocol.io/docs/sdk" class="external" target="_blank">https://modelcontextprotocol.io/docs/sdk</a>
+<ul>
+<li class="fragment">Python, TypeScript, Go, Rust, C#, and more</li>
+</ul></li>
 <li class="fragment">Very similar to tool calling
 <ul>
 <li class="fragment">Define your MCP server</li>
 <li class="fragment">Annotate your functions with <code>@mcp.tool()</code></li>
+<li class="fragment">Add descriptions to the tool methods to help the LLM select which tool to call</li>
 </ul></li>
 </ul>
 </section>
-<section id="hugging-face-spaces" class="slide level2">
+<section id="example-microbit-mcp-server" class="slide level2">
+<h2>Example: micro:bit MCP Server</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="./images/microbit_mcp_sm.mp4" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="https://simonguest.com/p/microbit-mcp/"><video data-src="./images/microbit_mcp_sm.mp4" controls=""></video></a><a href="./images/microbit_mcp_sm.mp4">https://simonguest.com/p/microbit-mcp/</a></p>
+<figcaption>https://simonguest.com/p/microbit-mcp/</figcaption>
+</figure>
+</div>
+</section></section>
+<section>
+<section id="hugging-face-spaces" class="title-slide slide level1 center">
+<h1>Hugging Face Spaces</h1>
+
+</section>
+<section id="hugging-face-spaces-1" class="slide level2">
 <h2>Hugging Face Spaces</h2>
 <ul>
-<li class="fragment">Overview and HANDS ON</li>
+<li class="fragment">We’ve been using Gradio, but hosting via notebooks isn’t ideal
+<ul>
+<li class="fragment">Even with <code>share=True</code> you have to keep the notebook running</li>
+</ul></li>
+<li class="fragment">Wouldn’t it be nice if we could easily host our Gradio app?</li>
+</ul>
+</section>
+<section id="hugging-face-spaces-2" class="slide level2">
+<h2>Hugging Face Spaces</h2>
+<p><a href="./images/hf-spaces.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img data-src="./images/hf-spaces.png"></a></p>
+</section>
+<section id="hugging-face-spaces-3" class="slide level2">
+<h2>Hugging Face Spaces</h2>
+<ul>
+<li class="fragment">Free cloud hosting for ML demos and applications
+<ul>
+<li class="fragment">Supports Gradio, Streamlit, and static HTML/JS</li>
+</ul></li>
+<li class="fragment">For Gradio, either upload a <code>main.py</code> or a Docker configuration file</li>
+<li class="fragment">Hugging Face handles resource allocation
+<ul>
+<li class="fragment">Sleeps the space if it’s inactive</li>
+<li class="fragment">Integrates with the queuing mechanism of Gradio to batch requests</li>
+<li class="fragment">Supports multiple GPU types (if signed up for Pro account)</li>
+</ul></li>
 </ul>
 </section></section>
+<section id="demo-2" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p>Hosting the DigiPen campus agent on Hugging Face Spaces</p>
+</section>
+
 <section>
 <section id="looking-ahead" class="title-slide slide level1 center">
 <h1>Looking Ahead</h1>
@@ -985,7 +1080,9 @@ If you need a forecast in Fahrenheit or more details (such as hourly data), just
 <h2>Looking Ahead</h2>
 <ul>
 <li class="fragment"><a href="https://simonguest.github.io/CS-394/src/03/assignment.html" class="external" target="_blank">This week’s assignment!</a></li>
-<li class="fragment">TBD</li>
+<li class="fragment">Leave text behind and explore image-based models!</li>
+<li class="fragment">Introduce the diffuser</li>
+<li class="fragment">And go other way with vision encoders</li>
 </ul>
 </section></section>
 <section>
