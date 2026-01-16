@@ -89,10 +89,31 @@ timeline
 
 - Supervised Fine-Tuning
   - Large datasets of questions/answers, tasks/completions, demonstrating helpful assistant behavior
-- RLHF (Reinforcement Learning from Human Feedback)
-  - Human raters rank different model responses, training a reward model
 - Chat Templates
   - Structured format to distinguish speakers in a conversation: Typically **system**, **user**, and **assistant**
+- RLHF (Reinforcement Learning from Human Feedback)
+  - Human raters rank different model responses, training a reward model
+
+## What's a Chat Template?
+
+- The format used to train instructional models on conversations involving system, user, and assistant prompts.
+- Each model family uses a different format (there is no universal standard)
+- Wrong format will likely generate nonsense/garbage
+
+## ChatML (GPT-3.5 and other models)
+
+```
+<|im_start|>system
+You help travelers make plans for their trips.<|im_end|>
+<|im_start|>user
+Hello<|im_end|>
+<|im_start|>assistant
+Hi there! How can I help you?<|im_end|>
+<|im_start|>user
+What should I do on my upcoming trip to Paris?<|im_end|>
+<|im_start|>assistant
+
+```
 
 ## System, User, Assistant
 
@@ -122,43 +143,23 @@ timeline
   - "Linear algebra is the branch of mathematics that studies vectors, etc."
   - "Here are some suggestions for your upcoming trip to Paris: 1. Explore the Louvre Museum: etc."
 
-## What's a Chat Template?
-
-- The format used to train instructional models on conversations involving system, user, and assistant prompts.
-- Each model family uses a different format (there is no universal standard)
-- Wrong format will likely generate nonsense/garbage
-
-## ChatML (GPT-3.5 and other models)
-
-```
-<|im_start|>system
-You help travelers make plans for their trips.<|im_end|>
-<|im_start|>user
-Hello<|im_end|>
-<|im_start|>assistant
-Hi there! How can I help you?<|im_end|>
-<|im_start|>user
-What should I do on my upcoming trip to Paris?<|im_end|>
-<|im_start|>assistant
-
-```
 ## Chat Templates in Practice
 
 {{< embed notebooks/instruction-tuned.ipynb#chat-template echo=true >}}
 
-## Putting This Together
+## Completion vs. Instruction-Tuned
 
 {{< embed notebooks/instruction-tuned.ipynb#base-model echo=true outputs=false >}}
 
-## Putting This Together
+## Completion vs. Instruction-Tuned
 
 {{< embed notebooks/instruction-tuned.ipynb#base-model >}}
 
-## Putting This Together
+## Completion vs. Instruction-Tuned
 
 {{< embed notebooks/instruction-tuned.ipynb#it-model echo=true outputs=false >}}
 
-## Putting This Together
+## Completion vs. Instruction-Tuned
 
 {{< embed notebooks/instruction-tuned.ipynb#it-model >}}
 
@@ -275,19 +276,12 @@ In instruction-tuned.ipynb, explore swapping out Qwen-2.5 (base and instruct) fo
 
 - Example
   - Input from user = 75 words (100 tokens)
-  - Output from model = 150 words (200 tokens)
-  - Total cost = 100 input tokens + 200 output tokens
-  - Total cost = $0.000175 + $0.0028 = $0.002975
+  - Output from model = 1500 words (2000 tokens)
+  - Total cost = 100 input tokens + 2000 output tokens
+  - Total cost = $0.000175 + $0.028 = $0.028175
 - At scale
-  - 10,000 users / 1 request per month ~= $29.75/mo   
-  - 10,000 users / 1 request per day ~= $892.50/mo
-
-## Accessing Open Models
-
-- Download and run on your own hardware
-  - Or download them and run them on Colab, as we've been doing in our demos
-  - (We'll be covering this later on in the course)
-- Also access them (via an API), hosted on someone else's hardware
+  - 10,000 users / 1 request per month ~= $281.75/mo   
+  - 10,000 users / 1 request per day ~= $8452.50/mo
 
 # Calling Models via APIs
 
@@ -339,7 +333,7 @@ OpenAI Chat Completion API notebook
   - GPT-2 = 2048 tokens
   - Today's nano models ~= 32k tokens
   - Today's small models ~= 120k tokens
-  - Today's frontier models ~= ~= 1M tokens
+  - Today's frontier models ~= 1M tokens
 - Large conversations can cause challenges
   - They are expensive (you pay per token for whole conversation every time)
   - Small models often forget early details in long conversation histories
@@ -466,9 +460,10 @@ Data sent as chunks, prefixed with `data:` and separated by double newlines
 
 ## How Structured Outputs Work
 
+- Runs on server (or in library) - not fine-tuning approach
 - Slightly slower token generation due to computational overhead
-- Technically, mathematically impossible to generate invalid output
-  - (Real world: I see 7000:1 error rates with GPT-5.1 chat)
+- Technically, it's mathematically impossible to generate invalid output
+  - (Real world: I see ~1:7000 error rates with GPT-5.1 chat)
 
 ## Implementing Structured Outputs
 
