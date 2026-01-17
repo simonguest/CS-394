@@ -12,7 +12,7 @@ execute:
 - System prompt that defines the AI as a travel planning expert (or pick your own scenario, if you have a better idea!)
 - Implements a well-thought out system prompt (with feedback on the rationale behind it).
 - Demonstrates at least 2 different models via OpenRouter as a dropdown in Gradio. (Not necessarily at the same time.)
-  - Try to pick a large (foundational model) and a much smaller open source instruct model to compare the differences.
+  - Try to pick models of different sizes to compare the differences. If you search for free models (https://openrouter.ai/models?q=free) you can also avoid incurring any costs.
 - Use structured outputs when returning results to the user (e.g., a downloadable itinerary that the user can download)
   - Example schema: Trip with fields like destination, duration_days, activities (list), budget_level, daily_schedule (list of day objects)
 
