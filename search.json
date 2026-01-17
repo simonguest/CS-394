@@ -124,7 +124,7 @@
     "href": "src/02/notebooks/gradio.html#install-required-packages",
     "title": "Gradio with OpenAI API (via OpenRouter)",
     "section": "Install required packages",
-    "text": "Install required packages\n\n!uv add gradio==5.49.1 openai",
+    "text": "Install required packages\n\n!uv pip install gradio==5.49.1 openai\n\n\nUsing Python 3.13.1 environment at: /Users/simon/Dev/CS-394/.venv\n\nAudited 2 packages in 14ms",
     "crumbs": [
       "**Module 2:** Exploring Hosted LLMs",
       "Notebooks",
