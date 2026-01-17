@@ -759,137 +759,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a target="_blank" href="https://colab.research.google.com/github/simonguest/CS-394/blob/main/src/02/notebooks/gradio.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"> </a> <a target="_blank" href="https://github.com/simonguest/CS-394/raw/refs/heads/main/src/02/notebooks/gradio.ipynb"> <img src="https://img.shields.io/badge/Download_.ipynb-blue" alt="Download .ipynb"> </a></p>
 <section id="install-required-packages" class="level2">
 <h2 class="anchored" data-anchor-id="install-required-packages">Install required packages</h2>
-<div id="cell-3" class="cell" data-execution_count="1">
+<div id="cell-3" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>uv add gradio<span class="op">==</span><span class="fl">5.49.1</span> openai</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<div class="ansi-escaped-output">
-<pre>Resolved <span style="font-weight:bold;opacity:0.7">190 packages</span> in 1ms
-
-Installed <span style="font-weight:bold;opacity:0.7">49 packages</span> in 208ms                              
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">aiofiles</span>==24.1.0
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">annotated-doc</span>==0.0.4
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">annotated-types</span>==0.7.0
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">audioop-lts</span>==0.2.2
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">brotli</span>==1.2.0
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">click</span>==8.3.1
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">contourpy</span>==1.3.3
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">cycler</span>==0.12.1
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">distro</span>==1.9.0
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">fastapi</span>==0.128.0
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">ffmpy</span>==1.0.0
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">filelock</span>==3.20.1
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">fonttools</span>==4.61.1
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">fsspec</span>==2025.12.0
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">gradio</span>==5.49.1
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">gradio-client</span>==1.13.3
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">groovy</span>==0.1.2
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">hf-xet</span>==1.2.0
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">huggingface-hub</span>==0.36.0
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">jiter</span>==0.12.0
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">kiwisolver</span>==1.4.9
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">markdown-it-py</span>==4.0.0
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">matplotlib</span>==3.10.8
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">mdurl</span>==0.1.2
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">numpy</span>==2.4.0
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">openai</span>==2.14.0
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">orjson</span>==3.11.5
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">pandas</span>==2.3.3
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">pillow</span>==11.3.0
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">pydantic</span>==2.11.10
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">pydantic-core</span>==2.33.2
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">pydub</span>==0.25.1
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">pyparsing</span>==3.3.1
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">python-dotenv</span>==1.2.1
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">python-multipart</span>==0.0.21
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">pytz</span>==2025.2
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">rich</span>==14.2.0
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">ruff</span>==0.14.12
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">safehttpx</span>==0.1.7
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">semantic-version</span>==2.10.0
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">shellingham</span>==1.5.4
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">sniffio</span>==1.3.1
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">starlette</span>==0.50.0
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">tomlkit</span>==0.13.3
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">tqdm</span>==4.67.1
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">typer</span>==0.21.0
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">typing-inspection</span>==0.4.2
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">uvicorn</span>==0.40.0
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">websockets</span>==15.0.1
-</pre>
-</div>
-</div>
 </div>
 </section>
 <section id="set-the-openrouter-api-key-from-colab-secrets" class="level2">
 <h2 class="anchored" data-anchor-id="set-the-openrouter-api-key-from-colab-secrets">Set the OpenRouter API Key from Colab Secrets</h2>
-<div id="cell-5" class="cell" data-execution_count="2">
+<div id="cell-5" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> google.colab <span class="im">import</span> userdata</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>OPENROUTER_API_KEY <span class="op">=</span> userdata.get(<span class="st">'OPENROUTER_API_KEY'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 1</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> <span style="font-weight:bold;color:rgb(0,135,0)">from</span><span style="color:rgb(188,188,188)"> </span><span class="ansi-blue-fg ansi-bold">google</span><span class="ansi-blue-fg ansi-bold">.</span><span class="ansi-blue-fg ansi-bold">colab</span><span style="color:rgb(188,188,188)"> </span><span style="font-weight:bold;color:rgb(0,135,0)">import</span> userdata
-<span class="ansi-green-fg">      2</span> OPENROUTER_API_KEY = userdata.get(<span class="ansi-yellow-fg">'</span><span class="ansi-yellow-fg">OPENROUTER_API_KEY</span><span class="ansi-yellow-fg">'</span>)
-
-<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named 'google'</pre>
-</div>
-</div>
 </div>
 </section>
 <section id="or-grab-the-openrouter-api-key-if-running-locally" class="level2">
 <h2 class="anchored" data-anchor-id="or-grab-the-openrouter-api-key-if-running-locally">(Or grab the OpenRouter API key if running locally)</h2>
-<div id="cell-7" class="cell" data-execution_count="3">
+<div id="cell-7" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
@@ -899,7 +782,7 @@ Installed <span style="font-weight:bold;opacity:0.7">49 packages</span> in 208ms
 </section>
 <section id="initialize-the-openai-client" class="level2">
 <h2 class="anchored" data-anchor-id="initialize-the-openai-client">Initialize the OpenAI client</h2>
-<div id="cell-9" class="cell" data-execution_count="4">
+<div id="cell-9" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize OpenAI client</span></span>
@@ -911,7 +794,7 @@ Installed <span style="font-weight:bold;opacity:0.7">49 packages</span> in 208ms
 </section>
 <section id="example-1-basic-gradio-interface" class="level2">
 <h2 class="anchored" data-anchor-id="example-1-basic-gradio-interface">Example 1: Basic Gradio interface</h2>
-<div id="example-1" class="cell" data-execution_count="5">
+<div id="example-1" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gradio <span class="im">as</span> gr</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> image_classifier(inp):</span>
@@ -920,20 +803,20 @@ Installed <span style="font-weight:bold;opacity:0.7">49 packages</span> in 208ms
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>demo <span class="op">=</span> gr.Interface(fn<span class="op">=</span>image_classifier, inputs<span class="op">=</span><span class="st">"image"</span>, outputs<span class="op">=</span><span class="st">"label"</span>)</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>* Running on local URL:  http://127.0.0.1:7860
+<pre><code>* Running on local URL:  http://127.0.0.1:7862
 * To create a public link, set `share=True` in `launch()`.</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<div><iframe src="http://127.0.0.1:7860/" width="100%" height="500" allow="autoplay; camera; microphone; clipboard-read; clipboard-write;" frameborder="0" allowfullscreen=""></iframe></div>
+<div><iframe src="http://127.0.0.1:7862/" width="100%" height="500" allow="autoplay; camera; microphone; clipboard-read; clipboard-write;" frameborder="0" allowfullscreen=""></iframe></div>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code></code></pre>
 </div>
 </div>
 </section>
 <section id="example-2-basic-chat-interface-with-conversation-history" class="level2">
 <h2 class="anchored" data-anchor-id="example-2-basic-chat-interface-with-conversation-history">Example 2: Basic chat interface with conversation history</h2>
-<div id="example-2" class="cell" data-execution_count="6">
+<div id="example-2" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gradio <span class="im">as</span> gr</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> chat_with_history(message, history):</span>
@@ -951,65 +834,61 @@ Installed <span style="font-weight:bold;opacity:0.7">49 packages</span> in 208ms
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a chat interface</span></span>
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>demo <span class="op">=</span> gr.ChatInterface(</span>
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    fn<span class="op">=</span>chat_with_history,</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"Basic Chat with Conversation History"</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/Users/simon/Dev/CS-394/.venv/lib/python3.13/site-packages/gradio/chat_interface.py:347: UserWarning: The 'tuples' format for chatbot messages is deprecated and will be removed in a future version of Gradio. Please set type='messages' instead, which uses openai-style 'role' and 'content' keys.
-  self.chatbot = Chatbot(</code></pre>
-</div>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"Basic Chat with Conversation History"</span>,</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span><span class="op">=</span><span class="st">"messages"</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>* Running on local URL:  http://127.0.0.1:7861
+<pre><code>* Running on local URL:  http://127.0.0.1:7863
 * To create a public link, set `share=True` in `launch()`.</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<div><iframe src="http://127.0.0.1:7861/" width="100%" height="500" allow="autoplay; camera; microphone; clipboard-read; clipboard-write;" frameborder="0" allowfullscreen=""></iframe></div>
+<div><iframe src="http://127.0.0.1:7863/" width="100%" height="500" allow="autoplay; camera; microphone; clipboard-read; clipboard-write;" frameborder="0" allowfullscreen=""></iframe></div>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code></code></pre>
 </div>
 </div>
 </section>
 <section id="example-3-streaming-chat-interface" class="level2">
 <h2 class="anchored" data-anchor-id="example-3-streaming-chat-interface">Example 3: Streaming chat interface</h2>
-<div id="example-3" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> chat_with_streaming(message, history):</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    messages <span class="op">=</span> history <span class="op">+</span> [{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: message}]</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Stream the response</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    stream <span class="op">=</span> client.chat.completions.create(</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">'openai/gpt-5.2-chat'</span>,</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        messages<span class="op">=</span>messages,</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        stream<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    response_text <span class="op">=</span> <span class="st">""</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> chunk <span class="kw">in</span> stream:</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> chunk.choices[<span class="dv">0</span>].delta.content <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>            token <span class="op">=</span> chunk.choices[<span class="dv">0</span>].delta.content</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>            response_text <span class="op">+=</span> token</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">yield</span> response_text</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Create streaming chat interface</span></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>demo <span class="op">=</span> gr.ChatInterface(</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    fn<span class="op">=</span>chat_with_streaming,</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"AI Chat with Streaming"</span>,</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>/Users/simon/Dev/CS-394/.venv/lib/python3.13/site-packages/gradio/chat_interface.py:347: UserWarning: The 'tuples' format for chatbot messages is deprecated and will be removed in a future version of Gradio. Please set type='messages' instead, which uses openai-style 'role' and 'content' keys.
-  self.chatbot = Chatbot(</code></pre>
-</div>
+<div id="example-3" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> gradio <span class="im">as</span> gr</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> chat_with_streaming(message, history):</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    messages <span class="op">=</span> history <span class="op">+</span> [{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: message}]</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Stream the response</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    stream <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span><span class="st">'openai/gpt-5.2-chat'</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        messages<span class="op">=</span>messages,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>        stream<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    response_text <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> chunk <span class="kw">in</span> stream:</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> chunk.choices[<span class="dv">0</span>].delta.content <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>            token <span class="op">=</span> chunk.choices[<span class="dv">0</span>].delta.content</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>            response_text <span class="op">+=</span> token</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">yield</span> response_text</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Create streaming chat interface</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>demo <span class="op">=</span> gr.ChatInterface(</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>    fn<span class="op">=</span>chat_with_streaming,</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"AI Chat with Streaming"</span>,</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">type</span><span class="op">=</span><span class="st">"messages"</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>* Running on local URL:  http://127.0.0.1:7862
+<pre><code>* Running on local URL:  http://127.0.0.1:7864
 * To create a public link, set `share=True` in `launch()`.</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<div><iframe src="http://127.0.0.1:7862/" width="100%" height="500" allow="autoplay; camera; microphone; clipboard-read; clipboard-write;" frameborder="0" allowfullscreen=""></iframe></div>
+<div><iframe src="http://127.0.0.1:7864/" width="100%" height="500" allow="autoplay; camera; microphone; clipboard-read; clipboard-write;" frameborder="0" allowfullscreen=""></iframe></div>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code></code></pre>
 </div>
 </div>

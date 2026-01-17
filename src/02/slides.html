@@ -1276,7 +1276,7 @@ Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
 <section id="example-1-basic-interface" class="slide level2">
 <h2>Example 1: Basic Interface</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-1">
-<div id="example-1" class="cell" data-execution_count="5">
+<div id="example-1" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a></a><span class="im">import</span> gradio <span class="im">as</span> gr</span>
 <span id="cb25-2"><a></a></span>
 <span id="cb25-3"><a></a><span class="kw">def</span> image_classifier(inp):</span>
@@ -1290,15 +1290,15 @@ Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
 <section id="example-1-basic-interface-1" class="slide level2">
 <h2>Example 1: Basic Interface</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-1">
-<div id="example-1" class="cell" data-execution_count="5">
+<div id="example-1" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-stdout">
-<pre><code>* Running on local URL:  http://127.0.0.1:7860
+<pre><code>* Running on local URL:  http://127.0.0.1:7862
 * To create a public link, set `share=True` in `launch()`.</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<div><iframe src="http://127.0.0.1:7860/" width="100%" height="500" allow="autoplay; camera; microphone; clipboard-read; clipboard-write;" frameborder="0" allowfullscreen=""></iframe></div>
+<div><iframe src="http://127.0.0.1:7862/" width="100%" height="500" allow="autoplay; camera; microphone; clipboard-read; clipboard-write;" frameborder="0" allowfullscreen=""></iframe></div>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code></code></pre>
 </div>
 </div>
@@ -1307,7 +1307,7 @@ Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
 <section id="example-2-basic-chat-interface" class="slide level2">
 <h2>Example 2: Basic Chat Interface</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-2">
-<div id="example-2" class="cell" data-execution_count="6">
+<div id="example-2" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a></a><span class="im">import</span> gradio <span class="im">as</span> gr</span>
 <span id="cb28-2"><a></a></span>
 <span id="cb28-3"><a></a><span class="kw">def</span> chat_with_history(message, history):</span>
@@ -1325,25 +1325,26 @@ Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
 <span id="cb28-15"><a></a><span class="co"># Create a chat interface</span></span>
 <span id="cb28-16"><a></a>demo <span class="op">=</span> gr.ChatInterface(</span>
 <span id="cb28-17"><a></a>    fn<span class="op">=</span>chat_with_history,</span>
-<span id="cb28-18"><a></a>    title<span class="op">=</span><span class="st">"Basic Chat with Conversation History"</span></span>
-<span id="cb28-19"><a></a>)</span>
-<span id="cb28-20"><a></a></span>
-<span id="cb28-21"><a></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb28-18"><a></a>    title<span class="op">=</span><span class="st">"Basic Chat with Conversation History"</span>,</span>
+<span id="cb28-19"><a></a>    <span class="bu">type</span><span class="op">=</span><span class="st">"messages"</span></span>
+<span id="cb28-20"><a></a>)</span>
+<span id="cb28-21"><a></a></span>
+<span id="cb28-22"><a></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
 <section id="example-2-basic-chat-interface-1" class="slide level2">
 <h2>Example 2: Basic Chat Interface</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-2">
-<div id="example-2" class="cell" data-execution_count="6">
+<div id="example-2" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-stdout">
-<pre><code>* Running on local URL:  http://127.0.0.1:7861
+<pre><code>* Running on local URL:  http://127.0.0.1:7863
 * To create a public link, set `share=True` in `launch()`.</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<div><iframe src="http://127.0.0.1:7861/" width="100%" height="500" allow="autoplay; camera; microphone; clipboard-read; clipboard-write;" frameborder="0" allowfullscreen=""></iframe></div>
+<div><iframe src="http://127.0.0.1:7863/" width="100%" height="500" allow="autoplay; camera; microphone; clipboard-read; clipboard-write;" frameborder="0" allowfullscreen=""></iframe></div>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code></code></pre>
 </div>
 </div>
@@ -1352,46 +1353,49 @@ Paris, France has GPS coordinates of 48.8566, 2.3522</code></pre>
 <section id="example-3-streaming-chat-interface" class="slide level2">
 <h2>Example 3: Streaming Chat Interface</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-3">
-<div id="example-3" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a></a><span class="kw">def</span> chat_with_streaming(message, history):</span>
-<span id="cb31-2"><a></a>    messages <span class="op">=</span> history <span class="op">+</span> [{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: message}]</span>
-<span id="cb31-3"><a></a>    </span>
-<span id="cb31-4"><a></a>    <span class="co"># Stream the response</span></span>
-<span id="cb31-5"><a></a>    stream <span class="op">=</span> client.chat.completions.create(</span>
-<span id="cb31-6"><a></a>        model<span class="op">=</span><span class="st">'openai/gpt-5.2-chat'</span>,</span>
-<span id="cb31-7"><a></a>        messages<span class="op">=</span>messages,</span>
-<span id="cb31-8"><a></a>        stream<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb31-9"><a></a>    )</span>
-<span id="cb31-10"><a></a>    </span>
-<span id="cb31-11"><a></a>    response_text <span class="op">=</span> <span class="st">""</span></span>
-<span id="cb31-12"><a></a>    <span class="cf">for</span> chunk <span class="kw">in</span> stream:</span>
-<span id="cb31-13"><a></a>        <span class="cf">if</span> chunk.choices[<span class="dv">0</span>].delta.content <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
-<span id="cb31-14"><a></a>            token <span class="op">=</span> chunk.choices[<span class="dv">0</span>].delta.content</span>
-<span id="cb31-15"><a></a>            response_text <span class="op">+=</span> token</span>
-<span id="cb31-16"><a></a>            <span class="cf">yield</span> response_text</span>
-<span id="cb31-17"><a></a></span>
-<span id="cb31-18"><a></a><span class="co"># Create streaming chat interface</span></span>
-<span id="cb31-19"><a></a>demo <span class="op">=</span> gr.ChatInterface(</span>
-<span id="cb31-20"><a></a>    fn<span class="op">=</span>chat_with_streaming,</span>
-<span id="cb31-21"><a></a>    title<span class="op">=</span><span class="st">"AI Chat with Streaming"</span>,</span>
-<span id="cb31-22"><a></a>)</span>
-<span id="cb31-23"><a></a></span>
-<span id="cb31-24"><a></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="example-3" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a></a><span class="im">import</span> gradio <span class="im">as</span> gr</span>
+<span id="cb31-2"><a></a></span>
+<span id="cb31-3"><a></a><span class="kw">def</span> chat_with_streaming(message, history):</span>
+<span id="cb31-4"><a></a>    messages <span class="op">=</span> history <span class="op">+</span> [{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: message}]</span>
+<span id="cb31-5"><a></a>    </span>
+<span id="cb31-6"><a></a>    <span class="co"># Stream the response</span></span>
+<span id="cb31-7"><a></a>    stream <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb31-8"><a></a>        model<span class="op">=</span><span class="st">'openai/gpt-5.2-chat'</span>,</span>
+<span id="cb31-9"><a></a>        messages<span class="op">=</span>messages,</span>
+<span id="cb31-10"><a></a>        stream<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb31-11"><a></a>    )</span>
+<span id="cb31-12"><a></a>    </span>
+<span id="cb31-13"><a></a>    response_text <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb31-14"><a></a>    <span class="cf">for</span> chunk <span class="kw">in</span> stream:</span>
+<span id="cb31-15"><a></a>        <span class="cf">if</span> chunk.choices[<span class="dv">0</span>].delta.content <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb31-16"><a></a>            token <span class="op">=</span> chunk.choices[<span class="dv">0</span>].delta.content</span>
+<span id="cb31-17"><a></a>            response_text <span class="op">+=</span> token</span>
+<span id="cb31-18"><a></a>            <span class="cf">yield</span> response_text</span>
+<span id="cb31-19"><a></a></span>
+<span id="cb31-20"><a></a><span class="co"># Create streaming chat interface</span></span>
+<span id="cb31-21"><a></a>demo <span class="op">=</span> gr.ChatInterface(</span>
+<span id="cb31-22"><a></a>    fn<span class="op">=</span>chat_with_streaming,</span>
+<span id="cb31-23"><a></a>    title<span class="op">=</span><span class="st">"AI Chat with Streaming"</span>,</span>
+<span id="cb31-24"><a></a>    <span class="bu">type</span><span class="op">=</span><span class="st">"messages"</span></span>
+<span id="cb31-25"><a></a>)</span>
+<span id="cb31-26"><a></a></span>
+<span id="cb31-27"><a></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
 <section id="example-3-streaming-chat-interface-1" class="slide level2">
 <h2>Example 3: Streaming Chat Interface</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/02/notebooks/gradio.ipynb" data-notebook-title="Gradio with OpenAI API (via OpenRouter)" data-notebook-cellid="example-3">
-<div id="example-3" class="cell" data-execution_count="7">
+<div id="example-3" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-stdout">
-<pre><code>* Running on local URL:  http://127.0.0.1:7862
+<pre><code>* Running on local URL:  http://127.0.0.1:7864
 * To create a public link, set `share=True` in `launch()`.</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<div><iframe src="http://127.0.0.1:7862/" width="100%" height="500" allow="autoplay; camera; microphone; clipboard-read; clipboard-write;" frameborder="0" allowfullscreen=""></iframe></div>
+<div><iframe src="http://127.0.0.1:7864/" width="100%" height="500" allow="autoplay; camera; microphone; clipboard-read; clipboard-write;" frameborder="0" allowfullscreen=""></iframe></div>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code></code></pre>
 </div>
 </div>
