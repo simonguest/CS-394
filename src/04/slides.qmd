@@ -32,6 +32,87 @@ bibliography: references.bib
 - Understand the fundamentals and history of Vision Encoders and VLMs
 - Implement/test a local VLM model for on-device inference
 
+# Image Models
+
+## Images Models: Text-to-Image
+
+:::: {.columns}
+
+::: {.column width="50%"}
+"A photograph of an astronaut riding a horse."
+
+- Based on a concept called a diffusion transformer
+- Commonly known as a **diffuser**
+- Two stage process, inspired by thermodynamics
+:::
+
+::: {.column width="50%"}
+![](./images/astronaut.png)
+:::
+::::
+
+## Introducing the Diffuser - TBD more detail
+
+- Training
+  - During training, random noise is added to images in steps
+  - Model learns to predict what noise was added (forward diffusion process)
+- Inference (process runs in reverse)
+  - Start with pure random noise
+  - Model estimates what noise should be removed to create a realistic image
+  - Using the text prompt, the model steers the process towards images that match the description
+
+
+## Image Diffusion Models in 2022
+
+```{mermaid}
+timeline
+  August 2022 : Stable Diffusion v1.4
+              : First open-source high-quality model
+  September 2022 : Stable Diffusion v1.5
+                  : Refined version
+  October 2022 : eDiff-I (NVIDIA)
+                : Ensemble approach
+  November 2022 : Stable Diffusion v2.0/2.1
+                : Higher resolution (768x768)
+```
+
+## Image Diffusion Models in 2023
+
+```{mermaid}
+timeline
+  March 2023 : Midjourney v5
+              : Exceptional artistic quality
+  April 2023 : ControlNet
+        : Precise spatial control
+        : AnimateDiff - Video generation
+  July 2023 : SDXL (Stable Diffusion XL)
+            : 1024x1024 native resolution
+  August 2023 : SDXL Turbo
+              : Real-time capable generation
+```
+
+## Image Diffusion Models in 2024
+
+```{mermaid}
+timeline
+  February 2024 : Stable Diffusion 3
+                : Improved text understanding
+  June 2024 : Stable Diffusion 3.5
+            : Multiple model sizes
+  2024 : FLUX.1 (Black Forest Labs)
+        : State-of-the-art open model
+        : Imagen 3 (Google DeepMind)
+        : Photorealistic quality
+```
+
+## Image Diffusion Models in 2025
+
+- TBD
+
+
+## TBD at some point - introduce HF pipeline
+
+
 # Looking Ahead
 
 ## Looking Ahead
