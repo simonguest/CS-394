@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Module 1 Assignment: Experiment with Text Continuation Styles – CS-394</title>
+<title>Text-to-Image using Stable Diffusion – CS-394</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,30 +58,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../src/02/slides.html" rel="next">
-<link href="../../src/01/notebooks/GPT-2.html" rel="prev">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-fb7c9abc17d36d8f171624f5bcedd762.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-452555fb2cd10fd46433dc67f9b82a1c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-fb7c9abc17d36d8f171624f5bcedd762.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-fb7c9abc17d36d8f171624f5bcedd762.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-452555fb2cd10fd46433dc67f9b82a1c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-fb7c9abc17d36d8f171624f5bcedd762.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -109,6 +107,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
 
 
 </head>
@@ -284,7 +286,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/01/slides.html"><strong>Module 1:</strong> Foundations of Generative AI</a></li><li class="breadcrumb-item"><a href="../../src/01/assignment.html">Assignment</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Text-to-Image using Stable Diffusion</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -298,9 +300,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../../index.html" class="sidebar-logo-link">
-      <img src="../../theme/logos/DigiPen_Dragon_Shield_RGB_Black.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="../../theme/logos/DigiPen_Dragon_Shield_RGB_Black.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <a href="../../../index.html" class="sidebar-logo-link">
+      <img src="../../../theme/logos/DigiPen_Dragon_Shield_RGB_Black.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../../../theme/logos/DigiPen_Dragon_Shield_RGB_Black.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
@@ -315,7 +317,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CS-394/594</span></a>
   </div>
 </li>
@@ -331,7 +333,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/00/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/00/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
@@ -343,19 +345,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/00/weekly-rubric.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/00/weekly-rubric.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Rubric (Weekly Assignments)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/00/final-rubric-394.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/00/final-rubric-394.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Rubric (Final Project for CS-394)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/00/final-rubric-594.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/00/final-rubric-594.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Rubric (Final Project for CS-594)</span></a>
   </div>
 </li>
@@ -372,13 +374,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/01/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/01/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/01/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/01/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -393,25 +395,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/01/notebooks/hello-world.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/01/notebooks/hello-world.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">hello-world.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/01/notebooks/word2vec.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/01/notebooks/word2vec.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">word2vec.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/01/notebooks/translation-transformer.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/01/notebooks/translation-transformer.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">translation-transformer.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/01/notebooks/GPT-2.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/01/notebooks/GPT-2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GPT-2.ipynb</span></a>
   </div>
 </li>
@@ -419,7 +421,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/01/assignment.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../src/01/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -436,13 +438,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/02/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/02/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -457,37 +459,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/notebooks/instruction-tuned.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/02/notebooks/instruction-tuned.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">instruction-tuned.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/notebooks/chat-completion-openai.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/02/notebooks/chat-completion-openai.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">chat-completion-openai.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/notebooks/chat-completion-openrouter.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/02/notebooks/chat-completion-openrouter.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">chat-completion-openrouter.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/notebooks/token-streaming.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/02/notebooks/token-streaming.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">token-streaming.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/notebooks/structured-outputs.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/02/notebooks/structured-outputs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">structured-outputs.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/notebooks/gradio.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/02/notebooks/gradio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">gradio.ipynb</span></a>
   </div>
 </li>
@@ -495,7 +497,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/02/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -512,13 +514,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/03/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/03/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/03/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/03/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -533,19 +535,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/03/notebooks/campus-agent.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/03/notebooks/campus-agent.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">campus-agent.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/03/notebooks/memory.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/03/notebooks/memory.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">memory.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/03/notebooks/open-meteo-mcp.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/03/notebooks/open-meteo-mcp.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">open-meteo-mcp.ipynb</span></a>
   </div>
 </li>
@@ -553,7 +555,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/03/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/03/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -570,13 +572,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/04/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/04/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/04/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/04/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -586,7 +588,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/04/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/04/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -603,13 +605,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/05/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/05/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/05/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/05/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -619,7 +621,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/05/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/05/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -636,13 +638,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/06/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/06/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/06/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/06/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -652,7 +654,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/06/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/06/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -669,13 +671,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/07/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/07/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/07/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/07/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -685,7 +687,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/07/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/07/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -702,13 +704,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/08/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/08/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/08/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/08/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -718,7 +720,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/08/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/08/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -734,9 +736,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/01/slides.html"><strong>Module 1:</strong> Foundations of Generative AI</a></li><li class="breadcrumb-item"><a href="../../src/01/assignment.html">Assignment</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Module 1 Assignment: Experiment with Text Continuation Styles</h1>
+<h1 class="title">Text-to-Image using Stable Diffusion</h1>
 </div>
 
 
@@ -753,44 +755,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><strong>Objective:</strong> Create a Colab notebook that uses GPT-2 to generate creative text continuations with different styles.</p>
-<p><strong>Requirements:</strong></p>
-<ul>
-<li>Load a pre-trained GPT-2 model (using HuggingFace transformers - same approach as used in GPT-2.ipynb)</li>
-<li>Create 3 different story starters in different genres/styles. For example:
-<ul>
-<li>Fantasy/Adventure: “In a land of dragons and magic…”</li>
-<li>Sci-fi: “The year is 2157. Humanity has just…”</li>
-<li>Mystery: “The detective examined the crime scene and noticed…”</li>
-<li>(or choose your own three)</li>
-</ul></li>
-<li>Then adjust for:
-<ul>
-<li>Greedy decoding vs.&nbsp;sampling</li>
-<li>Different temperature values</li>
-<li>How the opening sentence shapes the continuation (e.g., short vs.&nbsp;long)</li>
-</ul></li>
-<li>Document your observations (using Markdown in the notebook)
-<ul>
-<li>What differences do you notice between the strategies?</li>
-<li>What worked well (or surprised you!)</li>
-<li>What didn’t work that well</li>
-</ul></li>
-</ul>
-<p><strong>Deliverable: A Colab/Jupyter notebook with:</strong></p>
-<ul>
-<li>Code cells with your implementation</li>
-<li>Outputs of generated text from GPT-2</li>
-<li>Markdown cells explaining what each sampling strategy does and any observations</li>
-</ul>
-<p><strong>Hint:</strong></p>
-<p>For better results, use a larger GPT-2 model on Colab T4.</p>
-<div id="9a92ce44" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> GPT2Tokenizer.from_pretrained(<span class="st">"gpt2-medium"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> GPT2LMHeadModel.from_pretrained(<span class="st">"gpt2-medium"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><a target="_blank" href="https://colab.research.google.com/github/simonguest/CS-394/blob/main/src/03/notebooks/open-meteo-mcp.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"> </a> <a target="_blank" href="https://github.com/simonguest/CS-394/raw/refs/heads/main/src/03/notebooks/open-meteo-mcp.ipynb"> <img src="https://img.shields.io/badge/Download_.ipynb-blue" alt="Download .ipynb"> </a></p>
+<section id="login-to-hf" class="level3">
+<h3 class="anchored" data-anchor-id="login-to-hf">Login to HF</h3>
+<div id="f5866e94" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> huggingface_hub <span class="im">import</span> login</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>load_dotenv()</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>login(os.environ.get(<span class="st">"HF_TOKEN"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Note: Environment variable`HF_TOKEN` is set and is the current active token independently from the token you've just configured.</code></pre>
+</div>
+</div>
+</section>
+<section id="load-a-compact-sd-model" class="level3">
+<h3 class="anchored" data-anchor-id="load-a-compact-sd-model">Load a compact SD model</h3>
+<div id="71ffd8f4" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> diffusers <span class="im">import</span> StableDiffusion3Pipeline</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load a compact diffusion model</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>model_id <span class="op">=</span> <span class="st">"stabilityai/stable-diffusion-3.5-medium"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>pipe <span class="op">=</span> StableDiffusion3Pipeline.from_pretrained(</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    model_id,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Move to GPU if available</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> <span class="st">"cuda"</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="st">"cpu"</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>pipe <span class="op">=</span> pipe.to(device)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/simon/Dev/CS-394/.venv/lib/python3.13/site-packages/torch/amp/autocast_mode.py:270: UserWarning: User provided device_type of 'cuda', but CUDA is not available. Disabling
+  warnings.warn(</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"08ab1ed932d343379658328d3f82d1e4","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>You set `add_prefix_space`. The tokenizer needs to be converted from the slow tokenizers</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"17c59151f4654b658d43ba076c47fae6","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1206,18 +1221,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../src/01/notebooks/GPT-2.html" class="pagination-link" aria-label="GPT-2.ipynb">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">GPT-2.ipynb</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../src/02/slides.html" class="pagination-link" aria-label="Slides">
-        <span class="nav-page-text">Slides</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 

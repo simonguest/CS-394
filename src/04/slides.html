@@ -120,6 +120,10 @@
       margin-right: 0; 
     }
   </style>
+  <meta name="mermaid-theme" content="neutral">
+  <script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -152,6 +156,120 @@
 <li class="fragment">Implement/test a local VLM model for on-device inference</li>
 </ul>
 </section>
+<section>
+<section id="image-models" class="title-slide slide level1 center">
+<h1>Image Models</h1>
+
+</section>
+<section id="images-models-text-to-image" class="slide level2">
+<h2>Images Models: Text-to-Image</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>“A photograph of an astronaut riding a horse.”</p>
+<ul>
+<li class="fragment">Based on a concept called a diffusion transformer</li>
+<li class="fragment">Commonly known as a <strong>diffuser</strong></li>
+<li class="fragment">Two stage process, inspired by thermodynamics</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><img data-src="./images/astronaut.png"></p>
+</div></div>
+</section>
+<section id="introducing-the-diffuser---tbd-more-detail" class="slide level2">
+<h2>Introducing the Diffuser - TBD more detail</h2>
+<ul>
+<li class="fragment">Training
+<ul>
+<li class="fragment">During training, random noise is added to images in steps</li>
+<li class="fragment">Model learns to predict what noise was added (forward diffusion process)</li>
+</ul></li>
+<li class="fragment">Inference (process runs in reverse)
+<ul>
+<li class="fragment">Start with pure random noise</li>
+<li class="fragment">Model estimates what noise should be removed to create a realistic image</li>
+<li class="fragment">Using the text prompt, the model steers the process towards images that match the description</li>
+</ul></li>
+</ul>
+</section>
+<section id="image-diffusion-models-in-2022" class="slide level2">
+<h2>Image Diffusion Models in 2022</h2>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">timeline
+  August 2022 : Stable Diffusion v1.4
+              : First open-source high-quality model
+  September 2022 : Stable Diffusion v1.5
+                  : Refined version
+  October 2022 : eDiff-I (NVIDIA)
+                : Ensemble approach
+  November 2022 : Stable Diffusion v2.0/2.1
+                : Higher resolution (768x768)
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="image-diffusion-models-in-2023" class="slide level2">
+<h2>Image Diffusion Models in 2023</h2>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">timeline
+  March 2023 : Midjourney v5
+              : Exceptional artistic quality
+  April 2023 : ControlNet
+        : Precise spatial control
+        : AnimateDiff - Video generation
+  July 2023 : SDXL (Stable Diffusion XL)
+            : 1024x1024 native resolution
+  August 2023 : SDXL Turbo
+              : Real-time capable generation
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="image-diffusion-models-in-2024" class="slide level2">
+<h2>Image Diffusion Models in 2024</h2>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">timeline
+  February 2024 : Stable Diffusion 3
+                : Improved text understanding
+  June 2024 : Stable Diffusion 3.5
+            : Multiple model sizes
+  2024 : FLUX.1 (Black Forest Labs)
+        : State-of-the-art open model
+        : Imagen 3 (Google DeepMind)
+        : Photorealistic quality
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="image-diffusion-models-in-2025" class="slide level2">
+<h2>Image Diffusion Models in 2025</h2>
+<ul>
+<li class="fragment">TBD</li>
+</ul>
+</section>
+<section id="tbd-at-some-point---introduce-hf-pipeline" class="slide level2">
+<h2>TBD at some point - introduce HF pipeline</h2>
+</section></section>
 <section>
 <section id="looking-ahead" class="title-slide slide level1 center">
 <h1>Looking Ahead</h1>
