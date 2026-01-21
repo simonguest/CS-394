@@ -34,7 +34,13 @@ bibliography: references.bib
 
 # Image Models
 
-## Images Models: Text-to-Image
+## Image Models
+
+- Text-to-Image
+- Image-to-Image
+- TBD
+
+## Text-to-Image
 
 :::: {.columns}
 
@@ -51,7 +57,7 @@ bibliography: references.bib
 :::
 ::::
 
-## Introducing the Diffuser - TBD more detail
+## Introducing the Diffuser
 
 - Training
   - During training, random noise is added to images in steps
@@ -107,10 +113,35 @@ timeline
 
 ## Image Diffusion Models in 2025
 
+```{mermaid}
+timeline
+  May 2025 : Imagen 4 (Google DeepMind)
+           : Improved text rendering, 2K resolution
+  August 2025 : Nano Banana (Google)
+              : Autoregressive model in Gemini 2.5 Flash
+  November 2025 : FLUX.2 (Black Forest Labs)
+                : 32B parameters, multi-image references
+```
+
+## Text-to-Image with SD 1.5
+
+{{< embed notebooks/text-to-image-sd-1.5.ipynb#load-model echo=true outputs=false >}}
+
+## Text-to-Image with SD 1.5
+
+{{< embed notebooks/text-to-image-sd-1.5.ipynb#steps echo=true outputs=false >}}
+
+## Text-to-Image with SD 1.5
+
+{{< embed notebooks/text-to-image-sd-1.5.ipynb#steps echo=false >}}
+
+## Introducing HF Pipelines
+
 - TBD
 
 
-## TBD at some point - introduce HF pipeline
+
+
 
 
 # Looking Ahead
