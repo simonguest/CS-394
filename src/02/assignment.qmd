@@ -21,3 +21,9 @@ execute:
 - Code cells with your implementation
 - Uses OPENROUTER_API_KEY for the API token. (Please do not include your API key in your notebook!)
 - Markdown cells explaining what the notebook does and any observations
+
+**Hint**
+
+- To get streaming and structured outputs working in Gradio, you may want to think of this as two calls to the model:
+  - The first call asks the model to think about the problem (e.g., "How can you help the user solve their travel question?") You can use streaming to display the response token-by-token in Gradio.
+  - The second call then takes the model's prior answer and creates a new call (e.g., "From your thinking, create an itinerary.") You can then use structured outputs to ensure that this matches the schema, and map that to a component in the Gradio UI (gr.JSON is fine to display this, unless you want to get more creative :).

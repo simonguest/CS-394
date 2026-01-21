@@ -31,7 +31,7 @@ execute:
 - Understand the evolution and licensing of models from GPT-2 through to modern day
 - Understand instruction-tuned models, how they work, and how to configure
 - Setup and use OpenRouter for accessing hosted models
-- Understand the OpenAI API specification, the request/response payload, parameters, streaming, and structured output
+- Understand the OpenAI API specification, the request/response payload, parameters, streaming, and structured outputs
 - Create and share a chatbot using a Gradio-based UI
 
 # From GPT-2 to GPT-3.5
@@ -385,7 +385,7 @@ OpenRouter overview and notebook
 
 Register for an OpenRouter account, create an API key, import into the OpenRouter Notebook (chat-completion-openrouter.ipynb) and experiment with different models
 
-# Token Streaming and Structured Output
+# Token Streaming and Structured Outputs
 
 ## Token Streaming
 
@@ -426,7 +426,7 @@ Data sent as chunks, prefixed with `data:` and separated by double newlines
 
 - So far, the models have generated non-structured output (i.e., free-form text)
 - Sometimes, paragraph. Sometimes, numbered list.
-- Sometimes, you just need structure
+- But often, you need structure
   - "Return your result in JSON format"
   - "Give me the coordinates for Paris"
   - "What's the temperature in Paris right now?"
@@ -441,7 +441,7 @@ Data sent as chunks, prefixed with `data:` and separated by double newlines
 - Sometimes the models just forget!
   - "RETURN THE RESULT IN JSON ONLY. NO OTHER TEXT!!!"
 
-## Structured Output in OpenAI API
+## Structured Outputs in OpenAI API
 
 - Nov 2023: OpenAI added JSON mode
   - `response_format: {"type": "json_object"}`
