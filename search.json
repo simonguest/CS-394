@@ -4,21 +4,36 @@
     "href": "src/04/notebooks/text-to-image-sd-1.5.html",
     "title": "Text-to-Image using Stable Diffusion 1.5",
     "section": "",
-    "text": "import torch\nfrom diffusers import StableDiffusionPipeline\n\n# Load a small diffusion model\nmodel_id = \"stable-diffusion-v1-5/stable-diffusion-v1-5\"\npipe = StableDiffusionPipeline.from_pretrained(\n    model_id,\n)\n\n# Move to GPU if available\ndevice = \"cuda\" if torch.cuda.is_available() else \"cpu\"\npipe = pipe.to(device)\n\nFlax classes are deprecated and will be removed in Diffusers v1.0.0. We recommend migrating to PyTorch classes or pinning your version of Diffusers.\nFlax classes are deprecated and will be removed in Diffusers v1.0.0. We recommend migrating to PyTorch classes or pinning your version of Diffusers."
+    "text": "import torch\nfrom diffusers import StableDiffusionPipeline\n\n# Load a small diffusion model\nmodel_id = \"stable-diffusion-v1-5/stable-diffusion-v1-5\"\npipe = StableDiffusionPipeline.from_pretrained(\n    model_id,\n)\n\n# Move to GPU if available\ndevice = \"cuda\" if torch.cuda.is_available() else \"cpu\"\npipe = pipe.to(device)\n\nFlax classes are deprecated and will be removed in Diffusers v1.0.0. We recommend migrating to PyTorch classes or pinning your version of Diffusers.\nFlax classes are deprecated and will be removed in Diffusers v1.0.0. We recommend migrating to PyTorch classes or pinning your version of Diffusers.\n/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_auth.py:104: UserWarning: \nError while fetching `HF_TOKEN` secret value from your vault: 'Requesting secret HF_TOKEN timed out. Secrets can only be fetched when running from the Colab UI.'.\nYou are not authenticated with the Hugging Face Hub in this notebook.\nIf the error persists, please let us know by opening an issue on GitHub (https://github.com/huggingface/huggingface_hub/issues/new).\n  warnings.warn(\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKeyword arguments {'generator': &lt;torch._C.Generator object at 0x7c30c9746a30&gt;} are not expected by StableDiffusionPipeline and will be ignored.",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "text-to-image-sd-1.5.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/text-to-image-sd-1.5.html#show-intermediate-steps",
     "href": "src/04/notebooks/text-to-image-sd-1.5.html#show-intermediate-steps",
     "title": "Text-to-Image using Stable Diffusion 1.5",
     "section": "Show Intermediate Steps",
-    "text": "Show Intermediate Steps\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nPROMPT = \"a photograph of an astronaut riding a horse\" #@param {type:\"string\"}\nSTEPS = 50 #@param {type:\"slider\", min:10, max:100, step:1}\n\nintermediate_images = []\n\ndef callback_fn(step, timestep, latents):\n    \"\"\"Capture intermediate denoising steps\"\"\"\n    # Decode latents to image every few steps\n    if step % 5 == 0 or step == 0:\n        with torch.no_grad():\n            # Decode the latent representation to an image\n            image = pipe.vae.decode(latents / pipe.vae.config.scaling_factor, return_dict=False)[0]\n            image = pipe.image_processor.postprocess(image, output_type=\"pil\")[0]\n            intermediate_images.append((step, image))\n\nresult = pipe(\n    PROMPT,\n    num_inference_steps=STEPS,\n    callback=callback_fn,\n    callback_steps=1,\n).images[0]\n\n# Visualize the denoising process\nnum_steps_to_show = min(10, len(intermediate_images))\nstep_indices = np.linspace(0, len(intermediate_images)-1, num_steps_to_show, dtype=int)\n\nfig, axes = plt.subplots(2, 5, figsize=(15, 6))\nfig.suptitle(f'Real Diffusion Model Denoising Process\\nPrompt: \"{PROMPT}\"')\n\nfor idx, step_idx in enumerate(step_indices):\n    row = idx // 5\n    col = idx % 5\n    step_num, img = intermediate_images[step_idx]\n\n    axes[row, col].imshow(img)\n    axes[row, col].axis('off')\n    axes[row, col].set_title(f'Step {step_num}/{STEPS}')\n\nplt.tight_layout()\nplt.savefig('diffusion_process.png', dpi=150, bbox_inches='tight')\nplt.show()\n\n/usr/local/lib/python3.12/dist-packages/diffusers/pipelines/stable_diffusion/pipeline_stable_diffusion.py:899: FutureWarning: `callback` is deprecated and will be removed in version 1.0.0. Passing `callback` as an input argument to `__call__` is deprecated, consider using `callback_on_step_end`\n  deprecate(\n/usr/local/lib/python3.12/dist-packages/diffusers/pipelines/stable_diffusion/pipeline_stable_diffusion.py:905: FutureWarning: `callback_steps` is deprecated and will be removed in version 1.0.0. Passing `callback_steps` as an input argument to `__call__` is deprecated, consider using `callback_on_step_end`\n  deprecate("
+    "text": "Show Intermediate Steps\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nPROMPT = \"a photograph of an astronaut riding a horse\" #@param {type:\"string\"}\nSTEPS = 50 #@param {type:\"slider\", min:10, max:100, step:1}\nSEED = -1 #@param {type:\"integer\"}\n\nintermediate_images = []\n\ndef callback_fn(step, timestep, latents):\n    \"\"\"Capture intermediate denoising steps\"\"\"\n    # Decode latents to image every few steps\n    if step % 5 == 0 or step == 0:\n        with torch.no_grad():\n            # Decode the latent representation to an image\n            image = pipe.vae.decode(latents / pipe.vae.config.scaling_factor, return_dict=False)[0]\n            image = pipe.image_processor.postprocess(image, output_type=\"pil\")[0]\n            intermediate_images.append((step, image))\n\nresult = pipe(\n    PROMPT,\n    num_inference_steps=STEPS,\n    callback=callback_fn,\n    callback_steps=1,\n    generator=torch.Generator().manual_seed(SEED) if SEED != -1 else None,\n).images[0]\n\n# Visualize the denoising process\nnum_steps_to_show = min(10, len(intermediate_images))\nstep_indices = np.linspace(0, len(intermediate_images)-1, num_steps_to_show, dtype=int)\n\nfig, axes = plt.subplots(2, 5, figsize=(15, 6))\nfig.suptitle(f'Real Diffusion Model Denoising Process\\nPrompt: \"{PROMPT}\"')\n\nfor idx, step_idx in enumerate(step_indices):\n    row = idx // 5\n    col = idx % 5\n    step_num, img = intermediate_images[step_idx]\n\n    axes[row, col].imshow(img)\n    axes[row, col].axis('off')\n    axes[row, col].set_title(f'Step {step_num}/{STEPS}')\n\nplt.tight_layout()\nplt.savefig('diffusion_process.png', dpi=150, bbox_inches='tight')\nplt.show()",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "text-to-image-sd-1.5.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/text-to-image-sd-1.5.html#show-final-image",
     "href": "src/04/notebooks/text-to-image-sd-1.5.html#show-final-image",
     "title": "Text-to-Image using Stable Diffusion 1.5",
     "section": "Show Final Image",
-    "text": "Show Final Image\n\nplt.figure(figsize=(8, 8))\nplt.imshow(result)\nplt.axis('off')\nplt.title('Final Generated Image')\nplt.savefig('final_result.png', dpi=150, bbox_inches='tight')\nplt.show()"
+    "text": "Show Final Image\n\nplt.figure(figsize=(8, 8))\nplt.imshow(result)\nplt.axis('off')\nplt.title('Final Generated Image')\nplt.savefig('final_result.png', dpi=150, bbox_inches='tight')\nplt.show()",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "text-to-image-sd-1.5.ipynb"
+    ]
   },
   {
     "objectID": "src/03/notebooks/memory.html",
@@ -519,11 +534,22 @@
     ]
   },
   {
-    "objectID": "src/04/slides.html#image-models-1",
-    "href": "src/04/slides.html#image-models-1",
+    "objectID": "src/04/slides.html#multimedia-vs.-multimodal-1",
+    "href": "src/04/slides.html#multimedia-vs.-multimodal-1",
     "title": "Module 4: Multimedia and Multimodal Models",
-    "section": "Image Models",
-    "text": "Image Models\n\nText-to-Image\nImage-to-Image\nTBD",
+    "section": "Multimedia vs. Multimodal",
+    "text": "Multimedia vs. Multimodal\n\nMultimedia models\n\nSingle input/output models for images, video, audio, etc.\nAlso known as computer vision, audio models\n\nExamples\n\nText-to-Image (generate an image from a text prompt)\nImage-to-Image (generate an image from an existing image)\nImage-to-3D (generate a 3D object from an image)",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#multimedia-vs.-multimodal-2",
+    "href": "src/04/slides.html#multimedia-vs.-multimodal-2",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Multimedia vs. Multimodal",
+    "text": "Multimedia vs. Multimodal\n\nMultimodal models\n\nProcess multiple datatypes such as text, images, and audio\nAlso known as VLMs (Vision-Language Models) or ALMs (Audio-Language Models)\n\nExamples\n\nImage-Text-to-Text (ask a question about this image)\nImage-Text-to-Image (decompose this image into multiple layers)\nAudio-Text-to-Text (what is this sound?)",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -611,7 +637,7 @@
     "href": "src/04/slides.html#text-to-image-with-sd-1.5-1",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "Text-to-Image with SD 1.5",
-    "text": "Text-to-Image with SD 1.5\n\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nPROMPT = \"a photograph of an astronaut riding a horse\" #@param {type:\"string\"}\nSTEPS = 50 #@param {type:\"slider\", min:10, max:100, step:1}\n\nintermediate_images = []\n\ndef callback_fn(step, timestep, latents):\n    \"\"\"Capture intermediate denoising steps\"\"\"\n    # Decode latents to image every few steps\n    if step % 5 == 0 or step == 0:\n        with torch.no_grad():\n            # Decode the latent representation to an image\n            image = pipe.vae.decode(latents / pipe.vae.config.scaling_factor, return_dict=False)[0]\n            image = pipe.image_processor.postprocess(image, output_type=\"pil\")[0]\n            intermediate_images.append((step, image))\n\nresult = pipe(\n    PROMPT,\n    num_inference_steps=STEPS,\n    callback=callback_fn,\n    callback_steps=1,\n).images[0]\n\n# Visualize the denoising process\nnum_steps_to_show = min(10, len(intermediate_images))\nstep_indices = np.linspace(0, len(intermediate_images)-1, num_steps_to_show, dtype=int)\n\nfig, axes = plt.subplots(2, 5, figsize=(15, 6))\nfig.suptitle(f'Real Diffusion Model Denoising Process\\nPrompt: \"{PROMPT}\"')\n\nfor idx, step_idx in enumerate(step_indices):\n    row = idx // 5\n    col = idx % 5\n    step_num, img = intermediate_images[step_idx]\n\n    axes[row, col].imshow(img)\n    axes[row, col].axis('off')\n    axes[row, col].set_title(f'Step {step_num}/{STEPS}')\n\nplt.tight_layout()\nplt.savefig('diffusion_process.png', dpi=150, bbox_inches='tight')\nplt.show()",
+    "text": "Text-to-Image with SD 1.5\n\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nPROMPT = \"a photograph of an astronaut riding a horse\" #@param {type:\"string\"}\nSTEPS = 50 #@param {type:\"slider\", min:10, max:100, step:1}\nSEED = -1 #@param {type:\"integer\"}\n\nintermediate_images = []\n\ndef callback_fn(step, timestep, latents):\n    \"\"\"Capture intermediate denoising steps\"\"\"\n    # Decode latents to image every few steps\n    if step % 5 == 0 or step == 0:\n        with torch.no_grad():\n            # Decode the latent representation to an image\n            image = pipe.vae.decode(latents / pipe.vae.config.scaling_factor, return_dict=False)[0]\n            image = pipe.image_processor.postprocess(image, output_type=\"pil\")[0]\n            intermediate_images.append((step, image))\n\nresult = pipe(\n    PROMPT,\n    num_inference_steps=STEPS,\n    callback=callback_fn,\n    callback_steps=1,\n    generator=torch.Generator().manual_seed(SEED) if SEED != -1 else None,\n).images[0]\n\n# Visualize the denoising process\nnum_steps_to_show = min(10, len(intermediate_images))\nstep_indices = np.linspace(0, len(intermediate_images)-1, num_steps_to_show, dtype=int)\n\nfig, axes = plt.subplots(2, 5, figsize=(15, 6))\nfig.suptitle(f'Real Diffusion Model Denoising Process\\nPrompt: \"{PROMPT}\"')\n\nfor idx, step_idx in enumerate(step_indices):\n    row = idx // 5\n    col = idx % 5\n    step_num, img = intermediate_images[step_idx]\n\n    axes[row, col].imshow(img)\n    axes[row, col].axis('off')\n    axes[row, col].set_title(f'Step {step_num}/{STEPS}')\n\nplt.tight_layout()\nplt.savefig('diffusion_process.png', dpi=150, bbox_inches='tight')\nplt.show()",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -629,11 +655,66 @@
     ]
   },
   {
-    "objectID": "src/04/slides.html#introducing-hf-pipelines",
-    "href": "src/04/slides.html#introducing-hf-pipelines",
+    "objectID": "src/04/slides.html#sidebar-what-are-these-pipelines",
+    "href": "src/04/slides.html#sidebar-what-are-these-pipelines",
     "title": "Module 4: Multimedia and Multimodal Models",
-    "section": "Introducing HF Pipelines",
-    "text": "Introducing HF Pipelines\n\nTBD",
+    "section": "Sidebar: What are these pipelines?",
+    "text": "Sidebar: What are these pipelines?\n\nOur use of HF Transformers use so far\n\nConvert text to input tokens, pass to model, decode output tokens to text\n\nHF Pipelines provides a layer of abstraction\n\n(Setup the pipeline, then call pipe method)\nWhile still giving access to underlying components if needed\n\nPipelines also standardize other areas\n\ne.g., pipe(prompt).images[0] works for all model types\n.to(\"cuda\") moves all components of the model to the GPU",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#sidebar-seeds",
+    "href": "src/04/slides.html#sidebar-seeds",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Sidebar: Seeds",
+    "text": "Sidebar: Seeds\n\nWhat is a seed?\n\n(Optional) Integer value used to initialize the image generation\nUsed to generate the initial random noise\nUsing the same seed will generate the same image\n\nWhy use a seed?\n\nControlling the seed allows you to then experiment with different prompts or parameters\nGives you more control/predictability vs. starting from random seed every time",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#beyond-sd-1.5-1",
+    "href": "src/04/slides.html#beyond-sd-1.5-1",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Beyond SD 1.5",
+    "text": "Beyond SD 1.5\n\nStable Diffusion 1.5\n\nGreat for learning about the diffusion process\nBut the image quality isn’t great!\n\nImage models get large quickly\n\nHigher resolutions demand more GPU/VRAM",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#introducing-replicate",
+    "href": "src/04/slides.html#introducing-replicate",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Introducing Replicate",
+    "text": "Introducing Replicate\n\nSource: https://replicate.com",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#introducing-replicate-1",
+    "href": "src/04/slides.html#introducing-replicate-1",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Introducing Replicate",
+    "text": "Introducing Replicate\n\nSimilar to OpenRouter\n\nBut with a focus on image and video models\nExtensive access to larger models (e.g., FLUX 2, Nano Banana, ImageGen)\nPay-per-call pricing (expect 2c per image for higher quality models)\nAPI access (with Python and NodeJS library)\nFine-tune and share your own models",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#introducing-replicate-2",
+    "href": "src/04/slides.html#introducing-replicate-2",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Introducing Replicate",
+    "text": "Introducing Replicate\n\nTBD: Python API",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
