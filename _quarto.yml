@@ -106,6 +106,8 @@ website:
             href: src/04/resources.qmd
           - section: "Notebooks"
             contents:
+              - text: "text-to-image-sd-1.5.ipynb"
+                href: src/04/notebooks/text-to-image-sd-1.5.ipynb
           - text: "Assignment"
             href: src/04/assignment.qmd
       - section: "**Module 5:** Running Models on Local Hardware"

@@ -32,13 +32,27 @@ bibliography: references.bib
 - Understand the fundamentals and history of Vision Encoders and VLMs
 - Implement/test a local VLM model for on-device inference
 
-# Image Models
+# Multimedia vs. Multimodal
 
-## Image Models
+## Multimedia vs. Multimodal
 
-- Text-to-Image
-- Image-to-Image
-- TBD
+- **Multimedia** models
+  - Single input/output models for images, video, audio, etc.
+  - Also known as computer vision, audio models
+- Examples
+  - **Text-to-Image** (generate an image from a text prompt)
+  - **Image-to-Image** (generate an image from an existing image)
+  - **Image-to-3D** (generate a 3D object from an image)
+
+## Multimedia vs. Multimodal
+
+- **Multimodal** models
+  - Process multiple datatypes such as text, images, and audio
+  - Also known as VLMs (Vision-Language Models) or ALMs (Audio-Language Models)
+- Examples
+  - **Image-Text-to-Text** (ask a question about this image)
+  - **Image-Text-to-Image** (decompose this image into multiple layers)
+  - **Audio-Text-to-Text** (what is this sound?)
 
 ## Text-to-Image
 
@@ -66,7 +80,6 @@ bibliography: references.bib
   - Start with pure random noise
   - Model estimates what noise should be removed to create a realistic image
   - Using the text prompt, the model steers the process towards images that match the description
-
 
 ## Image Diffusion Models in 2022
 
@@ -135,10 +148,59 @@ timeline
 
 {{< embed notebooks/text-to-image-sd-1.5.ipynb#steps echo=false >}}
 
-## Introducing HF Pipelines
+## Sidebar: What are these pipelines?
 
-- TBD
+- Our use of HF Transformers use so far
+  - Convert text to input tokens, pass to model, decode output tokens to text
+- HF Pipelines provides a layer of abstraction
+  - (Setup the pipeline, then call `pipe` method)
+  - While still giving access to underlying components if needed
+- Pipelines also standardize other areas
+  - e.g., `pipe(prompt).images[0]` works for all model types
+  - `.to("cuda")` moves all components of the model to the GPU
 
+## Sidebar: Seeds
+
+- What is a seed?
+  - (Optional) Integer value used to initialize the image generation
+  - Used to generate the initial random noise
+  - Using the same seed will generate the same image
+- Why use a seed?
+  - Controlling the seed allows you to then experiment with different prompts or parameters
+  - Gives you more control/predictability vs. starting from random seed every time
+
+# Hands-on
+
+Open Text-to-Image notebook (text-to-image-sd-1.5.ipynb)
+
+Test different prompts, seed values, and steps 
+
+# Beyond SD 1.5
+
+## Beyond SD 1.5
+
+- Stable Diffusion 1.5
+  - Great for learning about the diffusion process
+  - But the image quality isn't great!
+- Image models get large quickly
+  - Higher resolutions demand more GPU/VRAM
+
+## Introducing Replicate
+
+![Source: https://replicate.com](./images/replicate.png)
+
+## Introducing Replicate
+
+- Similar to OpenRouter
+  - But with a focus on image and video models
+  - Extensive access to larger models (e.g., FLUX 2, Nano Banana, ImageGen)
+  - Pay-per-call pricing (expect 2c per image for higher quality models)
+  - API access (with Python and NodeJS library)
+  - Fine-tune and share your own models
+
+## Introducing Replicate
+
+- TBD: Python API
 
 
 
