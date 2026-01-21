@@ -1,10 +1,24 @@
 [
   {
-    "objectID": "src/04/notebooks/text-to-image.html",
-    "href": "src/04/notebooks/text-to-image.html",
-    "title": "Text-to-Image using Stable Diffusion",
+    "objectID": "src/04/notebooks/text-to-image-sd-1.5.html",
+    "href": "src/04/notebooks/text-to-image-sd-1.5.html",
+    "title": "Text-to-Image using Stable Diffusion 1.5",
     "section": "",
-    "text": "Login to HF\n\nimport os\nfrom dotenv import load_dotenv\nfrom huggingface_hub import login\n\nload_dotenv()\nlogin(os.environ.get(\"HF_TOKEN\"))\n\nNote: Environment variable`HF_TOKEN` is set and is the current active token independently from the token you've just configured.\n\n\n\n\nLoad a compact SD model\n\nimport torch\nfrom diffusers import StableDiffusion3Pipeline\n\n# Load a compact diffusion model\nmodel_id = \"stabilityai/stable-diffusion-3.5-medium\"\npipe = StableDiffusion3Pipeline.from_pretrained(\n    model_id,\n)\n\n# Move to GPU if available\ndevice = \"cuda\" if torch.cuda.is_available() else \"cpu\"\npipe = pipe.to(device)\n\n/Users/simon/Dev/CS-394/.venv/lib/python3.13/site-packages/torch/amp/autocast_mode.py:270: UserWarning: User provided device_type of 'cuda', but CUDA is not available. Disabling\n  warnings.warn(\n\n\n\n\n\nYou set `add_prefix_space`. The tokenizer needs to be converted from the slow tokenizers"
+    "text": "import torch\nfrom diffusers import StableDiffusionPipeline\n\n# Load a small diffusion model\nmodel_id = \"stable-diffusion-v1-5/stable-diffusion-v1-5\"\npipe = StableDiffusionPipeline.from_pretrained(\n    model_id,\n)\n\n# Move to GPU if available\ndevice = \"cuda\" if torch.cuda.is_available() else \"cpu\"\npipe = pipe.to(device)\n\nFlax classes are deprecated and will be removed in Diffusers v1.0.0. We recommend migrating to PyTorch classes or pinning your version of Diffusers.\nFlax classes are deprecated and will be removed in Diffusers v1.0.0. We recommend migrating to PyTorch classes or pinning your version of Diffusers."
+  },
+  {
+    "objectID": "src/04/notebooks/text-to-image-sd-1.5.html#show-intermediate-steps",
+    "href": "src/04/notebooks/text-to-image-sd-1.5.html#show-intermediate-steps",
+    "title": "Text-to-Image using Stable Diffusion 1.5",
+    "section": "Show Intermediate Steps",
+    "text": "Show Intermediate Steps\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nPROMPT = \"a photograph of an astronaut riding a horse\" #@param {type:\"string\"}\nSTEPS = 50 #@param {type:\"slider\", min:10, max:100, step:1}\n\nintermediate_images = []\n\ndef callback_fn(step, timestep, latents):\n    \"\"\"Capture intermediate denoising steps\"\"\"\n    # Decode latents to image every few steps\n    if step % 5 == 0 or step == 0:\n        with torch.no_grad():\n            # Decode the latent representation to an image\n            image = pipe.vae.decode(latents / pipe.vae.config.scaling_factor, return_dict=False)[0]\n            image = pipe.image_processor.postprocess(image, output_type=\"pil\")[0]\n            intermediate_images.append((step, image))\n\nresult = pipe(\n    PROMPT,\n    num_inference_steps=STEPS,\n    callback=callback_fn,\n    callback_steps=1,\n).images[0]\n\n# Visualize the denoising process\nnum_steps_to_show = min(10, len(intermediate_images))\nstep_indices = np.linspace(0, len(intermediate_images)-1, num_steps_to_show, dtype=int)\n\nfig, axes = plt.subplots(2, 5, figsize=(15, 6))\nfig.suptitle(f'Real Diffusion Model Denoising Process\\nPrompt: \"{PROMPT}\"')\n\nfor idx, step_idx in enumerate(step_indices):\n    row = idx // 5\n    col = idx % 5\n    step_num, img = intermediate_images[step_idx]\n\n    axes[row, col].imshow(img)\n    axes[row, col].axis('off')\n    axes[row, col].set_title(f'Step {step_num}/{STEPS}')\n\nplt.tight_layout()\nplt.savefig('diffusion_process.png', dpi=150, bbox_inches='tight')\nplt.show()\n\n/usr/local/lib/python3.12/dist-packages/diffusers/pipelines/stable_diffusion/pipeline_stable_diffusion.py:899: FutureWarning: `callback` is deprecated and will be removed in version 1.0.0. Passing `callback` as an input argument to `__call__` is deprecated, consider using `callback_on_step_end`\n  deprecate(\n/usr/local/lib/python3.12/dist-packages/diffusers/pipelines/stable_diffusion/pipeline_stable_diffusion.py:905: FutureWarning: `callback_steps` is deprecated and will be removed in version 1.0.0. Passing `callback_steps` as an input argument to `__call__` is deprecated, consider using `callback_on_step_end`\n  deprecate("
+  },
+  {
+    "objectID": "src/04/notebooks/text-to-image-sd-1.5.html#show-final-image",
+    "href": "src/04/notebooks/text-to-image-sd-1.5.html#show-final-image",
+    "title": "Text-to-Image using Stable Diffusion 1.5",
+    "section": "Show Final Image",
+    "text": "Show Final Image\n\nplt.figure(figsize=(8, 8))\nplt.imshow(result)\nplt.axis('off')\nplt.title('Final Generated Image')\nplt.savefig('final_result.png', dpi=150, bbox_inches='tight')\nplt.show()"
   },
   {
     "objectID": "src/03/notebooks/memory.html",
@@ -505,22 +519,33 @@
     ]
   },
   {
-    "objectID": "src/04/slides.html#images-models-text-to-image",
-    "href": "src/04/slides.html#images-models-text-to-image",
+    "objectID": "src/04/slides.html#image-models-1",
+    "href": "src/04/slides.html#image-models-1",
     "title": "Module 4: Multimedia and Multimodal Models",
-    "section": "Images Models: Text-to-Image",
-    "text": "Images Models: Text-to-Image\n\n\n“A photograph of an astronaut riding a horse.”\n\nBased on a concept called a diffusion transformer\nCommonly known as a diffuser\nTwo stage process, inspired by thermodynamics",
+    "section": "Image Models",
+    "text": "Image Models\n\nText-to-Image\nImage-to-Image\nTBD",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
     ]
   },
   {
-    "objectID": "src/04/slides.html#introducing-the-diffuser---tbd-more-detail",
-    "href": "src/04/slides.html#introducing-the-diffuser---tbd-more-detail",
+    "objectID": "src/04/slides.html#text-to-image",
+    "href": "src/04/slides.html#text-to-image",
     "title": "Module 4: Multimedia and Multimodal Models",
-    "section": "Introducing the Diffuser - TBD more detail",
-    "text": "Introducing the Diffuser - TBD more detail\n\nTraining\n\nDuring training, random noise is added to images in steps\nModel learns to predict what noise was added (forward diffusion process)\n\nInference (process runs in reverse)\n\nStart with pure random noise\nModel estimates what noise should be removed to create a realistic image\nUsing the text prompt, the model steers the process towards images that match the description",
+    "section": "Text-to-Image",
+    "text": "Text-to-Image\n\n\n“A photograph of an astronaut riding a horse.”\n\nBased on a concept called a diffusion transformer\nCommonly known as a diffuser\nTwo stage process, inspired by thermodynamics",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#introducing-the-diffuser",
+    "href": "src/04/slides.html#introducing-the-diffuser",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Introducing the Diffuser",
+    "text": "Introducing the Diffuser\n\nTraining\n\nDuring training, random noise is added to images in steps\nModel learns to predict what noise was added (forward diffusion process)\n\nInference (process runs in reverse)\n\nStart with pure random noise\nModel estimates what noise should be removed to create a realistic image\nUsing the text prompt, the model steers the process towards images that match the description",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -564,18 +589,51 @@
     "href": "src/04/slides.html#image-diffusion-models-in-2025",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "Image Diffusion Models in 2025",
-    "text": "Image Diffusion Models in 2025\n\nTBD",
+    "text": "Image Diffusion Models in 2025\n\n\n\n\n\ntimeline\n  May 2025 : Imagen 4 (Google DeepMind)\n           : Improved text rendering, 2K resolution\n  August 2025 : Nano Banana (Google)\n              : Autoregressive model in Gemini 2.5 Flash\n  November 2025 : FLUX.2 (Black Forest Labs)\n                : 32B parameters, multi-image references",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
     ]
   },
   {
-    "objectID": "src/04/slides.html#tbd-at-some-point---introduce-hf-pipeline",
-    "href": "src/04/slides.html#tbd-at-some-point---introduce-hf-pipeline",
+    "objectID": "src/04/slides.html#text-to-image-with-sd-1.5",
+    "href": "src/04/slides.html#text-to-image-with-sd-1.5",
     "title": "Module 4: Multimedia and Multimodal Models",
-    "section": "TBD at some point - introduce HF pipeline",
-    "text": "TBD at some point - introduce HF pipeline",
+    "section": "Text-to-Image with SD 1.5",
+    "text": "Text-to-Image with SD 1.5\n\n\nimport torch\nfrom diffusers import StableDiffusionPipeline\n\n# Load a small diffusion model\nmodel_id = \"stable-diffusion-v1-5/stable-diffusion-v1-5\"\npipe = StableDiffusionPipeline.from_pretrained(\n    model_id,\n)\n\n# Move to GPU if available\ndevice = \"cuda\" if torch.cuda.is_available() else \"cpu\"\npipe = pipe.to(device)",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#text-to-image-with-sd-1.5-1",
+    "href": "src/04/slides.html#text-to-image-with-sd-1.5-1",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Text-to-Image with SD 1.5",
+    "text": "Text-to-Image with SD 1.5\n\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nPROMPT = \"a photograph of an astronaut riding a horse\" #@param {type:\"string\"}\nSTEPS = 50 #@param {type:\"slider\", min:10, max:100, step:1}\n\nintermediate_images = []\n\ndef callback_fn(step, timestep, latents):\n    \"\"\"Capture intermediate denoising steps\"\"\"\n    # Decode latents to image every few steps\n    if step % 5 == 0 or step == 0:\n        with torch.no_grad():\n            # Decode the latent representation to an image\n            image = pipe.vae.decode(latents / pipe.vae.config.scaling_factor, return_dict=False)[0]\n            image = pipe.image_processor.postprocess(image, output_type=\"pil\")[0]\n            intermediate_images.append((step, image))\n\nresult = pipe(\n    PROMPT,\n    num_inference_steps=STEPS,\n    callback=callback_fn,\n    callback_steps=1,\n).images[0]\n\n# Visualize the denoising process\nnum_steps_to_show = min(10, len(intermediate_images))\nstep_indices = np.linspace(0, len(intermediate_images)-1, num_steps_to_show, dtype=int)\n\nfig, axes = plt.subplots(2, 5, figsize=(15, 6))\nfig.suptitle(f'Real Diffusion Model Denoising Process\\nPrompt: \"{PROMPT}\"')\n\nfor idx, step_idx in enumerate(step_indices):\n    row = idx // 5\n    col = idx % 5\n    step_num, img = intermediate_images[step_idx]\n\n    axes[row, col].imshow(img)\n    axes[row, col].axis('off')\n    axes[row, col].set_title(f'Step {step_num}/{STEPS}')\n\nplt.tight_layout()\nplt.savefig('diffusion_process.png', dpi=150, bbox_inches='tight')\nplt.show()",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#text-to-image-with-sd-1.5-2",
+    "href": "src/04/slides.html#text-to-image-with-sd-1.5-2",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Text-to-Image with SD 1.5",
+    "text": "Text-to-Image with SD 1.5",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#introducing-hf-pipelines",
+    "href": "src/04/slides.html#introducing-hf-pipelines",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Introducing HF Pipelines",
+    "text": "Introducing HF Pipelines\n\nTBD",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
