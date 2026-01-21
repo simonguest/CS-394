@@ -729,7 +729,7 @@
     "href": "src/02/slides.html#lesson-objectives",
     "title": "Module 2: Exploring Hosted LLMs",
     "section": "Lesson Objectives",
-    "text": "Lesson Objectives\n\nUnderstand the evolution and licensing of models from GPT-2 through to modern day\nUnderstand instruction-tuned models, how they work, and how to configure\nSetup and use OpenRouter for accessing hosted models\nUnderstand the OpenAI API specification, the request/response payload, parameters, streaming, and structured output\nCreate and share a chatbot using a Gradio-based UI",
+    "text": "Lesson Objectives\n\nUnderstand the evolution and licensing of models from GPT-2 through to modern day\nUnderstand instruction-tuned models, how they work, and how to configure\nSetup and use OpenRouter for accessing hosted models\nUnderstand the OpenAI API specification, the request/response payload, parameters, streaming, and structured outputs\nCreate and share a chatbot using a Gradio-based UI",
     "crumbs": [
       "**Module 2:** Exploring Hosted LLMs",
       "Slides"
@@ -1202,7 +1202,7 @@
     "href": "src/02/slides.html#structured-output-1",
     "title": "Module 2: Exploring Hosted LLMs",
     "section": "Structured Output",
-    "text": "Structured Output\n\nSo far, the models have generated non-structured output (i.e., free-form text)\nSometimes, paragraph. Sometimes, numbered list.\nSometimes, you just need structure\n\n“Return your result in JSON format”\n“Give me the coordinates for Paris”\n“What’s the temperature in Paris right now?”",
+    "text": "Structured Output\n\nSo far, the models have generated non-structured output (i.e., free-form text)\nSometimes, paragraph. Sometimes, numbered list.\nBut often, you need structure\n\n“Return your result in JSON format”\n“Give me the coordinates for Paris”\n“What’s the temperature in Paris right now?”",
     "crumbs": [
       "**Module 2:** Exploring Hosted LLMs",
       "Slides"
@@ -1220,11 +1220,11 @@
     ]
   },
   {
-    "objectID": "src/02/slides.html#structured-output-in-openai-api",
-    "href": "src/02/slides.html#structured-output-in-openai-api",
+    "objectID": "src/02/slides.html#structured-outputs-in-openai-api",
+    "href": "src/02/slides.html#structured-outputs-in-openai-api",
     "title": "Module 2: Exploring Hosted LLMs",
-    "section": "Structured Output in OpenAI API",
-    "text": "Structured Output in OpenAI API\n\nNov 2023: OpenAI added JSON mode\n\nresponse_format: {\"type\": \"json_object\"}\nGuaranteed valid JSON, but didn’t enforce schema\nSometimes mixed up/missed fields\n\nAug 2024: Structured Outputs launched\n\nresponse_format: {\"type\": \"json_object\", ...}\n100% reliability that output matches the your schema",
+    "section": "Structured Outputs in OpenAI API",
+    "text": "Structured Outputs in OpenAI API\n\nNov 2023: OpenAI added JSON mode\n\nresponse_format: {\"type\": \"json_object\"}\nGuaranteed valid JSON, but didn’t enforce schema\nSometimes mixed up/missed fields\n\nAug 2024: Structured Outputs launched\n\nresponse_format: {\"type\": \"json_object\", ...}\n100% reliability that output matches the your schema",
     "crumbs": [
       "**Module 2:** Exploring Hosted LLMs",
       "Slides"
@@ -1422,7 +1422,7 @@
     "href": "src/02/assignment.html",
     "title": "Module 2 Assignment: Gradio Travel Planner",
     "section": "",
-    "text": "Objective: Build a chat interface (in a separate Colab notebook) that helps a user complete tasks.\nRequirements:\n\nGradio chat interface with streaming responses\nSystem prompt that defines the AI as a travel planning expert (or pick your own scenario, if you have a better idea!)\nImplements a well-thought out system prompt (with feedback on the rationale behind it).\nDemonstrates at least 2 different models via OpenRouter as a dropdown in Gradio. (Not necessarily at the same time.)\n\nTry to pick models of different sizes to compare the differences. If you search for free models (https://openrouter.ai/models?q=free) you can also avoid incurring any costs.\n\nUse structured outputs when returning results to the user (e.g., a downloadable itinerary that the user can download)\n\nExample schema: Trip with fields like destination, duration_days, activities (list), budget_level, daily_schedule (list of day objects)\n\n\nDeliverable: A Colab/Jupyter notebook with:\n\nCode cells with your implementation\nUses OPENROUTER_API_KEY for the API token. (Please do not include your API key in your notebook!)\nMarkdown cells explaining what the notebook does and any observations",
+    "text": "Objective: Build a chat interface (in a separate Colab notebook) that helps a user complete tasks.\nRequirements:\n\nGradio chat interface with streaming responses\nSystem prompt that defines the AI as a travel planning expert (or pick your own scenario, if you have a better idea!)\nImplements a well-thought out system prompt (with feedback on the rationale behind it).\nDemonstrates at least 2 different models via OpenRouter as a dropdown in Gradio. (Not necessarily at the same time.)\n\nTry to pick models of different sizes to compare the differences. If you search for free models (https://openrouter.ai/models?q=free) you can also avoid incurring any costs.\n\nUse structured outputs when returning results to the user (e.g., a downloadable itinerary that the user can download)\n\nExample schema: Trip with fields like destination, duration_days, activities (list), budget_level, daily_schedule (list of day objects)\n\n\nDeliverable: A Colab/Jupyter notebook with:\n\nCode cells with your implementation\nUses OPENROUTER_API_KEY for the API token. (Please do not include your API key in your notebook!)\nMarkdown cells explaining what the notebook does and any observations\n\nHint\n\nTo get streaming and structured outputs working in Gradio, you may want to think of this as two calls to the model:\n\nThe first call asks the model to think about the problem (e.g., “How can you help the user solve their travel question?”) You can use streaming to display the response token-by-token in Gradio.\nThe second call then takes the model’s prior answer and creates a new call (e.g., “From your thinking, create an itinerary.”) You can then use structured outputs to ensure that this matches the schema, and map that to a component in the Gradio UI (gr.JSON is fine to display this, unless you want to get more creative :).",
     "crumbs": [
       "**Module 2:** Exploring Hosted LLMs",
       "Assignment"

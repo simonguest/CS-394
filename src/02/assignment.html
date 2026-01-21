@@ -739,6 +739,14 @@ ul.task-list li input[type="checkbox"] {
 <li>Uses OPENROUTER_API_KEY for the API token. (Please do not include your API key in your notebook!)</li>
 <li>Markdown cells explaining what the notebook does and any observations</li>
 </ul>
+<p><strong>Hint</strong></p>
+<ul>
+<li>To get streaming and structured outputs working in Gradio, you may want to think of this as two calls to the model:
+<ul>
+<li>The first call asks the model to think about the problem (e.g., “How can you help the user solve their travel question?”) You can use streaming to display the response token-by-token in Gradio.</li>
+<li>The second call then takes the model’s prior answer and creates a new call (e.g., “From your thinking, create an itinerary.”) You can then use structured outputs to ensure that this matches the schema, and map that to a component in the Gradio UI (gr.JSON is fine to display this, unless you want to get more creative :).</li>
+</ul></li>
+</ul>
 
 
 
