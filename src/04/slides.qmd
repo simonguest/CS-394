@@ -148,13 +148,17 @@ timeline
 
 {{< embed notebooks/text-to-image-sd-1.5.ipynb#steps echo=false >}}
 
+## Text-to-Image with SD 1.5
+
+{{< embed notebooks/text-to-image-sd-1.5.ipynb#final echo=false >}}
+
 ## Sidebar: What are these pipelines?
 
 - Our use of HF Transformers use so far
   - Convert text to input tokens, pass to model, decode output tokens to text
 - HF Pipelines provides a layer of abstraction
   - (Setup the pipeline, then call `pipe` method)
-  - While still giving access to underlying components if needed
+  - While still giving access to underlying components
 - Pipelines also standardize other areas
   - e.g., `pipe(prompt).images[0]` works for all model types
   - `.to("cuda")` moves all components of the model to the GPU
@@ -198,9 +202,30 @@ Test different prompts, seed values, and steps
   - API access (with Python and NodeJS library)
   - Fine-tune and share your own models
 
-## Introducing Replicate
+# Demo
 
-- TBD: Python API
+Browsing models on Replicate
+
+## Using the Replicate API
+
+{{< embed notebooks/text-to-image-replicate.ipynb#run echo=true >}}
+
+## Using the Replicate API
+
+- **steps**: Number to steps to run through
+- **seed**: Random seed value
+- **prompt**: Prompt to use to guide the model
+- **output_format**: Output format to return
+- **safety_tolerance**: Safety tolerance (1 is most strict; 6 is most permissive)
+- **prompt_upsampling**: Run the prompt through an LLM to be more descriptive/creative
+
+## Using the Replicate API
+
+:::: {.columns}
+::: {.column width="50%"}
+{{< embed notebooks/text-to-image-replicate.ipynb#result echo=false >}}
+:::
+::::
 
 
 

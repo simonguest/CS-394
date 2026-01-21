@@ -12,6 +12,7 @@ dependencies = [
     "matplotlib>=3.10.8",
     "protobuf>=6.33.4",
     "python-dotenv>=1.2.1",
+    "replicate>=1.0.7",
     "sentencepiece>=0.2.1",
     "torch>=2.9.1",
     "transformers>=4.57.3",
