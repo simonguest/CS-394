@@ -136,6 +136,8 @@ timeline
                 : 32B parameters, multi-image references
 ```
 
+# Text-to-Image
+
 ## Text-to-Image with SD 1.5
 
 {{< embed notebooks/text-to-image-sd-1.5.ipynb#load-model echo=true outputs=false >}}
@@ -173,11 +175,46 @@ timeline
   - Controlling the seed allows you to then experiment with different prompts or parameters
   - Gives you more control/predictability vs. starting from random seed every time
 
+# Image-to-Image
+
+## Image-to-Image
+
+- Image-to-Image: "Make this image different"
+- Originally solved by GAN approaches, but evolved into extension of the diffuser concept
+  - Add noise to the original image (partial denoising)
+  - Regenerate it with modifications based on the prompt
+  - Strength parameter (0.0 - 1.0) to indicate the weight to the new image vs. original
+  - The original image heavily influences the output structure
+
+## Image-to-Image (Generate)
+
+{{< embed notebooks/image-to-image-sd-1.5.ipynb#generate echo=true >}}
+
+## Image-to-Image (Original)
+
+{{< embed notebooks/image-to-image-sd-1.5.ipynb#original echo=false >}}
+
+## Image-to-Image (0.3)
+
+{{< embed notebooks/image-to-image-sd-1.5.ipynb#0.3 echo=false >}}
+
+## Image-to-Image (0.5)
+
+{{< embed notebooks/image-to-image-sd-1.5.ipynb#0.5 echo=false >}}
+
+## Image-to-Image (0.7)
+
+{{< embed notebooks/image-to-image-sd-1.5.ipynb#0.7 echo=false >}}
+
+## Image-to-Image (0.9)
+
+{{< embed notebooks/image-to-image-sd-1.5.ipynb#0.9 echo=false >}}
+
 # Hands-on
 
-Open Text-to-Image notebook (text-to-image-sd-1.5.ipynb)
+Explore Text-to-Image and Image-to-Image notebooks (text-to-image-sd-1.5.ipynb and image-to-image-sd-1.5.ipynb)
 
-Test different prompts, seed values, and steps 
+Test different prompts, images, seed values, and steps.
 
 # Beyond SD 1.5
 
@@ -206,6 +243,8 @@ Test different prompts, seed values, and steps
 
 Browsing models on Replicate
 
+# Using the Replicate API
+
 ## Using the Replicate API
 
 {{< embed notebooks/text-to-image-replicate.ipynb#run echo=true >}}
@@ -227,31 +266,35 @@ Browsing models on Replicate
 :::
 ::::
 
-## Image-to-Image
+## Sidebar: Safety Tolerance
 
-Image-to-Image: "Make this image different"
-
-- Originally solved by GAN approaches, but evolved into extension of the diffuser concept
-  - Add noise to the original image (partial denoising)
-  - Regenerate it with modifications based on the prompt
-  - The original image heavily influences the output structure
-
-## Image-to-Image
-
-TBD: Notebook that shows the step-by-step process
+- TBD: How does safety tolerance networks work?
 
 ## Image-to-Image
 
 - Can also be used for...
-  - Super resolution
-  - Style transfer
+  - Super resolution (increase the resolution of this image)
+  - Style transfer (recreate this image in the style of...)
   - Colorization (grayscale to color)
   - Depth maps
 
 ## Depth Maps
 
-- Images (often greyscale) where each pixel's value represents the distance
-- Historically required custom hardware
+:::: {.columns}
+::: {.column width="50%"}
+
+- Images (often greyscale) where each pixel's value represents the distance from the viewer
+  - i.e., objects in the foreground are lighter, background are darker
+
+:::
+::: {.column width="50%"}
+![](./images/example-depth.png)
+:::
+::::
+
+## Depth Maps
+
+- Historically, required custom hardware
   - Depth Camera (e.g., RealSense) - ~$300-500
   - Module/processing for realtime (60fps) sensing
 
@@ -301,6 +344,181 @@ TBD: Notebook that shows the step-by-step process
 ## Depth Map as Control
 
 {{< embed notebooks/depth-map-as-context.ipynb#result-2 echo=false >}}
+
+## Inpainting
+
+:::: {.columns}
+::: {.column width="50%"}
+Filling in missing or masked regions of an image in a realistic way
+
+- Model is given an image with certain areas masked out
+- Generates plausible content to fill those areas based on the surrounding context (and steered by a text prompt)
+:::
+::: {.column width="50%"}
+<video data-autoplay src="./images/cherries-oranges-bananas.mp4"></video>
+:::
+::::
+
+## Inpainting
+
+:::: {.columns}
+::: {.column width="50%"}
+Filling in missing or masked regions of an image in a realistic way
+
+- Model needs to understand context around the area
+- Generate content that matches the style, lighting, and perspective
+- Follow a text prompt that was likely different from the original
+:::
+::: {.column width="50%"}
+<video data-autoplay src="./images/cherries-oranges-bananas.mp4"></video>
+:::
+::::
+
+## Outpainting
+
+Inpainting applied to the edges of an image to extend it beyond it's original size
+
+![Source: https://replicate.com/black-forest-labs/flux-fill-pro](./images/outpainter1.png)
+
+## Outpainting
+
+Inpainting applied to the edges of an image to extend it beyond it's original size
+
+![Source: https://replicate.com/black-forest-labs/flux-fill-pro](./images/outpainter2.png)
+
+## Outpainting
+
+- How does it work?
+  - Supply a prompt: "2x zoom out this image"
+  - Treat the new empty regions around the image as masked areas
+  - Use impainting technique to fill in the regions
+
+## Outpainting
+
+- More challenging
+  - Less context at the edges of the image vs. center/surrounded
+  - Need to maintain the style, lighting, and perspective
+  - Has to be creative. Can't just be a repetitive pattern.
+
+## Inpainting and Outpainting
+
+- Popular models
+  - Stable Diffusion (Many inpainting variants)
+  - Flux Fill from Black Forest Labs
+  - LaMa: Large Mask inpainting
+  - Ideogram
+
+## Inpainting and Outpainting
+
+- TBD: Notebook that shows flux fill
+
+# I Want More Control!
+
+## I Want More Control!
+
+- **Text-to-Image** and **Image-to-Image** don't give you that much control
+  - Extensive prompts (both positive and negative) can help, but only so far
+  - Ultimately, "hoping the model guesses what I mean"
+  - Fine-tuning possible, but it's expensive and risks degrading quality (and potential overfitting)
+
+# Introducing ControlNet
+
+## Introducing ControlNet
+
+- Developed by Lvmin Zhang and Maneesh Agrawala at Stanford University
+- Published in February 2023 [@zhang2023controlnet]
+- ControlNet represented a paradigm shift from "describe what you want" to "show the structure you want".
+
+## How ControlNet Works
+
+- Stable Diffusion's U-Net has an encoder and decoder
+- Create a trainable copy of the encoder blocks
+- Train the copy of the encoder alongside the frozen SD model
+  - During training: use paired data (e.g., pose skeleton → original image)
+  - During inference: both encoders run together
+  - Features from both are combined via zero convolutions
+- Key: The weights in the original SD model don't change
+- ControlNet is analogous to a "Plug in" model
+
+## How ControlNet Works
+
+- TBD: notebook for human pose
+
+## How ControlNet Works
+
+- TBD: notebook for Flux kontext model
+
+## How ControlNet Works
+
+Examples of conditioning types:
+
+- Human pose (OpenPose): skeleton/keypoint detection
+- Depth maps: 3D structure information
+- Canny edges: line drawings and edge detection
+- Scribbles: rough user drawings
+- QR codes: blended into images
+
+# Demo: Putting this all together
+
+Using text-to-image, ControlNet, inpainting, and image-to-image (depth map) to create PBR materials
+
+TBD - Mega notebook
+
+# Using Transformers for Computer Vision
+
+## CNNs to Vision Transformer
+
+Historically, computer vision has used classification models called CNNs (Convolutional Neural Networks)
+
+- Enter the Vision Transformer (ViT)
+  - "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale" [@dosovitskiy2021vit]
+- Tipping Point
+  - Initially, ViTs didn't outperform CNNs
+  - But exceeded SOTA CNNs on larger datasets (such as Google's JFT-300M)
+
+## Popular Vision Transformers
+
+- OpenAI's CLIP
+  - Trained on 400M image-text pairs
+  - Foundation of most VLMs
+- Meta's DINO/DINO-2
+  - (Self DIstillation with NO Labels)
+  - Self-supervised on 142M images
+- Microsoft's Swin
+  - Use "shifted windows" approach
+  - Excels at dense predication tasks
+
+## Vision Language Models (VLMs)
+
+- ViTs by themselves are only so useful
+- Introducing VLMs (Vision Language Models)
+  - A vision encoder
+  - Adapter/projector layer
+  - Language model (LLaMa or GPT)
+- Also known as "Multimodal"
+  - Image-Text-to-Text
+
+## Demo
+
+- TBD
+
+## Use Cases for VLMs
+
+- Visual Understanding: "What's in this image?"
+- Accessibility: Assisting users with visual impairments
+- Content Moderation and Safety: Identifying harmful content
+- Retail: Finding products with photos
+- Education: Helping students understand charts, diagrams, equations
+- Robotics: Providing Robots with information to navigate their environment
+
+## Popular VLMs
+
+- Closed Source
+  - GPT4-V, Claude, Gemini Flash
+- Open Source
+  - LLaVa: Research collaboration between University of Wisconsin-Maddison and MSR
+  - Gemma: Google's Gemma-3
+  - FastVLM: Apple's Fast Vision Language Model
 
 # Looking Ahead
 
