@@ -93,7 +93,27 @@
     code span.va { color: #e36209; } /* Variable */
     code span.vs { color: #032f62; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-eeafb82a00776dbd0312b01cd21cfa25.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -382,6 +402,11 @@
 </div>
 </div>
 </div>
+</section></section>
+<section>
+<section id="text-to-image-1" class="title-slide slide level1 center">
+<h1>Text-to-Image</h1>
+
 </section>
 <section id="text-to-image-with-sd-1.5" class="slide level2">
 <h2>Text-to-Image with SD 1.5</h2>
@@ -523,10 +548,135 @@
 </ul></li>
 </ul>
 </section></section>
+<section>
+<section id="image-to-image" class="title-slide slide level1 center">
+<h1>Image-to-Image</h1>
+
+</section>
+<section id="image-to-image-1" class="slide level2">
+<h2>Image-to-Image</h2>
+<ul>
+<li class="fragment">Image-to-Image: “Make this image different”</li>
+<li class="fragment">Originally solved by GAN approaches, but evolved into extension of the diffuser concept
+<ul>
+<li class="fragment">Add noise to the original image (partial denoising)</li>
+<li class="fragment">Regenerate it with modifications based on the prompt</li>
+<li class="fragment">Strength parameter (0.0 - 1.0) to indicate the weight to the new image vs.&nbsp;original</li>
+<li class="fragment">The original image heavily influences the output structure</li>
+</ul></li>
+</ul>
+</section>
+<section id="image-to-image-generate" class="slide level2">
+<h2>Image-to-Image (Generate)</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/image-to-image-sd-1.5.ipynb" data-notebook-title="Image-to-Image using Stable Diffusion 1.5" data-notebook-cellid="generate">
+<div id="generate" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="kw">def</span> generate_image(strength):</span>
+<span id="cb3-2"><a></a>  <span class="cf">return</span> pipe(</span>
+<span id="cb3-3"><a></a>      prompt<span class="op">=</span>PROMPT,</span>
+<span id="cb3-4"><a></a>      negative_prompt<span class="op">=</span>NEGATIVE_PROMPT,</span>
+<span id="cb3-5"><a></a>      image<span class="op">=</span>init_image,</span>
+<span id="cb3-6"><a></a>      strength<span class="op">=</span>strength,</span>
+<span id="cb3-7"><a></a>      guidance_scale<span class="op">=</span><span class="fl">7.5</span>,</span>
+<span id="cb3-8"><a></a>      num_inference_steps<span class="op">=</span><span class="dv">30</span>,</span>
+<span id="cb3-9"><a></a>      generator<span class="op">=</span>torch.Generator().manual_seed(SEED) <span class="cf">if</span> SEED <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span> <span class="cf">else</span> <span class="va">None</span>,</span>
+<span id="cb3-10"><a></a>  ).images[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="image-to-image-original" class="slide level2">
+<h2>Image-to-Image (Original)</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/image-to-image-sd-1.5.ipynb" data-notebook-title="Image-to-Image using Stable Diffusion 1.5" data-notebook-cellid="original">
+<div id="original" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/notebooks-image-to-image-sd-1.5-cell-4-output-1.png"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="image-to-image-0.3" class="slide level2">
+<h2>Image-to-Image (0.3)</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/image-to-image-sd-1.5.ipynb" data-notebook-title="Image-to-Image using Stable Diffusion 1.5" data-notebook-cellid="0.3">
+<div id="0.3" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:761,&quot;referenced_widgets&quot;:[&quot;31318fb940c94c6ca103572f43fdc294&quot;,&quot;9a2a4db9117f4529934b77f9533d564c&quot;,&quot;be68c97799b74b60a9076a0eefb474d1&quot;,&quot;1b07d50df8f14f0cbecb051c8fec948f&quot;,&quot;c63f0701aa684223aff2fea1e1b13912&quot;,&quot;08fdac44edaa4b08ba4aab950f232e47&quot;,&quot;7b1b062ced9642949005196bbf4ed6b6&quot;,&quot;fe65f76ed7d44ae6ba7550372985bf98&quot;,&quot;23d074a6c1eb4883bf6c81195efb782d&quot;,&quot;c7a0fed66f9e4070a8528debe309bbe6&quot;,&quot;f5588beb122f44e095d6b059ac781090&quot;]}}" data-outputid="3bcb551f-520f-462f-f99a-290a34c49bd6" data-execution_count="18">
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"31318fb940c94c6ca103572f43fdc294","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/notebooks-image-to-image-sd-1.5-cell-6-output-2.png"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="image-to-image-0.5" class="slide level2">
+<h2>Image-to-Image (0.5)</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/image-to-image-sd-1.5.ipynb" data-notebook-title="Image-to-Image using Stable Diffusion 1.5" data-notebook-cellid="0.5">
+<div id="0.5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:761,&quot;referenced_widgets&quot;:[&quot;bec89e2be1194f169ccf3ca7afba8161&quot;,&quot;9c8692b89cbc4847927c06b3621b4ddc&quot;,&quot;4f7d4e2c6e8c4901b44dbd41dba043fb&quot;,&quot;5d4a92c36e8f4b7bbfc129a829886f47&quot;,&quot;6e4a2fc4892544259bd253b5a0c4fe27&quot;,&quot;975b9bfaa3bc404c821db4bbf84a23f4&quot;,&quot;29d31c9c8eaa4a9dbe08d4ecf48e69dc&quot;,&quot;ab71c339a2b84fdb9332c79df260a548&quot;,&quot;d5ef43fce3e646638d61b9fe7c60ef5c&quot;,&quot;44b024a3ea0245e1b893af16c2f62e0d&quot;,&quot;50869837f3e64b109dcdbd0231fbad2f&quot;]}}" data-outputid="e200ed27-e8d2-43c7-d6d4-e1d7017d4a47" data-execution_count="19">
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"bec89e2be1194f169ccf3ca7afba8161","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/notebooks-image-to-image-sd-1.5-cell-7-output-2.png"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="image-to-image-0.7" class="slide level2">
+<h2>Image-to-Image (0.7)</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/image-to-image-sd-1.5.ipynb" data-notebook-title="Image-to-Image using Stable Diffusion 1.5" data-notebook-cellid="0.7">
+<div id="0.7" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:761,&quot;referenced_widgets&quot;:[&quot;133781b908a7408e8191f8a9478a9b50&quot;,&quot;f4d6a6bc20e74641b102723023457a8e&quot;,&quot;6a5fb7b98e5644e494a0d5904492efac&quot;,&quot;c602e205bcd44cc8a607f4e1b0e1c43c&quot;,&quot;6dde480280d543b4974d711d476bd84c&quot;,&quot;3bba1cd06a1f42058916b5c61dbba7d4&quot;,&quot;59eb14daeee14999b7444e5fc383880f&quot;,&quot;fa85604b23894820bef696a2a3e0c125&quot;,&quot;0b9cf376c41448998215224202a6f60c&quot;,&quot;6642e8cd0def4c2d8421b03760e8e781&quot;,&quot;fa1c000aaff84e938f12f1623ab479de&quot;]}}" data-outputid="2134cb2c-ae0e-4c1f-8313-e6005a199be4" data-execution_count="20">
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"133781b908a7408e8191f8a9478a9b50","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/notebooks-image-to-image-sd-1.5-cell-8-output-2.png"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="image-to-image-0.9" class="slide level2">
+<h2>Image-to-Image (0.9)</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/image-to-image-sd-1.5.ipynb" data-notebook-title="Image-to-Image using Stable Diffusion 1.5" data-notebook-cellid="0.9">
+<div id="0.9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:761,&quot;referenced_widgets&quot;:[&quot;93dce114893f4356801271cbf19fab48&quot;,&quot;00f055017b0043729579bfd4c2870464&quot;,&quot;ae3a8be06588432c9c12488f8347d311&quot;,&quot;3aca39e10c3a4e9c9ddfa739e83e3936&quot;,&quot;8308496751c544aa9a9183074de302b7&quot;,&quot;9b853441f862442898997323d2377e51&quot;,&quot;ea5ea0b150e94dc2a8c4c033adc25309&quot;,&quot;d75f4344d36d46f19dc27570738d1eea&quot;,&quot;e9db4bd4342c42a4ae25bb141ce94428&quot;,&quot;e411121048da43d4bd2b08396fe6d57b&quot;,&quot;83200deb11fe4b41afc852b77138e838&quot;]}}" data-outputid="44a74615-8ca5-48b1-f15d-c5406d20418a" data-execution_count="21">
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"93dce114893f4356801271cbf19fab48","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/notebooks-image-to-image-sd-1.5-cell-9-output-2.png"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section></section>
 <section id="hands-on" class="title-slide slide level1 center">
 <h1>Hands-on</h1>
-<p>Open Text-to-Image notebook (text-to-image-sd-1.5.ipynb)</p>
-<p>Test different prompts, seed values, and steps</p>
+<p>Explore Text-to-Image and Image-to-Image notebooks (text-to-image-sd-1.5.ipynb and image-to-image-sd-1.5.ipynb)</p>
+<p>Test different prompts, images, seed values, and steps.</p>
 </section>
 
 <section>
@@ -565,31 +715,36 @@
 </ul></li>
 </ul>
 </section></section>
-<section>
 <section id="demo" class="title-slide slide level1 center">
 <h1>Demo</h1>
 <p>Browsing models on Replicate</p>
 </section>
-<section id="using-the-replicate-api" class="slide level2">
+
+<section>
+<section id="using-the-replicate-api" class="title-slide slide level1 center">
+<h1>Using the Replicate API</h1>
+
+</section>
+<section id="using-the-replicate-api-1" class="slide level2">
 <h2>Using the Replicate API</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/text-to-image-replicate.ipynb" data-notebook-title="Text-to-Image using Replicate" data-notebook-cellid="run">
 <div id="run" class="cell" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">import</span> replicate</span>
-<span id="cb3-2"><a></a>output <span class="op">=</span> replicate.run(</span>
-<span id="cb3-3"><a></a>  <span class="st">"black-forest-labs/flux-pro"</span>,</span>
-<span id="cb3-4"><a></a>  <span class="bu">input</span><span class="op">=</span>{</span>
-<span id="cb3-5"><a></a>      <span class="st">"steps"</span>: <span class="dv">28</span>,</span>
-<span id="cb3-6"><a></a>      <span class="st">"prompt"</span>: <span class="st">"lemon cupcake spelling out the words 'DigiPen' with sparklers, tasty, food photography, dynamic shot"</span>,</span>
-<span id="cb3-7"><a></a>      <span class="st">"seed"</span>: <span class="dv">1564435</span>,</span>
-<span id="cb3-8"><a></a>      <span class="st">"output_format"</span>: <span class="st">"png"</span>,</span>
-<span id="cb3-9"><a></a>      <span class="st">"safety_tolerance"</span>: <span class="dv">2</span>,</span>
-<span id="cb3-10"><a></a>      <span class="st">"prompt_upsampling"</span>: <span class="va">False</span></span>
-<span id="cb3-11"><a></a>  },</span>
-<span id="cb3-12"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">import</span> replicate</span>
+<span id="cb4-2"><a></a>output <span class="op">=</span> replicate.run(</span>
+<span id="cb4-3"><a></a>  <span class="st">"black-forest-labs/flux-pro"</span>,</span>
+<span id="cb4-4"><a></a>  <span class="bu">input</span><span class="op">=</span>{</span>
+<span id="cb4-5"><a></a>      <span class="st">"steps"</span>: <span class="dv">28</span>,</span>
+<span id="cb4-6"><a></a>      <span class="st">"prompt"</span>: <span class="st">"lemon cupcake spelling out the words 'DigiPen' with sparklers, tasty, food photography, dynamic shot"</span>,</span>
+<span id="cb4-7"><a></a>      <span class="st">"seed"</span>: <span class="dv">1564435</span>,</span>
+<span id="cb4-8"><a></a>      <span class="st">"output_format"</span>: <span class="st">"png"</span>,</span>
+<span id="cb4-9"><a></a>      <span class="st">"safety_tolerance"</span>: <span class="dv">2</span>,</span>
+<span id="cb4-10"><a></a>      <span class="st">"prompt_upsampling"</span>: <span class="va">False</span></span>
+<span id="cb4-11"><a></a>  },</span>
+<span id="cb4-12"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
-<section id="using-the-replicate-api-1" class="slide level2">
+<section id="using-the-replicate-api-2" class="slide level2">
 <h2>Using the Replicate API</h2>
 <ul>
 <li class="fragment"><strong>steps</strong>: Number to steps to run through</li>
@@ -600,7 +755,7 @@
 <li class="fragment"><strong>prompt_upsampling</strong>: Run the prompt through an LLM to be more descriptive/creative</li>
 </ul>
 </section>
-<section id="using-the-replicate-api-2" class="slide level2">
+<section id="using-the-replicate-api-3" class="slide level2">
 <h2>Using the Replicate API</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -617,29 +772,19 @@
 </div>
 </div></div>
 </section>
-<section id="image-to-image" class="slide level2">
-<h2>Image-to-Image</h2>
-<p>Image-to-Image: “Make this image different”</p>
+<section id="sidebar-safety-tolerance" class="slide level2">
+<h2>Sidebar: Safety Tolerance</h2>
 <ul>
-<li class="fragment">Originally solved by GAN approaches, but evolved into extension of the diffuser concept
-<ul>
-<li class="fragment">Add noise to the original image (partial denoising)</li>
-<li class="fragment">Regenerate it with modifications based on the prompt</li>
-<li class="fragment">The original image heavily influences the output structure</li>
-</ul></li>
+<li class="fragment">TBD: How does safety tolerance networks work?</li>
 </ul>
-</section>
-<section id="image-to-image-1" class="slide level2">
-<h2>Image-to-Image</h2>
-<p>TBD: Notebook that shows the step-by-step process</p>
 </section>
 <section id="image-to-image-2" class="slide level2">
 <h2>Image-to-Image</h2>
 <ul>
 <li class="fragment">Can also be used for…
 <ul>
-<li class="fragment">Super resolution</li>
-<li class="fragment">Style transfer</li>
+<li class="fragment">Super resolution (increase the resolution of this image)</li>
+<li class="fragment">Style transfer (recreate this image in the style of…)</li>
 <li class="fragment">Colorization (grayscale to color)</li>
 <li class="fragment">Depth maps</li>
 </ul></li>
@@ -647,16 +792,29 @@
 </section>
 <section id="depth-maps" class="slide level2">
 <h2>Depth Maps</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
 <ul>
-<li class="fragment">Images (often greyscale) where each pixel’s value represents the distance</li>
-<li class="fragment">Historically required custom hardware
+<li class="fragment">Images (often greyscale) where each pixel’s value represents the distance from the viewer
+<ul>
+<li class="fragment">i.e., objects in the foreground are lighter, background are darker</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><img data-src="./images/example-depth.png"></p>
+</div></div>
+</section>
+<section id="depth-maps-1" class="slide level2">
+<h2>Depth Maps</h2>
+<ul>
+<li class="fragment">Historically, required custom hardware
 <ul>
 <li class="fragment">Depth Camera (e.g., RealSense) - ~$300-500</li>
 <li class="fragment">Module/processing for realtime (60fps) sensing</li>
 </ul></li>
 </ul>
 </section>
-<section id="depth-maps-1" class="slide level2">
+<section id="depth-maps-2" class="slide level2">
 <h2>Depth Maps</h2>
 <ul>
 <li class="fragment">Image-to-Image depth estimation models
@@ -672,7 +830,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="depth-maps-2" class="slide level2">
+<section id="depth-maps-3" class="slide level2">
 <h2>Depth Maps</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/generate-depth-map.ipynb" data-notebook-title="Depth Map Generation" data-notebook-cellid="input-image">
 <div id="input-image" class="cell">
@@ -682,24 +840,24 @@
 </div>
 </div>
 </section>
-<section id="depth-maps-3" class="slide level2">
+<section id="depth-maps-4" class="slide level2">
 <h2>Depth Maps</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/generate-depth-map.ipynb" data-notebook-title="Depth Map Generation" data-notebook-cellid="run">
 <div id="run" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">import</span> replicate</span>
-<span id="cb4-2"><a></a></span>
-<span id="cb4-3"><a></a>MODEL <span class="op">=</span> <span class="st">"chenxwh/depth-anything-v2:b239ea33cff32bb7abb5db39ffe9a09c14cbc2894331d1ef66fe096eed88ebd4"</span></span>
-<span id="cb4-4"><a></a></span>
-<span id="cb4-5"><a></a>output <span class="op">=</span> replicate.run(</span>
-<span id="cb4-6"><a></a>  MODEL,</span>
-<span id="cb4-7"><a></a>  <span class="bu">input</span><span class="op">=</span>{</span>
-<span id="cb4-8"><a></a>      <span class="st">"image"</span>: INPUT_IMAGE,</span>
-<span id="cb4-9"><a></a>  },</span>
-<span id="cb4-10"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">import</span> replicate</span>
+<span id="cb5-2"><a></a></span>
+<span id="cb5-3"><a></a>MODEL <span class="op">=</span> <span class="st">"chenxwh/depth-anything-v2:b239ea33cff32bb7abb5db39ffe9a09c14cbc2894331d1ef66fe096eed88ebd4"</span></span>
+<span id="cb5-4"><a></a></span>
+<span id="cb5-5"><a></a>output <span class="op">=</span> replicate.run(</span>
+<span id="cb5-6"><a></a>  MODEL,</span>
+<span id="cb5-7"><a></a>  <span class="bu">input</span><span class="op">=</span>{</span>
+<span id="cb5-8"><a></a>      <span class="st">"image"</span>: INPUT_IMAGE,</span>
+<span id="cb5-9"><a></a>  },</span>
+<span id="cb5-10"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
-<section id="depth-maps-4" class="slide level2">
+<section id="depth-maps-5" class="slide level2">
 <h2>Depth Maps</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/generate-depth-map.ipynb" data-notebook-title="Depth Map Generation" data-notebook-cellid="result">
 <div id="result" class="cell">
@@ -713,7 +871,7 @@
 </div>
 </div>
 </section>
-<section id="depth-maps-5" class="slide level2">
+<section id="depth-maps-6" class="slide level2">
 <h2>Depth Maps</h2>
 <ul>
 <li class="fragment">Why do this?
@@ -736,19 +894,19 @@
 <h2>Depth Map as Control</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/depth-map-as-context.ipynb" data-notebook-title="Depth Map as Context" data-notebook-cellid="run">
 <div id="run" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">import</span> replicate</span>
-<span id="cb5-2"><a></a></span>
-<span id="cb5-3"><a></a>MODEL <span class="op">=</span> <span class="st">"black-forest-labs/flux-depth-pro"</span></span>
-<span id="cb5-4"><a></a></span>
-<span id="cb5-5"><a></a>output <span class="op">=</span> replicate.run(</span>
-<span id="cb5-6"><a></a>  MODEL,</span>
-<span id="cb5-7"><a></a>  <span class="bu">input</span><span class="op">=</span>{</span>
-<span id="cb5-8"><a></a>      <span class="st">"control_image"</span>: CONTROL_IMAGE,</span>
-<span id="cb5-9"><a></a>      <span class="st">"output_format"</span>: <span class="st">"png"</span>,</span>
-<span id="cb5-10"><a></a>      <span class="st">"seed"</span>: <span class="dv">12345</span>,</span>
-<span id="cb5-11"><a></a>      <span class="st">"prompt"</span>: <span class="st">"A futuristic building set in 2050, neon lighting, night shot, dynamic"</span></span>
-<span id="cb5-12"><a></a>  },</span>
-<span id="cb5-13"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="im">import</span> replicate</span>
+<span id="cb6-2"><a></a></span>
+<span id="cb6-3"><a></a>MODEL <span class="op">=</span> <span class="st">"black-forest-labs/flux-depth-pro"</span></span>
+<span id="cb6-4"><a></a></span>
+<span id="cb6-5"><a></a>output <span class="op">=</span> replicate.run(</span>
+<span id="cb6-6"><a></a>  MODEL,</span>
+<span id="cb6-7"><a></a>  <span class="bu">input</span><span class="op">=</span>{</span>
+<span id="cb6-8"><a></a>      <span class="st">"control_image"</span>: CONTROL_IMAGE,</span>
+<span id="cb6-9"><a></a>      <span class="st">"output_format"</span>: <span class="st">"png"</span>,</span>
+<span id="cb6-10"><a></a>      <span class="st">"seed"</span>: <span class="dv">12345</span>,</span>
+<span id="cb6-11"><a></a>      <span class="st">"prompt"</span>: <span class="st">"A futuristic building set in 2050, neon lighting, night shot, dynamic"</span></span>
+<span id="cb6-12"><a></a>  },</span>
+<span id="cb6-13"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -770,19 +928,19 @@
 <h2>Depth Map as Control</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/depth-map-as-context.ipynb" data-notebook-title="Depth Map as Context" data-notebook-cellid="run-2">
 <div id="run-2" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="im">import</span> replicate</span>
-<span id="cb6-2"><a></a></span>
-<span id="cb6-3"><a></a>MODEL <span class="op">=</span> <span class="st">"black-forest-labs/flux-depth-pro"</span></span>
-<span id="cb6-4"><a></a></span>
-<span id="cb6-5"><a></a>output <span class="op">=</span> replicate.run(</span>
-<span id="cb6-6"><a></a>  MODEL,</span>
-<span id="cb6-7"><a></a>  <span class="bu">input</span><span class="op">=</span>{</span>
-<span id="cb6-8"><a></a>      <span class="st">"control_image"</span>: CONTROL_IMAGE,</span>
-<span id="cb6-9"><a></a>      <span class="st">"output_format"</span>: <span class="st">"png"</span>,</span>
-<span id="cb6-10"><a></a>      <span class="st">"seed"</span>: <span class="dv">12345</span>,</span>
-<span id="cb6-11"><a></a>      <span class="st">"prompt"</span>: <span class="st">"A historical castle set in medieval England, clear day, partially cloudy sky"</span></span>
-<span id="cb6-12"><a></a>  },</span>
-<span id="cb6-13"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="im">import</span> replicate</span>
+<span id="cb7-2"><a></a></span>
+<span id="cb7-3"><a></a>MODEL <span class="op">=</span> <span class="st">"black-forest-labs/flux-depth-pro"</span></span>
+<span id="cb7-4"><a></a></span>
+<span id="cb7-5"><a></a>output <span class="op">=</span> replicate.run(</span>
+<span id="cb7-6"><a></a>  MODEL,</span>
+<span id="cb7-7"><a></a>  <span class="bu">input</span><span class="op">=</span>{</span>
+<span id="cb7-8"><a></a>      <span class="st">"control_image"</span>: CONTROL_IMAGE,</span>
+<span id="cb7-9"><a></a>      <span class="st">"output_format"</span>: <span class="st">"png"</span>,</span>
+<span id="cb7-10"><a></a>      <span class="st">"seed"</span>: <span class="dv">12345</span>,</span>
+<span id="cb7-11"><a></a>      <span class="st">"prompt"</span>: <span class="st">"A historical castle set in medieval England, clear day, partially cloudy sky"</span></span>
+<span id="cb7-12"><a></a>  },</span>
+<span id="cb7-13"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -799,6 +957,246 @@
 </div>
 </div>
 </div>
+</section>
+<section id="inpainting" class="slide level2">
+<h2>Inpainting</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Filling in missing or masked regions of an image in a realistic way</p>
+<ul>
+<li class="fragment">Model is given an image with certain areas masked out</li>
+<li class="fragment">Generates plausible content to fill those areas based on the surrounding context (and steered by a text prompt)</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<video data-autoplay="" src="./images/cherries-oranges-bananas.mp4">
+</video>
+</div></div>
+</section>
+<section id="inpainting-1" class="slide level2">
+<h2>Inpainting</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Filling in missing or masked regions of an image in a realistic way</p>
+<ul>
+<li class="fragment">Model needs to understand context around the area</li>
+<li class="fragment">Generate content that matches the style, lighting, and perspective</li>
+<li class="fragment">Follow a text prompt that was likely different from the original</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<video data-autoplay="" src="./images/cherries-oranges-bananas.mp4">
+</video>
+</div></div>
+</section>
+<section id="outpainting" class="slide level2">
+<h2>Outpainting</h2>
+<p>Inpainting applied to the edges of an image to extend it beyond it’s original size</p>
+
+<img data-src="./images/outpainter1.png" class="r-stretch quarto-figure-center"><p class="caption">Source: https://replicate.com/black-forest-labs/flux-fill-pro</p></section>
+<section id="outpainting-1" class="slide level2">
+<h2>Outpainting</h2>
+<p>Inpainting applied to the edges of an image to extend it beyond it’s original size</p>
+
+<img data-src="./images/outpainter2.png" class="r-stretch quarto-figure-center"><p class="caption">Source: https://replicate.com/black-forest-labs/flux-fill-pro</p></section>
+<section id="outpainting-2" class="slide level2">
+<h2>Outpainting</h2>
+<ul>
+<li class="fragment">How does it work?
+<ul>
+<li class="fragment">Supply a prompt: “2x zoom out this image”</li>
+<li class="fragment">Treat the new empty regions around the image as masked areas</li>
+<li class="fragment">Use impainting technique to fill in the regions</li>
+</ul></li>
+</ul>
+</section>
+<section id="outpainting-3" class="slide level2">
+<h2>Outpainting</h2>
+<ul>
+<li class="fragment">More challenging
+<ul>
+<li class="fragment">Less context at the edges of the image vs.&nbsp;center/surrounded</li>
+<li class="fragment">Need to maintain the style, lighting, and perspective</li>
+<li class="fragment">Has to be creative. Can’t just be a repetitive pattern.</li>
+</ul></li>
+</ul>
+</section>
+<section id="inpainting-and-outpainting" class="slide level2">
+<h2>Inpainting and Outpainting</h2>
+<ul>
+<li class="fragment">Popular models
+<ul>
+<li class="fragment">Stable Diffusion (Many inpainting variants)</li>
+<li class="fragment">Flux Fill from Black Forest Labs</li>
+<li class="fragment">LaMa: Large Mask inpainting</li>
+<li class="fragment">Ideogram</li>
+</ul></li>
+</ul>
+</section>
+<section id="inpainting-and-outpainting-1" class="slide level2">
+<h2>Inpainting and Outpainting</h2>
+<ul>
+<li class="fragment">TBD: Notebook that shows flux fill</li>
+</ul>
+</section></section>
+<section>
+<section id="i-want-more-control" class="title-slide slide level1 center">
+<h1>I Want More Control!</h1>
+
+</section>
+<section id="i-want-more-control-1" class="slide level2">
+<h2>I Want More Control!</h2>
+<ul>
+<li class="fragment"><strong>Text-to-Image</strong> and <strong>Image-to-Image</strong> don’t give you that much control
+<ul>
+<li class="fragment">Extensive prompts (both positive and negative) can help, but only so far</li>
+<li class="fragment">Ultimately, “hoping the model guesses what I mean”</li>
+<li class="fragment">Fine-tuning possible, but it’s expensive and risks degrading quality (and potential overfitting)</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="introducing-controlnet" class="title-slide slide level1 center">
+<h1>Introducing ControlNet</h1>
+
+</section>
+<section id="introducing-controlnet-1" class="slide level2">
+<h2>Introducing ControlNet</h2>
+<ul>
+<li class="fragment">Developed by Lvmin Zhang and Maneesh Agrawala at Stanford University</li>
+<li class="fragment">Published in February 2023 <span class="citation" data-cites="zhang2023controlnet">(<a href="#/references-1" role="doc-biblioref" onclick="">Zhang, Rao, and Agrawala 2023</a>)</span></li>
+<li class="fragment">ControlNet represented a paradigm shift from “describe what you want” to “show the structure you want”.</li>
+</ul>
+</section>
+<section id="how-controlnet-works" class="slide level2">
+<h2>How ControlNet Works</h2>
+<ul>
+<li class="fragment">Stable Diffusion’s U-Net has an encoder and decoder</li>
+<li class="fragment">Create a trainable copy of the encoder blocks</li>
+<li class="fragment">Train the copy of the encoder alongside the frozen SD model
+<ul>
+<li class="fragment">During training: use paired data (e.g., pose skeleton → original image)</li>
+<li class="fragment">During inference: both encoders run together</li>
+<li class="fragment">Features from both are combined via zero convolutions</li>
+</ul></li>
+<li class="fragment">Key: The weights in the original SD model don’t change</li>
+<li class="fragment">ControlNet is analogous to a “Plug in” model</li>
+</ul>
+</section>
+<section id="how-controlnet-works-1" class="slide level2">
+<h2>How ControlNet Works</h2>
+<ul>
+<li class="fragment">TBD: notebook for human pose</li>
+</ul>
+</section>
+<section id="how-controlnet-works-2" class="slide level2">
+<h2>How ControlNet Works</h2>
+<ul>
+<li class="fragment">TBD: notebook for Flux kontext model</li>
+</ul>
+</section>
+<section id="how-controlnet-works-3" class="slide level2">
+<h2>How ControlNet Works</h2>
+<p>Examples of conditioning types:</p>
+<ul>
+<li class="fragment">Human pose (OpenPose): skeleton/keypoint detection</li>
+<li class="fragment">Depth maps: 3D structure information</li>
+<li class="fragment">Canny edges: line drawings and edge detection</li>
+<li class="fragment">Scribbles: rough user drawings</li>
+<li class="fragment">QR codes: blended into images</li>
+</ul>
+</section></section>
+<section id="demo-putting-this-all-together" class="title-slide slide level1 center">
+<h1>Demo: Putting this all together</h1>
+<p>Using text-to-image, ControlNet, inpainting, and image-to-image (depth map) to create PBR materials</p>
+<p>TBD - Mega notebook</p>
+</section>
+
+<section>
+<section id="using-transformers-for-computer-vision" class="title-slide slide level1 center">
+<h1>Using Transformers for Computer Vision</h1>
+
+</section>
+<section id="cnns-to-vision-transformer" class="slide level2">
+<h2>CNNs to Vision Transformer</h2>
+<p>Historically, computer vision has used classification models called CNNs (Convolutional Neural Networks)</p>
+<ul>
+<li class="fragment">Enter the Vision Transformer (ViT)
+<ul>
+<li class="fragment">“An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale” <span class="citation" data-cites="dosovitskiy2021vit">(<a href="#/references-1" role="doc-biblioref" onclick="">Dosovitskiy et al. 2021</a>)</span></li>
+</ul></li>
+<li class="fragment">Tipping Point
+<ul>
+<li class="fragment">Initially, ViTs didn’t outperform CNNs</li>
+<li class="fragment">But exceeded SOTA CNNs on larger datasets (such as Google’s JFT-300M)</li>
+</ul></li>
+</ul>
+</section>
+<section id="popular-vision-transformers" class="slide level2">
+<h2>Popular Vision Transformers</h2>
+<ul>
+<li class="fragment">OpenAI’s CLIP
+<ul>
+<li class="fragment">Trained on 400M image-text pairs</li>
+<li class="fragment">Foundation of most VLMs</li>
+</ul></li>
+<li class="fragment">Meta’s DINO/DINO-2
+<ul>
+<li class="fragment">(Self DIstillation with NO Labels)</li>
+<li class="fragment">Self-supervised on 142M images</li>
+</ul></li>
+<li class="fragment">Microsoft’s Swin
+<ul>
+<li class="fragment">Use “shifted windows” approach</li>
+<li class="fragment">Excels at dense predication tasks</li>
+</ul></li>
+</ul>
+</section>
+<section id="vision-language-models-vlms" class="slide level2">
+<h2>Vision Language Models (VLMs)</h2>
+<ul>
+<li class="fragment">ViTs by themselves are only so useful</li>
+<li class="fragment">Introducing VLMs (Vision Language Models)
+<ul>
+<li class="fragment">A vision encoder</li>
+<li class="fragment">Adapter/projector layer</li>
+<li class="fragment">Language model (LLaMa or GPT)</li>
+</ul></li>
+<li class="fragment">Also known as “Multimodal”
+<ul>
+<li class="fragment">Image-Text-to-Text</li>
+</ul></li>
+</ul>
+</section>
+<section id="demo-1" class="slide level2">
+<h2>Demo</h2>
+<ul>
+<li class="fragment">TBD</li>
+</ul>
+</section>
+<section id="use-cases-for-vlms" class="slide level2">
+<h2>Use Cases for VLMs</h2>
+<ul>
+<li class="fragment">Visual Understanding: “What’s in this image?”</li>
+<li class="fragment">Accessibility: Assisting users with visual impairments</li>
+<li class="fragment">Content Moderation and Safety: Identifying harmful content</li>
+<li class="fragment">Retail: Finding products with photos</li>
+<li class="fragment">Education: Helping students understand charts, diagrams, equations</li>
+<li class="fragment">Robotics: Providing Robots with information to navigate their environment</li>
+</ul>
+</section>
+<section id="popular-vlms" class="slide level2">
+<h2>Popular VLMs</h2>
+<ul>
+<li class="fragment">Closed Source
+<ul>
+<li class="fragment">GPT4-V, Claude, Gemini Flash</li>
+</ul></li>
+<li class="fragment">Open Source
+<ul>
+<li class="fragment">LLaVa: Research collaboration between University of Wisconsin-Maddison and MSR</li>
+<li class="fragment">Gemma: Google’s Gemma-3</li>
+<li class="fragment">FastVLM: Apple’s Fast Vision Language Model</li>
+</ul></li>
+</ul>
 </section></section>
 <section>
 <section id="looking-ahead" class="title-slide slide level1 center">
@@ -817,10 +1215,18 @@
 <h1>References</h1>
 
 </section>
-<section id="references-1" class="slide level2">
+<section id="references-1" class="slide level2 smaller scrollable">
 <h2>References</h2>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-dosovitskiy2021vit" class="csl-entry" role="listitem">
+Dosovitskiy, Alexey, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, et al. 2021. <span>“An Image Is Worth 16x16 Words: Transformers for Image Recognition at Scale.”</span> <em>arXiv Preprint arXiv:2010.11929</em>.
+</div>
+<div id="ref-zhang2023controlnet" class="csl-entry" role="listitem">
+Zhang, Lvmin, Anyi Rao, and Maneesh Agrawala. 2023. <span>“Adding Conditional Control to Text-to-Image Diffusion Models.”</span> <em>arXiv Preprint arXiv:2302.05543</em>.
+</div>
+</div>
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
