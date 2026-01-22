@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -190,6 +190,9 @@
   <script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
   <script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
   <link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+  
+  <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -613,6 +616,189 @@
 </div>
 </div>
 </div></div>
+</section>
+<section id="image-to-image" class="slide level2">
+<h2>Image-to-Image</h2>
+<p>Image-to-Image: “Make this image different”</p>
+<ul>
+<li class="fragment">Originally solved by GAN approaches, but evolved into extension of the diffuser concept
+<ul>
+<li class="fragment">Add noise to the original image (partial denoising)</li>
+<li class="fragment">Regenerate it with modifications based on the prompt</li>
+<li class="fragment">The original image heavily influences the output structure</li>
+</ul></li>
+</ul>
+</section>
+<section id="image-to-image-1" class="slide level2">
+<h2>Image-to-Image</h2>
+<p>TBD: Notebook that shows the step-by-step process</p>
+</section>
+<section id="image-to-image-2" class="slide level2">
+<h2>Image-to-Image</h2>
+<ul>
+<li class="fragment">Can also be used for…
+<ul>
+<li class="fragment">Super resolution</li>
+<li class="fragment">Style transfer</li>
+<li class="fragment">Colorization (grayscale to color)</li>
+<li class="fragment">Depth maps</li>
+</ul></li>
+</ul>
+</section>
+<section id="depth-maps" class="slide level2">
+<h2>Depth Maps</h2>
+<ul>
+<li class="fragment">Images (often greyscale) where each pixel’s value represents the distance</li>
+<li class="fragment">Historically required custom hardware
+<ul>
+<li class="fragment">Depth Camera (e.g., RealSense) - ~$300-500</li>
+<li class="fragment">Module/processing for realtime (60fps) sensing</li>
+</ul></li>
+</ul>
+</section>
+<section id="depth-maps-1" class="slide level2">
+<h2>Depth Maps</h2>
+<ul>
+<li class="fragment">Image-to-Image depth estimation models
+<ul>
+<li class="fragment">Depth Anything, MiDaS, ZoeDepth</li>
+<li class="fragment">Low latency (MiDaS 3.1 @ 20fps on embedded GPU)</li>
+</ul></li>
+<li class="fragment">Used for
+<ul>
+<li class="fragment">3D effects/estimation</li>
+<li class="fragment">Simple/low-cost robotics</li>
+<li class="fragment">Control input for other images</li>
+</ul></li>
+</ul>
+</section>
+<section id="depth-maps-2" class="slide level2">
+<h2>Depth Maps</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/generate-depth-map.ipynb" data-notebook-title="Depth Map Generation" data-notebook-cellid="input-image">
+<div id="input-image" class="cell">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<img src="https://raw.githubusercontent.com/simonguest/CS-394/refs/heads/main/src/04/images/campus.png">
+</div>
+</div>
+</div>
+</section>
+<section id="depth-maps-3" class="slide level2">
+<h2>Depth Maps</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/generate-depth-map.ipynb" data-notebook-title="Depth Map Generation" data-notebook-cellid="run">
+<div id="run" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">import</span> replicate</span>
+<span id="cb4-2"><a></a></span>
+<span id="cb4-3"><a></a>MODEL <span class="op">=</span> <span class="st">"chenxwh/depth-anything-v2:b239ea33cff32bb7abb5db39ffe9a09c14cbc2894331d1ef66fe096eed88ebd4"</span></span>
+<span id="cb4-4"><a></a></span>
+<span id="cb4-5"><a></a>output <span class="op">=</span> replicate.run(</span>
+<span id="cb4-6"><a></a>  MODEL,</span>
+<span id="cb4-7"><a></a>  <span class="bu">input</span><span class="op">=</span>{</span>
+<span id="cb4-8"><a></a>      <span class="st">"image"</span>: INPUT_IMAGE,</span>
+<span id="cb4-9"><a></a>  },</span>
+<span id="cb4-10"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="depth-maps-4" class="slide level2">
+<h2>Depth Maps</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/generate-depth-map.ipynb" data-notebook-title="Depth Map Generation" data-notebook-cellid="result">
+<div id="result" class="cell">
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/notebooks-generate-depth-map-cell-6-output-1.png"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="depth-maps-5" class="slide level2">
+<h2>Depth Maps</h2>
+<ul>
+<li class="fragment">Why do this?
+<ul>
+<li class="fragment">Depth map can be used as control image for new image</li>
+</ul></li>
+</ul>
+</section>
+<section id="depth-map-as-control" class="slide level2">
+<h2>Depth Map as Control</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/depth-map-as-context.ipynb" data-notebook-title="Depth Map as Context" data-notebook-cellid="control-image">
+<div id="control-image" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="4">
+<img src="https://raw.githubusercontent.com/simonguest/CS-394/refs/heads/main/src/04/images/campus-depth.png">
+</div>
+</div>
+</div>
+</section>
+<section id="depth-map-as-control-1" class="slide level2">
+<h2>Depth Map as Control</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/depth-map-as-context.ipynb" data-notebook-title="Depth Map as Context" data-notebook-cellid="run">
+<div id="run" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">import</span> replicate</span>
+<span id="cb5-2"><a></a></span>
+<span id="cb5-3"><a></a>MODEL <span class="op">=</span> <span class="st">"black-forest-labs/flux-depth-pro"</span></span>
+<span id="cb5-4"><a></a></span>
+<span id="cb5-5"><a></a>output <span class="op">=</span> replicate.run(</span>
+<span id="cb5-6"><a></a>  MODEL,</span>
+<span id="cb5-7"><a></a>  <span class="bu">input</span><span class="op">=</span>{</span>
+<span id="cb5-8"><a></a>      <span class="st">"control_image"</span>: CONTROL_IMAGE,</span>
+<span id="cb5-9"><a></a>      <span class="st">"output_format"</span>: <span class="st">"png"</span>,</span>
+<span id="cb5-10"><a></a>      <span class="st">"seed"</span>: <span class="dv">12345</span>,</span>
+<span id="cb5-11"><a></a>      <span class="st">"prompt"</span>: <span class="st">"A futuristic building set in 2050, neon lighting, night shot, dynamic"</span></span>
+<span id="cb5-12"><a></a>  },</span>
+<span id="cb5-13"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="depth-map-as-control-2" class="slide level2">
+<h2>Depth Map as Control</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/depth-map-as-context.ipynb" data-notebook-title="Depth Map as Context" data-notebook-cellid="result">
+<div id="result" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/notebooks-depth-map-as-context-cell-6-output-1.png"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="depth-map-as-control-3" class="slide level2">
+<h2>Depth Map as Control</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/depth-map-as-context.ipynb" data-notebook-title="Depth Map as Context" data-notebook-cellid="run-2">
+<div id="run-2" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="im">import</span> replicate</span>
+<span id="cb6-2"><a></a></span>
+<span id="cb6-3"><a></a>MODEL <span class="op">=</span> <span class="st">"black-forest-labs/flux-depth-pro"</span></span>
+<span id="cb6-4"><a></a></span>
+<span id="cb6-5"><a></a>output <span class="op">=</span> replicate.run(</span>
+<span id="cb6-6"><a></a>  MODEL,</span>
+<span id="cb6-7"><a></a>  <span class="bu">input</span><span class="op">=</span>{</span>
+<span id="cb6-8"><a></a>      <span class="st">"control_image"</span>: CONTROL_IMAGE,</span>
+<span id="cb6-9"><a></a>      <span class="st">"output_format"</span>: <span class="st">"png"</span>,</span>
+<span id="cb6-10"><a></a>      <span class="st">"seed"</span>: <span class="dv">12345</span>,</span>
+<span id="cb6-11"><a></a>      <span class="st">"prompt"</span>: <span class="st">"A historical castle set in medieval England, clear day, partially cloudy sky"</span></span>
+<span id="cb6-12"><a></a>  },</span>
+<span id="cb6-13"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="depth-map-as-control-4" class="slide level2">
+<h2>Depth Map as Control</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/depth-map-as-context.ipynb" data-notebook-title="Depth Map as Context" data-notebook-cellid="result-2">
+<div id="result-2" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/notebooks-depth-map-as-context-cell-8-output-1.png"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
 </section></section>
 <section>
 <section id="looking-ahead" class="title-slide slide level1 center">

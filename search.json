@@ -36,6 +36,34 @@
     ]
   },
   {
+    "objectID": "src/04/notebooks/generate-depth-map.html#install-dependencies",
+    "href": "src/04/notebooks/generate-depth-map.html#install-dependencies",
+    "title": "Depth Map Generation",
+    "section": "Install Dependencies",
+    "text": "Install Dependencies\n\n!uv pip install replicate -q"
+  },
+  {
+    "objectID": "src/04/notebooks/generate-depth-map.html#set-replicate-api-token",
+    "href": "src/04/notebooks/generate-depth-map.html#set-replicate-api-token",
+    "title": "Depth Map Generation",
+    "section": "Set Replicate API Token",
+    "text": "Set Replicate API Token\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  REPLICATE_API_TOKEN = userdata.get('REPLICATE_API_TOKEN')\nelse:\n  load_dotenv()\n  REPLICATE_API_TOKEN = os.getenv('REPLICATE_API_TOKEN')"
+  },
+  {
+    "objectID": "src/04/notebooks/generate-depth-map.html#input-image",
+    "href": "src/04/notebooks/generate-depth-map.html#input-image",
+    "title": "Depth Map Generation",
+    "section": "Input Image",
+    "text": "Input Image\n\nfrom IPython.display import Image\n\nINPUT_IMAGE = \"https://raw.githubusercontent.com/simonguest/CS-394/refs/heads/main/src/04/images/campus.png\"\n\nImage(url=INPUT_IMAGE)"
+  },
+  {
+    "objectID": "src/04/notebooks/generate-depth-map.html#image-to-image-using-depth-anything-v2",
+    "href": "src/04/notebooks/generate-depth-map.html#image-to-image-using-depth-anything-v2",
+    "title": "Depth Map Generation",
+    "section": "Image-to-Image using depth-anything-v2",
+    "text": "Image-to-Image using depth-anything-v2\n\nimport replicate\n\nMODEL = \"chenxwh/depth-anything-v2:b239ea33cff32bb7abb5db39ffe9a09c14cbc2894331d1ef66fe096eed88ebd4\"\n\noutput = replicate.run(\n  MODEL,\n  input={\n      \"image\": INPUT_IMAGE,\n  },\n)\n\n\nimport io\nfrom PIL import Image\n\noutput_bytes = io.BytesIO(output[\"grey_depth\"].read())\noutput_image = Image.open(output_bytes)\noutput_image"
+  },
+  {
     "objectID": "src/03/notebooks/open-meteo-mcp.html#install-pre-requisites",
     "href": "src/03/notebooks/open-meteo-mcp.html#install-pre-requisites",
     "title": "OpenAI Agents SDK with MCP Server",
@@ -3558,6 +3586,160 @@
     ]
   },
   {
+    "objectID": "src/04/slides.html#image-to-image",
+    "href": "src/04/slides.html#image-to-image",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Image-to-Image",
+    "text": "Image-to-Image\nImage-to-Image: “Make this image different”\n\nOriginally solved by GAN approaches, but evolved into extension of the diffuser concept\n\nAdd noise to the original image (partial denoising)\nRegenerate it with modifications based on the prompt\nThe original image heavily influences the output structure",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#image-to-image-1",
+    "href": "src/04/slides.html#image-to-image-1",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Image-to-Image",
+    "text": "Image-to-Image\nTBD: Notebook that shows the step-by-step process",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#image-to-image-2",
+    "href": "src/04/slides.html#image-to-image-2",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Image-to-Image",
+    "text": "Image-to-Image\n\nCan also be used for…\n\nSuper resolution\nStyle transfer\nColorization (grayscale to color)\nDepth maps",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#depth-maps",
+    "href": "src/04/slides.html#depth-maps",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Depth Maps",
+    "text": "Depth Maps\n\nImages (often greyscale) where each pixel’s value represents the distance\nHistorically required custom hardware\n\nDepth Camera (e.g., RealSense) - ~$300-500\nModule/processing for realtime (60fps) sensing",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#depth-maps-1",
+    "href": "src/04/slides.html#depth-maps-1",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Depth Maps",
+    "text": "Depth Maps\n\nImage-to-Image depth estimation models\n\nDepth Anything, MiDaS, ZoeDepth\nLow latency (MiDaS 3.1 @ 20fps on embedded GPU)\n\nUsed for\n\n3D effects/estimation\nSimple/low-cost robotics\nControl input for other images",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#depth-maps-2",
+    "href": "src/04/slides.html#depth-maps-2",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Depth Maps",
+    "text": "Depth Maps",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#depth-maps-3",
+    "href": "src/04/slides.html#depth-maps-3",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Depth Maps",
+    "text": "Depth Maps\n\n\nimport replicate\n\nMODEL = \"chenxwh/depth-anything-v2:b239ea33cff32bb7abb5db39ffe9a09c14cbc2894331d1ef66fe096eed88ebd4\"\n\noutput = replicate.run(\n  MODEL,\n  input={\n      \"image\": INPUT_IMAGE,\n  },\n)",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#depth-maps-4",
+    "href": "src/04/slides.html#depth-maps-4",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Depth Maps",
+    "text": "Depth Maps",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#depth-maps-5",
+    "href": "src/04/slides.html#depth-maps-5",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Depth Maps",
+    "text": "Depth Maps\n\nWhy do this?\n\nDepth map can be used as control image for new image",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#depth-map-as-control",
+    "href": "src/04/slides.html#depth-map-as-control",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Depth Map as Control",
+    "text": "Depth Map as Control",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#depth-map-as-control-1",
+    "href": "src/04/slides.html#depth-map-as-control-1",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Depth Map as Control",
+    "text": "Depth Map as Control\n\n\nimport replicate\n\nMODEL = \"black-forest-labs/flux-depth-pro\"\n\noutput = replicate.run(\n  MODEL,\n  input={\n      \"control_image\": CONTROL_IMAGE,\n      \"output_format\": \"png\",\n      \"seed\": 12345,\n      \"prompt\": \"A futuristic building set in 2050, neon lighting, night shot, dynamic\"\n  },\n)",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#depth-map-as-control-2",
+    "href": "src/04/slides.html#depth-map-as-control-2",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Depth Map as Control",
+    "text": "Depth Map as Control",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#depth-map-as-control-3",
+    "href": "src/04/slides.html#depth-map-as-control-3",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Depth Map as Control",
+    "text": "Depth Map as Control\n\n\nimport replicate\n\nMODEL = \"black-forest-labs/flux-depth-pro\"\n\noutput = replicate.run(\n  MODEL,\n  input={\n      \"control_image\": CONTROL_IMAGE,\n      \"output_format\": \"png\",\n      \"seed\": 12345,\n      \"prompt\": \"A historical castle set in medieval England, clear day, partially cloudy sky\"\n  },\n)",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#depth-map-as-control-4",
+    "href": "src/04/slides.html#depth-map-as-control-4",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Depth Map as Control",
+    "text": "Depth Map as Control",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "src/04/slides.html#looking-ahead-1",
     "href": "src/04/slides.html#looking-ahead-1",
     "title": "Module 4: Multimedia and Multimodal Models",
@@ -4054,6 +4236,34 @@
       "Notebooks",
       "memory.ipynb"
     ]
+  },
+  {
+    "objectID": "src/04/notebooks/depth-map-as-context.html#install-dependencies",
+    "href": "src/04/notebooks/depth-map-as-context.html#install-dependencies",
+    "title": "Depth Map as Context",
+    "section": "Install Dependencies",
+    "text": "Install Dependencies\n\n!uv pip install replicate -q"
+  },
+  {
+    "objectID": "src/04/notebooks/depth-map-as-context.html#set-replicate-api-token",
+    "href": "src/04/notebooks/depth-map-as-context.html#set-replicate-api-token",
+    "title": "Depth Map as Context",
+    "section": "Set Replicate API Token",
+    "text": "Set Replicate API Token\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  REPLICATE_API_TOKEN = userdata.get('REPLICATE_API_TOKEN')\nelse:\n  load_dotenv()\n  REPLICATE_API_TOKEN = os.getenv('REPLICATE_API_TOKEN')"
+  },
+  {
+    "objectID": "src/04/notebooks/depth-map-as-context.html#control-image",
+    "href": "src/04/notebooks/depth-map-as-context.html#control-image",
+    "title": "Depth Map as Context",
+    "section": "Control Image",
+    "text": "Control Image\n\nfrom IPython.display import Image\n\nCONTROL_IMAGE = \"https://raw.githubusercontent.com/simonguest/CS-394/refs/heads/main/src/04/images/campus-depth.png\"\n\nImage(url=CONTROL_IMAGE)"
+  },
+  {
+    "objectID": "src/04/notebooks/depth-map-as-context.html#image-to-image-with-guiding-prompt-using-flux-depth-pro",
+    "href": "src/04/notebooks/depth-map-as-context.html#image-to-image-with-guiding-prompt-using-flux-depth-pro",
+    "title": "Depth Map as Context",
+    "section": "Image-to-Image with guiding prompt using Flux Depth Pro",
+    "text": "Image-to-Image with guiding prompt using Flux Depth Pro\n\nimport replicate\n\nMODEL = \"black-forest-labs/flux-depth-pro\"\n\noutput = replicate.run(\n  MODEL,\n  input={\n      \"control_image\": CONTROL_IMAGE,\n      \"output_format\": \"png\",\n      \"seed\": 12345,\n      \"prompt\": \"A futuristic building set in 2050, neon lighting, night shot, dynamic\"\n  },\n)\n\n\nimport io\nfrom PIL import Image\n\noutput_bytes = io.BytesIO(output.read())\noutput_image = Image.open(output_bytes)\noutput_image\n\n\n\n\n\n\n\n\n\nimport replicate\n\nMODEL = \"black-forest-labs/flux-depth-pro\"\n\noutput = replicate.run(\n  MODEL,\n  input={\n      \"control_image\": CONTROL_IMAGE,\n      \"output_format\": \"png\",\n      \"seed\": 12345,\n      \"prompt\": \"A historical castle set in medieval England, clear day, partially cloudy sky\"\n  },\n)\n\n\nimport io\nfrom PIL import Image\n\noutput_bytes = io.BytesIO(output.read())\noutput_image = Image.open(output_bytes)\noutput_image"
   },
   {
     "objectID": "src/04/notebooks/text-to-image-replicate.html#install-dependencies",
