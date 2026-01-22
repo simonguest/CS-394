@@ -36,6 +36,27 @@
     ]
   },
   {
+    "objectID": "src/04/notebooks/outpainting.html",
+    "href": "src/04/notebooks/outpainting.html",
+    "title": "Outpainting using black-forest-labs/flux-fill-pro",
+    "section": "",
+    "text": "!uv pip install replicate"
+  },
+  {
+    "objectID": "src/04/notebooks/outpainting.html#input-image",
+    "href": "src/04/notebooks/outpainting.html#input-image",
+    "title": "Outpainting using black-forest-labs/flux-fill-pro",
+    "section": "Input Image",
+    "text": "Input Image\n\nfrom IPython.display import Image\n\nINPUT_IMAGE = \"https://raw.githubusercontent.com/simonguest/CS-394/refs/heads/main/src/04/images/campus.png\"\n\nImage(url=INPUT_IMAGE)"
+  },
+  {
+    "objectID": "src/04/notebooks/outpainting.html#call-black-forest-labsflux-fill-pro-with-outpainting-parameters",
+    "href": "src/04/notebooks/outpainting.html#call-black-forest-labsflux-fill-pro-with-outpainting-parameters",
+    "title": "Outpainting using black-forest-labs/flux-fill-pro",
+    "section": "Call black-forest-labs/flux-fill-pro with outpainting parameters",
+    "text": "Call black-forest-labs/flux-fill-pro with outpainting parameters\n\nimport replicate\n\n# Call the Replicate API\noutput = replicate.run(\n    \"black-forest-labs/flux-fill-pro\",\n    input={\n        \"image\": INPUT_IMAGE,\n        \"prompt\": \"The main building of a technical college, no text\",\n        \"seed\": 123456,\n        \"steps\": 50,\n        \"guidance\": 60,\n        \"outpaint\": \"Zoom out 2x\",\n        \"output_format\": \"jpg\",\n        \"safety_tolerance\": 2,\n        \"prompt_upsampling\": False\n    }\n)\n\n\nimport io\nfrom PIL import Image\n\noutput_bytes = io.BytesIO(output.read())\noutput_image = Image.open(output_bytes)\noutput_image"
+  },
+  {
     "objectID": "src/04/notebooks/image-to-image-sd-1.5.html",
     "href": "src/04/notebooks/image-to-image-sd-1.5.html",
     "title": "Image-to-Image using Stable Diffusion 1.5",
@@ -952,7 +973,7 @@
     "href": "src/04/slides.html#depth-maps-1",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "Depth Maps",
-    "text": "Depth Maps\n\nHistorically, required custom hardware\n\nDepth Camera (e.g., RealSense) - ~$300-500\nModule/processing for realtime (60fps) sensing",
+    "text": "Depth Maps\n\n\n\n\n\nHistorically, required custom hardware\n\nDepth Camera (e.g., RealSense) - ~$300-500\nModule/processing for realtime (60fps) sensing",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -1073,7 +1094,7 @@
     "href": "src/04/slides.html#inpainting",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "Inpainting",
-    "text": "Inpainting\n\n\nFilling in missing or masked regions of an image in a realistic way\n\nModel is given an image with certain areas masked out\nGenerates plausible content to fill those areas based on the surrounding context (and steered by a text prompt)",
+    "text": "Inpainting\n\nFilling in missing or masked regions of an image in a realistic way\nModel is given an image with certain areas masked out\nGenerates plausible content to fill those areas based on the surrounding context (and steered by a text prompt)",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -1084,7 +1105,18 @@
     "href": "src/04/slides.html#inpainting-1",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "Inpainting",
-    "text": "Inpainting\n\n\nFilling in missing or masked regions of an image in a realistic way\n\nModel needs to understand context around the area\nGenerate content that matches the style, lighting, and perspective\nFollow a text prompt that was likely different from the original",
+    "text": "Inpainting\n\nCan be challenging\n\nModel needs to understand context around the area\nGenerate content that matches the style, lighting, and perspective\nFollow a text prompt that was likely different from the original",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#inpainting-2",
+    "href": "src/04/slides.html#inpainting-2",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Inpainting",
+    "text": "Inpainting\n\n\nimport gradio as gr\nimport numpy as np\nfrom PIL import Image\nimport replicate\nimport io\n\ndef inpaint(image_data, prompt):\n    if image_data is None:\n        return None\n    \n    # Get the original image from the background\n    original_image = Image.fromarray(image_data['background'])\n    \n    # Get the mask from the layers\n    if image_data['layers'] and len(image_data['layers']) &gt; 0:\n        mask_layer = image_data['layers'][0]\n        mask_array = np.array(mask_layer)\n        \n        # Create binary mask: white where painted, black where not\n        alpha_channel = mask_array[:, :, 3]\n        binary_mask = np.where(alpha_channel &gt; 0, 255, 0).astype(np.uint8)\n        mask_image = Image.fromarray(binary_mask, mode='L')\n    else:\n        return None\n    \n    # Convert images to bytes for the replicate API\n    image_bytes = io.BytesIO()\n    original_image.save(image_bytes, format='PNG')\n    image_bytes.seek(0)\n    \n    mask_bytes = io.BytesIO()\n    mask_image.save(mask_bytes, format='PNG')\n    mask_bytes.seek(0)\n    \n    # Call the Replicate API\n    output = replicate.run(\n        \"black-forest-labs/flux-fill-pro\",\n        input={\n            \"image\": image_bytes,\n            \"mask\": mask_bytes,\n            \"prompt\": prompt,\n            \"steps\": 25,\n            \"guidance\": 75,\n            \"outpaint\": \"None\",\n            \"output_format\": \"jpg\",\n            \"safety_tolerance\": 2,\n            \"prompt_upsampling\": False\n        }\n    )\n    \n    # Read the FileOutput and convert to PIL Image\n    output_bytes = output.read()\n    output_image = Image.open(io.BytesIO(output_bytes))\n    \n    return output_image\n\ndemo = gr.Interface(\n    fn=inpaint,\n    inputs=[\n        gr.ImageEditor(\n            label=\"Image (paint over areas to inpaint)\",\n            brush=gr.Brush(color_mode=\"fixed\", colors=[\"#000000\"]),\n            layers=True\n        ),\n        gr.Textbox(label=\"Prompt\", placeholder=\"Describe what should replace the masked area...\")\n    ],\n    outputs=gr.Image(label=\"Output Image\"),\n    title=\"Inpainting using black-forest-labs/flux-fill-pro\"\n)\ndemo.launch()",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -1095,7 +1127,7 @@
     "href": "src/04/slides.html#outpainting",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "Outpainting",
-    "text": "Outpainting\nInpainting applied to the edges of an image to extend it beyond it’s original size\n\nSource: https://replicate.com/black-forest-labs/flux-fill-pro",
+    "text": "Outpainting\n\nThe opposite of inpainting, kind of :)\nHow does it work?\n\nSupply a prompt: “2x zoom out this image”\nTreat the new empty regions around the image as masked areas\nUse impainting technique to fill in the regions",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -1106,7 +1138,7 @@
     "href": "src/04/slides.html#outpainting-1",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "Outpainting",
-    "text": "Outpainting\nInpainting applied to the edges of an image to extend it beyond it’s original size\n\nSource: https://replicate.com/black-forest-labs/flux-fill-pro",
+    "text": "Outpainting\n\nMore challenging\n\nLess context at the edges of the image vs. center/surrounded\nNeed to maintain the style, lighting, and perspective\nHas to be creative. Can’t just be a repetitive pattern.",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -1117,7 +1149,7 @@
     "href": "src/04/slides.html#outpainting-2",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "Outpainting",
-    "text": "Outpainting\n\nHow does it work?\n\nSupply a prompt: “2x zoom out this image”\nTreat the new empty regions around the image as masked areas\nUse impainting technique to fill in the regions",
+    "text": "Outpainting",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -1128,7 +1160,29 @@
     "href": "src/04/slides.html#outpainting-3",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "Outpainting",
-    "text": "Outpainting\n\nMore challenging\n\nLess context at the edges of the image vs. center/surrounded\nNeed to maintain the style, lighting, and perspective\nHas to be creative. Can’t just be a repetitive pattern.",
+    "text": "Outpainting\n\n\nimport replicate\n\n# Call the Replicate API\noutput = replicate.run(\n    \"black-forest-labs/flux-fill-pro\",\n    input={\n        \"image\": INPUT_IMAGE,\n        \"prompt\": \"The main building of a technical college, no text\",\n        \"seed\": 123456,\n        \"steps\": 50,\n        \"guidance\": 60,\n        \"outpaint\": \"Zoom out 2x\",\n        \"output_format\": \"jpg\",\n        \"safety_tolerance\": 2,\n        \"prompt_upsampling\": False\n    }\n)",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#outpainting-4",
+    "href": "src/04/slides.html#outpainting-4",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Outpainting",
+    "text": "Outpainting",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#outpainting-5",
+    "href": "src/04/slides.html#outpainting-5",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Outpainting",
+    "text": "Outpainting",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -1140,17 +1194,6 @@
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "Inpainting and Outpainting",
     "text": "Inpainting and Outpainting\n\nPopular models\n\nStable Diffusion (Many inpainting variants)\nFlux Fill from Black Forest Labs\nLaMa: Large Mask inpainting\nIdeogram",
-    "crumbs": [
-      "**Module 4:** Multimedia and Multimodal Models",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/04/slides.html#inpainting-and-outpainting-1",
-    "href": "src/04/slides.html#inpainting-and-outpainting-1",
-    "title": "Module 4: Multimedia and Multimodal Models",
-    "section": "Inpainting and Outpainting",
-    "text": "Inpainting and Outpainting\n\nTBD: Notebook that shows flux fill",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -1256,8 +1299,8 @@
     ]
   },
   {
-    "objectID": "src/04/slides.html#demo-1",
-    "href": "src/04/slides.html#demo-1",
+    "objectID": "src/04/slides.html#demo-2",
+    "href": "src/04/slides.html#demo-2",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "Demo",
     "text": "Demo\n\nTBD",
@@ -4617,6 +4660,20 @@
     "title": "Depth Map Generation",
     "section": "Image-to-Image using depth-anything-v2",
     "text": "Image-to-Image using depth-anything-v2\n\nimport replicate\n\nMODEL = \"chenxwh/depth-anything-v2:b239ea33cff32bb7abb5db39ffe9a09c14cbc2894331d1ef66fe096eed88ebd4\"\n\noutput = replicate.run(\n  MODEL,\n  input={\n      \"image\": INPUT_IMAGE,\n  },\n)\n\n\nimport io\nfrom PIL import Image\n\noutput_bytes = io.BytesIO(output[\"grey_depth\"].read())\noutput_image = Image.open(output_bytes)\noutput_image"
+  },
+  {
+    "objectID": "src/04/notebooks/inpainting.html",
+    "href": "src/04/notebooks/inpainting.html",
+    "title": "Inpainting using black-forest-labs/flux-fill-pro",
+    "section": "",
+    "text": "!uv pip install gradio==5.49.1 replicate"
+  },
+  {
+    "objectID": "src/04/notebooks/inpainting.html#gradio-interface",
+    "href": "src/04/notebooks/inpainting.html#gradio-interface",
+    "title": "Inpainting using black-forest-labs/flux-fill-pro",
+    "section": "Gradio Interface",
+    "text": "Gradio Interface\n\nimport gradio as gr\nimport numpy as np\nfrom PIL import Image\nimport replicate\nimport io\n\ndef inpaint(image_data, prompt):\n    if image_data is None:\n        return None\n    \n    # Get the original image from the background\n    original_image = Image.fromarray(image_data['background'])\n    \n    # Get the mask from the layers\n    if image_data['layers'] and len(image_data['layers']) &gt; 0:\n        mask_layer = image_data['layers'][0]\n        mask_array = np.array(mask_layer)\n        \n        # Create binary mask: white where painted, black where not\n        alpha_channel = mask_array[:, :, 3]\n        binary_mask = np.where(alpha_channel &gt; 0, 255, 0).astype(np.uint8)\n        mask_image = Image.fromarray(binary_mask, mode='L')\n    else:\n        return None\n    \n    # Convert images to bytes for the replicate API\n    image_bytes = io.BytesIO()\n    original_image.save(image_bytes, format='PNG')\n    image_bytes.seek(0)\n    \n    mask_bytes = io.BytesIO()\n    mask_image.save(mask_bytes, format='PNG')\n    mask_bytes.seek(0)\n    \n    # Call the Replicate API\n    output = replicate.run(\n        \"black-forest-labs/flux-fill-pro\",\n        input={\n            \"image\": image_bytes,\n            \"mask\": mask_bytes,\n            \"prompt\": prompt,\n            \"steps\": 25,\n            \"guidance\": 75,\n            \"outpaint\": \"None\",\n            \"output_format\": \"jpg\",\n            \"safety_tolerance\": 2,\n            \"prompt_upsampling\": False\n        }\n    )\n    \n    # Read the FileOutput and convert to PIL Image\n    output_bytes = output.read()\n    output_image = Image.open(io.BytesIO(output_bytes))\n    \n    return output_image\n\ndemo = gr.Interface(\n    fn=inpaint,\n    inputs=[\n        gr.ImageEditor(\n            label=\"Image (paint over areas to inpaint)\",\n            brush=gr.Brush(color_mode=\"fixed\", colors=[\"#000000\"]),\n            layers=True\n        ),\n        gr.Textbox(label=\"Prompt\", placeholder=\"Describe what should replace the masked area...\")\n    ],\n    outputs=gr.Image(label=\"Output Image\"),\n    title=\"Inpainting using black-forest-labs/flux-fill-pro\"\n)\ndemo.launch()\n\n* Running on local URL:  http://127.0.0.1:7861\n* To create a public link, set `share=True` in `launch()`."
   },
   {
     "objectID": "src/04/notebooks/text-to-image-replicate.html#install-dependencies",

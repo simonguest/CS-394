@@ -806,6 +806,10 @@
 </section>
 <section id="depth-maps-1" class="slide level2">
 <h2>Depth Maps</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="./images/real-sense.jpg"></p>
+</div><div class="column" style="width:50%;">
 <ul>
 <li class="fragment">Historically, required custom hardware
 <ul>
@@ -813,6 +817,7 @@
 <li class="fragment">Module/processing for realtime (60fps) sensing</li>
 </ul></li>
 </ul>
+</div></div>
 </section>
 <section id="depth-maps-2" class="slide level2">
 <h2>Depth Maps</h2>
@@ -960,46 +965,104 @@
 </section>
 <section id="inpainting" class="slide level2">
 <h2>Inpainting</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p>Filling in missing or masked regions of an image in a realistic way</p>
 <ul>
+<li class="fragment">Filling in missing or masked regions of an image in a realistic way</li>
 <li class="fragment">Model is given an image with certain areas masked out</li>
 <li class="fragment">Generates plausible content to fill those areas based on the surrounding context (and steered by a text prompt)</li>
 </ul>
-</div><div class="column" style="width:50%;">
-<video data-autoplay="" src="./images/cherries-oranges-bananas.mp4">
-</video>
-</div></div>
 </section>
 <section id="inpainting-1" class="slide level2">
 <h2>Inpainting</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p>Filling in missing or masked regions of an image in a realistic way</p>
+<ul>
+<li class="fragment">Can be challenging
 <ul>
 <li class="fragment">Model needs to understand context around the area</li>
 <li class="fragment">Generate content that matches the style, lighting, and perspective</li>
 <li class="fragment">Follow a text prompt that was likely different from the original</li>
+</ul></li>
 </ul>
-</div><div class="column" style="width:50%;">
-<video data-autoplay="" src="./images/cherries-oranges-bananas.mp4">
-</video>
-</div></div>
+</section>
+<section id="inpainting-2" class="slide level2">
+<h2>Inpainting</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/inpainting.ipynb" data-notebook-title="Inpainting using black-forest-labs/flux-fill-pro" data-notebook-cellid="gradio">
+<div id="gradio" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="im">import</span> gradio <span class="im">as</span> gr</span>
+<span id="cb8-2"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-3"><a></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb8-4"><a></a><span class="im">import</span> replicate</span>
+<span id="cb8-5"><a></a><span class="im">import</span> io</span>
+<span id="cb8-6"><a></a></span>
+<span id="cb8-7"><a></a><span class="kw">def</span> inpaint(image_data, prompt):</span>
+<span id="cb8-8"><a></a>    <span class="cf">if</span> image_data <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb8-9"><a></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb8-10"><a></a>    </span>
+<span id="cb8-11"><a></a>    <span class="co"># Get the original image from the background</span></span>
+<span id="cb8-12"><a></a>    original_image <span class="op">=</span> Image.fromarray(image_data[<span class="st">'background'</span>])</span>
+<span id="cb8-13"><a></a>    </span>
+<span id="cb8-14"><a></a>    <span class="co"># Get the mask from the layers</span></span>
+<span id="cb8-15"><a></a>    <span class="cf">if</span> image_data[<span class="st">'layers'</span>] <span class="kw">and</span> <span class="bu">len</span>(image_data[<span class="st">'layers'</span>]) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb8-16"><a></a>        mask_layer <span class="op">=</span> image_data[<span class="st">'layers'</span>][<span class="dv">0</span>]</span>
+<span id="cb8-17"><a></a>        mask_array <span class="op">=</span> np.array(mask_layer)</span>
+<span id="cb8-18"><a></a>        </span>
+<span id="cb8-19"><a></a>        <span class="co"># Create binary mask: white where painted, black where not</span></span>
+<span id="cb8-20"><a></a>        alpha_channel <span class="op">=</span> mask_array[:, :, <span class="dv">3</span>]</span>
+<span id="cb8-21"><a></a>        binary_mask <span class="op">=</span> np.where(alpha_channel <span class="op">&gt;</span> <span class="dv">0</span>, <span class="dv">255</span>, <span class="dv">0</span>).astype(np.uint8)</span>
+<span id="cb8-22"><a></a>        mask_image <span class="op">=</span> Image.fromarray(binary_mask, mode<span class="op">=</span><span class="st">'L'</span>)</span>
+<span id="cb8-23"><a></a>    <span class="cf">else</span>:</span>
+<span id="cb8-24"><a></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb8-25"><a></a>    </span>
+<span id="cb8-26"><a></a>    <span class="co"># Convert images to bytes for the replicate API</span></span>
+<span id="cb8-27"><a></a>    image_bytes <span class="op">=</span> io.BytesIO()</span>
+<span id="cb8-28"><a></a>    original_image.save(image_bytes, <span class="bu">format</span><span class="op">=</span><span class="st">'PNG'</span>)</span>
+<span id="cb8-29"><a></a>    image_bytes.seek(<span class="dv">0</span>)</span>
+<span id="cb8-30"><a></a>    </span>
+<span id="cb8-31"><a></a>    mask_bytes <span class="op">=</span> io.BytesIO()</span>
+<span id="cb8-32"><a></a>    mask_image.save(mask_bytes, <span class="bu">format</span><span class="op">=</span><span class="st">'PNG'</span>)</span>
+<span id="cb8-33"><a></a>    mask_bytes.seek(<span class="dv">0</span>)</span>
+<span id="cb8-34"><a></a>    </span>
+<span id="cb8-35"><a></a>    <span class="co"># Call the Replicate API</span></span>
+<span id="cb8-36"><a></a>    output <span class="op">=</span> replicate.run(</span>
+<span id="cb8-37"><a></a>        <span class="st">"black-forest-labs/flux-fill-pro"</span>,</span>
+<span id="cb8-38"><a></a>        <span class="bu">input</span><span class="op">=</span>{</span>
+<span id="cb8-39"><a></a>            <span class="st">"image"</span>: image_bytes,</span>
+<span id="cb8-40"><a></a>            <span class="st">"mask"</span>: mask_bytes,</span>
+<span id="cb8-41"><a></a>            <span class="st">"prompt"</span>: prompt,</span>
+<span id="cb8-42"><a></a>            <span class="st">"steps"</span>: <span class="dv">25</span>,</span>
+<span id="cb8-43"><a></a>            <span class="st">"guidance"</span>: <span class="dv">75</span>,</span>
+<span id="cb8-44"><a></a>            <span class="st">"outpaint"</span>: <span class="st">"None"</span>,</span>
+<span id="cb8-45"><a></a>            <span class="st">"output_format"</span>: <span class="st">"jpg"</span>,</span>
+<span id="cb8-46"><a></a>            <span class="st">"safety_tolerance"</span>: <span class="dv">2</span>,</span>
+<span id="cb8-47"><a></a>            <span class="st">"prompt_upsampling"</span>: <span class="va">False</span></span>
+<span id="cb8-48"><a></a>        }</span>
+<span id="cb8-49"><a></a>    )</span>
+<span id="cb8-50"><a></a>    </span>
+<span id="cb8-51"><a></a>    <span class="co"># Read the FileOutput and convert to PIL Image</span></span>
+<span id="cb8-52"><a></a>    output_bytes <span class="op">=</span> output.read()</span>
+<span id="cb8-53"><a></a>    output_image <span class="op">=</span> Image.<span class="bu">open</span>(io.BytesIO(output_bytes))</span>
+<span id="cb8-54"><a></a>    </span>
+<span id="cb8-55"><a></a>    <span class="cf">return</span> output_image</span>
+<span id="cb8-56"><a></a></span>
+<span id="cb8-57"><a></a>demo <span class="op">=</span> gr.Interface(</span>
+<span id="cb8-58"><a></a>    fn<span class="op">=</span>inpaint,</span>
+<span id="cb8-59"><a></a>    inputs<span class="op">=</span>[</span>
+<span id="cb8-60"><a></a>        gr.ImageEditor(</span>
+<span id="cb8-61"><a></a>            label<span class="op">=</span><span class="st">"Image (paint over areas to inpaint)"</span>,</span>
+<span id="cb8-62"><a></a>            brush<span class="op">=</span>gr.Brush(color_mode<span class="op">=</span><span class="st">"fixed"</span>, colors<span class="op">=</span>[<span class="st">"#000000"</span>]),</span>
+<span id="cb8-63"><a></a>            layers<span class="op">=</span><span class="va">True</span></span>
+<span id="cb8-64"><a></a>        ),</span>
+<span id="cb8-65"><a></a>        gr.Textbox(label<span class="op">=</span><span class="st">"Prompt"</span>, placeholder<span class="op">=</span><span class="st">"Describe what should replace the masked area..."</span>)</span>
+<span id="cb8-66"><a></a>    ],</span>
+<span id="cb8-67"><a></a>    outputs<span class="op">=</span>gr.Image(label<span class="op">=</span><span class="st">"Output Image"</span>),</span>
+<span id="cb8-68"><a></a>    title<span class="op">=</span><span class="st">"Inpainting using black-forest-labs/flux-fill-pro"</span></span>
+<span id="cb8-69"><a></a>)</span>
+<span id="cb8-70"><a></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
 </section>
 <section id="outpainting" class="slide level2">
 <h2>Outpainting</h2>
-<p>Inpainting applied to the edges of an image to extend it beyond it’s original size</p>
-
-<img data-src="./images/outpainter1.png" class="r-stretch quarto-figure-center"><p class="caption">Source: https://replicate.com/black-forest-labs/flux-fill-pro</p></section>
-<section id="outpainting-1" class="slide level2">
-<h2>Outpainting</h2>
-<p>Inpainting applied to the edges of an image to extend it beyond it’s original size</p>
-
-<img data-src="./images/outpainter2.png" class="r-stretch quarto-figure-center"><p class="caption">Source: https://replicate.com/black-forest-labs/flux-fill-pro</p></section>
-<section id="outpainting-2" class="slide level2">
-<h2>Outpainting</h2>
 <ul>
+<li class="fragment">The opposite of inpainting, kind of :)</li>
 <li class="fragment">How does it work?
 <ul>
 <li class="fragment">Supply a prompt: “2x zoom out this image”</li>
@@ -1008,7 +1071,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="outpainting-3" class="slide level2">
+<section id="outpainting-1" class="slide level2">
 <h2>Outpainting</h2>
 <ul>
 <li class="fragment">More challenging
@@ -1018,6 +1081,64 @@
 <li class="fragment">Has to be creative. Can’t just be a repetitive pattern.</li>
 </ul></li>
 </ul>
+</section>
+<section id="outpainting-2" class="slide level2">
+<h2>Outpainting</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/outpainting.ipynb" data-notebook-title="Outpainting using black-forest-labs/flux-fill-pro" data-notebook-cellid="input">
+<div id="input" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<img src="https://raw.githubusercontent.com/simonguest/CS-394/refs/heads/main/src/04/images/campus.png">
+</div>
+</div>
+</div>
+</section>
+<section id="outpainting-3" class="slide level2">
+<h2>Outpainting</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/outpainting.ipynb" data-notebook-title="Outpainting using black-forest-labs/flux-fill-pro" data-notebook-cellid="run">
+<div id="run" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="im">import</span> replicate</span>
+<span id="cb9-2"><a></a></span>
+<span id="cb9-3"><a></a><span class="co"># Call the Replicate API</span></span>
+<span id="cb9-4"><a></a>output <span class="op">=</span> replicate.run(</span>
+<span id="cb9-5"><a></a>    <span class="st">"black-forest-labs/flux-fill-pro"</span>,</span>
+<span id="cb9-6"><a></a>    <span class="bu">input</span><span class="op">=</span>{</span>
+<span id="cb9-7"><a></a>        <span class="st">"image"</span>: INPUT_IMAGE,</span>
+<span id="cb9-8"><a></a>        <span class="st">"prompt"</span>: <span class="st">"The main building of a technical college, no text"</span>,</span>
+<span id="cb9-9"><a></a>        <span class="st">"seed"</span>: <span class="dv">123456</span>,</span>
+<span id="cb9-10"><a></a>        <span class="st">"steps"</span>: <span class="dv">50</span>,</span>
+<span id="cb9-11"><a></a>        <span class="st">"guidance"</span>: <span class="dv">60</span>,</span>
+<span id="cb9-12"><a></a>        <span class="st">"outpaint"</span>: <span class="st">"Zoom out 2x"</span>,</span>
+<span id="cb9-13"><a></a>        <span class="st">"output_format"</span>: <span class="st">"jpg"</span>,</span>
+<span id="cb9-14"><a></a>        <span class="st">"safety_tolerance"</span>: <span class="dv">2</span>,</span>
+<span id="cb9-15"><a></a>        <span class="st">"prompt_upsampling"</span>: <span class="va">False</span></span>
+<span id="cb9-16"><a></a>    }</span>
+<span id="cb9-17"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="outpainting-4" class="slide level2">
+<h2>Outpainting</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/outpainting.ipynb" data-notebook-title="Outpainting using black-forest-labs/flux-fill-pro" data-notebook-cellid="input">
+<div id="input" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<img src="https://raw.githubusercontent.com/simonguest/CS-394/refs/heads/main/src/04/images/campus.png">
+</div>
+</div>
+</div>
+</section>
+<section id="outpainting-5" class="slide level2">
+<h2>Outpainting</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/outpainting.ipynb" data-notebook-title="Outpainting using black-forest-labs/flux-fill-pro" data-notebook-cellid="result">
+<div id="result" class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/notebooks-outpainting-cell-5-output-1.png"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="inpainting-and-outpainting" class="slide level2">
 <h2>Inpainting and Outpainting</h2>
@@ -1030,13 +1151,12 @@
 <li class="fragment">Ideogram</li>
 </ul></li>
 </ul>
-</section>
-<section id="inpainting-and-outpainting-1" class="slide level2">
-<h2>Inpainting and Outpainting</h2>
-<ul>
-<li class="fragment">TBD: Notebook that shows flux fill</li>
-</ul>
 </section></section>
+<section id="demo-1" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p>Inpainting and Outpainting using black-forest-labs/flux-fill-pro</p>
+</section>
+
 <section>
 <section id="i-want-more-control" class="title-slide slide level1 center">
 <h1>I Want More Control!</h1>
@@ -1166,7 +1286,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="demo-1" class="slide level2">
+<section id="demo-2" class="slide level2">
 <h2>Demo</h2>
 <ul>
 <li class="fragment">TBD</li>
