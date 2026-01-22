@@ -227,9 +227,80 @@ Browsing models on Replicate
 :::
 ::::
 
+## Image-to-Image
 
+Image-to-Image: "Make this image different"
 
+- Originally solved by GAN approaches, but evolved into extension of the diffuser concept
+  - Add noise to the original image (partial denoising)
+  - Regenerate it with modifications based on the prompt
+  - The original image heavily influences the output structure
 
+## Image-to-Image
+
+TBD: Notebook that shows the step-by-step process
+
+## Image-to-Image
+
+- Can also be used for...
+  - Super resolution
+  - Style transfer
+  - Colorization (grayscale to color)
+  - Depth maps
+
+## Depth Maps
+
+- Images (often greyscale) where each pixel's value represents the distance
+- Historically required custom hardware
+  - Depth Camera (e.g., RealSense) - ~$300-500
+  - Module/processing for realtime (60fps) sensing
+
+## Depth Maps
+
+- Image-to-Image depth estimation models
+  - Depth Anything, MiDaS, ZoeDepth
+  - Low latency (MiDaS 3.1 @ 20fps on embedded GPU)
+- Used for
+  - 3D effects/estimation
+  - Simple/low-cost robotics
+  - Control input for other images
+
+## Depth Maps
+
+{{< embed notebooks/generate-depth-map.ipynb#input-image echo=false >}}
+
+## Depth Maps
+
+{{< embed notebooks/generate-depth-map.ipynb#run echo=true >}}
+
+## Depth Maps
+
+{{< embed notebooks/generate-depth-map.ipynb#result echo=false >}}
+
+## Depth Maps
+
+- Why do this?
+  - Depth map can be used as control image for new image
+
+## Depth Map as Control
+
+{{< embed notebooks/depth-map-as-context.ipynb#control-image echo=false >}}
+
+## Depth Map as Control
+
+{{< embed notebooks/depth-map-as-context.ipynb#run echo=true >}}
+
+## Depth Map as Control
+
+{{< embed notebooks/depth-map-as-context.ipynb#result echo=false >}}
+
+## Depth Map as Control
+
+{{< embed notebooks/depth-map-as-context.ipynb#run-2 echo=true >}}
+
+## Depth Map as Control
+
+{{< embed notebooks/depth-map-as-context.ipynb#result-2 echo=false >}}
 
 # Looking Ahead
 
