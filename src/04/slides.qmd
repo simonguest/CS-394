@@ -294,9 +294,20 @@ Browsing models on Replicate
 
 ## Depth Maps
 
+:::: {.columns}
+::: {.column width="50%"}
+
+![](./images/real-sense.jpg)
+
+:::
+::: {.column width="50%"}
 - Historically, required custom hardware
   - Depth Camera (e.g., RealSense) - ~$300-500
   - Module/processing for realtime (60fps) sensing
+:::
+::::
+
+
 
 ## Depth Maps
 
@@ -347,47 +358,24 @@ Browsing models on Replicate
 
 ## Inpainting
 
-:::: {.columns}
-::: {.column width="50%"}
-Filling in missing or masked regions of an image in a realistic way
-
+- Filling in missing or masked regions of an image in a realistic way
 - Model is given an image with certain areas masked out
 - Generates plausible content to fill those areas based on the surrounding context (and steered by a text prompt)
-:::
-::: {.column width="50%"}
-<video data-autoplay src="./images/cherries-oranges-bananas.mp4"></video>
-:::
-::::
 
 ## Inpainting
 
-:::: {.columns}
-::: {.column width="50%"}
-Filling in missing or masked regions of an image in a realistic way
+- Can be challenging
+  - Model needs to understand context around the area
+  - Generate content that matches the style, lighting, and perspective
+  - Follow a text prompt that was likely different from the original
 
-- Model needs to understand context around the area
-- Generate content that matches the style, lighting, and perspective
-- Follow a text prompt that was likely different from the original
-:::
-::: {.column width="50%"}
-<video data-autoplay src="./images/cherries-oranges-bananas.mp4"></video>
-:::
-::::
+## Inpainting
+
+{{< embed notebooks/inpainting.ipynb#gradio echo=true outputs=false >}}
 
 ## Outpainting
 
-Inpainting applied to the edges of an image to extend it beyond it's original size
-
-![Source: https://replicate.com/black-forest-labs/flux-fill-pro](./images/outpainter1.png)
-
-## Outpainting
-
-Inpainting applied to the edges of an image to extend it beyond it's original size
-
-![Source: https://replicate.com/black-forest-labs/flux-fill-pro](./images/outpainter2.png)
-
-## Outpainting
-
+- The opposite of inpainting, kind of :)
 - How does it work?
   - Supply a prompt: "2x zoom out this image"
   - Treat the new empty regions around the image as masked areas
@@ -400,6 +388,22 @@ Inpainting applied to the edges of an image to extend it beyond it's original si
   - Need to maintain the style, lighting, and perspective
   - Has to be creative. Can't just be a repetitive pattern.
 
+## Outpainting
+
+{{< embed notebooks/outpainting.ipynb#input echo=false >}}
+
+## Outpainting
+
+{{< embed notebooks/outpainting.ipynb#run echo=true outputs=false >}}
+
+## Outpainting
+
+{{< embed notebooks/outpainting.ipynb#input echo=false >}}
+
+## Outpainting
+
+{{< embed notebooks/outpainting.ipynb#result echo=false >}}
+
 ## Inpainting and Outpainting
 
 - Popular models
@@ -408,9 +412,9 @@ Inpainting applied to the edges of an image to extend it beyond it's original si
   - LaMa: Large Mask inpainting
   - Ideogram
 
-## Inpainting and Outpainting
+# Demo
 
-- TBD: Notebook that shows flux fill
+Inpainting and Outpainting using black-forest-labs/flux-fill-pro
 
 # I Want More Control!
 
