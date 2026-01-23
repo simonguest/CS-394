@@ -456,11 +456,37 @@ Examples of conditioning types:
 
 ## How ControlNet Works
 
-- TBD: notebook for human pose
+{{< embed notebooks/controlnet-openpose-sd-1.5.ipynb#original-image echo=false >}}
 
 ## How ControlNet Works
 
-- TBD: notebook for Flux kontext model
+{{< embed notebooks/controlnet-openpose-sd-1.5.ipynb#openpose echo=true outputs=false >}}
+
+## How ControlNet Works
+
+{{< embed notebooks/controlnet-openpose-sd-1.5.ipynb#openpose echo=false >}}
+
+## How ControlNet Works
+
+{{< embed notebooks/controlnet-openpose-sd-1.5.ipynb#load-controlnet echo=true outputs=false >}}
+
+## How ControlNet Works
+
+{{< embed notebooks/controlnet-openpose-sd-1.5.ipynb#load-sd echo=true outputs=false >}}
+
+## How ControlNet Works
+
+{{< embed notebooks/controlnet-openpose-sd-1.5.ipynb#new-image echo=true outputs=false >}}
+
+## How ControlNet Works
+
+{{< embed notebooks/controlnet-openpose-sd-1.5.ipynb#new-image echo=false >}}
+
+# Hands on
+
+Inpainting and Outpainting using inpainting.ipynb and outpainting.ipynb
+
+ControlNet (OpenPose) using controlnet-openpose-sd-1.5.ipynb
 
 
 
