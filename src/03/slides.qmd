@@ -168,7 +168,8 @@ Q: What didn't work? Where did the agent fail?
 ## Microsoft
 
 - Now converging into the [Microsoft Agent Framework](https://github.com/microsoft/agent-framework){.external target="_blank"}
-- (One of the few agent SDKs to support .NET)
+- One of the few agent SDKs to support .NET
+- Speaking of which, why are most SDKs in Python?
 
 # How Does the Campus Agent Work?
 
@@ -214,7 +215,7 @@ Q: What didn't work? Where did the agent fail?
 - Foundation for RAG (Retrieval Augmented Generation)
   - (Which we will cover in module 6)
 - Many different types of vectors stores/databases
-- For now, we will be using the OpenAI built in one
+- For now, we will be using OpenAI's storage
 
 ## What's a Vector Store?
 
@@ -322,9 +323,7 @@ Create a new API key at [https://platform.openai.com/settings/organization/api-k
 
 Get the Campus Agent Notebook up and running (campus-agent.ipynb)
 
-# Hands-On
-
-Pick your own mini-scenario and create your own agents from scratch.
+Experiment with the prompts, agents, hand-offs
 
 # Multiple Agents
 
@@ -429,7 +428,7 @@ Short-Term memory in OpenAI Agents SDK (memory.ipynb)
 ## Long-term Memory
 
 - More challenging
-- You don't want to store/retrieve the entire conversations
+- You don't want to store/retrieve the entire conversation
 - Long-term memory types
   - **Factual**: General facts (e.g., name, address, seating preferences)
   - **Episodic**: Past conversations (e.g., user booked a trip to Paris)
@@ -462,9 +461,7 @@ relevant_memories = memory.search(query=message, user_id=user_id, limit=3)
 
 - Or "roll your own"
 - Long-term memory types
-  - **Factual**: General facts (e.g., name, address, seating preferences)
-  - **Episodic**: Past conversations (e.g., user booked a trip to Paris)
-  - **Procedural**: Learnings (e.g., the best hotel site to book accomodation)
+  - Factual, Episodic, Procedural
 - Create tools for **factual** storage
   - e.g., a profile tool with set/get options
 - Use LLM to summarize short-term session conversations to store **episodic** and **procedural** learnings.
@@ -535,6 +532,10 @@ Command: `npx -y open-meteo-mcp-server`
 
 ![https://simonguest.com/p/microbit-mcp/](./images/microbit_mcp_sm.mp4){.lightbox}
 
+# Hands on
+
+Explore the Open Meteo MCP server in open-meteo-mcp.ipynb
+
 # Hugging Face Spaces
 
 ## Hugging Face Spaces
@@ -560,6 +561,8 @@ Command: `npx -y open-meteo-mcp-server`
 # Demo
 
 Hosting the DigiPen campus agent on Hugging Face Spaces
+
+https://github.com/simonguest/CS-394/tree/main/src/03/code/hf-space
 
 # Looking Ahead
 

@@ -46,6 +46,6 @@ Deploy your extended Campus Agent to [Hugging Face Spaces](https://huggingface.c
 **Hints:**
 
 - Start by copying the campus-agent.ipynb notebook and modifying it
-- Keep your agent's scope focused - a narrower domain with good data works better than a broad domain with sparse data
+- Keep your agent's scope focused. A narrower domain with good data works better than a broad domain with sparse data
 - If using the vector store, you can upload files via the [OpenAI Platform Storage](https://platform.openai.com/storage){.external target="_blank"}
 - If using a custom tool, remember that the function's docstring helps the LLM understand when to call it
