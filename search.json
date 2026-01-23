@@ -141,6 +141,18 @@
     "text": "Image-to-Image with guiding prompt using Flux Depth Pro\n\nimport replicate\n\nMODEL = \"black-forest-labs/flux-depth-pro\"\n\noutput = replicate.run(\n  MODEL,\n  input={\n      \"control_image\": CONTROL_IMAGE,\n      \"output_format\": \"png\",\n      \"seed\": 12345,\n      \"prompt\": \"A futuristic building set in 2050, neon lighting, night shot, dynamic\"\n  },\n)\n\n\nimport io\nfrom PIL import Image\n\noutput_bytes = io.BytesIO(output.read())\noutput_image = Image.open(output_bytes)\noutput_image\n\n\n\n\n\n\n\n\n\nimport replicate\n\nMODEL = \"black-forest-labs/flux-depth-pro\"\n\noutput = replicate.run(\n  MODEL,\n  input={\n      \"control_image\": CONTROL_IMAGE,\n      \"output_format\": \"png\",\n      \"seed\": 12345,\n      \"prompt\": \"A historical castle set in medieval England, clear day, partially cloudy sky\"\n  },\n)\n\n\nimport io\nfrom PIL import Image\n\noutput_bytes = io.BytesIO(output.read())\noutput_image = Image.open(output_bytes)\noutput_image"
   },
   {
+    "objectID": "src/03/notebooks/open-meteo-mcp.html",
+    "href": "src/03/notebooks/open-meteo-mcp.html",
+    "title": "OpenAI Agents SDK with MCP Server",
+    "section": "",
+    "text": "Note: To explore the Open Meteo server from the MCP model inspector, run npx @modelcontextprotocol/inspector. Within the inspector, set the command to npx and parameters to -y open-meteo-mcp-server. Note: You’ll need NodeJS installed to run the npx command. (v22.19.0 recommended)",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Notebooks",
+      "open-meteo-mcp.ipynb"
+    ]
+  },
+  {
     "objectID": "src/03/notebooks/open-meteo-mcp.html#install-pre-requisites",
     "href": "src/03/notebooks/open-meteo-mcp.html#install-pre-requisites",
     "title": "OpenAI Agents SDK with MCP Server",
@@ -864,7 +876,7 @@
     "href": "src/03/slides.html#microsoft-1",
     "title": "Module 3: Agents and Tools",
     "section": "Microsoft",
-    "text": "Microsoft\n\nNow converging into the Microsoft Agent Framework\n(One of the few agent SDKs to support .NET)",
+    "text": "Microsoft\n\nNow converging into the Microsoft Agent Framework\nOne of the few agent SDKs to support .NET\nSpeaking of which, why are most SDKs in Python?",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Slides"
@@ -952,7 +964,7 @@
     "href": "src/03/slides.html#whats-a-vector-store-2",
     "title": "Module 3: Agents and Tools",
     "section": "What’s a Vector Store?",
-    "text": "What’s a Vector Store?\n\nFoundation for RAG (Retrieval Augmented Generation)\n\n(Which we will cover in module 6)\n\nMany different types of vectors stores/databases\nFor now, we will be using the OpenAI built in one",
+    "text": "What’s a Vector Store?\n\nFoundation for RAG (Retrieval Augmented Generation)\n\n(Which we will cover in module 6)\n\nMany different types of vectors stores/databases\nFor now, we will be using OpenAI’s storage",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Slides"
@@ -1249,7 +1261,7 @@
     "href": "src/03/slides.html#long-term-memory",
     "title": "Module 3: Agents and Tools",
     "section": "Long-term Memory",
-    "text": "Long-term Memory\n\nMore challenging\nYou don’t want to store/retrieve the entire conversations\nLong-term memory types\n\nFactual: General facts (e.g., name, address, seating preferences)\nEpisodic: Past conversations (e.g., user booked a trip to Paris)\nProcedural: Learnings (e.g., the best hotel site to book accommodation)",
+    "text": "Long-term Memory\n\nMore challenging\nYou don’t want to store/retrieve the entire conversation\nLong-term memory types\n\nFactual: General facts (e.g., name, address, seating preferences)\nEpisodic: Past conversations (e.g., user booked a trip to Paris)\nProcedural: Learnings (e.g., the best hotel site to book accommodation)",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Slides"
@@ -1282,7 +1294,7 @@
     "href": "src/03/slides.html#implementing-long-term-memory-1",
     "title": "Module 3: Agents and Tools",
     "section": "Implementing Long-term Memory",
-    "text": "Implementing Long-term Memory\n\nOr “roll your own”\nLong-term memory types\n\nFactual: General facts (e.g., name, address, seating preferences)\nEpisodic: Past conversations (e.g., user booked a trip to Paris)\nProcedural: Learnings (e.g., the best hotel site to book accomodation)\n\nCreate tools for factual storage\n\ne.g., a profile tool with set/get options\n\nUse LLM to summarize short-term session conversations to store episodic and procedural learnings.",
+    "text": "Implementing Long-term Memory\n\nOr “roll your own”\nLong-term memory types\n\nFactual, Episodic, Procedural\n\nCreate tools for factual storage\n\ne.g., a profile tool with set/get options\n\nUse LLM to summarize short-term session conversations to store episodic and procedural learnings.",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Slides"
@@ -1458,7 +1470,7 @@
     "href": "src/03/assignment.html",
     "title": "Module 3 Assignment: Extend the Campus Agent",
     "section": "",
-    "text": "Objective: Extend the DigiPen Campus Agent by adding a new specialized agent that handles a specific domain.\nBackground:\nThe Campus Agent currently has four specialized agents: Building Agent, Course Agent, Handbook Agent, and Cafe Agent. Your task is to add a fifth agent that serves a new purpose on campus.\nSuggested Agent Ideas (pick one, or propose your own):\n\nEvents Agent - Helps students find information about campus events, club meetings, and activities\nIT Agent - Assists with common IT issues, lab software, and printing\nLibrary Agent - Helps students find resources, reserve study rooms, or check hours\nCareer Services Agent - Provides information about internships, resume reviews, and career fairs\nTransportation Agent - Helps with parking, shuttle schedules, and commute options\n\nRequirements:\n\nCreate a new agent with appropriate instructions (system prompt)\nImplement knowledge retrieval using one of these approaches:\n\nAdd documents to the vector store and use FileSearchTool, OR\nCreate a custom tool using @function_tool that returns relevant data OR\nCreate a new (or select an existing) MCP server\n\nIntegrate with the main Campus Agent via handoff\nTest your agent with at least 3 different queries and document the results\nUse the OpenAI Traces Dashboard to debug at least one interaction and include a screenshot or description of what you observed\n\nDeliverable: A Colab/Jupyter notebook with:\n\nCode cells with your implementation (building on the campus-agent.ipynb starter)\nUses OPENAI_API_KEY for the API token. (Please do not include your API key in your notebook!)\nMarkdown cells explaining:\n\nWhat agent you chose and why\nHow you implemented knowledge retrieval (vector store vs. custom tool)\nYour test queries and the agent’s responses\nWhat you learned from the Traces Dashboard (what worked, what didn’t, any debugging insights)\n\n\nBonus:\nDeploy your extended Campus Agent to Hugging Face Spaces and include the URL in your submission. Remember to add your OPENAI_API_KEY as a secret in your Space settings (not in the code!).\nHints:\n\nStart by copying the campus-agent.ipynb notebook and modifying it\nKeep your agent’s scope focused - a narrower domain with good data works better than a broad domain with sparse data\nIf using the vector store, you can upload files via the OpenAI Platform Storage\nIf using a custom tool, remember that the function’s docstring helps the LLM understand when to call it",
+    "text": "Objective: Extend the DigiPen Campus Agent by adding a new specialized agent that handles a specific domain.\nBackground:\nThe Campus Agent currently has four specialized agents: Building Agent, Course Agent, Handbook Agent, and Cafe Agent. Your task is to add a fifth agent that serves a new purpose on campus.\nSuggested Agent Ideas (pick one, or propose your own):\n\nEvents Agent - Helps students find information about campus events, club meetings, and activities\nIT Agent - Assists with common IT issues, lab software, and printing\nLibrary Agent - Helps students find resources, reserve study rooms, or check hours\nCareer Services Agent - Provides information about internships, resume reviews, and career fairs\nTransportation Agent - Helps with parking, shuttle schedules, and commute options\n\nRequirements:\n\nCreate a new agent with appropriate instructions (system prompt)\nImplement knowledge retrieval using one of these approaches:\n\nAdd documents to the vector store and use FileSearchTool, OR\nCreate a custom tool using @function_tool that returns relevant data OR\nCreate a new (or select an existing) MCP server\n\nIntegrate with the main Campus Agent via handoff\nTest your agent with at least 3 different queries and document the results\nUse the OpenAI Traces Dashboard to debug at least one interaction and include a screenshot or description of what you observed\n\nDeliverable: A Colab/Jupyter notebook with:\n\nCode cells with your implementation (building on the campus-agent.ipynb starter)\nUses OPENAI_API_KEY for the API token. (Please do not include your API key in your notebook!)\nMarkdown cells explaining:\n\nWhat agent you chose and why\nHow you implemented knowledge retrieval (vector store vs. custom tool)\nYour test queries and the agent’s responses\nWhat you learned from the Traces Dashboard (what worked, what didn’t, any debugging insights)\n\n\nBonus:\nDeploy your extended Campus Agent to Hugging Face Spaces and include the URL in your submission. Remember to add your OPENAI_API_KEY as a secret in your Space settings (not in the code!).\nHints:\n\nStart by copying the campus-agent.ipynb notebook and modifying it\nKeep your agent’s scope focused. A narrower domain with good data works better than a broad domain with sparse data\nIf using the vector store, you can upload files via the OpenAI Platform Storage\nIf using a custom tool, remember that the function’s docstring helps the LLM understand when to call it",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Assignment"

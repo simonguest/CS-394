@@ -420,7 +420,8 @@
 <h2>Microsoft</h2>
 <ul>
 <li class="fragment">Now converging into the <a href="https://github.com/microsoft/agent-framework" class="external" target="_blank">Microsoft Agent Framework</a></li>
-<li class="fragment">(One of the few agent SDKs to support .NET)</li>
+<li class="fragment">One of the few agent SDKs to support .NET</li>
+<li class="fragment">Speaking of which, why are most SDKs in Python?</li>
 </ul>
 </section></section>
 <section>
@@ -537,7 +538,7 @@
 <li class="fragment">(Which we will cover in module 6)</li>
 </ul></li>
 <li class="fragment">Many different types of vectors stores/databases</li>
-<li class="fragment">For now, we will be using the OpenAI built in one</li>
+<li class="fragment">For now, we will be using OpenAI’s storage</li>
 </ul>
 </section>
 <section id="whats-a-vector-store-3" class="slide level2">
@@ -706,11 +707,7 @@
 <section id="hands-on-2" class="title-slide slide level1 center">
 <h1>Hands-On</h1>
 <p>Get the Campus Agent Notebook up and running (campus-agent.ipynb)</p>
-</section>
-
-<section id="hands-on-3" class="title-slide slide level1 center">
-<h1>Hands-On</h1>
-<p>Pick your own mini-scenario and create your own agents from scratch.</p>
+<p>Experiment with the prompts, agents, hand-offs</p>
 </section>
 
 <section>
@@ -897,7 +894,7 @@
 <h2>Long-term Memory</h2>
 <ul>
 <li class="fragment">More challenging</li>
-<li class="fragment">You don’t want to store/retrieve the entire conversations</li>
+<li class="fragment">You don’t want to store/retrieve the entire conversation</li>
 <li class="fragment">Long-term memory types
 <ul>
 <li class="fragment"><strong>Factual</strong>: General facts (e.g., name, address, seating preferences)</li>
@@ -937,9 +934,7 @@
 <li class="fragment">Or “roll your own”</li>
 <li class="fragment">Long-term memory types
 <ul>
-<li class="fragment"><strong>Factual</strong>: General facts (e.g., name, address, seating preferences)</li>
-<li class="fragment"><strong>Episodic</strong>: Past conversations (e.g., user booked a trip to Paris)</li>
-<li class="fragment"><strong>Procedural</strong>: Learnings (e.g., the best hotel site to book accomodation)</li>
+<li class="fragment">Factual, Episodic, Procedural</li>
 </ul></li>
 <li class="fragment">Create tools for <strong>factual</strong> storage
 <ul>
@@ -1085,6 +1080,11 @@ If you need a forecast in Fahrenheit or more details (such as hourly data), just
 </figure>
 </div>
 </section></section>
+<section id="hands-on-3" class="title-slide slide level1 center">
+<h1>Hands on</h1>
+<p>Explore the Open Meteo MCP server in open-meteo-mcp.ipynb</p>
+</section>
+
 <section>
 <section id="hugging-face-spaces" class="title-slide slide level1 center">
 <h1>Hugging Face Spaces</h1>
@@ -1123,6 +1123,7 @@ If you need a forecast in Fahrenheit or more details (such as hourly data), just
 <section id="demo-3" class="title-slide slide level1 center">
 <h1>Demo</h1>
 <p>Hosting the DigiPen campus agent on Hugging Face Spaces</p>
+<p>https://github.com/simonguest/CS-394/tree/main/src/03/code/hf-space</p>
 </section>
 
 <section>
