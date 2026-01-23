@@ -10,7 +10,7 @@ execute:
 
 The Campus Agent currently has four specialized agents: Building Agent, Course Agent, Handbook Agent, and Cafe Agent. Your task is to add a fifth agent that serves a new purpose on campus.
 
-**Suggested Agent Ideas (pick one, or propose your own):**
+**Suggested Agent Ideas (pick one, or create your own):**
 
 - **Events Agent** - Helps students find information about campus events, club meetings, and activities
 - **IT Agent** - Assists with common IT issues, lab software, and printing
@@ -21,9 +21,10 @@ The Campus Agent currently has four specialized agents: Building Agent, Course A
 **Requirements:**
 
 1. **Create a new agent** with appropriate instructions (system prompt)
-2. **Implement knowledge retrieval** using one of these approaches:
+2. **Implement knowledge retrieval** using one (or more!) of these approaches:
    - Add documents to the vector store and use `FileSearchTool`, OR
-   - Create a custom tool using `@function_tool` that returns relevant data OR
+   - Use the `WebSearchTool` to give your agent access to the web, OR
+   - Create a custom tool using `@function_tool` that returns relevant data (should be more complex than the cafe example) OR
    - Create a new (or select an existing) MCP server
 3. **Integrate with the main Campus Agent** via handoff
 4. **Test your agent** with at least 3 different queries and document the results
