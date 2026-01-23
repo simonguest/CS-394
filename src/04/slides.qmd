@@ -446,21 +446,23 @@ Inpainting and Outpainting using black-forest-labs/flux-fill-pro
 
 ## How ControlNet Works
 
+Examples of conditioning types:
+
+- Depth maps: 3D structure information
+- Human pose: skeleton/keypoint detection
+- Canny edges: line drawings and edge detection
+- Scribbles: rough user drawings
+- QR codes: blended into images
+
+## How ControlNet Works
+
 - TBD: notebook for human pose
 
 ## How ControlNet Works
 
 - TBD: notebook for Flux kontext model
 
-## How ControlNet Works
 
-Examples of conditioning types:
-
-- Human pose (OpenPose): skeleton/keypoint detection
-- Depth maps: 3D structure information
-- Canny edges: line drawings and edge detection
-- Scribbles: rough user drawings
-- QR codes: blended into images
 
 # Demo: Putting this all together
 
