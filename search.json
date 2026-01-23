@@ -4052,7 +4052,7 @@
     "href": "src/04/slides.html#how-controlnet-works-2",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "How ControlNet Works",
-    "text": "How ControlNet Works\n\nTBD: notebook for human pose",
+    "text": "How ControlNet Works",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -4063,7 +4063,62 @@
     "href": "src/04/slides.html#how-controlnet-works-3",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "How ControlNet Works",
-    "text": "How ControlNet Works\n\nTBD: notebook for Flux kontext model",
+    "text": "How ControlNet Works\n\n\npose_image = openpose(input_image)\ndisplay(pose_image)",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#how-controlnet-works-4",
+    "href": "src/04/slides.html#how-controlnet-works-4",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "How ControlNet Works",
+    "text": "How ControlNet Works",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#how-controlnet-works-5",
+    "href": "src/04/slides.html#how-controlnet-works-5",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "How ControlNet Works",
+    "text": "How ControlNet Works\n\n\nimport torch\nfrom diffusers import ControlNetModel\n\ncontrolnet = ControlNetModel.from_pretrained(\n    \"lllyasviel/control_v11p_sd15_openpose\",\n    torch_dtype=torch.float16\n)",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#how-controlnet-works-6",
+    "href": "src/04/slides.html#how-controlnet-works-6",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "How ControlNet Works",
+    "text": "How ControlNet Works\n\n\nfrom diffusers import StableDiffusionControlNetPipeline\n\npipe = StableDiffusionControlNetPipeline.from_pretrained(\n    \"runwayml/stable-diffusion-v1-5\",\n    controlnet=controlnet,\n    torch_dtype=torch.float16,\n    use_safetensors=True\n)\npipe.to(\"cuda\")",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#how-controlnet-works-7",
+    "href": "src/04/slides.html#how-controlnet-works-7",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "How ControlNet Works",
+    "text": "How ControlNet Works\n\n\nPROMPT = \"a robot with glowing LED lights, futuristic, sci-fi\"\nNEGATIVE_PROMPT = \"blurry, low quality, distorted, extra limbs, deformed\"\nSEED = 3434002\n\nresult = pipe(\n    prompt=PROMPT,\n    negative_prompt=NEGATIVE_PROMPT,\n    image=pose_image,\n    num_inference_steps=25,\n    guidance_scale=7.5,\n    controlnet_conditioning_scale=1.0,\n    generator=torch.manual_seed(SEED) if SEED != -1 else None\n).images[0]\ndisplay(result)",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#how-controlnet-works-8",
+    "href": "src/04/slides.html#how-controlnet-works-8",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "How ControlNet Works",
+    "text": "How ControlNet Works",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"

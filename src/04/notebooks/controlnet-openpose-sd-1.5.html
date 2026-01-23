@@ -777,7 +777,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="original-image" class="level2">
 <h2 class="anchored" data-anchor-id="original-image">Original image</h2>
-<div id="cell-5" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:700}}" data-outputid="49a69372-7d63-4664-db01-ba9f4d6ecfd1" data-execution_count="6">
+<div id="original-image" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:700}}" data-outputid="49a69372-7d63-4664-db01-ba9f4d6ecfd1" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> diffusers.utils <span class="im">import</span> load_image</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>INPUT_IMAGE <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/simonguest/CS-394/refs/heads/main/src/04/images/pose.jpg"</span></span>
@@ -804,7 +804,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="derive-skeletal-pose" class="level2">
 <h2 class="anchored" data-anchor-id="derive-skeletal-pose">Derive skeletal pose</h2>
-<div id="cell-9" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:721}}" data-outputid="d842bdbb-4404-45af-cf74-62f14dcd07eb" data-execution_count="8">
+<div id="openpose" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:721}}" data-outputid="d842bdbb-4404-45af-cf74-62f14dcd07eb" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pose_image <span class="op">=</span> openpose(input_image)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>display(pose_image)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
@@ -818,7 +818,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="load-controlnet-model" class="level2">
 <h2 class="anchored" data-anchor-id="load-controlnet-model">Load ControlNet model</h2>
-<div id="cell-11" class="cell" data-execution_count="11">
+<div id="load-controlnet" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> diffusers <span class="im">import</span> ControlNetModel</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -830,7 +830,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="load-sd-1.5-model-and-plug-in-controlnet-model" class="level2">
 <h2 class="anchored" data-anchor-id="load-sd-1.5-model-and-plug-in-controlnet-model">Load SD 1.5 model and “plug in” controlnet model</h2>
-<div id="cell-13" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:873,&quot;referenced_widgets&quot;:[&quot;7aaa571f9b684ed7b5172e92155073a8&quot;,&quot;0224b3e35fb24dfa9ff4dbd0759e7014&quot;,&quot;a69ab57e30ac48bbb441c092bd3c916e&quot;,&quot;7e754d090d58414bab9550d881aed016&quot;,&quot;27aaec9f2000425fac2e576ec9aca138&quot;,&quot;e254740576a84a7f97ec84a0c4fa1a25&quot;,&quot;7933de8ae1e24acca314727c306555a5&quot;,&quot;6fba198b47414328aa4d2a50c14f5d2c&quot;,&quot;d018b8445d0d4bc0850ac3ca5317008f&quot;,&quot;6514018c915440a59ce407304f4f0428&quot;,&quot;189f4dc0021842ae8b48f0f2f95e687b&quot;]}}" data-outputid="d7c140ad-b57e-47a3-9a17-f1242acfc3ef" data-execution_count="16">
+<div id="load-sd" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:873,&quot;referenced_widgets&quot;:[&quot;7aaa571f9b684ed7b5172e92155073a8&quot;,&quot;0224b3e35fb24dfa9ff4dbd0759e7014&quot;,&quot;a69ab57e30ac48bbb441c092bd3c916e&quot;,&quot;7e754d090d58414bab9550d881aed016&quot;,&quot;27aaec9f2000425fac2e576ec9aca138&quot;,&quot;e254740576a84a7f97ec84a0c4fa1a25&quot;,&quot;7933de8ae1e24acca314727c306555a5&quot;,&quot;6fba198b47414328aa4d2a50c14f5d2c&quot;,&quot;d018b8445d0d4bc0850ac3ca5317008f&quot;,&quot;6514018c915440a59ce407304f4f0428&quot;,&quot;189f4dc0021842ae8b48f0f2f95e687b&quot;]}}" data-outputid="d7c140ad-b57e-47a3-9a17-f1242acfc3ef" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> diffusers <span class="im">import</span> StableDiffusionControlNetPipeline</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>pipe <span class="op">=</span> StableDiffusionControlNetPipeline.from_pretrained(</span>
@@ -900,7 +900,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="generate-new-image-with-human-pose-as-condition" class="level2">
 <h2 class="anchored" data-anchor-id="generate-new-image-with-human-pose-as-condition">Generate new image with human pose as condition</h2>
-<div id="cell-15" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:753,&quot;referenced_widgets&quot;:[&quot;62c5d0a598c440ebaad870ee1c261e96&quot;,&quot;e538ecf120ca4e83a2fefb10047df748&quot;,&quot;ce904d8599944399b762449d142dd85b&quot;,&quot;e512b4a8835d40e2bb4d33c8c9811bc7&quot;,&quot;59541e7144c541bca9708c7d6039df33&quot;,&quot;180902b2e6164446ae754e7d356aa56c&quot;,&quot;b0cf8153b47e45cbbc62d3097420f41d&quot;,&quot;3985af59218d4ee1b1b022590a9b0356&quot;,&quot;da1fbf3861474f03940caa92cd150f4d&quot;,&quot;783801a0292542b88f60c38cc2f46954&quot;,&quot;da710d97c3454057b51979a4251a17b0&quot;]}}" data-outputid="facb389d-b3fe-48e1-bafd-1c0932694edf" data-execution_count="35">
+<div id="new-image" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:753,&quot;referenced_widgets&quot;:[&quot;62c5d0a598c440ebaad870ee1c261e96&quot;,&quot;e538ecf120ca4e83a2fefb10047df748&quot;,&quot;ce904d8599944399b762449d142dd85b&quot;,&quot;e512b4a8835d40e2bb4d33c8c9811bc7&quot;,&quot;59541e7144c541bca9708c7d6039df33&quot;,&quot;180902b2e6164446ae754e7d356aa56c&quot;,&quot;b0cf8153b47e45cbbc62d3097420f41d&quot;,&quot;3985af59218d4ee1b1b022590a9b0356&quot;,&quot;da1fbf3861474f03940caa92cd150f4d&quot;,&quot;783801a0292542b88f60c38cc2f46954&quot;,&quot;da710d97c3454057b51979a4251a17b0&quot;]}}" data-outputid="facb389d-b3fe-48e1-bafd-1c0932694edf" data-execution_count="35">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>PROMPT <span class="op">=</span> <span class="st">"a robot with glowing LED lights, futuristic, sci-fi"</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>NEGATIVE_PROMPT <span class="op">=</span> <span class="st">"blurry, low quality, distorted, extra limbs, deformed"</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>SEED <span class="op">=</span> <span class="dv">3434002</span></span>
