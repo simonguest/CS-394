@@ -734,7 +734,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Objective:</strong> Extend the DigiPen Campus Agent by adding a new specialized agent that handles a specific domain.</p>
 <p><strong>Background:</strong></p>
 <p>The Campus Agent currently has four specialized agents: Building Agent, Course Agent, Handbook Agent, and Cafe Agent. Your task is to add a fifth agent that serves a new purpose on campus.</p>
-<p><strong>Suggested Agent Ideas (pick one, or propose your own):</strong></p>
+<p><strong>Suggested Agent Ideas (pick one, or create your own):</strong></p>
 <ul>
 <li><strong>Events Agent</strong> - Helps students find information about campus events, club meetings, and activities</li>
 <li><strong>IT Agent</strong> - Assists with common IT issues, lab software, and printing</li>
@@ -745,10 +745,11 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Requirements:</strong></p>
 <ol type="1">
 <li><strong>Create a new agent</strong> with appropriate instructions (system prompt)</li>
-<li><strong>Implement knowledge retrieval</strong> using one of these approaches:
+<li><strong>Implement knowledge retrieval</strong> using one (or more!) of these approaches:
 <ul>
 <li>Add documents to the vector store and use <code>FileSearchTool</code>, OR</li>
-<li>Create a custom tool using <code>@function_tool</code> that returns relevant data OR</li>
+<li>Use the <code>WebSearchTool</code> to give your agent access to the web, OR</li>
+<li>Create a custom tool using <code>@function_tool</code> that returns relevant data (should be more complex than the cafe example) OR</li>
 <li>Create a new (or select an existing) MCP server</li>
 </ul></li>
 <li><strong>Integrate with the main Campus Agent</strong> via handoff</li>
