@@ -1007,16 +1007,15 @@
 <section id="openai-agents-sdk-and-mcp-2" class="slide level2">
 <h2>OpenAI Agents SDK and MCP</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/03/notebooks/open-meteo-mcp.ipynb" data-notebook-title="OpenAI Agents SDK with MCP Server" data-notebook-cellid="list-available-tools">
-<div id="list-available-tools" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a><span class="cf">async</span> <span class="cf">with</span> MCPServerStdio(</span>
-<span id="cb17-2"><a></a>    name<span class="op">=</span><span class="st">"Open-Meteo Weather Server"</span>,</span>
-<span id="cb17-3"><a></a>    params<span class="op">=</span>{</span>
-<span id="cb17-4"><a></a>        <span class="st">"command"</span>: <span class="st">"npx"</span>,</span>
-<span id="cb17-5"><a></a>        <span class="st">"args"</span>: [<span class="st">"-y"</span>, <span class="st">"open-meteo-mcp-server"</span>],</span>
-<span id="cb17-6"><a></a>    },</span>
-<span id="cb17-7"><a></a>) <span class="im">as</span> server:</span>
-<span id="cb17-8"><a></a>    tools <span class="op">=</span> <span class="cf">await</span> server.list_tools()</span>
-<span id="cb17-9"><a></a>    <span class="bu">print</span>(<span class="ss">f"Available tools: </span><span class="sc">{</span>[tool.name <span class="cf">for</span> tool <span class="kw">in</span> tools]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="list-available-tools" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="40684e74-d669-4926-c1ec-986d770ace7f">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a><span class="cf">try</span>:</span>
+<span id="cb17-2"><a></a>  <span class="cf">async</span> <span class="cf">with</span> MCPServerStreamableHttp(</span>
+<span id="cb17-3"><a></a>      params <span class="op">=</span> {<span class="st">"url"</span>: <span class="st">"http://localhost:3000/mcp"</span>}</span>
+<span id="cb17-4"><a></a>      ) <span class="im">as</span> server:</span>
+<span id="cb17-5"><a></a>    tools <span class="op">=</span> <span class="cf">await</span> server.list_tools()</span>
+<span id="cb17-6"><a></a>    <span class="bu">print</span>(<span class="ss">f"Available tools: </span><span class="sc">{</span>[tool.name <span class="cf">for</span> tool <span class="kw">in</span> tools]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb17-7"><a></a><span class="cf">except</span>:</span>
+<span id="cb17-8"><a></a>  <span class="bu">print</span>(<span class="st">"Is the MCP server running? Check at the top of this notebook for instructions."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Available tools: ['weather_forecast', 'weather_archive', 'air_quality', 'marine_weather', 'elevation', 'flood_forecast', 'seasonal_forecast', 'climate_projection', 'ensemble_forecast', 'geocoding', 'dwd_icon_forecast', 'gfs_forecast', 'meteofrance_forecast', 'ecmwf_forecast', 'jma_forecast', 'metno_forecast', 'gem_forecast']</code></pre>
 </div>
@@ -1026,38 +1025,33 @@
 <section id="openai-agents-sdk-and-mcp-3" class="slide level2">
 <h2>OpenAI Agents SDK and MCP</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/03/notebooks/open-meteo-mcp.ipynb" data-notebook-title="OpenAI Agents SDK with MCP Server" data-notebook-cellid="simple-query">
-<div id="simple-query" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a><span class="cf">async</span> <span class="cf">with</span> MCPServerStdio(</span>
-<span id="cb19-2"><a></a>    name<span class="op">=</span><span class="st">"Open-Meteo Weather Server"</span>,</span>
-<span id="cb19-3"><a></a>    params<span class="op">=</span>{</span>
-<span id="cb19-4"><a></a>        <span class="st">"command"</span>: <span class="st">"npx"</span>,</span>
-<span id="cb19-5"><a></a>        <span class="st">"args"</span>: [<span class="st">"-y"</span>, <span class="st">"open-meteo-mcp-server"</span>],</span>
-<span id="cb19-6"><a></a>    },</span>
-<span id="cb19-7"><a></a>) <span class="im">as</span> server:</span>
-<span id="cb19-8"><a></a>    agent <span class="op">=</span> Agent(</span>
-<span id="cb19-9"><a></a>        name<span class="op">=</span><span class="st">"Weather Agent"</span>,</span>
-<span id="cb19-10"><a></a>        model<span class="op">=</span><span class="st">"gpt-5.2"</span>,</span>
-<span id="cb19-11"><a></a>        instructions<span class="op">=</span><span class="st">"You are a helpful weather assistant. Use the available tools to answer questions about weather forecasts, historical weather data, and air quality. Always provide clear, concise answers."</span>,</span>
-<span id="cb19-12"><a></a>        mcp_servers<span class="op">=</span>[server],</span>
-<span id="cb19-13"><a></a>    )</span>
-<span id="cb19-14"><a></a>    </span>
-<span id="cb19-15"><a></a>    result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"What's the weather forecast for Minnesota this week?"</span>)</span>
-<span id="cb19-16"><a></a>    <span class="bu">print</span>(result.final_output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="simple-query" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="c0988bc3-cf36-4263-f27b-71aeebd2e727">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a><span class="cf">try</span>:</span>
+<span id="cb19-2"><a></a>  <span class="cf">async</span> <span class="cf">with</span> MCPServerStreamableHttp(</span>
+<span id="cb19-3"><a></a>    params <span class="op">=</span> {<span class="st">"url"</span>: <span class="st">"http://localhost:3000/mcp"</span>}</span>
+<span id="cb19-4"><a></a>    ) <span class="im">as</span> server:</span>
+<span id="cb19-5"><a></a>    agent <span class="op">=</span> Agent(</span>
+<span id="cb19-6"><a></a>        name<span class="op">=</span><span class="st">"Weather Agent"</span>,</span>
+<span id="cb19-7"><a></a>        model<span class="op">=</span><span class="st">"gpt-5.2"</span>,</span>
+<span id="cb19-8"><a></a>        instructions<span class="op">=</span><span class="st">"You are a helpful weather assistant. Use the available tools to answer questions about weather forecasts, historical weather data, and air quality. Always provide clear, concise answers."</span>,</span>
+<span id="cb19-9"><a></a>        mcp_servers<span class="op">=</span>[server],</span>
+<span id="cb19-10"><a></a>    )</span>
+<span id="cb19-11"><a></a>    result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"What's the weather forecast for Minneapolis–St. Paul this week?"</span>)</span>
+<span id="cb19-12"><a></a>    <span class="bu">print</span>(result.final_output)</span>
+<span id="cb19-13"><a></a><span class="cf">except</span>:</span>
+<span id="cb19-14"><a></a>  <span class="bu">print</span>(<span class="st">"Is the MCP server running? Check at the top of this notebook for instructions."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Minnesota is a big state and conditions vary, so here’s a **representative statewide forecast using the Twin Cities (Minneapolis–St. Paul) area** for the next 7 days (America/Chicago):
+<pre><code>Minneapolis–St. Paul (Twin Cities) forecast for the next 7 days (America/Chicago):
 
-**This week (daily highs/lows, precip, max wind)**
-- **Fri 1/23:** Mostly cloudy, **-7°F / -20°F**, **0.00 in**, wind up to **11 mph**
-- **Sat 1/24:** Mostly cloudy, **1°F / -15°F**, **0.00 in**, wind up to **6 mph**
-- **Sun 1/25:** Mostly cloudy, **6°F / -4°F**, **0.00 in**, wind up to **9 mph**
-- **Mon 1/26:** Mostly cloudy, **12°F / -6°F**, **0.00 in**, wind up to **9 mph**
-- **Tue 1/27:** Mostly cloudy, **13°F / 4°F**, **0.00 in**, wind up to **13 mph**
-- **Wed 1/28:** Mostly cloudy, **9°F / 1°F**, **0.00 in**, wind up to **9 mph**
-- **Thu 1/29:** Mostly cloudy, **11°F / 3°F**, **0.00 in**, wind up to **4 mph**
+- **Fri Jan 23:** Partly cloudy. **High -8°F / Low -20°F**. Precip **0**. Wind up to **12 mph**.  
+- **Sat Jan 24:** Partly cloudy. **High 0°F / Low -16°F**. Precip **0**. Wind up to **6 mph**.  
+- **Sun Jan 25:** Partly cloudy. **High 8°F / Low -7°F**. Precip **0**. Wind up to **9 mph**.  
+- **Mon Jan 26:** Partly cloudy. **High 13°F / Low -7°F**. Precip **0**. Wind up to **9 mph**.  
+- **Tue Jan 27:** Partly cloudy. **High 12°F / Low 3°F**. Precip **0**. Wind up to **12 mph**.  
+- **Wed Jan 28:** Partly cloudy. **High 8°F / Low 0°F**. Precip **0**. Wind up to **8 mph**.  
+- **Thu Jan 29:** Partly cloudy. **High 10°F / Low 2°F**. Precip **0**. Wind up to **5 mph**.
 
-**Overall:** A cold, mostly cloudy week with **no measurable precipitation showing** in this forecast and **light-to-moderate winds**.
-
-If you tell me your city/ZIP (e.g., Duluth, Rochester, Moorhead), I can pull a forecast tailored to your exact part of Minnesota.</code></pre>
+Overall: **cold, mostly partly cloudy, and dry all week** (no measurable precipitation in the forecast).</code></pre>
 </div>
 </div>
 </div>
