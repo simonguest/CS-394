@@ -157,7 +157,19 @@
     "href": "src/03/notebooks/open-meteo-mcp.html#install-pre-requisites",
     "title": "OpenAI Agents SDK with MCP Server",
     "section": "Install pre-requisites",
-    "text": "Install pre-requisites\n\n!uv add openai-agents==0.4.2",
+    "text": "Install pre-requisites\n\n!uv pip install openai-agents==0.4.2\n\n\nResolved 197 packages in 3ms\n\nInstalled 10 packages in 34ms                               \n\n + colorama==0.4.6\n\n + cryptography==46.0.3\n\n + griffe==1.15.0\n\n + httpx-sse==0.4.3\n\n + mcp==1.25.0\n\n + openai-agents==0.4.2\n\n + pydantic-settings==2.12.0\n\n + pyjwt==2.10.1\n\n + sse-starlette==3.1.2\n\n + types-requests==2.32.4.20260107",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Notebooks",
+      "open-meteo-mcp.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/03/notebooks/open-meteo-mcp.html#set-the-openai-api-key-environment-variable",
+    "href": "src/03/notebooks/open-meteo-mcp.html#set-the-openai-api-key-environment-variable",
+    "title": "OpenAI Agents SDK with MCP Server",
+    "section": "Set the OpenAI API Key environment variable",
+    "text": "Set the OpenAI API Key environment variable\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  OPENAI_API_KEY = userdata.get('OPENAI_API_KEY')\n  os.environ[\"OPENAI_API_KEY\"] = OPENAI_API_KEY\nelse:\n  load_dotenv()",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Notebooks",
@@ -169,7 +181,7 @@
     "href": "src/03/notebooks/open-meteo-mcp.html#mcp-server-setup",
     "title": "OpenAI Agents SDK with MCP Server",
     "section": "MCP Server Setup",
-    "text": "MCP Server Setup\n\nimport logging\n\n# Suppress MCP client warnings about non-JSON messages from the server\nlogging.getLogger(\"mcp\").setLevel(logging.CRITICAL)\n\nfrom agents import Agent, Runner\nfrom agents.mcp import MCPServerStdio\n\n\nList Available Tools\n\nasync with MCPServerStdio(\n    name=\"Open-Meteo Weather Server\",\n    params={\n        \"command\": \"npx\",\n        \"args\": [\"-y\", \"open-meteo-mcp-server\"],\n    },\n) as server:\n    tools = await server.list_tools()\n    print(f\"Available tools: {[tool.name for tool in tools]}\")\n\nAvailable tools: ['weather_forecast', 'weather_archive', 'air_quality', 'marine_weather', 'elevation', 'flood_forecast', 'seasonal_forecast', 'climate_projection', 'ensemble_forecast', 'geocoding', 'dwd_icon_forecast', 'gfs_forecast', 'meteofrance_forecast', 'ecmwf_forecast', 'jma_forecast', 'metno_forecast', 'gem_forecast']\n\n\n\n\nSimple Weather Query\n\nasync with MCPServerStdio(\n    name=\"Open-Meteo Weather Server\",\n    params={\n        \"command\": \"npx\",\n        \"args\": [\"-y\", \"open-meteo-mcp-server\"],\n    },\n) as server:\n    agent = Agent(\n        name=\"Weather Agent\",\n        model=\"gpt-5.2\",\n        instructions=\"You are a helpful weather assistant. Use the available tools to answer questions about weather forecasts, historical weather data, and air quality. Always provide clear, concise answers.\",\n        mcp_servers=[server],\n    )\n    \n    result = await Runner.run(agent, \"What's the weather forecast for Seattle this week?\")\n    print(result.final_output)\n\nHere is the weather forecast for Seattle this week:\n\n- Maximum temperatures will range from about 8°C to 12°C.\n- Minimum temperatures will be between 3°C and 5°C.\n- Dry weather is expected all week, with no significant precipitation.\n- Most days will be partly cloudy to clear, with occasional cloudier periods.\n\nIf you need a forecast in Fahrenheit or more details (such as hourly data), just ask!\n\n\n\n\nAir Quality Query\n\nasync with MCPServerStdio(\n    name=\"Open-Meteo Weather Server\",\n    params={\n        \"command\": \"npx\",\n        \"args\": [\"-y\", \"open-meteo-mcp-server\"],\n    },\n) as server:\n    agent = Agent(\n        name=\"Weather Agent\",\n        model=\"gpt-5.2\",\n        instructions=\"You are a helpful weather assistant. Use the available tools to answer questions about weather forecasts, historical weather data, and air quality. Always provide clear, concise answers.\",\n        mcp_servers=[server],\n    )\n    \n    result = await Runner.run(agent, \"What's the current air quality in Los Angeles?\")\n    print(result.final_output)\n\nLos Angeles air quality (latest hourly value, **2026-01-15 00:00** local time, America/Los_Angeles):\n\n- **PM2.5:** 22.6 µg/m³  \n- **PM10:** 22.7 µg/m³  \n- **Ozone (O₃):** 1 µg/m³  \n- **Nitrogen dioxide (NO₂):** 64.1 µg/m³  \n- **Carbon monoxide (CO):** 307 µg/m³  \n- **Sulphur dioxide (SO₂):** 9.7 µg/m³  \n\nIf you want, tell me your neighborhood/ZIP in LA and I can check a closer point estimate (levels can vary a lot across the basin).\n\n\n\n\nHistorical Weather Data\n\nasync with MCPServerStdio(\n    name=\"Open-Meteo Weather Server\",\n    params={\n        \"command\": \"npx\",\n        \"args\": [\"-y\", \"open-meteo-mcp-server\"],\n    },\n) as server:\n    agent = Agent(\n        name=\"Weather Agent\",\n        model=\"gpt-5.2\",\n        instructions=\"You are a helpful weather assistant. Use the available tools to answer questions about weather forecasts, historical weather data, and air quality. Always provide clear, concise answers.\",\n        mcp_servers=[server],\n    )\n    \n    result = await Runner.run(agent, \"What was the average temperature in Tokyo during January 2024?\")\n    print(result.final_output)\n\nUsing ERA5 reanalysis data for central Tokyo (Asia/Tokyo), the **average temperature in Tokyo during January 2024** was **about 5.8 °C**.\n\n(Computed as the mean of each day’s average temperature: \\((T_{\\max}+T_{\\min})/2\\) averaged over **2024-01-01 to 2024-01-31**.)",
+    "text": "MCP Server Setup\n\nimport logging\n\n# Suppress MCP client warnings about non-JSON messages from the server\nlogging.getLogger(\"mcp\").setLevel(logging.CRITICAL)\n\nfrom agents import Agent, Runner\nfrom agents.mcp import MCPServerStdio\n\n\nList Available Tools\n\nasync with MCPServerStdio(\n    name=\"Open-Meteo Weather Server\",\n    params={\n        \"command\": \"npx\",\n        \"args\": [\"-y\", \"open-meteo-mcp-server\"],\n    },\n) as server:\n    tools = await server.list_tools()\n    print(f\"Available tools: {[tool.name for tool in tools]}\")\n\nAvailable tools: ['weather_forecast', 'weather_archive', 'air_quality', 'marine_weather', 'elevation', 'flood_forecast', 'seasonal_forecast', 'climate_projection', 'ensemble_forecast', 'geocoding', 'dwd_icon_forecast', 'gfs_forecast', 'meteofrance_forecast', 'ecmwf_forecast', 'jma_forecast', 'metno_forecast', 'gem_forecast']\n\n\n\n\nSimple Weather Query\n\nasync with MCPServerStdio(\n    name=\"Open-Meteo Weather Server\",\n    params={\n        \"command\": \"npx\",\n        \"args\": [\"-y\", \"open-meteo-mcp-server\"],\n    },\n) as server:\n    agent = Agent(\n        name=\"Weather Agent\",\n        model=\"gpt-5.2\",\n        instructions=\"You are a helpful weather assistant. Use the available tools to answer questions about weather forecasts, historical weather data, and air quality. Always provide clear, concise answers.\",\n        mcp_servers=[server],\n    )\n    \n    result = await Runner.run(agent, \"What's the weather forecast for Minnesota this week?\")\n    print(result.final_output)\n\nMinnesota is a big state and conditions vary, so here’s a **representative statewide forecast using the Twin Cities (Minneapolis–St. Paul) area** for the next 7 days (America/Chicago):\n\n**This week (daily highs/lows, precip, max wind)**\n- **Fri 1/23:** Mostly cloudy, **-7°F / -20°F**, **0.00 in**, wind up to **11 mph**\n- **Sat 1/24:** Mostly cloudy, **1°F / -15°F**, **0.00 in**, wind up to **6 mph**\n- **Sun 1/25:** Mostly cloudy, **6°F / -4°F**, **0.00 in**, wind up to **9 mph**\n- **Mon 1/26:** Mostly cloudy, **12°F / -6°F**, **0.00 in**, wind up to **9 mph**\n- **Tue 1/27:** Mostly cloudy, **13°F / 4°F**, **0.00 in**, wind up to **13 mph**\n- **Wed 1/28:** Mostly cloudy, **9°F / 1°F**, **0.00 in**, wind up to **9 mph**\n- **Thu 1/29:** Mostly cloudy, **11°F / 3°F**, **0.00 in**, wind up to **4 mph**\n\n**Overall:** A cold, mostly cloudy week with **no measurable precipitation showing** in this forecast and **light-to-moderate winds**.\n\nIf you tell me your city/ZIP (e.g., Duluth, Rochester, Moorhead), I can pull a forecast tailored to your exact part of Minnesota.\n\n\n\n\nAir Quality Query\n\nasync with MCPServerStdio(\n    name=\"Open-Meteo Weather Server\",\n    params={\n        \"command\": \"npx\",\n        \"args\": [\"-y\", \"open-meteo-mcp-server\"],\n    },\n) as server:\n    agent = Agent(\n        name=\"Weather Agent\",\n        model=\"gpt-5.2\",\n        instructions=\"You are a helpful weather assistant. Use the available tools to answer questions about weather forecasts, historical weather data, and air quality. Always provide clear, concise answers.\",\n        mcp_servers=[server],\n    )\n    \n    result = await Runner.run(agent, \"What's the current air quality in Los Angeles?\")\n    print(result.final_output)\n\nLos Angeles air quality (latest hourly value, **2026-01-15 00:00** local time, America/Los_Angeles):\n\n- **PM2.5:** 22.6 µg/m³  \n- **PM10:** 22.7 µg/m³  \n- **Ozone (O₃):** 1 µg/m³  \n- **Nitrogen dioxide (NO₂):** 64.1 µg/m³  \n- **Carbon monoxide (CO):** 307 µg/m³  \n- **Sulphur dioxide (SO₂):** 9.7 µg/m³  \n\nIf you want, tell me your neighborhood/ZIP in LA and I can check a closer point estimate (levels can vary a lot across the basin).\n\n\n\n\nHistorical Weather Data\n\nasync with MCPServerStdio(\n    name=\"Open-Meteo Weather Server\",\n    params={\n        \"command\": \"npx\",\n        \"args\": [\"-y\", \"open-meteo-mcp-server\"],\n    },\n) as server:\n    agent = Agent(\n        name=\"Weather Agent\",\n        model=\"gpt-5.2\",\n        instructions=\"You are a helpful weather assistant. Use the available tools to answer questions about weather forecasts, historical weather data, and air quality. Always provide clear, concise answers.\",\n        mcp_servers=[server],\n    )\n    \n    result = await Runner.run(agent, \"What was the average temperature in Tokyo during January 2024?\")\n    print(result.final_output)\n\nUsing ERA5 reanalysis data for central Tokyo (Asia/Tokyo), the **average temperature in Tokyo during January 2024** was **about 5.8 °C**.\n\n(Computed as the mean of each day’s average temperature: \\((T_{\\max}+T_{\\min})/2\\) averaged over **2024-01-01 to 2024-01-31**.)",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Notebooks",
@@ -181,7 +193,19 @@
     "href": "src/03/notebooks/campus-agent.html#install-pre-requisites",
     "title": "DigiPen Campus Agent",
     "section": "Install pre-requisites",
-    "text": "Install pre-requisites\n\n!uv add openai-agents==0.4.2 gradio==5.49.1\n\n\nResolved 190 packages in 1ms\n\nInstalled 10 packages in 33ms12.0                           \n\n + colorama==0.4.6\n\n + cryptography==46.0.3\n\n + griffe==1.15.0\n\n + httpx-sse==0.4.3\n\n + mcp==1.25.0\n\n + openai-agents==0.4.2\n\n + pydantic-settings==2.12.0\n\n + pyjwt==2.10.1\n\n + sse-starlette==3.1.2\n\n + types-requests==2.32.4.20260107",
+    "text": "Install pre-requisites\n\n!uv pip install openai-agents==0.4.2 gradio==5.49.1\n\n\nResolved 190 packages in 1ms\n\nInstalled 10 packages in 33ms12.0                           \n\n + colorama==0.4.6\n\n + cryptography==46.0.3\n\n + griffe==1.15.0\n\n + httpx-sse==0.4.3\n\n + mcp==1.25.0\n\n + openai-agents==0.4.2\n\n + pydantic-settings==2.12.0\n\n + pyjwt==2.10.1\n\n + sse-starlette==3.1.2\n\n + types-requests==2.32.4.20260107",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Notebooks",
+      "campus-agent.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/03/notebooks/campus-agent.html#set-the-openai-api-key-environment-variable",
+    "href": "src/03/notebooks/campus-agent.html#set-the-openai-api-key-environment-variable",
+    "title": "DigiPen Campus Agent",
+    "section": "Set the OpenAI API Key Environment Variable",
+    "text": "Set the OpenAI API Key Environment Variable\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  OPENAI_API_KEY = userdata.get('OPENAI_API_KEY')\n  os.environ[\"OPENAI_API_KEY\"] = OPENAI_API_KEY\nelse:\n  load_dotenv()",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Notebooks",
@@ -1382,7 +1406,7 @@
     "href": "src/03/slides.html#openai-agents-sdk-and-mcp-3",
     "title": "Module 3: Agents and Tools",
     "section": "OpenAI Agents SDK and MCP",
-    "text": "OpenAI Agents SDK and MCP\n\n\nasync with MCPServerStdio(\n    name=\"Open-Meteo Weather Server\",\n    params={\n        \"command\": \"npx\",\n        \"args\": [\"-y\", \"open-meteo-mcp-server\"],\n    },\n) as server:\n    agent = Agent(\n        name=\"Weather Agent\",\n        model=\"gpt-5.2\",\n        instructions=\"You are a helpful weather assistant. Use the available tools to answer questions about weather forecasts, historical weather data, and air quality. Always provide clear, concise answers.\",\n        mcp_servers=[server],\n    )\n    \n    result = await Runner.run(agent, \"What's the weather forecast for Seattle this week?\")\n    print(result.final_output)\n\nHere is the weather forecast for Seattle this week:\n\n- Maximum temperatures will range from about 8°C to 12°C.\n- Minimum temperatures will be between 3°C and 5°C.\n- Dry weather is expected all week, with no significant precipitation.\n- Most days will be partly cloudy to clear, with occasional cloudier periods.\n\nIf you need a forecast in Fahrenheit or more details (such as hourly data), just ask!",
+    "text": "OpenAI Agents SDK and MCP\n\n\nasync with MCPServerStdio(\n    name=\"Open-Meteo Weather Server\",\n    params={\n        \"command\": \"npx\",\n        \"args\": [\"-y\", \"open-meteo-mcp-server\"],\n    },\n) as server:\n    agent = Agent(\n        name=\"Weather Agent\",\n        model=\"gpt-5.2\",\n        instructions=\"You are a helpful weather assistant. Use the available tools to answer questions about weather forecasts, historical weather data, and air quality. Always provide clear, concise answers.\",\n        mcp_servers=[server],\n    )\n    \n    result = await Runner.run(agent, \"What's the weather forecast for Minnesota this week?\")\n    print(result.final_output)\n\nMinnesota is a big state and conditions vary, so here’s a **representative statewide forecast using the Twin Cities (Minneapolis–St. Paul) area** for the next 7 days (America/Chicago):\n\n**This week (daily highs/lows, precip, max wind)**\n- **Fri 1/23:** Mostly cloudy, **-7°F / -20°F**, **0.00 in**, wind up to **11 mph**\n- **Sat 1/24:** Mostly cloudy, **1°F / -15°F**, **0.00 in**, wind up to **6 mph**\n- **Sun 1/25:** Mostly cloudy, **6°F / -4°F**, **0.00 in**, wind up to **9 mph**\n- **Mon 1/26:** Mostly cloudy, **12°F / -6°F**, **0.00 in**, wind up to **9 mph**\n- **Tue 1/27:** Mostly cloudy, **13°F / 4°F**, **0.00 in**, wind up to **13 mph**\n- **Wed 1/28:** Mostly cloudy, **9°F / 1°F**, **0.00 in**, wind up to **9 mph**\n- **Thu 1/29:** Mostly cloudy, **11°F / 3°F**, **0.00 in**, wind up to **4 mph**\n\n**Overall:** A cold, mostly cloudy week with **no measurable precipitation showing** in this forecast and **light-to-moderate winds**.\n\nIf you tell me your city/ZIP (e.g., Duluth, Rochester, Moorhead), I can pull a forecast tailored to your exact part of Minnesota.",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Slides"
@@ -3415,7 +3439,7 @@
     "href": "src/04/assignment.html",
     "title": "Module 4 Assignment",
     "section": "",
-    "text": "TBD",
+    "text": "TBD - maybe something around using controlnet with a different conditioning? e.g., scribble in Gradio app\n(choose your own adventure if more than one idea?)",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Assignment"
@@ -3426,7 +3450,7 @@
     "href": "src/04/assignment.html#assignment",
     "title": "Module 4 Assignment",
     "section": "",
-    "text": "TBD",
+    "text": "TBD - maybe something around using controlnet with a different conditioning? e.g., scribble in Gradio app\n(choose your own adventure if more than one idea?)",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Assignment"
@@ -4657,7 +4681,19 @@
     "href": "src/03/notebooks/memory.html",
     "title": "Agent Memory",
     "section": "",
-    "text": "!uv add openai-agents==0.4.2\n\n\nResolved 190 packages in 1ms\n\nAudited 157 packages in 0.07ms",
+    "text": "!uv pip install openai-agents==0.4.2\n\n\nResolved 190 packages in 1ms\n\nAudited 157 packages in 0.07ms",
+    "crumbs": [
+      "**Module 3:** Agents and Tools",
+      "Notebooks",
+      "memory.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/03/notebooks/memory.html#set-the-openai-api-key-environment-variable",
+    "href": "src/03/notebooks/memory.html#set-the-openai-api-key-environment-variable",
+    "title": "Agent Memory",
+    "section": "Set the OpenAI API Key environment variable",
+    "text": "Set the OpenAI API Key environment variable\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  OPENAI_API_KEY = userdata.get('OPENAI_API_KEY')\n  os.environ[\"OPENAI_API_KEY\"] = OPENAI_API_KEY\nelse:\n  load_dotenv()",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Notebooks",

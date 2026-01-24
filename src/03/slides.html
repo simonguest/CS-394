@@ -1007,7 +1007,7 @@
 <section id="openai-agents-sdk-and-mcp-2" class="slide level2">
 <h2>OpenAI Agents SDK and MCP</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/03/notebooks/open-meteo-mcp.ipynb" data-notebook-title="OpenAI Agents SDK with MCP Server" data-notebook-cellid="list-available-tools">
-<div id="list-available-tools" class="cell" data-execution_count="2">
+<div id="list-available-tools" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a><span class="cf">async</span> <span class="cf">with</span> MCPServerStdio(</span>
 <span id="cb17-2"><a></a>    name<span class="op">=</span><span class="st">"Open-Meteo Weather Server"</span>,</span>
 <span id="cb17-3"><a></a>    params<span class="op">=</span>{</span>
@@ -1026,7 +1026,7 @@
 <section id="openai-agents-sdk-and-mcp-3" class="slide level2">
 <h2>OpenAI Agents SDK and MCP</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/03/notebooks/open-meteo-mcp.ipynb" data-notebook-title="OpenAI Agents SDK with MCP Server" data-notebook-cellid="simple-query">
-<div id="simple-query" class="cell">
+<div id="simple-query" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a><span class="cf">async</span> <span class="cf">with</span> MCPServerStdio(</span>
 <span id="cb19-2"><a></a>    name<span class="op">=</span><span class="st">"Open-Meteo Weather Server"</span>,</span>
 <span id="cb19-3"><a></a>    params<span class="op">=</span>{</span>
@@ -1041,17 +1041,23 @@
 <span id="cb19-12"><a></a>        mcp_servers<span class="op">=</span>[server],</span>
 <span id="cb19-13"><a></a>    )</span>
 <span id="cb19-14"><a></a>    </span>
-<span id="cb19-15"><a></a>    result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"What's the weather forecast for Seattle this week?"</span>)</span>
+<span id="cb19-15"><a></a>    result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"What's the weather forecast for Minnesota this week?"</span>)</span>
 <span id="cb19-16"><a></a>    <span class="bu">print</span>(result.final_output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Here is the weather forecast for Seattle this week:
+<pre><code>Minnesota is a big state and conditions vary, so here’s a **representative statewide forecast using the Twin Cities (Minneapolis–St. Paul) area** for the next 7 days (America/Chicago):
 
-- Maximum temperatures will range from about 8°C to 12°C.
-- Minimum temperatures will be between 3°C and 5°C.
-- Dry weather is expected all week, with no significant precipitation.
-- Most days will be partly cloudy to clear, with occasional cloudier periods.
+**This week (daily highs/lows, precip, max wind)**
+- **Fri 1/23:** Mostly cloudy, **-7°F / -20°F**, **0.00 in**, wind up to **11 mph**
+- **Sat 1/24:** Mostly cloudy, **1°F / -15°F**, **0.00 in**, wind up to **6 mph**
+- **Sun 1/25:** Mostly cloudy, **6°F / -4°F**, **0.00 in**, wind up to **9 mph**
+- **Mon 1/26:** Mostly cloudy, **12°F / -6°F**, **0.00 in**, wind up to **9 mph**
+- **Tue 1/27:** Mostly cloudy, **13°F / 4°F**, **0.00 in**, wind up to **13 mph**
+- **Wed 1/28:** Mostly cloudy, **9°F / 1°F**, **0.00 in**, wind up to **9 mph**
+- **Thu 1/29:** Mostly cloudy, **11°F / 3°F**, **0.00 in**, wind up to **4 mph**
 
-If you need a forecast in Fahrenheit or more details (such as hourly data), just ask!</code></pre>
+**Overall:** A cold, mostly cloudy week with **no measurable precipitation showing** in this forecast and **light-to-moderate winds**.
+
+If you tell me your city/ZIP (e.g., Duluth, Rochester, Moorhead), I can pull a forecast tailored to your exact part of Minnesota.</code></pre>
 </div>
 </div>
 </div>
