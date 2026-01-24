@@ -4,4 +4,6 @@ title: "Module 4 Assignment"
 
 ## Assignment
 
-TBD
+TBD - maybe something around using controlnet with a different conditioning? e.g., scribble in Gradio app
+
+(choose your own adventure if more than one idea?)
