@@ -1,9 +1,84 @@
 ---
-title: "Module 4 Assignment"
+title: "Module 4 Assignment: Multimedia & Multimodal Applications"
+format: html
+execute:
+  enabled: false
+---
+**Objective:** Build a working application that demonstrates your understanding of multimedia or multimodal AI models.
+
+**Choose Your Adventure:** Pick ONE of the three options below.
+
 ---
 
-## Assignment
+## Option 1: ControlNet Scribble App
 
-TBD - maybe something around using controlnet with a different conditioning? e.g., scribble in Gradio app
+Build a Gradio application that transforms hand-drawn sketches into realistic images using ControlNet.
 
-(choose your own adventure if more than one idea?)
+**Requirements:**
+
+- Create a Gradio interface with a sketchpad/canvas input
+- Use ControlNet (scribble or canny edge model) to condition image generation
+- Allow users to enter a text prompt to guide the style/content
+- Generate and display the resulting image
+- Include at least one configurable parameter (e.g., guidance scale, number of steps)
+
+**Suggested approach:**
+
+- Use Replicate's ControlNet models for easier deployment, OR
+- Run locally using HuggingFace diffusers with a ControlNet pipeline
+
+---
+
+## Option 2: Replicate Model Pipeline
+
+Create a pipeline that chains multiple Replicate models together to transform images through a multi-step process.
+
+**Requirements:**
+
+- Chain at least 3 different models in sequence (e.g., depth estimation → ControlNet → upscaling)
+- Create a Gradio interface that accepts an input image and displays intermediate/final results
+- Document what each model in your pipeline does and why you chose it
+- Show the transformation at each stage (not just the final output)
+
+**Example pipeline ideas:**
+
+- Photo → Depth Map → Stylized Scene → Upscaled Output
+- Portrait → Pose Extraction → New Character in Same Pose → Background Replacement
+- Sketch → Colorized Image → Style Transfer → Final Composition
+
+---
+
+## Option 3: Vision Language Model Application
+
+Implement a practical application using a Vision Language Model (VLM) for a real-world use case.
+
+**Requirements:**
+
+- Use an open-source VLM (e.g., Gemma 3, LLaVA, FastVLM) - not a closed API like GPT-4V or Claude
+- Build a Gradio interface that accepts image input
+- Implement a specific, practical use case such as:
+  - **Accessibility**: Describe images for visually impaired users
+  - **Product Detection**: Identify and catalog items from photos
+  - **Document Analysis**: Extract information from receipts, forms, or charts
+  - **Educational**: Explain diagrams, equations, or scientific figures
+- Include thoughtful prompt engineering in your system prompt
+
+---
+
+## Deliverable: A Colab/Jupyter notebook with:
+
+- Code cells with your implementation
+- A working Gradio interface that can be launched and tested
+- Uses environment variables for any API keys (e.g., `REPLICATE_API_TOKEN`). Please do not include your API key in your notebook!
+- Markdown cells explaining:
+  - Which option you chose and why
+  - Your design decisions and approach
+  - Observations about model behavior, quality, or limitations
+  - What worked well and what was challenging
+
+## Hints
+
+- **Option 1**: The `gr.Sketchpad` or `gr.ImageEditor` components in Gradio work well for drawing input. Start with a simple black-and-white sketch before adding complexity.
+- **Option 2**: Plan your pipeline on paper first. Consider what each model needs as input and produces as output. The PBR notebook (`pbr-creator.ipynb`) demonstrates this chaining pattern.
+- **Option 3**: Smaller models (like FastVLM-0.5B or Gemma 3 4B) can run on Colab's T4 GPU. Focus on crafting a good system prompt that guides the model toward your specific use case.
+- **All options**: Test with multiple different inputs to understand the model's capabilities and limitations.

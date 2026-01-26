@@ -1,6 +1,79 @@
 ---
 title: "Resources"
+format: html
+execute:
+  enabled: false
 ---
+
+## Diffusion Models
+
+- [The Illustrated Stable Diffusion](https://jalammar.github.io/illustrated-stable-diffusion/) - Jay Alammar's visual guide to how diffusion models work
+- [Stable Diffusion Paper](https://arxiv.org/abs/2112.10752) - "High-Resolution Image Synthesis with Latent Diffusion Models" (2022)
+- [What are Diffusion Models?](https://lilianweng.github.io/posts/2021-07-11-diffusion-models/) - Lilian Weng's comprehensive overview
+- [Hugging Face Diffusers Library](https://huggingface.co/docs/diffusers) - Official documentation for the diffusers library
+
+## Stable Diffusion
+
+- [Stable Diffusion 1.5 on Hugging Face](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5) - Model card and weights
+- [SDXL Paper](https://arxiv.org/abs/2307.01952) - "SDXL: Improving Latent Diffusion Models for High-Resolution Image Synthesis"
+- [Stability AI](https://stability.ai/) - Company behind Stable Diffusion
+
+## FLUX Models
+
+- [Black Forest Labs](https://blackforestlabs.ai/) - Creators of FLUX models
+- [FLUX.1 on Hugging Face](https://huggingface.co/black-forest-labs) - Official model repository
+- [FLUX.1 Technical Report](https://blackforestlabs.ai/flux-1-tools/) - Overview of FLUX capabilities and tools
+
+## ControlNet
+
+- [ControlNet Paper](https://arxiv.org/abs/2302.05543) - "Adding Conditional Control to Text-to-Image Diffusion Models" (2023)
+- [ControlNet on Hugging Face](https://huggingface.co/lllyasviel) - Original ControlNet models by Lvmin Zhang
+- [ControlNet Guide](https://huggingface.co/docs/diffusers/using-diffusers/controlnet) - How to use ControlNet with diffusers
+
+## Replicate
+
+- [Replicate Home Page](https://replicate.com/) - Platform for running ML models via API
+- [Replicate Documentation](https://replicate.com/docs) - API reference and guides
+- [Replicate Python Client](https://github.com/replicate/replicate-python) - Official Python library
+- [Replicate Collections](https://replicate.com/collections) - Curated model collections including free-to-try models
+
+## Depth Estimation
+
+- [Depth Anything](https://huggingface.co/docs/transformers/model_doc/depth_anything) - State-of-the-art monocular depth estimation
+- [MiDaS](https://github.com/isl-org/MiDaS) - Intel's robust monocular depth estimation model
+- [ZoeDepth Paper](https://arxiv.org/abs/2302.12288) - "ZoeDepth: Zero-shot Transfer by Combining Relative and Metric Depth"
+
+## Inpainting and Outpainting
+
+- [LaMa: Large Mask Inpainting](https://github.com/advimman/lama) - Resolution-robust large mask inpainting
+- [Flux Fill on Replicate](https://replicate.com/black-forest-labs/flux-fill-pro) - FLUX-based inpainting model
+
+## Vision Transformers
+
+- [ViT Paper](https://arxiv.org/abs/2010.11929) - "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale" (2020)
+- [CLIP Paper](https://arxiv.org/abs/2103.00020) - "Learning Transferable Visual Models From Natural Language Supervision"
+- [DINOv2](https://github.com/facebookresearch/dinov2) - Meta's self-supervised vision transformer
+
+## Vision Language Models (VLMs)
+
+- [LLaVA Project Page](https://llava-vl.github.io/) - Large Language and Vision Assistant
+- [LLaVA Paper](https://arxiv.org/abs/2304.08485) - "Visual Instruction Tuning"
+- [Gemma 3 on Hugging Face](https://huggingface.co/google/gemma-3-4b-it) - Google's multimodal Gemma model
+- [FastVLM Paper](https://arxiv.org/abs/2412.13303) - "FastVLM: Efficient Vision Encoding for Vision Language Models"
+- [FastVLM on Hugging Face](https://huggingface.co/apple/FastVLM-0.5B) - Apple's efficient on-device VLM
+- [FastVLM WebGPU Demo](https://huggingface.co/spaces/apple/fastvlm-webgpu) - Run FastVLM in your browser
+
+## Gradio for Image Applications
+
+- [Gradio Image Components](https://www.gradio.app/docs/gradio/image) - Image input/output documentation
+- [Gradio ImageEditor](https://www.gradio.app/docs/gradio/imageeditor) - Component for drawing and editing images
+- [Gradio Sketchpad](https://www.gradio.app/docs/gradio/sketchpad) - Simple drawing canvas component
+
+## Prompt Engineering for Image Models
+
+- [DALL-E 3 Prompt Guide](https://platform.openai.com/docs/guides/images) - OpenAI's guide to image prompting
+- [Stable Diffusion Prompt Guide](https://stable-diffusion-art.com/prompt-guide/) - Community guide to effective prompts
+- [Lexica](https://lexica.art/) - Search engine for Stable Diffusion prompts and images
 
 ## Citations
 

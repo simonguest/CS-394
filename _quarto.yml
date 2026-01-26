@@ -108,6 +108,24 @@ website:
             contents:
               - text: "text-to-image-sd-1.5.ipynb"
                 href: src/04/notebooks/text-to-image-sd-1.5.ipynb
+              - text: "image-to-image-sd-1.5.ipynb"
+                href: src/04/notebooks/image-to-image-sd-1.5.ipynb
+              - text: "text-to-image-replicate.ipynb"
+                href: src/04/notebooks/text-to-image-replicate.ipynb
+              - text: "generate-depth-map.ipynb"
+                href: src/04/notebooks/generate-depth-map.ipynb
+              - text: "depth-map-as-context.ipynb"
+                href: src/04/notebooks/depth-map-as-context.ipynb
+              - text: "inpainting.ipynb"
+                href: src/04/notebooks/inpainting.ipynb
+              - text: "outpainting.ipynb"
+                href: src/04/notebooks/outpainting.ipynb
+              - text: "controlnet-openpose-sd-1.5.ipynb"
+                href: src/04/notebooks/controlnet-openpose-sd-1.5.ipynb
+              - text: "pbr-creator.ipynb"
+                href: src/04/notebooks/pbr-creator.ipynb
+              - text: "vlm-gemma-3-4b.ipynb"
+                href: src/04/notebooks/vlm-gemma-3-4b.ipynb
           - text: "Assignment"
             href: src/04/assignment.qmd
       - section: "**Module 5:** Running Models on Local Hardware"
