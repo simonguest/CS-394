@@ -213,7 +213,6 @@
   <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
   
   <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
-  <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -598,6 +597,24 @@
 </div>
 </div>
 </section>
+<section id="image-to-image-original-1" class="slide level2">
+<h2>Image-to-Image (Original)</h2>
+<p>Prompt: “a goldendoodle wearing sunglasses, high quality, detailed”</p>
+</section>
+<section id="image-to-image-original-2" class="slide level2">
+<h2>Image-to-Image (Original)</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/image-to-image-sd-1.5.ipynb" data-notebook-title="Image-to-Image using Stable Diffusion 1.5" data-notebook-cellid="original">
+<div id="original" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/notebooks-image-to-image-sd-1.5-cell-4-output-1.png"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="image-to-image-0.3" class="slide level2">
 <h2>Image-to-Image (0.3)</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/image-to-image-sd-1.5.ipynb" data-notebook-title="Image-to-Image using Stable Diffusion 1.5" data-notebook-cellid="0.3">
@@ -776,7 +793,17 @@
 <section id="sidebar-safety-tolerance" class="slide level2">
 <h2>Sidebar: Safety Tolerance</h2>
 <ul>
-<li class="fragment">TBD: How does safety tolerance networks work?</li>
+<li class="fragment">How does safety tolerance work?
+<ul>
+<li class="fragment">Safety/guardrails are not typically embedded into the model</li>
+<li class="fragment">e.g., SD 1.5 will generate NSFW images easily</li>
+</ul></li>
+<li class="fragment">Instead, separate classifiers run alongside the model
+<ul>
+<li class="fragment">Input filtering: Analyzes the prompt prior to generation</li>
+<li class="fragment">Output filtering: Image classifier examines the model before showing it to the user</li>
+<li class="fragment">Thresholds used to control the classifiers</li>
+</ul></li>
 </ul>
 </section>
 <section id="image-to-image-2" class="slide level2">
@@ -1059,6 +1086,11 @@
 <span id="cb8-70"><a></a>demo.launch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
+</section></section>
+<section>
+<section id="demo-1" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p>Inpainting using Gradio and Replicate: inpainting.ipynb</p>
 </section>
 <section id="outpainting" class="slide level2">
 <h2>Outpainting</h2>
@@ -1153,9 +1185,11 @@
 </ul></li>
 </ul>
 </section></section>
-<section id="demo-1" class="title-slide slide level1 center">
-<h1>Demo</h1>
-<p>Inpainting and Outpainting using black-forest-labs/flux-fill-pro</p>
+<section id="hands-on-1" class="title-slide slide level1 center">
+<h1>Hands on</h1>
+<p>Register for a Replicate account; create an API key</p>
+<p>Text to Image using text-to-image-replicate.ipynb Inpainting and Outpainting using inpainting/outpainting.ipynb</p>
+<p>https://replicate.com/collections/try-for-free</p>
 </section>
 
 <section>
@@ -1166,11 +1200,45 @@
 <section id="i-want-more-control-1" class="slide level2">
 <h2>I Want More Control!</h2>
 <ul>
-<li class="fragment"><strong>Text-to-Image</strong> and <strong>Image-to-Image</strong> don’t give you that much control
+<li class="fragment">Prompt engineering for text-to-image and image-to-image is important
 <ul>
-<li class="fragment">Extensive prompts (both positive and negative) can help, but only so far</li>
+<li class="fragment">Bad prompt: <code>a cat</code></li>
+<li class="fragment">Good prompt: <code>A fluffy orange tabby cat sitting on a wooden windowsill, golden hour lighting, soft focus background of a garden, photorealistic, highly detailed fur texture, warm color palette, shot with 85mm lens, shallow depth of field</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="i-want-more-control-2" class="slide level2">
+<h2>I Want More Control!</h2>
+<ul>
+<li class="fragment">Key components to include in prompts:
+<ul>
+<li class="fragment"><strong>Subject</strong>: What you want</li>
+<li class="fragment"><strong>Style/Medium</strong>: photorealistic, oil painting, digital art</li>
+<li class="fragment"><strong>Lighting</strong>: studio lighting, dramatic shadows, soft diffused</li>
+<li class="fragment"><strong>Composition</strong>: close-up, wide-angle, rule of thirds</li>
+<li class="fragment"><strong>Quality</strong>: highly detailed, 4K, sharp focus</li>
+<li class="fragment"><strong>Technical specs</strong>: 85mm lens, f/1.8, bokeh</li>
+</ul></li>
+</ul>
+</section>
+<section id="i-want-more-control-3" class="slide level2">
+<h2>I Want More Control!</h2>
+<ul>
+<li class="fragment">Negative prompts (popular in some models)
+<ul>
+<li class="fragment">Tell the model what to avoid - particularly usedful with Stable Diffusion</li>
+<li class="fragment"><code>blurry, low quality, distorted, deformed, ugly, bad anatomy, extra limbs, watermark, text, signature, overexposed, underexposed, cartoon</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="i-want-even-more-control" class="slide level2">
+<h2>I Want Even More Control!</h2>
+<ul>
+<li class="fragment">Extensive prompts (both positive and negative) can help, but only so far
+<ul>
 <li class="fragment">Ultimately, “hoping the model guesses what I mean”</li>
 <li class="fragment">Fine-tuning possible, but it’s expensive and risks degrading quality (and potential overfitting)</li>
+<li class="fragment">Need a different approach…</li>
 </ul></li>
 </ul>
 </section></section>
@@ -1320,16 +1388,15 @@
 </div>
 </div>
 </section></section>
-<section id="hands-on-1" class="title-slide slide level1 center">
+<section id="hands-on-2" class="title-slide slide level1 center">
 <h1>Hands on</h1>
-<p>Inpainting and Outpainting using inpainting.ipynb and outpainting.ipynb</p>
 <p>ControlNet (OpenPose) using controlnet-openpose-sd-1.5.ipynb</p>
 </section>
 
 <section id="demo-putting-this-all-together" class="title-slide slide level1 center">
 <h1>Demo: Putting this all together</h1>
 <p>Using text-to-image, ControlNet, inpainting, and image-to-image (depth map) to create PBR materials</p>
-<p>TBD - Mega notebook</p>
+<p>pbr-creator.ipynb</p>
 </section>
 
 <section>
@@ -1368,7 +1435,7 @@
 <li class="fragment">Microsoft’s Swin
 <ul>
 <li class="fragment">Use “shifted windows” approach</li>
-<li class="fragment">Excels at dense predication tasks</li>
+<li class="fragment">Excels at dense prediction tasks</li>
 </ul></li>
 </ul>
 </section>
@@ -1390,8 +1457,44 @@
 </section>
 <section id="demo-2" class="slide level2">
 <h2>Demo</h2>
+<p>Using Gemma 3 (4B) to describe an image</p>
+<p>Notebook: vlm-gemma-3-4b.ipynb</p>
+</section>
+<section id="sidebar-image-url-dereferencing" class="slide level2">
+<h2>Sidebar: Image URL Dereferencing</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/vlm-gemma-3-4b.ipynb" data-notebook-title="Using Gemma 3 (4B) to identify images" data-notebook-cellid="image">
+<div id="image" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:688}}" data-outputid="cc84b4e7-6f96-45fd-a810-7ef99b27fc67" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="im">from</span> IPython.display <span class="im">import</span> Image</span>
+<span id="cb14-2"><a></a></span>
+<span id="cb14-3"><a></a>IMAGE_URL <span class="op">=</span> <span class="st">"https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/p-blog/candy.JPG"</span></span>
+<span id="cb14-4"><a></a></span>
+<span id="cb14-5"><a></a>Image(url<span class="op">=</span>IMAGE_URL, width<span class="op">=</span><span class="dv">500</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="sidebar-image-url-dereferencing-1" class="slide level2">
+<h2>Sidebar: Image URL Dereferencing</h2>
 <ul>
-<li class="fragment">TBD</li>
+<li class="fragment">Handled within the pipeline library
+<ul>
+<li class="fragment">Detects the image URL in the message structure</li>
+<li class="fragment">Downloads the image</li>
+<li class="fragment">Loads as a PIL Image object</li>
+<li class="fragment">Preprocessing (resizing, normalizing pixel values)</li>
+<li class="fragment">Converts to tensors</li>
+</ul></li>
+</ul>
+</section>
+<section id="sidebar-image-url-dereferencing-2" class="slide level2">
+<h2>Sidebar: Image URL Dereferencing</h2>
+<ul>
+<li class="fragment">Text gets tokenized into token IDs</li>
+<li class="fragment">Image gets processed into pixel tensors</li>
+<li class="fragment">Both feed into their respective encoders (text encoder, vision encoder)</li>
+<li class="fragment">Features are aligned via shared embedding space
+<ul>
+<li class="fragment">e.g., visual concepts (furry, four legs, whiskers, etc.) are close to the word “cat” in shared embedding space</li>
+</ul></li>
 </ul>
 </section>
 <section id="use-cases-for-vlms" class="slide level2">
@@ -1419,7 +1522,25 @@
 <li class="fragment">FastVLM: Apple’s Fast Vision Language Model</li>
 </ul></li>
 </ul>
+</section>
+<section id="fastvlm" class="slide level2">
+<h2>FastVLM</h2>
+<ul>
+<li class="fragment">Release release from Apple (presented at CVPR 2025)
+<ul>
+<li class="fragment">Paper: FastVLM: Efficient Vision Encoding for Vision Language Models <span class="citation" data-cites="vasu2025fastvlm">(<a href="#/references-1" role="doc-biblioref" onclick="">Vasu et al. 2025</a>)</span></li>
+<li class="fragment"><a href="https://huggingface.co/apple/FastVLM-0.5B" class="external" target="_blank">https://huggingface.co/apple/FastVLM-0.5B</a></li>
+<li class="fragment">Small VLM, optimized for on-device, real-time performance</li>
+<li class="fragment">Custom vision transformer: FastViTHD. Combines transformers and convolutional layers</li>
+</ul></li>
+</ul>
 </section></section>
+<section id="demo-3" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p>Apple’s FastVLM</p>
+<p><a href="https://huggingface.co/spaces/apple/fastvlm-webgpu" class="external" target="blank">Apple FastVLM running in WebGPU</a></p>
+</section>
+
 <section>
 <section id="looking-ahead" class="title-slide slide level1 center">
 <h1>Looking Ahead</h1>
@@ -1429,7 +1550,9 @@
 <h2>Looking Ahead</h2>
 <ul>
 <li class="fragment"><a href="https://simonguest.github.io/CS-394/src/04/assignment.html" class="external" target="_blank">This week’s assignment!</a></li>
-<li class="fragment">TBD</li>
+<li class="fragment">Deep dive on model architectures</li>
+<li class="fragment">Running models on local hardware</li>
+<li class="fragment">Quantization</li>
 </ul>
 </section></section>
 <section>
@@ -1444,6 +1567,9 @@
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-dosovitskiy2021vit" class="csl-entry" role="listitem">
 Dosovitskiy, Alexey, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, et al. 2021. <span>“An Image Is Worth 16x16 Words: Transformers for Image Recognition at Scale.”</span> <em>arXiv Preprint arXiv:2010.11929</em>.
+</div>
+<div id="ref-vasu2025fastvlm" class="csl-entry" role="listitem">
+Vasu, Pavan Kumar Anasosalu, Fartash Faghri, Chun-Liang Li, Cem Koc, Nate True, Albert Antony, Gokul Santhanam, et al. 2025. <span>“FastVLM: Efficient Vision Encoding for Vision Language Models.”</span> In <em>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</em>, 19769–80.
 </div>
 <div id="ref-zhang2023controlnet" class="csl-entry" role="listitem">
 Zhang, Lvmin, Anyi Rao, and Maneesh Agrawala. 2023. <span>“Adding Conditional Control to Text-to-Image Diffusion Models.”</span> <em>arXiv Preprint arXiv:2302.05543</em>.
@@ -1665,9 +1791,6 @@ Zhang, Lvmin, Anyi Rao, and Maneesh Agrawala. 2023. <span>“Adding Conditional 
           RevealZoom
         ]
       });
-    </script>
-    <script type="application/vnd.jupyter.widget-state+json">
-    {"0224b3e35fb24dfa9ff4dbd0759e7014":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"HTMLView","description":"","description_tooltip":null,"layout":"IPY_MODEL_e254740576a84a7f97ec84a0c4fa1a25","placeholder":"​","style":"IPY_MODEL_7933de8ae1e24acca314727c306555a5","value":"Loading pipeline components...: 100%"}},"180902b2e6164446ae754e7d356aa56c":{"model_module":"@jupyter-widgets/base","model_module_version":"1.2.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"189f4dc0021842ae8b48f0f2f95e687b":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"DescriptionStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"DescriptionStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"StyleView","description_width":""}},"27aaec9f2000425fac2e576ec9aca138":{"model_module":"@jupyter-widgets/base","model_module_version":"1.2.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"3985af59218d4ee1b1b022590a9b0356":{"model_module":"@jupyter-widgets/base","model_module_version":"1.2.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"59541e7144c541bca9708c7d6039df33":{"model_module":"@jupyter-widgets/base","model_module_version":"1.2.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"62c5d0a598c440ebaad870ee1c261e96":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"HBoxModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"HBoxModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"HBoxView","box_style":"","children":["IPY_MODEL_e538ecf120ca4e83a2fefb10047df748","IPY_MODEL_ce904d8599944399b762449d142dd85b","IPY_MODEL_e512b4a8835d40e2bb4d33c8c9811bc7"],"layout":"IPY_MODEL_59541e7144c541bca9708c7d6039df33"}},"6514018c915440a59ce407304f4f0428":{"model_module":"@jupyter-widgets/base","model_module_version":"1.2.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"6fba198b47414328aa4d2a50c14f5d2c":{"model_module":"@jupyter-widgets/base","model_module_version":"1.2.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"783801a0292542b88f60c38cc2f46954":{"model_module":"@jupyter-widgets/base","model_module_version":"1.2.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"7933de8ae1e24acca314727c306555a5":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"DescriptionStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"DescriptionStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"StyleView","description_width":""}},"7aaa571f9b684ed7b5172e92155073a8":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"HBoxModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"HBoxModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"HBoxView","box_style":"","children":["IPY_MODEL_0224b3e35fb24dfa9ff4dbd0759e7014","IPY_MODEL_a69ab57e30ac48bbb441c092bd3c916e","IPY_MODEL_7e754d090d58414bab9550d881aed016"],"layout":"IPY_MODEL_27aaec9f2000425fac2e576ec9aca138"}},"7e754d090d58414bab9550d881aed016":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"HTMLView","description":"","description_tooltip":null,"layout":"IPY_MODEL_6514018c915440a59ce407304f4f0428","placeholder":"​","style":"IPY_MODEL_189f4dc0021842ae8b48f0f2f95e687b","value":" 7/7 [00:01&lt;00:00,  3.27it/s]"}},"a69ab57e30ac48bbb441c092bd3c916e":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"FloatProgressModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"FloatProgressModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"ProgressView","bar_style":"success","description":"","description_tooltip":null,"layout":"IPY_MODEL_6fba198b47414328aa4d2a50c14f5d2c","max":7,"min":0,"orientation":"horizontal","style":"IPY_MODEL_d018b8445d0d4bc0850ac3ca5317008f","value":7}},"b0cf8153b47e45cbbc62d3097420f41d":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"DescriptionStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"DescriptionStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"StyleView","description_width":""}},"ce904d8599944399b762449d142dd85b":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"FloatProgressModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"FloatProgressModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"ProgressView","bar_style":"success","description":"","description_tooltip":null,"layout":"IPY_MODEL_3985af59218d4ee1b1b022590a9b0356","max":25,"min":0,"orientation":"horizontal","style":"IPY_MODEL_da1fbf3861474f03940caa92cd150f4d","value":25}},"d018b8445d0d4bc0850ac3ca5317008f":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"ProgressStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"ProgressStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"StyleView","bar_color":null,"description_width":""}},"da1fbf3861474f03940caa92cd150f4d":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"ProgressStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"ProgressStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"StyleView","bar_color":null,"description_width":""}},"da710d97c3454057b51979a4251a17b0":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"DescriptionStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"DescriptionStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"StyleView","description_width":""}},"e254740576a84a7f97ec84a0c4fa1a25":{"model_module":"@jupyter-widgets/base","model_module_version":"1.2.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"e512b4a8835d40e2bb4d33c8c9811bc7":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"HTMLView","description":"","description_tooltip":null,"layout":"IPY_MODEL_783801a0292542b88f60c38cc2f46954","placeholder":"​","style":"IPY_MODEL_da710d97c3454057b51979a4251a17b0","value":" 25/25 [00:01&lt;00:00, 15.12it/s]"}},"e538ecf120ca4e83a2fefb10047df748":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"HTMLView","description":"","description_tooltip":null,"layout":"IPY_MODEL_180902b2e6164446ae754e7d356aa56c","placeholder":"​","style":"IPY_MODEL_b0cf8153b47e45cbbc62d3097420f41d","value":"100%"}}}
     </script>
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {

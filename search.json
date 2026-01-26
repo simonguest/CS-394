@@ -1,39 +1,31 @@
 [
   {
-    "objectID": "src/04/notebooks/text-to-image-sd-1.5.html",
-    "href": "src/04/notebooks/text-to-image-sd-1.5.html",
-    "title": "Text-to-Image using Stable Diffusion 1.5",
+    "objectID": "src/04/notebooks/vlm-gemma-3-4b.html",
+    "href": "src/04/notebooks/vlm-gemma-3-4b.html",
+    "title": "Using Gemma 3 (4B) to identify images",
     "section": "",
-    "text": "import torch\nfrom diffusers import StableDiffusionPipeline\n\n# Load a small diffusion model\nmodel_id = \"stable-diffusion-v1-5/stable-diffusion-v1-5\"\npipe = StableDiffusionPipeline.from_pretrained(\n    model_id,\n)\n\n# Move to GPU if available\ndevice = \"cuda\" if torch.cuda.is_available() else \"cpu\"\npipe = pipe.to(device)\n\nFlax classes are deprecated and will be removed in Diffusers v1.0.0. We recommend migrating to PyTorch classes or pinning your version of Diffusers.\nFlax classes are deprecated and will be removed in Diffusers v1.0.0. We recommend migrating to PyTorch classes or pinning your version of Diffusers.\n/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_auth.py:104: UserWarning: \nError while fetching `HF_TOKEN` secret value from your vault: 'Requesting secret HF_TOKEN timed out. Secrets can only be fetched when running from the Colab UI.'.\nYou are not authenticated with the Hugging Face Hub in this notebook.\nIf the error persists, please let us know by opening an issue on GitHub (https://github.com/huggingface/huggingface_hub/issues/new).\n  warnings.warn(\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKeyword arguments {'generator': &lt;torch._C.Generator object at 0x7c30c9746a30&gt;} are not expected by StableDiffusionPipeline and will be ignored.",
-    "crumbs": [
-      "**Module 4:** Multimedia and Multimodal Models",
-      "Notebooks",
-      "text-to-image-sd-1.5.ipynb"
-    ]
+    "text": "from transformers import pipeline\nimport torch\n\npipe = pipeline(\n    \"image-text-to-text\",\n    model=\"google/gemma-3-4b-it\",\n    device=\"cuda\",\n    dtype=torch.bfloat16\n)\n\n\nfrom IPython.display import Image\n\nIMAGE_URL = \"https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/p-blog/candy.JPG\"\n\nImage(url=IMAGE_URL, width=500)\n\n\n\n\n\nmessages = [\n    {\n        \"role\": \"system\",\n        \"content\": [{\"type\": \"text\", \"text\": \"You are a helpful assistant.\"}],\n    },\n    {\n        \"role\": \"user\",\n        \"content\": [\n            {\"type\": \"image\", \"url\": IMAGE_URL},\n            {\"type\": \"text\", \"text\": \"What animal is on the candy?\"},\n        ],\n    },\n]\n\noutput = pipe(text=messages, max_new_tokens=200)\nprint(output[0][\"generated_text\"][-1][\"content\"])\n\nOkay, let's take a look!\n\nBased on the image, the animal on the candy is a **turtle**. You can see the shell pattern clearly. \n\nWould you like to know anything else about these candies?"
   },
   {
-    "objectID": "src/04/notebooks/text-to-image-sd-1.5.html#show-intermediate-steps",
-    "href": "src/04/notebooks/text-to-image-sd-1.5.html#show-intermediate-steps",
-    "title": "Text-to-Image using Stable Diffusion 1.5",
-    "section": "Show Intermediate Steps",
-    "text": "Show Intermediate Steps\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nPROMPT = \"a photograph of an astronaut riding a horse\" #@param {type:\"string\"}\nSTEPS = 50 #@param {type:\"slider\", min:10, max:100, step:1}\nSEED = -1 #@param {type:\"integer\"}\n\nintermediate_images = []\n\ndef callback_fn(step, timestep, latents):\n    \"\"\"Capture intermediate denoising steps\"\"\"\n    # Decode latents to image every few steps\n    if step % 5 == 0 or step == 0:\n        with torch.no_grad():\n            # Decode the latent representation to an image\n            image = pipe.vae.decode(latents / pipe.vae.config.scaling_factor, return_dict=False)[0]\n            image = pipe.image_processor.postprocess(image, output_type=\"pil\")[0]\n            intermediate_images.append((step, image))\n\nresult = pipe(\n    PROMPT,\n    num_inference_steps=STEPS,\n    callback=callback_fn,\n    callback_steps=1,\n    generator=torch.Generator().manual_seed(SEED) if SEED != -1 else None,\n).images[0]\n\n# Visualize the denoising process\nnum_steps_to_show = min(10, len(intermediate_images))\nstep_indices = np.linspace(0, len(intermediate_images)-1, num_steps_to_show, dtype=int)\n\nfig, axes = plt.subplots(2, 5, figsize=(15, 6))\nfig.suptitle(f'Real Diffusion Model Denoising Process\\nPrompt: \"{PROMPT}\"')\n\nfor idx, step_idx in enumerate(step_indices):\n    row = idx // 5\n    col = idx % 5\n    step_num, img = intermediate_images[step_idx]\n\n    axes[row, col].imshow(img)\n    axes[row, col].axis('off')\n    axes[row, col].set_title(f'Step {step_num}/{STEPS}')\n\nplt.tight_layout()\nplt.savefig('diffusion_process.png', dpi=150, bbox_inches='tight')\nplt.show()",
-    "crumbs": [
-      "**Module 4:** Multimedia and Multimodal Models",
-      "Notebooks",
-      "text-to-image-sd-1.5.ipynb"
-    ]
+    "objectID": "src/04/notebooks/text-to-image-replicate.html#install-dependencies",
+    "href": "src/04/notebooks/text-to-image-replicate.html#install-dependencies",
+    "title": "Text-to-Image using Replicate",
+    "section": "Install Dependencies",
+    "text": "Install Dependencies\n\n!uv pip install replicate -q"
   },
   {
-    "objectID": "src/04/notebooks/text-to-image-sd-1.5.html#show-final-image",
-    "href": "src/04/notebooks/text-to-image-sd-1.5.html#show-final-image",
-    "title": "Text-to-Image using Stable Diffusion 1.5",
-    "section": "Show Final Image",
-    "text": "Show Final Image\n\nplt.figure(figsize=(8, 8))\nplt.imshow(result)\nplt.axis('off')\nplt.title('Final Generated Image')\nplt.savefig('final_result.png', dpi=150, bbox_inches='tight')\nplt.show()",
-    "crumbs": [
-      "**Module 4:** Multimedia and Multimodal Models",
-      "Notebooks",
-      "text-to-image-sd-1.5.ipynb"
-    ]
+    "objectID": "src/04/notebooks/text-to-image-replicate.html#set-replicate-api-token",
+    "href": "src/04/notebooks/text-to-image-replicate.html#set-replicate-api-token",
+    "title": "Text-to-Image using Replicate",
+    "section": "Set Replicate API Token",
+    "text": "Set Replicate API Token\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  REPLICATE_API_TOKEN = userdata.get('REPLICATE_API_TOKEN')\nelse:\n  load_dotenv()\n  REPLICATE_API_TOKEN = os.getenv('REPLICATE_API_TOKEN')"
+  },
+  {
+    "objectID": "src/04/notebooks/text-to-image-replicate.html#text-to-image",
+    "href": "src/04/notebooks/text-to-image-replicate.html#text-to-image",
+    "title": "Text-to-Image using Replicate",
+    "section": "Text-to-Image",
+    "text": "Text-to-Image\n\nimport replicate\noutput = replicate.run(\n  \"black-forest-labs/flux-pro\",\n  input={\n      \"steps\": 28,\n      \"prompt\": \"lemon cupcake spelling out the words 'DigiPen' with sparklers, tasty, food photography, dynamic shot\",\n      \"seed\": 1564435,\n      \"output_format\": \"png\",\n      \"safety_tolerance\": 2,\n      \"prompt_upsampling\": False\n  },\n)\n\n\nimport io\nfrom PIL import Image\n\noutput_bytes = io.BytesIO(output.read())\noutput_image = Image.open(output_bytes)\noutput_image"
   },
   {
     "objectID": "src/04/notebooks/outpainting.html",
@@ -3666,6 +3658,28 @@
     ]
   },
   {
+    "objectID": "src/04/slides.html#image-to-image-original-1",
+    "href": "src/04/slides.html#image-to-image-original-1",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Image-to-Image (Original)",
+    "text": "Image-to-Image (Original)\nPrompt: “a goldendoodle wearing sunglasses, high quality, detailed”",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#image-to-image-original-2",
+    "href": "src/04/slides.html#image-to-image-original-2",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Image-to-Image (Original)",
+    "text": "Image-to-Image (Original)",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "src/04/slides.html#image-to-image-0.3",
     "href": "src/04/slides.html#image-to-image-0.3",
     "title": "Module 4: Multimedia and Multimodal Models",
@@ -3780,7 +3794,7 @@
     "href": "src/04/slides.html#sidebar-safety-tolerance",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "Sidebar: Safety Tolerance",
-    "text": "Sidebar: Safety Tolerance\n\nTBD: How does safety tolerance networks work?",
+    "text": "Sidebar: Safety Tolerance\n\nHow does safety tolerance work?\n\nSafety/guardrails are not typically embedded into the model\ne.g., SD 1.5 will generate NSFW images easily\n\nInstead, separate classifiers run alongside the model\n\nInput filtering: Analyzes the prompt prior to generation\nOutput filtering: Image classifier examines the model before showing it to the user\nThresholds used to control the classifiers",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -4044,7 +4058,40 @@
     "href": "src/04/slides.html#i-want-more-control-1",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "I Want More Control!",
-    "text": "I Want More Control!\n\nText-to-Image and Image-to-Image don’t give you that much control\n\nExtensive prompts (both positive and negative) can help, but only so far\nUltimately, “hoping the model guesses what I mean”\nFine-tuning possible, but it’s expensive and risks degrading quality (and potential overfitting)",
+    "text": "I Want More Control!\n\nPrompt engineering for text-to-image and image-to-image is important\n\nBad prompt: a cat\nGood prompt: A fluffy orange tabby cat sitting on a wooden windowsill, golden hour lighting, soft focus background of a garden, photorealistic, highly detailed fur texture, warm color palette, shot with 85mm lens, shallow depth of field",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#i-want-more-control-2",
+    "href": "src/04/slides.html#i-want-more-control-2",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "I Want More Control!",
+    "text": "I Want More Control!\n\nKey components to include in prompts:\n\nSubject: What you want\nStyle/Medium: photorealistic, oil painting, digital art\nLighting: studio lighting, dramatic shadows, soft diffused\nComposition: close-up, wide-angle, rule of thirds\nQuality: highly detailed, 4K, sharp focus\nTechnical specs: 85mm lens, f/1.8, bokeh",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#i-want-more-control-3",
+    "href": "src/04/slides.html#i-want-more-control-3",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "I Want More Control!",
+    "text": "I Want More Control!\n\nNegative prompts (popular in some models)\n\nTell the model what to avoid - particularly usedful with Stable Diffusion\nblurry, low quality, distorted, deformed, ugly, bad anatomy, extra limbs, watermark, text, signature, overexposed, underexposed, cartoon",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#i-want-even-more-control",
+    "href": "src/04/slides.html#i-want-even-more-control",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "I Want Even More Control!",
+    "text": "I Want Even More Control!\n\nExtensive prompts (both positive and negative) can help, but only so far\n\nUltimately, “hoping the model guesses what I mean”\nFine-tuning possible, but it’s expensive and risks degrading quality (and potential overfitting)\nNeed a different approach…",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -4176,7 +4223,7 @@
     "href": "src/04/slides.html#popular-vision-transformers",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "Popular Vision Transformers",
-    "text": "Popular Vision Transformers\n\nOpenAI’s CLIP\n\nTrained on 400M image-text pairs\nFoundation of most VLMs\n\nMeta’s DINO/DINO-2\n\n(Self DIstillation with NO Labels)\nSelf-supervised on 142M images\n\nMicrosoft’s Swin\n\nUse “shifted windows” approach\nExcels at dense predication tasks",
+    "text": "Popular Vision Transformers\n\nOpenAI’s CLIP\n\nTrained on 400M image-text pairs\nFoundation of most VLMs\n\nMeta’s DINO/DINO-2\n\n(Self DIstillation with NO Labels)\nSelf-supervised on 142M images\n\nMicrosoft’s Swin\n\nUse “shifted windows” approach\nExcels at dense prediction tasks",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -4198,7 +4245,40 @@
     "href": "src/04/slides.html#demo-2",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "Demo",
-    "text": "Demo\n\nTBD",
+    "text": "Demo\nUsing Gemma 3 (4B) to describe an image\nNotebook: vlm-gemma-3-4b.ipynb",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#sidebar-image-url-dereferencing",
+    "href": "src/04/slides.html#sidebar-image-url-dereferencing",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Sidebar: Image URL Dereferencing",
+    "text": "Sidebar: Image URL Dereferencing\n\n\nfrom IPython.display import Image\n\nIMAGE_URL = \"https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/p-blog/candy.JPG\"\n\nImage(url=IMAGE_URL, width=500)",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#sidebar-image-url-dereferencing-1",
+    "href": "src/04/slides.html#sidebar-image-url-dereferencing-1",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Sidebar: Image URL Dereferencing",
+    "text": "Sidebar: Image URL Dereferencing\n\nHandled within the pipeline library\n\nDetects the image URL in the message structure\nDownloads the image\nLoads as a PIL Image object\nPreprocessing (resizing, normalizing pixel values)\nConverts to tensors",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#sidebar-image-url-dereferencing-2",
+    "href": "src/04/slides.html#sidebar-image-url-dereferencing-2",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Sidebar: Image URL Dereferencing",
+    "text": "Sidebar: Image URL Dereferencing\n\nText gets tokenized into token IDs\nImage gets processed into pixel tensors\nBoth feed into their respective encoders (text encoder, vision encoder)\nFeatures are aligned via shared embedding space\n\ne.g., visual concepts (furry, four legs, whiskers, etc.) are close to the word “cat” in shared embedding space",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -4227,11 +4307,22 @@
     ]
   },
   {
+    "objectID": "src/04/slides.html#fastvlm",
+    "href": "src/04/slides.html#fastvlm",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "FastVLM",
+    "text": "FastVLM\n\nRelease release from Apple (presented at CVPR 2025)\n\nPaper: FastVLM: Efficient Vision Encoding for Vision Language Models (Vasu et al. 2025)\nhttps://huggingface.co/apple/FastVLM-0.5B\nSmall VLM, optimized for on-device, real-time performance\nCustom vision transformer: FastViTHD. Combines transformers and convolutional layers",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "src/04/slides.html#looking-ahead-1",
     "href": "src/04/slides.html#looking-ahead-1",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "Looking Ahead",
-    "text": "Looking Ahead\n\nThis week’s assignment!\nTBD",
+    "text": "Looking Ahead\n\nThis week’s assignment!\nDeep dive on model architectures\nRunning models on local hardware\nQuantization",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -4242,7 +4333,7 @@
     "href": "src/04/slides.html#references-1",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "References",
-    "text": "References\n\n\n\n\nDosovitskiy, Alexey, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, et al. 2021. “An Image Is Worth 16x16 Words: Transformers for Image Recognition at Scale.” arXiv Preprint arXiv:2010.11929.\n\n\nZhang, Lvmin, Anyi Rao, and Maneesh Agrawala. 2023. “Adding Conditional Control to Text-to-Image Diffusion Models.” arXiv Preprint arXiv:2302.05543.",
+    "text": "References\n\n\n\n\nDosovitskiy, Alexey, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, et al. 2021. “An Image Is Worth 16x16 Words: Transformers for Image Recognition at Scale.” arXiv Preprint arXiv:2010.11929.\n\n\nVasu, Pavan Kumar Anasosalu, Fartash Faghri, Chun-Liang Li, Cem Koc, Nate True, Albert Antony, Gokul Santhanam, et al. 2025. “FastVLM: Efficient Vision Encoding for Vision Language Models.” In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 19769–80.\n\n\nZhang, Lvmin, Anyi Rao, and Maneesh Agrawala. 2023. “Adding Conditional Control to Text-to-Image Diffusion Models.” arXiv Preprint arXiv:2302.05543.",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -4828,24 +4919,102 @@
     "text": "Gradio Interface\n\nimport gradio as gr\nimport numpy as np\nfrom PIL import Image\nimport replicate\nimport io\n\ndef inpaint(image_data, prompt):\n    if image_data is None:\n        return None\n    \n    # Get the original image from the background\n    original_image = Image.fromarray(image_data['background'])\n    \n    # Get the mask from the layers\n    if image_data['layers'] and len(image_data['layers']) &gt; 0:\n        mask_layer = image_data['layers'][0]\n        mask_array = np.array(mask_layer)\n        \n        # Create binary mask: white where painted, black where not\n        alpha_channel = mask_array[:, :, 3]\n        binary_mask = np.where(alpha_channel &gt; 0, 255, 0).astype(np.uint8)\n        mask_image = Image.fromarray(binary_mask, mode='L')\n    else:\n        return None\n    \n    # Convert images to bytes for the replicate API\n    image_bytes = io.BytesIO()\n    original_image.save(image_bytes, format='PNG')\n    image_bytes.seek(0)\n    \n    mask_bytes = io.BytesIO()\n    mask_image.save(mask_bytes, format='PNG')\n    mask_bytes.seek(0)\n    \n    # Call the Replicate API\n    output = replicate.run(\n        \"black-forest-labs/flux-fill-pro\",\n        input={\n            \"image\": image_bytes,\n            \"mask\": mask_bytes,\n            \"prompt\": prompt,\n            \"steps\": 25,\n            \"guidance\": 75,\n            \"outpaint\": \"None\",\n            \"output_format\": \"jpg\",\n            \"safety_tolerance\": 2,\n            \"prompt_upsampling\": False\n        }\n    )\n    \n    # Read the FileOutput and convert to PIL Image\n    output_bytes = output.read()\n    output_image = Image.open(io.BytesIO(output_bytes))\n    \n    return output_image\n\ndemo = gr.Interface(\n    fn=inpaint,\n    inputs=[\n        gr.ImageEditor(\n            label=\"Image (paint over areas to inpaint)\",\n            brush=gr.Brush(color_mode=\"fixed\", colors=[\"#000000\"]),\n            layers=True\n        ),\n        gr.Textbox(label=\"Prompt\", placeholder=\"Describe what should replace the masked area...\")\n    ],\n    outputs=gr.Image(label=\"Output Image\"),\n    title=\"Inpainting using black-forest-labs/flux-fill-pro\"\n)\ndemo.launch()\n\n* Running on local URL:  http://127.0.0.1:7861\n* To create a public link, set `share=True` in `launch()`."
   },
   {
-    "objectID": "src/04/notebooks/text-to-image-replicate.html#install-dependencies",
-    "href": "src/04/notebooks/text-to-image-replicate.html#install-dependencies",
-    "title": "Text-to-Image using Replicate",
-    "section": "Install Dependencies",
-    "text": "Install Dependencies\n\n!uv pip install replicate -q"
+    "objectID": "src/04/notebooks/pbr-creator.html#dependencies",
+    "href": "src/04/notebooks/pbr-creator.html#dependencies",
+    "title": "PBR (Physically-Based Rendering) Material Creator",
+    "section": "Dependencies",
+    "text": "Dependencies\n\n!uv pip install -q replicate"
   },
   {
-    "objectID": "src/04/notebooks/text-to-image-replicate.html#set-replicate-api-token",
-    "href": "src/04/notebooks/text-to-image-replicate.html#set-replicate-api-token",
-    "title": "Text-to-Image using Replicate",
+    "objectID": "src/04/notebooks/pbr-creator.html#set-replicate-api-token",
+    "href": "src/04/notebooks/pbr-creator.html#set-replicate-api-token",
+    "title": "PBR (Physically-Based Rendering) Material Creator",
     "section": "Set Replicate API Token",
     "text": "Set Replicate API Token\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  REPLICATE_API_TOKEN = userdata.get('REPLICATE_API_TOKEN')\nelse:\n  load_dotenv()\n  REPLICATE_API_TOKEN = os.getenv('REPLICATE_API_TOKEN')"
   },
   {
-    "objectID": "src/04/notebooks/text-to-image-replicate.html#text-to-image",
-    "href": "src/04/notebooks/text-to-image-replicate.html#text-to-image",
-    "title": "Text-to-Image using Replicate",
-    "section": "Text-to-Image",
-    "text": "Text-to-Image\n\nimport replicate\noutput = replicate.run(\n  \"black-forest-labs/flux-pro\",\n  input={\n      \"steps\": 28,\n      \"prompt\": \"lemon cupcake spelling out the words 'DigiPen' with sparklers, tasty, food photography, dynamic shot\",\n      \"seed\": 1564435,\n      \"output_format\": \"png\",\n      \"safety_tolerance\": 2,\n      \"prompt_upsampling\": False\n  },\n)\n\n\nimport io\nfrom PIL import Image\n\noutput_bytes = io.BytesIO(output.read())\noutput_image = Image.open(output_bytes)\noutput_image"
+    "objectID": "src/04/notebooks/pbr-creator.html#create-the-replicate-client",
+    "href": "src/04/notebooks/pbr-creator.html#create-the-replicate-client",
+    "title": "PBR (Physically-Based Rendering) Material Creator",
+    "section": "Create the Replicate client",
+    "text": "Create the Replicate client\n\nimport replicate\nimport io\nfrom PIL import Image\n\nclient = replicate.Client(api_token=REPLICATE_API_TOKEN)"
+  },
+  {
+    "objectID": "src/04/notebooks/pbr-creator.html#load-the-control-image",
+    "href": "src/04/notebooks/pbr-creator.html#load-the-control-image",
+    "title": "PBR (Physically-Based Rendering) Material Creator",
+    "section": "Load the control image",
+    "text": "Load the control image\n\nCONTROL_IMAGE = \"https://raw.githubusercontent.com/simonguest/CS-394/refs/heads/main/src/04/images/dragon.png\"\n\ncontrol = open(\"../images/dragon.png\", \"rb\")\ncontrol_bytes = io.BytesIO(control.read())\ncontrol_image = Image.open(control_bytes)\ncontrol_image"
+  },
+  {
+    "objectID": "src/04/notebooks/pbr-creator.html#run-control-image-through-flux-pro-controlled-by-canny-edge-detection",
+    "href": "src/04/notebooks/pbr-creator.html#run-control-image-through-flux-pro-controlled-by-canny-edge-detection",
+    "title": "PBR (Physically-Based Rendering) Material Creator",
+    "section": "Run control image through FLUX Pro (controlled by Canny edge detection)",
+    "text": "Run control image through FLUX Pro (controlled by Canny edge detection)\n\n# @title Run initial image through FLUX Pro (controlled by Canny edge detection)\n\noutput = client.run(\n    \"black-forest-labs/flux-canny-pro\",\n    input={\n        \"steps\": 28,\n        \"seed\": 1234567, # Fix the seed so that the image is reproducible\n        \"prompt\": \"a metal embossed dragon, cinematic lighting\",\n        \"guidance\": 30,\n        \"control_image\": control,\n        \"output_format\": \"png\",\n        \"safety_tolerance\": 2,\n        \"prompt_upsampling\": False\n    }\n)\n\noutput_bytes = io.BytesIO(output.read())\noutput_image = Image.open(output_bytes)\noutput_image"
+  },
+  {
+    "objectID": "src/04/notebooks/pbr-creator.html#tile-the-image-using-flux-schnell-and-ideogram-inpainting",
+    "href": "src/04/notebooks/pbr-creator.html#tile-the-image-using-flux-schnell-and-ideogram-inpainting",
+    "title": "PBR (Physically-Based Rendering) Material Creator",
+    "section": "Tile the image using FLUX schnell and ideogram inpainting",
+    "text": "Tile the image using FLUX schnell and ideogram inpainting\n\ntiled = client.run(\n  \"pipeline-examples/tile\",\n  input={\n      \"model\": \"black-forest-labs/flux-schnell\",\n      \"prompt\": \"a network of interconnected dragons\",\n      \"input_image\": output_bytes,\n      \"inpaint_model\": \"ideogram\",\n      \"seam_percentage\": 30\n  }\n)\n\ntiled_bytes = io.BytesIO(tiled.read())\ntiled_image = Image.open(tiled_bytes)\ntiled_image"
+  },
+  {
+    "objectID": "src/04/notebooks/pbr-creator.html#generate-a-depth-map-using-depth-anything",
+    "href": "src/04/notebooks/pbr-creator.html#generate-a-depth-map-using-depth-anything",
+    "title": "PBR (Physically-Based Rendering) Material Creator",
+    "section": "Generate a depth map using Depth Anything",
+    "text": "Generate a depth map using Depth Anything\n\ndepth = client.run(\n    \"chenxwh/depth-anything-v2:b239ea33cff32bb7abb5db39ffe9a09c14cbc2894331d1ef66fe096eed88ebd4\",\n    input={\n        \"image\": tiled_bytes,\n        \"model_size\": \"Large\"\n    }\n)\n\ndepth_bytes = io.BytesIO(depth[\"grey_depth\"].read())\ndepth_image = Image.open(depth_bytes)\ndepth_image"
+  },
+  {
+    "objectID": "src/04/notebooks/pbr-creator.html#convert-the-depth-map-to-a-normal-map-for-pbr",
+    "href": "src/04/notebooks/pbr-creator.html#convert-the-depth-map-to-a-normal-map-for-pbr",
+    "title": "PBR (Physically-Based Rendering) Material Creator",
+    "section": "Convert the depth map to a normal map for PBR",
+    "text": "Convert the depth map to a normal map for PBR\n\nimport numpy as np\n\ndef depth_to_normal(depth_image, strength=1.0):\n    depth_array = np.array(depth_image, dtype=np.float32) / 255.0\n\n    # Calculate gradients (sobel-like operators)\n    # Sobel kernels for x and y directions\n    sobel_x = np.array([[-1, 0, 1],\n                        [-2, 0, 2],\n                        [-1, 0, 1]]) * strength\n\n    sobel_y = np.array([[-1, -2, -1],\n                        [ 0,  0,  0],\n                        [ 1,  2,  1]]) * strength\n\n    # Pad the depth array to handle edges\n    padded_depth = np.pad(depth_array, 1, mode='edge')\n\n    # Initialize normal map components\n    height, width = depth_array.shape\n    dx = np.zeros((height, width))\n    dy = np.zeros((height, width))\n\n    # Calculate gradients using convolution\n    for i in range(height):\n        for j in range(width):\n            region = padded_depth[i:i+3, j:j+3]\n            dx[i, j] = np.sum(region * sobel_x)\n            dy[i, j] = np.sum(region * sobel_y)\n\n    # Create normal vectors\n    # In tangent space: x points right, y points down, z points out\n    # Normal = normalize(-dx, -dy, 1)\n    dz = np.ones_like(dx)\n\n    # Calculate magnitude for normalization\n    magnitude = np.sqrt(dx*dx + dy*dy + dz*dz)\n\n    # Normalize the vectors\n    nx = -dx / magnitude\n    ny = -dy / magnitude\n    nz = dz / magnitude\n\n    # Convert from [-1, 1] to [0, 255] for RGB channels\n    # R = X, G = Y, B = Z\n    normal_map = np.zeros((height, width, 3), dtype=np.uint8)\n    normal_map[:, :, 0] = ((nx + 1) * 0.5 * 255).astype(np.uint8)  # Red (X)\n    normal_map[:, :, 1] = ((ny + 1) * 0.5 * 255).astype(np.uint8)  # Green (Y)\n    normal_map[:, :, 2] = ((nz + 1) * 0.5 * 255).astype(np.uint8)  # Blue (Z)\n\n    # Save the normal map\n    normal_img = Image.fromarray(normal_map)\n\n    return normal_img\n\nnormal_image = depth_to_normal(depth_image.convert('L'), strength=1.0)\nnormal_image"
+  },
+  {
+    "objectID": "src/04/notebooks/pbr-creator.html#save-files",
+    "href": "src/04/notebooks/pbr-creator.html#save-files",
+    "title": "PBR (Physically-Based Rendering) Material Creator",
+    "section": "Save files",
+    "text": "Save files\n\ntiled_image.save(\"dragon_tiled.png\")\nnormal_image.save(\"dragon_normal.png\")"
+  },
+  {
+    "objectID": "src/04/notebooks/text-to-image-sd-1.5.html",
+    "href": "src/04/notebooks/text-to-image-sd-1.5.html",
+    "title": "Text-to-Image using Stable Diffusion 1.5",
+    "section": "",
+    "text": "import torch\nfrom diffusers import StableDiffusionPipeline\n\n# Load a small diffusion model\nmodel_id = \"stable-diffusion-v1-5/stable-diffusion-v1-5\"\npipe = StableDiffusionPipeline.from_pretrained(\n    model_id,\n)\n\n# Move to GPU if available\ndevice = \"cuda\" if torch.cuda.is_available() else \"cpu\"\npipe = pipe.to(device)\n\nFlax classes are deprecated and will be removed in Diffusers v1.0.0. We recommend migrating to PyTorch classes or pinning your version of Diffusers.\nFlax classes are deprecated and will be removed in Diffusers v1.0.0. We recommend migrating to PyTorch classes or pinning your version of Diffusers.\n/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_auth.py:104: UserWarning: \nError while fetching `HF_TOKEN` secret value from your vault: 'Requesting secret HF_TOKEN timed out. Secrets can only be fetched when running from the Colab UI.'.\nYou are not authenticated with the Hugging Face Hub in this notebook.\nIf the error persists, please let us know by opening an issue on GitHub (https://github.com/huggingface/huggingface_hub/issues/new).\n  warnings.warn(\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKeyword arguments {'generator': &lt;torch._C.Generator object at 0x7c30c9746a30&gt;} are not expected by StableDiffusionPipeline and will be ignored.",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "text-to-image-sd-1.5.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/04/notebooks/text-to-image-sd-1.5.html#show-intermediate-steps",
+    "href": "src/04/notebooks/text-to-image-sd-1.5.html#show-intermediate-steps",
+    "title": "Text-to-Image using Stable Diffusion 1.5",
+    "section": "Show Intermediate Steps",
+    "text": "Show Intermediate Steps\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nPROMPT = \"a photograph of an astronaut riding a horse\" #@param {type:\"string\"}\nSTEPS = 50 #@param {type:\"slider\", min:10, max:100, step:1}\nSEED = -1 #@param {type:\"integer\"}\n\nintermediate_images = []\n\ndef callback_fn(step, timestep, latents):\n    \"\"\"Capture intermediate denoising steps\"\"\"\n    # Decode latents to image every few steps\n    if step % 5 == 0 or step == 0:\n        with torch.no_grad():\n            # Decode the latent representation to an image\n            image = pipe.vae.decode(latents / pipe.vae.config.scaling_factor, return_dict=False)[0]\n            image = pipe.image_processor.postprocess(image, output_type=\"pil\")[0]\n            intermediate_images.append((step, image))\n\nresult = pipe(\n    PROMPT,\n    num_inference_steps=STEPS,\n    callback=callback_fn,\n    callback_steps=1,\n    generator=torch.Generator().manual_seed(SEED) if SEED != -1 else None,\n).images[0]\n\n# Visualize the denoising process\nnum_steps_to_show = min(10, len(intermediate_images))\nstep_indices = np.linspace(0, len(intermediate_images)-1, num_steps_to_show, dtype=int)\n\nfig, axes = plt.subplots(2, 5, figsize=(15, 6))\nfig.suptitle(f'Real Diffusion Model Denoising Process\\nPrompt: \"{PROMPT}\"')\n\nfor idx, step_idx in enumerate(step_indices):\n    row = idx // 5\n    col = idx % 5\n    step_num, img = intermediate_images[step_idx]\n\n    axes[row, col].imshow(img)\n    axes[row, col].axis('off')\n    axes[row, col].set_title(f'Step {step_num}/{STEPS}')\n\nplt.tight_layout()\nplt.savefig('diffusion_process.png', dpi=150, bbox_inches='tight')\nplt.show()",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "text-to-image-sd-1.5.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/04/notebooks/text-to-image-sd-1.5.html#show-final-image",
+    "href": "src/04/notebooks/text-to-image-sd-1.5.html#show-final-image",
+    "title": "Text-to-Image using Stable Diffusion 1.5",
+    "section": "Show Final Image",
+    "text": "Show Final Image\n\nplt.figure(figsize=(8, 8))\nplt.imshow(result)\nplt.axis('off')\nplt.title('Final Generated Image')\nplt.savefig('final_result.png', dpi=150, bbox_inches='tight')\nplt.show()",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "text-to-image-sd-1.5.ipynb"
+    ]
   }
 ]
