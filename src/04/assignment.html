@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Module 4 Assignment – CS-394</title>
+<title>Module 4 Assignment: Multimedia &amp; Multimodal Applications – CS-394</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
 <link href="../../src/05/slides.html" rel="next">
-<link href="../../src/04/notebooks/text-to-image-sd-1.5.html" rel="prev">
+<link href="../../src/04/notebooks/vlm-gemma-3-4b.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -560,6 +560,60 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">text-to-image-sd-1.5.ipynb</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/04/notebooks/image-to-image-sd-1.5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">image-to-image-sd-1.5.ipynb</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/04/notebooks/text-to-image-replicate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">text-to-image-replicate.ipynb</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/04/notebooks/generate-depth-map.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">generate-depth-map.ipynb</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/04/notebooks/depth-map-as-context.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">depth-map-as-context.ipynb</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/04/notebooks/inpainting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">inpainting.ipynb</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/04/notebooks/outpainting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">outpainting.ipynb</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/04/notebooks/controlnet-openpose-sd-1.5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">controlnet-openpose-sd-1.5.ipynb</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/04/notebooks/pbr-creator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">pbr-creator.ipynb</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/04/notebooks/vlm-gemma-3-4b.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">vlm-gemma-3-4b.ipynb</span></a>
+  </div>
+</li>
       </ul>
   </li>
           <li class="sidebar-item">
@@ -714,7 +768,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/04/slides.html"><strong>Module 4:</strong> Multimedia and Multimodal Models</a></li><li class="breadcrumb-item"><a href="../../src/04/assignment.html">Assignment</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Module 4 Assignment</h1>
+<h1 class="title">Module 4 Assignment: Multimedia &amp; Multimodal Applications</h1>
 </div>
 
 
@@ -731,10 +785,86 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="assignment" class="level2">
-<h2 class="anchored" data-anchor-id="assignment">Assignment</h2>
-<p>TBD - maybe something around using controlnet with a different conditioning? e.g., scribble in Gradio app</p>
-<p>(choose your own adventure if more than one idea?)</p>
+<p><strong>Objective:</strong> Build a working application that demonstrates your understanding of multimedia or multimodal AI models.</p>
+<p><strong>Choose Your Adventure:</strong> Pick ONE of the three options below.</p>
+<hr>
+<section id="option-1-controlnet-scribble-app" class="level2">
+<h2 class="anchored" data-anchor-id="option-1-controlnet-scribble-app">Option 1: ControlNet Scribble App</h2>
+<p>Build a Gradio application that transforms hand-drawn sketches into realistic images using ControlNet.</p>
+<p><strong>Requirements:</strong></p>
+<ul>
+<li>Create a Gradio interface with a sketchpad/canvas input</li>
+<li>Use ControlNet (scribble or canny edge model) to condition image generation</li>
+<li>Allow users to enter a text prompt to guide the style/content</li>
+<li>Generate and display the resulting image</li>
+<li>Include at least one configurable parameter (e.g., guidance scale, number of steps)</li>
+</ul>
+<p><strong>Suggested approach:</strong></p>
+<ul>
+<li>Use Replicate’s ControlNet models for easier deployment, OR</li>
+<li>Run locally using HuggingFace diffusers with a ControlNet pipeline</li>
+</ul>
+<hr>
+</section>
+<section id="option-2-replicate-model-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="option-2-replicate-model-pipeline">Option 2: Replicate Model Pipeline</h2>
+<p>Create a pipeline that chains multiple Replicate models together to transform images through a multi-step process.</p>
+<p><strong>Requirements:</strong></p>
+<ul>
+<li>Chain at least 3 different models in sequence (e.g., depth estimation → ControlNet → upscaling)</li>
+<li>Create a Gradio interface that accepts an input image and displays intermediate/final results</li>
+<li>Document what each model in your pipeline does and why you chose it</li>
+<li>Show the transformation at each stage (not just the final output)</li>
+</ul>
+<p><strong>Example pipeline ideas:</strong></p>
+<ul>
+<li>Photo → Depth Map → Stylized Scene → Upscaled Output</li>
+<li>Portrait → Pose Extraction → New Character in Same Pose → Background Replacement</li>
+<li>Sketch → Colorized Image → Style Transfer → Final Composition</li>
+</ul>
+<hr>
+</section>
+<section id="option-3-vision-language-model-application" class="level2">
+<h2 class="anchored" data-anchor-id="option-3-vision-language-model-application">Option 3: Vision Language Model Application</h2>
+<p>Implement a practical application using a Vision Language Model (VLM) for a real-world use case.</p>
+<p><strong>Requirements:</strong></p>
+<ul>
+<li>Use an open-source VLM (e.g., Gemma 3, LLaVA, FastVLM) - not a closed API like GPT-4V or Claude</li>
+<li>Build a Gradio interface that accepts image input</li>
+<li>Implement a specific, practical use case such as:
+<ul>
+<li><strong>Accessibility</strong>: Describe images for visually impaired users</li>
+<li><strong>Product Detection</strong>: Identify and catalog items from photos</li>
+<li><strong>Document Analysis</strong>: Extract information from receipts, forms, or charts</li>
+<li><strong>Educational</strong>: Explain diagrams, equations, or scientific figures</li>
+</ul></li>
+<li>Include thoughtful prompt engineering in your system prompt</li>
+</ul>
+<hr>
+</section>
+<section id="deliverable-a-colabjupyter-notebook-with" class="level2">
+<h2 class="anchored" data-anchor-id="deliverable-a-colabjupyter-notebook-with">Deliverable: A Colab/Jupyter notebook with:</h2>
+<ul>
+<li>Code cells with your implementation</li>
+<li>A working Gradio interface that can be launched and tested</li>
+<li>Uses environment variables for any API keys (e.g., <code>REPLICATE_API_TOKEN</code>). Please do not include your API key in your notebook!</li>
+<li>Markdown cells explaining:
+<ul>
+<li>Which option you chose and why</li>
+<li>Your design decisions and approach</li>
+<li>Observations about model behavior, quality, or limitations</li>
+<li>What worked well and what was challenging</li>
+</ul></li>
+</ul>
+</section>
+<section id="hints" class="level2">
+<h2 class="anchored" data-anchor-id="hints">Hints</h2>
+<ul>
+<li><strong>Option 1</strong>: The <code>gr.Sketchpad</code> or <code>gr.ImageEditor</code> components in Gradio work well for drawing input. Start with a simple black-and-white sketch before adding complexity.</li>
+<li><strong>Option 2</strong>: Plan your pipeline on paper first. Consider what each model needs as input and produces as output. The PBR notebook (<code>pbr-creator.ipynb</code>) demonstrates this chaining pattern.</li>
+<li><strong>Option 3</strong>: Smaller models (like FastVLM-0.5B or Gemma 3 4B) can run on Colab’s T4 GPU. Focus on crafting a good system prompt that guides the model toward your specific use case.</li>
+<li><strong>All options</strong>: Test with multiple different inputs to understand the model’s capabilities and limitations.</li>
+</ul>
 
 
 </section>
@@ -1155,8 +1285,8 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../src/04/notebooks/text-to-image-sd-1.5.html" class="pagination-link" aria-label="text-to-image-sd-1.5.ipynb">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">text-to-image-sd-1.5.ipynb</span>
+      <a href="../../src/04/notebooks/vlm-gemma-3-4b.html" class="pagination-link" aria-label="vlm-gemma-3-4b.ipynb">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">vlm-gemma-3-4b.ipynb</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

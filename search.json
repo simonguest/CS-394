@@ -4,133 +4,228 @@
     "href": "src/04/notebooks/vlm-gemma-3-4b.html",
     "title": "Using Gemma 3 (4B) to identify images",
     "section": "",
-    "text": "from transformers import pipeline\nimport torch\n\npipe = pipeline(\n    \"image-text-to-text\",\n    model=\"google/gemma-3-4b-it\",\n    device=\"cuda\",\n    dtype=torch.bfloat16\n)\n\n\nfrom IPython.display import Image\n\nIMAGE_URL = \"https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/p-blog/candy.JPG\"\n\nImage(url=IMAGE_URL, width=500)\n\n\n\n\n\nmessages = [\n    {\n        \"role\": \"system\",\n        \"content\": [{\"type\": \"text\", \"text\": \"You are a helpful assistant.\"}],\n    },\n    {\n        \"role\": \"user\",\n        \"content\": [\n            {\"type\": \"image\", \"url\": IMAGE_URL},\n            {\"type\": \"text\", \"text\": \"What animal is on the candy?\"},\n        ],\n    },\n]\n\noutput = pipe(text=messages, max_new_tokens=200)\nprint(output[0][\"generated_text\"][-1][\"content\"])\n\nOkay, let's take a look!\n\nBased on the image, the animal on the candy is a **turtle**. You can see the shell pattern clearly. \n\nWould you like to know anything else about these candies?"
+    "text": "from transformers import pipeline\nimport torch\n\npipe = pipeline(\n    \"image-text-to-text\",\n    model=\"google/gemma-3-4b-it\",\n    device=\"cuda\",\n    dtype=torch.bfloat16\n)\n\n\nfrom IPython.display import Image\n\nIMAGE_URL = \"https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/p-blog/candy.JPG\"\n\nImage(url=IMAGE_URL, width=500)\n\n\n\n\n\nmessages = [\n    {\n        \"role\": \"system\",\n        \"content\": [{\"type\": \"text\", \"text\": \"You are a helpful assistant.\"}],\n    },\n    {\n        \"role\": \"user\",\n        \"content\": [\n            {\"type\": \"image\", \"url\": IMAGE_URL},\n            {\"type\": \"text\", \"text\": \"What animal is on the candy?\"},\n        ],\n    },\n]\n\noutput = pipe(text=messages, max_new_tokens=200)\nprint(output[0][\"generated_text\"][-1][\"content\"])\n\nOkay, let's take a look!\n\nBased on the image, the animal on the candy is a **turtle**. You can see the shell pattern clearly. \n\nWould you like to know anything else about these candies?",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "vlm-gemma-3-4b.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/text-to-image-replicate.html#install-dependencies",
     "href": "src/04/notebooks/text-to-image-replicate.html#install-dependencies",
     "title": "Text-to-Image using Replicate",
     "section": "Install Dependencies",
-    "text": "Install Dependencies\n\n!uv pip install replicate -q"
+    "text": "Install Dependencies\n\n!uv pip install replicate -q",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "text-to-image-replicate.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/text-to-image-replicate.html#set-replicate-api-token",
     "href": "src/04/notebooks/text-to-image-replicate.html#set-replicate-api-token",
     "title": "Text-to-Image using Replicate",
     "section": "Set Replicate API Token",
-    "text": "Set Replicate API Token\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  REPLICATE_API_TOKEN = userdata.get('REPLICATE_API_TOKEN')\nelse:\n  load_dotenv()\n  REPLICATE_API_TOKEN = os.getenv('REPLICATE_API_TOKEN')"
+    "text": "Set Replicate API Token\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  REPLICATE_API_TOKEN = userdata.get('REPLICATE_API_TOKEN')\nelse:\n  load_dotenv()\n  REPLICATE_API_TOKEN = os.getenv('REPLICATE_API_TOKEN')",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "text-to-image-replicate.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/text-to-image-replicate.html#text-to-image",
     "href": "src/04/notebooks/text-to-image-replicate.html#text-to-image",
     "title": "Text-to-Image using Replicate",
     "section": "Text-to-Image",
-    "text": "Text-to-Image\n\nimport replicate\noutput = replicate.run(\n  \"black-forest-labs/flux-pro\",\n  input={\n      \"steps\": 28,\n      \"prompt\": \"lemon cupcake spelling out the words 'DigiPen' with sparklers, tasty, food photography, dynamic shot\",\n      \"seed\": 1564435,\n      \"output_format\": \"png\",\n      \"safety_tolerance\": 2,\n      \"prompt_upsampling\": False\n  },\n)\n\n\nimport io\nfrom PIL import Image\n\noutput_bytes = io.BytesIO(output.read())\noutput_image = Image.open(output_bytes)\noutput_image"
+    "text": "Text-to-Image\n\nimport replicate\noutput = replicate.run(\n  \"black-forest-labs/flux-pro\",\n  input={\n      \"steps\": 28,\n      \"prompt\": \"lemon cupcake spelling out the words 'DigiPen' with sparklers, tasty, food photography, dynamic shot\",\n      \"seed\": 1564435,\n      \"output_format\": \"png\",\n      \"safety_tolerance\": 2,\n      \"prompt_upsampling\": False\n  },\n)\n\n\nimport io\nfrom PIL import Image\n\noutput_bytes = io.BytesIO(output.read())\noutput_image = Image.open(output_bytes)\noutput_image",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "text-to-image-replicate.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/outpainting.html",
     "href": "src/04/notebooks/outpainting.html",
     "title": "Outpainting using black-forest-labs/flux-fill-pro",
     "section": "",
-    "text": "!uv pip install replicate"
+    "text": "!uv pip install replicate",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "outpainting.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/outpainting.html#input-image",
     "href": "src/04/notebooks/outpainting.html#input-image",
     "title": "Outpainting using black-forest-labs/flux-fill-pro",
     "section": "Input Image",
-    "text": "Input Image\n\nfrom IPython.display import Image\n\nINPUT_IMAGE = \"https://raw.githubusercontent.com/simonguest/CS-394/refs/heads/main/src/04/images/campus.png\"\n\nImage(url=INPUT_IMAGE)"
+    "text": "Input Image\n\nfrom IPython.display import Image\n\nINPUT_IMAGE = \"https://raw.githubusercontent.com/simonguest/CS-394/refs/heads/main/src/04/images/campus.png\"\n\nImage(url=INPUT_IMAGE)",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "outpainting.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/outpainting.html#call-black-forest-labsflux-fill-pro-with-outpainting-parameters",
     "href": "src/04/notebooks/outpainting.html#call-black-forest-labsflux-fill-pro-with-outpainting-parameters",
     "title": "Outpainting using black-forest-labs/flux-fill-pro",
     "section": "Call black-forest-labs/flux-fill-pro with outpainting parameters",
-    "text": "Call black-forest-labs/flux-fill-pro with outpainting parameters\n\nimport replicate\n\n# Call the Replicate API\noutput = replicate.run(\n    \"black-forest-labs/flux-fill-pro\",\n    input={\n        \"image\": INPUT_IMAGE,\n        \"prompt\": \"The main building of a technical college, no text\",\n        \"seed\": 123456,\n        \"steps\": 50,\n        \"guidance\": 60,\n        \"outpaint\": \"Zoom out 2x\",\n        \"output_format\": \"jpg\",\n        \"safety_tolerance\": 2,\n        \"prompt_upsampling\": False\n    }\n)\n\n\nimport io\nfrom PIL import Image\n\noutput_bytes = io.BytesIO(output.read())\noutput_image = Image.open(output_bytes)\noutput_image"
+    "text": "Call black-forest-labs/flux-fill-pro with outpainting parameters\n\nimport replicate\n\n# Call the Replicate API\noutput = replicate.run(\n    \"black-forest-labs/flux-fill-pro\",\n    input={\n        \"image\": INPUT_IMAGE,\n        \"prompt\": \"The main building of a technical college, no text\",\n        \"seed\": 123456,\n        \"steps\": 50,\n        \"guidance\": 60,\n        \"outpaint\": \"Zoom out 2x\",\n        \"output_format\": \"jpg\",\n        \"safety_tolerance\": 2,\n        \"prompt_upsampling\": False\n    }\n)\n\n\nimport io\nfrom PIL import Image\n\noutput_bytes = io.BytesIO(output.read())\noutput_image = Image.open(output_bytes)\noutput_image",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "outpainting.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/image-to-image-sd-1.5.html",
     "href": "src/04/notebooks/image-to-image-sd-1.5.html",
     "title": "Image-to-Image using Stable Diffusion 1.5",
     "section": "",
-    "text": "# @title Install dependencies\n!uv pip install -q diffusers[\"torch\"]==0.35.1 transformers==4.56.2 accelerate==1.10.1"
+    "text": "# @title Install dependencies\n!uv pip install -q diffusers[\"torch\"]==0.35.1 transformers==4.56.2 accelerate==1.10.1",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "image-to-image-sd-1.5.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/image-to-image-sd-1.5.html#load-sd-1.5-model-using-pipeline",
     "href": "src/04/notebooks/image-to-image-sd-1.5.html#load-sd-1.5-model-using-pipeline",
     "title": "Image-to-Image using Stable Diffusion 1.5",
     "section": "Load SD 1.5 model using pipeline",
-    "text": "Load SD 1.5 model using pipeline\n\nimport torch\nfrom diffusers import StableDiffusionImg2ImgPipeline\n\n# Load the img2img pipeline\nprint(\"Loading Stable Diffusion img2img pipeline...\")\npipe = StableDiffusionImg2ImgPipeline.from_pretrained(\n    \"stable-diffusion-v1-5/stable-diffusion-v1-5\",\n    dtype=torch.float16\n)\npipe = pipe.to(\"cuda\")\n\nLoading Stable Diffusion img2img pipeline...\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKeyword arguments {'dtype': torch.float16} are not expected by StableDiffusionImg2ImgPipeline and will be ignored."
+    "text": "Load SD 1.5 model using pipeline\n\nimport torch\nfrom diffusers import StableDiffusionImg2ImgPipeline\n\n# Load the img2img pipeline\nprint(\"Loading Stable Diffusion img2img pipeline...\")\npipe = StableDiffusionImg2ImgPipeline.from_pretrained(\n    \"stable-diffusion-v1-5/stable-diffusion-v1-5\",\n    dtype=torch.float16\n)\npipe = pipe.to(\"cuda\")\n\nLoading Stable Diffusion img2img pipeline...\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKeyword arguments {'dtype': torch.float16} are not expected by StableDiffusionImg2ImgPipeline and will be ignored.",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "image-to-image-sd-1.5.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/image-to-image-sd-1.5.html#generate-intermediate-images",
     "href": "src/04/notebooks/image-to-image-sd-1.5.html#generate-intermediate-images",
     "title": "Image-to-Image using Stable Diffusion 1.5",
     "section": "Generate Intermediate Images",
-    "text": "Generate Intermediate Images\n\nfrom PIL import Image\nimport requests\nfrom io import BytesIO\n\nIMAGE_URL = \"https://raw.githubusercontent.com/simonguest/CS-394/refs/heads/main/src/04/images/luna.jpg\"\nSEED = 128763\nPROMPT = \"a goldendoodle wearing sunglasses, high quality, detailed\"\nNEGATIVE_PROMPT = \"blurry, low quality, distorted\"\n\nresponse = requests.get(IMAGE_URL)\ninit_image = Image.open(BytesIO(response.content)).convert(\"RGB\")\n\n# Resize to standard size for faster processing\ninit_image = init_image.resize((512, 712))\n\ndisplay(init_image)"
+    "text": "Generate Intermediate Images\n\nfrom PIL import Image\nimport requests\nfrom io import BytesIO\n\nIMAGE_URL = \"https://raw.githubusercontent.com/simonguest/CS-394/refs/heads/main/src/04/images/luna.jpg\"\nSEED = 128763\nPROMPT = \"a goldendoodle wearing sunglasses, high quality, detailed\"\nNEGATIVE_PROMPT = \"blurry, low quality, distorted\"\n\nresponse = requests.get(IMAGE_URL)\ninit_image = Image.open(BytesIO(response.content)).convert(\"RGB\")\n\n# Resize to standard size for faster processing\ninit_image = init_image.resize((512, 712))\n\ndisplay(init_image)",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "image-to-image-sd-1.5.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/image-to-image-sd-1.5.html#function-to-generate-using-strength-param",
     "href": "src/04/notebooks/image-to-image-sd-1.5.html#function-to-generate-using-strength-param",
     "title": "Image-to-Image using Stable Diffusion 1.5",
     "section": "Function to generate using strength param",
-    "text": "Function to generate using strength param\n\ndef generate_image(strength):\n  return pipe(\n      prompt=PROMPT,\n      negative_prompt=NEGATIVE_PROMPT,\n      image=init_image,\n      strength=strength,\n      guidance_scale=7.5,\n      num_inference_steps=30,\n      generator=torch.Generator().manual_seed(SEED) if SEED != -1 else None,\n  ).images[0]"
+    "text": "Function to generate using strength param\n\ndef generate_image(strength):\n  return pipe(\n      prompt=PROMPT,\n      negative_prompt=NEGATIVE_PROMPT,\n      image=init_image,\n      strength=strength,\n      guidance_scale=7.5,\n      num_inference_steps=30,\n      generator=torch.Generator().manual_seed(SEED) if SEED != -1 else None,\n  ).images[0]",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "image-to-image-sd-1.5.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/image-to-image-sd-1.5.html#strength-0.3",
     "href": "src/04/notebooks/image-to-image-sd-1.5.html#strength-0.3",
     "title": "Image-to-Image using Stable Diffusion 1.5",
     "section": "Strength 0.3",
-    "text": "Strength 0.3\n\ndisplay(generate_image(0.3))"
+    "text": "Strength 0.3\n\ndisplay(generate_image(0.3))",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "image-to-image-sd-1.5.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/image-to-image-sd-1.5.html#strength-0.5",
     "href": "src/04/notebooks/image-to-image-sd-1.5.html#strength-0.5",
     "title": "Image-to-Image using Stable Diffusion 1.5",
     "section": "Strength 0.5",
-    "text": "Strength 0.5\n\ndisplay(generate_image(0.5))"
+    "text": "Strength 0.5\n\ndisplay(generate_image(0.5))",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "image-to-image-sd-1.5.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/image-to-image-sd-1.5.html#strength-0.7",
     "href": "src/04/notebooks/image-to-image-sd-1.5.html#strength-0.7",
     "title": "Image-to-Image using Stable Diffusion 1.5",
     "section": "Strength 0.7",
-    "text": "Strength 0.7\n\ndisplay(generate_image(0.7))"
+    "text": "Strength 0.7\n\ndisplay(generate_image(0.7))",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "image-to-image-sd-1.5.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/image-to-image-sd-1.5.html#strength-0.9",
     "href": "src/04/notebooks/image-to-image-sd-1.5.html#strength-0.9",
     "title": "Image-to-Image using Stable Diffusion 1.5",
     "section": "Strength 0.9",
-    "text": "Strength 0.9\n\ndisplay(generate_image(0.9))"
+    "text": "Strength 0.9\n\ndisplay(generate_image(0.9))",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "image-to-image-sd-1.5.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/depth-map-as-context.html#install-dependencies",
     "href": "src/04/notebooks/depth-map-as-context.html#install-dependencies",
     "title": "Depth Map as Context",
     "section": "Install Dependencies",
-    "text": "Install Dependencies\n\n!uv pip install replicate -q"
+    "text": "Install Dependencies\n\n!uv pip install replicate -q",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "depth-map-as-context.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/depth-map-as-context.html#set-replicate-api-token",
     "href": "src/04/notebooks/depth-map-as-context.html#set-replicate-api-token",
     "title": "Depth Map as Context",
     "section": "Set Replicate API Token",
-    "text": "Set Replicate API Token\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  REPLICATE_API_TOKEN = userdata.get('REPLICATE_API_TOKEN')\nelse:\n  load_dotenv()\n  REPLICATE_API_TOKEN = os.getenv('REPLICATE_API_TOKEN')"
+    "text": "Set Replicate API Token\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  REPLICATE_API_TOKEN = userdata.get('REPLICATE_API_TOKEN')\nelse:\n  load_dotenv()\n  REPLICATE_API_TOKEN = os.getenv('REPLICATE_API_TOKEN')",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "depth-map-as-context.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/depth-map-as-context.html#control-image",
     "href": "src/04/notebooks/depth-map-as-context.html#control-image",
     "title": "Depth Map as Context",
     "section": "Control Image",
-    "text": "Control Image\n\nfrom IPython.display import Image\n\nCONTROL_IMAGE = \"https://raw.githubusercontent.com/simonguest/CS-394/refs/heads/main/src/04/images/campus-depth.png\"\n\nImage(url=CONTROL_IMAGE)"
+    "text": "Control Image\n\nfrom IPython.display import Image\n\nCONTROL_IMAGE = \"https://raw.githubusercontent.com/simonguest/CS-394/refs/heads/main/src/04/images/campus-depth.png\"\n\nImage(url=CONTROL_IMAGE)",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "depth-map-as-context.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/depth-map-as-context.html#image-to-image-with-guiding-prompt-using-flux-depth-pro",
     "href": "src/04/notebooks/depth-map-as-context.html#image-to-image-with-guiding-prompt-using-flux-depth-pro",
     "title": "Depth Map as Context",
     "section": "Image-to-Image with guiding prompt using Flux Depth Pro",
-    "text": "Image-to-Image with guiding prompt using Flux Depth Pro\n\nimport replicate\n\nMODEL = \"black-forest-labs/flux-depth-pro\"\n\noutput = replicate.run(\n  MODEL,\n  input={\n      \"control_image\": CONTROL_IMAGE,\n      \"output_format\": \"png\",\n      \"seed\": 12345,\n      \"prompt\": \"A futuristic building set in 2050, neon lighting, night shot, dynamic\"\n  },\n)\n\n\nimport io\nfrom PIL import Image\n\noutput_bytes = io.BytesIO(output.read())\noutput_image = Image.open(output_bytes)\noutput_image\n\n\n\n\n\n\n\n\n\nimport replicate\n\nMODEL = \"black-forest-labs/flux-depth-pro\"\n\noutput = replicate.run(\n  MODEL,\n  input={\n      \"control_image\": CONTROL_IMAGE,\n      \"output_format\": \"png\",\n      \"seed\": 12345,\n      \"prompt\": \"A historical castle set in medieval England, clear day, partially cloudy sky\"\n  },\n)\n\n\nimport io\nfrom PIL import Image\n\noutput_bytes = io.BytesIO(output.read())\noutput_image = Image.open(output_bytes)\noutput_image"
+    "text": "Image-to-Image with guiding prompt using Flux Depth Pro\n\nimport replicate\n\nMODEL = \"black-forest-labs/flux-depth-pro\"\n\noutput = replicate.run(\n  MODEL,\n  input={\n      \"control_image\": CONTROL_IMAGE,\n      \"output_format\": \"png\",\n      \"seed\": 12345,\n      \"prompt\": \"A futuristic building set in 2050, neon lighting, night shot, dynamic\"\n  },\n)\n\n\nimport io\nfrom PIL import Image\n\noutput_bytes = io.BytesIO(output.read())\noutput_image = Image.open(output_bytes)\noutput_image\n\n\n\n\n\n\n\n\n\nimport replicate\n\nMODEL = \"black-forest-labs/flux-depth-pro\"\n\noutput = replicate.run(\n  MODEL,\n  input={\n      \"control_image\": CONTROL_IMAGE,\n      \"output_format\": \"png\",\n      \"seed\": 12345,\n      \"prompt\": \"A historical castle set in medieval England, clear day, partially cloudy sky\"\n  },\n)\n\n\nimport io\nfrom PIL import Image\n\noutput_bytes = io.BytesIO(output.read())\noutput_image = Image.open(output_bytes)\noutput_image",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "depth-map-as-context.ipynb"
+    ]
   },
   {
     "objectID": "src/03/notebooks/open-meteo-mcp.html#note-to-run-this-notebook-on-colab",
@@ -661,7 +756,128 @@
     "href": "src/04/resources.html",
     "title": "Resources",
     "section": "",
-    "text": "References Slide",
+    "text": "The Illustrated Stable Diffusion - Jay Alammar’s visual guide to how diffusion models work\nStable Diffusion Paper - “High-Resolution Image Synthesis with Latent Diffusion Models” (2022)\nWhat are Diffusion Models? - Lilian Weng’s comprehensive overview\nHugging Face Diffusers Library - Official documentation for the diffusers library",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/04/resources.html#diffusion-models",
+    "href": "src/04/resources.html#diffusion-models",
+    "title": "Resources",
+    "section": "",
+    "text": "The Illustrated Stable Diffusion - Jay Alammar’s visual guide to how diffusion models work\nStable Diffusion Paper - “High-Resolution Image Synthesis with Latent Diffusion Models” (2022)\nWhat are Diffusion Models? - Lilian Weng’s comprehensive overview\nHugging Face Diffusers Library - Official documentation for the diffusers library",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/04/resources.html#stable-diffusion",
+    "href": "src/04/resources.html#stable-diffusion",
+    "title": "Resources",
+    "section": "Stable Diffusion",
+    "text": "Stable Diffusion\n\nStable Diffusion 1.5 on Hugging Face - Model card and weights\nSDXL Paper - “SDXL: Improving Latent Diffusion Models for High-Resolution Image Synthesis”\nStability AI - Company behind Stable Diffusion",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/04/resources.html#flux-models",
+    "href": "src/04/resources.html#flux-models",
+    "title": "Resources",
+    "section": "FLUX Models",
+    "text": "FLUX Models\n\nBlack Forest Labs - Creators of FLUX models\nFLUX.1 on Hugging Face - Official model repository\nFLUX.1 Technical Report - Overview of FLUX capabilities and tools",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/04/resources.html#controlnet",
+    "href": "src/04/resources.html#controlnet",
+    "title": "Resources",
+    "section": "ControlNet",
+    "text": "ControlNet\n\nControlNet Paper - “Adding Conditional Control to Text-to-Image Diffusion Models” (2023)\nControlNet on Hugging Face - Original ControlNet models by Lvmin Zhang\nControlNet Guide - How to use ControlNet with diffusers",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/04/resources.html#replicate",
+    "href": "src/04/resources.html#replicate",
+    "title": "Resources",
+    "section": "Replicate",
+    "text": "Replicate\n\nReplicate Home Page - Platform for running ML models via API\nReplicate Documentation - API reference and guides\nReplicate Python Client - Official Python library\nReplicate Collections - Curated model collections including free-to-try models",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/04/resources.html#depth-estimation",
+    "href": "src/04/resources.html#depth-estimation",
+    "title": "Resources",
+    "section": "Depth Estimation",
+    "text": "Depth Estimation\n\nDepth Anything - State-of-the-art monocular depth estimation\nMiDaS - Intel’s robust monocular depth estimation model\nZoeDepth Paper - “ZoeDepth: Zero-shot Transfer by Combining Relative and Metric Depth”",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/04/resources.html#inpainting-and-outpainting",
+    "href": "src/04/resources.html#inpainting-and-outpainting",
+    "title": "Resources",
+    "section": "Inpainting and Outpainting",
+    "text": "Inpainting and Outpainting\n\nLaMa: Large Mask Inpainting - Resolution-robust large mask inpainting\nFlux Fill on Replicate - FLUX-based inpainting model",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/04/resources.html#vision-transformers",
+    "href": "src/04/resources.html#vision-transformers",
+    "title": "Resources",
+    "section": "Vision Transformers",
+    "text": "Vision Transformers\n\nViT Paper - “An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale” (2020)\nCLIP Paper - “Learning Transferable Visual Models From Natural Language Supervision”\nDINOv2 - Meta’s self-supervised vision transformer",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/04/resources.html#vision-language-models-vlms",
+    "href": "src/04/resources.html#vision-language-models-vlms",
+    "title": "Resources",
+    "section": "Vision Language Models (VLMs)",
+    "text": "Vision Language Models (VLMs)\n\nLLaVA Project Page - Large Language and Vision Assistant\nLLaVA Paper - “Visual Instruction Tuning”\nGemma 3 on Hugging Face - Google’s multimodal Gemma model\nFastVLM Paper - “FastVLM: Efficient Vision Encoding for Vision Language Models”\nFastVLM on Hugging Face - Apple’s efficient on-device VLM\nFastVLM WebGPU Demo - Run FastVLM in your browser",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/04/resources.html#gradio-for-image-applications",
+    "href": "src/04/resources.html#gradio-for-image-applications",
+    "title": "Resources",
+    "section": "Gradio for Image Applications",
+    "text": "Gradio for Image Applications\n\nGradio Image Components - Image input/output documentation\nGradio ImageEditor - Component for drawing and editing images\nGradio Sketchpad - Simple drawing canvas component",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/04/resources.html#prompt-engineering-for-image-models",
+    "href": "src/04/resources.html#prompt-engineering-for-image-models",
+    "title": "Resources",
+    "section": "Prompt Engineering for Image Models",
+    "text": "Prompt Engineering for Image Models\n\nDALL-E 3 Prompt Guide - OpenAI’s guide to image prompting\nStable Diffusion Prompt Guide - Community guide to effective prompts\nLexica - Search engine for Stable Diffusion prompts and images",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Resources"
@@ -671,8 +887,8 @@
     "objectID": "src/04/resources.html#citations",
     "href": "src/04/resources.html#citations",
     "title": "Resources",
-    "section": "",
-    "text": "References Slide",
+    "section": "Citations",
+    "text": "Citations\n\nReferences Slide",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Resources"
@@ -3429,20 +3645,64 @@
   {
     "objectID": "src/04/assignment.html",
     "href": "src/04/assignment.html",
-    "title": "Module 4 Assignment",
+    "title": "Module 4 Assignment: Multimedia & Multimodal Applications",
     "section": "",
-    "text": "TBD - maybe something around using controlnet with a different conditioning? e.g., scribble in Gradio app\n(choose your own adventure if more than one idea?)",
+    "text": "Objective: Build a working application that demonstrates your understanding of multimedia or multimodal AI models.\nChoose Your Adventure: Pick ONE of the three options below.",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Assignment"
     ]
   },
   {
-    "objectID": "src/04/assignment.html#assignment",
-    "href": "src/04/assignment.html#assignment",
-    "title": "Module 4 Assignment",
-    "section": "",
-    "text": "TBD - maybe something around using controlnet with a different conditioning? e.g., scribble in Gradio app\n(choose your own adventure if more than one idea?)",
+    "objectID": "src/04/assignment.html#option-1-controlnet-scribble-app",
+    "href": "src/04/assignment.html#option-1-controlnet-scribble-app",
+    "title": "Module 4 Assignment: Multimedia & Multimodal Applications",
+    "section": "Option 1: ControlNet Scribble App",
+    "text": "Option 1: ControlNet Scribble App\nBuild a Gradio application that transforms hand-drawn sketches into realistic images using ControlNet.\nRequirements:\n\nCreate a Gradio interface with a sketchpad/canvas input\nUse ControlNet (scribble or canny edge model) to condition image generation\nAllow users to enter a text prompt to guide the style/content\nGenerate and display the resulting image\nInclude at least one configurable parameter (e.g., guidance scale, number of steps)\n\nSuggested approach:\n\nUse Replicate’s ControlNet models for easier deployment, OR\nRun locally using HuggingFace diffusers with a ControlNet pipeline",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Assignment"
+    ]
+  },
+  {
+    "objectID": "src/04/assignment.html#option-2-replicate-model-pipeline",
+    "href": "src/04/assignment.html#option-2-replicate-model-pipeline",
+    "title": "Module 4 Assignment: Multimedia & Multimodal Applications",
+    "section": "Option 2: Replicate Model Pipeline",
+    "text": "Option 2: Replicate Model Pipeline\nCreate a pipeline that chains multiple Replicate models together to transform images through a multi-step process.\nRequirements:\n\nChain at least 3 different models in sequence (e.g., depth estimation → ControlNet → upscaling)\nCreate a Gradio interface that accepts an input image and displays intermediate/final results\nDocument what each model in your pipeline does and why you chose it\nShow the transformation at each stage (not just the final output)\n\nExample pipeline ideas:\n\nPhoto → Depth Map → Stylized Scene → Upscaled Output\nPortrait → Pose Extraction → New Character in Same Pose → Background Replacement\nSketch → Colorized Image → Style Transfer → Final Composition",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Assignment"
+    ]
+  },
+  {
+    "objectID": "src/04/assignment.html#option-3-vision-language-model-application",
+    "href": "src/04/assignment.html#option-3-vision-language-model-application",
+    "title": "Module 4 Assignment: Multimedia & Multimodal Applications",
+    "section": "Option 3: Vision Language Model Application",
+    "text": "Option 3: Vision Language Model Application\nImplement a practical application using a Vision Language Model (VLM) for a real-world use case.\nRequirements:\n\nUse an open-source VLM (e.g., Gemma 3, LLaVA, FastVLM) - not a closed API like GPT-4V or Claude\nBuild a Gradio interface that accepts image input\nImplement a specific, practical use case such as:\n\nAccessibility: Describe images for visually impaired users\nProduct Detection: Identify and catalog items from photos\nDocument Analysis: Extract information from receipts, forms, or charts\nEducational: Explain diagrams, equations, or scientific figures\n\nInclude thoughtful prompt engineering in your system prompt",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Assignment"
+    ]
+  },
+  {
+    "objectID": "src/04/assignment.html#deliverable-a-colabjupyter-notebook-with",
+    "href": "src/04/assignment.html#deliverable-a-colabjupyter-notebook-with",
+    "title": "Module 4 Assignment: Multimedia & Multimodal Applications",
+    "section": "Deliverable: A Colab/Jupyter notebook with:",
+    "text": "Deliverable: A Colab/Jupyter notebook with:\n\nCode cells with your implementation\nA working Gradio interface that can be launched and tested\nUses environment variables for any API keys (e.g., REPLICATE_API_TOKEN). Please do not include your API key in your notebook!\nMarkdown cells explaining:\n\nWhich option you chose and why\nYour design decisions and approach\nObservations about model behavior, quality, or limitations\nWhat worked well and what was challenging",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Assignment"
+    ]
+  },
+  {
+    "objectID": "src/04/assignment.html#hints",
+    "href": "src/04/assignment.html#hints",
+    "title": "Module 4 Assignment: Multimedia & Multimodal Applications",
+    "section": "Hints",
+    "text": "Hints\n\nOption 1: The gr.Sketchpad or gr.ImageEditor components in Gradio work well for drawing input. Start with a simple black-and-white sketch before adding complexity.\nOption 2: Plan your pipeline on paper first. Consider what each model needs as input and produces as output. The PBR notebook (pbr-creator.ipynb) demonstrates this chaining pattern.\nOption 3: Smaller models (like FastVLM-0.5B or Gemma 3 4B) can run on Colab’s T4 GPU. Focus on crafting a good system prompt that guides the model toward your specific use case.\nAll options: Test with multiple different inputs to understand the model’s capabilities and limitations.",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Assignment"
@@ -3750,7 +4010,18 @@
     "href": "src/04/slides.html#introducing-replicate-1",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "Introducing Replicate",
-    "text": "Introducing Replicate\n\nSimilar to OpenRouter\n\nBut with a focus on image and video models\nExtensive access to larger models (e.g., FLUX 2, Nano Banana, ImageGen)\nPay-per-call pricing (expect 2c per image for higher quality models)\nAPI access (with Python and NodeJS library)\nFine-tune and share your own models",
+    "text": "Introducing Replicate\n\nSimilar to OpenRouter\n\nBut with a focus on image and video models\nExtensive access to larger models (e.g., FLUX 2, Nano Banana, ImageGen)\nPay-per-call pricing (expect 2c per image for higher quality models; some free models)\nAPI access (with Python and NodeJS library)\nFine-tune and share your own models",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#flux-models",
+    "href": "src/04/slides.html#flux-models",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "FLUX Models",
+    "text": "FLUX Models\n\nFrom Black Forest Labs (founded by ex-Stability AI researchers)\nKey architectural differences from Stable Diffusion:\n\nUses a Multimodal Diffusion Transformer (MMDiT) instead of U-Net\nProcesses text and image tokens together in a unified transformer\nNative support for higher resolutions without quality degradation\n\nVariants: FLUX.1 [schnell] (fast), [dev] (quality), [pro] (commercial)",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -3981,7 +4252,7 @@
     "href": "src/04/slides.html#outpainting",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "Outpainting",
-    "text": "Outpainting\n\nThe opposite of inpainting, kind of :)\nHow does it work?\n\nSupply a prompt: “2x zoom out this image”\nTreat the new empty regions around the image as masked areas\nUse impainting technique to fill in the regions",
+    "text": "Outpainting\n\nThe opposite of inpainting, kind of :)\nHow does it work?\n\nSupply a prompt: “2x zoom out this image”\nTreat the new empty regions around the image as masked areas\nUse inpainting technique to fill in the regions",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -4080,7 +4351,7 @@
     "href": "src/04/slides.html#i-want-more-control-3",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "I Want More Control!",
-    "text": "I Want More Control!\n\nNegative prompts (popular in some models)\n\nTell the model what to avoid - particularly usedful with Stable Diffusion\nblurry, low quality, distorted, deformed, ugly, bad anatomy, extra limbs, watermark, text, signature, overexposed, underexposed, cartoon",
+    "text": "I Want More Control!\n\nNegative prompts (popular in some models)\n\nTell the model what to avoid - particularly useful with Stable Diffusion\nblurry, low quality, distorted, deformed, ugly, bad anatomy, extra limbs, watermark, text, signature, overexposed, underexposed, cartoon",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -4311,7 +4582,7 @@
     "href": "src/04/slides.html#fastvlm",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "FastVLM",
-    "text": "FastVLM\n\nRelease release from Apple (presented at CVPR 2025)\n\nPaper: FastVLM: Efficient Vision Encoding for Vision Language Models (Vasu et al. 2025)\nhttps://huggingface.co/apple/FastVLM-0.5B\nSmall VLM, optimized for on-device, real-time performance\nCustom vision transformer: FastViTHD. Combines transformers and convolutional layers",
+    "text": "FastVLM\n\nRecent release from Apple (presented at CVPR 2025)\n\nPaper: FastVLM: Efficient Vision Encoding for Vision Language Models (Vasu et al. 2025)\nhttps://huggingface.co/apple/FastVLM-0.5B\nSmall VLM, optimized for on-device, real-time performance\nCustom vision transformer: FastViTHD. Combines transformers and convolutional layers",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -4832,154 +5103,264 @@
     "href": "src/04/notebooks/controlnet-openpose-sd-1.5.html#install-prerequisites",
     "title": "ControlNet (OpenPose) using Stable Diffusion 1.5",
     "section": "Install prerequisites",
-    "text": "Install prerequisites\n\n!uv pip install -q diffusers==0.30.0 transformers==4.44.0 accelerate controlnet_aux pillow"
+    "text": "Install prerequisites\n\n!uv pip install -q diffusers==0.30.0 transformers==4.44.0 accelerate controlnet_aux pillow",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "controlnet-openpose-sd-1.5.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/controlnet-openpose-sd-1.5.html#original-image",
     "href": "src/04/notebooks/controlnet-openpose-sd-1.5.html#original-image",
     "title": "ControlNet (OpenPose) using Stable Diffusion 1.5",
     "section": "Original image",
-    "text": "Original image\n\nfrom diffusers.utils import load_image\n\nINPUT_IMAGE = \"https://raw.githubusercontent.com/simonguest/CS-394/refs/heads/main/src/04/images/pose.jpg\"\n\ninput_image = load_image(INPUT_IMAGE)\ninput_image = input_image.resize((512, 683))\ndisplay(input_image)"
+    "text": "Original image\n\nfrom diffusers.utils import load_image\n\nINPUT_IMAGE = \"https://raw.githubusercontent.com/simonguest/CS-394/refs/heads/main/src/04/images/pose.jpg\"\n\ninput_image = load_image(INPUT_IMAGE)\ninput_image = input_image.resize((512, 683))\ndisplay(input_image)",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "controlnet-openpose-sd-1.5.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/controlnet-openpose-sd-1.5.html#load-openpose-detector",
     "href": "src/04/notebooks/controlnet-openpose-sd-1.5.html#load-openpose-detector",
     "title": "ControlNet (OpenPose) using Stable Diffusion 1.5",
     "section": "Load OpenPose detector",
-    "text": "Load OpenPose detector\n\nfrom controlnet_aux import OpenposeDetector\n\nopenpose = OpenposeDetector.from_pretrained('lllyasviel/ControlNet')"
+    "text": "Load OpenPose detector\n\nfrom controlnet_aux import OpenposeDetector\n\nopenpose = OpenposeDetector.from_pretrained('lllyasviel/ControlNet')",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "controlnet-openpose-sd-1.5.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/controlnet-openpose-sd-1.5.html#derive-skeletal-pose",
     "href": "src/04/notebooks/controlnet-openpose-sd-1.5.html#derive-skeletal-pose",
     "title": "ControlNet (OpenPose) using Stable Diffusion 1.5",
     "section": "Derive skeletal pose",
-    "text": "Derive skeletal pose\n\npose_image = openpose(input_image)\ndisplay(pose_image)"
+    "text": "Derive skeletal pose\n\npose_image = openpose(input_image)\ndisplay(pose_image)",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "controlnet-openpose-sd-1.5.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/controlnet-openpose-sd-1.5.html#load-controlnet-model",
     "href": "src/04/notebooks/controlnet-openpose-sd-1.5.html#load-controlnet-model",
     "title": "ControlNet (OpenPose) using Stable Diffusion 1.5",
     "section": "Load ControlNet model",
-    "text": "Load ControlNet model\n\nimport torch\nfrom diffusers import ControlNetModel\n\ncontrolnet = ControlNetModel.from_pretrained(\n    \"lllyasviel/control_v11p_sd15_openpose\",\n    torch_dtype=torch.float16\n)"
+    "text": "Load ControlNet model\n\nimport torch\nfrom diffusers import ControlNetModel\n\ncontrolnet = ControlNetModel.from_pretrained(\n    \"lllyasviel/control_v11p_sd15_openpose\",\n    torch_dtype=torch.float16\n)",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "controlnet-openpose-sd-1.5.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/controlnet-openpose-sd-1.5.html#load-sd-1.5-model-and-plug-in-controlnet-model",
     "href": "src/04/notebooks/controlnet-openpose-sd-1.5.html#load-sd-1.5-model-and-plug-in-controlnet-model",
     "title": "ControlNet (OpenPose) using Stable Diffusion 1.5",
     "section": "Load SD 1.5 model and “plug in” controlnet model",
-    "text": "Load SD 1.5 model and “plug in” controlnet model\n\nfrom diffusers import StableDiffusionControlNetPipeline\n\npipe = StableDiffusionControlNetPipeline.from_pretrained(\n    \"runwayml/stable-diffusion-v1-5\",\n    controlnet=controlnet,\n    torch_dtype=torch.float16,\n    use_safetensors=True\n)\npipe.to(\"cuda\")\n\nKeyword arguments {'generators': [&lt;torch._C.Generator object at 0x7e3df76b3410&gt;]} are not expected by StableDiffusionControlNetPipeline and will be ignored.\n\n\n\n\n\n/usr/local/lib/python3.12/dist-packages/transformers/tokenization_utils_base.py:1601: FutureWarning: `clean_up_tokenization_spaces` was not set. It will be set to `True` by default. This behavior will be depracted in transformers v4.45, and will be then set to `False` by default. For more details check this issue: https://github.com/huggingface/transformers/issues/31884\n  warnings.warn(\n\n\nStableDiffusionControlNetPipeline {\n  \"_class_name\": \"StableDiffusionControlNetPipeline\",\n  \"_diffusers_version\": \"0.30.0\",\n  \"_name_or_path\": \"runwayml/stable-diffusion-v1-5\",\n  \"controlnet\": [\n    \"diffusers\",\n    \"ControlNetModel\"\n  ],\n  \"feature_extractor\": [\n    \"transformers\",\n    \"CLIPImageProcessor\"\n  ],\n  \"image_encoder\": [\n    null,\n    null\n  ],\n  \"requires_safety_checker\": true,\n  \"safety_checker\": [\n    \"stable_diffusion\",\n    \"StableDiffusionSafetyChecker\"\n  ],\n  \"scheduler\": [\n    \"diffusers\",\n    \"PNDMScheduler\"\n  ],\n  \"text_encoder\": [\n    \"transformers\",\n    \"CLIPTextModel\"\n  ],\n  \"tokenizer\": [\n    \"transformers\",\n    \"CLIPTokenizer\"\n  ],\n  \"unet\": [\n    \"diffusers\",\n    \"UNet2DConditionModel\"\n  ],\n  \"vae\": [\n    \"diffusers\",\n    \"AutoencoderKL\"\n  ]\n}"
+    "text": "Load SD 1.5 model and “plug in” controlnet model\n\nfrom diffusers import StableDiffusionControlNetPipeline\n\npipe = StableDiffusionControlNetPipeline.from_pretrained(\n    \"runwayml/stable-diffusion-v1-5\",\n    controlnet=controlnet,\n    torch_dtype=torch.float16,\n    use_safetensors=True\n)\npipe.to(\"cuda\")\n\nKeyword arguments {'generators': [&lt;torch._C.Generator object at 0x7e3df76b3410&gt;]} are not expected by StableDiffusionControlNetPipeline and will be ignored.\n\n\n\n\n\n/usr/local/lib/python3.12/dist-packages/transformers/tokenization_utils_base.py:1601: FutureWarning: `clean_up_tokenization_spaces` was not set. It will be set to `True` by default. This behavior will be depracted in transformers v4.45, and will be then set to `False` by default. For more details check this issue: https://github.com/huggingface/transformers/issues/31884\n  warnings.warn(\n\n\nStableDiffusionControlNetPipeline {\n  \"_class_name\": \"StableDiffusionControlNetPipeline\",\n  \"_diffusers_version\": \"0.30.0\",\n  \"_name_or_path\": \"runwayml/stable-diffusion-v1-5\",\n  \"controlnet\": [\n    \"diffusers\",\n    \"ControlNetModel\"\n  ],\n  \"feature_extractor\": [\n    \"transformers\",\n    \"CLIPImageProcessor\"\n  ],\n  \"image_encoder\": [\n    null,\n    null\n  ],\n  \"requires_safety_checker\": true,\n  \"safety_checker\": [\n    \"stable_diffusion\",\n    \"StableDiffusionSafetyChecker\"\n  ],\n  \"scheduler\": [\n    \"diffusers\",\n    \"PNDMScheduler\"\n  ],\n  \"text_encoder\": [\n    \"transformers\",\n    \"CLIPTextModel\"\n  ],\n  \"tokenizer\": [\n    \"transformers\",\n    \"CLIPTokenizer\"\n  ],\n  \"unet\": [\n    \"diffusers\",\n    \"UNet2DConditionModel\"\n  ],\n  \"vae\": [\n    \"diffusers\",\n    \"AutoencoderKL\"\n  ]\n}",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "controlnet-openpose-sd-1.5.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/controlnet-openpose-sd-1.5.html#generate-new-image-with-human-pose-as-condition",
     "href": "src/04/notebooks/controlnet-openpose-sd-1.5.html#generate-new-image-with-human-pose-as-condition",
     "title": "ControlNet (OpenPose) using Stable Diffusion 1.5",
     "section": "Generate new image with human pose as condition",
-    "text": "Generate new image with human pose as condition\n\nPROMPT = \"a robot with glowing LED lights, futuristic, sci-fi\"\nNEGATIVE_PROMPT = \"blurry, low quality, distorted, extra limbs, deformed\"\nSEED = 3434002\n\nresult = pipe(\n    prompt=PROMPT,\n    negative_prompt=NEGATIVE_PROMPT,\n    image=pose_image,\n    num_inference_steps=25,\n    guidance_scale=7.5,\n    controlnet_conditioning_scale=1.0,\n    generator=torch.manual_seed(SEED) if SEED != -1 else None\n).images[0]\ndisplay(result)"
+    "text": "Generate new image with human pose as condition\n\nPROMPT = \"a robot with glowing LED lights, futuristic, sci-fi\"\nNEGATIVE_PROMPT = \"blurry, low quality, distorted, extra limbs, deformed\"\nSEED = 3434002\n\nresult = pipe(\n    prompt=PROMPT,\n    negative_prompt=NEGATIVE_PROMPT,\n    image=pose_image,\n    num_inference_steps=25,\n    guidance_scale=7.5,\n    controlnet_conditioning_scale=1.0,\n    generator=torch.manual_seed(SEED) if SEED != -1 else None\n).images[0]\ndisplay(result)",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "controlnet-openpose-sd-1.5.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/generate-depth-map.html#install-dependencies",
     "href": "src/04/notebooks/generate-depth-map.html#install-dependencies",
     "title": "Depth Map Generation",
     "section": "Install Dependencies",
-    "text": "Install Dependencies\n\n!uv pip install replicate -q"
+    "text": "Install Dependencies\n\n!uv pip install replicate -q",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "generate-depth-map.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/generate-depth-map.html#set-replicate-api-token",
     "href": "src/04/notebooks/generate-depth-map.html#set-replicate-api-token",
     "title": "Depth Map Generation",
     "section": "Set Replicate API Token",
-    "text": "Set Replicate API Token\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  REPLICATE_API_TOKEN = userdata.get('REPLICATE_API_TOKEN')\nelse:\n  load_dotenv()\n  REPLICATE_API_TOKEN = os.getenv('REPLICATE_API_TOKEN')"
+    "text": "Set Replicate API Token\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  REPLICATE_API_TOKEN = userdata.get('REPLICATE_API_TOKEN')\nelse:\n  load_dotenv()\n  REPLICATE_API_TOKEN = os.getenv('REPLICATE_API_TOKEN')",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "generate-depth-map.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/generate-depth-map.html#input-image",
     "href": "src/04/notebooks/generate-depth-map.html#input-image",
     "title": "Depth Map Generation",
     "section": "Input Image",
-    "text": "Input Image\n\nfrom IPython.display import Image\n\nINPUT_IMAGE = \"https://raw.githubusercontent.com/simonguest/CS-394/refs/heads/main/src/04/images/campus.png\"\n\nImage(url=INPUT_IMAGE)"
+    "text": "Input Image\n\nfrom IPython.display import Image\n\nINPUT_IMAGE = \"https://raw.githubusercontent.com/simonguest/CS-394/refs/heads/main/src/04/images/campus.png\"\n\nImage(url=INPUT_IMAGE)",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "generate-depth-map.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/generate-depth-map.html#image-to-image-using-depth-anything-v2",
     "href": "src/04/notebooks/generate-depth-map.html#image-to-image-using-depth-anything-v2",
     "title": "Depth Map Generation",
     "section": "Image-to-Image using depth-anything-v2",
-    "text": "Image-to-Image using depth-anything-v2\n\nimport replicate\n\nMODEL = \"chenxwh/depth-anything-v2:b239ea33cff32bb7abb5db39ffe9a09c14cbc2894331d1ef66fe096eed88ebd4\"\n\noutput = replicate.run(\n  MODEL,\n  input={\n      \"image\": INPUT_IMAGE,\n  },\n)\n\n\nimport io\nfrom PIL import Image\n\noutput_bytes = io.BytesIO(output[\"grey_depth\"].read())\noutput_image = Image.open(output_bytes)\noutput_image"
+    "text": "Image-to-Image using depth-anything-v2\n\nimport replicate\n\nMODEL = \"chenxwh/depth-anything-v2:b239ea33cff32bb7abb5db39ffe9a09c14cbc2894331d1ef66fe096eed88ebd4\"\n\noutput = replicate.run(\n  MODEL,\n  input={\n      \"image\": INPUT_IMAGE,\n  },\n)\n\n\nimport io\nfrom PIL import Image\n\noutput_bytes = io.BytesIO(output[\"grey_depth\"].read())\noutput_image = Image.open(output_bytes)\noutput_image",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "generate-depth-map.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/inpainting.html",
     "href": "src/04/notebooks/inpainting.html",
     "title": "Inpainting using black-forest-labs/flux-fill-pro",
     "section": "",
-    "text": "!uv pip install gradio==5.49.1 replicate"
+    "text": "!uv pip install gradio==5.49.1 replicate",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "inpainting.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/inpainting.html#gradio-interface",
     "href": "src/04/notebooks/inpainting.html#gradio-interface",
     "title": "Inpainting using black-forest-labs/flux-fill-pro",
     "section": "Gradio Interface",
-    "text": "Gradio Interface\n\nimport gradio as gr\nimport numpy as np\nfrom PIL import Image\nimport replicate\nimport io\n\ndef inpaint(image_data, prompt):\n    if image_data is None:\n        return None\n    \n    # Get the original image from the background\n    original_image = Image.fromarray(image_data['background'])\n    \n    # Get the mask from the layers\n    if image_data['layers'] and len(image_data['layers']) &gt; 0:\n        mask_layer = image_data['layers'][0]\n        mask_array = np.array(mask_layer)\n        \n        # Create binary mask: white where painted, black where not\n        alpha_channel = mask_array[:, :, 3]\n        binary_mask = np.where(alpha_channel &gt; 0, 255, 0).astype(np.uint8)\n        mask_image = Image.fromarray(binary_mask, mode='L')\n    else:\n        return None\n    \n    # Convert images to bytes for the replicate API\n    image_bytes = io.BytesIO()\n    original_image.save(image_bytes, format='PNG')\n    image_bytes.seek(0)\n    \n    mask_bytes = io.BytesIO()\n    mask_image.save(mask_bytes, format='PNG')\n    mask_bytes.seek(0)\n    \n    # Call the Replicate API\n    output = replicate.run(\n        \"black-forest-labs/flux-fill-pro\",\n        input={\n            \"image\": image_bytes,\n            \"mask\": mask_bytes,\n            \"prompt\": prompt,\n            \"steps\": 25,\n            \"guidance\": 75,\n            \"outpaint\": \"None\",\n            \"output_format\": \"jpg\",\n            \"safety_tolerance\": 2,\n            \"prompt_upsampling\": False\n        }\n    )\n    \n    # Read the FileOutput and convert to PIL Image\n    output_bytes = output.read()\n    output_image = Image.open(io.BytesIO(output_bytes))\n    \n    return output_image\n\ndemo = gr.Interface(\n    fn=inpaint,\n    inputs=[\n        gr.ImageEditor(\n            label=\"Image (paint over areas to inpaint)\",\n            brush=gr.Brush(color_mode=\"fixed\", colors=[\"#000000\"]),\n            layers=True\n        ),\n        gr.Textbox(label=\"Prompt\", placeholder=\"Describe what should replace the masked area...\")\n    ],\n    outputs=gr.Image(label=\"Output Image\"),\n    title=\"Inpainting using black-forest-labs/flux-fill-pro\"\n)\ndemo.launch()\n\n* Running on local URL:  http://127.0.0.1:7861\n* To create a public link, set `share=True` in `launch()`."
+    "text": "Gradio Interface\n\nimport gradio as gr\nimport numpy as np\nfrom PIL import Image\nimport replicate\nimport io\n\ndef inpaint(image_data, prompt):\n    if image_data is None:\n        return None\n    \n    # Get the original image from the background\n    original_image = Image.fromarray(image_data['background'])\n    \n    # Get the mask from the layers\n    if image_data['layers'] and len(image_data['layers']) &gt; 0:\n        mask_layer = image_data['layers'][0]\n        mask_array = np.array(mask_layer)\n        \n        # Create binary mask: white where painted, black where not\n        alpha_channel = mask_array[:, :, 3]\n        binary_mask = np.where(alpha_channel &gt; 0, 255, 0).astype(np.uint8)\n        mask_image = Image.fromarray(binary_mask, mode='L')\n    else:\n        return None\n    \n    # Convert images to bytes for the replicate API\n    image_bytes = io.BytesIO()\n    original_image.save(image_bytes, format='PNG')\n    image_bytes.seek(0)\n    \n    mask_bytes = io.BytesIO()\n    mask_image.save(mask_bytes, format='PNG')\n    mask_bytes.seek(0)\n    \n    # Call the Replicate API\n    output = replicate.run(\n        \"black-forest-labs/flux-fill-pro\",\n        input={\n            \"image\": image_bytes,\n            \"mask\": mask_bytes,\n            \"prompt\": prompt,\n            \"steps\": 25,\n            \"guidance\": 75,\n            \"outpaint\": \"None\",\n            \"output_format\": \"jpg\",\n            \"safety_tolerance\": 2,\n            \"prompt_upsampling\": False\n        }\n    )\n    \n    # Read the FileOutput and convert to PIL Image\n    output_bytes = output.read()\n    output_image = Image.open(io.BytesIO(output_bytes))\n    \n    return output_image\n\ndemo = gr.Interface(\n    fn=inpaint,\n    inputs=[\n        gr.ImageEditor(\n            label=\"Image (paint over areas to inpaint)\",\n            brush=gr.Brush(color_mode=\"fixed\", colors=[\"#000000\"]),\n            layers=True\n        ),\n        gr.Textbox(label=\"Prompt\", placeholder=\"Describe what should replace the masked area...\")\n    ],\n    outputs=gr.Image(label=\"Output Image\"),\n    title=\"Inpainting using black-forest-labs/flux-fill-pro\"\n)\ndemo.launch()\n\n* Running on local URL:  http://127.0.0.1:7861\n* To create a public link, set `share=True` in `launch()`.",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "inpainting.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/pbr-creator.html#dependencies",
     "href": "src/04/notebooks/pbr-creator.html#dependencies",
     "title": "PBR (Physically-Based Rendering) Material Creator",
     "section": "Dependencies",
-    "text": "Dependencies\n\n!uv pip install -q replicate"
+    "text": "Dependencies\n\n!uv pip install -q replicate",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "pbr-creator.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/pbr-creator.html#set-replicate-api-token",
     "href": "src/04/notebooks/pbr-creator.html#set-replicate-api-token",
     "title": "PBR (Physically-Based Rendering) Material Creator",
     "section": "Set Replicate API Token",
-    "text": "Set Replicate API Token\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  REPLICATE_API_TOKEN = userdata.get('REPLICATE_API_TOKEN')\nelse:\n  load_dotenv()\n  REPLICATE_API_TOKEN = os.getenv('REPLICATE_API_TOKEN')"
+    "text": "Set Replicate API Token\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  REPLICATE_API_TOKEN = userdata.get('REPLICATE_API_TOKEN')\nelse:\n  load_dotenv()\n  REPLICATE_API_TOKEN = os.getenv('REPLICATE_API_TOKEN')",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "pbr-creator.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/pbr-creator.html#create-the-replicate-client",
     "href": "src/04/notebooks/pbr-creator.html#create-the-replicate-client",
     "title": "PBR (Physically-Based Rendering) Material Creator",
     "section": "Create the Replicate client",
-    "text": "Create the Replicate client\n\nimport replicate\nimport io\nfrom PIL import Image\n\nclient = replicate.Client(api_token=REPLICATE_API_TOKEN)"
+    "text": "Create the Replicate client\n\nimport replicate\nimport io\nfrom PIL import Image\n\nclient = replicate.Client(api_token=REPLICATE_API_TOKEN)",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "pbr-creator.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/pbr-creator.html#load-the-control-image",
     "href": "src/04/notebooks/pbr-creator.html#load-the-control-image",
     "title": "PBR (Physically-Based Rendering) Material Creator",
     "section": "Load the control image",
-    "text": "Load the control image\n\nCONTROL_IMAGE = \"https://raw.githubusercontent.com/simonguest/CS-394/refs/heads/main/src/04/images/dragon.png\"\n\ncontrol = open(\"../images/dragon.png\", \"rb\")\ncontrol_bytes = io.BytesIO(control.read())\ncontrol_image = Image.open(control_bytes)\ncontrol_image"
+    "text": "Load the control image\n\nCONTROL_IMAGE = \"https://raw.githubusercontent.com/simonguest/CS-394/refs/heads/main/src/04/images/dragon.png\"\n\ncontrol = open(\"../images/dragon.png\", \"rb\")\ncontrol_bytes = io.BytesIO(control.read())\ncontrol_image = Image.open(control_bytes)\ncontrol_image",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "pbr-creator.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/pbr-creator.html#run-control-image-through-flux-pro-controlled-by-canny-edge-detection",
     "href": "src/04/notebooks/pbr-creator.html#run-control-image-through-flux-pro-controlled-by-canny-edge-detection",
     "title": "PBR (Physically-Based Rendering) Material Creator",
     "section": "Run control image through FLUX Pro (controlled by Canny edge detection)",
-    "text": "Run control image through FLUX Pro (controlled by Canny edge detection)\n\n# @title Run initial image through FLUX Pro (controlled by Canny edge detection)\n\noutput = client.run(\n    \"black-forest-labs/flux-canny-pro\",\n    input={\n        \"steps\": 28,\n        \"seed\": 1234567, # Fix the seed so that the image is reproducible\n        \"prompt\": \"a metal embossed dragon, cinematic lighting\",\n        \"guidance\": 30,\n        \"control_image\": control,\n        \"output_format\": \"png\",\n        \"safety_tolerance\": 2,\n        \"prompt_upsampling\": False\n    }\n)\n\noutput_bytes = io.BytesIO(output.read())\noutput_image = Image.open(output_bytes)\noutput_image"
+    "text": "Run control image through FLUX Pro (controlled by Canny edge detection)\n\n# @title Run initial image through FLUX Pro (controlled by Canny edge detection)\n\noutput = client.run(\n    \"black-forest-labs/flux-canny-pro\",\n    input={\n        \"steps\": 28,\n        \"seed\": 1234567, # Fix the seed so that the image is reproducible\n        \"prompt\": \"a metal embossed dragon, cinematic lighting\",\n        \"guidance\": 30,\n        \"control_image\": control,\n        \"output_format\": \"png\",\n        \"safety_tolerance\": 2,\n        \"prompt_upsampling\": False\n    }\n)\n\noutput_bytes = io.BytesIO(output.read())\noutput_image = Image.open(output_bytes)\noutput_image",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "pbr-creator.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/pbr-creator.html#tile-the-image-using-flux-schnell-and-ideogram-inpainting",
     "href": "src/04/notebooks/pbr-creator.html#tile-the-image-using-flux-schnell-and-ideogram-inpainting",
     "title": "PBR (Physically-Based Rendering) Material Creator",
     "section": "Tile the image using FLUX schnell and ideogram inpainting",
-    "text": "Tile the image using FLUX schnell and ideogram inpainting\n\ntiled = client.run(\n  \"pipeline-examples/tile\",\n  input={\n      \"model\": \"black-forest-labs/flux-schnell\",\n      \"prompt\": \"a network of interconnected dragons\",\n      \"input_image\": output_bytes,\n      \"inpaint_model\": \"ideogram\",\n      \"seam_percentage\": 30\n  }\n)\n\ntiled_bytes = io.BytesIO(tiled.read())\ntiled_image = Image.open(tiled_bytes)\ntiled_image"
+    "text": "Tile the image using FLUX schnell and ideogram inpainting\n\ntiled = client.run(\n  \"pipeline-examples/tile\",\n  input={\n      \"model\": \"black-forest-labs/flux-schnell\",\n      \"prompt\": \"a network of interconnected dragons\",\n      \"input_image\": output_bytes,\n      \"inpaint_model\": \"ideogram\",\n      \"seam_percentage\": 30\n  }\n)\n\ntiled_bytes = io.BytesIO(tiled.read())\ntiled_image = Image.open(tiled_bytes)\ntiled_image",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "pbr-creator.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/pbr-creator.html#generate-a-depth-map-using-depth-anything",
     "href": "src/04/notebooks/pbr-creator.html#generate-a-depth-map-using-depth-anything",
     "title": "PBR (Physically-Based Rendering) Material Creator",
     "section": "Generate a depth map using Depth Anything",
-    "text": "Generate a depth map using Depth Anything\n\ndepth = client.run(\n    \"chenxwh/depth-anything-v2:b239ea33cff32bb7abb5db39ffe9a09c14cbc2894331d1ef66fe096eed88ebd4\",\n    input={\n        \"image\": tiled_bytes,\n        \"model_size\": \"Large\"\n    }\n)\n\ndepth_bytes = io.BytesIO(depth[\"grey_depth\"].read())\ndepth_image = Image.open(depth_bytes)\ndepth_image"
+    "text": "Generate a depth map using Depth Anything\n\ndepth = client.run(\n    \"chenxwh/depth-anything-v2:b239ea33cff32bb7abb5db39ffe9a09c14cbc2894331d1ef66fe096eed88ebd4\",\n    input={\n        \"image\": tiled_bytes,\n        \"model_size\": \"Large\"\n    }\n)\n\ndepth_bytes = io.BytesIO(depth[\"grey_depth\"].read())\ndepth_image = Image.open(depth_bytes)\ndepth_image",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "pbr-creator.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/pbr-creator.html#convert-the-depth-map-to-a-normal-map-for-pbr",
     "href": "src/04/notebooks/pbr-creator.html#convert-the-depth-map-to-a-normal-map-for-pbr",
     "title": "PBR (Physically-Based Rendering) Material Creator",
     "section": "Convert the depth map to a normal map for PBR",
-    "text": "Convert the depth map to a normal map for PBR\n\nimport numpy as np\n\ndef depth_to_normal(depth_image, strength=1.0):\n    depth_array = np.array(depth_image, dtype=np.float32) / 255.0\n\n    # Calculate gradients (sobel-like operators)\n    # Sobel kernels for x and y directions\n    sobel_x = np.array([[-1, 0, 1],\n                        [-2, 0, 2],\n                        [-1, 0, 1]]) * strength\n\n    sobel_y = np.array([[-1, -2, -1],\n                        [ 0,  0,  0],\n                        [ 1,  2,  1]]) * strength\n\n    # Pad the depth array to handle edges\n    padded_depth = np.pad(depth_array, 1, mode='edge')\n\n    # Initialize normal map components\n    height, width = depth_array.shape\n    dx = np.zeros((height, width))\n    dy = np.zeros((height, width))\n\n    # Calculate gradients using convolution\n    for i in range(height):\n        for j in range(width):\n            region = padded_depth[i:i+3, j:j+3]\n            dx[i, j] = np.sum(region * sobel_x)\n            dy[i, j] = np.sum(region * sobel_y)\n\n    # Create normal vectors\n    # In tangent space: x points right, y points down, z points out\n    # Normal = normalize(-dx, -dy, 1)\n    dz = np.ones_like(dx)\n\n    # Calculate magnitude for normalization\n    magnitude = np.sqrt(dx*dx + dy*dy + dz*dz)\n\n    # Normalize the vectors\n    nx = -dx / magnitude\n    ny = -dy / magnitude\n    nz = dz / magnitude\n\n    # Convert from [-1, 1] to [0, 255] for RGB channels\n    # R = X, G = Y, B = Z\n    normal_map = np.zeros((height, width, 3), dtype=np.uint8)\n    normal_map[:, :, 0] = ((nx + 1) * 0.5 * 255).astype(np.uint8)  # Red (X)\n    normal_map[:, :, 1] = ((ny + 1) * 0.5 * 255).astype(np.uint8)  # Green (Y)\n    normal_map[:, :, 2] = ((nz + 1) * 0.5 * 255).astype(np.uint8)  # Blue (Z)\n\n    # Save the normal map\n    normal_img = Image.fromarray(normal_map)\n\n    return normal_img\n\nnormal_image = depth_to_normal(depth_image.convert('L'), strength=1.0)\nnormal_image"
+    "text": "Convert the depth map to a normal map for PBR\n\nimport numpy as np\n\ndef depth_to_normal(depth_image, strength=1.0):\n    depth_array = np.array(depth_image, dtype=np.float32) / 255.0\n\n    # Calculate gradients (sobel-like operators)\n    # Sobel kernels for x and y directions\n    sobel_x = np.array([[-1, 0, 1],\n                        [-2, 0, 2],\n                        [-1, 0, 1]]) * strength\n\n    sobel_y = np.array([[-1, -2, -1],\n                        [ 0,  0,  0],\n                        [ 1,  2,  1]]) * strength\n\n    # Pad the depth array to handle edges\n    padded_depth = np.pad(depth_array, 1, mode='edge')\n\n    # Initialize normal map components\n    height, width = depth_array.shape\n    dx = np.zeros((height, width))\n    dy = np.zeros((height, width))\n\n    # Calculate gradients using convolution\n    for i in range(height):\n        for j in range(width):\n            region = padded_depth[i:i+3, j:j+3]\n            dx[i, j] = np.sum(region * sobel_x)\n            dy[i, j] = np.sum(region * sobel_y)\n\n    # Create normal vectors\n    # In tangent space: x points right, y points down, z points out\n    # Normal = normalize(-dx, -dy, 1)\n    dz = np.ones_like(dx)\n\n    # Calculate magnitude for normalization\n    magnitude = np.sqrt(dx*dx + dy*dy + dz*dz)\n\n    # Normalize the vectors\n    nx = -dx / magnitude\n    ny = -dy / magnitude\n    nz = dz / magnitude\n\n    # Convert from [-1, 1] to [0, 255] for RGB channels\n    # R = X, G = Y, B = Z\n    normal_map = np.zeros((height, width, 3), dtype=np.uint8)\n    normal_map[:, :, 0] = ((nx + 1) * 0.5 * 255).astype(np.uint8)  # Red (X)\n    normal_map[:, :, 1] = ((ny + 1) * 0.5 * 255).astype(np.uint8)  # Green (Y)\n    normal_map[:, :, 2] = ((nz + 1) * 0.5 * 255).astype(np.uint8)  # Blue (Z)\n\n    # Save the normal map\n    normal_img = Image.fromarray(normal_map)\n\n    return normal_img\n\nnormal_image = depth_to_normal(depth_image.convert('L'), strength=1.0)\nnormal_image",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "pbr-creator.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/pbr-creator.html#save-files",
     "href": "src/04/notebooks/pbr-creator.html#save-files",
     "title": "PBR (Physically-Based Rendering) Material Creator",
     "section": "Save files",
-    "text": "Save files\n\ntiled_image.save(\"dragon_tiled.png\")\nnormal_image.save(\"dragon_normal.png\")"
+    "text": "Save files\n\ntiled_image.save(\"dragon_tiled.png\")\nnormal_image.save(\"dragon_normal.png\")",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "pbr-creator.ipynb"
+    ]
   },
   {
     "objectID": "src/04/notebooks/text-to-image-sd-1.5.html",

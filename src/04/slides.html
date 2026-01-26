@@ -727,10 +727,23 @@
 <ul>
 <li class="fragment">But with a focus on image and video models</li>
 <li class="fragment">Extensive access to larger models (e.g., FLUX 2, Nano Banana, ImageGen)</li>
-<li class="fragment">Pay-per-call pricing (expect 2c per image for higher quality models)</li>
+<li class="fragment">Pay-per-call pricing (expect 2c per image for higher quality models; some free models)</li>
 <li class="fragment">API access (with Python and NodeJS library)</li>
 <li class="fragment">Fine-tune and share your own models</li>
 </ul></li>
+</ul>
+</section>
+<section id="flux-models" class="slide level2">
+<h2>FLUX Models</h2>
+<ul>
+<li class="fragment">From Black Forest Labs (founded by ex-Stability AI researchers)</li>
+<li class="fragment">Key architectural differences from Stable Diffusion:
+<ul>
+<li class="fragment">Uses a <strong>Multimodal Diffusion Transformer (MMDiT)</strong> instead of U-Net</li>
+<li class="fragment">Processes text and image tokens together in a unified transformer</li>
+<li class="fragment">Native support for higher resolutions without quality degradation</li>
+</ul></li>
+<li class="fragment">Variants: FLUX.1 [schnell] (fast), [dev] (quality), [pro] (commercial)</li>
 </ul>
 </section></section>
 <section id="demo" class="title-slide slide level1 center">
@@ -1100,7 +1113,7 @@
 <ul>
 <li class="fragment">Supply a prompt: “2x zoom out this image”</li>
 <li class="fragment">Treat the new empty regions around the image as masked areas</li>
-<li class="fragment">Use impainting technique to fill in the regions</li>
+<li class="fragment">Use inpainting technique to fill in the regions</li>
 </ul></li>
 </ul>
 </section>
@@ -1226,7 +1239,7 @@
 <ul>
 <li class="fragment">Negative prompts (popular in some models)
 <ul>
-<li class="fragment">Tell the model what to avoid - particularly usedful with Stable Diffusion</li>
+<li class="fragment">Tell the model what to avoid - particularly useful with Stable Diffusion</li>
 <li class="fragment"><code>blurry, low quality, distorted, deformed, ugly, bad anatomy, extra limbs, watermark, text, signature, overexposed, underexposed, cartoon</code></li>
 </ul></li>
 </ul>
@@ -1526,7 +1539,7 @@
 <section id="fastvlm" class="slide level2">
 <h2>FastVLM</h2>
 <ul>
-<li class="fragment">Release release from Apple (presented at CVPR 2025)
+<li class="fragment">Recent release from Apple (presented at CVPR 2025)
 <ul>
 <li class="fragment">Paper: FastVLM: Efficient Vision Encoding for Vision Language Models <span class="citation" data-cites="vasu2025fastvlm">(<a href="#/references-1" role="doc-biblioref" onclick="">Vasu et al. 2025</a>)</span></li>
 <li class="fragment"><a href="https://huggingface.co/apple/FastVLM-0.5B" class="external" target="_blank">https://huggingface.co/apple/FastVLM-0.5B</a></li>
