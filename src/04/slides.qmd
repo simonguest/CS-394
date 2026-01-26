@@ -194,6 +194,14 @@ timeline
 
 {{< embed notebooks/image-to-image-sd-1.5.ipynb#original echo=false >}}
 
+## Image-to-Image (Original)
+
+Prompt: "a goldendoodle wearing sunglasses, high quality, detailed"
+
+## Image-to-Image (Original)
+
+{{< embed notebooks/image-to-image-sd-1.5.ipynb#original echo=false >}}
+
 ## Image-to-Image (0.3)
 
 {{< embed notebooks/image-to-image-sd-1.5.ipynb#0.3 echo=false >}}
@@ -268,7 +276,13 @@ Browsing models on Replicate
 
 ## Sidebar: Safety Tolerance
 
-- TBD: How does safety tolerance networks work?
+- How does safety tolerance work?
+  - Safety/guardrails are not typically embedded into the model
+  - e.g., SD 1.5 will generate NSFW images easily
+- Instead, separate classifiers run alongside the model
+  - Input filtering: Analyzes the prompt prior to generation
+  - Output filtering: Image classifier examines the model before showing it to the user
+  - Thresholds used to control the classifiers
 
 ## Image-to-Image
 
@@ -306,8 +320,6 @@ Browsing models on Replicate
   - Module/processing for realtime (60fps) sensing
 :::
 ::::
-
-
 
 ## Depth Maps
 
@@ -373,6 +385,10 @@ Browsing models on Replicate
 
 {{< embed notebooks/inpainting.ipynb#gradio echo=true outputs=false >}}
 
+# Demo
+
+Inpainting using Gradio and Replicate: inpainting.ipynb
+
 ## Outpainting
 
 - The opposite of inpainting, kind of :)
@@ -412,18 +428,45 @@ Browsing models on Replicate
   - LaMa: Large Mask inpainting
   - Ideogram
 
-# Demo
+# Hands on
 
-Inpainting and Outpainting using black-forest-labs/flux-fill-pro
+Register for a Replicate account; create an API key
+
+Text to Image using text-to-image-replicate.ipynb
+Inpainting and Outpainting using inpainting/outpainting.ipynb
+
+https://replicate.com/collections/try-for-free
 
 # I Want More Control!
 
 ## I Want More Control!
 
-- **Text-to-Image** and **Image-to-Image** don't give you that much control
-  - Extensive prompts (both positive and negative) can help, but only so far
+- Prompt engineering for text-to-image and image-to-image is important
+  - Bad prompt: `a cat`
+  - Good prompt: `A fluffy orange tabby cat sitting on a wooden windowsill, golden hour lighting, soft focus background of a garden, photorealistic, highly detailed fur texture, warm color palette, shot with 85mm lens, shallow depth of field`
+
+## I Want More Control!
+
+- Key components to include in prompts:
+  - **Subject**: What you want
+  - **Style/Medium**: photorealistic, oil painting, digital art
+  - **Lighting**: studio lighting, dramatic shadows, soft diffused
+  - **Composition**: close-up, wide-angle, rule of thirds
+  - **Quality**: highly detailed, 4K, sharp focus
+  - **Technical specs**: 85mm lens, f/1.8, bokeh
+
+## I Want More Control!
+
+- Negative prompts (popular in some models)
+  - Tell the model what to avoid - particularly usedful with Stable Diffusion
+  - `blurry, low quality, distorted, deformed, ugly, bad anatomy, extra limbs, watermark, text, signature, overexposed, underexposed, cartoon`
+
+## I Want Even More Control!
+
+- Extensive prompts (both positive and negative) can help, but only so far
   - Ultimately, "hoping the model guesses what I mean"
   - Fine-tuning possible, but it's expensive and risks degrading quality (and potential overfitting)
+  - Need a different approach...
 
 # Introducing ControlNet
 
@@ -484,8 +527,6 @@ Examples of conditioning types:
 
 # Hands on
 
-Inpainting and Outpainting using inpainting.ipynb and outpainting.ipynb
-
 ControlNet (OpenPose) using controlnet-openpose-sd-1.5.ipynb
 
 # Demo: Putting this all together
@@ -493,9 +534,6 @@ ControlNet (OpenPose) using controlnet-openpose-sd-1.5.ipynb
 Using text-to-image, ControlNet, inpainting, and image-to-image (depth map) to create PBR materials
 
 pbr-creator.ipynb
-
-
-
 
 # Using Transformers for Computer Vision
 
@@ -519,7 +557,7 @@ Historically, computer vision has used classification models called CNNs (Convol
   - Self-supervised on 142M images
 - Microsoft's Swin
   - Use "shifted windows" approach
-  - Excels at dense predication tasks
+  - Excels at dense prediction tasks
 
 ## Vision Language Models (VLMs)
 
@@ -533,7 +571,30 @@ Historically, computer vision has used classification models called CNNs (Convol
 
 ## Demo
 
-- TBD
+Using Gemma 3 (4B) to describe an image
+
+Notebook: vlm-gemma-3-4b.ipynb
+
+## Sidebar: Image URL Dereferencing
+
+{{< embed notebooks/vlm-gemma-3-4b.ipynb#image echo=true outputs=false >}}
+
+## Sidebar: Image URL Dereferencing
+
+- Handled within the pipeline library
+  - Detects the image URL in the message structure
+  - Downloads the image
+  - Loads as a PIL Image object
+  - Preprocessing (resizing, normalizing pixel values)
+  - Converts to tensors
+
+## Sidebar: Image URL Dereferencing
+
+- Text gets tokenized into token IDs
+- Image gets processed into pixel tensors
+- Both feed into their respective encoders (text encoder, vision encoder)
+- Features are aligned via shared embedding space
+  - e.g., visual concepts (furry, four legs, whiskers, etc.) are close to the word "cat" in shared embedding space
 
 ## Use Cases for VLMs
 
@@ -553,12 +614,28 @@ Historically, computer vision has used classification models called CNNs (Convol
   - Gemma: Google's Gemma-3
   - FastVLM: Apple's Fast Vision Language Model
 
+## FastVLM
+
+- Release release from Apple (presented at CVPR 2025)
+  - Paper: FastVLM: Efficient Vision Encoding for Vision Language Models [@vasu2025fastvlm]
+  - [https://huggingface.co/apple/FastVLM-0.5B](https://huggingface.co/apple/FastVLM-0.5B){.external target="_blank"}
+  - Small VLM, optimized for on-device, real-time performance
+  - Custom vision transformer: FastViTHD. Combines transformers and convolutional layers
+
+# Demo
+
+Apple's FastVLM
+
+[Apple FastVLM running in WebGPU](https://huggingface.co/spaces/apple/fastvlm-webgpu){.external target="blank"}
+
 # Looking Ahead
 
 ## Looking Ahead
 
 - [This week's assignment!](https://simonguest.github.io/CS-394/src/04/assignment.html){.external target="_blank"}
-- TBD
+- Deep dive on model architectures
+- Running models on local hardware
+- Quantization
 
 # References
 
