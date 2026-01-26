@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PBR Viewer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    #renderCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      touch-action: none;
+    }
+  </style>
+  <script src="https://cdn.babylonjs.com/babylon.js"></script>
+</head>
+<body>
+  <canvas id="renderCanvas"></canvas>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const canvas = document.getElementById('renderCanvas');
+      const engine = new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
+
+      function createScene() {
+        const scene = new BABYLON.Scene(engine);
+
+        const camera = new BABYLON.ArcRotateCamera('camera2', 3, 4, 2, new BABYLON.Vector3(-5, 10, 5), scene);
+        camera.setTarget(BABYLON.Vector3.Zero());
+        camera.attachControl(canvas, false);
+
+        const spotLight = new BABYLON.PointLight('light2', new BABYLON.Vector3(1, 2, 1), scene);
+        spotLight.intensity = 40;
+
+        const dragonMat = new BABYLON.PBRMaterial("dragon0", scene);
+        dragonMat.albedoTexture = new BABYLON.Texture("./dragon_tiled.png");
+        dragonMat.bumpTexture = new BABYLON.Texture("./dragon_normal.png");
+        dragonMat.metallic = 0.7;
+        dragonMat.roughness = 0.1;
+
+        const grid = {
+          'h': 8,
+          'w': 8
+        };
+
+        const tiledGround = BABYLON.MeshBuilder.CreateTiledGround("Tiled Ground", { xmin: -3, zmin: -3, xmax: 3, zmax: 3, subdivisions: grid });
+        tiledGround.material = dragonMat;
+
+        return scene;
+      }
+
+      const scene = createScene();
+      engine.runRenderLoop(function() {
+        scene.render();
+      });
+
+      window.addEventListener('resize', function() {
+        engine.resize();
+      });
+    });
+  </script>
+</body>
+</html>

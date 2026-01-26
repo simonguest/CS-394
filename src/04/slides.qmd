@@ -488,13 +488,14 @@ Inpainting and Outpainting using inpainting.ipynb and outpainting.ipynb
 
 ControlNet (OpenPose) using controlnet-openpose-sd-1.5.ipynb
 
-
-
 # Demo: Putting this all together
 
 Using text-to-image, ControlNet, inpainting, and image-to-image (depth map) to create PBR materials
 
-TBD - Mega notebook
+pbr-creator.ipynb
+
+
+
 
 # Using Transformers for Computer Vision
 
