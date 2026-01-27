@@ -4567,6 +4567,17 @@
     ]
   },
   {
+    "objectID": "src/04/slides.html#vlms-vs.-object-detection-models",
+    "href": "src/04/slides.html#vlms-vs.-object-detection-models",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "VLMs vs. Object Detection Models",
+    "text": "VLMs vs. Object Detection Models\n\n\n\nRicher semantics (e.g., tabby cat vs. cat)\nContextual descriptions\nZero-shot: Can identify objects never seen during training\nBut less precise at localization (bounding boxes, pixel coordination)",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "src/04/slides.html#popular-vlms",
     "href": "src/04/slides.html#popular-vlms",
     "title": "Module 4: Multimedia and Multimodal Models",
@@ -4593,7 +4604,7 @@
     "href": "src/04/slides.html#looking-ahead-1",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "Looking Ahead",
-    "text": "Looking Ahead\n\nThis week’s assignment!\nDeep dive on model architectures\nRunning models on local hardware\nQuantization",
+    "text": "Looking Ahead\n\nThis week’s assignment!\nDeep dive on hardware/GPU architectures\nRunning models on local hardware\nQuantization",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
