@@ -614,6 +614,22 @@ Notebook: vlm-gemma-3-4b.ipynb
 - Education: Helping students understand charts, diagrams, equations
 - Robotics: Providing Robots with information to navigate their environment
 
+## VLMs vs. Object Detection Models
+
+:::: {.columns}
+::: {.column width="50%"}
+
+- Richer semantics (e.g., tabby cat vs. cat)
+- Contextual descriptions
+- Zero-shot: Can identify objects never seen during training
+- But less precise at localization (bounding boxes, pixel coordination)
+
+:::
+::: {.column width="50%"}
+![](./images/cat-yolo.png)
+:::
+::::
+
 ## Popular VLMs
 
 - Closed Source
@@ -642,7 +658,7 @@ Apple's FastVLM
 ## Looking Ahead
 
 - [This week's assignment!](https://simonguest.github.io/CS-394/src/04/assignment.html){.external target="_blank"}
-- Deep dive on model architectures
+- Deep dive on hardware/GPU architectures
 - Running models on local hardware
 - Quantization
 
