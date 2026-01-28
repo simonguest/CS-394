@@ -32,6 +32,164 @@ bibliography: references.bib
 - Use llama.cpp to quantize and run an SLM on local hardware/gaming PC
 - Integrate a quantized model within Unity/Unreal/WebAssembly
 
+# Why Local Models?
+
+## Why Local Models?
+
+- **Privacy**
+  - Every call you make to OpenAI/Claude/OpenRouter may (or may not) get logged and/or be used for training purposes
+  - Many organizations don't want their customer/financial data logged with an AI vendor
+  - There may also be legal regulations/restrictions controlling this
+
+## Why Local Models?
+
+- **Offline**
+  - Every call you make to OpenAI/Claude/OpenRouter needs an Internet connection
+  - That's not always guaranteed!
+  - Education is a good example - remote school in India and/or rural districts here in the US
+
+## Why Local Models?
+
+- **Latency**
+  - Even with a network connection, calls can suffer from increased latency
+  - Can be a challenge if your application needs frequent, quick responses
+  - e.g., using a VLM to determine the contents of a video stream for a user with vision impairments
+
+## Why Local Models?
+
+- **Cost**
+  - While per-API costs are fractions of a cent, these can grow out of control with exponential growth
+  - More pronounced for long conversation threads (think call center)
+  - Or agents with verbose tool call JSON requests/responses
+
+# What's Your Hardware?
+
+## What's Your Hardware?
+
+- NVIDIA (CUDA)
+  - TBD
+
+## Sidebar: TOPS
+
+- TOPS (Terra Operations Per Second)
+  - How many trillion operations a processor can perform per second
+  - Often qualified with the data type
+  - 64 INT8 TOPS == 64 trillion 8-bit operations per second
+- TFLOPS (Terra Floating-Point Operations Per Second)
+  - 1 TFLOPS == 1 FP32 (32-bit floating point) TOPS
+
+## Sidebar: TOPS
+
+- Rough Throughput Calculations
+  - You have an NVIDIA 3090 (advertized at 35 TFLOPS)
+  - Assume a 7B param model with FP32 weights
+  - Each token generation requires ~2 FLOPs per parameter
+  - Each token generation ~= 14B FLOPs (7B params × 2)
+  - Theoretical max = 35T FLOPs/sec ÷ 14B FLOPs/token ≈ 2,500 tokens/sec
+  - Reality: 10-100 tokens/sec typical due to memory bandwidth bottlenecks
+
+## What's Your Hardware?
+
+- AMD (ROCm)
+  - TBD
+
+## What's Your Hardware?
+
+- Intel (Discreet GPU)
+  - TBD - difference between integrated and extreme
+  - Example Arc 140V offers 60 or so TOPS
+
+## What's Your Hardware?
+
+- Apple (Metal)
+  - TBD
+
+## What's Your Hardware?
+
+- NPUs (Neural Processing Units)
+  - TBD
+  - Intel Movidius
+  - Rockwell’s NPU
+  - Snapdragon X
+
+## What's Your Hardware?
+
+- TPUs (Tensor Processing Units)
+  - TBD - some development kits on the edge
+
+## What's Your Hardware?
+
+- CPU
+  - TBD - still an option (for small models) if you don't have a GPU or NPU
+
+# Compute and Memory Bottlenecks
+
+## Compute and Memory Bottlenecks
+
+- TBD
+
+
+
+## "Out of VRAM"
+
+One challenge of running models on your own hardware is VRAM
+
+- Roughly speaking, the size of the model will determine how much VRAM you need
+- Gemma 3 models
+  - gemma-3-1b-it = 2Gb
+  - gemma-3-4b-it = 8.6Gb
+  - gemma-3-12b-it = 23.37Gb
+  - Qwen3-VL-235B-A22B-Thinking = ~475Gb
+
+## "Out of VRAM"
+
+- Google Colab Tiers
+  - Colab Free T4 = 16Gb VRAM (15Gb usable)
+  - Colab Pro V100 = 16Gb VRAM
+  - Colab Pro A100 = 40Gb VRAM 
+- Your Gaming PC
+  - Probably 8Gb VRAM
+- Your Phone
+  - V-what? :)
+
+## Quantization
+
+Process of reducing the precision of a model's weights and activations. For example, 16-bit numbers to 4-bit.
+
+- Parameter count matters more than precision
+  - A 70B parameter model at 4-bit often beats a 13B model at b16
+  - The models knowledge remains largely intact
+  - Often the extra precision doesn't meaningfully improve outputs
+
+## Quantization Formats
+
+The llama.cpp project (implementing LLMs in pure C/C++) has driven advancements in quantization
+
+- GGUF (GPT-Generated Unified Format)
+  - Single file architecture
+  - Model format supporting multiple quantization levels (2-bit through 8-bit) with CPU and GPU handoff
+- MLX (Apple's ML framework and format for Apple Silicon)
+  - Debuted in late 2023
+  - Supports 4 and 8 bit quantization schemes
+
+## Running Quantized Models
+
+- Tools built upon llama.cpp
+  - Ollama, LM Studio, koboldcpp
+
+## Demo: C# Client <-> Gemma 3 27B Local {.center}
+
+demos/01/lmstudio-client/LMStudioClient.csproj
+
+## Hosting Models in Unity
+
+- Download the GGUF model locally to Assets/StreamingAssets folder
+- Use llama.cpp bindings for C# to host
+  - LLAMASharp: https://github.com/SciSharp/LLamaSharp
+- Use OpenAI SDK (or similar) as client
+- Unity Demo
+  - https://github.com/eublefar/LLAMASharpUnityDemo
+
 # Looking Ahead
 
 ## Looking Ahead
