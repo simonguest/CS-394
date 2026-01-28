@@ -708,6 +708,237 @@
     ]
   },
   {
+    "objectID": "src/05/slides.html#why-local-models-1",
+    "href": "src/05/slides.html#why-local-models-1",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "Why Local Models?",
+    "text": "Why Local Models?\n\nPrivacy\n\nEvery call you make to OpenAI/Claude/OpenRouter may (or may not) get logged and/or be used for training purposes\nMany organizations don’t want their customer/financial data logged with an AI vendor\nThere may also be legal regulations/restrictions controlling this",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#why-local-models-2",
+    "href": "src/05/slides.html#why-local-models-2",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "Why Local Models?",
+    "text": "Why Local Models?\n\nOffline\n\nEvery call you make to OpenAI/Claude/OpenRouter needs an Internet connection\nThat’s not always guaranteed!\nEducation is a good example - remote school in India and/or rural districts here in the US",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#why-local-models-3",
+    "href": "src/05/slides.html#why-local-models-3",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "Why Local Models?",
+    "text": "Why Local Models?\n\nLatency\n\nEven with a network connection, calls can suffer from increased latency\nCan be a challenge if your application needs frequent, quick responses\ne.g., using a VLM to determine the contents of a video stream for a user with vision impairments",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#why-local-models-4",
+    "href": "src/05/slides.html#why-local-models-4",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "Why Local Models?",
+    "text": "Why Local Models?\n\nCost\n\nWhile per-API costs are fractions of a cent, these can grow out of control with exponential growth\nMore pronounced for long conversation threads (think call center)\nOr agents with verbose tool call JSON requests/responses",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#whats-your-hardware-1",
+    "href": "src/05/slides.html#whats-your-hardware-1",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "What’s Your Hardware?",
+    "text": "What’s Your Hardware?\n\nNVIDIA (CUDA)\n\nTBD",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#sidebar-tops",
+    "href": "src/05/slides.html#sidebar-tops",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "Sidebar: TOPS",
+    "text": "Sidebar: TOPS\n\nTOPS (Terra Operations Per Second)\n\nHow many trillion operations a processor can perform per second\nOften qualified with the data type\n64 INT8 TOPS == 64 trillion 8-bit operations per second\n\nTFLOPS (Terra Floating-Point Operations Per Second)\n\n1 TFLOPS == 1 FP32 (32-bit floating point) TOPS",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#sidebar-tops-1",
+    "href": "src/05/slides.html#sidebar-tops-1",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "Sidebar: TOPS",
+    "text": "Sidebar: TOPS\n\nRough Throughput Calculations\n\nYou have an NVIDIA 3090 (advertized at 35 TFLOPS)\nAssume a 7B param model with FP32 weights\nEach token generation requires ~2 FLOPs per parameter\nEach token generation ~= 14B FLOPs (7B params × 2)\nTheoretical max = 35T FLOPs/sec ÷ 14B FLOPs/token ≈ 2,500 tokens/sec\nReality: 10-100 tokens/sec typical due to memory bandwidth bottlenecks",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#whats-your-hardware-2",
+    "href": "src/05/slides.html#whats-your-hardware-2",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "What’s Your Hardware?",
+    "text": "What’s Your Hardware?\n\nAMD (ROCm)\n\nTBD",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#whats-your-hardware-3",
+    "href": "src/05/slides.html#whats-your-hardware-3",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "What’s Your Hardware?",
+    "text": "What’s Your Hardware?\n\nIntel (Discreet GPU)\n\nTBD - difference between integrated and extreme\nExample Arc 140V offers 60 or so TOPS",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#whats-your-hardware-4",
+    "href": "src/05/slides.html#whats-your-hardware-4",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "What’s Your Hardware?",
+    "text": "What’s Your Hardware?\n\nApple (Metal)\n\nTBD",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#whats-your-hardware-5",
+    "href": "src/05/slides.html#whats-your-hardware-5",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "What’s Your Hardware?",
+    "text": "What’s Your Hardware?\n\nNPUs (Neural Processing Units)\n\nTBD\nIntel Movidius\nRockwell’s NPU\nSnapdragon X",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#whats-your-hardware-6",
+    "href": "src/05/slides.html#whats-your-hardware-6",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "What’s Your Hardware?",
+    "text": "What’s Your Hardware?\n\nTPUs (Tensor Processing Units)\n\nTBD - some development kits on the edge",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#whats-your-hardware-7",
+    "href": "src/05/slides.html#whats-your-hardware-7",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "What’s Your Hardware?",
+    "text": "What’s Your Hardware?\n\nCPU\n\nTBD - still an option (for small models) if you don’t have a GPU or NPU",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#compute-and-memory-bottlenecks-1",
+    "href": "src/05/slides.html#compute-and-memory-bottlenecks-1",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "Compute and Memory Bottlenecks",
+    "text": "Compute and Memory Bottlenecks\n\nTBD",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#out-of-vram",
+    "href": "src/05/slides.html#out-of-vram",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "“Out of VRAM”",
+    "text": "“Out of VRAM”\nOne challenge of running models on your own hardware is VRAM\n\nRoughly speaking, the size of the model will determine how much VRAM you need\nGemma 3 models\n\ngemma-3-1b-it = 2Gb\ngemma-3-4b-it = 8.6Gb\ngemma-3-12b-it = 23.37Gb\nQwen3-VL-235B-A22B-Thinking = ~475Gb",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#out-of-vram-1",
+    "href": "src/05/slides.html#out-of-vram-1",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "“Out of VRAM”",
+    "text": "“Out of VRAM”\n\nGoogle Colab Tiers\n\nColab Free T4 = 16Gb VRAM (15Gb usable)\nColab Pro V100 = 16Gb VRAM\nColab Pro A100 = 40Gb VRAM\n\nYour Gaming PC\n\nProbably 8Gb VRAM\n\nYour Phone\n\nV-what? :)",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#quantization",
+    "href": "src/05/slides.html#quantization",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "Quantization",
+    "text": "Quantization\nProcess of reducing the precision of a model’s weights and activations. For example, 16-bit numbers to 4-bit.\n\nParameter count matters more than precision\n\nA 70B parameter model at 4-bit often beats a 13B model at b16\nThe models knowledge remains largely intact\nOften the extra precision doesn’t meaningfully improve outputs",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#quantization-formats",
+    "href": "src/05/slides.html#quantization-formats",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "Quantization Formats",
+    "text": "Quantization Formats\nThe llama.cpp project (implementing LLMs in pure C/C++) has driven advancements in quantization\n\nGGUF (GPT-Generated Unified Format)\n\nSingle file architecture\nModel format supporting multiple quantization levels (2-bit through 8-bit) with CPU and GPU handoff\n\nMLX (Apple’s ML framework and format for Apple Silicon)\n\nDebuted in late 2023\nSupports 4 and 8 bit quantization schemes",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#running-quantized-models",
+    "href": "src/05/slides.html#running-quantized-models",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "Running Quantized Models",
+    "text": "Running Quantized Models\n\nTools built upon llama.cpp\n\nOllama, LM Studio, koboldcpp",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#demo-c-client---gemma-3-27b-local",
+    "href": "src/05/slides.html#demo-c-client---gemma-3-27b-local",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "Demo: C# Client <-> Gemma 3 27B Local",
+    "text": "Demo: C# Client &lt;-&gt; Gemma 3 27B Local\ndemos/01/lmstudio-client/LMStudioClient.csproj",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#hosting-models-in-unity",
+    "href": "src/05/slides.html#hosting-models-in-unity",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "Hosting Models in Unity",
+    "text": "Hosting Models in Unity\n\nDownload the GGUF model locally to Assets/StreamingAssets folder\nUse llama.cpp bindings for C# to host\n\nLLAMASharp: https://github.com/SciSharp/LLamaSharp\n\nUse OpenAI SDK (or similar) as client\nUnity Demo\n\nhttps://github.com/eublefar/LLAMASharpUnityDemo",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "src/05/slides.html#looking-ahead-1",
     "href": "src/05/slides.html#looking-ahead-1",
     "title": "Module 5: Running Models on Local Hardware",

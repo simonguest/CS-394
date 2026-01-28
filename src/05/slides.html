@@ -153,6 +153,256 @@
 </ul>
 </section>
 <section>
+<section id="why-local-models" class="title-slide slide level1 center">
+<h1>Why Local Models?</h1>
+
+</section>
+<section id="why-local-models-1" class="slide level2">
+<h2>Why Local Models?</h2>
+<ul>
+<li class="fragment"><strong>Privacy</strong>
+<ul>
+<li class="fragment">Every call you make to OpenAI/Claude/OpenRouter may (or may not) get logged and/or be used for training purposes</li>
+<li class="fragment">Many organizations don’t want their customer/financial data logged with an AI vendor</li>
+<li class="fragment">There may also be legal regulations/restrictions controlling this</li>
+</ul></li>
+</ul>
+</section>
+<section id="why-local-models-2" class="slide level2">
+<h2>Why Local Models?</h2>
+<ul>
+<li class="fragment"><strong>Offline</strong>
+<ul>
+<li class="fragment">Every call you make to OpenAI/Claude/OpenRouter needs an Internet connection</li>
+<li class="fragment">That’s not always guaranteed!</li>
+<li class="fragment">Education is a good example - remote school in India and/or rural districts here in the US</li>
+</ul></li>
+</ul>
+</section>
+<section id="why-local-models-3" class="slide level2">
+<h2>Why Local Models?</h2>
+<ul>
+<li class="fragment"><strong>Latency</strong>
+<ul>
+<li class="fragment">Even with a network connection, calls can suffer from increased latency</li>
+<li class="fragment">Can be a challenge if your application needs frequent, quick responses</li>
+<li class="fragment">e.g., using a VLM to determine the contents of a video stream for a user with vision impairments</li>
+</ul></li>
+</ul>
+</section>
+<section id="why-local-models-4" class="slide level2">
+<h2>Why Local Models?</h2>
+<ul>
+<li class="fragment"><strong>Cost</strong>
+<ul>
+<li class="fragment">While per-API costs are fractions of a cent, these can grow out of control with exponential growth</li>
+<li class="fragment">More pronounced for long conversation threads (think call center)</li>
+<li class="fragment">Or agents with verbose tool call JSON requests/responses</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="whats-your-hardware" class="title-slide slide level1 center">
+<h1>What’s Your Hardware?</h1>
+
+</section>
+<section id="whats-your-hardware-1" class="slide level2">
+<h2>What’s Your Hardware?</h2>
+<ul>
+<li class="fragment">NVIDIA (CUDA)
+<ul>
+<li class="fragment">TBD</li>
+</ul></li>
+</ul>
+</section>
+<section id="sidebar-tops" class="slide level2">
+<h2>Sidebar: TOPS</h2>
+<ul>
+<li class="fragment">TOPS (Terra Operations Per Second)
+<ul>
+<li class="fragment">How many trillion operations a processor can perform per second</li>
+<li class="fragment">Often qualified with the data type</li>
+<li class="fragment">64 INT8 TOPS == 64 trillion 8-bit operations per second</li>
+</ul></li>
+<li class="fragment">TFLOPS (Terra Floating-Point Operations Per Second)
+<ul>
+<li class="fragment">1 TFLOPS == 1 FP32 (32-bit floating point) TOPS</li>
+</ul></li>
+</ul>
+</section>
+<section id="sidebar-tops-1" class="slide level2">
+<h2>Sidebar: TOPS</h2>
+<ul>
+<li class="fragment">Rough Throughput Calculations
+<ul>
+<li class="fragment">You have an NVIDIA 3090 (advertized at 35 TFLOPS)</li>
+<li class="fragment">Assume a 7B param model with FP32 weights</li>
+<li class="fragment">Each token generation requires ~2 FLOPs per parameter</li>
+<li class="fragment">Each token generation ~= 14B FLOPs (7B params × 2)</li>
+<li class="fragment">Theoretical max = 35T FLOPs/sec ÷ 14B FLOPs/token ≈ 2,500 tokens/sec</li>
+<li class="fragment">Reality: 10-100 tokens/sec typical due to memory bandwidth bottlenecks</li>
+</ul></li>
+</ul>
+</section>
+<section id="whats-your-hardware-2" class="slide level2">
+<h2>What’s Your Hardware?</h2>
+<ul>
+<li class="fragment">AMD (ROCm)
+<ul>
+<li class="fragment">TBD</li>
+</ul></li>
+</ul>
+</section>
+<section id="whats-your-hardware-3" class="slide level2">
+<h2>What’s Your Hardware?</h2>
+<ul>
+<li class="fragment">Intel (Discreet GPU)
+<ul>
+<li class="fragment">TBD - difference between integrated and extreme</li>
+<li class="fragment">Example Arc 140V offers 60 or so TOPS</li>
+</ul></li>
+</ul>
+</section>
+<section id="whats-your-hardware-4" class="slide level2">
+<h2>What’s Your Hardware?</h2>
+<ul>
+<li class="fragment">Apple (Metal)
+<ul>
+<li class="fragment">TBD</li>
+</ul></li>
+</ul>
+</section>
+<section id="whats-your-hardware-5" class="slide level2">
+<h2>What’s Your Hardware?</h2>
+<ul>
+<li class="fragment">NPUs (Neural Processing Units)
+<ul>
+<li class="fragment">TBD</li>
+<li class="fragment">Intel Movidius</li>
+<li class="fragment">Rockwell’s NPU</li>
+<li class="fragment">Snapdragon X</li>
+</ul></li>
+</ul>
+</section>
+<section id="whats-your-hardware-6" class="slide level2">
+<h2>What’s Your Hardware?</h2>
+<ul>
+<li class="fragment">TPUs (Tensor Processing Units)
+<ul>
+<li class="fragment">TBD - some development kits on the edge</li>
+</ul></li>
+</ul>
+</section>
+<section id="whats-your-hardware-7" class="slide level2">
+<h2>What’s Your Hardware?</h2>
+<ul>
+<li class="fragment">CPU
+<ul>
+<li class="fragment">TBD - still an option (for small models) if you don’t have a GPU or NPU</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="compute-and-memory-bottlenecks" class="title-slide slide level1 center">
+<h1>Compute and Memory Bottlenecks</h1>
+
+</section>
+<section id="compute-and-memory-bottlenecks-1" class="slide level2">
+<h2>Compute and Memory Bottlenecks</h2>
+<ul>
+<li class="fragment">TBD</li>
+</ul>
+</section>
+<section id="out-of-vram" class="slide level2">
+<h2>“Out of VRAM”</h2>
+<p>One challenge of running models on your own hardware is VRAM</p>
+<ul>
+<li class="fragment">Roughly speaking, the size of the model will determine how much VRAM you need</li>
+<li class="fragment">Gemma 3 models
+<ul>
+<li class="fragment">gemma-3-1b-it = 2Gb</li>
+<li class="fragment">gemma-3-4b-it = 8.6Gb</li>
+<li class="fragment">gemma-3-12b-it = 23.37Gb</li>
+<li class="fragment">Qwen3-VL-235B-A22B-Thinking = ~475Gb</li>
+</ul></li>
+</ul>
+</section>
+<section id="out-of-vram-1" class="slide level2">
+<h2>“Out of VRAM”</h2>
+<ul>
+<li class="fragment">Google Colab Tiers
+<ul>
+<li class="fragment">Colab Free T4 = 16Gb VRAM (15Gb usable)</li>
+<li class="fragment">Colab Pro V100 = 16Gb VRAM</li>
+<li class="fragment">Colab Pro A100 = 40Gb VRAM</li>
+</ul></li>
+<li class="fragment">Your Gaming PC
+<ul>
+<li class="fragment">Probably 8Gb VRAM</li>
+</ul></li>
+<li class="fragment">Your Phone
+<ul>
+<li class="fragment">V-what? :)</li>
+</ul></li>
+</ul>
+</section>
+<section id="quantization" class="slide level2">
+<h2>Quantization</h2>
+<p>Process of reducing the precision of a model’s weights and activations. For example, 16-bit numbers to 4-bit.</p>
+<ul>
+<li class="fragment">Parameter count matters more than precision
+<ul>
+<li class="fragment">A 70B parameter model at 4-bit often beats a 13B model at b16</li>
+<li class="fragment">The models knowledge remains largely intact</li>
+<li class="fragment">Often the extra precision doesn’t meaningfully improve outputs</li>
+</ul></li>
+</ul>
+</section>
+<section id="quantization-formats" class="slide level2">
+<h2>Quantization Formats</h2>
+<p>The llama.cpp project (implementing LLMs in pure C/C++) has driven advancements in quantization</p>
+<ul>
+<li class="fragment">GGUF (GPT-Generated Unified Format)
+<ul>
+<li class="fragment">Single file architecture</li>
+<li class="fragment">Model format supporting multiple quantization levels (2-bit through 8-bit) with CPU and GPU handoff</li>
+</ul></li>
+<li class="fragment">MLX (Apple’s ML framework and format for Apple Silicon)
+<ul>
+<li class="fragment">Debuted in late 2023</li>
+<li class="fragment">Supports 4 and 8 bit quantization schemes</li>
+</ul></li>
+</ul>
+</section>
+<section id="running-quantized-models" class="slide level2">
+<h2>Running Quantized Models</h2>
+<ul>
+<li class="fragment">Tools built upon llama.cpp
+<ul>
+<li class="fragment">Ollama, LM Studio, koboldcpp</li>
+</ul></li>
+</ul>
+</section>
+<section id="demo-c-client---gemma-3-27b-local" class="slide level2 center">
+<h2>Demo: C# Client &lt;-&gt; Gemma 3 27B Local</h2>
+<p>demos/01/lmstudio-client/LMStudioClient.csproj</p>
+</section>
+<section id="hosting-models-in-unity" class="slide level2">
+<h2>Hosting Models in Unity</h2>
+<ul>
+<li class="fragment">Download the GGUF model locally to Assets/StreamingAssets folder</li>
+<li class="fragment">Use llama.cpp bindings for C# to host
+<ul>
+<li class="fragment">LLAMASharp: https://github.com/SciSharp/LLamaSharp</li>
+</ul></li>
+<li class="fragment">Use OpenAI SDK (or similar) as client</li>
+<li class="fragment">Unity Demo
+<ul>
+<li class="fragment">https://github.com/eublefar/LLAMASharpUnityDemo</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
 <section id="looking-ahead" class="title-slide slide level1 center">
 <h1>Looking Ahead</h1>
 
