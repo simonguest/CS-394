@@ -67,7 +67,30 @@ bibliography: references.bib
 ## What's Your Hardware?
 
 - NVIDIA (CUDA)
-  - TBD
+- AMD (ROCm)
+- Apple Silicon
+- Various NPU (Neural Processing Unit) vendors
+
+## NVIDIA CUDA
+
+- CUDA (Compute Unified Device Architecture)
+  - Launched in 2006 to introduce programming on GPUs (GPGPUs or General Purpose GPUs)
+  - A C-like programming interface
+  - Perfectly timed for the deep learning revolution of the 2010s
+  - Additional libraries (e.g., cuBLAS, cuDNN) make CUDA the defacto standard today
+
+## How CUDA Works
+
+- Massive parallelism: CUDA exploits thousands of GPU cores simultaneously, making it ideal for matrix operations.
+- Memory hierarchy: A tiered memory system with global, shared, and registers.
+- Kernel execution: Programs can launch kernels - same function that can operate on different data.
+
+## NVIDIA CUDA - Hardware Support
+
+- Consumer: RTX 40- and 50- cards with various VRAM options (8Gb - 24Gb) for local inference and small fine-tuning tasks. RTX 30- series still popular for education.
+- Laptop: RTX 40- and 50- series also available on laptops (although less performant than discrete cards)
+- Workstation: DGX Spark launch in 2025, with GB10 and 128Gb of unified memory for medium fine-tuning tasks
+- Datacenter GPUs: A/H series and GB-series for datacenters. NVLink for multi-GPU interconnectivity.
 
 ## Sidebar: TOPS
 
@@ -88,43 +111,58 @@ bibliography: references.bib
   - Theoretical max = 35T FLOPs/sec ÷ 14B FLOPs/token ≈ 2,500 tokens/sec
   - Reality: 10-100 tokens/sec typical due to memory bandwidth bottlenecks
 
-## What's Your Hardware?
+## AMD ROCm
 
-- AMD (ROCm)
-  - TBD
+- ROCm (Radeon Open Compute)
+  - Launched in 2016 as an open-source alternative to CUDA
+  - Embraced open standards (e.g., OpenCL), positioning as avoiding vendor lock-in, although this fragmentation initially hurt adoption
+  - Has evolved significantly since (e.g., rocBLAS) although ecosystem gaps compared to CUDA persist
 
-## What's Your Hardware?
+## AMD ROCm - Hardware Support
 
-- Intel (Discreet GPU)
-  - TBD - difference between integrated and extreme
-  - Example Arc 140V offers 60 or so TOPS
+- Consumer: RX7000 series offer sustantial VRAM (up to 24Gb) at competitive prices compared to NVIDIA RTX
+- Laptop: Some laptop options for AMD-based machines
+- Workstation: Strix Halo, competitor to DGX Spark, with RX8060S and 128Gb unified memory
+- Software support: Linux only with no Windows support (some via WSL)
 
-## What's Your Hardware?
+## Apple Silicon
 
-- Apple (Metal)
-  - TBD
+- Apple Silicon
+  - Metal, a low-level graphics and compute API, launched in 2014 and later expanded for general GPU compute tasks
+  - MPS (Metal Performance Shaders) introduced in 2017 and optimized primitives for neural networks. PyTorch added MPS device support in 2022.
+  - MLX released in 2023, providing NumPy-like API for Apple Silicon hardware
 
-## What's Your Hardware?
+## Apple Silicon - Hardware Support
 
-- NPUs (Neural Processing Units)
-  - TBD
-  - Intel Movidius
-  - Rockwell’s NPU
-  - Snapdragon X
+- Available on all M-series hardware
+- Unified memory by default, upto 128Gb on laptops and 512Gb for the Mac Studio with M3 Ultra
+- Non portable models. (MLX uses safetensors/npz format and MLX-specific code for Metal.)
 
-## What's Your Hardware?
+## Sidebar: Unified Memory
 
-- TPUs (Tensor Processing Units)
-  - TBD - some development kits on the edge
+- GPUs have historically had separate memory (VRAM)
+- Unified memory is a process to share memory between CPU and GPU
+  - For Apple/MLX, it's a true SoC (System on a Chip); NVIDIA DGX Spark, two physical components connected via NVLink-C2C
+- Higher memory availability, but lower memory bandwidth
+  - ~275Gb/s for Spark/MLX; ~1TB/s for 5080; ~1.7TB/s for 5090; ~3TBs for H100
 
-## What's Your Hardware?
+## NPUs
 
-- CPU
-  - TBD - still an option (for small models) if you don't have a GPU or NPU
+- NPUs (Neural Processing Units) are specialized AI accelerators, designed for lower power consumption
+- Optimized specifically for NN operations (e.g., matmul, convolutions, activations)
+- Commonly found in edge devices (smartphones, IoT, embedded systems)
+- 15-80 TOPS common for NPUs (~10x less that desktop PCI-based GPUs)
 
-# Compute and Memory Bottlenecks
+## NPU Vendors
 
-## Compute and Memory Bottlenecks
+- Intel: Acquired Movidius in 2016; released Myriad X in 2017 and a neural compute stick. Superceded by NPUs in Core Ultra processors.
+- Qualcomm: Snapdragon 865 range in 2019; now Snapdragon X and 8 ranges. Used in Windows/ARM devices. Popular with Android, although Google recently moved to their own TPUs.
+- AMD: XDNA formerly Xilinx; Windows Copilot PC range competing with SnapDragon and Intel Core Ultra.
+- Apple: ANE (Apple Neural Engine) to support CoreML workloads on iPhone, iPad devices
+
+# Overcoming Compute and Memory Bottlenecks
+
+## Overcoming Compute and Memory Bottlenecks
 
 - TBD
 
