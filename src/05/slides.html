@@ -209,10 +209,39 @@
 <section id="whats-your-hardware-1" class="slide level2">
 <h2>What’s Your Hardware?</h2>
 <ul>
-<li class="fragment">NVIDIA (CUDA)
+<li class="fragment">NVIDIA (CUDA)</li>
+<li class="fragment">AMD (ROCm)</li>
+<li class="fragment">Apple Silicon</li>
+<li class="fragment">Various NPU (Neural Processing Unit) vendors</li>
+</ul>
+</section>
+<section id="nvidia-cuda" class="slide level2">
+<h2>NVIDIA CUDA</h2>
 <ul>
-<li class="fragment">TBD</li>
+<li class="fragment">CUDA (Compute Unified Device Architecture)
+<ul>
+<li class="fragment">Launched in 2006 to introduce programming on GPUs (GPGPUs or General Purpose GPUs)</li>
+<li class="fragment">A C-like programming interface</li>
+<li class="fragment">Perfectly timed for the deep learning revolution of the 2010s</li>
+<li class="fragment">Additional libraries (e.g., cuBLAS, cuDNN) make CUDA the defacto standard today</li>
 </ul></li>
+</ul>
+</section>
+<section id="how-cuda-works" class="slide level2">
+<h2>How CUDA Works</h2>
+<ul>
+<li class="fragment">Massive parallelism: CUDA exploits thousands of GPU cores simultaneously, making it ideal for matrix operations.</li>
+<li class="fragment">Memory hierarchy: A tiered memory system with global, shared, and registers.</li>
+<li class="fragment">Kernel execution: Programs can launch kernels - same function that can operate on different data.</li>
+</ul>
+</section>
+<section id="nvidia-cuda---hardware-support" class="slide level2">
+<h2>NVIDIA CUDA - Hardware Support</h2>
+<ul>
+<li class="fragment">Consumer: RTX 40- and 50- cards with various VRAM options (8Gb - 24Gb) for local inference and small fine-tuning tasks. RTX 30- series still popular for education.</li>
+<li class="fragment">Laptop: RTX 40- and 50- series also available on laptops (although less performant than discrete cards)</li>
+<li class="fragment">Workstation: DGX Spark launch in 2025, with GB10 and 128Gb of unified memory for medium fine-tuning tasks</li>
+<li class="fragment">Datacenter GPUs: A/H series and GB-series for datacenters. NVLink for multi-GPU interconnectivity.</li>
 </ul>
 </section>
 <section id="sidebar-tops" class="slide level2">
@@ -244,71 +273,84 @@
 </ul></li>
 </ul>
 </section>
-<section id="whats-your-hardware-2" class="slide level2">
-<h2>What’s Your Hardware?</h2>
+<section id="amd-rocm" class="slide level2">
+<h2>AMD ROCm</h2>
 <ul>
-<li class="fragment">AMD (ROCm)
+<li class="fragment">ROCm (Radeon Open Compute)
 <ul>
-<li class="fragment">TBD</li>
+<li class="fragment">Launched in 2016 as an open-source alternative to CUDA</li>
+<li class="fragment">Embraced open standards (e.g., OpenCL), positioning as avoiding vendor lock-in, although this fragmentation initially hurt adoption</li>
+<li class="fragment">Has evolved significantly since (e.g., rocBLAS) although ecosystem gaps compared to CUDA persist</li>
 </ul></li>
 </ul>
 </section>
-<section id="whats-your-hardware-3" class="slide level2">
-<h2>What’s Your Hardware?</h2>
+<section id="amd-rocm---hardware-support" class="slide level2">
+<h2>AMD ROCm - Hardware Support</h2>
 <ul>
-<li class="fragment">Intel (Discreet GPU)
+<li class="fragment">Consumer: RX7000 series offer sustantial VRAM (up to 24Gb) at competitive prices compared to NVIDIA RTX</li>
+<li class="fragment">Laptop: Some laptop options for AMD-based machines</li>
+<li class="fragment">Workstation: Strix Halo, competitor to DGX Spark, with RX8060S and 128Gb unified memory</li>
+<li class="fragment">Software support: Linux only with no Windows support (some via WSL)</li>
+</ul>
+</section>
+<section id="apple-silicon" class="slide level2">
+<h2>Apple Silicon</h2>
 <ul>
-<li class="fragment">TBD - difference between integrated and extreme</li>
-<li class="fragment">Example Arc 140V offers 60 or so TOPS</li>
+<li class="fragment">Apple Silicon
+<ul>
+<li class="fragment">Metal, a low-level graphics and compute API, launched in 2014 and later expanded for general GPU compute tasks</li>
+<li class="fragment">MPS (Metal Performance Shaders) introduced in 2017 and optimized primitives for neural networks. PyTorch added MPS device support in 2022.</li>
+<li class="fragment">MLX released in 2023, providing NumPy-like API for Apple Silicon hardware</li>
 </ul></li>
 </ul>
 </section>
-<section id="whats-your-hardware-4" class="slide level2">
-<h2>What’s Your Hardware?</h2>
+<section id="apple-silicon---hardware-support" class="slide level2">
+<h2>Apple Silicon - Hardware Support</h2>
 <ul>
-<li class="fragment">Apple (Metal)
+<li class="fragment">Available on all M-series hardware</li>
+<li class="fragment">Unified memory by default, upto 128Gb on laptops and 512Gb for the Mac Studio with M3 Ultra</li>
+<li class="fragment">Non portable models. (MLX uses safetensors/npz format and MLX-specific code for Metal.)</li>
+</ul>
+</section>
+<section id="sidebar-unified-memory" class="slide level2">
+<h2>Sidebar: Unified Memory</h2>
 <ul>
-<li class="fragment">TBD</li>
+<li class="fragment">GPUs have historically had separate memory (VRAM)</li>
+<li class="fragment">Unified memory is a process to share memory between CPU and GPU
+<ul>
+<li class="fragment">For Apple/MLX, it’s a true SoC (System on a Chip); NVIDIA DGX Spark, two physical components connected via NVLink-C2C</li>
+</ul></li>
+<li class="fragment">Higher memory availability, but lower memory bandwidth
+<ul>
+<li class="fragment">~275Gb/s for Spark/MLX; ~1TB/s for 5080; ~1.7TB/s for 5090; ~3TBs for H100</li>
 </ul></li>
 </ul>
 </section>
-<section id="whats-your-hardware-5" class="slide level2">
-<h2>What’s Your Hardware?</h2>
+<section id="npus" class="slide level2">
+<h2>NPUs</h2>
 <ul>
-<li class="fragment">NPUs (Neural Processing Units)
-<ul>
-<li class="fragment">TBD</li>
-<li class="fragment">Intel Movidius</li>
-<li class="fragment">Rockwell’s NPU</li>
-<li class="fragment">Snapdragon X</li>
-</ul></li>
+<li class="fragment">NPUs (Neural Processing Units) are specialized AI accelerators, designed for lower power consumption</li>
+<li class="fragment">Optimized specifically for NN operations (e.g., matmul, convolutions, activations)</li>
+<li class="fragment">Commonly found in edge devices (smartphones, IoT, embedded systems)</li>
+<li class="fragment">15-80 TOPS common for NPUs (~10x less that desktop PCI-based GPUs)</li>
 </ul>
 </section>
-<section id="whats-your-hardware-6" class="slide level2">
-<h2>What’s Your Hardware?</h2>
+<section id="npu-vendors" class="slide level2">
+<h2>NPU Vendors</h2>
 <ul>
-<li class="fragment">TPUs (Tensor Processing Units)
-<ul>
-<li class="fragment">TBD - some development kits on the edge</li>
-</ul></li>
-</ul>
-</section>
-<section id="whats-your-hardware-7" class="slide level2">
-<h2>What’s Your Hardware?</h2>
-<ul>
-<li class="fragment">CPU
-<ul>
-<li class="fragment">TBD - still an option (for small models) if you don’t have a GPU or NPU</li>
-</ul></li>
+<li class="fragment">Intel: Acquired Movidius in 2016; released Myriad X in 2017 and a neural compute stick. Superceded by NPUs in Core Ultra processors.</li>
+<li class="fragment">Qualcomm: Snapdragon 865 range in 2019; now Snapdragon X and 8 ranges. Used in Windows/ARM devices. Popular with Android, although Google recently moved to their own TPUs.</li>
+<li class="fragment">AMD: XDNA formerly Xilinx; Windows Copilot PC range competing with SnapDragon and Intel Core Ultra.</li>
+<li class="fragment">Apple: ANE (Apple Neural Engine) to support CoreML workloads on iPhone, iPad devices</li>
 </ul>
 </section></section>
 <section>
-<section id="compute-and-memory-bottlenecks" class="title-slide slide level1 center">
-<h1>Compute and Memory Bottlenecks</h1>
+<section id="overcoming-compute-and-memory-bottlenecks" class="title-slide slide level1 center">
+<h1>Overcoming Compute and Memory Bottlenecks</h1>
 
 </section>
-<section id="compute-and-memory-bottlenecks-1" class="slide level2">
-<h2>Compute and Memory Bottlenecks</h2>
+<section id="overcoming-compute-and-memory-bottlenecks-1" class="slide level2">
+<h2>Overcoming Compute and Memory Bottlenecks</h2>
 <ul>
 <li class="fragment">TBD</li>
 </ul>

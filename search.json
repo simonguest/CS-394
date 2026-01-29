@@ -756,7 +756,40 @@
     "href": "src/05/slides.html#whats-your-hardware-1",
     "title": "Module 5: Running Models on Local Hardware",
     "section": "What’s Your Hardware?",
-    "text": "What’s Your Hardware?\n\nNVIDIA (CUDA)\n\nTBD",
+    "text": "What’s Your Hardware?\n\nNVIDIA (CUDA)\nAMD (ROCm)\nApple Silicon\nVarious NPU (Neural Processing Unit) vendors",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#nvidia-cuda",
+    "href": "src/05/slides.html#nvidia-cuda",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "NVIDIA CUDA",
+    "text": "NVIDIA CUDA\n\nCUDA (Compute Unified Device Architecture)\n\nLaunched in 2006 to introduce programming on GPUs (GPGPUs or General Purpose GPUs)\nA C-like programming interface\nPerfectly timed for the deep learning revolution of the 2010s\nAdditional libraries (e.g., cuBLAS, cuDNN) make CUDA the defacto standard today",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#how-cuda-works",
+    "href": "src/05/slides.html#how-cuda-works",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "How CUDA Works",
+    "text": "How CUDA Works\n\nMassive parallelism: CUDA exploits thousands of GPU cores simultaneously, making it ideal for matrix operations.\nMemory hierarchy: A tiered memory system with global, shared, and registers.\nKernel execution: Programs can launch kernels - same function that can operate on different data.",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#nvidia-cuda---hardware-support",
+    "href": "src/05/slides.html#nvidia-cuda---hardware-support",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "NVIDIA CUDA - Hardware Support",
+    "text": "NVIDIA CUDA - Hardware Support\n\nConsumer: RTX 40- and 50- cards with various VRAM options (8Gb - 24Gb) for local inference and small fine-tuning tasks. RTX 30- series still popular for education.\nLaptop: RTX 40- and 50- series also available on laptops (although less performant than discrete cards)\nWorkstation: DGX Spark launch in 2025, with GB10 and 128Gb of unified memory for medium fine-tuning tasks\nDatacenter GPUs: A/H series and GB-series for datacenters. NVLink for multi-GPU interconnectivity.",
     "crumbs": [
       "**Module 5:** Running Models on Local Hardware",
       "Slides"
@@ -785,77 +818,88 @@
     ]
   },
   {
-    "objectID": "src/05/slides.html#whats-your-hardware-2",
-    "href": "src/05/slides.html#whats-your-hardware-2",
+    "objectID": "src/05/slides.html#amd-rocm",
+    "href": "src/05/slides.html#amd-rocm",
     "title": "Module 5: Running Models on Local Hardware",
-    "section": "What’s Your Hardware?",
-    "text": "What’s Your Hardware?\n\nAMD (ROCm)\n\nTBD",
+    "section": "AMD ROCm",
+    "text": "AMD ROCm\n\nROCm (Radeon Open Compute)\n\nLaunched in 2016 as an open-source alternative to CUDA\nEmbraced open standards (e.g., OpenCL), positioning as avoiding vendor lock-in, although this fragmentation initially hurt adoption\nHas evolved significantly since (e.g., rocBLAS) although ecosystem gaps compared to CUDA persist",
     "crumbs": [
       "**Module 5:** Running Models on Local Hardware",
       "Slides"
     ]
   },
   {
-    "objectID": "src/05/slides.html#whats-your-hardware-3",
-    "href": "src/05/slides.html#whats-your-hardware-3",
+    "objectID": "src/05/slides.html#amd-rocm---hardware-support",
+    "href": "src/05/slides.html#amd-rocm---hardware-support",
     "title": "Module 5: Running Models on Local Hardware",
-    "section": "What’s Your Hardware?",
-    "text": "What’s Your Hardware?\n\nIntel (Discreet GPU)\n\nTBD - difference between integrated and extreme\nExample Arc 140V offers 60 or so TOPS",
+    "section": "AMD ROCm - Hardware Support",
+    "text": "AMD ROCm - Hardware Support\n\nConsumer: RX7000 series offer sustantial VRAM (up to 24Gb) at competitive prices compared to NVIDIA RTX\nLaptop: Some laptop options for AMD-based machines\nWorkstation: Strix Halo, competitor to DGX Spark, with RX8060S and 128Gb unified memory\nSoftware support: Linux only with no Windows support (some via WSL)",
     "crumbs": [
       "**Module 5:** Running Models on Local Hardware",
       "Slides"
     ]
   },
   {
-    "objectID": "src/05/slides.html#whats-your-hardware-4",
-    "href": "src/05/slides.html#whats-your-hardware-4",
+    "objectID": "src/05/slides.html#apple-silicon",
+    "href": "src/05/slides.html#apple-silicon",
     "title": "Module 5: Running Models on Local Hardware",
-    "section": "What’s Your Hardware?",
-    "text": "What’s Your Hardware?\n\nApple (Metal)\n\nTBD",
+    "section": "Apple Silicon",
+    "text": "Apple Silicon\n\nApple Silicon\n\nMetal, a low-level graphics and compute API, launched in 2014 and later expanded for general GPU compute tasks\nMPS (Metal Performance Shaders) introduced in 2017 and optimized primitives for neural networks. PyTorch added MPS device support in 2022.\nMLX released in 2023, providing NumPy-like API for Apple Silicon hardware",
     "crumbs": [
       "**Module 5:** Running Models on Local Hardware",
       "Slides"
     ]
   },
   {
-    "objectID": "src/05/slides.html#whats-your-hardware-5",
-    "href": "src/05/slides.html#whats-your-hardware-5",
+    "objectID": "src/05/slides.html#apple-silicon---hardware-support",
+    "href": "src/05/slides.html#apple-silicon---hardware-support",
     "title": "Module 5: Running Models on Local Hardware",
-    "section": "What’s Your Hardware?",
-    "text": "What’s Your Hardware?\n\nNPUs (Neural Processing Units)\n\nTBD\nIntel Movidius\nRockwell’s NPU\nSnapdragon X",
+    "section": "Apple Silicon - Hardware Support",
+    "text": "Apple Silicon - Hardware Support\n\nAvailable on all M-series hardware\nUnified memory by default, upto 128Gb on laptops and 512Gb for the Mac Studio with M3 Ultra\nNon portable models. (MLX uses safetensors/npz format and MLX-specific code for Metal.)",
     "crumbs": [
       "**Module 5:** Running Models on Local Hardware",
       "Slides"
     ]
   },
   {
-    "objectID": "src/05/slides.html#whats-your-hardware-6",
-    "href": "src/05/slides.html#whats-your-hardware-6",
+    "objectID": "src/05/slides.html#sidebar-unified-memory",
+    "href": "src/05/slides.html#sidebar-unified-memory",
     "title": "Module 5: Running Models on Local Hardware",
-    "section": "What’s Your Hardware?",
-    "text": "What’s Your Hardware?\n\nTPUs (Tensor Processing Units)\n\nTBD - some development kits on the edge",
+    "section": "Sidebar: Unified Memory",
+    "text": "Sidebar: Unified Memory\n\nGPUs have historically had separate memory (VRAM)\nUnified memory is a process to share memory between CPU and GPU\n\nFor Apple/MLX, it’s a true SoC (System on a Chip); NVIDIA DGX Spark, two physical components connected via NVLink-C2C\n\nHigher memory availability, but lower memory bandwidth\n\n~275Gb/s for Spark/MLX; ~1TB/s for 5080; ~1.7TB/s for 5090; ~3TBs for H100",
     "crumbs": [
       "**Module 5:** Running Models on Local Hardware",
       "Slides"
     ]
   },
   {
-    "objectID": "src/05/slides.html#whats-your-hardware-7",
-    "href": "src/05/slides.html#whats-your-hardware-7",
+    "objectID": "src/05/slides.html#npus",
+    "href": "src/05/slides.html#npus",
     "title": "Module 5: Running Models on Local Hardware",
-    "section": "What’s Your Hardware?",
-    "text": "What’s Your Hardware?\n\nCPU\n\nTBD - still an option (for small models) if you don’t have a GPU or NPU",
+    "section": "NPUs",
+    "text": "NPUs\n\nNPUs (Neural Processing Units) are specialized AI accelerators, designed for lower power consumption\nOptimized specifically for NN operations (e.g., matmul, convolutions, activations)\nCommonly found in edge devices (smartphones, IoT, embedded systems)\n15-80 TOPS common for NPUs (~10x less that desktop PCI-based GPUs)",
     "crumbs": [
       "**Module 5:** Running Models on Local Hardware",
       "Slides"
     ]
   },
   {
-    "objectID": "src/05/slides.html#compute-and-memory-bottlenecks-1",
-    "href": "src/05/slides.html#compute-and-memory-bottlenecks-1",
+    "objectID": "src/05/slides.html#npu-vendors",
+    "href": "src/05/slides.html#npu-vendors",
     "title": "Module 5: Running Models on Local Hardware",
-    "section": "Compute and Memory Bottlenecks",
-    "text": "Compute and Memory Bottlenecks\n\nTBD",
+    "section": "NPU Vendors",
+    "text": "NPU Vendors\n\nIntel: Acquired Movidius in 2016; released Myriad X in 2017 and a neural compute stick. Superceded by NPUs in Core Ultra processors.\nQualcomm: Snapdragon 865 range in 2019; now Snapdragon X and 8 ranges. Used in Windows/ARM devices. Popular with Android, although Google recently moved to their own TPUs.\nAMD: XDNA formerly Xilinx; Windows Copilot PC range competing with SnapDragon and Intel Core Ultra.\nApple: ANE (Apple Neural Engine) to support CoreML workloads on iPhone, iPad devices",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#overcoming-compute-and-memory-bottlenecks-1",
+    "href": "src/05/slides.html#overcoming-compute-and-memory-bottlenecks-1",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "Overcoming Compute and Memory Bottlenecks",
+    "text": "Overcoming Compute and Memory Bottlenecks\n\nTBD",
     "crumbs": [
       "**Module 5:** Running Models on Local Hardware",
       "Slides"
