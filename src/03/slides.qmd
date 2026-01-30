@@ -29,7 +29,7 @@ bibliography: references.bib
 - Describe the fundamental concepts behind Agents/Agentic AI
 - Explore and provide feedback on an existing multi-agent setup
 - Understand available agent SDKs, how they differ, and advantages/disadvantages
-- Use the OpenAI Agents SDK to build a multi-agent system from scratch, including document indexing and retrieval
+- Use the OpenAI Agents SDK to build a multi-agent system, including document indexing and retrieval
 - Understand and implement tool calls and implement using OpenAI’s function calling and via MCP
 
 # Why Agents?

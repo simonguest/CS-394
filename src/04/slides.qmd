@@ -21,7 +21,7 @@ bibliography: references.bib
 - Described the fundamental concepts behind Agents/Agentic AI
 - Explored and provided feedback on an existing multi-agent setup
 - Understood available agent SDKs, how they differ, and advantages/disadvantages
-- Used the OpenAI Agents SDK to build a multi-agent system from scratch, including document indexing and retrieval
+- Used the OpenAI Agents SDK to build a multi-agent system, including document indexing and retrieval
 - Understood and implemented tool calls using OpenAI's function calling and via MCP
 
 ## Lesson Objectives
@@ -442,9 +442,10 @@ Inpainting using Gradio and Replicate: inpainting.ipynb
 Register for a Replicate account; create an API key
 
 Text to Image using text-to-image-replicate.ipynb
-Inpainting and Outpainting using inpainting/outpainting.ipynb
 
-https://replicate.com/collections/try-for-free
+[https://replicate.com/collections/try-for-free](https://replicate.com/collections/try-for-free){.external target="_blank"}
+
+Inpainting and Outpainting using inpainting/outpainting.ipynb
 
 # I Want More Control!
 
@@ -534,6 +535,14 @@ Examples of conditioning types:
 
 {{< embed notebooks/controlnet-openpose-sd-1.5.ipynb#new-image echo=false >}}
 
+## How ControlNet Works
+
+{{< embed notebooks/controlnet-openpose-sd-1.5.ipynb#openpose echo=false >}}
+
+## How ControlNet Works
+
+{{< embed notebooks/controlnet-openpose-sd-1.5.ipynb#new-image echo=false >}}
+
 # Hands on
 
 ControlNet (OpenPose) using controlnet-openpose-sd-1.5.ipynb
@@ -548,8 +557,7 @@ pbr-creator.ipynb
 
 ## CNNs to Vision Transformer
 
-Historically, computer vision has used classification models called CNNs (Convolutional Neural Networks)
-
+- Historically, computer vision has used classification models called CNNs (Convolutional Neural Networks)
 - Enter the Vision Transformer (ViT)
   - "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale" [@dosovitskiy2021vit]
 - Tipping Point
@@ -578,7 +586,7 @@ Historically, computer vision has used classification models called CNNs (Convol
 - Also known as "Multimodal"
   - Image-Text-to-Text
 
-## Demo
+# Demo
 
 Using Gemma 3 (4B) to describe an image
 
@@ -590,6 +598,10 @@ Notebook: vlm-gemma-3-4b.ipynb
 
 ## Sidebar: Image URL Dereferencing
 
+{{< embed notebooks/vlm-gemma-3-4b.ipynb#result echo=true outputs=false >}}
+
+## Sidebar: Image URL Dereferencing
+
 - Handled within the pipeline library
   - Detects the image URL in the message structure
   - Downloads the image
@@ -597,7 +609,7 @@ Notebook: vlm-gemma-3-4b.ipynb
   - Preprocessing (resizing, normalizing pixel values)
   - Converts to tensors
 
-## Sidebar: Image URL Dereferencing
+## Vision Language Models (VLMs)
 
 - Text gets tokenized into token IDs
 - Image gets processed into pixel tensors

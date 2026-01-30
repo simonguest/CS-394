@@ -79,6 +79,6 @@ Implement a practical application using a Vision Language Model (VLM) for a real
 ## Hints
 
 - **Option 1**: The `gr.Sketchpad` or `gr.ImageEditor` components in Gradio work well for drawing input. Start with a simple black-and-white sketch before adding complexity.
-- **Option 2**: Plan your pipeline on paper first. Consider what each model needs as input and produces as output. The PBR notebook (`pbr-creator.ipynb`) demonstrates this chaining pattern.
+- **Option 2**: Consider what each model needs as input and produces as output. The PBR notebook (`pbr-creator.ipynb`) demonstrates this chaining pattern.
 - **Option 3**: Smaller models (like FastVLM-0.5B or Gemma 3 4B) can run on Colab's T4 GPU. Focus on crafting a good system prompt that guides the model toward your specific use case.
 - **All options**: Test with multiple different inputs to understand the model's capabilities and limitations.
