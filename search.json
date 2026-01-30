@@ -28,7 +28,7 @@
     "href": "src/04/notebooks/text-to-image-replicate.html#set-replicate-api-token",
     "title": "Text-to-Image using Replicate",
     "section": "Set Replicate API Token",
-    "text": "Set Replicate API Token\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  REPLICATE_API_TOKEN = userdata.get('REPLICATE_API_TOKEN')\nelse:\n  load_dotenv()\n  REPLICATE_API_TOKEN = os.getenv('REPLICATE_API_TOKEN')",
+    "text": "Set Replicate API Token\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  os.environ['REPLICATE_API_TOKEN'] = userdata.get('REPLICATE_API_TOKEN')\n  print(\"Replicate API Token set for Colab\")\nelse:\n  load_dotenv()\n  print(\"Loaded env vars from .env\")",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Notebooks",
@@ -53,6 +53,18 @@
     "title": "Outpainting using black-forest-labs/flux-fill-pro",
     "section": "",
     "text": "!uv pip install replicate",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "outpainting.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/04/notebooks/outpainting.html#set-replicate-api-token",
+    "href": "src/04/notebooks/outpainting.html#set-replicate-api-token",
+    "title": "Outpainting using black-forest-labs/flux-fill-pro",
+    "section": "Set Replicate API Token",
+    "text": "Set Replicate API Token\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  os.environ['REPLICATE_API_TOKEN'] = userdata.get('REPLICATE_API_TOKEN')\n  print(\"Replicate API Token set for Colab\")\nelse:\n  load_dotenv()\n  print(\"Loaded env vars from .env\")",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Notebooks",
@@ -196,7 +208,7 @@
     "href": "src/04/notebooks/depth-map-as-context.html#set-replicate-api-token",
     "title": "Depth Map as Context",
     "section": "Set Replicate API Token",
-    "text": "Set Replicate API Token\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  REPLICATE_API_TOKEN = userdata.get('REPLICATE_API_TOKEN')\nelse:\n  load_dotenv()\n  REPLICATE_API_TOKEN = os.getenv('REPLICATE_API_TOKEN')",
+    "text": "Set Replicate API Token\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  os.environ['REPLICATE_API_TOKEN'] = userdata.get('REPLICATE_API_TOKEN')\n  print(\"Replicate API Token set for Colab\")\nelse:\n  load_dotenv()\n  print(\"Loaded env vars from .env\")",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Notebooks",
@@ -4516,7 +4528,7 @@
     "href": "src/04/slides.html#inpainting-2",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "Inpainting",
-    "text": "Inpainting\n\n\nimport gradio as gr\nimport numpy as np\nfrom PIL import Image\nimport replicate\nimport io\n\ndef inpaint(image_data, prompt):\n    if image_data is None:\n        return None\n    \n    # Get the original image from the background\n    original_image = Image.fromarray(image_data['background'])\n    \n    # Get the mask from the layers\n    if image_data['layers'] and len(image_data['layers']) &gt; 0:\n        mask_layer = image_data['layers'][0]\n        mask_array = np.array(mask_layer)\n        \n        # Create binary mask: white where painted, black where not\n        alpha_channel = mask_array[:, :, 3]\n        binary_mask = np.where(alpha_channel &gt; 0, 255, 0).astype(np.uint8)\n        mask_image = Image.fromarray(binary_mask, mode='L')\n    else:\n        return None\n    \n    # Convert images to bytes for the replicate API\n    image_bytes = io.BytesIO()\n    original_image.save(image_bytes, format='PNG')\n    image_bytes.seek(0)\n    \n    mask_bytes = io.BytesIO()\n    mask_image.save(mask_bytes, format='PNG')\n    mask_bytes.seek(0)\n    \n    # Call the Replicate API\n    output = replicate.run(\n        \"black-forest-labs/flux-fill-pro\",\n        input={\n            \"image\": image_bytes,\n            \"mask\": mask_bytes,\n            \"prompt\": prompt,\n            \"steps\": 25,\n            \"guidance\": 75,\n            \"outpaint\": \"None\",\n            \"output_format\": \"jpg\",\n            \"safety_tolerance\": 2,\n            \"prompt_upsampling\": False\n        }\n    )\n    \n    # Read the FileOutput and convert to PIL Image\n    output_bytes = output.read()\n    output_image = Image.open(io.BytesIO(output_bytes))\n    \n    return output_image\n\ndemo = gr.Interface(\n    fn=inpaint,\n    inputs=[\n        gr.ImageEditor(\n            label=\"Image (paint over areas to inpaint)\",\n            brush=gr.Brush(color_mode=\"fixed\", colors=[\"#000000\"]),\n            layers=True\n        ),\n        gr.Textbox(label=\"Prompt\", placeholder=\"Describe what should replace the masked area...\")\n    ],\n    outputs=gr.Image(label=\"Output Image\"),\n    title=\"Inpainting using black-forest-labs/flux-fill-pro\"\n)\ndemo.launch()",
+    "text": "Inpainting\n\n\nimport gradio as gr\nimport numpy as np\nfrom PIL import Image\nimport replicate\nimport io\n\ndef inpaint(image_data, prompt):\n    if image_data is None:\n        return None\n    \n    # Get the original image from the background\n    original_image = Image.fromarray(image_data['background'])\n    \n    # Get the mask from the layers\n    if image_data['layers'] and len(image_data['layers']) &gt; 0:\n        mask_layer = image_data['layers'][0]\n        mask_array = np.array(mask_layer)\n        \n        # Create binary mask: white where painted, black where not\n        alpha_channel = mask_array[:, :, 3]\n        binary_mask = np.where(alpha_channel &gt; 0, 255, 0).astype(np.uint8)\n        mask_image = Image.fromarray(binary_mask, mode='L')\n    else:\n        return None\n    \n    # Convert images to bytes for the replicate API\n    image_bytes = io.BytesIO()\n    original_image.save(image_bytes, format='PNG')\n    image_bytes.seek(0)\n    \n    mask_bytes = io.BytesIO()\n    mask_image.save(mask_bytes, format='PNG')\n    mask_bytes.seek(0)\n    \n    # Call the Replicate API\n    output = replicate.run(\n        \"black-forest-labs/flux-fill-pro\",\n        input={\n            \"image\": image_bytes,\n            \"mask\": mask_bytes,\n            \"prompt\": prompt,\n            \"steps\": 25,\n            \"guidance\": 75,\n            \"outpaint\": \"None\",\n            \"output_format\": \"jpg\",\n            \"safety_tolerance\": 2,\n            \"prompt_upsampling\": False\n        }\n    )\n    \n    # Read the FileOutput and convert to PIL Image\n    output_bytes = output.read()\n    output_image = Image.open(io.BytesIO(output_bytes))\n    \n    return output_image\n\ndemo = gr.Interface(\n    fn=inpaint,\n    inputs=[\n        gr.ImageEditor(\n            label=\"Image (paint over areas to inpaint)\",\n            brush=gr.Brush(color_mode=\"fixed\", colors=[\"#000000\"]),\n            layers=True\n        ),\n        gr.Textbox(label=\"Prompt\", placeholder=\"Describe what should replace the masked area...\")\n    ],\n    outputs=gr.Image(label=\"Output Image\"),\n    title=\"Inpainting using black-forest-labs/flux-fill-pro\"\n)\ndemo.launch(debug=True)",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -5485,7 +5497,7 @@
     "href": "src/04/notebooks/generate-depth-map.html#set-replicate-api-token",
     "title": "Depth Map Generation",
     "section": "Set Replicate API Token",
-    "text": "Set Replicate API Token\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  REPLICATE_API_TOKEN = userdata.get('REPLICATE_API_TOKEN')\nelse:\n  load_dotenv()\n  REPLICATE_API_TOKEN = os.getenv('REPLICATE_API_TOKEN')",
+    "text": "Set Replicate API Token\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  os.environ['REPLICATE_API_TOKEN'] = userdata.get('REPLICATE_API_TOKEN')\n  print(\"Replicate API Token set for Colab\")\nelse:\n  load_dotenv()\n  print(\"Loaded env vars from .env\")",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Notebooks",
@@ -5529,11 +5541,23 @@
     ]
   },
   {
+    "objectID": "src/04/notebooks/inpainting.html#set-replicate-api-token",
+    "href": "src/04/notebooks/inpainting.html#set-replicate-api-token",
+    "title": "Inpainting using black-forest-labs/flux-fill-pro",
+    "section": "Set Replicate API Token",
+    "text": "Set Replicate API Token\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  os.environ['REPLICATE_API_TOKEN'] = userdata.get('REPLICATE_API_TOKEN')\n  print(\"Replicate API Token set for Colab\")\nelse:\n  load_dotenv()\n  print(\"Loaded env vars from .env\")",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Notebooks",
+      "inpainting.ipynb"
+    ]
+  },
+  {
     "objectID": "src/04/notebooks/inpainting.html#gradio-interface",
     "href": "src/04/notebooks/inpainting.html#gradio-interface",
     "title": "Inpainting using black-forest-labs/flux-fill-pro",
     "section": "Gradio Interface",
-    "text": "Gradio Interface\n\nimport gradio as gr\nimport numpy as np\nfrom PIL import Image\nimport replicate\nimport io\n\ndef inpaint(image_data, prompt):\n    if image_data is None:\n        return None\n    \n    # Get the original image from the background\n    original_image = Image.fromarray(image_data['background'])\n    \n    # Get the mask from the layers\n    if image_data['layers'] and len(image_data['layers']) &gt; 0:\n        mask_layer = image_data['layers'][0]\n        mask_array = np.array(mask_layer)\n        \n        # Create binary mask: white where painted, black where not\n        alpha_channel = mask_array[:, :, 3]\n        binary_mask = np.where(alpha_channel &gt; 0, 255, 0).astype(np.uint8)\n        mask_image = Image.fromarray(binary_mask, mode='L')\n    else:\n        return None\n    \n    # Convert images to bytes for the replicate API\n    image_bytes = io.BytesIO()\n    original_image.save(image_bytes, format='PNG')\n    image_bytes.seek(0)\n    \n    mask_bytes = io.BytesIO()\n    mask_image.save(mask_bytes, format='PNG')\n    mask_bytes.seek(0)\n    \n    # Call the Replicate API\n    output = replicate.run(\n        \"black-forest-labs/flux-fill-pro\",\n        input={\n            \"image\": image_bytes,\n            \"mask\": mask_bytes,\n            \"prompt\": prompt,\n            \"steps\": 25,\n            \"guidance\": 75,\n            \"outpaint\": \"None\",\n            \"output_format\": \"jpg\",\n            \"safety_tolerance\": 2,\n            \"prompt_upsampling\": False\n        }\n    )\n    \n    # Read the FileOutput and convert to PIL Image\n    output_bytes = output.read()\n    output_image = Image.open(io.BytesIO(output_bytes))\n    \n    return output_image\n\ndemo = gr.Interface(\n    fn=inpaint,\n    inputs=[\n        gr.ImageEditor(\n            label=\"Image (paint over areas to inpaint)\",\n            brush=gr.Brush(color_mode=\"fixed\", colors=[\"#000000\"]),\n            layers=True\n        ),\n        gr.Textbox(label=\"Prompt\", placeholder=\"Describe what should replace the masked area...\")\n    ],\n    outputs=gr.Image(label=\"Output Image\"),\n    title=\"Inpainting using black-forest-labs/flux-fill-pro\"\n)\ndemo.launch()\n\n* Running on local URL:  http://127.0.0.1:7861\n* To create a public link, set `share=True` in `launch()`.",
+    "text": "Gradio Interface\n\nimport gradio as gr\nimport numpy as np\nfrom PIL import Image\nimport replicate\nimport io\n\ndef inpaint(image_data, prompt):\n    if image_data is None:\n        return None\n    \n    # Get the original image from the background\n    original_image = Image.fromarray(image_data['background'])\n    \n    # Get the mask from the layers\n    if image_data['layers'] and len(image_data['layers']) &gt; 0:\n        mask_layer = image_data['layers'][0]\n        mask_array = np.array(mask_layer)\n        \n        # Create binary mask: white where painted, black where not\n        alpha_channel = mask_array[:, :, 3]\n        binary_mask = np.where(alpha_channel &gt; 0, 255, 0).astype(np.uint8)\n        mask_image = Image.fromarray(binary_mask, mode='L')\n    else:\n        return None\n    \n    # Convert images to bytes for the replicate API\n    image_bytes = io.BytesIO()\n    original_image.save(image_bytes, format='PNG')\n    image_bytes.seek(0)\n    \n    mask_bytes = io.BytesIO()\n    mask_image.save(mask_bytes, format='PNG')\n    mask_bytes.seek(0)\n    \n    # Call the Replicate API\n    output = replicate.run(\n        \"black-forest-labs/flux-fill-pro\",\n        input={\n            \"image\": image_bytes,\n            \"mask\": mask_bytes,\n            \"prompt\": prompt,\n            \"steps\": 25,\n            \"guidance\": 75,\n            \"outpaint\": \"None\",\n            \"output_format\": \"jpg\",\n            \"safety_tolerance\": 2,\n            \"prompt_upsampling\": False\n        }\n    )\n    \n    # Read the FileOutput and convert to PIL Image\n    output_bytes = output.read()\n    output_image = Image.open(io.BytesIO(output_bytes))\n    \n    return output_image\n\ndemo = gr.Interface(\n    fn=inpaint,\n    inputs=[\n        gr.ImageEditor(\n            label=\"Image (paint over areas to inpaint)\",\n            brush=gr.Brush(color_mode=\"fixed\", colors=[\"#000000\"]),\n            layers=True\n        ),\n        gr.Textbox(label=\"Prompt\", placeholder=\"Describe what should replace the masked area...\")\n    ],\n    outputs=gr.Image(label=\"Output Image\"),\n    title=\"Inpainting using black-forest-labs/flux-fill-pro\"\n)\ndemo.launch(debug=True)\n\n* Running on local URL:  http://127.0.0.1:7861\n* To create a public link, set `share=True` in `launch()`.",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Notebooks",
