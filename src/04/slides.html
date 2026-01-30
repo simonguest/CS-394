@@ -231,7 +231,7 @@
 <li class="fragment">Described the fundamental concepts behind Agents/Agentic AI</li>
 <li class="fragment">Explored and provided feedback on an existing multi-agent setup</li>
 <li class="fragment">Understood available agent SDKs, how they differ, and advantages/disadvantages</li>
-<li class="fragment">Used the OpenAI Agents SDK to build a multi-agent system from scratch, including document indexing and retrieval</li>
+<li class="fragment">Used the OpenAI Agents SDK to build a multi-agent system, including document indexing and retrieval</li>
 <li class="fragment">Understood and implemented tool calls using OpenAI’s function calling and via MCP</li>
 </ul>
 </section>
@@ -1201,8 +1201,9 @@
 <section id="hands-on-1" class="title-slide slide level1 center">
 <h1>Hands on</h1>
 <p>Register for a Replicate account; create an API key</p>
-<p>Text to Image using text-to-image-replicate.ipynb Inpainting and Outpainting using inpainting/outpainting.ipynb</p>
-<p>https://replicate.com/collections/try-for-free</p>
+<p>Text to Image using text-to-image-replicate.ipynb</p>
+<p><a href="https://replicate.com/collections/try-for-free" class="external" target="_blank">https://replicate.com/collections/try-for-free</a></p>
+<p>Inpainting and Outpainting using inpainting/outpainting.ipynb</p>
 </section>
 
 <section>
@@ -1400,6 +1401,39 @@
 </div>
 </div>
 </div>
+</section>
+<section id="how-controlnet-works-9" class="slide level2">
+<h2>How ControlNet Works</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/controlnet-openpose-sd-1.5.ipynb" data-notebook-title="ControlNet (OpenPose) using Stable Diffusion 1.5" data-notebook-cellid="openpose">
+<div id="openpose" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:721}}" data-outputid="d842bdbb-4404-45af-cf74-62f14dcd07eb" data-execution_count="8">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/notebooks-controlnet-openpose-sd-1.5-cell-5-output-1.png"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="how-controlnet-works-10" class="slide level2">
+<h2>How ControlNet Works</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/controlnet-openpose-sd-1.5.ipynb" data-notebook-title="ControlNet (OpenPose) using Stable Diffusion 1.5" data-notebook-cellid="new-image">
+<div id="new-image" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:753,&quot;referenced_widgets&quot;:[&quot;62c5d0a598c440ebaad870ee1c261e96&quot;,&quot;e538ecf120ca4e83a2fefb10047df748&quot;,&quot;ce904d8599944399b762449d142dd85b&quot;,&quot;e512b4a8835d40e2bb4d33c8c9811bc7&quot;,&quot;59541e7144c541bca9708c7d6039df33&quot;,&quot;180902b2e6164446ae754e7d356aa56c&quot;,&quot;b0cf8153b47e45cbbc62d3097420f41d&quot;,&quot;3985af59218d4ee1b1b022590a9b0356&quot;,&quot;da1fbf3861474f03940caa92cd150f4d&quot;,&quot;783801a0292542b88f60c38cc2f46954&quot;,&quot;da710d97c3454057b51979a4251a17b0&quot;]}}" data-outputid="facb389d-b3fe-48e1-bafd-1c0932694edf" data-execution_count="35">
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"62c5d0a598c440ebaad870ee1c261e96","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="slides_files/figure-revealjs/notebooks-controlnet-openpose-sd-1.5-cell-8-output-2.png"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
 </section></section>
 <section id="hands-on-2" class="title-slide slide level1 center">
 <h1>Hands on</h1>
@@ -1419,8 +1453,8 @@
 </section>
 <section id="cnns-to-vision-transformer" class="slide level2">
 <h2>CNNs to Vision Transformer</h2>
-<p>Historically, computer vision has used classification models called CNNs (Convolutional Neural Networks)</p>
 <ul>
+<li class="fragment">Historically, computer vision has used classification models called CNNs (Convolutional Neural Networks)</li>
 <li class="fragment">Enter the Vision Transformer (ViT)
 <ul>
 <li class="fragment">“An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale” <span class="citation" data-cites="dosovitskiy2021vit">(<a href="#/references-1" role="doc-biblioref" onclick="">Dosovitskiy et al. 2021</a>)</span></li>
@@ -1467,9 +1501,10 @@
 <li class="fragment">Image-Text-to-Text</li>
 </ul></li>
 </ul>
-</section>
-<section id="demo-2" class="slide level2">
-<h2>Demo</h2>
+</section></section>
+<section>
+<section id="demo-2" class="title-slide slide level1 center">
+<h1>Demo</h1>
 <p>Using Gemma 3 (4B) to describe an image</p>
 <p>Notebook: vlm-gemma-3-4b.ipynb</p>
 </section>
@@ -1487,6 +1522,29 @@
 </section>
 <section id="sidebar-image-url-dereferencing-1" class="slide level2">
 <h2>Sidebar: Image URL Dereferencing</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/04/notebooks/vlm-gemma-3-4b.ipynb" data-notebook-title="Using Gemma 3 (4B) to identify images" data-notebook-cellid="result">
+<div id="result" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="8c965b58-573d-4917-dff6-7d10baf8f49f">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a>messages <span class="op">=</span> [</span>
+<span id="cb15-2"><a></a>    {</span>
+<span id="cb15-3"><a></a>        <span class="st">"role"</span>: <span class="st">"system"</span>,</span>
+<span id="cb15-4"><a></a>        <span class="st">"content"</span>: [{<span class="st">"type"</span>: <span class="st">"text"</span>, <span class="st">"text"</span>: <span class="st">"You are a helpful assistant."</span>}],</span>
+<span id="cb15-5"><a></a>    },</span>
+<span id="cb15-6"><a></a>    {</span>
+<span id="cb15-7"><a></a>        <span class="st">"role"</span>: <span class="st">"user"</span>,</span>
+<span id="cb15-8"><a></a>        <span class="st">"content"</span>: [</span>
+<span id="cb15-9"><a></a>            {<span class="st">"type"</span>: <span class="st">"image"</span>, <span class="st">"url"</span>: IMAGE_URL},</span>
+<span id="cb15-10"><a></a>            {<span class="st">"type"</span>: <span class="st">"text"</span>, <span class="st">"text"</span>: <span class="st">"What animal is on the candy?"</span>},</span>
+<span id="cb15-11"><a></a>        ],</span>
+<span id="cb15-12"><a></a>    },</span>
+<span id="cb15-13"><a></a>]</span>
+<span id="cb15-14"><a></a></span>
+<span id="cb15-15"><a></a>output <span class="op">=</span> pipe(text<span class="op">=</span>messages, max_new_tokens<span class="op">=</span><span class="dv">200</span>)</span>
+<span id="cb15-16"><a></a><span class="bu">print</span>(output[<span class="dv">0</span>][<span class="st">"generated_text"</span>][<span class="op">-</span><span class="dv">1</span>][<span class="st">"content"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="sidebar-image-url-dereferencing-2" class="slide level2">
+<h2>Sidebar: Image URL Dereferencing</h2>
 <ul>
 <li class="fragment">Handled within the pipeline library
 <ul>
@@ -1498,8 +1556,8 @@
 </ul></li>
 </ul>
 </section>
-<section id="sidebar-image-url-dereferencing-2" class="slide level2">
-<h2>Sidebar: Image URL Dereferencing</h2>
+<section id="vision-language-models-vlms-1" class="slide level2">
+<h2>Vision Language Models (VLMs)</h2>
 <ul>
 <li class="fragment">Text gets tokenized into token IDs</li>
 <li class="fragment">Image gets processed into pixel tensors</li>

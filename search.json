@@ -1197,7 +1197,7 @@
     "href": "src/03/slides.html#lesson-objectives",
     "title": "Module 3: Agents and Tools",
     "section": "Lesson Objectives",
-    "text": "Lesson Objectives\n\nDescribe the fundamental concepts behind Agents/Agentic AI\nExplore and provide feedback on an existing multi-agent setup\nUnderstand available agent SDKs, how they differ, and advantages/disadvantages\nUse the OpenAI Agents SDK to build a multi-agent system from scratch, including document indexing and retrieval\nUnderstand and implement tool calls and implement using OpenAI’s function calling and via MCP",
+    "text": "Lesson Objectives\n\nDescribe the fundamental concepts behind Agents/Agentic AI\nExplore and provide feedback on an existing multi-agent setup\nUnderstand available agent SDKs, how they differ, and advantages/disadvantages\nUse the OpenAI Agents SDK to build a multi-agent system, including document indexing and retrieval\nUnderstand and implement tool calls and implement using OpenAI’s function calling and via MCP",
     "crumbs": [
       "**Module 3:** Agents and Tools",
       "Slides"
@@ -3989,7 +3989,7 @@
     "href": "src/04/assignment.html#hints",
     "title": "Module 4 Assignment: Multimedia & Multimodal Applications",
     "section": "Hints",
-    "text": "Hints\n\nOption 1: The gr.Sketchpad or gr.ImageEditor components in Gradio work well for drawing input. Start with a simple black-and-white sketch before adding complexity.\nOption 2: Plan your pipeline on paper first. Consider what each model needs as input and produces as output. The PBR notebook (pbr-creator.ipynb) demonstrates this chaining pattern.\nOption 3: Smaller models (like FastVLM-0.5B or Gemma 3 4B) can run on Colab’s T4 GPU. Focus on crafting a good system prompt that guides the model toward your specific use case.\nAll options: Test with multiple different inputs to understand the model’s capabilities and limitations.",
+    "text": "Hints\n\nOption 1: The gr.Sketchpad or gr.ImageEditor components in Gradio work well for drawing input. Start with a simple black-and-white sketch before adding complexity.\nOption 2: Consider what each model needs as input and produces as output. The PBR notebook (pbr-creator.ipynb) demonstrates this chaining pattern.\nOption 3: Smaller models (like FastVLM-0.5B or Gemma 3 4B) can run on Colab’s T4 GPU. Focus on crafting a good system prompt that guides the model toward your specific use case.\nAll options: Test with multiple different inputs to understand the model’s capabilities and limitations.",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Assignment"
@@ -4000,7 +4000,7 @@
     "href": "src/04/slides.html#recap",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "Recap",
-    "text": "Recap\n\nDescribed the fundamental concepts behind Agents/Agentic AI\nExplored and provided feedback on an existing multi-agent setup\nUnderstood available agent SDKs, how they differ, and advantages/disadvantages\nUsed the OpenAI Agents SDK to build a multi-agent system from scratch, including document indexing and retrieval\nUnderstood and implemented tool calls using OpenAI’s function calling and via MCP",
+    "text": "Recap\n\nDescribed the fundamental concepts behind Agents/Agentic AI\nExplored and provided feedback on an existing multi-agent setup\nUnderstood available agent SDKs, how they differ, and advantages/disadvantages\nUsed the OpenAI Agents SDK to build a multi-agent system, including document indexing and retrieval\nUnderstood and implemented tool calls using OpenAI’s function calling and via MCP",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -4766,11 +4766,33 @@
     ]
   },
   {
+    "objectID": "src/04/slides.html#how-controlnet-works-9",
+    "href": "src/04/slides.html#how-controlnet-works-9",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "How ControlNet Works",
+    "text": "How ControlNet Works",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#how-controlnet-works-10",
+    "href": "src/04/slides.html#how-controlnet-works-10",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "How ControlNet Works",
+    "text": "How ControlNet Works",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "src/04/slides.html#cnns-to-vision-transformer",
     "href": "src/04/slides.html#cnns-to-vision-transformer",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "CNNs to Vision Transformer",
-    "text": "CNNs to Vision Transformer\nHistorically, computer vision has used classification models called CNNs (Convolutional Neural Networks)\n\nEnter the Vision Transformer (ViT)\n\n“An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale” (Dosovitskiy et al. 2021)\n\nTipping Point\n\nInitially, ViTs didn’t outperform CNNs\nBut exceeded SOTA CNNs on larger datasets (such as Google’s JFT-300M)",
+    "text": "CNNs to Vision Transformer\n\nHistorically, computer vision has used classification models called CNNs (Convolutional Neural Networks)\nEnter the Vision Transformer (ViT)\n\n“An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale” (Dosovitskiy et al. 2021)\n\nTipping Point\n\nInitially, ViTs didn’t outperform CNNs\nBut exceeded SOTA CNNs on larger datasets (such as Google’s JFT-300M)",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -4799,17 +4821,6 @@
     ]
   },
   {
-    "objectID": "src/04/slides.html#demo-2",
-    "href": "src/04/slides.html#demo-2",
-    "title": "Module 4: Multimedia and Multimodal Models",
-    "section": "Demo",
-    "text": "Demo\nUsing Gemma 3 (4B) to describe an image\nNotebook: vlm-gemma-3-4b.ipynb",
-    "crumbs": [
-      "**Module 4:** Multimedia and Multimodal Models",
-      "Slides"
-    ]
-  },
-  {
     "objectID": "src/04/slides.html#sidebar-image-url-dereferencing",
     "href": "src/04/slides.html#sidebar-image-url-dereferencing",
     "title": "Module 4: Multimedia and Multimodal Models",
@@ -4825,7 +4836,7 @@
     "href": "src/04/slides.html#sidebar-image-url-dereferencing-1",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "Sidebar: Image URL Dereferencing",
-    "text": "Sidebar: Image URL Dereferencing\n\nHandled within the pipeline library\n\nDetects the image URL in the message structure\nDownloads the image\nLoads as a PIL Image object\nPreprocessing (resizing, normalizing pixel values)\nConverts to tensors",
+    "text": "Sidebar: Image URL Dereferencing\n\n\nmessages = [\n    {\n        \"role\": \"system\",\n        \"content\": [{\"type\": \"text\", \"text\": \"You are a helpful assistant.\"}],\n    },\n    {\n        \"role\": \"user\",\n        \"content\": [\n            {\"type\": \"image\", \"url\": IMAGE_URL},\n            {\"type\": \"text\", \"text\": \"What animal is on the candy?\"},\n        ],\n    },\n]\n\noutput = pipe(text=messages, max_new_tokens=200)\nprint(output[0][\"generated_text\"][-1][\"content\"])",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
@@ -4836,7 +4847,18 @@
     "href": "src/04/slides.html#sidebar-image-url-dereferencing-2",
     "title": "Module 4: Multimedia and Multimodal Models",
     "section": "Sidebar: Image URL Dereferencing",
-    "text": "Sidebar: Image URL Dereferencing\n\nText gets tokenized into token IDs\nImage gets processed into pixel tensors\nBoth feed into their respective encoders (text encoder, vision encoder)\nFeatures are aligned via shared embedding space\n\ne.g., visual concepts (furry, four legs, whiskers, etc.) are close to the word “cat” in shared embedding space",
+    "text": "Sidebar: Image URL Dereferencing\n\nHandled within the pipeline library\n\nDetects the image URL in the message structure\nDownloads the image\nLoads as a PIL Image object\nPreprocessing (resizing, normalizing pixel values)\nConverts to tensors",
+    "crumbs": [
+      "**Module 4:** Multimedia and Multimodal Models",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/04/slides.html#vision-language-models-vlms-1",
+    "href": "src/04/slides.html#vision-language-models-vlms-1",
+    "title": "Module 4: Multimedia and Multimodal Models",
+    "section": "Vision Language Models (VLMs)",
+    "text": "Vision Language Models (VLMs)\n\nText gets tokenized into token IDs\nImage gets processed into pixel tensors\nBoth feed into their respective encoders (text encoder, vision encoder)\nFeatures are aligned via shared embedding space\n\ne.g., visual concepts (furry, four legs, whiskers, etc.) are close to the word “cat” in shared embedding space",
     "crumbs": [
       "**Module 4:** Multimedia and Multimodal Models",
       "Slides"
