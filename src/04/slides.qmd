@@ -670,6 +670,7 @@ Apple's FastVLM
 ## Looking Ahead
 
 - [This week's assignment!](https://simonguest.github.io/CS-394/src/04/assignment.html){.external target="_blank"}
+- No class next week (Founder's Day). See you on Feb 13th!
 - Deep dive on hardware/GPU architectures
 - Running models on local hardware
 - Quantization
