@@ -297,35 +297,107 @@ Potentially swap out Phi model with other MoE from HF
 
 # Overcoming Memory Challenges
 
-## Overcoming Memory Challenges
+## Introducing Quantization
 
-
-
-
-## Quantization
-
-Process of reducing the precision of a model's weights and activations. For example, 16-bit numbers to 4-bit.
-
-- Parameter count matters more than precision
-  - A 70B parameter model at 4-bit often beats a 13B model at b16
+- Process of reducing the precision of a model's weights and activations
+  - For example, converting 16-bit numbers to 4-bit
+- Less precision significantly reduces memory needs
+- For accuracy, parameter count matters more than precision
+  - A 70B parameter model at 4-bit often beats a 13B model at bf16
   - The models knowledge remains largely intact
   - Often the extra precision doesn't meaningfully improve outputs
 
 ## Quantization Formats
 
-The llama.cpp project (implementing LLMs in pure C/C++) has driven advancements in quantization
+- GPTQ (GPT Quantization): 
+  - Introduced in the paper "GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers"
+  - First widely adopted method (in 2022) for agressive (4-bit) quantization
+  - CUDA only; distributed via HF Transformers
+- GGML (Georgi Gerganov Machine Learning):
+  - A C/C++ library ("llama.cpp" released in Mar 2023) designed for CPU inference of models
+  - Optimized for CPUs (using SIMD) with a custom binary format
+  - Democratized access to LLMs overnight (ability to run Llama 7B on CPU)
 
-- GGUF (GPT-Generated Unified Format)
+## Quantization Formats
+
+- GGUF (GPT-Generated Unified Format):
+  - Replaced GGML in late 2023, adding extensibility
+  - Better metadata support (model architecture, tokenizer info, quantization details)
   - Single file architecture
-  - Model format supporting multiple quantization levels (2-bit through 8-bit) with CPU and GPU handoff
+  - Multiple quantization schemes (Q4_K_M, Q5_K_S, Q6_K, etc.)
 - MLX (Apple's ML framework and format for Apple Silicon)
   - Debuted in late 2023
   - Supports 4 and 8 bit quantization schemes
 
-## Running Quantized Models
+## Sidebar: Quantization Types
 
-- Tools built upon llama.cpp
-  - Ollama, LM Studio, koboldcpp
+- What does Q4_K_M mean?
+  - Number (Q4, Q5, Q6, etc.) is the average bits per weight
+  - Letter suffix (K, 0, 1) is the quantization strategy
+  - Size suffix (S, M, L) for variants within that method
+
+## Sidebar: Quantization Types
+
+- Q2_K = Agressive quantization, smallest files, noticable loss
+- Q4_K_M = Best quality/size trade off; most popular
+- Q6_K = Very close to full precision, but much larger files (almost double Q4_K_M)
+- Q8_0 = Essentially lossless compared to FP16
+
+## Sidebar: Quantization Types
+
+- K-Quant method
+  - A mixed quantization strategy; quantize different parts of the model at different bit depths depending on sensitivity
+  - e.g., critical weights (e.g., attention layers) get higher precision; less sensitive weights get more aggressive quantization
+- 0 and 1 methods
+  - Uniform quantization across all layers (1 strategy adds a zero point)
+  - Less optimal than using K strategy (and rarely used)
+
+## Running llama.cpp
+
+- [https://github.com/ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp){.external target="_blank"}
+- C/C++ library; download (brew, nix, winget) or compile from source
+- Initially just a CLI, but now ships with Web UI and OpenAI API compatible server
+- Can reference a locally downloaded .gguf file or pull one from HF
+
+# Demo
+
+llama-cli -m my_model.gguf
+
+llama-cli -hf ggml-org/gemma-3-1b-it-GGUF
+
+llama-server -hf ggml-org/gemma-3-1b-it-GGUF
+
+## llama.cpp Wrappers
+
+- Ollama (https://ollama.com)
+  - Simple CLI wrapper around llama.cpp
+  - Uses a container-like Modelfile to customize system prompts, parameters, etc.
+  - Curated collection of models on ollama.com/library
+- LM Studio
+  - Desktop GUI wrapper around llama.cpp
+  - Supports browsing/downloading of models from HF - i.e., "iTunes for LLMs"
+  - In-built chat interface and API server
+
+# Demo
+
+Browsing, downloading, and running a quantized model on LM Studio
+
+# Hands-on
+
+Install LM Studio, pick, and download your own model
+
+(Alterrnatively use llama.cpp or Ollama from the CLI)
+
+
+
+
+# Future topics:
+
+- ONNX
+- How to quantize a model (if the quant doesn't exist)
+- Who quantizes models (unsloth)
+- llama.cpp bindings as a major topic (unity and unreal examples)
+- WASM example using wllama and MLC
 
 ## Demo: C# Client <-> Gemma 3 27B Local {.center}
 
