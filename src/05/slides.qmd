@@ -324,31 +324,29 @@ Potentially swap out Phi model with other MoE from HF
   - Replaced GGML in late 2023, adding extensibility
   - Better metadata support (model architecture, tokenizer info, quantization details)
   - Single file architecture
+  - Can offload layers to GPU/NPU, if available, increasing performance
   - Multiple quantization schemes (Q4_K_M, Q5_K_S, Q6_K, etc.)
-- MLX (Apple's ML framework and format for Apple Silicon)
-  - Debuted in late 2023
-  - Supports 4 and 8 bit quantization schemes
 
-## Sidebar: Quantization Types
+## Sidebar: Quantization Schemes
 
 - What does Q4_K_M mean?
   - Number (Q4, Q5, Q6, etc.) is the average bits per weight
   - Letter suffix (K, 0, 1) is the quantization strategy
   - Size suffix (S, M, L) for variants within that method
 
-## Sidebar: Quantization Types
+## Sidebar: Quantization Schemes
 
 - Q2_K = Agressive quantization, smallest files, noticable loss
 - Q4_K_M = Best quality/size trade off; most popular
 - Q6_K = Very close to full precision, but much larger files (almost double Q4_K_M)
 - Q8_0 = Essentially lossless compared to FP16
 
-## Sidebar: Quantization Types
+## Sidebar: Quantization Schemes
 
-- K-Quant method
+- K-Quant strategy
   - A mixed quantization strategy; quantize different parts of the model at different bit depths depending on sensitivity
   - e.g., critical weights (e.g., attention layers) get higher precision; less sensitive weights get more aggressive quantization
-- 0 and 1 methods
+- 0 and 1 strategy
   - Uniform quantization across all layers (1 strategy adds a zero point)
   - Less optimal than using K strategy (and rarely used)
 
@@ -388,14 +386,61 @@ Install LM Studio, pick, and download your own model
 
 (Alterrnatively use llama.cpp or Ollama from the CLI)
 
+# Quantization in Other Frameworks
+
+## MLX (Apple's ML Framework)
+
+- ML framework created by Apple (released Dec 2023)
+- Designed specifically for Apple Silicon (M-series processors)
+- Python API similar to NumPy/PyTorch, but optimized for Metal (Apple's GPU API)
+- Can run on non-Apple hardware - CPU and CUDA PyPi packages
+
+## MLX (Apple's ML Framework)
+
+- Supports various levels of quantization (4bit and 8bit)
+- .npz or .safetensor format (with MLX metadata)
+- Better performance on Mac (compared to GGUF)
+- mlx-community on HF hosts MLX-quantized versions of popular models (separate repos)
+  - [https://huggingface.co/models?library=mlx](https://huggingface.co/models?library=mlx){.external target="_blank"}
+
+## ONNX (Open Neural Network eXchange)
+
+- Model interchange format, created by Microsoft and Facebook in 2017 to enable model portability
+- Models can be converted: PyTorch -> ONNX; TensorFlow -> ONNX; etc.
+- Common export format, used in many CNNs and RNNs
+- Popular for models running on mobile devices and in-browser (e.g., Transformers.js)
+
+## ONNX (Open Neural Network eXchange)
+
+- Supports dynamic quantization (typically int8)
+- .onnx file format (uses protobuf format) includes graph structure, weights, and metadata
+- Broad portability, but at the expense of performance
+- ONNX models tend to live in separate folders on HF
+  - [https://huggingface.co/models?library=onnx](https://huggingface.co/models?library=onnx){.external target="_blank"}
+
+# How to Quantize a Model
+
+## How to Quantize a Model
+
+- Popular models have already been quantized
+  - Many available on HF, contributed by [Unsloth AI](https://huggingface.co/unsloth){.external target="_blank"}
+- If the model isn't already quantized (or you've fine tuned your own), it's easy to do
+
+## How to Quantize a Model
+
+{{< embed notebooks/quantization.ipynb#build-llama echo=false >}}
+
+## How to Quantize a Model
+
+{{< embed notebooks/quantization.ipynb#convert echo=false >}}
+
+
+
 
 
 
 # Future topics:
 
-- ONNX
-- How to quantize a model (if the quant doesn't exist)
-- Who quantizes models (unsloth)
 - llama.cpp bindings as a major topic (unity and unreal examples)
 - WASM example using wllama and MLC
 
