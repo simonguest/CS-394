@@ -160,35 +160,147 @@ bibliography: references.bib
 - AMD: XDNA formerly Xilinx; Windows Copilot PC range competing with SnapDragon and Intel Core Ultra.
 - Apple: ANE (Apple Neural Engine) to support CoreML workloads on iPhone, iPad devices
 
-# Overcoming Compute and Memory Bottlenecks
+# Compute and Memory Challenges
 
-## Overcoming Compute and Memory Bottlenecks
+## Compute and Memory Challenges
 
-- TBD
+- Compute Challenges
+  - Local GPUs significantly slower than datacenter-class GPUs
+  - 4060 Ti (~350 TOPS) vs. H100 (~3500+ TOPS)
+  - One local GPU vs. interconnected datacenter-class GPUs (using NVLink)
+- Less TOPS = slower inference (tokens/second)
+
+## Compute and Memory Challenges
+
+- Memory Challenges
+  - Consumer-grade GPUs and NPUs have significanly less memory than datacenter-class GPUs
+  - 8Gb/16Gb VRAM on 4060 Ti vs. 80/94Gb for H100
+  - (Also memory bandwidth is typically 10x-20x)
+  - (Combined memory architecture using NVLink)
+- Less memory = only smaller models can run
+  - Rougly speaking, size of model must be smaller than available VRAM
+
+# Overcoming Compute Challenges
+
+## Overcoming Compute Challenges
+
+- MoE (Mixture of Experts)
+  - Original concept dates back to 1991. Jacobs et al. publish "Adaptive Mixture of Local Experts" showing subnetworks and a gating mechanism
+  - In 2017, Shazeer et al. (Google) publish "Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer" demonstrating activating only a small subset of experts per input
+  - 2022:  Google releases Switch Transformers (Fedus et al.), simplifying MoE by routing each token to just a single expert
+  - 2023: Mixtral 8x7B (Mistral AI) brings high-quality open-source MoE to the mainstream, becoming a standard architecture for efficient large-scale models
+
+## Popular MoE Models
+
+- Mixtral (Mistral)
+- Qwen MoE (Alibaba)
+- DeepSeek MoE
+- Phi MoE (Microsoft's SLMs)
+- Nemotron (NVIDIA)
+
+## Overcoming Compute Challenges
+
+- Why MoE?
+  - Faster Inference (token/second): Because you are only using a subset of experts for each token.
+  - Allows you to use larger models, where you would be otherwise compute-bound
+    - Dense 13B model ~= 13Gb VRAM
+    - Mixtral 8x7B ~= 47GB VRAM (8×7B experts + shared layers), but faster inference than dense 47B (only ~2 experts active per token)
+
+## How do MoE Models Work?
+
+{{< embed notebooks/moe-heatmap.ipynb#load-model echo=true outputs=false >}}
+
+## How do MoE Models Work?
+
+{{< embed notebooks/moe-heatmap.ipynb#register-hooks echo=true outputs=false >}}
+
+## How do MoE Models Work?
+
+{{< embed notebooks/moe-heatmap.ipynb#routing-0 echo=true outputs=false >}}
+
+## How do MoE Models Work?
+
+{{< embed notebooks/moe-heatmap.ipynb#routing-0 echo=false >}}
+
+## How do MoE Models Work?
+
+{{< embed notebooks/moe-heatmap.ipynb#routing-8 echo=false >}}
+
+## How do MoE Models Work?
+
+{{< embed notebooks/moe-heatmap.ipynb#routing-16 echo=false >}}
+
+## How do MoE Models Work?
+
+{{< embed notebooks/moe-heatmap.ipynb#routing-24 echo=false >}}
+
+## How do MoE Models Work?
+
+{{< embed notebooks/moe-heatmap.ipynb#routing-31 echo=false >}}
+
+## How do MoE Models Work
+
+- What the Heatmaps Show
+  - Different tokens activate different experts (token-level routing)
+  - Routing changes across layers (layer 0 vs. layer 31)
+    - Early layers: syntax/grammar
+    - Late layers: semantics/reasoning
+  - Not all experts used equally (specialization emerges)
+  - Router makes soft decisions (distributes probability across multiple experts)
+
+## How do MoEs Get Trained?
+
+- From scratch
+  - Train the entire model (experts and router)
+  - Router networks learn which expert to select
+  - Experts learn their specializations
+  - Example: Mixtral 8x7B
+- Start from a trained dense model (called upcycling)
+  - Replicate each layer into multiple experts; add router networks
+  - Typically faster and more stable vs. starting from scratch
+  - Example: Qwen1.5-MoE
+
+## How do MoEs Get Trained?
+
+- Combine multiple models (FrankenMoE / MoErge)
+  - Newer, community-driven approach
+  - Take specialized models (e.g., math, coding, chat) and use their FFN layers as separate experts; add router network
+  - Train only the router (experts frozen initially)
+  - Cheaper than training from scratch, but often lower quality
+  - Example: Beyonder-4x7B
+
+## How do MoEs Get Trained?
+
+- Key challenge: Load balancing / Expert collapse
+- Healthy MoE:
+  - Expert 0: 8% of tokens
+  - Expert 1: 7% of tokens
+  - Expert 2: 9% of tokens
+  - (all experts get reasonable usage)
+- Collapsed MoE:
+  - Expert 0: 45% of tokens
+  - Expert 1: 40% of tokens
+  - Expert 2-7: <15% combined (essentially dead) 
+
+# Hands-on
+
+Run the MoE heatmap; investigate other layers
+
+Potentially swap out Phi model with other MoE from HF
+
+## Overcoming Compute Challenges
+
+- MoE gives us speed with quality
+  - But we still can't fit it on consumer hardware
+  - Popular MoE models often exceed the amount of available VRAM
+  - We need a way to reduce the memory footprint of the model...
+
+# Overcoming Memory Challenges
+
+## Overcoming Memory Challenges
 
 
 
-## "Out of VRAM"
-
-One challenge of running models on your own hardware is VRAM
-
-- Roughly speaking, the size of the model will determine how much VRAM you need
-- Gemma 3 models
-  - gemma-3-1b-it = 2Gb
-  - gemma-3-4b-it = 8.6Gb
-  - gemma-3-12b-it = 23.37Gb
-  - Qwen3-VL-235B-A22B-Thinking = ~475Gb
-
-## "Out of VRAM"
-
-- Google Colab Tiers
-  - Colab Free T4 = 16Gb VRAM (15Gb usable)
-  - Colab Pro V100 = 16Gb VRAM
-  - Colab Pro A100 = 40Gb VRAM 
-- Your Gaming PC
-  - Probably 8Gb VRAM
-- Your Phone
-  - V-what? :)
 
 ## Quantization
 
