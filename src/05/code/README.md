@@ -1,6 +1,6 @@
 # Downloading and Building llama.cpp
 
-## To download llama.cpp
+## Download llama.cpp
 
 ```
 git clone https://github.com/ggerganov/llama.cpp.git
@@ -21,8 +21,6 @@ cmake .. \
 make -j8
 ```
 
-## Copy built libraries to Unreal demo folder
+## Build for Windows 
 
-```
-find . -name "*.a" -exec cp {} ../../LlamaDemo/Plugins/LlamaCppPlugin/Source/ThirdParty/llama.cpp/ \;
-```
+- TBD

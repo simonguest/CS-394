@@ -434,15 +434,34 @@ Install LM Studio, pick, and download your own model
 
 {{< embed notebooks/quantization.ipynb#convert echo=false >}}
 
+# Calling llama.cpp from Apps
+
+## Calling llama.cpp from Apps
+
+- Three ways to interact with a local GGUF model:
+- 1. Use llama.cpp to serve the model via a local web server
+  - Easier to get running, but the overhead of a local web server
+- 2. If your app is C++, call llama.cpp library directly
+- 3. If your app is not C++, use llama.cpp bindings
+- (2 and 3 are more challenging to get setup, but no web server and better performance)
+
+# Calling llama.cpp from Unreal Engine
+
+## Calling llama.cpp from Unreal Engine
+
+- C++, so can call llama.cpp directly
+  - Build the llama.cpp libraries for your platform
+  - Create and compile an Unreal plug-in
+  - Create a Blueprint that calls the plug-in
+  - Integrate within scene
+
+# Demo
+
+Unreal Engine Plug-in for llama.cpp
+
 # llama.cpp Bindings
 
 ## llama.cpp Bindings
-
-- Two ways to interact with a local GGUF model:
-- Use llama.cpp to serve the model via a local web server
-  - Easier to interact with, but the overhead of a local web server
-- Use llama.cpp bindings
-  - Trickier to get setup, but much more native
 
 ## What Are llama.cpp Bindings?
 
@@ -472,40 +491,6 @@ Install LM Studio, pick, and download your own model
 
 Unity Demo
 
-## Using llama.cpp in Unreal Engine
-
-Build llama.cpp locally:
-
-```
-git clone https://github.com/ggerganov/llama.cpp.git
-cd llama.cpp
-mkdir build
-cd build
-cmake .. -DBUILD_SHARED_LIBS=OFF -DCMAKE_BUILD_TYPE=Release
-cmake --build . --config Release
-```
-
-build/libllama.a (or llama.lib on Windows) - main library
-build/libggml.a (or ggml.lib) - tensor operations library
-Header files in include/ directory
-
-Create a plug-in in Unreal
-
-mkdir -p Plugins/LlamaCppPlugin/Source/ThirdParty/llama.cpp
-
-
-
-
-
-
-
-
-
-# Future topics:
-
-- llama.cpp bindings as a major topic (unity and unreal examples)
-- WASM example using wllama and MLC
-
 ## Demo: C# Client <-> Gemma 3 27B Local {.center}
 
 demos/01/lmstudio-client/LMStudioClient.csproj
@@ -518,6 +503,10 @@ demos/01/lmstudio-client/LMStudioClient.csproj
 - Use OpenAI SDK (or similar) as client
 - Unity Demo
   - https://github.com/eublefar/LLAMASharpUnityDemo
+
+# Future topics:
+
+- WASM example using wllama and MLC
 
 # Looking Ahead
 
