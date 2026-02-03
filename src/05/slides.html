@@ -2262,23 +2262,58 @@ main:    total time = 17247.52 ms</code></pre>
 </div>
 </section></section>
 <section>
+<section id="calling-llama.cpp-from-apps" class="title-slide slide level1 center">
+<h1>Calling llama.cpp from Apps</h1>
+
+</section>
+<section id="calling-llama.cpp-from-apps-1" class="slide level2">
+<h2>Calling llama.cpp from Apps</h2>
+<ul>
+<li class="fragment">Three ways to interact with a local GGUF model:</li>
+<li class="fragment"><ol type="1">
+<li class="fragment">Use llama.cpp to serve the model via a local web server</li>
+</ol>
+<ul>
+<li class="fragment">Easier to get running, but the overhead of a local web server</li>
+</ul></li>
+<li class="fragment"><ol start="2" type="1">
+<li class="fragment">If your app is C++, call llama.cpp library directly</li>
+</ol></li>
+<li class="fragment"><ol start="3" type="1">
+<li class="fragment">If your app is not C++, use llama.cpp bindings</li>
+</ol></li>
+<li class="fragment">(2 and 3 are more challenging to get setup, but no web server and better performance)</li>
+</ul>
+</section></section>
+<section>
+<section id="calling-llama.cpp-from-unreal-engine" class="title-slide slide level1 center">
+<h1>Calling llama.cpp from Unreal Engine</h1>
+
+</section>
+<section id="calling-llama.cpp-from-unreal-engine-1" class="slide level2">
+<h2>Calling llama.cpp from Unreal Engine</h2>
+<ul>
+<li class="fragment">C++, so can call llama.cpp directly
+<ul>
+<li class="fragment">Build the llama.cpp libraries for your platform</li>
+<li class="fragment">Create and compile an Unreal plug-in</li>
+<li class="fragment">Create a Blueprint that calls the plug-in</li>
+<li class="fragment">Integrate within scene</li>
+</ul></li>
+</ul>
+</section></section>
+<section id="demo-2" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p>Unreal Engine Plug-in for llama.cpp</p>
+</section>
+
+<section>
 <section id="llama.cpp-bindings" class="title-slide slide level1 center">
 <h1>llama.cpp Bindings</h1>
 
 </section>
 <section id="llama.cpp-bindings-1" class="slide level2">
 <h2>llama.cpp Bindings</h2>
-<ul>
-<li class="fragment">Two ways to interact with a local GGUF model:</li>
-<li class="fragment">Use llama.cpp to serve the model via a local web server
-<ul>
-<li class="fragment">Easier to interact with, but the overhead of a local web server</li>
-</ul></li>
-<li class="fragment">Use llama.cpp bindings
-<ul>
-<li class="fragment">Trickier to get setup, but much more native</li>
-</ul></li>
-</ul>
 </section>
 <section id="what-are-llama.cpp-bindings" class="slide level2">
 <h2>What Are llama.cpp Bindings?</h2>
@@ -2300,7 +2335,7 @@ main:    total time = 17247.52 ms</code></pre>
 </ul>
 </section></section>
 <section>
-<section id="demo-2" class="title-slide slide level1 center">
+<section id="demo-3" class="title-slide slide level1 center">
 <h1>Demo</h1>
 <ul>
 <li class="fragment">Sample Notebook</li>
@@ -2317,30 +2352,9 @@ main:    total time = 17247.52 ms</code></pre>
 <h2>Using the C# Binding in Unity</h2>
 </section></section>
 <section>
-<section id="demo-3" class="title-slide slide level1 center">
+<section id="demo-4" class="title-slide slide level1 center">
 <h1>Demo</h1>
 <p>Unity Demo</p>
-</section>
-<section id="using-llama.cpp-in-unreal-engine" class="slide level2">
-<h2>Using llama.cpp in Unreal Engine</h2>
-<p>Build llama.cpp locally:</p>
-<pre><code>git clone https://github.com/ggerganov/llama.cpp.git
-cd llama.cpp
-mkdir build
-cd build
-cmake .. -DBUILD_SHARED_LIBS=OFF -DCMAKE_BUILD_TYPE=Release
-cmake --build . --config Release</code></pre>
-<p>build/libllama.a (or llama.lib on Windows) - main library build/libggml.a (or ggml.lib) - tensor operations library Header files in include/ directory</p>
-<p>Create a plug-in in Unreal</p>
-<p>mkdir -p Plugins/LlamaCppPlugin/Source/ThirdParty/llama.cpp</p>
-</section></section>
-<section>
-<section id="future-topics" class="title-slide slide level1 center">
-<h1>Future topics:</h1>
-<ul>
-<li class="fragment">llama.cpp bindings as a major topic (unity and unreal examples)</li>
-<li class="fragment">WASM example using wllama and MLC</li>
-</ul>
 </section>
 <section id="demo-c-client---gemma-3-27b-local" class="slide level2 center">
 <h2>Demo: C# Client &lt;-&gt; Gemma 3 27B Local</h2>
@@ -2361,6 +2375,13 @@ cmake --build . --config Release</code></pre>
 </ul></li>
 </ul>
 </section></section>
+<section id="future-topics" class="title-slide slide level1 center">
+<h1>Future topics:</h1>
+<ul>
+<li class="fragment">WASM example using wllama and MLC</li>
+</ul>
+</section>
+
 <section>
 <section id="looking-ahead" class="title-slide slide level1 center">
 <h1>Looking Ahead</h1>
