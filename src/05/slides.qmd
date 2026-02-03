@@ -434,6 +434,68 @@ Install LM Studio, pick, and download your own model
 
 {{< embed notebooks/quantization.ipynb#convert echo=false >}}
 
+# llama.cpp Bindings
+
+## llama.cpp Bindings
+
+- Two ways to interact with a local GGUF model:
+- Use llama.cpp to serve the model via a local web server
+  - Easier to interact with, but the overhead of a local web server
+- Use llama.cpp bindings
+  - Trickier to get setup, but much more native
+
+## What Are llama.cpp Bindings?
+
+- Wrappers around the llama.cpp C/C++ libraries
+- Enable you to use models via the language/platform of your choice
+- What languages/platforms are supported?
+  - [https://github.com/ggml-org/llama.cpp#description](https://github.com/ggml-org/llama.cpp#description){.external target="_blank"}
+  - Click on the "Bindings" drop-down
+
+## Python Binding
+
+- llama-cpp-python
+- TBD: Overview
+
+# Demo
+
+- Sample Notebook
+
+## C# Binding
+
+- https://github.com/SciSharp/LLamaSharp
+- TBD: Overview
+
+## Using the C# Binding in Unity
+
+# Demo
+
+Unity Demo
+
+## Using llama.cpp in Unreal Engine
+
+Build llama.cpp locally:
+
+```
+git clone https://github.com/ggerganov/llama.cpp.git
+cd llama.cpp
+mkdir build
+cd build
+cmake .. -DBUILD_SHARED_LIBS=OFF -DCMAKE_BUILD_TYPE=Release
+cmake --build . --config Release
+```
+
+build/libllama.a (or llama.lib on Windows) - main library
+build/libggml.a (or ggml.lib) - tensor operations library
+Header files in include/ directory
+
+Create a plug-in in Unreal
+
+mkdir -p Plugins/LlamaCppPlugin/Source/ThirdParty/llama.cpp
+
+
+
+
 
 
 

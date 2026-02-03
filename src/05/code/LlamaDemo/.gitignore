@@ -1,0 +1,49 @@
+# Unreal Engine
+Binaries/
+Build/
+Intermediate/
+Saved/
+DerivedDataCache/
+*.sln
+*.xcworkspace
+*.xcodeproj
+
+# Visual Studio / Rider
+.vs/
+.idea/
+*.suo
+*.user
+*.sdf
+*.opensdf
+*.sln.docstates
+*.VC.db
+*.VC.opendb
+
+# Mac
+.DS_Store
+*.swp
+*.swo
+
+# Plugins - compiled binaries and intermediate files
+Plugins/*/Binaries/
+Plugins/*/Intermediate/
+Plugins/*/Build/
+
+# Third-party libraries (these are large and should be built separately)
+Plugins/LlamaCppPlugin/Source/ThirdParty/llama.cpp/*.a
+Plugins/LlamaCppPlugin/Source/ThirdParty/llama.cpp/*.lib
+Plugins/LlamaCppPlugin/Source/ThirdParty/llama.cpp/*.dylib
+Plugins/LlamaCppPlugin/Source/ThirdParty/llama.cpp/*.so
+
+# Model files (GGUF files are large - should download separately)
+Content/Models/*.gguf
+*.gguf
+
+# Keep the include headers but ignore compiled libraries
+!Plugins/LlamaCppPlugin/Source/ThirdParty/llama.cpp/include/
+
+# Starter Content (optional - this can be large)
+Content/StarterContent/
+
+# Log files
+*.log

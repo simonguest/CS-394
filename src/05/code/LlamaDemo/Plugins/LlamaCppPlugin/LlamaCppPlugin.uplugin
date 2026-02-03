@@ -1,0 +1,23 @@
+{
+    "FileVersion": 3,
+    "Version": 1,
+    "VersionName": "1.0",
+    "FriendlyName": "Llama.cpp Integration",
+    "Description": "Integration of llama.cpp for local LLM inference",
+    "Category": "AI",
+    "CreatedBy": "Simon Guest",
+    "CreatedByURL": "",
+    "DocsURL": "",
+    "MarketplaceURL": "",
+    "SupportURL": "",
+    "CanContainContent": false,
+    "IsBetaVersion": true,
+    "Installed": false,
+    "Modules": [
+        {
+            "Name": "LlamaCppPlugin",
+            "Type": "Runtime",
+            "LoadingPhase": "Default"
+        }
+    ]
+}
