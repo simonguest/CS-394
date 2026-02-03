@@ -1291,6 +1291,72 @@
     ]
   },
   {
+    "objectID": "src/05/slides.html#llama.cpp-bindings-1",
+    "href": "src/05/slides.html#llama.cpp-bindings-1",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "llama.cpp Bindings",
+    "text": "llama.cpp Bindings\n\nTwo ways to interact with a local GGUF model:\nUse llama.cpp to serve the model via a local web server\n\nEasier to interact with, but the overhead of a local web server\n\nUse llama.cpp bindings\n\nTrickier to get setup, but much more native",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#what-are-llama.cpp-bindings",
+    "href": "src/05/slides.html#what-are-llama.cpp-bindings",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "What Are llama.cpp Bindings?",
+    "text": "What Are llama.cpp Bindings?\n\nWrappers around the llama.cpp C/C++ libraries\nEnable you to use models via the language/platform of your choice\nWhat languages/platforms are supported?\n\nhttps://github.com/ggml-org/llama.cpp#description\nClick on the “Bindings” drop-down",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#python-binding",
+    "href": "src/05/slides.html#python-binding",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "Python Binding",
+    "text": "Python Binding\n\nllama-cpp-python\nTBD: Overview",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#c-binding",
+    "href": "src/05/slides.html#c-binding",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "C# Binding",
+    "text": "C# Binding\n\nhttps://github.com/SciSharp/LLamaSharp\nTBD: Overview",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#using-the-c-binding-in-unity",
+    "href": "src/05/slides.html#using-the-c-binding-in-unity",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "Using the C# Binding in Unity",
+    "text": "Using the C# Binding in Unity",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#using-llama.cpp-in-unreal-engine",
+    "href": "src/05/slides.html#using-llama.cpp-in-unreal-engine",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "Using llama.cpp in Unreal Engine",
+    "text": "Using llama.cpp in Unreal Engine\nBuild llama.cpp locally:\ngit clone https://github.com/ggerganov/llama.cpp.git\ncd llama.cpp\nmkdir build\ncd build\ncmake .. -DBUILD_SHARED_LIBS=OFF -DCMAKE_BUILD_TYPE=Release\ncmake --build . --config Release\nbuild/libllama.a (or llama.lib on Windows) - main library build/libggml.a (or ggml.lib) - tensor operations library Header files in include/ directory\nCreate a plug-in in Unreal\nmkdir -p Plugins/LlamaCppPlugin/Source/ThirdParty/llama.cpp",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "src/05/slides.html#demo-c-client---gemma-3-27b-local",
     "href": "src/05/slides.html#demo-c-client---gemma-3-27b-local",
     "title": "Module 5: Running Models on Local Hardware",
