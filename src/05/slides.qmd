@@ -474,11 +474,21 @@ Unreal Engine Plug-in for llama.cpp
 ## Python Binding
 
 - llama-cpp-python
-- TBD: Overview
+  - [https://github.com/abetlen/llama-cpp-python](https://github.com/abetlen/llama-cpp-python){.external target="_blank"}
+  - OpenAI-like API
+  - Supports chat completions, function/tool calling, structured outputs, and multimodal models.
 
-# Demo
+## Python Binding
 
-- Sample Notebook
+{{< embed notebooks/python-binding.ipynb#load-model echo=true outputs=false >}}
+
+## Python Binding
+
+{{< embed notebooks/python-binding.ipynb#chat echo=true outputs=false >}}
+
+## Python Binding
+
+{{< embed notebooks/python-binding.ipynb#chat echo=false >}}
 
 ## C# Binding
 
