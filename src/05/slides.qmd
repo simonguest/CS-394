@@ -509,16 +509,87 @@ Unreal Engine Plug-in for llama.cpp
 
 Unity/LLamaSharp Demo
 
-# Future topics:
+# Local Models in the Browser
 
-- TBD: WASM example using wllama and MLC
+## Local Models in the Browser
+
+- Small models can also run in the browser
+- Inference runs on WebAssembly (WASM)
+- CPU or WebGPU options
+- Browser limits most models to <2Gb, possibly smaller depending on VRAM
+
+## Local Models in the Browser
+
+- Wllama ([https://github.com/ngxson/wllama](https://github.com/ngxson/wllama)){.external target="_blank"}
+  - CPU only (using SIMD for better performance)
+  - JavaScript-based API
+  - Download models directly from HF
+  - Cached for future use
+
+## Local Models in the Browser
+
+```
+await wllama.loadModelFromHF(
+    'ggml-org/models',
+    'tinyllamas/stories260K.gguf',
+    {
+      progressCallback,
+    }
+  );
+const outputText = await wllama.createCompletion(prompt, {
+  nPredict: 50,
+  sampling: {
+    temp: 0.5,
+    top_k: 40,
+    top_p: 0.9,
+  },
+});
+```
+
+## Local Models in the Browser
+
+- WebLLM ([https://webllm.mlc.ai/](https://webllm.mlc.ai/)){.external target="_blank"}
+  - Uses WebGPU for better performance
+  - JavaScript-based API and playground
+  - Download models directly from HF, but need to be compiled to MLC format
+  - Popular pre-compiled models available
+
+## Local Models in the Browser
+
+```
+const appConfig: webllm.AppConfig = {
+  model_list: [
+    {
+      model: `https://huggingface.co/simonguest/Qwen3-0.6B-it-code-hint-3`,
+      overrides: {
+        temperature: 0.5,
+      },
+    },
+  ],
+};
+engine = await webllm.CreateMLCEngine("Qwen3-0.6B-it-code-hint-3", {
+  appConfig,
+  initProgressCallback,
+});
+
+const chunks = await engine.chat.completions.create({
+  messages: [
+    { role: 'system', content: SYSTEM_PROMPT},
+    { role: 'user', content: PROMPT }],
+  temperature: 0.7,
+  stream: true,
+});
+```
 
 # Looking Ahead
 
 ## Looking Ahead
 
 - [This week's assignment!](https://simonguest.github.io/CS-394/src/05/assignment.html){.external target="_blank"}
-- TBD
+- Increasing model accuracy
+- Better prompt engineering
+- RAG (Retreival Augmented Generation)
+- Introduce fine-tuning and synthetic data generation
 
 # References
 
