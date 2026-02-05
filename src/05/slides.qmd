@@ -492,31 +492,26 @@ Unreal Engine Plug-in for llama.cpp
 
 ## C# Binding
 
-- https://github.com/SciSharp/LLamaSharp
-- TBD: Overview
+- LLamaSharp
+  - [https://github.com/SciSharp/LLamaSharp](https://github.com/SciSharp/LLamaSharp){.external target="_blank"}
+- Installed via NuGet
+- Supports multiple backends (Cpu, CUDA, and Vulkan)
 
 ## Using the C# Binding in Unity
 
+- Install Unity (2022.3 LTS)
+- Install NuGet for Unity package manager
+- Using NuGet, install the LlamaSharp package and correct backend
+- (Possibly) copy the dylibs into Assets/Plugins/[platform] and load
+- Create a LlamaTest.cs script
+
 # Demo
 
-Unity Demo
-
-## Demo: C# Client <-> Gemma 3 27B Local {.center}
-
-demos/01/lmstudio-client/LMStudioClient.csproj
-
-## Hosting Models in Unity
-
-- Download the GGUF model locally to Assets/StreamingAssets folder
-- Use llama.cpp bindings for C# to host
-  - LLAMASharp: https://github.com/SciSharp/LLamaSharp
-- Use OpenAI SDK (or similar) as client
-- Unity Demo
-  - https://github.com/eublefar/LLAMASharpUnityDemo
+Unity/LLamaSharp Demo
 
 # Future topics:
 
-- WASM example using wllama and MLC
+- TBD: WASM example using wllama and MLC
 
 # Looking Ahead
 
