@@ -137,6 +137,12 @@ website:
             href: src/05/resources.qmd
           - section: "Notebooks"
             contents:
+              - text: "moe-heatmap.ipynb"
+                href: src/05/notebooks/moe-heatmap.ipynb
+              - text: "quantization.ipynb"
+                href: src/05/notebooks/quantization.ipynb
+              - text: "python-binding.ipynb"
+                href: src/05/notebooks/python-binding.ipynb
           - text: "Assignment"
             href: src/05/assignment.qmd
       - section: "**Module 6:** Increasing Model Accuracy (Part 1)"
