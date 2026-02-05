@@ -5452,11 +5452,66 @@
     ]
   },
   {
+    "objectID": "src/05/slides.html#local-models-in-the-browser-1",
+    "href": "src/05/slides.html#local-models-in-the-browser-1",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "Local Models in the Browser",
+    "text": "Local Models in the Browser\n\nSmall models can also run in the browser\nInference runs on WebAssembly (WASM)\nCPU or WebGPU options\nBrowser limits most models to &lt;2Gb, possibly smaller depending on VRAM",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#local-models-in-the-browser-2",
+    "href": "src/05/slides.html#local-models-in-the-browser-2",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "Local Models in the Browser",
+    "text": "Local Models in the Browser\n\nWllama (https://github.com/ngxson/wllama){.external target=“_blank”}\n\nCPU only (using SIMD for better performance)\nJavaScript-based API\nDownload models directly from HF\nCached for future use",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#local-models-in-the-browser-3",
+    "href": "src/05/slides.html#local-models-in-the-browser-3",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "Local Models in the Browser",
+    "text": "Local Models in the Browser\nawait wllama.loadModelFromHF(\n    'ggml-org/models',\n    'tinyllamas/stories260K.gguf',\n    {\n      progressCallback,\n    }\n  );\nconst outputText = await wllama.createCompletion(prompt, {\n  nPredict: 50,\n  sampling: {\n    temp: 0.5,\n    top_k: 40,\n    top_p: 0.9,\n  },\n});",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#local-models-in-the-browser-4",
+    "href": "src/05/slides.html#local-models-in-the-browser-4",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "Local Models in the Browser",
+    "text": "Local Models in the Browser\n\nWebLLM (https://webllm.mlc.ai/){.external target=“_blank”}\n\nUses WebGPU for better performance\nJavaScript-based API and playground\nDownload models directly from HF, but need to be compiled to MLC format\nPopular pre-compiled models available",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#local-models-in-the-browser-5",
+    "href": "src/05/slides.html#local-models-in-the-browser-5",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "Local Models in the Browser",
+    "text": "Local Models in the Browser\nconst appConfig: webllm.AppConfig = {\n  model_list: [\n    {\n      model: `https://huggingface.co/simonguest/Qwen3-0.6B-it-code-hint-3`,\n      overrides: {\n        temperature: 0.5,\n      },\n    },\n  ],\n};\nengine = await webllm.CreateMLCEngine(\"Qwen3-0.6B-it-code-hint-3\", {\n  appConfig,\n  initProgressCallback,\n});\n\nconst chunks = await engine.chat.completions.create({\n  messages: [\n    { role: 'system', content: SYSTEM_PROMPT},\n    { role: 'user', content: PROMPT }],\n  temperature: 0.7,\n  stream: true,\n});",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "src/05/slides.html#looking-ahead-1",
     "href": "src/05/slides.html#looking-ahead-1",
     "title": "Module 5: Running Models on Local Hardware",
     "section": "Looking Ahead",
-    "text": "Looking Ahead\n\nThis week’s assignment!\nTBD",
+    "text": "Looking Ahead\n\nThis week’s assignment!\nIncreasing model accuracy\nBetter prompt engineering\nRAG (Retreival Augmented Generation)\nIntroduce fine-tuning and synthetic data generation",
     "crumbs": [
       "**Module 5:** Running Models on Local Hardware",
       "Slides"

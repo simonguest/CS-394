@@ -2410,13 +2410,87 @@ main:    total time = 17247.52 ms</code></pre>
 <p>Unity/LLamaSharp Demo</p>
 </section>
 
-<section id="future-topics" class="title-slide slide level1 center">
-<h1>Future topics:</h1>
+<section>
+<section id="local-models-in-the-browser" class="title-slide slide level1 center">
+<h1>Local Models in the Browser</h1>
+
+</section>
+<section id="local-models-in-the-browser-1" class="slide level2">
+<h2>Local Models in the Browser</h2>
 <ul>
-<li class="fragment">TBD: WASM example using wllama and MLC</li>
+<li class="fragment">Small models can also run in the browser</li>
+<li class="fragment">Inference runs on WebAssembly (WASM)</li>
+<li class="fragment">CPU or WebGPU options</li>
+<li class="fragment">Browser limits most models to &lt;2Gb, possibly smaller depending on VRAM</li>
 </ul>
 </section>
+<section id="local-models-in-the-browser-2" class="slide level2">
+<h2>Local Models in the Browser</h2>
+<ul>
+<li class="fragment">Wllama (<a href="https://github.com/ngxson/wllama">https://github.com/ngxson/wllama</a>){.external target=“_blank”}
+<ul>
+<li class="fragment">CPU only (using SIMD for better performance)</li>
+<li class="fragment">JavaScript-based API</li>
+<li class="fragment">Download models directly from HF</li>
+<li class="fragment">Cached for future use</li>
+</ul></li>
+</ul>
+</section>
+<section id="local-models-in-the-browser-3" class="slide level2">
+<h2>Local Models in the Browser</h2>
+<pre><code>await wllama.loadModelFromHF(
+    'ggml-org/models',
+    'tinyllamas/stories260K.gguf',
+    {
+      progressCallback,
+    }
+  );
+const outputText = await wllama.createCompletion(prompt, {
+  nPredict: 50,
+  sampling: {
+    temp: 0.5,
+    top_k: 40,
+    top_p: 0.9,
+  },
+});</code></pre>
+</section>
+<section id="local-models-in-the-browser-4" class="slide level2">
+<h2>Local Models in the Browser</h2>
+<ul>
+<li class="fragment">WebLLM (<a href="https://webllm.mlc.ai/">https://webllm.mlc.ai/</a>){.external target=“_blank”}
+<ul>
+<li class="fragment">Uses WebGPU for better performance</li>
+<li class="fragment">JavaScript-based API and playground</li>
+<li class="fragment">Download models directly from HF, but need to be compiled to MLC format</li>
+<li class="fragment">Popular pre-compiled models available</li>
+</ul></li>
+</ul>
+</section>
+<section id="local-models-in-the-browser-5" class="slide level2">
+<h2>Local Models in the Browser</h2>
+<pre><code>const appConfig: webllm.AppConfig = {
+  model_list: [
+    {
+      model: `https://huggingface.co/simonguest/Qwen3-0.6B-it-code-hint-3`,
+      overrides: {
+        temperature: 0.5,
+      },
+    },
+  ],
+};
+engine = await webllm.CreateMLCEngine("Qwen3-0.6B-it-code-hint-3", {
+  appConfig,
+  initProgressCallback,
+});
 
+const chunks = await engine.chat.completions.create({
+  messages: [
+    { role: 'system', content: SYSTEM_PROMPT},
+    { role: 'user', content: PROMPT }],
+  temperature: 0.7,
+  stream: true,
+});</code></pre>
+</section></section>
 <section>
 <section id="looking-ahead" class="title-slide slide level1 center">
 <h1>Looking Ahead</h1>
@@ -2426,7 +2500,10 @@ main:    total time = 17247.52 ms</code></pre>
 <h2>Looking Ahead</h2>
 <ul>
 <li class="fragment"><a href="https://simonguest.github.io/CS-394/src/05/assignment.html" class="external" target="_blank">This week’s assignment!</a></li>
-<li class="fragment">TBD</li>
+<li class="fragment">Increasing model accuracy</li>
+<li class="fragment">Better prompt engineering</li>
+<li class="fragment">RAG (Retreival Augmented Generation)</li>
+<li class="fragment">Introduce fine-tuning and synthetic data generation</li>
 </ul>
 </section></section>
 <section>
