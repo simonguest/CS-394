@@ -5434,7 +5434,7 @@
     "href": "src/05/slides.html#c-binding",
     "title": "Module 5: Running Models on Local Hardware",
     "section": "C# Binding",
-    "text": "C# Binding\n\nhttps://github.com/SciSharp/LLamaSharp\nTBD: Overview",
+    "text": "C# Binding\n\nLLamaSharp\n\nhttps://github.com/SciSharp/LLamaSharp\n\nInstalled via NuGet\nSupports multiple backends (Cpu, CUDA, and Vulkan)",
     "crumbs": [
       "**Module 5:** Running Models on Local Hardware",
       "Slides"
@@ -5445,29 +5445,7 @@
     "href": "src/05/slides.html#using-the-c-binding-in-unity",
     "title": "Module 5: Running Models on Local Hardware",
     "section": "Using the C# Binding in Unity",
-    "text": "Using the C# Binding in Unity",
-    "crumbs": [
-      "**Module 5:** Running Models on Local Hardware",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/05/slides.html#demo-c-client---gemma-3-27b-local",
-    "href": "src/05/slides.html#demo-c-client---gemma-3-27b-local",
-    "title": "Module 5: Running Models on Local Hardware",
-    "section": "Demo: C# Client <-> Gemma 3 27B Local",
-    "text": "Demo: C# Client &lt;-&gt; Gemma 3 27B Local\ndemos/01/lmstudio-client/LMStudioClient.csproj",
-    "crumbs": [
-      "**Module 5:** Running Models on Local Hardware",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/05/slides.html#hosting-models-in-unity",
-    "href": "src/05/slides.html#hosting-models-in-unity",
-    "title": "Module 5: Running Models on Local Hardware",
-    "section": "Hosting Models in Unity",
-    "text": "Hosting Models in Unity\n\nDownload the GGUF model locally to Assets/StreamingAssets folder\nUse llama.cpp bindings for C# to host\n\nLLAMASharp: https://github.com/SciSharp/LLamaSharp\n\nUse OpenAI SDK (or similar) as client\nUnity Demo\n\nhttps://github.com/eublefar/LLAMASharpUnityDemo",
+    "text": "Using the C# Binding in Unity\n\nInstall Unity (2022.3 LTS)\nInstall NuGet for Unity package manager\nUsing NuGet, install the LlamaSharp package and correct backend\n(Possibly) copy the dylibs into Assets/Plugins/[platform] and load\nCreate a LlamaTest.cs script",
     "crumbs": [
       "**Module 5:** Running Models on Local Hardware",
       "Slides"

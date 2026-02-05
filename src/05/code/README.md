@@ -1,6 +1,6 @@
 # Downloading and Building llama.cpp
 
-## Download llama.cpp
+## Clone llama.cpp
 
 ```
 git clone https://github.com/ggerganov/llama.cpp.git
@@ -8,7 +8,7 @@ mkdir build
 cd build
 ```
 
-## Build for Mac/Metal
+## Build static libraries (required for Unreal Plugin)
 
 ```
 cmake .. \                                                                                                                                
@@ -21,6 +21,9 @@ cmake .. \
 make -j8
 ```
 
-## Build for Windows 
+## Build dynamic libraries (required for custom Unity backend)
 
-- TBD
+```
+cmake .. -DBUILD_SHARED_LIBS=ON
+cmake --build . --config Release -j 8
+```

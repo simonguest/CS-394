@@ -2387,41 +2387,33 @@ main:    total time = 17247.52 ms</code></pre>
 <section id="c-binding" class="slide level2">
 <h2>C# Binding</h2>
 <ul>
-<li class="fragment">https://github.com/SciSharp/LLamaSharp</li>
-<li class="fragment">TBD: Overview</li>
+<li class="fragment">LLamaSharp
+<ul>
+<li class="fragment"><a href="https://github.com/SciSharp/LLamaSharp" class="external" target="_blank">https://github.com/SciSharp/LLamaSharp</a></li>
+</ul></li>
+<li class="fragment">Installed via NuGet</li>
+<li class="fragment">Supports multiple backends (Cpu, CUDA, and Vulkan)</li>
 </ul>
 </section>
 <section id="using-the-c-binding-in-unity" class="slide level2">
 <h2>Using the C# Binding in Unity</h2>
-</section></section>
-<section>
-<section id="demo-3" class="title-slide slide level1 center">
-<h1>Demo</h1>
-<p>Unity Demo</p>
-</section>
-<section id="demo-c-client---gemma-3-27b-local" class="slide level2 center">
-<h2>Demo: C# Client &lt;-&gt; Gemma 3 27B Local</h2>
-<p>demos/01/lmstudio-client/LMStudioClient.csproj</p>
-</section>
-<section id="hosting-models-in-unity" class="slide level2">
-<h2>Hosting Models in Unity</h2>
 <ul>
-<li class="fragment">Download the GGUF model locally to Assets/StreamingAssets folder</li>
-<li class="fragment">Use llama.cpp bindings for C# to host
-<ul>
-<li class="fragment">LLAMASharp: https://github.com/SciSharp/LLamaSharp</li>
-</ul></li>
-<li class="fragment">Use OpenAI SDK (or similar) as client</li>
-<li class="fragment">Unity Demo
-<ul>
-<li class="fragment">https://github.com/eublefar/LLAMASharpUnityDemo</li>
-</ul></li>
+<li class="fragment">Install Unity (2022.3 LTS)</li>
+<li class="fragment">Install NuGet for Unity package manager</li>
+<li class="fragment">Using NuGet, install the LlamaSharp package and correct backend</li>
+<li class="fragment">(Possibly) copy the dylibs into Assets/Plugins/[platform] and load</li>
+<li class="fragment">Create a LlamaTest.cs script</li>
 </ul>
 </section></section>
+<section id="demo-3" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p>Unity/LLamaSharp Demo</p>
+</section>
+
 <section id="future-topics" class="title-slide slide level1 center">
 <h1>Future topics:</h1>
 <ul>
-<li class="fragment">WASM example using wllama and MLC</li>
+<li class="fragment">TBD: WASM example using wllama and MLC</li>
 </ul>
 </section>
 
