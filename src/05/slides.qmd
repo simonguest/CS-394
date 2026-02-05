@@ -185,9 +185,9 @@ bibliography: references.bib
 ## Overcoming Compute Challenges
 
 - MoE (Mixture of Experts)
-  - Original concept dates back to 1991. Jacobs et al. publish "Adaptive Mixture of Local Experts" showing subnetworks and a gating mechanism
-  - In 2017, Shazeer et al. (Google) publish "Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer" demonstrating activating only a small subset of experts per input
-  - 2022:  Google releases Switch Transformers (Fedus et al.), simplifying MoE by routing each token to just a single expert
+  - Original concept dates back to 1991. Jacobs et al. publish "Adaptive Mixture of Local Experts" [@jacobs1991adaptive] showing subnetworks and a gating mechanism
+  - In 2017, Shazeer et al. (Google) publish "Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer" [@shazeer2017outrageously] demonstrating activating only a small subset of experts per input
+  - 2022:  Google releases Switch Transformers [@fedus2022switch], simplifying MoE by routing each token to just a single expert
   - 2023: Mixtral 8x7B (Mistral AI) brings high-quality open-source MoE to the mainstream, becoming a standard architecture for efficient large-scale models
 
 ## Popular MoE Models
@@ -309,8 +309,8 @@ Potentially swap out Phi model with other MoE from HF
 
 ## Quantization Formats
 
-- GPTQ (GPT Quantization): 
-  - Introduced in the paper "GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers"
+- GPTQ (GPT Quantization):
+  - Introduced in the paper "GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers" [@frantar2023gptq]
   - First widely adopted method (in 2022) for agressive (4-bit) quantization
   - CUDA only; distributed via HF Transformers
 - GGML (Georgi Gerganov Machine Learning):
