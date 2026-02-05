@@ -93,7 +93,27 @@
     code span.va { color: #e36209; } /* Variable */
     code span.vs { color: #032f62; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-eeafb82a00776dbd0312b01cd21cfa25.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -453,9 +473,9 @@
 <ul>
 <li class="fragment">MoE (Mixture of Experts)
 <ul>
-<li class="fragment">Original concept dates back to 1991. Jacobs et al.&nbsp;publish “Adaptive Mixture of Local Experts” showing subnetworks and a gating mechanism</li>
-<li class="fragment">In 2017, Shazeer et al.&nbsp;(Google) publish “Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer” demonstrating activating only a small subset of experts per input</li>
-<li class="fragment">2022: Google releases Switch Transformers (Fedus et al.), simplifying MoE by routing each token to just a single expert</li>
+<li class="fragment">Original concept dates back to 1991. Jacobs et al.&nbsp;publish “Adaptive Mixture of Local Experts” <span class="citation" data-cites="jacobs1991adaptive">(<a href="#/references-1" role="doc-biblioref" onclick="">Jacobs et al. 1991</a>)</span> showing subnetworks and a gating mechanism</li>
+<li class="fragment">In 2017, Shazeer et al.&nbsp;(Google) publish “Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer” <span class="citation" data-cites="shazeer2017outrageously">(<a href="#/references-1" role="doc-biblioref" onclick="">Shazeer et al. 2017</a>)</span> demonstrating activating only a small subset of experts per input</li>
+<li class="fragment">2022: Google releases Switch Transformers <span class="citation" data-cites="fedus2022switch">(<a href="#/references-1" role="doc-biblioref" onclick="">Fedus, Zoph, and Shazeer 2022</a>)</span>, simplifying MoE by routing each token to just a single expert</li>
 <li class="fragment">2023: Mixtral 8x7B (Mistral AI) brings high-quality open-source MoE to the mainstream, becoming a standard architecture for efficient large-scale models</li>
 </ul></li>
 </ul>
@@ -776,7 +796,7 @@
 <ul>
 <li class="fragment">GPTQ (GPT Quantization):
 <ul>
-<li class="fragment">Introduced in the paper “GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers”</li>
+<li class="fragment">Introduced in the paper “GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers” <span class="citation" data-cites="frantar2023gptq">(<a href="#/references-1" role="doc-biblioref" onclick="">Frantar et al. 2023</a>)</span></li>
 <li class="fragment">First widely adopted method (in 2022) for agressive (4-bit) quantization</li>
 <li class="fragment">CUDA only; distributed via HF Transformers</li>
 </ul></li>
@@ -2511,10 +2531,24 @@ const chunks = await engine.chat.completions.create({
 <h1>References</h1>
 
 </section>
-<section id="references-1" class="slide level2">
+<section id="references-1" class="slide level2 smaller scrollable">
 <h2>References</h2>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-fedus2022switch" class="csl-entry" role="listitem">
+Fedus, William, Barret Zoph, and Noam Shazeer. 2022. <span>“Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity.”</span> <em>Journal of Machine Learning Research</em> 23 (120): 1–40.
+</div>
+<div id="ref-frantar2023gptq" class="csl-entry" role="listitem">
+Frantar, Elias, Saleh Ashkboos, Torsten Hoefler, and Dan Alistarh. 2023. <span>“<span>GPTQ</span>: Accurate Post-Training Quantization for Generative Pre-Trained Transformers.”</span> In <em>International Conference on Learning Representations</em>. <a href="https://arxiv.org/abs/2210.17323">https://arxiv.org/abs/2210.17323</a>.
+</div>
+<div id="ref-jacobs1991adaptive" class="csl-entry" role="listitem">
+Jacobs, Robert A., Michael I. Jordan, Steven J. Nowlan, and Geoffrey E. Hinton. 1991. <span>“Adaptive Mixtures of Local Experts.”</span> <em>Neural Computation</em> 3 (1): 79–87.
+</div>
+<div id="ref-shazeer2017outrageously" class="csl-entry" role="listitem">
+Shazeer, Noam, Azalia Mirhoseini, Krzysztof Maziarz, Andy Davis, Quoc V. Le, Geoffrey E. Hinton, and Jeff Dean. 2017. <span>“Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer.”</span> In <em>International Conference on Learning Representations</em>. <a href="https://arxiv.org/abs/1701.06538">https://arxiv.org/abs/1701.06538</a>.
+</div>
+</div>
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
