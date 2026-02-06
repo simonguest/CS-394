@@ -1,7 +1,86 @@
 ---
-title: "Module 5 Assignment"
+title: "Module 5 Assignment: Local Model Integration"
+format: html
+execute:
+  enabled: false
+---
+**Objective:** Get a quantized GGUF model running locally on the platform you plan to use (or think you will use!) for your final project.
+
+**Choose Your Platform:** Pick ONE of the four options below based on the platform you're most likely to use for your final project.
+
 ---
 
-## Assignment
+## Option 1: Python
 
-TBD
+Use the llama-cpp-python binding to load and interact with a GGUF model.
+
+**Requirements:**
+
+- Install llama-cpp-python and load a GGUF model
+- Create a simple interactive chat loop or Gradio interface
+- Use a system prompt that gives the model a specific persona or task (e.g., a coding tutor, a story narrator, a recipe assistant)
+- Demonstrate at least 3 multi-turn conversations that show the model maintaining context
+
+**Deliverable:** A Colab/Jupyter notebook with your implementation, working output, and markdown cells with your observations.
+
+---
+
+## Option 2: Unity
+
+Use the LLamaSharp C# binding to run a GGUF model inside a Unity project.
+
+**Requirements:**
+
+- Create a new Unity project (2022.3 LTS recommended)
+- Install LLamaSharp via NuGet for Unity and configure the correct backend for your hardware
+- Load a GGUF model and run inference from a Unity script
+- Display the model's output somewhere in the scene (e.g., a UI Text element, or a speech bubble above a character)
+- Demonstrate the model responding to at least one user input (this can be a text field, a button press with a hardcoded prompt, or a trigger event)
+
+**Deliverable:** A GitHub repository containing your Unity project with a README that includes setup instructions and a screenshot showing the model running in the scene.
+
+---
+
+## Option 3: Unreal Engine
+
+Use llama.cpp directly (C++) or via a local server to run a GGUF model inside an Unreal Engine project.
+
+**Requirements:**
+
+- Create a new Unreal Engine project
+- Build the llama.cpp libraries and create a plugin that calls them (as demonstrated in the sample code: src/05/code/unreal)
+- Display the model's output in the scene (e.g., on a UI widget or in-game text)
+- Demonstrate the model responding to at least one user input or game event
+
+**Deliverable:** A GitHub repository containing your Unreal project with a README that includes a screenshot showing the model running in the scene.
+
+---
+
+## Option 4: Web Browser
+
+Use Wllama (CPU/WASM) or WebLLM (WebGPU) to run a GGUF model directly in the browser.
+
+**Requirements:**
+
+- Create a web page that loads and runs a GGUF model client-side (no server-side inference)
+- Display a loading/progress indicator while the model downloads
+- Build a simple chat or prompt interface where the user can type input and see the model's response
+- Stream the model's output token-by-token (not all at once)
+- Test in at least two browsers and note any differences in performance or compatibility
+
+**Deliverable:** A GitHub repository containing your web project with a README that includes which library you chose (Wllama or WebLLM) and a screenshot showing the app running in the browser.
+
+---
+
+## Model Recommendations
+
+Choosing the right model size is important. Models that are too large will not load or will run extremely slowly. I would recommend starting with Qwen 3 0.6B (quantized to Q4_K_M) and finding larger, more capable models once you have something working.
+
+You can browse available GGUF models on [Hugging Face](https://huggingface.co/models?library=gguf){.external target="_blank"}.
+
+## Hints
+
+- **Option 1**: The `python-binding.ipynb` notebook from class is a great starting point. If you're on Colab, make sure to select a T4 GPU runtime.
+- **Option 2**: The trickiest part is getting the native libraries loaded correctly. Look at the example project in src/code/05/unity and check the [LLamaSharp documentation](https://github.com/SciSharp/LLamaSharp){.external target="_blank"} for platform-specific setup.
+- **Option 3**: Again, the trickiest part is getting the native libraries built and the plugin compiled. Look at the example project in src/code/05/unity - and the README.md in that folder.
+- **Option 4**: Wllama is easier to set up (no WebGPU required), but WebLLM offers better performance if your browser supports it. Check [caniuse.com/webgpu](https://caniuse.com/webgpu){.external target="_blank"} for browser support.
