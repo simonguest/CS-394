@@ -18,9 +18,9 @@ bibliography: references.bib
 
 ## Recap
 
-- Understood the fundamentals and history of diffuser models
+- Understood the fundamentals and history of diffusion models
 - Explored and used models that demonstrate text-to-image, image-to-image, inpainting, outpainting, and ControlNet
-- Setup and used Replicate to create a custom pipeline of production-grade models
+- Set up and used Replicate to create a custom pipeline of production-grade models
 - Understood the fundamentals and history of Vision Encoders and VLMs
 - Implemented/tested a local VLM model for on-device inference
 
@@ -77,7 +77,7 @@ bibliography: references.bib
   - Launched in 2006 to introduce programming on GPUs (GPGPUs or General Purpose GPUs)
   - A C-like programming interface
   - Perfectly timed for the deep learning revolution of the 2010s
-  - Additional libraries (e.g., cuBLAS, cuDNN) make CUDA the defacto standard today
+  - Additional libraries (e.g., cuBLAS, cuDNN) make CUDA the de facto standard today
 
 ## How CUDA Works
 
@@ -87,24 +87,24 @@ bibliography: references.bib
 
 ## NVIDIA CUDA - Hardware Support
 
-- **Consumer**: RTX 40- and 50- cards with various VRAM options (8Gb - 24Gb) for local inference and small fine-tuning tasks. RTX 30- series still popular for education.
+- **Consumer**: RTX 40- and 50- cards with various VRAM options (8GB - 24GB) for local inference and small fine-tuning tasks. RTX 30- series still popular for education.
 - **Laptop**: RTX 40- and 50- series also available on laptops (although less performant than discrete cards)
-- **Workstation**: DGX Spark launch in 2025, with GB10 and 128Gb of unified memory for medium fine-tuning tasks
+- **Workstation**: DGX Spark launch in 2025, with GB10 and 128GB of unified memory for medium fine-tuning tasks
 - **Datacenter GPUs**: A/H series and GB-series for datacenters. NVLink for multi-GPU interconnectivity.
 
 ## Sidebar: TOPS
 
-- TOPS (Terra Operations Per Second)
+- TOPS (Tera Operations Per Second)
   - How many trillion operations a processor can perform per second
   - Often qualified with the data type
   - 64 INT8 TOPS == 64 trillion 8-bit operations per second
-- TFLOPS (Terra Floating-Point Operations Per Second)
+- TFLOPS (Tera Floating-Point Operations Per Second)
   - 1 TFLOPS == 1 FP32 (32-bit floating point) TOPS
 
 ## Sidebar: TOPS
 
 - Rough throughput calculations
-  - You have an NVIDIA 3090 (advertized at 35 TFLOPS)
+  - You have an NVIDIA 3090 (advertised at 35 TFLOPS)
   - Assume a 7B param model with FP32 weights
   - Each token generation requires ~2 FLOPs per parameter
   - Each token generation ~= 14B FLOPs (7B params × 2)
@@ -120,9 +120,9 @@ bibliography: references.bib
 
 ## AMD ROCm - Hardware Support
 
-- **Consumer**: RX7000 series offer sustantial VRAM (up to 24Gb) at competitive prices compared to NVIDIA RTX
+- **Consumer**: RX7000 series offer substantial VRAM (up to 24GB) at competitive prices compared to NVIDIA RTX
 - **Laptop**: Some laptop options for AMD-based machines
-- **Workstation**: Strix Halo, competitor to DGX Spark, with RX8060S and 128Gb unified memory
+- **Workstation**: Strix Halo, competitor to DGX Spark, with RX8060S and 128GB unified memory
 - **Software support**: Linux only with no Windows support (some via WSL)
 
 ## Apple Silicon
@@ -135,8 +135,8 @@ bibliography: references.bib
 ## Apple Silicon - Hardware Support
 
 - Available on all M-series hardware
-- Unified memory by default, upto 128Gb on laptops and 512Gb for the Mac Studio with M3 Ultra
-- Non portable models. (MLX uses safetensors/npz format and MLX-specific code for Metal.)
+- Unified memory by default, up to 128GB on laptops and 512GB for the Mac Studio with M4 Ultra
+- Non-portable models. (MLX uses safetensors/npz format and MLX-specific code for Metal.)
 
 ## Sidebar: Unified Memory
 
@@ -144,18 +144,18 @@ bibliography: references.bib
 - Unified memory is a process to share memory between CPU and GPU
   - For Apple/MLX, it's a true SoC (System on a Chip); NVIDIA DGX Spark, two physical components connected via NVLink-C2C
 - Higher memory availability, but lower memory bandwidth
-  - ~275Gb/s for Spark/MLX; ~1TB/s for 5080; ~1.7TB/s for 5090; ~3TBs for H100
+  - ~275GB/s for Spark/MLX; ~1TB/s for 5080; ~1.7TB/s for 5090; ~3TB/s for H100
 
 ## NPUs
 
 - NPUs (Neural Processing Units) are specialized AI accelerators, designed for lower power consumption
 - Optimized specifically for NN operations (e.g., matmul, convolutions, activations)
 - Commonly found in edge devices (smartphones, IoT, embedded systems)
-- 15-80 TOPS common for NPUs (~10x less that desktop PCI-based GPUs)
+- 15-80 TOPS common for NPUs (~10x less than desktop PCI-based GPUs)
 
 ## NPU Vendors
 
-- **Intel**: Acquired Movidius in 2016; released Myriad X in 2017 and a neural compute stick. Superceded by NPUs in Core Ultra processors.
+- **Intel**: Acquired Movidius in 2016; released Myriad X in 2017 and a neural compute stick. Superseded by NPUs in Core Ultra processors.
 - **Qualcomm**: Snapdragon 865 range in 2019; now Snapdragon X and 8 ranges. Used in Windows/ARM devices. Popular with Android, although Google recently moved to their own TPUs.
 - **AMD**: XDNA formerly Xilinx; Windows Copilot PC range competing with SnapDragon and Intel Core Ultra.
 - **Apple**: ANE (Apple Neural Engine) to support CoreML workloads on iPhone, iPad devices
@@ -173,12 +173,12 @@ bibliography: references.bib
 ## Compute and Memory Challenges
 
 - Memory Challenges
-  - Consumer-grade GPUs and NPUs have significanly less memory than datacenter-class GPUs
-  - 8Gb/16Gb VRAM on 4060 Ti vs. 80/94Gb for H100
+  - Consumer-grade GPUs and NPUs have significantly less memory than datacenter-class GPUs
+  - 8GB/16GB VRAM on 4060 Ti vs. 80/94GB for H100
   - (Also memory bandwidth is typically 10x-20x)
   - (Combined memory architecture using NVLink)
 - Less memory = only smaller models can run
-  - Rougly speaking, size of model must be smaller than available VRAM
+  - Roughly speaking, size of model must be smaller than available VRAM
 
 # Overcoming Compute Challenges
 
@@ -225,7 +225,7 @@ bibliography: references.bib
   - Faster Inference (token/second): 
     - Because you are only using a subset of experts for each token.
   - Allows you to use larger models, where you would be otherwise compute-bound
-    - Dense 13B model ~= 13Gb VRAM
+    - Dense 13B model ~= 13GB VRAM
     - Mixtral 8x7B ~= 47GB VRAM (8×7B experts + shared layers), but faster inference than dense 47B (only ~2 experts active per token)
 
 ## How do MoE Models Work?
@@ -260,7 +260,7 @@ bibliography: references.bib
 
 {{< embed notebooks/moe-heatmap.ipynb#routing-31 echo=false >}}
 
-## How do MoE Models Work
+## How do MoE Models Work?
 
 - What the Heatmaps show
   - Different tokens activate different experts (token-level routing)
@@ -329,14 +329,14 @@ Potentially swap out Phi model with other MoE from HF
 - Less precision significantly reduces memory needs
 - For accuracy, parameter count matters more than precision
   - A 70B parameter model at 4-bit often beats a 13B model at bf16
-  - The models knowledge remains largely intact
+  - The model's knowledge remains largely intact
   - Often the extra precision doesn't meaningfully improve outputs
 
 ## Quantization Formats
 
 - GPTQ (GPT Quantization):
   - Introduced in the paper "GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers" [@frantar2023gptq]
-  - First widely adopted method for agressive (4-bit) quantization
+  - First widely adopted method for aggressive (4-bit) quantization
   - CUDA only; distributed via HF Transformers
 
 ## Quantization Formats
@@ -364,7 +364,7 @@ Potentially swap out Phi model with other MoE from HF
 
 ## Sidebar: Quantization Schemes
 
-- Q2_K = Agressive quantization, smallest files, noticable loss
+- Q2_K = Aggressive quantization, smallest files, noticeable loss
 - Q4_K_M = Best quality/size trade off; most popular
 - Q6_K = Very close to full precision, but much larger files (almost double Q4_K_M)
 - Q8_0 = Essentially lossless compared to FP16
@@ -412,7 +412,7 @@ Browsing, downloading, and running a quantized model on LM Studio
 
 Install LM Studio, pick, and download your own model
 
-(Alterrnatively use llama.cpp or Ollama from the CLI)
+(Alternatively use llama.cpp or Ollama from the CLI)
 
 # Quantization in Other Frameworks
 
@@ -452,7 +452,7 @@ Install LM Studio, pick, and download your own model
 
 - Popular models have already been quantized
   - Many available on HF, contributed by [Unsloth AI](https://huggingface.co/unsloth){.external target="_blank"}
-- If the model isn't already quantized (or you've fine tuned your own), it's easy to do
+- If the model isn't already quantized (or you've fine-tuned your own), it's easy to do
 
 ## How to Quantize a Model
 
@@ -546,7 +546,7 @@ Unity/LLamaSharp Demo
 - Small models can also run in the browser
 - Inference runs on WebAssembly (WASM)
 - CPU or WebGPU options
-- Browser limits most models to <2Gb, possibly smaller depending on VRAM
+- Browser limits most models to <2GB, possibly smaller depending on VRAM
 
 ## Local Models in the Browser
 
@@ -618,7 +618,7 @@ const chunks = await engine.chat.completions.create({
 - [This week's assignment!](https://simonguest.github.io/CS-394/src/05/assignment.html){.external target="_blank"}
 - Increasing model accuracy
 - Better prompt engineering
-- RAG (Retreival Augmented Generation)
+- RAG (Retrieval Augmented Generation)
 - Introduce fine-tuning and synthetic data generation
 
 # References
