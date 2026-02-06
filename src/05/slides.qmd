@@ -81,16 +81,16 @@ bibliography: references.bib
 
 ## How CUDA Works
 
-- Massive parallelism: CUDA exploits thousands of GPU cores simultaneously, making it ideal for matrix operations.
-- Memory hierarchy: A tiered memory system with global, shared, and registers.
-- Kernel execution: Programs can launch kernels - same function that can operate on different data.
+- **Massive parallelism**: CUDA exploits thousands of GPU cores simultaneously, making it ideal for matrix operations.
+- **Memory hierarchy**: A tiered memory system with global, shared, and registers.
+- **Kernel execution**: Programs can launch kernels - same function that can operate on different data.
 
 ## NVIDIA CUDA - Hardware Support
 
-- Consumer: RTX 40- and 50- cards with various VRAM options (8Gb - 24Gb) for local inference and small fine-tuning tasks. RTX 30- series still popular for education.
-- Laptop: RTX 40- and 50- series also available on laptops (although less performant than discrete cards)
-- Workstation: DGX Spark launch in 2025, with GB10 and 128Gb of unified memory for medium fine-tuning tasks
-- Datacenter GPUs: A/H series and GB-series for datacenters. NVLink for multi-GPU interconnectivity.
+- **Consumer**: RTX 40- and 50- cards with various VRAM options (8Gb - 24Gb) for local inference and small fine-tuning tasks. RTX 30- series still popular for education.
+- **Laptop**: RTX 40- and 50- series also available on laptops (although less performant than discrete cards)
+- **Workstation**: DGX Spark launch in 2025, with GB10 and 128Gb of unified memory for medium fine-tuning tasks
+- **Datacenter GPUs**: A/H series and GB-series for datacenters. NVLink for multi-GPU interconnectivity.
 
 ## Sidebar: TOPS
 
@@ -103,7 +103,7 @@ bibliography: references.bib
 
 ## Sidebar: TOPS
 
-- Rough Throughput Calculations
+- Rough throughput calculations
   - You have an NVIDIA 3090 (advertized at 35 TFLOPS)
   - Assume a 7B param model with FP32 weights
   - Each token generation requires ~2 FLOPs per parameter
@@ -120,10 +120,10 @@ bibliography: references.bib
 
 ## AMD ROCm - Hardware Support
 
-- Consumer: RX7000 series offer sustantial VRAM (up to 24Gb) at competitive prices compared to NVIDIA RTX
-- Laptop: Some laptop options for AMD-based machines
-- Workstation: Strix Halo, competitor to DGX Spark, with RX8060S and 128Gb unified memory
-- Software support: Linux only with no Windows support (some via WSL)
+- **Consumer**: RX7000 series offer sustantial VRAM (up to 24Gb) at competitive prices compared to NVIDIA RTX
+- **Laptop**: Some laptop options for AMD-based machines
+- **Workstation**: Strix Halo, competitor to DGX Spark, with RX8060S and 128Gb unified memory
+- **Software support**: Linux only with no Windows support (some via WSL)
 
 ## Apple Silicon
 
@@ -155,10 +155,10 @@ bibliography: references.bib
 
 ## NPU Vendors
 
-- Intel: Acquired Movidius in 2016; released Myriad X in 2017 and a neural compute stick. Superceded by NPUs in Core Ultra processors.
-- Qualcomm: Snapdragon 865 range in 2019; now Snapdragon X and 8 ranges. Used in Windows/ARM devices. Popular with Android, although Google recently moved to their own TPUs.
-- AMD: XDNA formerly Xilinx; Windows Copilot PC range competing with SnapDragon and Intel Core Ultra.
-- Apple: ANE (Apple Neural Engine) to support CoreML workloads on iPhone, iPad devices
+- **Intel**: Acquired Movidius in 2016; released Myriad X in 2017 and a neural compute stick. Superceded by NPUs in Core Ultra processors.
+- **Qualcomm**: Snapdragon 865 range in 2019; now Snapdragon X and 8 ranges. Used in Windows/ARM devices. Popular with Android, although Google recently moved to their own TPUs.
+- **AMD**: XDNA formerly Xilinx; Windows Copilot PC range competing with SnapDragon and Intel Core Ultra.
+- **Apple**: ANE (Apple Neural Engine) to support CoreML workloads on iPhone, iPad devices
 
 # Compute and Memory Challenges
 
@@ -187,21 +187,43 @@ bibliography: references.bib
 - MoE (Mixture of Experts)
   - Original concept dates back to 1991. Jacobs et al. publish "Adaptive Mixture of Local Experts" [@jacobs1991adaptive] showing subnetworks and a gating mechanism
   - In 2017, Shazeer et al. (Google) publish "Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer" [@shazeer2017outrageously] demonstrating activating only a small subset of experts per input
-  - 2022:  Google releases Switch Transformers [@fedus2022switch], simplifying MoE by routing each token to just a single expert
-  - 2023: Mixtral 8x7B (Mistral AI) brings high-quality open-source MoE to the mainstream, becoming a standard architecture for efficient large-scale models
-
-## Popular MoE Models
-
-- Mixtral (Mistral)
-- Qwen MoE (Alibaba)
-- DeepSeek MoE
-- Phi MoE (Microsoft's SLMs)
-- Nemotron (NVIDIA)
 
 ## Overcoming Compute Challenges
 
-- Why MoE?
-  - Faster Inference (token/second): Because you are only using a subset of experts for each token.
+- MoE (Mixture of Experts)
+  - 2022:  Google releases Switch Transformers [@fedus2022switch], simplifying MoE by routing each token to just a single expert
+  - 2023: Mixtral 8x7B (Mistral AI) brings high-quality open-source MoE to the mainstream, becoming a standard architecture for efficient large-scale models
+
+## How MoE Works
+
+- Model Architecture
+  - Multiple layers contain multiple experts
+  - Initial routing layer (also called gating layer) is trained to route tokens to the expert best suited to decode
+  - The experts are "activated" for each token
+  - Hence, 30B model with 3B active
+  - Each token can activate a different number of experts, with attention to previous tokens playing a part
+
+## How MoE Works
+
+- Different use cases
+  - Code question routed to experts trained on code
+  - Translation question routed to experts trained on language
+  - Math question routed to experts trained on logic
+
+## How MoE Works
+
+- Popular MoE Models
+  - Mixtral (Mistral)
+  - Qwen MoE (Alibaba)
+  - DeepSeek MoE
+  - Phi MoE (Microsoft's SLMs)
+  - Nemotron (NVIDIA)
+
+## How MoE Works
+
+- Why do this?
+  - Faster Inference (token/second): 
+    - Because you are only using a subset of experts for each token.
   - Allows you to use larger models, where you would be otherwise compute-bound
     - Dense 13B model ~= 13Gb VRAM
     - Mixtral 8x7B ~= 47GB VRAM (8×7B experts + shared layers), but faster inference than dense 47B (only ~2 experts active per token)
@@ -240,7 +262,7 @@ bibliography: references.bib
 
 ## How do MoE Models Work
 
-- What the Heatmaps Show
+- What the Heatmaps show
   - Different tokens activate different experts (token-level routing)
   - Routing changes across layers (layer 0 vs. layer 31)
     - Early layers: syntax/grammar
@@ -277,6 +299,9 @@ bibliography: references.bib
   - Expert 1: 7% of tokens
   - Expert 2: 9% of tokens
   - (all experts get reasonable usage)
+
+## How do MoEs Get Trained?
+
 - Collapsed MoE:
   - Expert 0: 45% of tokens
   - Expert 1: 40% of tokens
@@ -311,8 +336,11 @@ Potentially swap out Phi model with other MoE from HF
 
 - GPTQ (GPT Quantization):
   - Introduced in the paper "GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers" [@frantar2023gptq]
-  - First widely adopted method (in 2022) for agressive (4-bit) quantization
+  - First widely adopted method for agressive (4-bit) quantization
   - CUDA only; distributed via HF Transformers
+
+## Quantization Formats
+
 - GGML (Georgi Gerganov Machine Learning):
   - A C/C++ library ("llama.cpp" released in Mar 2023) designed for CPU inference of models
   - Optimized for CPUs (using SIMD) with a custom binary format
@@ -428,21 +456,25 @@ Install LM Studio, pick, and download your own model
 
 ## How to Quantize a Model
 
-{{< embed notebooks/quantization.ipynb#build-llama echo=false >}}
+{{< embed notebooks/quantization.ipynb#build-llama echo=true outputs=false >}}
+
+## How to Quantize a Model
+
+{{< embed notebooks/quantization.ipynb#convert echo=true outputs=false >}}
 
 ## How to Quantize a Model
 
 {{< embed notebooks/quantization.ipynb#convert echo=false >}}
 
-# Calling llama.cpp from Apps
+# Calling llama.cpp from Your App
 
-## Calling llama.cpp from Apps
+## Calling llama.cpp from Your App
 
 - Three ways to interact with a local GGUF model:
-- 1. Use llama.cpp to serve the model via a local web server
-  - Easier to get running, but the overhead of a local web server
-- 2. If your app is C++, call llama.cpp library directly
-- 3. If your app is not C++, use llama.cpp bindings
+  - Use llama.cpp to serve the model via a local web server
+    - Easier to get running, but the overhead of a local web server
+  - If your app is C++, call llama.cpp library directly
+  - If your app is not C++, use llama.cpp bindings
 - (2 and 3 are more challenging to get setup, but no web server and better performance)
 
 # Calling llama.cpp from Unreal Engine
@@ -460,8 +492,6 @@ Install LM Studio, pick, and download your own model
 Unreal Engine Plug-in for llama.cpp
 
 # llama.cpp Bindings
-
-## llama.cpp Bindings
 
 ## What Are llama.cpp Bindings?
 
@@ -503,7 +533,7 @@ Unreal Engine Plug-in for llama.cpp
 - Install NuGet for Unity package manager
 - Using NuGet, install the LlamaSharp package and correct backend
 - (Possibly) copy the dylibs into Assets/Plugins/[platform] and load
-- Create a LlamaTest.cs script
+- Call model from any script
 
 # Demo
 
@@ -520,7 +550,7 @@ Unity/LLamaSharp Demo
 
 ## Local Models in the Browser
 
-- Wllama ([https://github.com/ngxson/wllama](https://github.com/ngxson/wllama)){.external target="_blank"}
+- Wllama ([https://github.com/ngxson/wllama](https://github.com/ngxson/wllama){.external target="_blank"})
   - CPU only (using SIMD for better performance)
   - JavaScript-based API
   - Download models directly from HF
@@ -528,7 +558,7 @@ Unity/LLamaSharp Demo
 
 ## Local Models in the Browser
 
-```
+```javascript
 await wllama.loadModelFromHF(
     'ggml-org/models',
     'tinyllamas/stories260K.gguf',
@@ -548,19 +578,19 @@ const outputText = await wllama.createCompletion(prompt, {
 
 ## Local Models in the Browser
 
-- WebLLM ([https://webllm.mlc.ai/](https://webllm.mlc.ai/)){.external target="_blank"}
+- WebLLM ([https://webllm.mlc.ai/](https://webllm.mlc.ai/){.external target="_blank"})
   - Uses WebGPU for better performance
   - JavaScript-based API and playground
   - Download models directly from HF, but need to be compiled to MLC format
-  - Popular pre-compiled models available
+  - Popular pre-compiled models available - or compile your own
 
 ## Local Models in the Browser
 
-```
+```javascript
 const appConfig: webllm.AppConfig = {
   model_list: [
     {
-      model: `https://huggingface.co/simonguest/Qwen3-0.6B-it-code-hint-3`,
+      model: `https://huggingface.co/simonguest/Qwen3-0.6B-it-code-hint-3-MLC`,
       overrides: {
         temperature: 0.5,
       },
