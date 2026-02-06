@@ -221,9 +221,9 @@
 <section id="recap" class="slide level2">
 <h2>Recap</h2>
 <ul>
-<li class="fragment">Understood the fundamentals and history of diffuser models</li>
+<li class="fragment">Understood the fundamentals and history of diffusion models</li>
 <li class="fragment">Explored and used models that demonstrate text-to-image, image-to-image, inpainting, outpainting, and ControlNet</li>
-<li class="fragment">Setup and used Replicate to create a custom pipeline of production-grade models</li>
+<li class="fragment">Set up and used Replicate to create a custom pipeline of production-grade models</li>
 <li class="fragment">Understood the fundamentals and history of Vision Encoders and VLMs</li>
 <li class="fragment">Implemented/tested a local VLM model for on-device inference</li>
 </ul>
@@ -309,37 +309,37 @@
 <li class="fragment">Launched in 2006 to introduce programming on GPUs (GPGPUs or General Purpose GPUs)</li>
 <li class="fragment">A C-like programming interface</li>
 <li class="fragment">Perfectly timed for the deep learning revolution of the 2010s</li>
-<li class="fragment">Additional libraries (e.g., cuBLAS, cuDNN) make CUDA the defacto standard today</li>
+<li class="fragment">Additional libraries (e.g., cuBLAS, cuDNN) make CUDA the de facto standard today</li>
 </ul></li>
 </ul>
 </section>
 <section id="how-cuda-works" class="slide level2">
 <h2>How CUDA Works</h2>
 <ul>
-<li class="fragment">Massive parallelism: CUDA exploits thousands of GPU cores simultaneously, making it ideal for matrix operations.</li>
-<li class="fragment">Memory hierarchy: A tiered memory system with global, shared, and registers.</li>
-<li class="fragment">Kernel execution: Programs can launch kernels - same function that can operate on different data.</li>
+<li class="fragment"><strong>Massive parallelism</strong>: CUDA exploits thousands of GPU cores simultaneously, making it ideal for matrix operations.</li>
+<li class="fragment"><strong>Memory hierarchy</strong>: A tiered memory system with global, shared, and registers.</li>
+<li class="fragment"><strong>Kernel execution</strong>: Programs can launch kernels - same function that can operate on different data.</li>
 </ul>
 </section>
 <section id="nvidia-cuda---hardware-support" class="slide level2">
 <h2>NVIDIA CUDA - Hardware Support</h2>
 <ul>
-<li class="fragment">Consumer: RTX 40- and 50- cards with various VRAM options (8Gb - 24Gb) for local inference and small fine-tuning tasks. RTX 30- series still popular for education.</li>
-<li class="fragment">Laptop: RTX 40- and 50- series also available on laptops (although less performant than discrete cards)</li>
-<li class="fragment">Workstation: DGX Spark launch in 2025, with GB10 and 128Gb of unified memory for medium fine-tuning tasks</li>
-<li class="fragment">Datacenter GPUs: A/H series and GB-series for datacenters. NVLink for multi-GPU interconnectivity.</li>
+<li class="fragment"><strong>Consumer</strong>: RTX 40- and 50- cards with various VRAM options (8GB - 24GB) for local inference and small fine-tuning tasks. RTX 30- series still popular for education.</li>
+<li class="fragment"><strong>Laptop</strong>: RTX 40- and 50- series also available on laptops (although less performant than discrete cards)</li>
+<li class="fragment"><strong>Workstation</strong>: DGX Spark launch in 2025, with GB10 and 128GB of unified memory for medium fine-tuning tasks</li>
+<li class="fragment"><strong>Datacenter GPUs</strong>: A/H series and GB-series for datacenters. NVLink for multi-GPU interconnectivity.</li>
 </ul>
 </section>
 <section id="sidebar-tops" class="slide level2">
 <h2>Sidebar: TOPS</h2>
 <ul>
-<li class="fragment">TOPS (Terra Operations Per Second)
+<li class="fragment">TOPS (Tera Operations Per Second)
 <ul>
 <li class="fragment">How many trillion operations a processor can perform per second</li>
 <li class="fragment">Often qualified with the data type</li>
 <li class="fragment">64 INT8 TOPS == 64 trillion 8-bit operations per second</li>
 </ul></li>
-<li class="fragment">TFLOPS (Terra Floating-Point Operations Per Second)
+<li class="fragment">TFLOPS (Tera Floating-Point Operations Per Second)
 <ul>
 <li class="fragment">1 TFLOPS == 1 FP32 (32-bit floating point) TOPS</li>
 </ul></li>
@@ -348,9 +348,9 @@
 <section id="sidebar-tops-1" class="slide level2">
 <h2>Sidebar: TOPS</h2>
 <ul>
-<li class="fragment">Rough Throughput Calculations
+<li class="fragment">Rough throughput calculations
 <ul>
-<li class="fragment">You have an NVIDIA 3090 (advertized at 35 TFLOPS)</li>
+<li class="fragment">You have an NVIDIA 3090 (advertised at 35 TFLOPS)</li>
 <li class="fragment">Assume a 7B param model with FP32 weights</li>
 <li class="fragment">Each token generation requires ~2 FLOPs per parameter</li>
 <li class="fragment">Each token generation ~= 14B FLOPs (7B params × 2)</li>
@@ -373,10 +373,10 @@
 <section id="amd-rocm---hardware-support" class="slide level2">
 <h2>AMD ROCm - Hardware Support</h2>
 <ul>
-<li class="fragment">Consumer: RX7000 series offer sustantial VRAM (up to 24Gb) at competitive prices compared to NVIDIA RTX</li>
-<li class="fragment">Laptop: Some laptop options for AMD-based machines</li>
-<li class="fragment">Workstation: Strix Halo, competitor to DGX Spark, with RX8060S and 128Gb unified memory</li>
-<li class="fragment">Software support: Linux only with no Windows support (some via WSL)</li>
+<li class="fragment"><strong>Consumer</strong>: RX7000 series offer substantial VRAM (up to 24GB) at competitive prices compared to NVIDIA RTX</li>
+<li class="fragment"><strong>Laptop</strong>: Some laptop options for AMD-based machines</li>
+<li class="fragment"><strong>Workstation</strong>: Strix Halo, competitor to DGX Spark, with RX8060S and 128GB unified memory</li>
+<li class="fragment"><strong>Software support</strong>: Linux only with no Windows support (some via WSL)</li>
 </ul>
 </section>
 <section id="apple-silicon" class="slide level2">
@@ -394,8 +394,8 @@
 <h2>Apple Silicon - Hardware Support</h2>
 <ul>
 <li class="fragment">Available on all M-series hardware</li>
-<li class="fragment">Unified memory by default, upto 128Gb on laptops and 512Gb for the Mac Studio with M3 Ultra</li>
-<li class="fragment">Non portable models. (MLX uses safetensors/npz format and MLX-specific code for Metal.)</li>
+<li class="fragment">Unified memory by default, up to 128GB on laptops and 512GB for the Mac Studio with M4 Ultra</li>
+<li class="fragment">Non-portable models. (MLX uses safetensors/npz format and MLX-specific code for Metal.)</li>
 </ul>
 </section>
 <section id="sidebar-unified-memory" class="slide level2">
@@ -408,7 +408,7 @@
 </ul></li>
 <li class="fragment">Higher memory availability, but lower memory bandwidth
 <ul>
-<li class="fragment">~275Gb/s for Spark/MLX; ~1TB/s for 5080; ~1.7TB/s for 5090; ~3TBs for H100</li>
+<li class="fragment">~275GB/s for Spark/MLX; ~1TB/s for 5080; ~1.7TB/s for 5090; ~3TB/s for H100</li>
 </ul></li>
 </ul>
 </section>
@@ -418,16 +418,16 @@
 <li class="fragment">NPUs (Neural Processing Units) are specialized AI accelerators, designed for lower power consumption</li>
 <li class="fragment">Optimized specifically for NN operations (e.g., matmul, convolutions, activations)</li>
 <li class="fragment">Commonly found in edge devices (smartphones, IoT, embedded systems)</li>
-<li class="fragment">15-80 TOPS common for NPUs (~10x less that desktop PCI-based GPUs)</li>
+<li class="fragment">15-80 TOPS common for NPUs (~10x less than desktop PCI-based GPUs)</li>
 </ul>
 </section>
 <section id="npu-vendors" class="slide level2">
 <h2>NPU Vendors</h2>
 <ul>
-<li class="fragment">Intel: Acquired Movidius in 2016; released Myriad X in 2017 and a neural compute stick. Superceded by NPUs in Core Ultra processors.</li>
-<li class="fragment">Qualcomm: Snapdragon 865 range in 2019; now Snapdragon X and 8 ranges. Used in Windows/ARM devices. Popular with Android, although Google recently moved to their own TPUs.</li>
-<li class="fragment">AMD: XDNA formerly Xilinx; Windows Copilot PC range competing with SnapDragon and Intel Core Ultra.</li>
-<li class="fragment">Apple: ANE (Apple Neural Engine) to support CoreML workloads on iPhone, iPad devices</li>
+<li class="fragment"><strong>Intel</strong>: Acquired Movidius in 2016; released Myriad X in 2017 and a neural compute stick. Superseded by NPUs in Core Ultra processors.</li>
+<li class="fragment"><strong>Qualcomm</strong>: Snapdragon 865 range in 2019; now Snapdragon X and 8 ranges. Used in Windows/ARM devices. Popular with Android, although Google recently moved to their own TPUs.</li>
+<li class="fragment"><strong>AMD</strong>: XDNA formerly Xilinx; Windows Copilot PC range competing with SnapDragon and Intel Core Ultra.</li>
+<li class="fragment"><strong>Apple</strong>: ANE (Apple Neural Engine) to support CoreML workloads on iPhone, iPad devices</li>
 </ul>
 </section></section>
 <section>
@@ -452,14 +452,14 @@
 <ul>
 <li class="fragment">Memory Challenges
 <ul>
-<li class="fragment">Consumer-grade GPUs and NPUs have significanly less memory than datacenter-class GPUs</li>
-<li class="fragment">8Gb/16Gb VRAM on 4060 Ti vs.&nbsp;80/94Gb for H100</li>
+<li class="fragment">Consumer-grade GPUs and NPUs have significantly less memory than datacenter-class GPUs</li>
+<li class="fragment">8GB/16GB VRAM on 4060 Ti vs.&nbsp;80/94GB for H100</li>
 <li class="fragment">(Also memory bandwidth is typically 10x-20x)</li>
 <li class="fragment">(Combined memory architecture using NVLink)</li>
 </ul></li>
 <li class="fragment">Less memory = only smaller models can run
 <ul>
-<li class="fragment">Rougly speaking, size of model must be smaller than available VRAM</li>
+<li class="fragment">Roughly speaking, size of model must be smaller than available VRAM</li>
 </ul></li>
 </ul>
 </section></section>
@@ -475,30 +475,68 @@
 <ul>
 <li class="fragment">Original concept dates back to 1991. Jacobs et al.&nbsp;publish “Adaptive Mixture of Local Experts” <span class="citation" data-cites="jacobs1991adaptive">(<a href="#/references-1" role="doc-biblioref" onclick="">Jacobs et al. 1991</a>)</span> showing subnetworks and a gating mechanism</li>
 <li class="fragment">In 2017, Shazeer et al.&nbsp;(Google) publish “Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer” <span class="citation" data-cites="shazeer2017outrageously">(<a href="#/references-1" role="doc-biblioref" onclick="">Shazeer et al. 2017</a>)</span> demonstrating activating only a small subset of experts per input</li>
+</ul></li>
+</ul>
+</section>
+<section id="overcoming-compute-challenges-2" class="slide level2">
+<h2>Overcoming Compute Challenges</h2>
+<ul>
+<li class="fragment">MoE (Mixture of Experts)
+<ul>
 <li class="fragment">2022: Google releases Switch Transformers <span class="citation" data-cites="fedus2022switch">(<a href="#/references-1" role="doc-biblioref" onclick="">Fedus, Zoph, and Shazeer 2022</a>)</span>, simplifying MoE by routing each token to just a single expert</li>
 <li class="fragment">2023: Mixtral 8x7B (Mistral AI) brings high-quality open-source MoE to the mainstream, becoming a standard architecture for efficient large-scale models</li>
 </ul></li>
 </ul>
 </section>
-<section id="popular-moe-models" class="slide level2">
-<h2>Popular MoE Models</h2>
+<section id="how-moe-works" class="slide level2">
+<h2>How MoE Works</h2>
+<ul>
+<li class="fragment">Model Architecture
+<ul>
+<li class="fragment">Multiple layers contain multiple experts</li>
+<li class="fragment">Initial routing layer (also called gating layer) is trained to route tokens to the expert best suited to decode</li>
+<li class="fragment">The experts are “activated” for each token</li>
+<li class="fragment">Hence, 30B model with 3B active</li>
+<li class="fragment">Each token can activate a different number of experts, with attention to previous tokens playing a part</li>
+</ul></li>
+</ul>
+</section>
+<section id="how-moe-works-1" class="slide level2">
+<h2>How MoE Works</h2>
+<ul>
+<li class="fragment">Different use cases
+<ul>
+<li class="fragment">Code question routed to experts trained on code</li>
+<li class="fragment">Translation question routed to experts trained on language</li>
+<li class="fragment">Math question routed to experts trained on logic</li>
+</ul></li>
+</ul>
+</section>
+<section id="how-moe-works-2" class="slide level2">
+<h2>How MoE Works</h2>
+<ul>
+<li class="fragment">Popular MoE Models
 <ul>
 <li class="fragment">Mixtral (Mistral)</li>
 <li class="fragment">Qwen MoE (Alibaba)</li>
 <li class="fragment">DeepSeek MoE</li>
 <li class="fragment">Phi MoE (Microsoft’s SLMs)</li>
 <li class="fragment">Nemotron (NVIDIA)</li>
+</ul></li>
 </ul>
 </section>
-<section id="overcoming-compute-challenges-2" class="slide level2">
-<h2>Overcoming Compute Challenges</h2>
+<section id="how-moe-works-3" class="slide level2">
+<h2>How MoE Works</h2>
 <ul>
-<li class="fragment">Why MoE?
+<li class="fragment">Why do this?
 <ul>
-<li class="fragment">Faster Inference (token/second): Because you are only using a subset of experts for each token.</li>
+<li class="fragment">Faster Inference (token/second):
+<ul>
+<li class="fragment">Because you are only using a subset of experts for each token.</li>
+</ul></li>
 <li class="fragment">Allows you to use larger models, where you would be otherwise compute-bound
 <ul>
-<li class="fragment">Dense 13B model ~= 13Gb VRAM</li>
+<li class="fragment">Dense 13B model ~= 13GB VRAM</li>
 <li class="fragment">Mixtral 8x7B ~= 47GB VRAM (8×7B experts + shared layers), but faster inference than dense 47B (only ~2 experts active per token)</li>
 </ul></li>
 </ul></li>
@@ -688,9 +726,9 @@
 </div>
 </section>
 <section id="how-do-moe-models-work-8" class="slide level2">
-<h2>How do MoE Models Work</h2>
+<h2>How do MoE Models Work?</h2>
 <ul>
-<li class="fragment">What the Heatmaps Show
+<li class="fragment">What the Heatmaps show
 <ul>
 <li class="fragment">Different tokens activate different experts (token-level routing)</li>
 <li class="fragment">Routing changes across layers (layer 0 vs.&nbsp;layer 31)
@@ -745,6 +783,11 @@
 <li class="fragment">Expert 2: 9% of tokens</li>
 <li class="fragment">(all experts get reasonable usage)</li>
 </ul></li>
+</ul>
+</section>
+<section id="how-do-moes-get-trained-3" class="slide level2">
+<h2>How do MoEs Get Trained?</h2>
+<ul>
 <li class="fragment">Collapsed MoE:
 <ul>
 <li class="fragment">Expert 0: 45% of tokens</li>
@@ -786,7 +829,7 @@
 <li class="fragment">For accuracy, parameter count matters more than precision
 <ul>
 <li class="fragment">A 70B parameter model at 4-bit often beats a 13B model at bf16</li>
-<li class="fragment">The models knowledge remains largely intact</li>
+<li class="fragment">The model’s knowledge remains largely intact</li>
 <li class="fragment">Often the extra precision doesn’t meaningfully improve outputs</li>
 </ul></li>
 </ul>
@@ -797,9 +840,14 @@
 <li class="fragment">GPTQ (GPT Quantization):
 <ul>
 <li class="fragment">Introduced in the paper “GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers” <span class="citation" data-cites="frantar2023gptq">(<a href="#/references-1" role="doc-biblioref" onclick="">Frantar et al. 2023</a>)</span></li>
-<li class="fragment">First widely adopted method (in 2022) for agressive (4-bit) quantization</li>
+<li class="fragment">First widely adopted method for aggressive (4-bit) quantization</li>
 <li class="fragment">CUDA only; distributed via HF Transformers</li>
 </ul></li>
+</ul>
+</section>
+<section id="quantization-formats-1" class="slide level2">
+<h2>Quantization Formats</h2>
+<ul>
 <li class="fragment">GGML (Georgi Gerganov Machine Learning):
 <ul>
 <li class="fragment">A C/C++ library (“llama.cpp” released in Mar 2023) designed for CPU inference of models</li>
@@ -808,7 +856,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="quantization-formats-1" class="slide level2">
+<section id="quantization-formats-2" class="slide level2">
 <h2>Quantization Formats</h2>
 <ul>
 <li class="fragment">GGUF (GPT-Generated Unified Format):
@@ -835,7 +883,7 @@
 <section id="sidebar-quantization-schemes-1" class="slide level2">
 <h2>Sidebar: Quantization Schemes</h2>
 <ul>
-<li class="fragment">Q2_K = Agressive quantization, smallest files, noticable loss</li>
+<li class="fragment">Q2_K = Aggressive quantization, smallest files, noticeable loss</li>
 <li class="fragment">Q4_K_M = Best quality/size trade off; most popular</li>
 <li class="fragment">Q6_K = Very close to full precision, but much larger files (almost double Q4_K_M)</li>
 <li class="fragment">Q8_0 = Essentially lossless compared to FP16</li>
@@ -897,7 +945,7 @@
 <section id="hands-on-1" class="title-slide slide level1 center">
 <h1>Hands-on</h1>
 <p>Install LM Studio, pick, and download your own model</p>
-<p>(Alterrnatively use llama.cpp or Ollama from the CLI)</p>
+<p>(Alternatively use llama.cpp or Ollama from the CLI)</p>
 </section>
 
 <section>
@@ -959,517 +1007,57 @@
 <ul>
 <li class="fragment">Many available on HF, contributed by <a href="https://huggingface.co/unsloth" class="external" target="_blank">Unsloth AI</a></li>
 </ul></li>
-<li class="fragment">If the model isn’t already quantized (or you’ve fine tuned your own), it’s easy to do</li>
+<li class="fragment">If the model isn’t already quantized (or you’ve fine-tuned your own), it’s easy to do</li>
 </ul>
 </section>
 <section id="how-to-quantize-a-model-2" class="slide level2">
 <h2>How to Quantize a Model</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/05/notebooks/quantization.ipynb" data-notebook-title="Quantization of Hugging Face model using llama.cpp" data-notebook-cellid="build-llama">
 <div id="build-llama" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="14eb357d-4ef0-49c3-bf2f-bfbb4a3371a6" data-execution_count="1">
-<div class="cell-output cell-output-stdout">
-<div class="ansi-escaped-output">
-<pre>Cloning into 'llama.cpp'...
-
-remote: Enumerating objects: 77965, done.
-
-remote: Counting objects: 100% (228/228), done.
-
-remote: Compressing objects: 100% (156/156), done.
-
-remote: Total 77965 (delta 141), reused 76 (delta 72), pack-reused 77737 (from 4)
-
-Receiving objects: 100% (77965/77965), 286.82 MiB | 15.73 MiB/s, done.
-
-Resolving deltas: 100% (56335/56335), done.
-
--- The C compiler identification is GNU 11.4.0
-
--- The CXX compiler identification is GNU 11.4.0
-
--- Detecting C compiler ABI info
-
--- Detecting C compiler ABI info - done
-
--- Check for working C compiler: /usr/bin/cc - skipped
-
--- Detecting C compile features
-
--- Detecting C compile features - done
-
--- Detecting CXX compiler ABI info
-
--- Detecting CXX compiler ABI info - done
-
--- Check for working CXX compiler: /usr/bin/c++ - skipped
-
--- Detecting CXX compile features
-
--- Detecting CXX compile features - done
-
-CMAKE_BUILD_TYPE=Release
-
--- Found Git: /usr/bin/git (found version "2.34.1")
-
--- The ASM compiler identification is GNU
-
--- Found assembler: /usr/bin/cc
-
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD
-
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
-
--- Found Threads: TRUE
-
--- Warning: ccache not found - consider installing it for faster compilation or disable this warning with GGML_CCACHE=OFF
-
--- CMAKE_SYSTEM_PROCESSOR: x86_64
-
--- GGML_SYSTEM_ARCH: x86
-
--- Including CPU backend
-
--- Found OpenMP_C: -fopenmp (found version "4.5")
-
--- Found OpenMP_CXX: -fopenmp (found version "4.5")
-
--- Found OpenMP: TRUE (found version "4.5")
-
--- x86 detected
-
--- Adding CPU backend variant ggml-cpu: -march=native 
-
--- ggml version: 0.9.5
-
--- ggml commit:  0dfcd3b60
-
--- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")
-
--- Performing Test OPENSSL_VERSION_SUPPORTED
-
--- Performing Test OPENSSL_VERSION_SUPPORTED - Success
-
--- OpenSSL found: 3.0.2
-
--- Generating embedded license file for target: common
-
--- Configuring done (1.6s)
-
--- Generating done (0.3s)
-
--- Build files have been written to: /content/tmp/llama.cpp/build
-
-[  0%] <span class="ansi-green-fg">Building CXX object vendor/cpp-httplib/CMakeFiles/cpp-httplib.dir/httplib.cpp.o</span>
-
-[  0%] <span class="ansi-green-fg ansi-bold">Linking CXX static library libcpp-httplib.a</span>
-
-[  0%] Built target cpp-httplib
-
-[  0%] <span class="ansi-green-fg">Building C object ggml/src/CMakeFiles/ggml-base.dir/ggml.c.o</span>
-
-[  2%] <span class="ansi-green-fg">Building CXX object ggml/src/CMakeFiles/ggml-base.dir/ggml.cpp.o</span>
-
-[  2%] <span class="ansi-green-fg">Building C object ggml/src/CMakeFiles/ggml-base.dir/ggml-alloc.c.o</span>
-
-[  2%] <span class="ansi-green-fg">Building CXX object ggml/src/CMakeFiles/ggml-base.dir/ggml-backend.cpp.o</span>
-
-[  2%] <span class="ansi-green-fg">Building CXX object ggml/src/CMakeFiles/ggml-base.dir/ggml-opt.cpp.o</span>
-
-[  2%] <span class="ansi-green-fg">Building CXX object ggml/src/CMakeFiles/ggml-base.dir/ggml-threading.cpp.o</span>
-
-[  4%] <span class="ansi-green-fg">Building C object ggml/src/CMakeFiles/ggml-base.dir/ggml-quants.c.o</span>
-
-[  4%] <span class="ansi-green-fg">Building CXX object ggml/src/CMakeFiles/ggml-base.dir/gguf.cpp.o</span>
-
-[  4%] <span class="ansi-green-fg ansi-bold">Linking CXX shared library ../../bin/libggml-base.so</span>
-
-[  4%] Built target ggml-base
-
-[  4%] <span class="ansi-green-fg">Building C object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/ggml-cpu.c.o</span>
-
-[  6%] <span class="ansi-green-fg">Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/ggml-cpu.cpp.o</span>
-
-[  6%] <span class="ansi-green-fg">Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/repack.cpp.o</span>
-
-[  6%] <span class="ansi-green-fg">Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/hbm.cpp.o</span>
-
-[  6%] <span class="ansi-green-fg">Building C object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/quants.c.o</span>
-
-[  8%] <span class="ansi-green-fg">Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/traits.cpp.o</span>
-
-[  8%] <span class="ansi-green-fg">Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/amx/amx.cpp.o</span>
-
-[  8%] <span class="ansi-green-fg">Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/amx/mmq.cpp.o</span>
-
-[  8%] <span class="ansi-green-fg">Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/binary-ops.cpp.o</span>
-
-[ 11%] <span class="ansi-green-fg">Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/unary-ops.cpp.o</span>
-
-[ 11%] <span class="ansi-green-fg">Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/vec.cpp.o</span>
-
-[ 11%] <span class="ansi-green-fg">Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/ops.cpp.o</span>
-
-[ 11%] <span class="ansi-green-fg">Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/llamafile/sgemm.cpp.o</span>
-
-[ 13%] <span class="ansi-green-fg">Building C object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/arch/x86/quants.c.o</span>
-
-[ 13%] <span class="ansi-green-fg">Building CXX object ggml/src/CMakeFiles/ggml-cpu.dir/ggml-cpu/arch/x86/repack.cpp.o</span>
-
-[ 13%] <span class="ansi-green-fg ansi-bold">Linking CXX shared library ../../bin/libggml-cpu.so</span>
-
-[ 13%] Built target ggml-cpu
-
-[ 15%] <span class="ansi-green-fg">Building CXX object ggml/src/CMakeFiles/ggml.dir/ggml-backend-dl.cpp.o</span>
-
-[ 15%] <span class="ansi-green-fg">Building CXX object ggml/src/CMakeFiles/ggml.dir/ggml-backend-reg.cpp.o</span>
-
-[ 15%] <span class="ansi-green-fg ansi-bold">Linking CXX shared library ../../bin/libggml.so</span>
-
-[ 15%] Built target ggml
-
-[ 15%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/llama.cpp.o</span>
-
-[ 15%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/llama-adapter.cpp.o</span>
-
-[ 17%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/llama-arch.cpp.o</span>
-
-[ 17%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/llama-batch.cpp.o</span>
-
-[ 17%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/llama-chat.cpp.o</span>
-
-[ 17%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/llama-context.cpp.o</span>
-
-[ 20%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/llama-cparams.cpp.o</span>
-
-[ 20%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/llama-grammar.cpp.o</span>
-
-[ 20%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/llama-graph.cpp.o</span>
-
-[ 20%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/llama-hparams.cpp.o</span>
-
-[ 22%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/llama-impl.cpp.o</span>
-
-[ 22%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/llama-io.cpp.o</span>
-
-[ 22%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/llama-kv-cache.cpp.o</span>
-
-[ 22%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/llama-kv-cache-iswa.cpp.o</span>
-
-[ 24%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/llama-memory.cpp.o</span>
-
-[ 24%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/llama-memory-hybrid.cpp.o</span>
-
-[ 24%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/llama-memory-hybrid-iswa.cpp.o</span>
-
-[ 24%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/llama-memory-recurrent.cpp.o</span>
-
-[ 26%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/llama-mmap.cpp.o</span>
-
-[ 26%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/llama-model-loader.cpp.o</span>
-
-[ 26%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/llama-model-saver.cpp.o</span>
-
-[ 26%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/llama-model.cpp.o</span>
-
-[ 26%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/llama-quant.cpp.o</span>
-
-[ 28%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/llama-sampling.cpp.o</span>
-
-[ 28%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/llama-vocab.cpp.o</span>
-
-[ 28%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/unicode-data.cpp.o</span>
-
-[ 28%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/unicode.cpp.o</span>
-
-[ 31%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/afmoe.cpp.o</span>
-
-[ 31%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/apertus.cpp.o</span>
-
-[ 31%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/arcee.cpp.o</span>
-
-[ 31%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/arctic.cpp.o</span>
-
-[ 33%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/arwkv7.cpp.o</span>
-
-[ 33%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/baichuan.cpp.o</span>
-
-[ 33%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/bailingmoe.cpp.o</span>
-
-[ 33%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/bailingmoe2.cpp.o</span>
-
-[ 35%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/bert.cpp.o</span>
-
-[ 35%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/bitnet.cpp.o</span>
-
-[ 35%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/bloom.cpp.o</span>
-
-[ 35%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/chameleon.cpp.o</span>
-
-[ 35%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/chatglm.cpp.o</span>
-
-[ 37%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/codeshell.cpp.o</span>
-
-[ 37%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/cogvlm.cpp.o</span>
-
-[ 37%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/cohere2-iswa.cpp.o</span>
-
-[ 37%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/command-r.cpp.o</span>
-
-[ 40%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/dbrx.cpp.o</span>
-
-[ 40%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/deci.cpp.o</span>
-
-[ 40%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/deepseek.cpp.o</span>
-
-[ 40%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/deepseek2.cpp.o</span>
-
-[ 42%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/dots1.cpp.o</span>
-
-[ 42%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/dream.cpp.o</span>
-
-[ 42%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/ernie4-5-moe.cpp.o</span>
-
-[ 42%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/ernie4-5.cpp.o</span>
-
-[ 44%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/exaone.cpp.o</span>
-
-[ 44%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/exaone4.cpp.o</span>
-
-[ 44%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/exaone-moe.cpp.o</span>
-
-[ 44%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/falcon-h1.cpp.o</span>
-
-[ 46%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/falcon.cpp.o</span>
-
-[ 46%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/gemma-embedding.cpp.o</span>
-
-[ 46%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/gemma.cpp.o</span>
-
-[ 46%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/gemma2-iswa.cpp.o</span>
-
-[ 46%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/gemma3.cpp.o</span>
-
-[ 48%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/gemma3n-iswa.cpp.o</span>
-
-[ 48%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/glm4-moe.cpp.o</span>
-
-[ 48%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/glm4.cpp.o</span>
-
-[ 48%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/gpt2.cpp.o</span>
-
-[ 51%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/gptneox.cpp.o</span>
-
-[ 51%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/granite-hybrid.cpp.o</span>
-
-[ 51%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/granite.cpp.o</span>
-
-[ 51%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/grok.cpp.o</span>
-
-[ 53%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/grovemoe.cpp.o</span>
-
-[ 53%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/hunyuan-dense.cpp.o</span>
-
-[ 53%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/hunyuan-moe.cpp.o</span>
-
-[ 53%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/internlm2.cpp.o</span>
-
-[ 55%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/jais.cpp.o</span>
-
-[ 55%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/jamba.cpp.o</span>
-
-[ 55%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/lfm2.cpp.o</span>
-
-[ 55%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/llada-moe.cpp.o</span>
-
-[ 57%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/llada.cpp.o</span>
-
-[ 57%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/llama-iswa.cpp.o</span>
-
-[ 57%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/llama.cpp.o</span>
-
-[ 57%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/maincoder.cpp.o</span>
-
-[ 57%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/mamba.cpp.o</span>
-
-[ 60%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/mimo2-iswa.cpp.o</span>
-
-[ 60%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/minicpm3.cpp.o</span>
-
-[ 60%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/minimax-m2.cpp.o</span>
-
-[ 60%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/modern-bert.cpp.o</span>
-
-[ 62%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/mpt.cpp.o</span>
-
-[ 62%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/nemotron-h.cpp.o</span>
-
-[ 62%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/nemotron.cpp.o</span>
-
-[ 62%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/neo-bert.cpp.o</span>
-
-[ 64%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/olmo.cpp.o</span>
-
-[ 64%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/olmo2.cpp.o</span>
-
-[ 64%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/olmoe.cpp.o</span>
-
-[ 64%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/openai-moe-iswa.cpp.o</span>
-
-[ 66%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/openelm.cpp.o</span>
-
-[ 66%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/orion.cpp.o</span>
-
-[ 66%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/pangu-embedded.cpp.o</span>
-
-[ 66%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/phi2.cpp.o</span>
-
-[ 68%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/phi3.cpp.o</span>
-
-[ 68%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/plamo.cpp.o</span>
-
-[ 68%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/plamo2.cpp.o</span>
-
-[ 68%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/plamo3.cpp.o</span>
-
-[ 68%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/plm.cpp.o</span>
-
-[ 71%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/qwen.cpp.o</span>
-
-[ 71%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/qwen2.cpp.o</span>
-
-[ 71%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/qwen2moe.cpp.o</span>
-
-[ 71%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/qwen2vl.cpp.o</span>
-
-[ 73%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/qwen3.cpp.o</span>
-
-[ 73%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/qwen3vl.cpp.o</span>
-
-[ 73%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/qwen3vl-moe.cpp.o</span>
-
-[ 73%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/qwen3moe.cpp.o</span>
-
-[ 75%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/qwen3next.cpp.o</span>
-
-[ 75%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/refact.cpp.o</span>
-
-[ 75%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/rnd1.cpp.o</span>
-
-[ 75%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/rwkv6-base.cpp.o</span>
-
-[ 77%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/rwkv6.cpp.o</span>
-
-[ 77%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/rwkv6qwen2.cpp.o</span>
-
-[ 77%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/rwkv7-base.cpp.o</span>
-
-[ 77%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/rwkv7.cpp.o</span>
-
-[ 77%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/seed-oss.cpp.o</span>
-
-[ 80%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/smallthinker.cpp.o</span>
-
-[ 80%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/smollm3.cpp.o</span>
-
-[ 80%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/stablelm.cpp.o</span>
-
-[ 80%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/starcoder.cpp.o</span>
-
-[ 82%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/starcoder2.cpp.o</span>
-
-[ 82%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/t5-dec.cpp.o</span>
-
-[ 82%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/t5-enc.cpp.o</span>
-
-[ 82%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/wavtokenizer-dec.cpp.o</span>
-
-[ 84%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/xverse.cpp.o</span>
-
-[ 84%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/mistral3.cpp.o</span>
-
-[ 84%] <span class="ansi-green-fg">Building CXX object src/CMakeFiles/llama.dir/models/graph-context-mamba.cpp.o</span>
-
-[ 84%] <span class="ansi-green-fg ansi-bold">Linking CXX shared library ../bin/libllama.so</span>
-
-[ 84%] Built target llama
-
-[ 84%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/build_info.dir/build-info.cpp.o</span>
-
-[ 84%] Built target build_info
-
-[ 84%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/arg.cpp.o</span>
-
-[ 84%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/chat-parser.cpp.o</span>
-
-[ 84%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/chat-parser-xml-toolcall.cpp.o</span>
-
-[ 86%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/chat-peg-parser.cpp.o</span>
-
-[ 86%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/chat.cpp.o</span>
-
-[ 86%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/common.cpp.o</span>
-
-[ 86%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/console.cpp.o</span>
-
-[ 88%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/debug.cpp.o</span>
-
-[ 88%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/download.cpp.o</span>
-
-[ 88%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/json-partial.cpp.o</span>
-
-[ 88%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/json-schema-to-grammar.cpp.o</span>
-
-[ 91%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/llguidance.cpp.o</span>
-
-[ 91%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/log.cpp.o</span>
-
-[ 91%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/ngram-cache.cpp.o</span>
-
-[ 91%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/ngram-map.cpp.o</span>
-
-[ 93%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/ngram-mod.cpp.o</span>
-
-[ 93%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/peg-parser.cpp.o</span>
-
-[ 93%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/preset.cpp.o</span>
-
-[ 93%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/regex-partial.cpp.o</span>
-
-[ 93%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/sampling.cpp.o</span>
-
-[ 95%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/speculative.cpp.o</span>
-
-[ 95%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/unicode.cpp.o</span>
-
-[ 95%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/jinja/lexer.cpp.o</span>
-
-[ 95%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/jinja/parser.cpp.o</span>
-
-[ 97%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/jinja/runtime.cpp.o</span>
-
-[ 97%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/jinja/value.cpp.o</span>
-
-[ 97%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/jinja/string.cpp.o</span>
-
-[ 97%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/jinja/caps.cpp.o</span>
-
-[100%] <span class="ansi-green-fg">Building CXX object common/CMakeFiles/common.dir/__/license.cpp.o</span>
-
-[100%] <span class="ansi-green-fg ansi-bold">Linking CXX static library libcommon.a</span>
-
-[100%] Built target common
-
-[100%] <span class="ansi-green-fg">Building CXX object tools/quantize/CMakeFiles/llama-quantize.dir/quantize.cpp.o</span>
-
-[100%] <span class="ansi-green-fg ansi-bold">Linking CXX executable ../../bin/llama-quantize</span>
-
-[100%] Built target llama-quantize
-</pre>
-</div>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a>TEMP_FOLDER <span class="op">=</span> <span class="st">"/content/tmp"</span></span>
+<span id="cb4-2"><a></a></span>
+<span id="cb4-3"><a></a><span class="co"># Create a temporary location and clone llama.cpp</span></span>
+<span id="cb4-4"><a></a><span class="op">!</span>mkdir <span class="op">-</span>p {TEMP_FOLDER}</span>
+<span id="cb4-5"><a></a><span class="op">!</span>cd {TEMP_FOLDER} <span class="op">&amp;&amp;</span> git clone https:<span class="op">//</span>github.com<span class="op">/</span>ggml<span class="op">-</span>org<span class="op">/</span>llama.cpp</span>
+<span id="cb4-6"><a></a></span>
+<span id="cb4-7"><a></a><span class="op">!</span>cd {TEMP_FOLDER}<span class="op">/</span>llama.cpp <span class="op">&amp;&amp;</span> cmake <span class="op">-</span>B build</span>
+<span id="cb4-8"><a></a><span class="op">!</span>cd {TEMP_FOLDER}<span class="op">/</span>llama.cpp <span class="op">&amp;&amp;</span> cmake <span class="op">--</span>build build <span class="op">--</span>config Release <span class="op">--</span>target llama<span class="op">-</span>quantize</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
 <section id="how-to-quantize-a-model-3" class="slide level2">
+<h2>How to Quantize a Model</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/05/notebooks/quantization.ipynb" data-notebook-title="Quantization of Hugging Face model using llama.cpp" data-notebook-cellid="convert">
+<div id="convert" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000,&quot;referenced_widgets&quot;:[&quot;ae44dee311524895926f9e8abe85e25a&quot;,&quot;d1da0dbc1b8d453fb6c740d42284191e&quot;,&quot;ebe59d82062f48acb14d90a7589fdb92&quot;,&quot;19faff8ac6bd4c1f963eaff0cd36575b&quot;,&quot;06caea8b08674c928090c7672ae471e4&quot;,&quot;7df4f34f4593486faaead96cf6876032&quot;,&quot;fcc82250e51546f0bb8f5449b9241c60&quot;,&quot;429e052d7c234d5c989f718978a194e9&quot;,&quot;9e39c89dcb2a4595993d578108d85fbb&quot;,&quot;09efed9120334bf986783fff5fd076da&quot;,&quot;7cc3c04122044d8ab102f7a196324e62&quot;,&quot;a1e304a7afc7480fa3bf4cca5acbf413&quot;,&quot;6846af1e73874a2f9892b72daa8e8918&quot;,&quot;29a7646006b145c5bf9ebc26019a0921&quot;,&quot;87b1d00a16954c4e97e6fa1c49b5cc27&quot;,&quot;b02b701b76fa4262b437298a11088a9d&quot;,&quot;49db6beebb0140f5930cf7d532d2454d&quot;,&quot;a607fd74f4b14ce7949db2a12a867a1a&quot;,&quot;a2fb68ecde6b4e4f90e6fe0d528a1f75&quot;,&quot;4f67de272467463fbc5f7234513cd0da&quot;,&quot;06aa74172e7940508c67303fb454ae16&quot;,&quot;d83d1c14aa23406d869503afbae312fa&quot;]}}" data-outputid="5c4c9d8f-15af-4979-c93a-88f227f1e4f5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">from</span> huggingface_hub <span class="im">import</span> snapshot_download</span>
+<span id="cb5-2"><a></a></span>
+<span id="cb5-3"><a></a>MODEL_FOLDER <span class="op">=</span> <span class="st">"/content/models"</span></span>
+<span id="cb5-4"><a></a>MODEL_VENDOR <span class="op">=</span> <span class="st">"Qwen"</span></span>
+<span id="cb5-5"><a></a>MODEL_NAME <span class="op">=</span> <span class="st">"Qwen3-0.6B"</span></span>
+<span id="cb5-6"><a></a>MODEL_REPO <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>MODEL_VENDOR<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>MODEL_NAME<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb5-7"><a></a>GGUF_FOLDER <span class="op">=</span> <span class="st">"/content/ggufs"</span></span>
+<span id="cb5-8"><a></a></span>
+<span id="cb5-9"><a></a><span class="co"># Create a temporary location and clone llama.cpp</span></span>
+<span id="cb5-10"><a></a></span>
+<span id="cb5-11"><a></a><span class="op">!</span>mkdir <span class="op">-</span>p {MODEL_FOLDER}<span class="op">/</span>{MODEL_NAME}</span>
+<span id="cb5-12"><a></a><span class="op">!</span>mkdir <span class="op">-</span>p {GGUF_FOLDER}</span>
+<span id="cb5-13"><a></a></span>
+<span id="cb5-14"><a></a><span class="co"># Download the model from Hugging Face at full precision</span></span>
+<span id="cb5-15"><a></a>snapshot_download(repo_id<span class="op">=</span>MODEL_REPO, local_dir<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>MODEL_FOLDER<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>MODEL_NAME<span class="sc">}</span><span class="ss">"</span>, repo_type<span class="op">=</span><span class="st">"model"</span>)</span>
+<span id="cb5-16"><a></a></span>
+<span id="cb5-17"><a></a><span class="co"># Convert to GGUF (fp16 first)</span></span>
+<span id="cb5-18"><a></a><span class="op">!</span>cd {TEMP_FOLDER}<span class="op">/</span>llama.cpp <span class="op">&amp;&amp;</span> python convert_hf_to_gguf.py {MODEL_FOLDER}<span class="op">/</span>{MODEL_NAME} <span class="op">\</span></span>
+<span id="cb5-19"><a></a>    <span class="op">--</span>outfile {GGUF_FOLDER}<span class="op">/</span>{MODEL_NAME}<span class="op">-</span>F16.gguf <span class="op">\</span></span>
+<span id="cb5-20"><a></a>    <span class="op">--</span>outtype f16</span>
+<span id="cb5-21"><a></a></span>
+<span id="cb5-22"><a></a><span class="co"># # Convert gp16 GGUF to Q4_K_M</span></span>
+<span id="cb5-23"><a></a><span class="op">!</span>{TEMP_FOLDER}<span class="op">/</span>llama.cpp<span class="op">/</span>build<span class="op">/</span><span class="bu">bin</span><span class="op">/</span>llama<span class="op">-</span>quantize {GGUF_FOLDER}<span class="op">/</span>{MODEL_NAME}<span class="op">-</span>F16.gguf <span class="op">\</span></span>
+<span id="cb5-24"><a></a>    {GGUF_FOLDER}<span class="op">/</span>{MODEL_NAME}<span class="op">-</span>Q4_K_M.gguf <span class="op">\</span></span>
+<span id="cb5-25"><a></a>    Q4_K_M</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="how-to-quantize-a-model-4" class="slide level2">
 <h2>How to Quantize a Model</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/05/notebooks/quantization.ipynb" data-notebook-title="Quantization of Hugging Face model using llama.cpp" data-notebook-cellid="convert">
 <div id="convert" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000,&quot;referenced_widgets&quot;:[&quot;ae44dee311524895926f9e8abe85e25a&quot;,&quot;d1da0dbc1b8d453fb6c740d42284191e&quot;,&quot;ebe59d82062f48acb14d90a7589fdb92&quot;,&quot;19faff8ac6bd4c1f963eaff0cd36575b&quot;,&quot;06caea8b08674c928090c7672ae471e4&quot;,&quot;7df4f34f4593486faaead96cf6876032&quot;,&quot;fcc82250e51546f0bb8f5449b9241c60&quot;,&quot;429e052d7c234d5c989f718978a194e9&quot;,&quot;9e39c89dcb2a4595993d578108d85fbb&quot;,&quot;09efed9120334bf986783fff5fd076da&quot;,&quot;7cc3c04122044d8ab102f7a196324e62&quot;,&quot;a1e304a7afc7480fa3bf4cca5acbf413&quot;,&quot;6846af1e73874a2f9892b72daa8e8918&quot;,&quot;29a7646006b145c5bf9ebc26019a0921&quot;,&quot;87b1d00a16954c4e97e6fa1c49b5cc27&quot;,&quot;b02b701b76fa4262b437298a11088a9d&quot;,&quot;49db6beebb0140f5930cf7d532d2454d&quot;,&quot;a607fd74f4b14ce7949db2a12a867a1a&quot;,&quot;a2fb68ecde6b4e4f90e6fe0d528a1f75&quot;,&quot;4f67de272467463fbc5f7234513cd0da&quot;,&quot;06aa74172e7940508c67303fb454ae16&quot;,&quot;d83d1c14aa23406d869503afbae312fa&quot;]}}" data-outputid="5c4c9d8f-15af-4979-c93a-88f227f1e4f5">
@@ -2278,26 +1866,22 @@ main:    total time = 17247.52 ms</code></pre>
 </div>
 </section></section>
 <section>
-<section id="calling-llama.cpp-from-apps" class="title-slide slide level1 center">
-<h1>Calling llama.cpp from Apps</h1>
+<section id="calling-llama.cpp-from-your-app" class="title-slide slide level1 center">
+<h1>Calling llama.cpp from Your App</h1>
 
 </section>
-<section id="calling-llama.cpp-from-apps-1" class="slide level2">
-<h2>Calling llama.cpp from Apps</h2>
+<section id="calling-llama.cpp-from-your-app-1" class="slide level2">
+<h2>Calling llama.cpp from Your App</h2>
 <ul>
-<li class="fragment">Three ways to interact with a local GGUF model:</li>
-<li class="fragment"><ol type="1">
-<li class="fragment">Use llama.cpp to serve the model via a local web server</li>
-</ol>
+<li class="fragment">Three ways to interact with a local GGUF model:
+<ul>
+<li class="fragment">Use llama.cpp to serve the model via a local web server
 <ul>
 <li class="fragment">Easier to get running, but the overhead of a local web server</li>
 </ul></li>
-<li class="fragment"><ol start="2" type="1">
 <li class="fragment">If your app is C++, call llama.cpp library directly</li>
-</ol></li>
-<li class="fragment"><ol start="3" type="1">
 <li class="fragment">If your app is not C++, use llama.cpp bindings</li>
-</ol></li>
+</ul></li>
 <li class="fragment">(2 and 3 are more challenging to get setup, but no web server and better performance)</li>
 </ul>
 </section></section>
@@ -2328,9 +1912,6 @@ main:    total time = 17247.52 ms</code></pre>
 <h1>llama.cpp Bindings</h1>
 
 </section>
-<section id="llama.cpp-bindings-1" class="slide level2">
-<h2>llama.cpp Bindings</h2>
-</section>
 <section id="what-are-llama.cpp-bindings" class="slide level2">
 <h2>What Are llama.cpp Bindings?</h2>
 <ul>
@@ -2358,14 +1939,14 @@ main:    total time = 17247.52 ms</code></pre>
 <h2>Python Binding</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/05/notebooks/python-binding.ipynb" data-notebook-title="Using llama.cpp Binding for Python" data-notebook-cellid="load-model">
 <div id="load-model" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">from</span> llama_cpp <span class="im">import</span> Llama</span>
-<span id="cb5-2"><a></a></span>
-<span id="cb5-3"><a></a>GGUF_MODEL <span class="op">=</span> <span class="ss">f"../code/gguf/gemma-3-1b-it-Q4_K_M.gguf"</span></span>
-<span id="cb5-4"><a></a></span>
-<span id="cb5-5"><a></a>llm <span class="op">=</span> Llama(</span>
-<span id="cb5-6"><a></a>      model_path<span class="op">=</span>GGUF_MODEL,</span>
-<span id="cb5-7"><a></a>      chat_format<span class="op">=</span><span class="st">"gemma"</span></span>
-<span id="cb5-8"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="im">from</span> llama_cpp <span class="im">import</span> Llama</span>
+<span id="cb7-2"><a></a></span>
+<span id="cb7-3"><a></a>GGUF_MODEL <span class="op">=</span> <span class="ss">f"../code/gguf/gemma-3-1b-it-Q4_K_M.gguf"</span></span>
+<span id="cb7-4"><a></a></span>
+<span id="cb7-5"><a></a>llm <span class="op">=</span> Llama(</span>
+<span id="cb7-6"><a></a>      model_path<span class="op">=</span>GGUF_MODEL,</span>
+<span id="cb7-7"><a></a>      chat_format<span class="op">=</span><span class="st">"gemma"</span></span>
+<span id="cb7-8"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -2373,15 +1954,15 @@ main:    total time = 17247.52 ms</code></pre>
 <h2>Python Binding</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/05/notebooks/python-binding.ipynb" data-notebook-title="Using llama.cpp Binding for Python" data-notebook-cellid="chat">
 <div id="chat" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a>llm.create_chat_completion(</span>
-<span id="cb6-2"><a></a>      messages <span class="op">=</span> [</span>
-<span id="cb6-3"><a></a>          {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are a helpful assistant."</span>},</span>
-<span id="cb6-4"><a></a>          {</span>
-<span id="cb6-5"><a></a>              <span class="st">"role"</span>: <span class="st">"user"</span>,</span>
-<span id="cb6-6"><a></a>              <span class="st">"content"</span>: <span class="st">"Hello"</span></span>
-<span id="cb6-7"><a></a>          }</span>
-<span id="cb6-8"><a></a>      ]</span>
-<span id="cb6-9"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a>llm.create_chat_completion(</span>
+<span id="cb8-2"><a></a>      messages <span class="op">=</span> [</span>
+<span id="cb8-3"><a></a>          {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are a helpful assistant."</span>},</span>
+<span id="cb8-4"><a></a>          {</span>
+<span id="cb8-5"><a></a>              <span class="st">"role"</span>: <span class="st">"user"</span>,</span>
+<span id="cb8-6"><a></a>              <span class="st">"content"</span>: <span class="st">"Hello"</span></span>
+<span id="cb8-7"><a></a>          }</span>
+<span id="cb8-8"><a></a>      ]</span>
+<span id="cb8-9"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -2422,7 +2003,7 @@ main:    total time = 17247.52 ms</code></pre>
 <li class="fragment">Install NuGet for Unity package manager</li>
 <li class="fragment">Using NuGet, install the LlamaSharp package and correct backend</li>
 <li class="fragment">(Possibly) copy the dylibs into Assets/Plugins/[platform] and load</li>
-<li class="fragment">Create a LlamaTest.cs script</li>
+<li class="fragment">Call model from any script</li>
 </ul>
 </section></section>
 <section id="demo-3" class="title-slide slide level1 center">
@@ -2441,13 +2022,13 @@ main:    total time = 17247.52 ms</code></pre>
 <li class="fragment">Small models can also run in the browser</li>
 <li class="fragment">Inference runs on WebAssembly (WASM)</li>
 <li class="fragment">CPU or WebGPU options</li>
-<li class="fragment">Browser limits most models to &lt;2Gb, possibly smaller depending on VRAM</li>
+<li class="fragment">Browser limits most models to &lt;2GB, possibly smaller depending on VRAM</li>
 </ul>
 </section>
 <section id="local-models-in-the-browser-2" class="slide level2">
 <h2>Local Models in the Browser</h2>
 <ul>
-<li class="fragment">Wllama (<a href="https://github.com/ngxson/wllama">https://github.com/ngxson/wllama</a>){.external target=“_blank”}
+<li class="fragment">Wllama (<a href="https://github.com/ngxson/wllama" class="external" target="_blank">https://github.com/ngxson/wllama</a>)
 <ul>
 <li class="fragment">CPU only (using SIMD for better performance)</li>
 <li class="fragment">JavaScript-based API</li>
@@ -2458,58 +2039,58 @@ main:    total time = 17247.52 ms</code></pre>
 </section>
 <section id="local-models-in-the-browser-3" class="slide level2">
 <h2>Local Models in the Browser</h2>
-<pre><code>await wllama.loadModelFromHF(
-    'ggml-org/models',
-    'tinyllamas/stories260K.gguf',
-    {
-      progressCallback,
-    }
-  );
-const outputText = await wllama.createCompletion(prompt, {
-  nPredict: 50,
-  sampling: {
-    temp: 0.5,
-    top_k: 40,
-    top_p: 0.9,
-  },
-});</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb10-1"><a></a><span class="cf">await</span> wllama<span class="op">.</span><span class="fu">loadModelFromHF</span>(</span>
+<span id="cb10-2"><a></a>    <span class="st">'ggml-org/models'</span><span class="op">,</span></span>
+<span id="cb10-3"><a></a>    <span class="st">'tinyllamas/stories260K.gguf'</span><span class="op">,</span></span>
+<span id="cb10-4"><a></a>    {</span>
+<span id="cb10-5"><a></a>      progressCallback<span class="op">,</span></span>
+<span id="cb10-6"><a></a>    }</span>
+<span id="cb10-7"><a></a>  )<span class="op">;</span></span>
+<span id="cb10-8"><a></a><span class="kw">const</span> outputText <span class="op">=</span> <span class="cf">await</span> wllama<span class="op">.</span><span class="fu">createCompletion</span>(prompt<span class="op">,</span> {</span>
+<span id="cb10-9"><a></a>  <span class="dt">nPredict</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span></span>
+<span id="cb10-10"><a></a>  <span class="dt">sampling</span><span class="op">:</span> {</span>
+<span id="cb10-11"><a></a>    <span class="dt">temp</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span></span>
+<span id="cb10-12"><a></a>    <span class="dt">top_k</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb10-13"><a></a>    <span class="dt">top_p</span><span class="op">:</span> <span class="fl">0.9</span><span class="op">,</span></span>
+<span id="cb10-14"><a></a>  }<span class="op">,</span></span>
+<span id="cb10-15"><a></a>})<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="local-models-in-the-browser-4" class="slide level2">
 <h2>Local Models in the Browser</h2>
 <ul>
-<li class="fragment">WebLLM (<a href="https://webllm.mlc.ai/">https://webllm.mlc.ai/</a>){.external target=“_blank”}
+<li class="fragment">WebLLM (<a href="https://webllm.mlc.ai/" class="external" target="_blank">https://webllm.mlc.ai/</a>)
 <ul>
 <li class="fragment">Uses WebGPU for better performance</li>
 <li class="fragment">JavaScript-based API and playground</li>
 <li class="fragment">Download models directly from HF, but need to be compiled to MLC format</li>
-<li class="fragment">Popular pre-compiled models available</li>
+<li class="fragment">Popular pre-compiled models available - or compile your own</li>
 </ul></li>
 </ul>
 </section>
 <section id="local-models-in-the-browser-5" class="slide level2">
 <h2>Local Models in the Browser</h2>
-<pre><code>const appConfig: webllm.AppConfig = {
-  model_list: [
-    {
-      model: `https://huggingface.co/simonguest/Qwen3-0.6B-it-code-hint-3`,
-      overrides: {
-        temperature: 0.5,
-      },
-    },
-  ],
-};
-engine = await webllm.CreateMLCEngine("Qwen3-0.6B-it-code-hint-3", {
-  appConfig,
-  initProgressCallback,
-});
-
-const chunks = await engine.chat.completions.create({
-  messages: [
-    { role: 'system', content: SYSTEM_PROMPT},
-    { role: 'user', content: PROMPT }],
-  temperature: 0.7,
-  stream: true,
-});</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb11-1"><a></a><span class="kw">const</span> appConfig<span class="op">:</span> webllm<span class="op">.</span><span class="at">AppConfig</span> <span class="op">=</span> {</span>
+<span id="cb11-2"><a></a>  <span class="dt">model_list</span><span class="op">:</span> [</span>
+<span id="cb11-3"><a></a>    {</span>
+<span id="cb11-4"><a></a>      <span class="dt">model</span><span class="op">:</span> <span class="vs">`https://huggingface.co/simonguest/Qwen3-0.6B-it-code-hint-3-MLC`</span><span class="op">,</span></span>
+<span id="cb11-5"><a></a>      <span class="dt">overrides</span><span class="op">:</span> {</span>
+<span id="cb11-6"><a></a>        <span class="dt">temperature</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span></span>
+<span id="cb11-7"><a></a>      }<span class="op">,</span></span>
+<span id="cb11-8"><a></a>    }<span class="op">,</span></span>
+<span id="cb11-9"><a></a>  ]<span class="op">,</span></span>
+<span id="cb11-10"><a></a>}<span class="op">;</span></span>
+<span id="cb11-11"><a></a>engine <span class="op">=</span> <span class="cf">await</span> webllm<span class="op">.</span><span class="fu">CreateMLCEngine</span>(<span class="st">"Qwen3-0.6B-it-code-hint-3"</span><span class="op">,</span> {</span>
+<span id="cb11-12"><a></a>  appConfig<span class="op">,</span></span>
+<span id="cb11-13"><a></a>  initProgressCallback<span class="op">,</span></span>
+<span id="cb11-14"><a></a>})<span class="op">;</span></span>
+<span id="cb11-15"><a></a></span>
+<span id="cb11-16"><a></a><span class="kw">const</span> chunks <span class="op">=</span> <span class="cf">await</span> engine<span class="op">.</span><span class="at">chat</span><span class="op">.</span><span class="at">completions</span><span class="op">.</span><span class="fu">create</span>({</span>
+<span id="cb11-17"><a></a>  <span class="dt">messages</span><span class="op">:</span> [</span>
+<span id="cb11-18"><a></a>    { <span class="dt">role</span><span class="op">:</span> <span class="st">'system'</span><span class="op">,</span> <span class="dt">content</span><span class="op">:</span> SYSTEM_PROMPT}<span class="op">,</span></span>
+<span id="cb11-19"><a></a>    { <span class="dt">role</span><span class="op">:</span> <span class="st">'user'</span><span class="op">,</span> <span class="dt">content</span><span class="op">:</span> PROMPT }]<span class="op">,</span></span>
+<span id="cb11-20"><a></a>  <span class="dt">temperature</span><span class="op">:</span> <span class="fl">0.7</span><span class="op">,</span></span>
+<span id="cb11-21"><a></a>  <span class="dt">stream</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb11-22"><a></a>})<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section></section>
 <section>
 <section id="looking-ahead" class="title-slide slide level1 center">
@@ -2522,7 +2103,7 @@ const chunks = await engine.chat.completions.create({
 <li class="fragment"><a href="https://simonguest.github.io/CS-394/src/05/assignment.html" class="external" target="_blank">This week’s assignment!</a></li>
 <li class="fragment">Increasing model accuracy</li>
 <li class="fragment">Better prompt engineering</li>
-<li class="fragment">RAG (Retreival Augmented Generation)</li>
+<li class="fragment">RAG (Retrieval Augmented Generation)</li>
 <li class="fragment">Introduce fine-tuning and synthetic data generation</li>
 </ul>
 </section></section>
