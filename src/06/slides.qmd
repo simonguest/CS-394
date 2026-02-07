@@ -32,6 +32,64 @@ bibliography: references.bib
 - Start the exploration of how to fine-tune models using LoRA (Low Ranked Adaptation)
 - Use a foundational model to generate synthetic data for fine-tuning a 1B parameter model
 
+# Evaluating Models
+
+## Evaluating Models
+
+- TBD
+- How evaluations work, especially on non-multiple choice questions
+
+## MMLU-Pro (Massive Multitask Language Understanding)
+
+[https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro](https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro){.external target="_blank"}
+
+- **What it tests:** 12K questions across 14 subject areas that cover STEM, humanities, social sciences, and professional domains. 
+  - Multiple-choice questions (10 options) testing both factual knowledge and reasoning across elementary to professional levels.
+- **History:** Original MMLU published in 2021 by Dan Hendrycks et al. 
+  - MMLU-Pro created because models were plateauing on MMLU (hitting 85-90%+)
+  - Pro released in June 2024 by the TIGER-AI-Lab team and accepted at NeurIPS 2024
+
+## GPQA (Graduate-Level Google-Proof Q&A)
+
+[https://huggingface.co/datasets/Idavidrein/gpqa](https://huggingface.co/datasets/Idavidrein/gpqa){.external target="_blank"}
+
+- **What it tests:** Graduate/PhD-level scientific reasoning in biology, physics, and chemistry through multiple-choice questions
+  - Require deep domain understanding, not just fact recall
+  - Cannot be solved by web search (the "Google-proof" property)
+  - Test genuine conceptual reasoning and problem-solving
+- **History:**
+  - Created Nov 2023 by David Rein et al. (includes researchers from NYU, Anthropic, and other institutions)
+
+## SWE-Bench
+
+[https://www.swebench.com/](https://www.swebench.com/){.external target="_blank"}
+
+- **What it tests:** AI systems' ability to solve real-world software engineering tasks by resolving actual GitHub issues from popular open-source Python repositories
+- **History:** Created: 2023 by Princeton NLP group (Carlos E. Jimenez et al.)
+  - Original dataset was 2,294 GitHub issues from 12 popular Python repositories (Django, scikit-learn, Flask, Matplotlib, Requests, SymPy, pytest, Sphinx, etc.)
+  - Three major variants: Lite, Verified, and Pro
+  - Microsoft also publishes a "Live" version with monthly curated updates
+
+## HLE (Humanity's Last Exam)
+
+[https://huggingface.co/datasets/cais/hle](https://huggingface.co/datasets/cais/hle){.external target="_blank"}
+
+- **What it tests:** 2,500 expert-level questions across dozens of subjects, including mathematics, humanities, and the natural sciences. 
+  - HLE is developed globally by subject-matter experts and consists of multiple-choice and short-answer questions suitable for automated grading.
+  - Require multimodal, multi-step reasoning rather than pattern matching or recall
+  - Be "Google-proof" (can't be quickly answered by web search)
+- **History:** Created in late 2024 by the Center for AI Safety (CAIS) and Scale AI
+  - Led by: Dan Hendrycks (who also created MMLU and MATH benchmarks)
+
+## Challenges with Eval Benchmarks
+
+- TBD
+- Speak about officially testing vs. self reporting
+- Dataset contamination
+- Link to HF's latest efforts to try to curb this
+- Don't test creativity
+
+
 # Looking Ahead
 
 ## Looking Ahead
