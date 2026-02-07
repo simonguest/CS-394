@@ -1,7 +1,46 @@
 ---
 title: "Resources"
+format: html
+execute:
+  enabled: false
 ---
+
+## llama.cpp
+
+- [llama.cpp on GitHub](https://github.com/ggml-org/llama.cpp) - C/C++ library for local LLM inference with CLI, Web UI, and OpenAI-compatible server
+- [llama.cpp Bindings](https://github.com/ggml-org/llama.cpp#description) - List of community bindings for various languages and platforms
+
+## llama.cpp Wrappers
+
+- [Ollama](https://ollama.com) - Simple CLI wrapper around llama.cpp with a curated model library
+- [LM Studio](https://lmstudio.ai/) - Desktop GUI for browsing, downloading, and running quantized models from Hugging Face
+
+## llama.cpp Bindings
+
+- [llama-cpp-python](https://github.com/abetlen/llama-cpp-python) - Python binding with OpenAI-like API, supporting chat completions, tool calling, and multimodal models
+- [LLamaSharp](https://github.com/SciSharp/LLamaSharp) - C# binding for llama.cpp, installable via NuGet with CPU, CUDA, and Vulkan backends
+
+## Quantization
+
+- [GPTQ Paper](https://arxiv.org/abs/2210.17323) - "GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers"
+- [Unsloth AI on Hugging Face](https://huggingface.co/unsloth) - Pre-quantized versions of popular models
+
+## ML Frameworks
+
+- [MLX on GitHub](https://github.com/ml-explore/mlx) - Apple's ML framework for Apple Silicon with NumPy-like API
+- [MLX Models on Hugging Face](https://huggingface.co/models?library=mlx) - Community-hosted MLX-quantized models
+- [ONNX Models on Hugging Face](https://huggingface.co/models?library=onnx) - Models in ONNX interchange format for broad portability
+
+## Browser-based Inference
+
+- [Wllama](https://github.com/ngxson/wllama) - Run GGUF models in the browser using WebAssembly (CPU with SIMD)
+- [WebLLM](https://webllm.mlc.ai/) - Run LLMs in the browser using WebGPU for GPU-accelerated inference
+
+## Mixture of Experts (MoE)
+
+- [Switch Transformers Paper](https://arxiv.org/abs/2101.03961) - "Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity"
+- [Outrageously Large Neural Networks Paper](https://arxiv.org/abs/1701.06538) - "The Sparsely-Gated Mixture-of-Experts Layer"
 
 ## Citations
 
-- [References Slide](https://simonguest.github.io/CS-394/src/03/slides.html#/references-1){.external target="_blank"}
+- [References Slide](https://simonguest.github.io/CS-394/src/05/slides.html#/references-1){.external target="_blank"}
