@@ -830,6 +830,72 @@
     ]
   },
   {
+    "objectID": "src/06/slides.html#evaluating-models-1",
+    "href": "src/06/slides.html#evaluating-models-1",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
+    "section": "Evaluating Models",
+    "text": "Evaluating Models\n\nTBD\nHow evaluations work, especially on non-multiple choice questions",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/06/slides.html#mmlu-pro-massive-multitask-language-understanding",
+    "href": "src/06/slides.html#mmlu-pro-massive-multitask-language-understanding",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
+    "section": "MMLU-Pro (Massive Multitask Language Understanding)",
+    "text": "MMLU-Pro (Massive Multitask Language Understanding)\nhttps://huggingface.co/datasets/TIGER-Lab/MMLU-Pro\n\nWhat it tests: 12K questions across 14 subject areas that cover STEM, humanities, social sciences, and professional domains.\n\nMultiple-choice questions (10 options) testing both factual knowledge and reasoning across elementary to professional levels.\n\nHistory: Original MMLU published in 2021 by Dan Hendrycks et al. \n\nMMLU-Pro created because models were plateauing on MMLU (hitting 85-90%+)\nPro released in June 2024 by the TIGER-AI-Lab team and accepted at NeurIPS 2024",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/06/slides.html#gpqa-graduate-level-google-proof-qa",
+    "href": "src/06/slides.html#gpqa-graduate-level-google-proof-qa",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
+    "section": "GPQA (Graduate-Level Google-Proof Q&A)",
+    "text": "GPQA (Graduate-Level Google-Proof Q&A)\nhttps://huggingface.co/datasets/Idavidrein/gpqa\n\nWhat it tests: Graduate/PhD-level scientific reasoning in biology, physics, and chemistry through multiple-choice questions\n\nRequire deep domain understanding, not just fact recall\nCannot be solved by web search (the “Google-proof” property)\nTest genuine conceptual reasoning and problem-solving\n\nHistory:\n\nCreated Nov 2023 by David Rein et al. (includes researchers from NYU, Anthropic, and other institutions)",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/06/slides.html#swe-bench",
+    "href": "src/06/slides.html#swe-bench",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
+    "section": "SWE-Bench",
+    "text": "SWE-Bench\nhttps://www.swebench.com/\n\nWhat it tests: AI systems’ ability to solve real-world software engineering tasks by resolving actual GitHub issues from popular open-source Python repositories\nHistory: Created: 2023 by Princeton NLP group (Carlos E. Jimenez et al.)\n\nOriginal dataset was 2,294 GitHub issues from 12 popular Python repositories (Django, scikit-learn, Flask, Matplotlib, Requests, SymPy, pytest, Sphinx, etc.)\nThree major variants: Lite, Verified, and Pro\nMicrosoft also publishes a “Live” version with monthly curated updates",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/06/slides.html#hle-humanitys-last-exam",
+    "href": "src/06/slides.html#hle-humanitys-last-exam",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
+    "section": "HLE (Humanity’s Last Exam)",
+    "text": "HLE (Humanity’s Last Exam)\nhttps://huggingface.co/datasets/cais/hle\n\nWhat it tests: 2,500 expert-level questions across dozens of subjects, including mathematics, humanities, and the natural sciences.\n\nHLE is developed globally by subject-matter experts and consists of multiple-choice and short-answer questions suitable for automated grading.\nRequire multimodal, multi-step reasoning rather than pattern matching or recall\nBe “Google-proof” (can’t be quickly answered by web search)\n\nHistory: Created in late 2024 by the Center for AI Safety (CAIS) and Scale AI\n\nLed by: Dan Hendrycks (who also created MMLU and MATH benchmarks)",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/06/slides.html#challenges-with-eval-benchmarks",
+    "href": "src/06/slides.html#challenges-with-eval-benchmarks",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
+    "section": "Challenges with Eval Benchmarks",
+    "text": "Challenges with Eval Benchmarks\n\nTBD\nSpeak about officially testing vs. self reporting\nDataset contamination\nLink to HF’s latest efforts to try to curb this\nDon’t test creativity",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "src/06/slides.html#looking-ahead-1",
     "href": "src/06/slides.html#looking-ahead-1",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
@@ -878,7 +944,84 @@
     "href": "src/05/resources.html",
     "title": "Resources",
     "section": "",
-    "text": "References Slide",
+    "text": "llama.cpp on GitHub - C/C++ library for local LLM inference with CLI, Web UI, and OpenAI-compatible server\nllama.cpp Bindings - List of community bindings for various languages and platforms",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/05/resources.html#llama.cpp",
+    "href": "src/05/resources.html#llama.cpp",
+    "title": "Resources",
+    "section": "",
+    "text": "llama.cpp on GitHub - C/C++ library for local LLM inference with CLI, Web UI, and OpenAI-compatible server\nllama.cpp Bindings - List of community bindings for various languages and platforms",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/05/resources.html#llama.cpp-wrappers",
+    "href": "src/05/resources.html#llama.cpp-wrappers",
+    "title": "Resources",
+    "section": "llama.cpp Wrappers",
+    "text": "llama.cpp Wrappers\n\nOllama - Simple CLI wrapper around llama.cpp with a curated model library\nLM Studio - Desktop GUI for browsing, downloading, and running quantized models from Hugging Face",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/05/resources.html#llama.cpp-bindings",
+    "href": "src/05/resources.html#llama.cpp-bindings",
+    "title": "Resources",
+    "section": "llama.cpp Bindings",
+    "text": "llama.cpp Bindings\n\nllama-cpp-python - Python binding with OpenAI-like API, supporting chat completions, tool calling, and multimodal models\nLLamaSharp - C# binding for llama.cpp, installable via NuGet with CPU, CUDA, and Vulkan backends",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/05/resources.html#quantization",
+    "href": "src/05/resources.html#quantization",
+    "title": "Resources",
+    "section": "Quantization",
+    "text": "Quantization\n\nGPTQ Paper - “GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers”\nUnsloth AI on Hugging Face - Pre-quantized versions of popular models",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/05/resources.html#ml-frameworks",
+    "href": "src/05/resources.html#ml-frameworks",
+    "title": "Resources",
+    "section": "ML Frameworks",
+    "text": "ML Frameworks\n\nMLX on GitHub - Apple’s ML framework for Apple Silicon with NumPy-like API\nMLX Models on Hugging Face - Community-hosted MLX-quantized models\nONNX Models on Hugging Face - Models in ONNX interchange format for broad portability",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/05/resources.html#browser-based-inference",
+    "href": "src/05/resources.html#browser-based-inference",
+    "title": "Resources",
+    "section": "Browser-based Inference",
+    "text": "Browser-based Inference\n\nWllama - Run GGUF models in the browser using WebAssembly (CPU with SIMD)\nWebLLM - Run LLMs in the browser using WebGPU for GPU-accelerated inference",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/05/resources.html#mixture-of-experts-moe",
+    "href": "src/05/resources.html#mixture-of-experts-moe",
+    "title": "Resources",
+    "section": "Mixture of Experts (MoE)",
+    "text": "Mixture of Experts (MoE)\n\nSwitch Transformers Paper - “Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity”\nOutrageously Large Neural Networks Paper - “The Sparsely-Gated Mixture-of-Experts Layer”",
     "crumbs": [
       "**Module 5:** Running Models on Local Hardware",
       "Resources"
@@ -888,8 +1031,8 @@
     "objectID": "src/05/resources.html#citations",
     "href": "src/05/resources.html#citations",
     "title": "Resources",
-    "section": "",
-    "text": "References Slide",
+    "section": "Citations",
+    "text": "Citations\n\nReferences Slide",
     "crumbs": [
       "**Module 5:** Running Models on Local Hardware",
       "Resources"

@@ -153,6 +153,88 @@
 </ul>
 </section>
 <section>
+<section id="evaluating-models" class="title-slide slide level1 center">
+<h1>Evaluating Models</h1>
+
+</section>
+<section id="evaluating-models-1" class="slide level2">
+<h2>Evaluating Models</h2>
+<ul>
+<li class="fragment">TBD</li>
+<li class="fragment">How evaluations work, especially on non-multiple choice questions</li>
+</ul>
+</section>
+<section id="mmlu-pro-massive-multitask-language-understanding" class="slide level2">
+<h2>MMLU-Pro (Massive Multitask Language Understanding)</h2>
+<p><a href="https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro" class="external" target="_blank">https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro</a></p>
+<ul>
+<li class="fragment"><strong>What it tests:</strong> 12K questions across 14 subject areas that cover STEM, humanities, social sciences, and professional domains.
+<ul>
+<li class="fragment">Multiple-choice questions (10 options) testing both factual knowledge and reasoning across elementary to professional levels.</li>
+</ul></li>
+<li class="fragment"><strong>History:</strong> Original MMLU published in 2021 by Dan Hendrycks et al.&nbsp;
+<ul>
+<li class="fragment">MMLU-Pro created because models were plateauing on MMLU (hitting 85-90%+)</li>
+<li class="fragment">Pro released in June 2024 by the TIGER-AI-Lab team and accepted at NeurIPS 2024</li>
+</ul></li>
+</ul>
+</section>
+<section id="gpqa-graduate-level-google-proof-qa" class="slide level2">
+<h2>GPQA (Graduate-Level Google-Proof Q&amp;A)</h2>
+<p><a href="https://huggingface.co/datasets/Idavidrein/gpqa" class="external" target="_blank">https://huggingface.co/datasets/Idavidrein/gpqa</a></p>
+<ul>
+<li class="fragment"><strong>What it tests:</strong> Graduate/PhD-level scientific reasoning in biology, physics, and chemistry through multiple-choice questions
+<ul>
+<li class="fragment">Require deep domain understanding, not just fact recall</li>
+<li class="fragment">Cannot be solved by web search (the “Google-proof” property)</li>
+<li class="fragment">Test genuine conceptual reasoning and problem-solving</li>
+</ul></li>
+<li class="fragment"><strong>History:</strong>
+<ul>
+<li class="fragment">Created Nov 2023 by David Rein et al.&nbsp;(includes researchers from NYU, Anthropic, and other institutions)</li>
+</ul></li>
+</ul>
+</section>
+<section id="swe-bench" class="slide level2">
+<h2>SWE-Bench</h2>
+<p><a href="https://www.swebench.com/" class="external" target="_blank">https://www.swebench.com/</a></p>
+<ul>
+<li class="fragment"><strong>What it tests:</strong> AI systems’ ability to solve real-world software engineering tasks by resolving actual GitHub issues from popular open-source Python repositories</li>
+<li class="fragment"><strong>History:</strong> Created: 2023 by Princeton NLP group (Carlos E. Jimenez et al.)
+<ul>
+<li class="fragment">Original dataset was 2,294 GitHub issues from 12 popular Python repositories (Django, scikit-learn, Flask, Matplotlib, Requests, SymPy, pytest, Sphinx, etc.)</li>
+<li class="fragment">Three major variants: Lite, Verified, and Pro</li>
+<li class="fragment">Microsoft also publishes a “Live” version with monthly curated updates</li>
+</ul></li>
+</ul>
+</section>
+<section id="hle-humanitys-last-exam" class="slide level2">
+<h2>HLE (Humanity’s Last Exam)</h2>
+<p><a href="https://huggingface.co/datasets/cais/hle" class="external" target="_blank">https://huggingface.co/datasets/cais/hle</a></p>
+<ul>
+<li class="fragment"><strong>What it tests:</strong> 2,500 expert-level questions across dozens of subjects, including mathematics, humanities, and the natural sciences.
+<ul>
+<li class="fragment">HLE is developed globally by subject-matter experts and consists of multiple-choice and short-answer questions suitable for automated grading.</li>
+<li class="fragment">Require multimodal, multi-step reasoning rather than pattern matching or recall</li>
+<li class="fragment">Be “Google-proof” (can’t be quickly answered by web search)</li>
+</ul></li>
+<li class="fragment"><strong>History:</strong> Created in late 2024 by the Center for AI Safety (CAIS) and Scale AI
+<ul>
+<li class="fragment">Led by: Dan Hendrycks (who also created MMLU and MATH benchmarks)</li>
+</ul></li>
+</ul>
+</section>
+<section id="challenges-with-eval-benchmarks" class="slide level2">
+<h2>Challenges with Eval Benchmarks</h2>
+<ul>
+<li class="fragment">TBD</li>
+<li class="fragment">Speak about officially testing vs.&nbsp;self reporting</li>
+<li class="fragment">Dataset contamination</li>
+<li class="fragment">Link to HF’s latest efforts to try to curb this</li>
+<li class="fragment">Don’t test creativity</li>
+</ul>
+</section></section>
+<section>
 <section id="looking-ahead" class="title-slide slide level1 center">
 <h1>Looking Ahead</h1>
 
