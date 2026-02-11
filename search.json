@@ -5804,7 +5804,18 @@
     "href": "src/05/slides.html#local-models-in-the-browser-6",
     "title": "Module 5: Running Models on Local Hardware",
     "section": "Local Models in the Browser",
-    "text": "Local Models in the Browser\n\nTransformers.js https://huggingface.co/docs/transformers.js\n\nFunctionally equivalent to HF’s transformer’s library, but designed to run in-browser\nUses ONNX format instead of GGUF or MLC\nLatest version (v4) announced Feb 2025, with better WebGPU support\n\n\nimport { pipeline } from \"@huggingface/transformers\";\n\n// Create a text generation pipeline\nconst generator = await pipeline(\n  \"text-generation\",\n  \"onnx-community/Qwen3-0.6B-ONNX'\n  { device: \"webgpu\", dtype: \"q4f16\" },\n);\n\n// Define the list of messages\nconst messages = [\n  { role: \"system\", content: \"You are a helpful assistant.\" }, \n  { role: \"user\", content: \"Write me a poem about Machine Learning.\" },\n]\nconst output = await generator (messages)\nconsole. log(output[0] generated_text.at(-1).content);",
+    "text": "Local Models in the Browser\n\nTransformers.js https://huggingface.co/docs/transformers.js\n\nFunctionally equivalent to HF’s transformer’s library, but designed to run in-browser\nUses ONNX format instead of GGUF or MLC\nLatest version (v4) announced Feb 2025, with better WebGPU support",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#local-models-in-the-browser-7",
+    "href": "src/05/slides.html#local-models-in-the-browser-7",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "Local Models in the Browser",
+    "text": "Local Models in the Browser\nimport { pipeline } from \"@huggingface/transformers\";\n\n// Create a text generation pipeline\nconst generator = await pipeline(\n  \"text-generation\",\n  \"onnx-community/Qwen3-0.6B-ONNX'\n  { device: \"webgpu\", dtype: \"q4f16\" },\n);\n\n// Define the list of messages\nconst messages = [\n  { role: \"system\", content: \"You are a helpful assistant.\" }, \n  { role: \"user\", content: \"Write me a poem about Machine Learning.\" },\n]\nconst output = await generator (messages)\nconsole.log(output[0] generated_text.at(-1).content);",
     "crumbs": [
       "**Module 5:** Running Models on Local Hardware",
       "Slides"
