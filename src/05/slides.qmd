@@ -547,6 +547,7 @@ Unity/LLamaSharp Demo
 - Inference runs on WebAssembly (WASM)
 - CPU or WebGPU options
 - Browser limits most models to <2GB, possibly smaller depending on VRAM
+- Three different frameworks!
 
 ## Local Models in the Browser
 
@@ -609,6 +610,32 @@ const chunks = await engine.chat.completions.create({
   temperature: 0.7,
   stream: true,
 });
+```
+
+## Local Models in the Browser
+
+- Transformers.js [https://huggingface.co/docs/transformers.js](https://huggingface.co/docs/transformers.js){.external target="_blank"}
+  - Functionally equivalent to HF's transformer's library, but designed to run in-browser
+  - Uses ONNX format instead of GGUF or MLC
+  - Latest version (v4) announced Feb 2025, with better WebGPU support
+
+```javascript
+import { pipeline } from "@huggingface/transformers";
+
+// Create a text generation pipeline
+const generator = await pipeline(
+  "text-generation",
+  "onnx-community/Qwen3-0.6B-ONNX'
+  { device: "webgpu", dtype: "q4f16" },
+);
+
+// Define the list of messages
+const messages = [
+  { role: "system", content: "You are a helpful assistant." }, 
+  { role: "user", content: "Write me a poem about Machine Learning." },
+]
+const output = await generator (messages)
+console. log(output[0] generated_text.at(-1).content);
 ```
 
 # Looking Ahead
