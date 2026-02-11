@@ -4979,7 +4979,7 @@
     "href": "src/05/assignment.html#option-4-web-browser",
     "title": "Module 5 Assignment: Local Model Integration",
     "section": "Option 4: Web Browser",
-    "text": "Option 4: Web Browser\nUse Wllama (CPU/WASM) or WebLLM (WebGPU) to run a GGUF model directly in the browser.\nRequirements:\n\nCreate a web page that loads and runs a GGUF model client-side (no server-side inference)\nDisplay a loading/progress indicator while the model downloads\nBuild a simple chat or prompt interface where the user can type input and see the model’s response\nStream the model’s output token-by-token (not all at once)\nTest in at least two browsers and note any differences in performance or compatibility\n\nDeliverable: A GitHub repository containing your web project with a README that includes which library you chose (Wllama or WebLLM) and a screenshot showing the app running in the browser.",
+    "text": "Option 4: Web Browser\nUse Wllama (CPU/WASM) or WebLLM (WebGPU) or Transformers.js to run a model directly in the browser.\nRequirements:\n\nCreate a web page that loads and runs a model client-side (no server-side inference)\nDisplay a loading/progress indicator while the model downloads\nBuild a simple chat or prompt interface where the user can type input and see the model’s response\nStream the model’s output token-by-token (not all at once)\nTest in at least two browsers and note any differences in performance or compatibility\n\nDeliverable: A GitHub repository containing your web project with a README that includes which library you chose (Wllama or WebLLM or Transformers.js) and a screenshot showing the app running in the browser.",
     "crumbs": [
       "**Module 5:** Running Models on Local Hardware",
       "Assignment"
@@ -5001,7 +5001,7 @@
     "href": "src/05/assignment.html#hints",
     "title": "Module 5 Assignment: Local Model Integration",
     "section": "Hints",
-    "text": "Hints\n\nOption 1: The python-binding.ipynb notebook from class is a great starting point. If you’re on Colab, make sure to select a T4 GPU runtime.\nOption 2: The trickiest part is getting the native libraries loaded correctly. Look at the example project in src/code/05/unity and check the LLamaSharp documentation for platform-specific setup.\nOption 3: Again, the trickiest part is getting the native libraries built and the plugin compiled. Look at the example project in src/code/05/unity - and the README.md in that folder.\nOption 4: Wllama is easier to set up (no WebGPU required), but WebLLM offers better performance if your browser supports it. Check caniuse.com/webgpu for browser support.",
+    "text": "Hints\n\nOption 1: The python-binding.ipynb notebook from class is a great starting point. If you’re on Colab, make sure to select a T4 GPU runtime.\nOption 2: The trickiest part is getting the native libraries loaded correctly. Look at the example project in src/code/05/unity and check the LLamaSharp documentation for platform-specific setup.\nOption 3: Again, the trickiest part is getting the native libraries built and the plugin compiled. Look at the example project in src/code/05/unity - and the README.md in that folder.\nOption 4: Wllama is easier to set up (no WebGPU required), but WebLLM offers better performance if your browser supports it. Transformer.js v4 is very new, but could be worth a try against an existing ONNX model.",
     "crumbs": [
       "**Module 5:** Running Models on Local Hardware",
       "Assignment"
@@ -5749,7 +5749,7 @@
     "href": "src/05/slides.html#local-models-in-the-browser-1",
     "title": "Module 5: Running Models on Local Hardware",
     "section": "Local Models in the Browser",
-    "text": "Local Models in the Browser\n\nSmall models can also run in the browser\nInference runs on WebAssembly (WASM)\nCPU or WebGPU options\nBrowser limits most models to &lt;2GB, possibly smaller depending on VRAM",
+    "text": "Local Models in the Browser\n\nSmall models can also run in the browser\nInference runs on WebAssembly (WASM)\nCPU or WebGPU options\nBrowser limits most models to &lt;2GB, possibly smaller depending on VRAM\nThree different frameworks!",
     "crumbs": [
       "**Module 5:** Running Models on Local Hardware",
       "Slides"
@@ -5794,6 +5794,17 @@
     "title": "Module 5: Running Models on Local Hardware",
     "section": "Local Models in the Browser",
     "text": "Local Models in the Browser\nconst appConfig: webllm.AppConfig = {\n  model_list: [\n    {\n      model: `https://huggingface.co/simonguest/Qwen3-0.6B-it-code-hint-3-MLC`,\n      overrides: {\n        temperature: 0.5,\n      },\n    },\n  ],\n};\nengine = await webllm.CreateMLCEngine(\"Qwen3-0.6B-it-code-hint-3\", {\n  appConfig,\n  initProgressCallback,\n});\n\nconst chunks = await engine.chat.completions.create({\n  messages: [\n    { role: 'system', content: SYSTEM_PROMPT},\n    { role: 'user', content: PROMPT }],\n  temperature: 0.7,\n  stream: true,\n});",
+    "crumbs": [
+      "**Module 5:** Running Models on Local Hardware",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/05/slides.html#local-models-in-the-browser-6",
+    "href": "src/05/slides.html#local-models-in-the-browser-6",
+    "title": "Module 5: Running Models on Local Hardware",
+    "section": "Local Models in the Browser",
+    "text": "Local Models in the Browser\n\nTransformers.js https://huggingface.co/docs/transformers.js\n\nFunctionally equivalent to HF’s transformer’s library, but designed to run in-browser\nUses ONNX format instead of GGUF or MLC\nLatest version (v4) announced Feb 2025, with better WebGPU support\n\n\nimport { pipeline } from \"@huggingface/transformers\";\n\n// Create a text generation pipeline\nconst generator = await pipeline(\n  \"text-generation\",\n  \"onnx-community/Qwen3-0.6B-ONNX'\n  { device: \"webgpu\", dtype: \"q4f16\" },\n);\n\n// Define the list of messages\nconst messages = [\n  { role: \"system\", content: \"You are a helpful assistant.\" }, \n  { role: \"user\", content: \"Write me a poem about Machine Learning.\" },\n]\nconst output = await generator (messages)\nconsole. log(output[0] generated_text.at(-1).content);",
     "crumbs": [
       "**Module 5:** Running Models on Local Hardware",
       "Slides"

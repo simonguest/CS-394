@@ -855,16 +855,16 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="option-4-web-browser" class="level2">
 <h2 class="anchored" data-anchor-id="option-4-web-browser">Option 4: Web Browser</h2>
-<p>Use Wllama (CPU/WASM) or WebLLM (WebGPU) to run a GGUF model directly in the browser.</p>
+<p>Use Wllama (CPU/WASM) or WebLLM (WebGPU) or Transformers.js to run a model directly in the browser.</p>
 <p><strong>Requirements:</strong></p>
 <ul>
-<li>Create a web page that loads and runs a GGUF model client-side (no server-side inference)</li>
+<li>Create a web page that loads and runs a model client-side (no server-side inference)</li>
 <li>Display a loading/progress indicator while the model downloads</li>
 <li>Build a simple chat or prompt interface where the user can type input and see the model’s response</li>
 <li>Stream the model’s output token-by-token (not all at once)</li>
 <li>Test in at least two browsers and note any differences in performance or compatibility</li>
 </ul>
-<p><strong>Deliverable:</strong> A GitHub repository containing your web project with a README that includes which library you chose (Wllama or WebLLM) and a screenshot showing the app running in the browser.</p>
+<p><strong>Deliverable:</strong> A GitHub repository containing your web project with a README that includes which library you chose (Wllama or WebLLM or Transformers.js) and a screenshot showing the app running in the browser.</p>
 <hr>
 </section>
 <section id="model-recommendations" class="level2">
@@ -878,7 +878,7 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Option 1</strong>: The <code>python-binding.ipynb</code> notebook from class is a great starting point. If you’re on Colab, make sure to select a T4 GPU runtime.</li>
 <li><strong>Option 2</strong>: The trickiest part is getting the native libraries loaded correctly. Look at the example project in src/code/05/unity and check the <a href="https://github.com/SciSharp/LLamaSharp" class="external" target="_blank">LLamaSharp documentation</a> for platform-specific setup.</li>
 <li><strong>Option 3</strong>: Again, the trickiest part is getting the native libraries built and the plugin compiled. Look at the example project in src/code/05/unity - and the README.md in that folder.</li>
-<li><strong>Option 4</strong>: Wllama is easier to set up (no WebGPU required), but WebLLM offers better performance if your browser supports it. Check <a href="https://caniuse.com/webgpu" class="external" target="_blank">caniuse.com/webgpu</a> for browser support.</li>
+<li><strong>Option 4</strong>: Wllama is easier to set up (no WebGPU required), but WebLLM offers better performance if your browser supports it. Transformer.js v4 is very new, but could be worth a try against an existing ONNX model.</li>
 </ul>
 
 
