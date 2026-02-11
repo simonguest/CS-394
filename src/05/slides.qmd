@@ -311,6 +311,8 @@ bibliography: references.bib
 
 Run the MoE heatmap; investigate other layers
 
+Try different prompts. Which experts get activated?
+
 Potentially swap out Phi model with other MoE from HF
 
 ## Overcoming Compute Challenges
@@ -619,6 +621,8 @@ const chunks = await engine.chat.completions.create({
   - Uses ONNX format instead of GGUF or MLC
   - Latest version (v4) announced Feb 2025, with better WebGPU support
 
+## Local Models in the Browser
+
 ```javascript
 import { pipeline } from "@huggingface/transformers";
 
@@ -635,7 +639,7 @@ const messages = [
   { role: "user", content: "Write me a poem about Machine Learning." },
 ]
 const output = await generator (messages)
-console. log(output[0] generated_text.at(-1).content);
+console.log(output[0] generated_text.at(-1).content);
 ```
 
 # Looking Ahead
