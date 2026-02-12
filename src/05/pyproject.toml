@@ -1,4 +1,7 @@
 [project]
-requires-python = ">=3.10"
+name = "05"
+version = "0.1.0"
+description = "Module 5 Demo Code"
+requires-python = ">=3.13"
 dependencies = [
 ]

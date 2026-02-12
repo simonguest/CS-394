@@ -29,85 +29,67 @@ bibliography: references.bib
 - Understand model training, dataset curation, what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy
 - Explore use cases, advantages, and disadvantages of prompt engineering
 - Introduce and implement RAG (Retrieval-Augmented Generation) to increase the accuracy of a limited SLM
-- Start the exploration of how to fine-tune models using LoRA (Low Ranked Adaptation)
-- Use a foundational model to generate synthetic data for fine-tuning a 1B parameter model
-
-# How Models Are Trained
-
-## How Models Are Trained
-
-- TBD
-- Rewind, how earlier models were trained
-- What does this look like today
-- Maybe a mention of nanoGPT?
+- Start exploring how to fine-tune models using LoRA (Low Ranked Adaptation)
+- Generate synthetic data for fine-tuning a 1B parameter model
 
 # Hallucinations
 
-## Hallcuinations
+## Hallucinations
 
-- TBD
-- Why hallucinations happen
-- Common hallucinations
+- Models hallucinate!
+  - Especially noticable on older and smaller models
+  - Many hallucinations can be difficult to spot as they sound so plausible
+  - Plausible sounding requests (i.e., asking about something that doesn't exist) often results in a hallucination
 
-# Evaluating Models
+## Hallucinations
 
-## Evaluating Models
+{{< embed notebooks/hallucinations.ipynb#setup-client echo=true outputs=false >}}
 
-- TBD
-- Before we look at improving accuracy of models, should understand how models are evaluated
-- How evaluations work, especially on non-multiple choice questions
+## Hallucinations: Citations
 
-## MMLU-Pro (Massive Multitask Language Understanding)
+{{< embed notebooks/hallucinations.ipynb#hallucinate-1 echo=true outputs=false >}}
 
-[https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro](https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro){.external target="_blank"}
+## Hallucinations: Citations
 
-- **What it tests:** 12K questions across 14 subject areas that cover STEM, humanities, social sciences, and professional domains. 
-  - Multiple-choice questions (10 options) testing both factual knowledge and reasoning across elementary to professional levels.
-- **History:** Original MMLU published in 2021 by Dan Hendrycks et al. 
-  - MMLU-Pro created because models were plateauing on MMLU (hitting 85-90%+)
-  - Pro released in June 2024 by the TIGER-AI-Lab team and accepted at NeurIPS 2024
+{{< embed notebooks/hallucinations.ipynb#hallucinate-1 echo=false >}}
 
-## GPQA (Graduate-Level Google-Proof Q&A)
+## Hallucinations: Local Knowledge
 
-[https://huggingface.co/datasets/Idavidrein/gpqa](https://huggingface.co/datasets/Idavidrein/gpqa){.external target="_blank"}
+{{< embed notebooks/hallucinations.ipynb#hallucinate-2 echo=true outputs=false >}}
 
-- **What it tests:** Graduate/PhD-level scientific reasoning in biology, physics, and chemistry through multiple-choice questions
-  - Require deep domain understanding, not just fact recall
-  - Cannot be solved by web search (the "Google-proof" property)
-  - Test genuine conceptual reasoning and problem-solving
-- **History:**
-  - Created Nov 2023 by David Rein et al. (includes researchers from NYU, Anthropic, and other institutions)
+## Hallucinations: Local Knowledge
 
-## SWE-Bench
+{{< embed notebooks/hallucinations.ipynb#hallucinate-2 echo=false >}}
 
-[https://www.swebench.com/](https://www.swebench.com/){.external target="_blank"}
+## Hallucinations: Summarization
 
-- **What it tests:** AI systems' ability to solve real-world software engineering tasks by resolving actual GitHub issues from popular open-source Python repositories
-- **History:** Created: 2023 by Princeton NLP group (Carlos E. Jimenez et al.)
-  - Original dataset was 2,294 GitHub issues from 12 popular Python repositories (Django, scikit-learn, Flask, Matplotlib, Requests, SymPy, pytest, Sphinx, etc.)
-  - Three major variants: Lite, Verified, and Pro
-  - Microsoft also publishes a "Live" version with monthly curated updates
+{{< embed notebooks/hallucinations.ipynb#hallucinate-3 echo=true outputs=false >}}
 
-## HLE (Humanity's Last Exam)
+## Hallucinations: Summarization
 
-[https://huggingface.co/datasets/cais/hle](https://huggingface.co/datasets/cais/hle){.external target="_blank"}
+{{< embed notebooks/hallucinations.ipynb#hallucinate-3 echo=false >}}
 
-- **What it tests:** 2,500 expert-level questions across dozens of subjects, including mathematics, humanities, and the natural sciences. 
-  - HLE is developed globally by subject-matter experts and consists of multiple-choice and short-answer questions suitable for automated grading.
-  - Require multimodal, multi-step reasoning rather than pattern matching or recall
-  - Be "Google-proof" (can't be quickly answered by web search)
-- **History:** Created in late 2024 by the Center for AI Safety (CAIS) and Scale AI
-  - Led by: Dan Hendrycks (who also created MMLU and MATH benchmarks)
+## Why Do Models Hallucinate?
 
-# Demo of Benchmarks
+- A language model is not a database
+  - It's a stochastic prediction machine
+  - Models often don't know how to say "I don't know"
+  - Instead, they are designed to come up with the most plausible continuation, not to retrieve verified facts
+  - (Hallucination isn't a bug in the traditional sense)
 
-## Challenges with Eval Benchmarks
+## Why Do Models Hallucinate?
 
-- TBD
-- Speak about officially testing vs. self reporting
-- Dataset contamination
-- Link to HF's latest efforts to try to curb this
-- Don't test creativity
+- Models are trained on a large corpora of Internet data
+  - Data on the Internet is often uneven
+  - Full of gaps
+  - Often contradictory
+
+## Why Do Models Hallucinate?
+
+- Model Size vs. Training Set Size
+  - Many of the latest models hold billions of parameters
+  - But they are trained on trillions of tokens
+  - Thus, they can't memorize everything and instead recognize patterns to recall information
 
 # Model Accuracy
 
@@ -272,7 +254,67 @@ Recreate the database with different data.
 - Examples
 - Fine-Tuning
 
-## Fine-Tuning
+# Evaluating Models
+
+## Evaluating Models
+
+- TBD
+- Before we look at improving accuracy of models, should understand how models are evaluated
+- How evaluations work, especially on non-multiple choice questions
+
+## MMLU-Pro (Massive Multitask Language Understanding)
+
+[https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro](https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro){.external target="_blank"}
+
+- **What it tests:** 12K questions across 14 subject areas that cover STEM, humanities, social sciences, and professional domains. 
+  - Multiple-choice questions (10 options) testing both factual knowledge and reasoning across elementary to professional levels.
+- **History:** Original MMLU published in 2021 by Dan Hendrycks et al. 
+  - MMLU-Pro created because models were plateauing on MMLU (hitting 85-90%+)
+  - Pro released in June 2024 by the TIGER-AI-Lab team and accepted at NeurIPS 2024
+
+## GPQA (Graduate-Level Google-Proof Q&A)
+
+[https://huggingface.co/datasets/Idavidrein/gpqa](https://huggingface.co/datasets/Idavidrein/gpqa){.external target="_blank"}
+
+- **What it tests:** Graduate/PhD-level scientific reasoning in biology, physics, and chemistry through multiple-choice questions
+  - Require deep domain understanding, not just fact recall
+  - Cannot be solved by web search (the "Google-proof" property)
+  - Test genuine conceptual reasoning and problem-solving
+- **History:**
+  - Created Nov 2023 by David Rein et al. (includes researchers from NYU, Anthropic, and other institutions)
+
+## SWE-Bench
+
+[https://www.swebench.com/](https://www.swebench.com/){.external target="_blank"}
+
+- **What it tests:** AI systems' ability to solve real-world software engineering tasks by resolving actual GitHub issues from popular open-source Python repositories
+- **History:** Created: 2023 by Princeton NLP group (Carlos E. Jimenez et al.)
+  - Original dataset was 2,294 GitHub issues from 12 popular Python repositories (Django, scikit-learn, Flask, Matplotlib, Requests, SymPy, pytest, Sphinx, etc.)
+  - Three major variants: Lite, Verified, and Pro
+  - Microsoft also publishes a "Live" version with monthly curated updates
+
+## HLE (Humanity's Last Exam)
+
+[https://huggingface.co/datasets/cais/hle](https://huggingface.co/datasets/cais/hle){.external target="_blank"}
+
+- **What it tests:** 2,500 expert-level questions across dozens of subjects, including mathematics, humanities, and the natural sciences. 
+  - HLE is developed globally by subject-matter experts and consists of multiple-choice and short-answer questions suitable for automated grading.
+  - Require multimodal, multi-step reasoning rather than pattern matching or recall
+  - Be "Google-proof" (can't be quickly answered by web search)
+- **History:** Created in late 2024 by the Center for AI Safety (CAIS) and Scale AI
+  - Led by: Dan Hendrycks (who also created MMLU and MATH benchmarks)
+
+# Demo of Benchmarks
+
+## Challenges with Eval Benchmarks
+
+- TBD
+- Speak about officially testing vs. self reporting
+- Dataset contamination
+- Link to HF's latest efforts to try to curb this
+- Don't test creativity
+
+# Fine-Tuning
 
 - TBD
 - Why not train from scratch?
