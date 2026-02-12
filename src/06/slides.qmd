@@ -28,15 +28,33 @@ bibliography: references.bib
 
 - Understand model training, dataset curation, what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy
 - Explore use cases, advantages, and disadvantages of prompt engineering
-- Introduce and implement RAG (Retrieval Augmented Generation) to increase the accuracy of a limited SLM
+- Introduce and implement RAG (Retrieval-Augmented Generation) to increase the accuracy of a limited SLM
 - Start the exploration of how to fine-tune models using LoRA (Low Ranked Adaptation)
 - Use a foundational model to generate synthetic data for fine-tuning a 1B parameter model
+
+# How Models Are Trained
+
+## How Models Are Trained
+
+- TBD
+- Rewind, how earlier models were trained
+- What does this look like today
+- Maybe a mention of nanoGPT?
+
+# Hallucinations
+
+## Hallcuinations
+
+- TBD
+- Why hallucinations happen
+- Common hallucinations
 
 # Evaluating Models
 
 ## Evaluating Models
 
 - TBD
+- Before we look at improving accuracy of models, should understand how models are evaluated
 - How evaluations work, especially on non-multiple choice questions
 
 ## MMLU-Pro (Massive Multitask Language Understanding)
@@ -81,6 +99,8 @@ bibliography: references.bib
 - **History:** Created in late 2024 by the Center for AI Safety (CAIS) and Scale AI
   - Led by: Dan Hendrycks (who also created MMLU and MATH benchmarks)
 
+# Demo of Benchmarks
+
 ## Challenges with Eval Benchmarks
 
 - TBD
@@ -89,6 +109,217 @@ bibliography: references.bib
 - Link to HF's latest efforts to try to curb this
 - Don't test creativity
 
+# Model Accuracy
+
+## Model Accuracy
+
+- Intro to how models can be improved
+  - Better prompt engineering
+  - Reasoning/Chain of thought
+  - Context Injection, leading to RAG - Retrieval Augmented Generation
+
+## Prompt Engineering
+
+- TBD
+- Back to the three areas we mentioned in module 2
+- Maybe look at the system prompts
+
+## Prompt Engineering
+
+- System Prompt best practices
+  - **Be specific**: "You are a Python programming tutor who explains concepts using simple analogies and provides code examples."
+  - **Define output**: "List no more than 3 suggestions. Always show your work step by step."
+  - **Set boundaries**: "If you are asked questions outside coding, politely redirect the student back to the task."
+
+## Reasoning
+
+- TBD
+- Reasoning and Chain of Thought as ways to increase accuracy
+
+## Reasoning
+
+- TBD
+- Prompt engineering and reasoning helps guide the model to the type of output you want - but it doesn't solve the problem of getting the right answer
+- Enter RAG
+
+# Context Injection
+
+## Context Injection
+
+- A model's training data will only only answer so much
+  - Training data has a cut-off: Your model won't know anything after that
+  - Your model won't know if anything has changed since being trained
+  - Function calling can help bridge this gap, but context injection is often simpler and more flexible
+
+## Context Injection
+
+- How it works
+  - Take the user's prompt (e.g., "Who teaches CS-394?")
+  - Do a database look-up to find relevant information (context)
+  - Inject that context into the system prompt
+  - Call the model with the modified system prompt
+
+## Context Injection
+
+- The injected information is called 'context', and adding it is called 'augmenting' the prompt
+  - Hence the popular term, augmented generation
+  - Two examples:
+    - SQL-Augmented Generation
+    - Retrieval-Augmented Generation
+
+## SQL-Augmented Generation
+
+{{< embed notebooks/sql-augmented.ipynb#call-without echo=true outputs=false >}}
+
+## SQL-Augmented Generation
+
+{{< embed notebooks/sql-augmented.ipynb#call-without echo=false >}}
+
+## SQL-Augmented Generation
+
+{{< embed notebooks/sql-augmented.ipynb#create-db echo=true outputs=false >}}
+
+## SQL-Augmented Generation
+
+{{< embed notebooks/sql-augmented.ipynb#build-context echo=true outputs=false >}}
+
+## SQL-Augmented Generation
+
+{{< embed notebooks/sql-augmented.ipynb#call-with echo=true outputs=false >}}
+
+## SQL-Augmented Generation
+
+{{< embed notebooks/sql-augmented.ipynb#call-with echo=false >}}
+
+## SQL-Augmented Generation
+
+- Good results, but...
+  - Requires the course code to be in the user prompt, matched to a RegEx pattern
+  - Will answer "Who teaches CS-394?" and "When is CS-394 held?"
+  - Won't answer broader queries:
+    - "What courses teach generative AI?"
+    - "Which courses are on Friday afternoons?"
+  - Could make a free-text search through the database...
+  - But there's a better way...
+
+## RAG: Retrieval-Augmented Generation
+
+- Roots of RAG trace back to 1950s and 60s, when researchers were working with vector space models
+- Term was coined in 2020 in "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks" by Patrick Lewis et. al (https://arxiv.org/pdf/2005.11401)
+- “We definitely would have put more thought into the name had we known our work would become so widespread”
+
+## How RAG Works
+
+- Create "documents"
+  - Strings of text - can be from existing db queries or scraped from PDFs
+  - Generate embeddings (using a Sentence Transformer)
+  - Store embeddings in a database
+- User prompt is converted into an embedding
+- Find the closest set of embeddings that match and inject into the system prompt
+
+## Sidebar: Sentence Transformers
+
+- In Module 1, we covered Word2Vec
+  - Creating embeddings from words
+- A sentence transformer creates embeddings from sentences
+- Many models available (e.g., all-MiniLM-L6-v2, a 384-dim vector space)
+
+## How RAG Works
+
+{{< embed notebooks/rag.ipynb#create-db echo=true outputs=false >}}
+
+## How RAG Works
+
+{{< embed notebooks/rag.ipynb#build-context echo=true outputs=false >}}
+
+## How RAG Works
+
+{{< embed notebooks/rag.ipynb#call-with echo=true outputs=false >}}
+
+## How RAG Works
+
+- "Which courses teach about generative AI?"
+
+## How RAG Works
+
+{{< embed notebooks/rag.ipynb#call-with echo=false >}}
+
+# Hands-on
+
+Investigate sql-augmented.ipynb and rag.ipynb
+
+Try different queries. Which work well on both?
+
+Recreate the database with different data.
+
+## RAG Databases
+
+- Extensions
+  - sqlite-vec: SQLite Extension (we've been using that!)
+  - pgvector: PostgreSQL extension
+- Libraries
+  - FAISS (Meta): In-memory vector index vs. database. Very fast.
+
+## RAG Databases
+
+- Pinecone: Popular commercial managed/cloud option.
+- Qdrant: Open-source dedicated db, written in Rust.
+- Milvus: Open-source. Heavier to operate, but can exceed a billion embeddings.
+
+## Beyond RAG
+
+- While system prompting and RAG go so far, there are cases where you want the model to do something beyond
+- Examples
+- Fine-Tuning
+
+## Fine-Tuning
+
+- TBD
+- Why not train from scratch?
+- History of fine-tuning
+- When to fine-tune vs. when to use other approaches
+
+# Generating Fine-Tuning Training Data
+
+## Generating Fine-Tuning Training Data
+
+- TBD
+- Overview
+- Train, validation, and test datasets
+
+## Generating Fine-Tuning Training Data
+
+- Dimensionality of training data
+  - Why this is important
+- Dimensions
+  - Topics (areas, sub-domains)
+  - Audience (e.g., school grade)
+  - Length (e.g., short, med, long)
+  - Formats (e.g., script vs. romanized)
+  - Conversation turns (single / multi)
+  - Negative answers (e.g., if implementing safety)
+- Each of these can have weights also
+
+## Training Data format
+
+- Conversational or raw?
+  - (and convert to template)
+- jsonl
+- HF datasets
+
+## How to use a model to generate
+
+- Local or hosted?
+- Generating in batches
+- Structured outputs
+
+## Walkthrough how to do this
+
+# Assignment
+
+- Pick a topic (or choose from these three)
+- Generate the training datasets
+- Upload to HF
 
 # Looking Ahead
 
