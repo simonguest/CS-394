@@ -139,6 +139,8 @@ website:
             contents:
               - text: "moe-heatmap.ipynb"
                 href: src/05/notebooks/moe-heatmap.ipynb
+              - text: "local-webserver.ipynb"
+                href: src/05/notebooks/local-webserver.ipynb
               - text: "quantization.ipynb"
                 href: src/05/notebooks/quantization.ipynb
               - text: "python-binding.ipynb"

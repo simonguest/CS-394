@@ -395,6 +395,8 @@ llama-cli -hf ggml-org/gemma-3-1b-it-GGUF
 
 llama-server -hf ggml-org/gemma-3-1b-it-GGUF
 
+Calling the model from a local notebook
+
 ## llama.cpp Wrappers
 
 - Ollama (https://ollama.com)
