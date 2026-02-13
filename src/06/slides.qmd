@@ -226,6 +226,11 @@ bibliography: references.bib
 
 {{< embed notebooks/rag.ipynb#call-with echo=false >}}
 
+## How RAG Works
+
+![](diagrams/rag.svg)
+
+
 # Hands-on
 
 Investigate sql-augmented.ipynb and rag.ipynb
