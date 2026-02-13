@@ -7062,7 +7062,7 @@
     "href": "src/05/notebooks/moe-heatmap.html#install-dependencies",
     "title": "Routing Heatmap for Small MoE Model",
     "section": "Install Dependencies",
-    "text": "Install Dependencies\n\n!uv pip install -q --no-build-isolation torch flash_attn",
+    "text": "Install Dependencies\n\n!uv pip install -q --no-build-isolation transformers==4.57.6 torch flash_attn",
     "crumbs": [
       "**Module 5:** Running Models on Local Hardware",
       "Notebooks",
