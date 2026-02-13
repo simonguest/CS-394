@@ -228,8 +228,7 @@ bibliography: references.bib
 
 ## How RAG Works
 
-![](diagrams/rag.svg)
-
+![](diagrams/rag.svg){.lightbox fig-align="center" width="600px"}
 
 # Hands-on
 
