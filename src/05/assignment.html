@@ -819,21 +819,8 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Objective:</strong> Get a quantized GGUF model running locally on the platform you plan to use (or think you will use!) for your final project.</p>
 <p><strong>Choose Your Platform:</strong> Pick ONE of the four options below based on the platform you’re most likely to use for your final project.</p>
 <hr>
-<section id="option-1-python" class="level2">
-<h2 class="anchored" data-anchor-id="option-1-python">Option 1: Python</h2>
-<p>Use the llama-cpp-python binding to load and interact with a GGUF model.</p>
-<p><strong>Requirements:</strong></p>
-<ul>
-<li>Install llama-cpp-python and load a GGUF model</li>
-<li>Create a simple interactive chat loop or Gradio interface</li>
-<li>Use a system prompt that gives the model a specific persona or task (e.g., a coding tutor, a story narrator, a recipe assistant)</li>
-<li>Demonstrate at least 3 multi-turn conversations that show the model maintaining context</li>
-</ul>
-<p><strong>Deliverable:</strong> A Colab/Jupyter notebook with your implementation, working output, and markdown cells with your observations.</p>
-<hr>
-</section>
-<section id="option-2-unity" class="level2">
-<h2 class="anchored" data-anchor-id="option-2-unity">Option 2: Unity</h2>
+<section id="option-1-unity" class="level2">
+<h2 class="anchored" data-anchor-id="option-1-unity">Option 1: Unity</h2>
 <p>Use the LLamaSharp C# binding to run a GGUF model inside a Unity project.</p>
 <p><strong>Requirements:</strong></p>
 <ul>
@@ -846,8 +833,8 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Deliverable:</strong> A GitHub repository containing your Unity project with a README that includes setup instructions and a screenshot showing the model running in the scene.</p>
 <hr>
 </section>
-<section id="option-3-unreal-engine" class="level2">
-<h2 class="anchored" data-anchor-id="option-3-unreal-engine">Option 3: Unreal Engine</h2>
+<section id="option-2-unreal-engine" class="level2">
+<h2 class="anchored" data-anchor-id="option-2-unreal-engine">Option 2: Unreal Engine</h2>
 <p>Use llama.cpp directly (C++) or via a local server to run a GGUF model inside an Unreal Engine project.</p>
 <p><strong>Requirements:</strong></p>
 <ul>
@@ -859,8 +846,8 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Deliverable:</strong> A GitHub repository containing your Unreal project with a README that includes a screenshot showing the model running in the scene.</p>
 <hr>
 </section>
-<section id="option-4-web-browser" class="level2">
-<h2 class="anchored" data-anchor-id="option-4-web-browser">Option 4: Web Browser</h2>
+<section id="option-3-web-browser" class="level2">
+<h2 class="anchored" data-anchor-id="option-3-web-browser">Option 3: Web Browser</h2>
 <p>Use Wllama (CPU/WASM) or WebLLM (WebGPU) or Transformers.js to run a model directly in the browser.</p>
 <p><strong>Requirements:</strong></p>
 <ul>
@@ -873,6 +860,19 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Deliverable:</strong> A GitHub repository containing your web project with a README that includes which library you chose (Wllama or WebLLM or Transformers.js) and a screenshot showing the app running in the browser.</p>
 <hr>
 </section>
+<section id="option-4-python-binding-or-another-language" class="level2">
+<h2 class="anchored" data-anchor-id="option-4-python-binding-or-another-language">Option 4: Python Binding (or another language)</h2>
+<p>Use the llama-cpp-python binding (or equivalent for other language) to load and interact with a GGUF model.</p>
+<p><strong>Requirements:</strong></p>
+<ul>
+<li>Install llama-cpp-python and load a GGUF model</li>
+<li>Create a simple interactive chat loop or Gradio interface</li>
+<li>Use a system prompt that gives the model a specific persona or task (e.g., a coding tutor, a story narrator, a recipe assistant)</li>
+<li>Demonstrate at least 3 multi-turn conversations that show the model maintaining context</li>
+</ul>
+<p><strong>Deliverable:</strong> A Colab/Jupyter notebook with your implementation, working output, and markdown cells with your observations.</p>
+<hr>
+</section>
 <section id="model-recommendations" class="level2">
 <h2 class="anchored" data-anchor-id="model-recommendations">Model Recommendations</h2>
 <p>Choosing the right model size is important. Models that are too large will not load or will run extremely slowly. I would recommend starting with Qwen 3 0.6B (quantized to Q4_K_M) and finding larger, more capable models once you have something working.</p>
@@ -881,10 +881,10 @@ ul.task-list li input[type="checkbox"] {
 <section id="hints" class="level2">
 <h2 class="anchored" data-anchor-id="hints">Hints</h2>
 <ul>
-<li><strong>Option 1</strong>: The <code>python-binding.ipynb</code> notebook from class is a great starting point. If you’re on Colab, make sure to select a T4 GPU runtime.</li>
-<li><strong>Option 2</strong>: The trickiest part is getting the native libraries loaded correctly. Look at the example project in src/code/05/unity and check the <a href="https://github.com/SciSharp/LLamaSharp" class="external" target="_blank">LLamaSharp documentation</a> for platform-specific setup.</li>
-<li><strong>Option 3</strong>: Again, the trickiest part is getting the native libraries built and the plugin compiled. Look at the example project in src/code/05/unity - and the README.md in that folder.</li>
-<li><strong>Option 4</strong>: Wllama is easier to set up (no WebGPU required), but WebLLM offers better performance if your browser supports it. Transformer.js v4 is very new, but could be worth a try against an existing ONNX model.</li>
+<li><strong>Option 1</strong>: The trickiest part is getting the native libraries loaded correctly. Look at the example project in src/code/05/unity and check the <a href="https://github.com/SciSharp/LLamaSharp" class="external" target="_blank">LLamaSharp documentation</a> for platform-specific setup.</li>
+<li><strong>Option 2</strong>: Again, the trickiest part is getting the native libraries built and the plugin compiled. Look at the example project in src/code/05/unity - and the README.md in that folder.</li>
+<li><strong>Option 3</strong>: Wllama is easier to set up (no WebGPU required), but WebLLM offers better performance if your browser supports it. Transformer.js v4 is very new, but could be exciting to try against an existing ONNX model.</li>
+<li><strong>Option 4</strong>: The <code>python-binding.ipynb</code> notebook from class is a great starting point. If you’re on Colab, make sure to select a T4 GPU runtime.</li>
 </ul>
 
 

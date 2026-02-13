@@ -5470,44 +5470,44 @@
     ]
   },
   {
-    "objectID": "src/05/assignment.html#option-1-python",
-    "href": "src/05/assignment.html#option-1-python",
+    "objectID": "src/05/assignment.html#option-1-unity",
+    "href": "src/05/assignment.html#option-1-unity",
     "title": "Module 5 Assignment: Local Model Integration",
-    "section": "Option 1: Python",
-    "text": "Option 1: Python\nUse the llama-cpp-python binding to load and interact with a GGUF model.\nRequirements:\n\nInstall llama-cpp-python and load a GGUF model\nCreate a simple interactive chat loop or Gradio interface\nUse a system prompt that gives the model a specific persona or task (e.g., a coding tutor, a story narrator, a recipe assistant)\nDemonstrate at least 3 multi-turn conversations that show the model maintaining context\n\nDeliverable: A Colab/Jupyter notebook with your implementation, working output, and markdown cells with your observations.",
+    "section": "Option 1: Unity",
+    "text": "Option 1: Unity\nUse the LLamaSharp C# binding to run a GGUF model inside a Unity project.\nRequirements:\n\nCreate a new Unity project (2022.3 LTS recommended)\nInstall LLamaSharp via NuGet for Unity and configure the correct backend for your hardware\nLoad a GGUF model and run inference from a Unity script\nDisplay the model’s output somewhere in the scene (e.g., a UI Text element, or a speech bubble above a character)\nDemonstrate the model responding to at least one user input (this can be a text field, a button press with a hardcoded prompt, or a trigger event)\n\nDeliverable: A GitHub repository containing your Unity project with a README that includes setup instructions and a screenshot showing the model running in the scene.",
     "crumbs": [
       "**Module 5:** Running Models on Local Hardware",
       "Assignment"
     ]
   },
   {
-    "objectID": "src/05/assignment.html#option-2-unity",
-    "href": "src/05/assignment.html#option-2-unity",
+    "objectID": "src/05/assignment.html#option-2-unreal-engine",
+    "href": "src/05/assignment.html#option-2-unreal-engine",
     "title": "Module 5 Assignment: Local Model Integration",
-    "section": "Option 2: Unity",
-    "text": "Option 2: Unity\nUse the LLamaSharp C# binding to run a GGUF model inside a Unity project.\nRequirements:\n\nCreate a new Unity project (2022.3 LTS recommended)\nInstall LLamaSharp via NuGet for Unity and configure the correct backend for your hardware\nLoad a GGUF model and run inference from a Unity script\nDisplay the model’s output somewhere in the scene (e.g., a UI Text element, or a speech bubble above a character)\nDemonstrate the model responding to at least one user input (this can be a text field, a button press with a hardcoded prompt, or a trigger event)\n\nDeliverable: A GitHub repository containing your Unity project with a README that includes setup instructions and a screenshot showing the model running in the scene.",
+    "section": "Option 2: Unreal Engine",
+    "text": "Option 2: Unreal Engine\nUse llama.cpp directly (C++) or via a local server to run a GGUF model inside an Unreal Engine project.\nRequirements:\n\nCreate a new Unreal Engine project\nBuild the llama.cpp libraries and create a plugin that calls them (as demonstrated in the sample code: src/05/code/unreal)\nDisplay the model’s output in the scene (e.g., on a UI widget or in-game text)\nDemonstrate the model responding to at least one user input or game event\n\nDeliverable: A GitHub repository containing your Unreal project with a README that includes a screenshot showing the model running in the scene.",
     "crumbs": [
       "**Module 5:** Running Models on Local Hardware",
       "Assignment"
     ]
   },
   {
-    "objectID": "src/05/assignment.html#option-3-unreal-engine",
-    "href": "src/05/assignment.html#option-3-unreal-engine",
+    "objectID": "src/05/assignment.html#option-3-web-browser",
+    "href": "src/05/assignment.html#option-3-web-browser",
     "title": "Module 5 Assignment: Local Model Integration",
-    "section": "Option 3: Unreal Engine",
-    "text": "Option 3: Unreal Engine\nUse llama.cpp directly (C++) or via a local server to run a GGUF model inside an Unreal Engine project.\nRequirements:\n\nCreate a new Unreal Engine project\nBuild the llama.cpp libraries and create a plugin that calls them (as demonstrated in the sample code: src/05/code/unreal)\nDisplay the model’s output in the scene (e.g., on a UI widget or in-game text)\nDemonstrate the model responding to at least one user input or game event\n\nDeliverable: A GitHub repository containing your Unreal project with a README that includes a screenshot showing the model running in the scene.",
+    "section": "Option 3: Web Browser",
+    "text": "Option 3: Web Browser\nUse Wllama (CPU/WASM) or WebLLM (WebGPU) or Transformers.js to run a model directly in the browser.\nRequirements:\n\nCreate a web page that loads and runs a model client-side (no server-side inference)\nDisplay a loading/progress indicator while the model downloads\nBuild a simple chat or prompt interface where the user can type input and see the model’s response\nStream the model’s output token-by-token (not all at once)\nTest in at least two browsers and note any differences in performance or compatibility\n\nDeliverable: A GitHub repository containing your web project with a README that includes which library you chose (Wllama or WebLLM or Transformers.js) and a screenshot showing the app running in the browser.",
     "crumbs": [
       "**Module 5:** Running Models on Local Hardware",
       "Assignment"
     ]
   },
   {
-    "objectID": "src/05/assignment.html#option-4-web-browser",
-    "href": "src/05/assignment.html#option-4-web-browser",
+    "objectID": "src/05/assignment.html#option-4-python-binding-or-another-language",
+    "href": "src/05/assignment.html#option-4-python-binding-or-another-language",
     "title": "Module 5 Assignment: Local Model Integration",
-    "section": "Option 4: Web Browser",
-    "text": "Option 4: Web Browser\nUse Wllama (CPU/WASM) or WebLLM (WebGPU) or Transformers.js to run a model directly in the browser.\nRequirements:\n\nCreate a web page that loads and runs a model client-side (no server-side inference)\nDisplay a loading/progress indicator while the model downloads\nBuild a simple chat or prompt interface where the user can type input and see the model’s response\nStream the model’s output token-by-token (not all at once)\nTest in at least two browsers and note any differences in performance or compatibility\n\nDeliverable: A GitHub repository containing your web project with a README that includes which library you chose (Wllama or WebLLM or Transformers.js) and a screenshot showing the app running in the browser.",
+    "section": "Option 4: Python Binding (or another language)",
+    "text": "Option 4: Python Binding (or another language)\nUse the llama-cpp-python binding (or equivalent for other language) to load and interact with a GGUF model.\nRequirements:\n\nInstall llama-cpp-python and load a GGUF model\nCreate a simple interactive chat loop or Gradio interface\nUse a system prompt that gives the model a specific persona or task (e.g., a coding tutor, a story narrator, a recipe assistant)\nDemonstrate at least 3 multi-turn conversations that show the model maintaining context\n\nDeliverable: A Colab/Jupyter notebook with your implementation, working output, and markdown cells with your observations.",
     "crumbs": [
       "**Module 5:** Running Models on Local Hardware",
       "Assignment"
@@ -5529,7 +5529,7 @@
     "href": "src/05/assignment.html#hints",
     "title": "Module 5 Assignment: Local Model Integration",
     "section": "Hints",
-    "text": "Hints\n\nOption 1: The python-binding.ipynb notebook from class is a great starting point. If you’re on Colab, make sure to select a T4 GPU runtime.\nOption 2: The trickiest part is getting the native libraries loaded correctly. Look at the example project in src/code/05/unity and check the LLamaSharp documentation for platform-specific setup.\nOption 3: Again, the trickiest part is getting the native libraries built and the plugin compiled. Look at the example project in src/code/05/unity - and the README.md in that folder.\nOption 4: Wllama is easier to set up (no WebGPU required), but WebLLM offers better performance if your browser supports it. Transformer.js v4 is very new, but could be worth a try against an existing ONNX model.",
+    "text": "Hints\n\nOption 1: The trickiest part is getting the native libraries loaded correctly. Look at the example project in src/code/05/unity and check the LLamaSharp documentation for platform-specific setup.\nOption 2: Again, the trickiest part is getting the native libraries built and the plugin compiled. Look at the example project in src/code/05/unity - and the README.md in that folder.\nOption 3: Wllama is easier to set up (no WebGPU required), but WebLLM offers better performance if your browser supports it. Transformer.js v4 is very new, but could be exciting to try against an existing ONNX model.\nOption 4: The python-binding.ipynb notebook from class is a great starting point. If you’re on Colab, make sure to select a T4 GPU runtime.",
     "crumbs": [
       "**Module 5:** Running Models on Local Hardware",
       "Assignment"
