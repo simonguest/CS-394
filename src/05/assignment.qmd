@@ -10,22 +10,7 @@ execute:
 
 ---
 
-## Option 1: Python
-
-Use the llama-cpp-python binding to load and interact with a GGUF model.
-
-**Requirements:**
-
-- Install llama-cpp-python and load a GGUF model
-- Create a simple interactive chat loop or Gradio interface
-- Use a system prompt that gives the model a specific persona or task (e.g., a coding tutor, a story narrator, a recipe assistant)
-- Demonstrate at least 3 multi-turn conversations that show the model maintaining context
-
-**Deliverable:** A Colab/Jupyter notebook with your implementation, working output, and markdown cells with your observations.
-
----
-
-## Option 2: Unity
+## Option 1: Unity
 
 Use the LLamaSharp C# binding to run a GGUF model inside a Unity project.
 
@@ -41,7 +26,7 @@ Use the LLamaSharp C# binding to run a GGUF model inside a Unity project.
 
 ---
 
-## Option 3: Unreal Engine
+## Option 2: Unreal Engine
 
 Use llama.cpp directly (C++) or via a local server to run a GGUF model inside an Unreal Engine project.
 
@@ -56,7 +41,7 @@ Use llama.cpp directly (C++) or via a local server to run a GGUF model inside an
 
 ---
 
-## Option 4: Web Browser
+## Option 3: Web Browser
 
 Use Wllama (CPU/WASM) or WebLLM (WebGPU) or Transformers.js to run a model directly in the browser.
 
@@ -72,6 +57,21 @@ Use Wllama (CPU/WASM) or WebLLM (WebGPU) or Transformers.js to run a model direc
 
 ---
 
+## Option 4: Python Binding (or another language)
+
+Use the llama-cpp-python binding (or equivalent for other language) to load and interact with a GGUF model.
+
+**Requirements:**
+
+- Install llama-cpp-python and load a GGUF model
+- Create a simple interactive chat loop or Gradio interface
+- Use a system prompt that gives the model a specific persona or task (e.g., a coding tutor, a story narrator, a recipe assistant)
+- Demonstrate at least 3 multi-turn conversations that show the model maintaining context
+
+**Deliverable:** A Colab/Jupyter notebook with your implementation, working output, and markdown cells with your observations.
+
+---
+
 ## Model Recommendations
 
 Choosing the right model size is important. Models that are too large will not load or will run extremely slowly. I would recommend starting with Qwen 3 0.6B (quantized to Q4_K_M) and finding larger, more capable models once you have something working.
@@ -80,7 +80,7 @@ You can browse available GGUF models on [Hugging Face](https://huggingface.co/mo
 
 ## Hints
 
-- **Option 1**: The `python-binding.ipynb` notebook from class is a great starting point. If you're on Colab, make sure to select a T4 GPU runtime.
-- **Option 2**: The trickiest part is getting the native libraries loaded correctly. Look at the example project in src/code/05/unity and check the [LLamaSharp documentation](https://github.com/SciSharp/LLamaSharp){.external target="_blank"} for platform-specific setup.
-- **Option 3**: Again, the trickiest part is getting the native libraries built and the plugin compiled. Look at the example project in src/code/05/unity - and the README.md in that folder.
-- **Option 4**: Wllama is easier to set up (no WebGPU required), but WebLLM offers better performance if your browser supports it. Transformer.js v4 is very new, but could be worth a try against an existing ONNX model.
+- **Option 1**: The trickiest part is getting the native libraries loaded correctly. Look at the example project in src/code/05/unity and check the [LLamaSharp documentation](https://github.com/SciSharp/LLamaSharp){.external target="_blank"} for platform-specific setup.
+- **Option 2**: Again, the trickiest part is getting the native libraries built and the plugin compiled. Look at the example project in src/code/05/unity - and the README.md in that folder.
+- **Option 3**: Wllama is easier to set up (no WebGPU required), but WebLLM offers better performance if your browser supports it. Transformer.js v4 is very new, but could be exciting to try against an existing ONNX model.
+- **Option 4**: The `python-binding.ipynb` notebook from class is a great starting point. If you're on Colab, make sure to select a T4 GPU runtime.
