@@ -1145,10 +1145,17 @@
 <h2>Fine-tuning</h2>
 <ul>
 <li class="fragment">Prompt Engineering and Context Injection (RAG) can help improve the output and accuracy of models</li>
-<li class="fragment">However, sometimes you need the model to have a consistent <strong>style</strong>, <strong>structure</strong>, or <strong>behavior</strong></li>
+<li class="fragment">However, sometimes you need the model to have more consistency in its style, structure, or behavior</li>
 </ul>
 </section>
 <section id="fine-tuning-2" class="slide level2">
+<h2>Fine-tuning</h2>
+<ul>
+<li class="fragment">Fine-tuning is the process of taking a pre-trained model and continuing to train it on a smaller, task-specific dataset using curated examples</li>
+<li class="fragment">This allows it to adapt its general capabilities toward a particular <strong>style</strong>, <strong>structure</strong> or <strong>behavior</strong> without learning from scratch</li>
+</ul>
+</section>
+<section id="fine-tuning-3" class="slide level2">
 <h2>Fine-tuning</h2>
 <ul>
 <li class="fragment">Examples
@@ -1192,26 +1199,62 @@
 </ul>
 </section></section>
 <section>
-<section id="generating-fine-tuning-training-data" class="title-slide slide level1 center">
-<h1>Generating Fine-Tuning Training Data</h1>
+<section id="generating-training-data" class="title-slide slide level1 center">
+<h1>Generating Training Data</h1>
 
 </section>
-<section id="generating-fine-tuning-training-data-1" class="slide level2">
-<h2>Generating Fine-Tuning Training Data</h2>
+<section id="generating-training-data-1" class="slide level2">
+<h2>Generating Training Data</h2>
 <ul>
-<li class="fragment">TBD</li>
-<li class="fragment">Overview</li>
-<li class="fragment">Train, validation, and test datasets</li>
+<li class="fragment">Before we can fine-tune a model, we need to generate training data
+<ul>
+<li class="fragment">Data are conversations or input/output pairs that demonstrate <strong>style</strong>, <strong>structure</strong>, or <strong>behavior</strong> you want the model to adopt</li>
+</ul></li>
 </ul>
 </section>
-<section id="generating-fine-tuning-training-data-2" class="slide level2">
-<h2>Generating Fine-Tuning Training Data</h2>
+<section id="generating-training-data-2" class="slide level2">
+<h2>Generating Training Data</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb20-1"><a></a><span class="ot">[</span></span>
+<span id="cb20-2"><a></a>  <span class="fu">{</span></span>
+<span id="cb20-3"><a></a>    <span class="dt">"content"</span><span class="fu">:</span> <span class="st">"numbers = [1, 2, 3, 4, 5]</span><span class="ch">\n</span><span class="st">squared = list(map(lambda x: x ** 2, numbers))</span><span class="ch">\n</span><span class="st">print(squared)</span><span class="ch">\n</span><span class="st">"</span><span class="fu">,</span></span>
+<span id="cb20-4"><a></a>    <span class="dt">"role"</span><span class="fu">:</span> <span class="st">"system"</span></span>
+<span id="cb20-5"><a></a>  <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb20-6"><a></a>  <span class="fu">{</span></span>
+<span id="cb20-7"><a></a>    <span class="dt">"content"</span><span class="fu">:</span> <span class="st">"lambda x: x ** 2"</span><span class="fu">,</span></span>
+<span id="cb20-8"><a></a>    <span class="dt">"role"</span><span class="fu">:</span> <span class="st">"user"</span></span>
+<span id="cb20-9"><a></a>  <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb20-10"><a></a>  <span class="fu">{</span></span>
+<span id="cb20-11"><a></a>    <span class="dt">"content"</span><span class="fu">:</span> <span class="st">"The highlighted code, `lambda x: x ** 2`, is a small anonymous function that takes an input `x` and returns its square (`x ** 2`). In the context of the full code, this lambda function is used inside the `map` function to apply the squaring operation to every element in the `numbers` list. The result is a new list of squared numbers.</span><span class="ch">\n\n</span><span class="st">Think of a lambda function like a quick recipe card..."</span><span class="fu">,</span></span>
+<span id="cb20-12"><a></a>    <span class="dt">"role"</span><span class="fu">:</span> <span class="st">"assistant"</span></span>
+<span id="cb20-13"><a></a>  <span class="fu">}</span></span>
+<span id="cb20-14"><a></a><span class="ot">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="generating-training-data-3" class="slide level2">
+<h2>Generating Training Data</h2>
 <ul>
-<li class="fragment">Dimensionality of training data
+<li class="fragment">Three datasets
 <ul>
-<li class="fragment">Why this is important</li>
+<li class="fragment"><strong>Training set:</strong> What the model will learn from. Largest portion, about 70-80% of total data</li>
+<li class="fragment"><strong>Validation set:</strong> Separate dataset, used to monitor how well the model is generalizing. About 10-15%.</li>
+<li class="fragment"><strong>Test set:</strong> Separate dataset, provides an unbiased final measure of performance after training. About 10-15%</li>
 </ul></li>
-<li class="fragment">Dimensions
+</ul>
+</section>
+<section id="generating-training-data-4" class="slide level2">
+<h2>Generating Training Data</h2>
+<ul>
+<li class="fragment">Diversity of training data
+<ul>
+<li class="fragment">Needs to cover the range of inputs that the model will encounter in production.</li>
+<li class="fragment">A model trained only on short questions will struggle when users ask anything more complex</li>
+<li class="fragment">Datasets should have different dimensions</li>
+</ul></li>
+</ul>
+</section>
+<section id="generating-training-data-5" class="slide level2">
+<h2>Generating Training Data</h2>
+<ul>
+<li class="fragment">Diversity dimensions
 <ul>
 <li class="fragment">Topics (areas, sub-domains)</li>
 <li class="fragment">Audience (e.g., school grade)</li>
@@ -1220,27 +1263,49 @@
 <li class="fragment">Conversation turns (single / multi)</li>
 <li class="fragment">Negative answers (e.g., if implementing safety)</li>
 </ul></li>
-<li class="fragment">Each of these can have weights also</li>
+<li class="fragment">Each of these can be weighted (e.g., 60% short, 20% med, 20% long)</li>
 </ul>
 </section>
-<section id="training-data-format" class="slide level2">
-<h2>Training Data format</h2>
+<section id="generating-training-data-6" class="slide level2">
+<h2>Generating Training Data</h2>
 <ul>
-<li class="fragment">Conversational or raw?
+<li class="fragment">How much data do you need? It depends :)</li>
+<li class="fragment">Behaviour and style shifts: 50-500 high quality examples</li>
+<li class="fragment">Multi-turn dialogue: 1K-10K examples</li>
+<li class="fragment">Smaller models often need more examples</li>
+<li class="fragment">Optimal dataset size is often discovered during training</li>
+</ul>
+</section>
+<section id="generating-training-data-7" class="slide level2">
+<h2>Generating Training Data</h2>
 <ul>
-<li class="fragment">(and convert to template)</li>
+<li class="fragment">Dataset Format
+<ul>
+<li class="fragment">Typically JSON Lines (jsonl) - JSON objects separated with newline</li>
 </ul></li>
-<li class="fragment">jsonl</li>
-<li class="fragment">HF datasets</li>
+<li class="fragment">Converted to Hugging Face Datasets (and uploaded)</li>
+<li class="fragment">During training, these get converted to the chat template/format used by the model</li>
 </ul>
 </section>
-<section id="how-to-use-a-model-to-generate" class="slide level2">
-<h2>How to use a model to generate</h2>
+<section id="generating-training-data-8" class="slide level2">
+<h2>Generating Training Data</h2>
 <ul>
-<li class="fragment">Local or hosted?</li>
-<li class="fragment">Generating in batches</li>
-<li class="fragment">Structured outputs</li>
+<li class="fragment">How do we generate this data?
+<ul>
+<li class="fragment">Create the file by hand!</li>
+<li class="fragment">Generate <strong>synthetic data</strong> from a more capable model (and review for quality)</li>
+</ul></li>
+<li class="fragment">Synthetic Data
+<ul>
+<li class="fragment">“Generate n examples of students asking their teacher a geography question”</li>
+<li class="fragment">Often use structured outputs to map to jsonl conversational format</li>
+</ul></li>
 </ul>
+</section></section>
+<section>
+<section id="demo" class="title-slide slide level1 center">
+<h1>Demo</h1>
+
 </section>
 <section id="walkthrough-how-to-do-this" class="slide level2">
 <h2>Walkthrough how to do this</h2>

@@ -1373,7 +1373,7 @@
     "href": "src/06/slides.html#fine-tuning-1",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Fine-tuning",
-    "text": "Fine-tuning\n\nPrompt Engineering and Context Injection (RAG) can help improve the output and accuracy of models\nHowever, sometimes you need the model to have a consistent style, structure, or behavior",
+    "text": "Fine-tuning\n\nPrompt Engineering and Context Injection (RAG) can help improve the output and accuracy of models\nHowever, sometimes you need the model to have more consistency in its style, structure, or behavior",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -1382,6 +1382,17 @@
   {
     "objectID": "src/06/slides.html#fine-tuning-2",
     "href": "src/06/slides.html#fine-tuning-2",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
+    "section": "Fine-tuning",
+    "text": "Fine-tuning\n\nFine-tuning is the process of taking a pre-trained model and continuing to train it on a smaller, task-specific dataset using curated examples\nThis allows it to adapt its general capabilities toward a particular style, structure or behavior without learning from scratch",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/06/slides.html#fine-tuning-3",
+    "href": "src/06/slides.html#fine-tuning-3",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Fine-tuning",
     "text": "Fine-tuning\n\nExamples\n\nStyle: Adopting a different voice at scale: Speak to students using “Hinglish” at a 5th grade level\nStructure: Generating outputs in a precise format: Player movement instructions in a game, in JSON format\nBehavior: Always refuse off-topic questions and redirect to the subject matter (guardrail)",
@@ -1424,44 +1435,88 @@
     ]
   },
   {
-    "objectID": "src/06/slides.html#generating-fine-tuning-training-data-1",
-    "href": "src/06/slides.html#generating-fine-tuning-training-data-1",
+    "objectID": "src/06/slides.html#generating-training-data-1",
+    "href": "src/06/slides.html#generating-training-data-1",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
-    "section": "Generating Fine-Tuning Training Data",
-    "text": "Generating Fine-Tuning Training Data\n\nTBD\nOverview\nTrain, validation, and test datasets",
+    "section": "Generating Training Data",
+    "text": "Generating Training Data\n\nBefore we can fine-tune a model, we need to generate training data\n\nData are conversations or input/output pairs that demonstrate style, structure, or behavior you want the model to adopt",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/06/slides.html#generating-fine-tuning-training-data-2",
-    "href": "src/06/slides.html#generating-fine-tuning-training-data-2",
+    "objectID": "src/06/slides.html#generating-training-data-2",
+    "href": "src/06/slides.html#generating-training-data-2",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
-    "section": "Generating Fine-Tuning Training Data",
-    "text": "Generating Fine-Tuning Training Data\n\nDimensionality of training data\n\nWhy this is important\n\nDimensions\n\nTopics (areas, sub-domains)\nAudience (e.g., school grade)\nLength (e.g., short, med, long)\nFormats (e.g., script vs. romanized)\nConversation turns (single / multi)\nNegative answers (e.g., if implementing safety)\n\nEach of these can have weights also",
+    "section": "Generating Training Data",
+    "text": "Generating Training Data\n[\n  {\n    \"content\": \"numbers = [1, 2, 3, 4, 5]\\nsquared = list(map(lambda x: x ** 2, numbers))\\nprint(squared)\\n\",\n    \"role\": \"system\"\n  },\n  {\n    \"content\": \"lambda x: x ** 2\",\n    \"role\": \"user\"\n  },\n  {\n    \"content\": \"The highlighted code, `lambda x: x ** 2`, is a small anonymous function that takes an input `x` and returns its square (`x ** 2`). In the context of the full code, this lambda function is used inside the `map` function to apply the squaring operation to every element in the `numbers` list. The result is a new list of squared numbers.\\n\\nThink of a lambda function like a quick recipe card...\",\n    \"role\": \"assistant\"\n  }\n]",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/06/slides.html#training-data-format",
-    "href": "src/06/slides.html#training-data-format",
+    "objectID": "src/06/slides.html#generating-training-data-3",
+    "href": "src/06/slides.html#generating-training-data-3",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
-    "section": "Training Data format",
-    "text": "Training Data format\n\nConversational or raw?\n\n(and convert to template)\n\njsonl\nHF datasets",
+    "section": "Generating Training Data",
+    "text": "Generating Training Data\n\nThree datasets\n\nTraining set: What the model will learn from. Largest portion, about 70-80% of total data\nValidation set: Separate dataset, used to monitor how well the model is generalizing. About 10-15%.\nTest set: Separate dataset, provides an unbiased final measure of performance after training. About 10-15%",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/06/slides.html#how-to-use-a-model-to-generate",
-    "href": "src/06/slides.html#how-to-use-a-model-to-generate",
+    "objectID": "src/06/slides.html#generating-training-data-4",
+    "href": "src/06/slides.html#generating-training-data-4",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
-    "section": "How to use a model to generate",
-    "text": "How to use a model to generate\n\nLocal or hosted?\nGenerating in batches\nStructured outputs",
+    "section": "Generating Training Data",
+    "text": "Generating Training Data\n\nDiversity of training data\n\nNeeds to cover the range of inputs that the model will encounter in production.\nA model trained only on short questions will struggle when users ask anything more complex\nDatasets should have different dimensions",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/06/slides.html#generating-training-data-5",
+    "href": "src/06/slides.html#generating-training-data-5",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
+    "section": "Generating Training Data",
+    "text": "Generating Training Data\n\nDiversity dimensions\n\nTopics (areas, sub-domains)\nAudience (e.g., school grade)\nLength (e.g., short, med, long)\nFormats (e.g., script vs. romanized)\nConversation turns (single / multi)\nNegative answers (e.g., if implementing safety)\n\nEach of these can be weighted (e.g., 60% short, 20% med, 20% long)",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/06/slides.html#generating-training-data-6",
+    "href": "src/06/slides.html#generating-training-data-6",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
+    "section": "Generating Training Data",
+    "text": "Generating Training Data\n\nHow much data do you need? It depends :)\nBehaviour and style shifts: 50-500 high quality examples\nMulti-turn dialogue: 1K-10K examples\nSmaller models often need more examples\nOptimal dataset size is often discovered during training",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/06/slides.html#generating-training-data-7",
+    "href": "src/06/slides.html#generating-training-data-7",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
+    "section": "Generating Training Data",
+    "text": "Generating Training Data\n\nDataset Format\n\nTypically JSON Lines (jsonl) - JSON objects separated with newline\n\nConverted to Hugging Face Datasets (and uploaded)\nDuring training, these get converted to the chat template/format used by the model",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/06/slides.html#generating-training-data-8",
+    "href": "src/06/slides.html#generating-training-data-8",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
+    "section": "Generating Training Data",
+    "text": "Generating Training Data\n\nHow do we generate this data?\n\nCreate the file by hand!\nGenerate synthetic data from a more capable model (and review for quality)\n\nSynthetic Data\n\n“Generate n examples of students asking their teacher a geography question”\nOften use structured outputs to map to jsonl conversational format",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
