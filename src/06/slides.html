@@ -1136,16 +1136,61 @@
 <li class="fragment">Don’t test creativity</li>
 </ul>
 </section></section>
+<section>
 <section id="fine-tuning" class="title-slide slide level1 center">
-<h1>Fine-Tuning</h1>
+<h1>Fine-tuning</h1>
+
+</section>
+<section id="fine-tuning-1" class="slide level2">
+<h2>Fine-tuning</h2>
 <ul>
-<li class="fragment">TBD</li>
-<li class="fragment">Why not train from scratch?</li>
-<li class="fragment">History of fine-tuning</li>
-<li class="fragment">When to fine-tune vs.&nbsp;when to use other approaches</li>
+<li class="fragment">Prompt Engineering and Context Injection (RAG) can help improve the output and accuracy of models</li>
+<li class="fragment">However, sometimes you need the model to have a consistent <strong>style</strong>, <strong>structure</strong>, or <strong>behavior</strong></li>
 </ul>
 </section>
-
+<section id="fine-tuning-2" class="slide level2">
+<h2>Fine-tuning</h2>
+<ul>
+<li class="fragment">Examples
+<ul>
+<li class="fragment"><strong>Style:</strong> Adopting a different voice at scale: Speak to students using “Hinglish” at a 5th grade level</li>
+<li class="fragment"><strong>Structure</strong>: Generating outputs in a precise format: Player movement instructions in a game, in JSON format</li>
+<li class="fragment"><strong>Behavior</strong>: Always refuse off-topic questions and redirect to the subject matter (guardrail)</li>
+</ul></li>
+</ul>
+</section>
+<section id="history-of-fine-tuning" class="slide level2">
+<h2>History of Fine-tuning</h2>
+<ul>
+<li class="fragment">2010s: Fine-tuning became prevalent in computer vision (e.g., ImageNet-trained CNNs for medical)</li>
+<li class="fragment">2018: BERT demonstrated that a language model could be fine-tuned for sentiment, Q&amp;A, and classification</li>
+<li class="fragment">2022: InstructGPT fine-tuning on human-curated instruction-response pairs</li>
+<li class="fragment">Today: Very popular technique for adapting trained models to different use cases</li>
+</ul>
+</section>
+<section id="when-to-pick-what" class="slide level2">
+<h2>When To Pick What</h2>
+<ul>
+<li class="fragment">Prompt Engineering shapes how the model responds to input</li>
+<li class="fragment">Context Injection (RAG) augments the context with data</li>
+<li class="fragment">Fine-tuning reshapes the model itself</li>
+<li class="fragment">(A combination of all three are often used together)</li>
+</ul>
+</section>
+<section id="sidebar-can-we-train-models-from-scratch" class="slide level2">
+<h2>Sidebar: Can We Train Models From Scratch?</h2>
+<ul>
+<li class="fragment"><a href="https://github.com/karpathy/nanochat" class="external" target="_blank">NanoChat</a> shows that it’s possible
+<ul>
+<li class="fragment">60x faster and 652x cheaper than original GPT-2 in 2019</li>
+</ul></li>
+<li class="fragment">But you may not have the data nor the GPU compute to build a capable model
+<ul>
+<li class="fragment">Trained on <a href="https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu" class="external" target="_blank">fineweb-edu</a></li>
+<li class="fragment">GPT-2 level: 3 hours on a 8xH100 GPU</li>
+</ul></li>
+</ul>
+</section></section>
 <section>
 <section id="generating-fine-tuning-training-data" class="title-slide slide level1 center">
 <h1>Generating Fine-Tuning Training Data</h1>

@@ -1369,6 +1369,61 @@
     ]
   },
   {
+    "objectID": "src/06/slides.html#fine-tuning-1",
+    "href": "src/06/slides.html#fine-tuning-1",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
+    "section": "Fine-tuning",
+    "text": "Fine-tuning\n\nPrompt Engineering and Context Injection (RAG) can help improve the output and accuracy of models\nHowever, sometimes you need the model to have a consistent style, structure, or behavior",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/06/slides.html#fine-tuning-2",
+    "href": "src/06/slides.html#fine-tuning-2",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
+    "section": "Fine-tuning",
+    "text": "Fine-tuning\n\nExamples\n\nStyle: Adopting a different voice at scale: Speak to students using “Hinglish” at a 5th grade level\nStructure: Generating outputs in a precise format: Player movement instructions in a game, in JSON format\nBehavior: Always refuse off-topic questions and redirect to the subject matter (guardrail)",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/06/slides.html#history-of-fine-tuning",
+    "href": "src/06/slides.html#history-of-fine-tuning",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
+    "section": "History of Fine-tuning",
+    "text": "History of Fine-tuning\n\n2010s: Fine-tuning became prevalent in computer vision (e.g., ImageNet-trained CNNs for medical)\n2018: BERT demonstrated that a language model could be fine-tuned for sentiment, Q&A, and classification\n2022: InstructGPT fine-tuning on human-curated instruction-response pairs\nToday: Very popular technique for adapting trained models to different use cases",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/06/slides.html#when-to-pick-what",
+    "href": "src/06/slides.html#when-to-pick-what",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
+    "section": "When To Pick What",
+    "text": "When To Pick What\n\nPrompt Engineering shapes how the model responds to input\nContext Injection (RAG) augments the context with data\nFine-tuning reshapes the model itself\n(A combination of all three are often used together)",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/06/slides.html#sidebar-can-we-train-models-from-scratch",
+    "href": "src/06/slides.html#sidebar-can-we-train-models-from-scratch",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
+    "section": "Sidebar: Can We Train Models From Scratch?",
+    "text": "Sidebar: Can We Train Models From Scratch?\n\nNanoChat shows that it’s possible\n\n60x faster and 652x cheaper than original GPT-2 in 2019\n\nBut you may not have the data nor the GPU compute to build a capable model\n\nTrained on fineweb-edu\nGPT-2 level: 3 hours on a 8xH100 GPU",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "src/06/slides.html#generating-fine-tuning-training-data-1",
     "href": "src/06/slides.html#generating-fine-tuning-training-data-1",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
