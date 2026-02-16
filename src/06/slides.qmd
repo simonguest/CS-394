@@ -318,12 +318,41 @@ Recreate the database with different data.
 - Link to HF's latest efforts to try to curb this
 - Don't test creativity
 
-# Fine-Tuning
+# Fine-tuning
 
-- TBD
-- Why not train from scratch?
-- History of fine-tuning
-- When to fine-tune vs. when to use other approaches
+## Fine-tuning
+
+- Prompt Engineering and Context Injection (RAG) can help improve the output and accuracy of models
+- However, sometimes you need the model to have a consistent **style**, **structure**, or **behavior**
+
+## Fine-tuning
+
+- Examples
+  - **Style:** Adopting a different voice at scale: Speak to students using "Hinglish" at a 5th grade level
+  - **Structure**: Generating outputs in a precise format: Player movement instructions in a game, in JSON format
+  - **Behavior**: Always refuse off-topic questions and redirect to the subject matter (guardrail)
+
+## History of Fine-tuning
+
+- 2010s: Fine-tuning became prevalent in computer vision (e.g., ImageNet-trained CNNs for medical)
+- 2018: BERT demonstrated that a language model could be fine-tuned for sentiment, Q&A, and classification
+- 2022: InstructGPT fine-tuning on human-curated instruction-response pairs
+- Today: Very popular technique for adapting trained models to different use cases
+
+## When To Pick What
+
+- Prompt Engineering shapes how the model responds to input
+- Context Injection (RAG) augments the context with data
+- Fine-tuning reshapes the model itself
+- (A combination of all three are often used together)
+
+## Sidebar: Can We Train Models From Scratch?
+
+- [NanoChat](https://github.com/karpathy/nanochat){.external target="_blank"} shows that it's possible
+  - 60x faster and 652x cheaper than original GPT-2 in 2019
+- But you may not have the data nor the GPU compute to build a capable model
+  - Trained on [fineweb-edu](https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu){.external target="_blank"}
+  - GPT-2 level: 3 hours on a 8xH100 GPU
 
 # Generating Fine-Tuning Training Data
 
