@@ -323,7 +323,12 @@ Recreate the database with different data.
 ## Fine-tuning
 
 - Prompt Engineering and Context Injection (RAG) can help improve the output and accuracy of models
-- However, sometimes you need the model to have a consistent **style**, **structure**, or **behavior**
+- However, sometimes you need the model to have more consistency in its style, structure, or behavior
+
+## Fine-tuning
+
+- Fine-tuning is the process of taking a pre-trained model and continuing to train it on a smaller, task-specific dataset using curated examples
+- This allows it to adapt its general capabilities toward a particular **style**, **structure** or **behavior** without learning from scratch
 
 ## Fine-tuning
 
@@ -354,39 +359,83 @@ Recreate the database with different data.
   - Trained on [fineweb-edu](https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu){.external target="_blank"}
   - GPT-2 level: 3 hours on a 8xH100 GPU
 
-# Generating Fine-Tuning Training Data
+# Generating Training Data
 
-## Generating Fine-Tuning Training Data
+## Generating Training Data
 
-- TBD
-- Overview
-- Train, validation, and test datasets
+- Before we can fine-tune a model, we need to generate training data
+  - Data are conversations or input/output pairs that demonstrate **style**, **structure**, or **behavior** you want the model to adopt
 
-## Generating Fine-Tuning Training Data
+## Generating Training Data
 
-- Dimensionality of training data
-  - Why this is important
-- Dimensions
+```json
+[
+  {
+    "content": "numbers = [1, 2, 3, 4, 5]\nsquared = list(map(lambda x: x ** 2, numbers))\nprint(squared)\n",
+    "role": "system"
+  },
+  {
+    "content": "lambda x: x ** 2",
+    "role": "user"
+  },
+  {
+    "content": "The highlighted code, `lambda x: x ** 2`, is a small anonymous function that takes an input `x` and returns its square (`x ** 2`). In the context of the full code, this lambda function is used inside the `map` function to apply the squaring operation to every element in the `numbers` list. The result is a new list of squared numbers.\n\nThink of a lambda function like a quick recipe card...",
+    "role": "assistant"
+  }
+]
+
+```
+
+## Generating Training Data
+
+- Three datasets
+  - **Training set:** What the model will learn from. Largest portion, about 70-80% of total data
+  - **Validation set:** Separate dataset, used to monitor how well the model is generalizing. About 10-15%.
+  - **Test set:** Separate dataset, provides an unbiased final measure of performance after training. About 10-15%
+
+## Generating Training Data
+
+- Diversity of training data
+  - Needs to cover the range of inputs that the model will encounter in production.
+  - A model trained only on short questions will struggle when users ask anything more complex
+  - Datasets should have different dimensions
+
+## Generating Training Data
+
+- Diversity dimensions
   - Topics (areas, sub-domains)
   - Audience (e.g., school grade)
   - Length (e.g., short, med, long)
   - Formats (e.g., script vs. romanized)
   - Conversation turns (single / multi)
   - Negative answers (e.g., if implementing safety)
-- Each of these can have weights also
+- Each of these can be weighted (e.g., 60% short, 20% med, 20% long)
 
-## Training Data format
+## Generating Training Data
 
-- Conversational or raw?
-  - (and convert to template)
-- jsonl
-- HF datasets
+- How much data do you need? It depends :)
+- Behaviour and style shifts: 50-500 high quality examples
+- Multi-turn dialogue: 1K-10K examples
+- Smaller models often need more examples
+- Optimal dataset size is often discovered during training
 
-## How to use a model to generate
+## Generating Training Data
 
-- Local or hosted?
-- Generating in batches
-- Structured outputs
+- Dataset Format
+  - Typically JSON Lines (jsonl) - JSON objects separated with newline
+- Converted to Hugging Face Datasets (and uploaded)
+- During training, these get converted to the chat template/format used by the model
+
+## Generating Training Data
+
+- How do we generate this data?
+  - Create the file by hand!
+  - Generate **synthetic data** from a more capable model (and review for quality)
+- Synthetic Data
+  - "Generate n examples of students asking their teacher a geography question"
+  - Often use structured outputs to map to jsonl conversational format
+
+# Demo
 
 ## Walkthrough how to do this
 
