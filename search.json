@@ -5791,20 +5791,42 @@
   {
     "objectID": "src/06/assignment.html",
     "href": "src/06/assignment.html",
-    "title": "Module 6 Assignment",
+    "title": "Module 6 Assignment: Generate a Fine-tuning Dataset",
     "section": "",
-    "text": "TBD",
+    "text": "Objective: Generate a synthetic training dataset that you will use to fine-tune a model next week in Module 7.\nBackground:\nFine-tuning requires high-quality training data in the form of conversation pairs (user/assistant messages) stored in JSON Lines format. Using the generate-synthetic.ipynb notebook as a starting point, you will design and generate your own dataset for a use case that interests you.\nYour dataset should teach a model a specific style, structure, or behavior: something that prompt engineering alone would struggle to achieve consistently at scale.\nSome initial ideas:",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Assignment"
     ]
   },
   {
-    "objectID": "src/06/assignment.html#assignment",
-    "href": "src/06/assignment.html#assignment",
-    "title": "Module 6 Assignment",
-    "section": "",
-    "text": "TBD",
+    "objectID": "src/06/assignment.html#requirements",
+    "href": "src/06/assignment.html#requirements",
+    "title": "Module 6 Assignment: Generate a Fine-tuning Dataset",
+    "section": "Requirements",
+    "text": "Requirements\n\nPick a use case that has a clear style, structure, or behavior you want the model to learn\nDefine diversity dimensions for your dataset. These should include at least three dimensions (e.g., topics, difficulty levels, response lengths, formats). Refer to the slides for examples of diversity dimensions.\nGenerate three datasets using synthetic data generation:\n\ntrain.jsonl (at least 500 examples, recommend 5000+ for more complex interactions)\nvalidation.jsonl (at least 100 examples, recommend 10% of the size of your training dataset)\ntest.jsonl (at least 10 examples)\n\nReview a sample of your data for quality. Spot-check and fix or regenerate any that are low quality.",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Assignment"
+    ]
+  },
+  {
+    "objectID": "src/06/assignment.html#deliverable",
+    "href": "src/06/assignment.html#deliverable",
+    "title": "Module 6 Assignment: Generate a Fine-tuning Dataset",
+    "section": "Deliverable",
+    "text": "Deliverable\nA GitHub repository (can be the same repo you’ve been using for assignments) containing:\n\nA Colab/Jupyter notebook showing your data generation code\nUses environment variables for any API keys (e.g., OPENROUTER_API_KEY). Please do not include your API key in your notebook!\nThe generated dataset files: train.jsonl, validation.jsonl, and test.jsonl\nMarkdown cells in your notebook explaining:\n\nWhat use case you chose and why\nYour diversity dimensions and how they shape the dataset\nObservations from your quality review (what looked good, what needed fixing)",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Assignment"
+    ]
+  },
+  {
+    "objectID": "src/06/assignment.html#hints",
+    "href": "src/06/assignment.html#hints",
+    "title": "Module 6 Assignment: Generate a Fine-tuning Dataset",
+    "section": "Hints",
+    "text": "Hints\n\nStart by copying the generate-synthetic.ipynb notebook and modifying it for your use case\nThink carefully about your prompt – the quality of your synthetic data depends almost entirely on how well you describe the task to the generation model\nSmaller datasets with high quality are better than large datasets with noise. Start with 50 training examples and review them before scaling up\nUse structured outputs (Pydantic models) to keep your generated data consistent, as demonstrated in the notebook\nBe careful with the model you select to generate the data (as hundreds or thousands of calls will run up charges on paid models)\nYou will use these datasets to fine-tune a model in Module 7, so pick a use case you’re genuinely interested in!",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Assignment"
@@ -6398,7 +6420,7 @@
     "href": "src/06/slides.html#generating-training-data-2",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Generating Training Data",
-    "text": "Generating Training Data\n[\n  {\n    \"content\": \"numbers = [1, 2, 3, 4, 5]\\nsquared = list(map(lambda x: x ** 2, numbers))\\nprint(squared)\\n\",\n    \"role\": \"system\"\n  },\n  {\n    \"content\": \"lambda x: x ** 2\",\n    \"role\": \"user\"\n  },\n  {\n    \"content\": \"The highlighted code, `lambda x: x ** 2`, is a small anonymous function that takes an input `x` and returns its square (`x ** 2`). In the context of the full code, this lambda function is used inside the `map` function to apply the squaring operation to every element in the `numbers` list. The result is a new list of squared numbers.\\n\\nThink of a lambda function like a quick recipe card...\",\n    \"role\": \"assistant\"\n  }\n]",
+    "text": "Generating Training Data\n{\"messages\": [{\"role\": \"user\", \"content\": \"s = \\\"Hello\\\\nWorld\\\"\\nprint(s)\\n\"}, {\"role\": \"assistant\", \"content\": \"The code defines a string that contains the escape sequence \\\\n, which tells Python to start a new line when the string is displayed. When you run the print statement, \\\"Hello\\\" appears on one line and \\\"World\\\" appears on the next line, just like pressing Enter moves the cursor down in a text editor.\\n\\nImagine you are writing a story on a typewriter. When you finish a line, you press the \\u201cEnter\\u201d key to move to the next line and continue typing. The \\\\n character works the same way for strings in Python, signaling that the following text should start on a new line.\"}]}",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -6471,22 +6493,11 @@
     ]
   },
   {
-    "objectID": "src/06/slides.html#walkthrough-how-to-do-this",
-    "href": "src/06/slides.html#walkthrough-how-to-do-this",
-    "title": "Module 6: Increasing Model Accuracy (Part 1)",
-    "section": "Walkthrough how to do this",
-    "text": "Walkthrough how to do this",
-    "crumbs": [
-      "**Module 6:** Increasing Model Accuracy (Part 1)",
-      "Slides"
-    ]
-  },
-  {
     "objectID": "src/06/slides.html#looking-ahead-1",
     "href": "src/06/slides.html#looking-ahead-1",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Looking Ahead",
-    "text": "Looking Ahead\n\nThis week’s assignment!\nTBD",
+    "text": "Looking Ahead\n\nThis week’s assignment!\nUse your generated synthetic data to fine-tune a small model\nUse W&B (Weights and Biases) to observe parameters during the training run\nUnderstand and create a model card, upload your model to Hugging Face and share",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"

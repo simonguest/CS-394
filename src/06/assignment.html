@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Module 6 Assignment – CS-394</title>
+<title>Module 6 Assignment: Generate a Fine-tuning Dataset – CS-394</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -799,7 +799,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/06/slides.html"><strong>Module 6:</strong> Increasing Model Accuracy (Part 1)</a></li><li class="breadcrumb-item"><a href="../../src/06/assignment.html">Assignment</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Module 6 Assignment</h1>
+<h1 class="title">Module 6 Assignment: Generate a Fine-tuning Dataset</h1>
 </div>
 
 
@@ -816,9 +816,60 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="assignment" class="level2">
-<h2 class="anchored" data-anchor-id="assignment">Assignment</h2>
-<p>TBD</p>
+<p><strong>Objective:</strong> Generate a synthetic training dataset that you will use to fine-tune a model next week in Module 7.</p>
+<p><strong>Background:</strong></p>
+<p>Fine-tuning requires high-quality training data in the form of conversation pairs (user/assistant messages) stored in JSON Lines format. Using the <code>generate-synthetic.ipynb</code> notebook as a starting point, you will design and generate your own dataset for a use case that interests you.</p>
+<p>Your dataset should teach a model a specific <strong>style</strong>, <strong>structure</strong>, or <strong>behavior</strong>: something that prompt engineering alone would struggle to achieve consistently at scale.</p>
+<p><strong>Some initial ideas:</strong></p>
+<ul>
+<li><strong>Language Tutor</strong> – Generate conversation pairs where a tutor explains vocabulary and grammar in a specific language (e.g., Spanish, Japanese, Mandarin) at a beginner level, using simple analogies</li>
+<li><strong>Fitness Coach</strong> – Generate workout recommendations and exercise explanations tailored to different fitness levels, always responding in a motivational tone</li>
+<li><strong>Recipe Assistant</strong> – Generate cooking instructions that always follow a structured format (ingredients, steps, tips) and adapt to dietary restrictions (vegan, gluten-free, etc.)</li>
+<li><strong>Customer Support Agent</strong> – Generate support conversations for a fictional product, including handling complaints, answering FAQs, and escalating issues appropriately</li>
+<li><strong>Creative Writing Helper</strong> – Generate story continuations or writing feedback in a particular genre (sci-fi, mystery, romance), maintaining consistent narrative style</li>
+</ul>
+<hr>
+<section id="requirements" class="level2">
+<h2 class="anchored" data-anchor-id="requirements">Requirements</h2>
+<ol type="1">
+<li><strong>Pick a use case</strong> that has a clear style, structure, or behavior you want the model to learn</li>
+<li><strong>Define diversity dimensions</strong> for your dataset. These should include at least three dimensions (e.g., topics, difficulty levels, response lengths, formats). Refer to the slides for examples of diversity dimensions.</li>
+<li><strong>Generate three datasets</strong> using synthetic data generation:
+<ul>
+<li><code>train.jsonl</code> (at least 500 examples, recommend 5000+ for more complex interactions)</li>
+<li><code>validation.jsonl</code> (at least 100 examples, recommend 10% of the size of your training dataset)</li>
+<li><code>test.jsonl</code> (at least 10 examples)</li>
+</ul></li>
+<li><strong>Review a sample of your data</strong> for quality. Spot-check and fix or regenerate any that are low quality.</li>
+</ol>
+<hr>
+</section>
+<section id="deliverable" class="level2">
+<h2 class="anchored" data-anchor-id="deliverable">Deliverable</h2>
+<p>A GitHub repository (can be the same repo you’ve been using for assignments) containing:</p>
+<ul>
+<li>A Colab/Jupyter notebook showing your data generation code</li>
+<li>Uses environment variables for any API keys (e.g., <code>OPENROUTER_API_KEY</code>). Please do not include your API key in your notebook!</li>
+<li>The generated dataset files: <code>train.jsonl</code>, <code>validation.jsonl</code>, and <code>test.jsonl</code></li>
+<li>Markdown cells in your notebook explaining:
+<ul>
+<li>What use case you chose and why</li>
+<li>Your diversity dimensions and how they shape the dataset</li>
+<li>Observations from your quality review (what looked good, what needed fixing)</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="hints" class="level2">
+<h2 class="anchored" data-anchor-id="hints">Hints</h2>
+<ul>
+<li>Start by copying the <code>generate-synthetic.ipynb</code> notebook and modifying it for your use case</li>
+<li>Think carefully about your prompt – the quality of your synthetic data depends almost entirely on how well you describe the task to the generation model</li>
+<li>Smaller datasets with high quality are better than large datasets with noise. Start with 50 training examples and review them before scaling up</li>
+<li>Use structured outputs (Pydantic models) to keep your generated data consistent, as demonstrated in the notebook</li>
+<li>Be careful with the model you select to generate the data (as hundreds or thousands of calls will run up charges on paid models)</li>
+<li>You will use these datasets to fine-tune a model in Module 7, so pick a use case you’re genuinely interested in!</li>
+</ul>
 
 
 </section>
