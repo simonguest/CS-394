@@ -369,21 +369,7 @@ Recreate the database with different data.
 ## Generating Training Data
 
 ```json
-[
-  {
-    "content": "numbers = [1, 2, 3, 4, 5]\nsquared = list(map(lambda x: x ** 2, numbers))\nprint(squared)\n",
-    "role": "system"
-  },
-  {
-    "content": "lambda x: x ** 2",
-    "role": "user"
-  },
-  {
-    "content": "The highlighted code, `lambda x: x ** 2`, is a small anonymous function that takes an input `x` and returns its square (`x ** 2`). In the context of the full code, this lambda function is used inside the `map` function to apply the squaring operation to every element in the `numbers` list. The result is a new list of squared numbers.\n\nThink of a lambda function like a quick recipe card...",
-    "role": "assistant"
-  }
-]
-
+{"messages": [{"role": "user", "content": "s = \"Hello\\nWorld\"\nprint(s)\n"}, {"role": "assistant", "content": "The code defines a string that contains the escape sequence \\n, which tells Python to start a new line when the string is displayed. When you run the print statement, \"Hello\" appears on one line and \"World\" appears on the next line, just like pressing Enter moves the cursor down in a text editor.\n\nImagine you are writing a story on a typewriter. When you finish a line, you press the \u201cEnter\u201d key to move to the next line and continue typing. The \\n character works the same way for strings in Python, signaling that the following text should start on a new line."}]}
 ```
 
 ## Generating Training Data
@@ -437,20 +423,16 @@ Recreate the database with different data.
 
 # Demo
 
-## Walkthrough how to do this
-
-# Assignment
-
-- Pick a topic (or choose from these three)
-- Generate the training datasets
-- Upload to HF
+Synthetic data generation using the generate-synthetic.ipynb notebook
 
 # Looking Ahead
 
 ## Looking Ahead
 
 - [This week's assignment!](https://simonguest.github.io/CS-394/src/06/assignment.html){.external target="_blank"}
-- TBD
+- Use your generated synthetic data to fine-tune a small model
+- Use W&B (Weights and Biases) to observe parameters during the training run
+- Understand and create a model card, upload your model to Hugging Face and share
 
 # References
 

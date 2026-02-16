@@ -1,7 +1,58 @@
 ---
-title: "Module 6 Assignment"
+title: "Module 6 Assignment: Generate a Fine-tuning Dataset"
+format: html
+execute:
+  enabled: false
+---
+**Objective:** Generate a synthetic training dataset that you will use to fine-tune a model next week in Module 7.
+
+**Background:**
+
+Fine-tuning requires high-quality training data in the form of conversation pairs (user/assistant messages) stored in JSON Lines format. Using the `generate-synthetic.ipynb` notebook as a starting point, you will design and generate your own dataset for a use case that interests you.
+
+Your dataset should teach a model a specific **style**, **structure**, or **behavior**: something that prompt engineering alone would struggle to achieve consistently at scale.
+
+**Some initial ideas:**
+
+- **Language Tutor** -- Generate conversation pairs where a tutor explains vocabulary and grammar in a specific language (e.g., Spanish, Japanese, Mandarin) at a beginner level, using simple analogies
+- **Fitness Coach** -- Generate workout recommendations and exercise explanations tailored to different fitness levels, always responding in a motivational tone
+- **Recipe Assistant** -- Generate cooking instructions that always follow a structured format (ingredients, steps, tips) and adapt to dietary restrictions (vegan, gluten-free, etc.)
+- **Customer Support Agent** -- Generate support conversations for a fictional product, including handling complaints, answering FAQs, and escalating issues appropriately
+- **Creative Writing Helper** -- Generate story continuations or writing feedback in a particular genre (sci-fi, mystery, romance), maintaining consistent narrative style
+
 ---
 
-## Assignment
+## Requirements
 
-TBD
+1. **Pick a use case** that has a clear style, structure, or behavior you want the model to learn
+2. **Define diversity dimensions** for your dataset. These should include at least three dimensions (e.g., topics, difficulty levels, response lengths, formats). Refer to the slides for examples of diversity dimensions.
+3. **Generate three datasets** using synthetic data generation:
+   - `train.jsonl` (at least 500 examples, recommend 5000+ for more complex interactions)
+   - `validation.jsonl` (at least 100 examples, recommend 10% of the size of your training dataset)
+   - `test.jsonl` (at least 10 examples)
+4. **Review a sample of your data** for quality. Spot-check and fix or regenerate any that are low quality.
+
+---
+
+## Deliverable
+
+A GitHub repository (can be the same repo you've been using for assignments) containing:
+
+- A Colab/Jupyter notebook showing your data generation code
+- Uses environment variables for any API keys (e.g., `OPENROUTER_API_KEY`). Please do not include your API key in your notebook!
+- The generated dataset files: `train.jsonl`, `validation.jsonl`, and `test.jsonl`
+- Markdown cells in your notebook explaining:
+  - What use case you chose and why
+  - Your diversity dimensions and how they shape the dataset
+  - Observations from your quality review (what looked good, what needed fixing)
+
+---
+
+## Hints
+
+- Start by copying the `generate-synthetic.ipynb` notebook and modifying it for your use case
+- Think carefully about your prompt -- the quality of your synthetic data depends almost entirely on how well you describe the task to the generation model
+- Smaller datasets with high quality are better than large datasets with noise. Start with 50 training examples and review them before scaling up
+- Use structured outputs (Pydantic models) to keep your generated data consistent, as demonstrated in the notebook
+- Be careful with the model you select to generate the data (as hundreds or thousands of calls will run up charges on paid models)
+- You will use these datasets to fine-tune a model in Module 7, so pick a use case you're genuinely interested in!
