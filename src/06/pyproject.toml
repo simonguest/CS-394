@@ -5,4 +5,8 @@ description = "Module 6 Demo Code"
 requires-python = ">=3.13"
 dependencies = [
     "dotenv>=0.9.9",
+    "openai>=2.14.0",
+    "pydantic>=2.11.10",
+    "python-dotenv>=1.2.1",
+    "tqdm>=4.67.1",
 ]
