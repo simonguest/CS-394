@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Module 1 Assignment: Experiment with Text Continuation Styles – CS-394</title>
+<title>Generate Synthetic Training Data – CS-394</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,30 +58,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../src/02/slides.html" rel="next">
-<link href="../../src/01/notebooks/GPT-2.html" rel="prev">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-a2370c85857dd8b424a4926875f0f1ff.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-2595c7eb050eebdfbc98b045594b8514.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-a2370c85857dd8b424a4926875f0f1ff.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-a2370c85857dd8b424a4926875f0f1ff.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-2595c7eb050eebdfbc98b045594b8514.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-a2370c85857dd8b424a4926875f0f1ff.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -284,7 +282,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/01/slides.html"><strong>Module 1:</strong> Foundations of Generative AI</a></li><li class="breadcrumb-item"><a href="../../src/01/assignment.html">Assignment</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Generate Synthetic Training Data</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -298,9 +296,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../../index.html" class="sidebar-logo-link">
-      <img src="../../theme/logos/DigiPen_Dragon_Shield_RGB_Black.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="../../theme/logos/DigiPen_Dragon_Shield_RGB_Black.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <a href="../../../index.html" class="sidebar-logo-link">
+      <img src="../../../theme/logos/DigiPen_Dragon_Shield_RGB_Black.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../../../theme/logos/DigiPen_Dragon_Shield_RGB_Black.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
@@ -315,7 +313,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CS-394/594</span></a>
   </div>
 </li>
@@ -331,7 +329,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/00/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/00/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
@@ -343,19 +341,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/00/weekly-rubric.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/00/weekly-rubric.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Rubric (Weekly Assignments)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/00/final-rubric-394.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/00/final-rubric-394.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Rubric (Final Project for CS-394)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/00/final-rubric-594.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/00/final-rubric-594.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Rubric (Final Project for CS-594)</span></a>
   </div>
 </li>
@@ -372,13 +370,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/01/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/01/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/01/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/01/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -393,25 +391,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/01/notebooks/hello-world.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/01/notebooks/hello-world.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">hello-world.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/01/notebooks/word2vec.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/01/notebooks/word2vec.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">word2vec.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/01/notebooks/translation-transformer.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/01/notebooks/translation-transformer.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">translation-transformer.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/01/notebooks/GPT-2.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/01/notebooks/GPT-2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GPT-2.ipynb</span></a>
   </div>
 </li>
@@ -419,7 +417,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/01/assignment.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../src/01/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -436,13 +434,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/02/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/02/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -457,37 +455,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/notebooks/instruction-tuned.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/02/notebooks/instruction-tuned.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">instruction-tuned.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/notebooks/chat-completion-openai.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/02/notebooks/chat-completion-openai.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">chat-completion-openai.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/notebooks/chat-completion-openrouter.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/02/notebooks/chat-completion-openrouter.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">chat-completion-openrouter.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/notebooks/token-streaming.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/02/notebooks/token-streaming.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">token-streaming.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/notebooks/structured-outputs.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/02/notebooks/structured-outputs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">structured-outputs.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/notebooks/gradio.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/02/notebooks/gradio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">gradio.ipynb</span></a>
   </div>
 </li>
@@ -495,7 +493,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/02/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/02/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -512,13 +510,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/03/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/03/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/03/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/03/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -533,19 +531,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/03/notebooks/campus-agent.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/03/notebooks/campus-agent.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">campus-agent.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/03/notebooks/memory.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/03/notebooks/memory.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">memory.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/03/notebooks/open-meteo-mcp.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/03/notebooks/open-meteo-mcp.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">open-meteo-mcp.ipynb</span></a>
   </div>
 </li>
@@ -553,7 +551,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/03/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/03/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -570,13 +568,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/04/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/04/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/04/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/04/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -591,61 +589,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/04/notebooks/text-to-image-sd-1.5.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/04/notebooks/text-to-image-sd-1.5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">text-to-image-sd-1.5.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/04/notebooks/image-to-image-sd-1.5.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/04/notebooks/image-to-image-sd-1.5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">image-to-image-sd-1.5.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/04/notebooks/text-to-image-replicate.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/04/notebooks/text-to-image-replicate.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">text-to-image-replicate.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/04/notebooks/generate-depth-map.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/04/notebooks/generate-depth-map.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">generate-depth-map.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/04/notebooks/depth-map-as-context.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/04/notebooks/depth-map-as-context.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">depth-map-as-context.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/04/notebooks/inpainting.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/04/notebooks/inpainting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">inpainting.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/04/notebooks/outpainting.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/04/notebooks/outpainting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">outpainting.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/04/notebooks/controlnet-openpose-sd-1.5.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/04/notebooks/controlnet-openpose-sd-1.5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">controlnet-openpose-sd-1.5.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/04/notebooks/pbr-creator.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/04/notebooks/pbr-creator.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">pbr-creator.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/04/notebooks/vlm-gemma-3-4b.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/04/notebooks/vlm-gemma-3-4b.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">vlm-gemma-3-4b.ipynb</span></a>
   </div>
 </li>
@@ -653,7 +651,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/04/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/04/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -670,13 +668,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/05/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/05/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/05/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/05/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -691,25 +689,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/05/notebooks/moe-heatmap.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/05/notebooks/moe-heatmap.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">moe-heatmap.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/05/notebooks/local-webserver.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/05/notebooks/local-webserver.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">local-webserver.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/05/notebooks/quantization.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/05/notebooks/quantization.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">quantization.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/05/notebooks/python-binding.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/05/notebooks/python-binding.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">python-binding.ipynb</span></a>
   </div>
 </li>
@@ -717,7 +715,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/05/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/05/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -734,13 +732,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/06/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/06/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/06/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/06/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -750,7 +748,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/06/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/06/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -767,13 +765,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/07/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/07/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/07/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/07/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -783,7 +781,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/07/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/07/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -800,13 +798,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/08/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../../src/08/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/08/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/08/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -816,7 +814,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/08/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../src/08/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -832,9 +830,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/01/slides.html"><strong>Module 1:</strong> Foundations of Generative AI</a></li><li class="breadcrumb-item"><a href="../../src/01/assignment.html">Assignment</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Module 1 Assignment: Experiment with Text Continuation Styles</h1>
+<h1 class="title">Generate Synthetic Training Data</h1>
 </div>
 
 
@@ -851,44 +849,211 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><strong>Objective:</strong> Create a Colab notebook that uses GPT-2 to generate creative text continuations with different styles.</p>
-<p><strong>Requirements:</strong></p>
-<ul>
-<li>Load a pre-trained GPT-2 model (using HuggingFace transformers - same approach as used in GPT-2.ipynb)</li>
-<li>Create 3 different story starters in different genres/styles. For example:
-<ul>
-<li>Fantasy/Adventure: “In a land of dragons and magic…”</li>
-<li>Sci-fi: “The year is 2157. Humanity has just…”</li>
-<li>Mystery: “The detective examined the crime scene and noticed…”</li>
-<li>(or choose your own three)</li>
-</ul></li>
-<li>Then adjust for:
-<ul>
-<li>Greedy decoding vs.&nbsp;sampling</li>
-<li>Different temperature values</li>
-<li>How the opening sentence shapes the continuation (e.g., short vs.&nbsp;long)</li>
-</ul></li>
-<li>Document your observations (using Markdown in the notebook)
-<ul>
-<li>What differences do you notice between the strategies?</li>
-<li>What worked well (or surprised you!)</li>
-<li>What didn’t work that well</li>
-</ul></li>
-</ul>
-<p><strong>Deliverable: A Colab/Jupyter notebook with:</strong></p>
-<ul>
-<li>Code cells with your implementation</li>
-<li>Outputs of generated text from GPT-2</li>
-<li>Markdown cells explaining what each sampling strategy does and any observations</li>
-</ul>
-<p><strong>Hint:</strong></p>
-<p>For better results, use a larger GPT-2 model on Colab T4.</p>
-<div id="33a39d5f" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> GPT2Tokenizer.from_pretrained(<span class="st">"gpt2-medium"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> GPT2LMHeadModel.from_pretrained(<span class="st">"gpt2-medium"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><a target="_blank" href="https://colab.research.google.com/github/simonguest/CS-394/blob/main/src/06/notebooks/generate-synthetic.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"> </a> <a target="_blank" href="https://github.com/simonguest/CS-394/raw/refs/heads/main/src/06/notebooks/generate-synthetic.ipynb"> <img src="https://img.shields.io/badge/Download_.ipynb-blue" alt="Download .ipynb"> </a></p>
+<section id="data-generation-settings" class="level2">
+<h2 class="anchored" data-anchor-id="data-generation-settings">Data generation settings</h2>
+<div id="d29c9393" class="cell" data-execution_count="27">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>NUM_TRAIN_EXAMPLES <span class="op">=</span> <span class="dv">8000</span>  <span class="co"># @param {type:"number"}</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>NUM_VAL_EXAMPLES <span class="op">=</span> <span class="dv">1000</span>  <span class="co"># @param {type:"number"}</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>NUM_TEST_EXAMPLES <span class="op">=</span> <span class="dv">100</span> <span class="co"># @param {type:"number"}</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>TEMPERATURE <span class="op">=</span> <span class="fl">0.8</span>  <span class="co"># @param {type:"number"}</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>DATA_FOLDER <span class="op">=</span> <span class="st">"./.data/generated"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>mkdir <span class="op">-</span>p {DATA_FOLDER}</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>DATAGEN_MODEL <span class="op">=</span> <span class="st">"nvidia/nemotron-3-nano-30b-a3b:free"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="dataset-diversity" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-diversity">Dataset diversity</h2>
+<div id="a485a8de" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>TOPICS <span class="op">=</span> [</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Strings"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"input()"</span>, </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"print()"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Creating variables"</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Concatenating strings"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Lists"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"if/else constructs"</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"in operator"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"list methods: append and remove"</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"list methods: index, pop, and insert"</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"list methods: slicing"</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"list methods: deleting an item"</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"for loops"</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"range() and str()"</span>,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"== comparison operator"</span>,</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"len() function"</span>,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"code commenting with #"</span>,</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Comparison operators: !=, &gt;, &gt;=, &lt;, &lt;="</span>,</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"String methods: .lower(), .upper(), .title(), .capitalize()"</span>,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Using the newline character in strings"</span>,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"int()"</span>,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"float()"</span>,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"elif"</span>,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"import keyword"</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"random module"</span>,</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"while keyword"</span>,</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"or and not operators"</span>,</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">"booleans"</span>,</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"list methods: .clear(), .copy(), .count(), .extend(), .reverse(), .sort()"</span>,</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Dictionaries"</span>,</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Dictionary methods: .items(), .keys(), .values(), .update(), .pop()"</span>,</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Dictonary methods: .get(), .format()"</span>,</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">"String methods: .find(), .join(), .replace(), .split(), .swapcase()"</span>,</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Functions: using def and return keywords"</span>, </span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Function methods: .isinstance()"</span>,</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Raising exceptions"</span>,</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Exceptions: TypeError() and ValueError()"</span>,</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Function keywords: as and from"</span>,</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="st">"The sys module"</span>,</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="st">"The with keyword"</span>,</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Tuples"</span>,</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    <span class="st">"The lambda keyword"</span>,</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    <span class="st">"The built-in map function"</span>,</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="st">"The time module"</span>,</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Built in methods: __init()__ and __str()__"</span>,</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Double underscore for private methods"</span>,</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Classes"</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>CODE_LENGTH <span class="op">=</span> [</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    <span class="st">"short"</span>,</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    <span class="st">"paragraph"</span>,</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    <span class="st">"small_function"</span>,</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    <span class="st">"large_function"</span>,</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>CODE_LENGTH_WEIGHTS <span class="op">=</span> [<span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="model-for-structured-output" class="level2">
+<h2 class="anchored" data-anchor-id="model-for-structured-output">Model for structured output</h2>
+<div id="91787f37" class="cell" data-execution_count="29">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CodeExplanation(BaseModel):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    code: <span class="bu">str</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    explanation: <span class="bu">str</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="get-openrouter-api-key" class="level2">
+<h2 class="anchored" data-anchor-id="get-openrouter-api-key">Get OpenRouter API key</h2>
+<div id="bc6fd261" class="cell" data-execution_count="30">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'google.colab'</span> <span class="kw">in</span> sys.modules:</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="im">from</span> google.colab <span class="im">import</span> userdata <span class="co"># type:ignore</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  os.environ[<span class="st">'OPENROUTER_API_KEY'</span>] <span class="op">=</span> userdata.get(<span class="st">'OPENROUTER_API_KEY'</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  load_dotenv()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="conversation-generation-functions" class="level2">
+<h2 class="anchored" data-anchor-id="conversation-generation-functions">Conversation generation functions</h2>
+<div id="1ce9bb29" class="cell" data-execution_count="31">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> openai.OpenAI(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    base_url<span class="op">=</span><span class="st">"https://openrouter.ai/api/v1"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    api_key<span class="op">=</span>os.environ.get(<span class="st">"OPENROUTER_API_KEY"</span>),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_completion(prompt: <span class="bu">str</span>) <span class="op">-&gt;</span> CodeExplanation <span class="op">|</span> <span class="va">None</span>:</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> client.responses.parse(</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        model<span class="op">=</span>DATAGEN_MODEL,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        <span class="bu">input</span><span class="op">=</span>[{<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: prompt}],</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        temperature<span class="op">=</span>TEMPERATURE,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        stream<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        text_format<span class="op">=</span>CodeExplanation</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> response.output_parsed</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_conversation(topic: <span class="bu">str</span>, code_length: <span class="bu">str</span>) <span class="op">-&gt;</span> CodeExplanation <span class="op">|</span> <span class="va">None</span>:</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    request <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> code_length <span class="op">==</span> <span class="st">"short"</span>:</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        request <span class="op">=</span> <span class="ss">f"2 - 4 lines of Python code about </span><span class="sc">{</span>topic<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> code_length <span class="op">==</span> <span class="st">"paragraph"</span>:</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>        request <span class="op">=</span> <span class="ss">f"3 - 6 lines of Python code about </span><span class="sc">{</span>topic<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> code_length <span class="op">==</span> <span class="st">"small_function"</span>:</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>        request <span class="op">=</span> <span class="ss">f"a small function (around 10 lines of Python code) about </span><span class="sc">{</span>topic<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> code_length <span class="op">==</span> <span class="st">"large_function"</span>:</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>        request <span class="op">=</span> <span class="ss">f"a large function (around 10 - 20 lines of Python code) about </span><span class="sc">{</span>topic<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>        request <span class="op">=</span> <span class="ss">f"a Python code example about </span><span class="sc">{</span>topic<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    prompt <span class="op">=</span> <span class="ss">f"""</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="ss">        Generate me </span><span class="sc">{</span>request<span class="sc">}</span><span class="ss">.</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="ss">        For this selection of code, generate a short 2 paragraph explanation of what the selected code does:</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="ss">        - The explanation should be suitable for a high school student learning Python.</span></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="ss">        - When it makes sense, the second paragraph of the explanation should use an analogy to help the student better understand the code.</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="ss">        - DO NOT wrap the code in a ```python block</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="ss">        Return the following:</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="ss">        1. The original code as a string. </span></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="ss">        2. Your explanation of what the selected code does as a string.</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="ss">    """</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> generate_completion(prompt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="dataset-generation-functions" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-generation-functions">Dataset generation functions</h2>
+<div id="e79b6bfc" class="cell" data-execution_count="32">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm <span class="im">import</span> tqdm</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_dataset(num_examples: <span class="bu">int</span>, filename: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">with</span> <span class="bu">open</span>(filename, <span class="st">"w"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> idx <span class="kw">in</span> tqdm(<span class="bu">range</span>(num_examples)):</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>      topic <span class="op">=</span> random.choice(TOPICS)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>      code_length <span class="op">=</span> random.choices(CODE_LENGTH, weights<span class="op">=</span>CODE_LENGTH_WEIGHTS)[<span class="dv">0</span>]</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>      conversation <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>      <span class="cf">while</span> conversation <span class="op">==</span> <span class="va">None</span>:</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        conversation <span class="op">=</span> create_conversation(topic, code_length)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> conversation <span class="op">==</span> <span class="va">None</span>:</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>          <span class="bu">print</span>(<span class="ss">f"Error generating conversation for example </span><span class="sc">{</span>idx<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>      template <span class="op">=</span> {</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>          <span class="st">"messages"</span>: [</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>              {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: conversation.code},</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>              {</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"role"</span>: <span class="st">"assistant"</span>,</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"content"</span>: conversation.explanation,</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>              },</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>          ]</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>      line <span class="op">=</span> json.dumps(template) <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>      f.write(line)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>      f.flush()</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    f.flush()</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    f.close()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="generate-all-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="generate-all-the-data">Generate all the data!</h2>
+<div id="4fc06c35" class="cell" data-execution_count="33">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>TRAIN_FILE <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>DATA_FOLDER<span class="sc">}</span><span class="ss">/train_</span><span class="sc">{</span>datetime<span class="sc">.</span>now()<span class="sc">.</span>strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">-%H:%M:%S'</span>)<span class="sc">}</span><span class="ss">.jsonl"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>VALID_FILE <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>DATA_FOLDER<span class="sc">}</span><span class="ss">/valid_</span><span class="sc">{</span>datetime<span class="sc">.</span>now()<span class="sc">.</span>strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">-%H:%M:%S'</span>)<span class="sc">}</span><span class="ss">.jsonl"</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>TEST_FILE <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>DATA_FOLDER<span class="sc">}</span><span class="ss">/test_</span><span class="sc">{</span>datetime<span class="sc">.</span>now()<span class="sc">.</span>strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">-%H:%M:%S'</span>)<span class="sc">}</span><span class="ss">.jsonl"</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>generate_dataset(<span class="dv">10</span>, TRAIN_FILE)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>100%|██████████| 10/10 [00:52&lt;00:00,  5.24s/it]</code></pre>
+</div>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1304,18 +1469,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../../src/01/notebooks/GPT-2.html" class="pagination-link" aria-label="GPT-2.ipynb">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">GPT-2.ipynb</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../../src/02/slides.html" class="pagination-link" aria-label="Slides">
-        <span class="nav-page-text">Slides</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 
