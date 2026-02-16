@@ -86,7 +86,7 @@ bibliography: references.bib
 
 ## Why Do Models Hallucinate?
 
-- Model Size vs. Training Set Size
+- Model size vs. Training set size
   - Many of the latest models hold billions of parameters
   - But they are trained on trillions of tokens
   - Thus, they can't memorize everything and instead recognize patterns to recall information
@@ -95,10 +95,11 @@ bibliography: references.bib
 
 ## Model Accuracy
 
-- Intro to how models can be improved
-  - Better prompt engineering
-  - Reasoning/Chain of thought
-  - Context Injection, leading to RAG - Retrieval Augmented Generation
+- Fortunately, we can improve the accuracy of models using several techniques
+  - Prompt Engineering
+  - Reasoning/Thinking Models
+  - Context Injection
+  - Fine-tuning
 
 ## Prompt Engineering
 
@@ -113,16 +114,56 @@ bibliography: references.bib
   - **Define output**: "List no more than 3 suggestions. Always show your work step by step."
   - **Set boundaries**: "If you are asked questions outside coding, politely redirect the student back to the task."
 
-## Reasoning
+# Reasoning/Thinking Models
 
-- TBD
-- Reasoning and Chain of Thought as ways to increase accuracy
+## Reasoning/Thinking Models
 
-## Reasoning
+- In 2022, Google researchers showed that prompting models to think "step by step" dramatically improved performance on math and reasoning tasks.
+  - Paper: Chain-of-Thought Prompting Elicits Reasoning in Large Language Models" paper (Wei et al., 2022)
+  - This prompt engineering technique is known as "Chain-of-Thought"
+  - i.e., showing your work helped arrive at better answers
 
-- TBD
-- Prompt engineering and reasoning helps guide the model to the type of output you want - but it doesn't solve the problem of getting the right answer
-- Enter RAG
+## Reasoning/Thinking Models
+
+- 2023: Models began to be trained with reinforcement learning on reasoning processes, not just final answers
+- 2024-25: OpenAI released o1 and o3 models. "Thinking tokens" are a separate hidden phase before generating visible output.
+- Today: Thousands of models on Hugging Face, often suffixed with **-Thinking**
+
+## Reasoning/Thinking Models
+
+- How do reasoning/thinking models work?
+  - Models are fine-tuned to produce "thinking tokens" before their final answer
+  - The model learns to use the thinking phase as a "scratch space" where it can explore, self-correct, and reason
+  - Thinking tokens in open-weight models are often in-between <think> and </think> tokens (or just a single </think> token to divide the two)
+  - Thinking tokens for closed models (e.g., o1/o3) are typically hidden
+
+## Reasoning/Thinking Models
+
+{{< embed notebooks/thinking.ipynb#pipe echo=true outputs=false >}}
+
+## Reasoning/Thinking Models
+
+{{< embed notebooks/thinking.ipynb#pipe echo=false >}}
+
+# Hands-on
+
+Test out different prompts in the hallucinations notebook (hallucinations.ipynb)
+
+Try some of the hallucination prompts with Qwen 4B Thinking (thinking.ipynb)
+
+## Reasoning/Thinking Models
+
+"Tell me more about FilterGenie..."
+
+```text
+Okay, the user is asking about FilterGenie, a macOS software for applying dynamic filters to images. Hmm, I need to recall what I know about this. Wait, I think FilterGenie might be a bit misleading here. Let me think carefully.\n\nFirst, I remember that there\'s a popular app called FilterGenie, but it\'s actually a Windows-only application. The user specifically mentioned it\'s for Mac. That\'s a red flag. I should double-check this to avoid giving wrong information. \n\nLet me mentally scan through common image editing apps for macOS. There\'s Lightroom, Affinity Photo, Photoshop, but those aren\'t called FilterGenie. Oh! I think there\'s a confusion with "FilterGenie" versus "FilterGenie" - wait, no. Actually, I recall that FilterGenie is a tool that\'s primarily for Windows. Maybe the user heard about it from a source that mixed up the platforms?\n\nI should consider if there\'s any Mac app with a similar name. Let me think... There\'s "Filter Magic" for Mac, but that\'s different. Or "Snapseed" by Google, but that\'s not it either. Hmm. \n\nWait a minute - I think the user might be mixing up FilterGen
+```
+
+## Reasoning/Thinking Models
+
+- Prompt engineering and reasoning help the model increase it's accuracy for the data that it's been trained on
+- But it doesn't account for data that it doesn't know about
+- Enter context injection...
 
 # Context Injection
 
