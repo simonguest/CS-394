@@ -6732,7 +6732,51 @@
     "href": "src/06/resources.html",
     "title": "Resources",
     "section": "",
-    "text": "References Slide",
+    "text": "Chain-of-Thought Prompting Paper - “Chain-of-Thought Prompting Elicits Reasoning in Large Language Models” (Wei et al., 2022)",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/06/resources.html#reasoningthinking-models",
+    "href": "src/06/resources.html#reasoningthinking-models",
+    "title": "Resources",
+    "section": "",
+    "text": "Chain-of-Thought Prompting Paper - “Chain-of-Thought Prompting Elicits Reasoning in Large Language Models” (Wei et al., 2022)",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/06/resources.html#retrieval-augmented-generation-rag",
+    "href": "src/06/resources.html#retrieval-augmented-generation-rag",
+    "title": "Resources",
+    "section": "Retrieval-Augmented Generation (RAG)",
+    "text": "Retrieval-Augmented Generation (RAG)\n\nRAG Paper - “Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks” (Lewis et al., 2020)",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/06/resources.html#model-evaluation-benchmarks",
+    "href": "src/06/resources.html#model-evaluation-benchmarks",
+    "title": "Resources",
+    "section": "Model Evaluation Benchmarks",
+    "text": "Model Evaluation Benchmarks\n\nMMLU-Pro on Hugging Face - 12K multi-choice questions across 14 subjects testing factual knowledge and reasoning\nGPQA on Hugging Face - Graduate/PhD-level scientific reasoning in biology, physics, and chemistry\nSWE-Bench - AI systems solving real-world software engineering tasks from GitHub issues\nHLE on Hugging Face - 2,500 expert-level questions requiring multimodal, multi-step reasoning",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/06/resources.html#training-from-scratch",
+    "href": "src/06/resources.html#training-from-scratch",
+    "title": "Resources",
+    "section": "Training From Scratch",
+    "text": "Training From Scratch\n\nNanoChat on GitHub - Andrej Karpathy’s minimal GPT-2 level model training\nfineweb-edu on Hugging Face - Educational web content dataset used for training",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Resources"
@@ -6742,8 +6786,8 @@
     "objectID": "src/06/resources.html#citations",
     "href": "src/06/resources.html#citations",
     "title": "Resources",
-    "section": "",
-    "text": "References Slide",
+    "section": "Citations",
+    "text": "Citations\n\nReferences Slide",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Resources"
