@@ -1,6 +1,29 @@
 ---
 title: "Resources"
+format: html
+execute:
+  enabled: false
 ---
+
+## Reasoning/Thinking Models
+
+- [Chain-of-Thought Prompting Paper](https://arxiv.org/abs/2201.11903) - "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models" (Wei et al., 2022)
+
+## Retrieval-Augmented Generation (RAG)
+
+- [RAG Paper](https://arxiv.org/abs/2005.11401) - "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks" (Lewis et al., 2020)
+
+## Model Evaluation Benchmarks
+
+- [MMLU-Pro on Hugging Face](https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro) - 12K multi-choice questions across 14 subjects testing factual knowledge and reasoning
+- [GPQA on Hugging Face](https://huggingface.co/datasets/Idavidrein/gpqa) - Graduate/PhD-level scientific reasoning in biology, physics, and chemistry
+- [SWE-Bench](https://www.swebench.com/) - AI systems solving real-world software engineering tasks from GitHub issues
+- [HLE on Hugging Face](https://huggingface.co/datasets/cais/hle) - 2,500 expert-level questions requiring multimodal, multi-step reasoning
+
+## Training From Scratch
+
+- [NanoChat on GitHub](https://github.com/karpathy/nanochat) - Andrej Karpathy's minimal GPT-2 level model training
+- [fineweb-edu on Hugging Face](https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu) - Educational web content dataset used for training
 
 ## Citations
 
