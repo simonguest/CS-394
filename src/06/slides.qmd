@@ -29,14 +29,14 @@ bibliography: references.bib
 - Understand model training, dataset curation, what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy
 - Explore use cases, advantages, and disadvantages of prompt engineering
 - Introduce and implement RAG (Retrieval-Augmented Generation) to increase the accuracy of a limited SLM
-- Start exploring how to fine-tune models using LoRA (Low Ranked Adaptation)
-- Generate synthetic data for fine-tuning a 1B parameter model
+- Start exploring how to fine-tune models
+- Generate synthetic data for fine-tuning a small language model
 
 # Hallucinations
 
 ## Hallucinations
 
-- Models hallucinate!
+- Breaking News: Models hallucinate!
   - Especially noticable on older and smaller models
   - Many hallucinations can be difficult to spot as they sound so plausible
   - Plausible sounding requests (i.e., asking about something that doesn't exist) often results in a hallucination
@@ -95,7 +95,7 @@ bibliography: references.bib
 
 ## Model Accuracy
 
-- Fortunately, we can improve the accuracy of models using several techniques
+- Fortunately, we can improve the accuracy of models using several techniques:
   - Prompt Engineering
   - Reasoning/Thinking Models
   - Context Injection
@@ -106,37 +106,37 @@ bibliography: references.bib
 ## Prompt Engineering
 
 - Best practices (introduced in Module 2)
-  - **Be specific**: "You are a Python programming tutor who explains concepts using simple analogies and provides code examples."
-  - **Define output**: "List no more than 3 suggestions. Always show your work step by step."
-  - **Set boundaries**: "If you are asked questions outside coding, politely redirect the student back to the task."
+  - **Be specific**: *"You are a Python programming tutor who explains concepts using simple analogies and provides code examples."*
+  - **Define output**: *"List no more than 3 suggestions. Always show your work step by step."*
+  - **Set boundaries**: *"If you are asked questions outside coding, politely redirect the student back to the task."*
 
 ## Prompt Engineering
 
-- Output-formmatting examples:
+- Output-formatting examples:
   - Providing 2-5 examples of desired output can dramatically improve performance
-  - "Please provide your output as..."
-  - "Format your answer in the following way..."
+  - *"Please provide your output as..."*
+  - *"Format your answer in the following way..."*
   - (Of course, structured outputs, if it's available, can be more reliable)
 
 ## Prompt Engineering
 
-- Few-shot exmaples:
+- Few-shot examples:
   - Providing 2-5 examples of input/output pairs dramatically improves performance
-  - Example: "Q: What's 15% of 80? A: Let me calculate: 80 × 0.15 = 12"
+  - Example: *"Q: What's 15% of 80? A: Let me calculate: 80 × 0.15 = 12"*
   - Especially effective for formatting, tone, or structure-heavy tasks
 
 ## Prompt Engineering
 
 - Role/persona assignment:
   - It can be common to add role/persona to help guide the model
-  - "You are a senior engineer reviewing code for a junior developer"
-  - "You are a geography teacher working with high school students"
+  - *"You are a senior engineer reviewing code for a junior developer"*
+  - *"You are a geography teacher working with high school students"*
 
 ## Prompt Engineering
 
-- Negative Samples:
+- Negative samples:
   - Showing what not to do alongside positive examples
-  - "Do not add ```python markdown code fences before generating code"
+  - *"Do not add ```python markdown code fences before generating code"*
 - Chain-of-Thought:
   - Explicitly asking the model to "think step-by-step"
   - Which introduces our next technique: reasoning/thinking models
@@ -146,22 +146,22 @@ bibliography: references.bib
 ## Reasoning/Thinking Models
 
 - In 2022, Google researchers showed that prompting models to think "step by step" dramatically improved performance on math and reasoning tasks.
-  - Paper: Chain-of-Thought Prompting Elicits Reasoning in Large Language Models" paper (Wei et al., 2022)
+  - Paper: "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models" [@wei2022chain]
   - This prompt engineering technique is known as "Chain-of-Thought"
   - i.e., showing your work helped arrive at better answers
 
 ## Reasoning/Thinking Models
 
-- 2023: Models began to be trained with reinforcement learning on reasoning processes, not just final answers
-- 2024-25: OpenAI released o1 and o3 models. "Thinking tokens" are a separate hidden phase before generating visible output.
-- Today: Thousands of models on Hugging Face, often suffixed with **-Thinking**
+- **2023:** Models began to be trained with reinforcement learning on reasoning processes, not just final answers
+- **2024-25:** OpenAI released o1 and o3 models. "Thinking tokens" are a separate hidden phase before generating visible output.
+- **Today:** Thousands of models on Hugging Face, often suffixed with **-Thinking**
 
 ## Reasoning/Thinking Models
 
 - How do reasoning/thinking models work?
   - Models are fine-tuned to produce "thinking tokens" before their final answer
   - The model learns to use the thinking phase as a "scratch space" where it can explore, self-correct, and reason
-  - Thinking tokens in open-weight models are often in-between <think> and </think> tokens (or just a single </think> token to divide the two)
+  - Thinking tokens in open-weight models are often in-between ```<think>``` and ```</think>``` tokens (or just a single ```</think>``` token to divide the two)
   - Thinking tokens for closed models (e.g., o1/o3) are typically hidden
 
 ## Reasoning/Thinking Models
@@ -205,7 +205,7 @@ Okay, the user is asking about FilterGenie, a macOS software for applying dynami
 
 - How it works
   - Take the user's prompt (e.g., "Who teaches CS-394?")
-  - Do a database look-up to find relevant information (context)
+  - Before sending the prompt to the model, do a database look-up to find relevant information (context)
   - Inject that context into the system prompt
   - Call the model with the modified system prompt
 
@@ -243,20 +243,20 @@ Okay, the user is asking about FilterGenie, a macOS software for applying dynami
 
 ## SQL-Augmented Generation
 
-- Good results, but...
+- Improved results, but...
   - Requires the course code to be in the user prompt, matched to a RegEx pattern
-  - Will answer "Who teaches CS-394?" and "When is CS-394 held?"
+  - Will answer *"Who teaches CS-394?"* and *"When is CS-394 held?"*
   - Won't answer broader queries:
-    - "What courses teach generative AI?"
-    - "Which courses are on Friday afternoons?"
+    - *"What courses teach generative AI?"*
+    - *"Which courses are on Friday afternoons?"*
   - Could make a free-text search through the database...
   - But there's a better way...
 
 ## RAG: Retrieval-Augmented Generation
 
 - Roots of RAG trace back to 1950s and 60s, when researchers were working with vector space models
-- Term was coined in 2020 in "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks" by Patrick Lewis et. al (https://arxiv.org/pdf/2005.11401)
-- “We definitely would have put more thought into the name had we known our work would become so widespread”
+- Term was coined in 2020 in "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks" [@lewis2020retrieval]
+- *“We definitely would have put more thought into the name had we known our work would become so widespread”*
 
 ## How RAG Works
 
@@ -288,7 +288,7 @@ Okay, the user is asking about FilterGenie, a macOS software for applying dynami
 
 ## How RAG Works
 
-- "Which courses teach about generative AI?"
+- *"Which courses teach about generative AI?"*
 
 ## How RAG Works
 
@@ -304,21 +304,21 @@ Investigate sql-augmented.ipynb and rag.ipynb
 
 Try different queries. Which work well on both?
 
-Recreate the database with different data.
+Recreate the database with different data
 
 ## RAG Databases
 
 - Extensions
-  - sqlite-vec: SQLite Extension (we've been using that!)
-  - pgvector: PostgreSQL extension
+  - **sqlite-vec:** SQLite Extension (we've been using that!)
+  - **pgvector:** PostgreSQL extension
 - Libraries
-  - FAISS (Meta): In-memory vector index vs. database. Very fast.
+  - **FAISS:** (From Meta) In-memory vector index vs. database. Very fast.
 
 ## RAG Databases
 
-- Pinecone: Popular commercial managed/cloud option.
-- Qdrant: Open-source dedicated db, written in Rust.
-- Milvus: Open-source. Heavier to operate, but can exceed a billion embeddings.
+- **Pinecone:** Popular commercial managed/cloud option.
+- **Qdrant:** Open-source dedicated db, written in Rust.
+- **Milvus:** Open-source. Heavier to operate, but can exceed a billion embeddings.
 
 # Side Topic: Evaluating Models
 
@@ -405,7 +405,7 @@ Recreate the database with different data.
 
 ## Fine-tuning
 
-- Prompt Engineering, using Reasoning/Thinking, and Context Injection (RAG) can help improve the output and accuracy of models
+- Prompt engineering, using thinking models, and context injection (RAG) can help improve the output and accuracy of models
 - However, sometimes you need the model to have more consistency in its style, structure, or behavior
 - Enter fine-tuning...
 
@@ -423,10 +423,10 @@ Recreate the database with different data.
 
 ## History of Fine-tuning
 
-- 2010s: Fine-tuning became prevalent in computer vision (e.g., ImageNet-trained CNNs for medical)
-- 2018: BERT demonstrated that a language model could be fine-tuned for sentiment, Q&A, and classification
-- 2022: InstructGPT fine-tuning on human-curated instruction-response pairs
-- Today: Very popular technique for adapting trained models to different use cases
+- **2010s:** Fine-tuning became prevalent in computer vision (e.g., ImageNet-trained CNNs for medical)
+- **2018:** BERT demonstrated that a language model could be fine-tuned for sentiment, Q&A, and classification
+- **2022:** InstructGPT fine-tuning on human-curated instruction-response pairs
+- **Today:** Very popular technique for adapting trained models to different use cases
 
 ## When To Pick What
 
@@ -502,7 +502,7 @@ Recreate the database with different data.
   - Create the file by hand!
   - Generate **synthetic data** from a more capable model (and review for quality)
 - Synthetic Data
-  - "Generate n examples of students asking their teacher a geography question"
+  - *"Generate n examples of students asking their teacher a geography question"*
   - Often use structured outputs to map to jsonl conversational format
 
 # Demo

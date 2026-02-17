@@ -156,6 +156,16 @@ website:
             href: src/06/resources.qmd
           - section: "Notebooks"
             contents:
+              - text: "hallucinations.ipynb"
+                href: src/06/notebooks/hallucinations.ipynb
+              - text: "thinking.ipynb"
+                href: src/06/notebooks/thinking.ipynb
+              - text: "sql-augmented.ipynb"
+                href: src/06/notebooks/sql-augmented.ipynb
+              - text: "rag.ipynb"
+                href: src/06/notebooks/rag.ipynb
+              - text: "generate-synthetic.ipynb"
+                href: src/06/notebooks/generate-synthetic.ipynb
           - text: "Assignment"
             href: src/06/assignment.qmd
       - section: "**Module 7:** Increasing Model Accuracy (Part 2)"
