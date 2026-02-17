@@ -4,126 +4,216 @@
     "href": "src/06/notebooks/thinking.html",
     "title": "Using Qwen3-4B-Thinking",
     "section": "",
-    "text": "from transformers import pipeline\n\npipe = pipeline(\"text-generation\", model=\"Qwen/Qwen3-4B-Thinking-2507\")\nmessages = [\n    {\"role\": \"user\", \"content\": \"Who are you?\"},\n]\npipe(messages)\n\n[{'generated_text': [{'role': 'user', 'content': 'Who are you?'},\n   {'role': 'assistant',\n    'content': \"Okay, the user asked, Who are you? I need to provide a clear and concise response. First, I should state my identity as Qwen, the large language model developed by Tongyi Lab. Next, I should mention my capabilities, such as answering questions, generating text, coding, and logical reasoning. It's important to highlight that I can handle multiple languages and is designed to be helpful and friendly. I should avoid technical jargon to keep it accessible. Also, I need to check if there's any specific context the user might have in mind, but since the question is straightforward, a general response should suffice. Let me make sure the response is structured well: start with who I am, then key features, and a friendly closing. Let me see... the user might be new to me, so keeping it simple and welcoming is key. Alright, time to put it all together in a natural, conversational tone.\\n&lt;/think&gt;\\n\\nI'm **Qwen**, a large language model developed by Tongyi Lab. I'm here to help with a wide range of tasks, including answering questions, writing stories, emails, scripts, logical reasoning, coding, and more. I can also express opinions and play games! Whether you need assistance with a problem or just want\"}]}]"
+    "text": "from transformers import pipeline\n\npipe = pipeline(\"text-generation\", model=\"Qwen/Qwen3-4B-Thinking-2507\")\nmessages = [\n    {\"role\": \"user\", \"content\": \"Who are you?\"},\n]\npipe(messages)\n\n[{'generated_text': [{'role': 'user', 'content': 'Who are you?'},\n   {'role': 'assistant',\n    'content': \"Okay, the user asked, Who are you? I need to provide a clear and concise response. First, I should state my identity as Qwen, the large language model developed by Tongyi Lab. Next, I should mention my capabilities, such as answering questions, generating text, coding, and logical reasoning. It's important to highlight that I can handle multiple languages and is designed to be helpful and friendly. I should avoid technical jargon to keep it accessible. Also, I need to check if there's any specific context the user might have in mind, but since the question is straightforward, a general response should suffice. Let me make sure the response is structured well: start with who I am, then key features, and a friendly closing. Let me see... the user might be new to me, so keeping it simple and welcoming is key. Alright, time to put it all together in a natural, conversational tone.\\n&lt;/think&gt;\\n\\nI'm **Qwen**, a large language model developed by Tongyi Lab. I'm here to help with a wide range of tasks, including answering questions, writing stories, emails, scripts, logical reasoning, coding, and more. I can also express opinions and play games! Whether you need assistance with a problem or just want\"}]}]",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "thinking.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/rag.html#install-dependencies",
     "href": "src/06/notebooks/rag.html#install-dependencies",
     "title": "RAG (Retrieval Augmented Generation)",
     "section": "Install dependencies",
-    "text": "Install dependencies\n\n!uv pip install sqlite-vec sentence-transformers -q\n\n!mkdir -p .data # Create the data directory, if it doesn't exist\nDB_PATH = \".data/course_catalog_rag.db\""
+    "text": "Install dependencies\n\n!uv pip install sqlite-vec sentence-transformers -q\n\n!mkdir -p .data # Create the data directory, if it doesn't exist\nDB_PATH = \".data/course_catalog_rag.db\"",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "rag.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/rag.html#check-sqlite-vec-extension-is-loaded",
     "href": "src/06/notebooks/rag.html#check-sqlite-vec-extension-is-loaded",
     "title": "RAG (Retrieval Augmented Generation)",
     "section": "Check sqlite-vec extension is loaded",
-    "text": "Check sqlite-vec extension is loaded\n\nimport sqlite3\nimport sqlite_vec\n\ndb = sqlite3.connect(\":memory:\")\ndb.enable_load_extension(True)\nsqlite_vec.load(db)\ndb.enable_load_extension(False)\n\nvec_version, = db.execute(\"select vec_version()\").fetchone()\nprint(f\"vec_version={vec_version}\")\n\nvec_version=v0.1.6"
+    "text": "Check sqlite-vec extension is loaded\n\nimport sqlite3\nimport sqlite_vec\n\ndb = sqlite3.connect(\":memory:\")\ndb.enable_load_extension(True)\nsqlite_vec.load(db)\ndb.enable_load_extension(False)\n\nvec_version, = db.execute(\"select vec_version()\").fetchone()\nprint(f\"vec_version={vec_version}\")\n\nvec_version=v0.1.6",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "rag.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/rag.html#load-the-embedding-model",
     "href": "src/06/notebooks/rag.html#load-the-embedding-model",
     "title": "RAG (Retrieval Augmented Generation)",
     "section": "Load the embedding model",
-    "text": "Load the embedding model\n\nfrom sentence_transformers import SentenceTransformer\n\nEMBEDDING_MODEL = \"all-MiniLM-L6-v2\"\nembedder = SentenceTransformer(EMBEDDING_MODEL)"
+    "text": "Load the embedding model\n\nfrom sentence_transformers import SentenceTransformer\n\nEMBEDDING_MODEL = \"all-MiniLM-L6-v2\"\nembedder = SentenceTransformer(EMBEDDING_MODEL)",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "rag.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/rag.html#create-the-sqlite-db-if-it-doesnt-already-exist",
     "href": "src/06/notebooks/rag.html#create-the-sqlite-db-if-it-doesnt-already-exist",
     "title": "RAG (Retrieval Augmented Generation)",
     "section": "Create the SQLite db, if it doesn’t already exist",
-    "text": "Create the SQLite db, if it doesn’t already exist\n\nimport os\nimport numpy as np\n\ndef create_connection(db_path=DB_PATH):\n    conn = sqlite3.connect(db_path)\n    conn.row_factory = sqlite3.Row\n    conn.enable_load_extension(True)\n    sqlite_vec.load(conn)\n    conn.enable_load_extension(False)\n    return conn\n\ndef create_and_populate_db(db_path=DB_PATH):\n    db_exists = os.path.exists(db_path)\n\n    conn = create_connection(db_path)\n    cursor = conn.cursor()\n\n    if db_exists:\n        print(f\"Found existing database at '{db_path}'. Skipping creation.\")\n        return conn\n\n    print(f\"Creating new database at '{db_path}'...\")\n\n    # --- Schema ---\n    cursor.executescript(\"\"\"\n        CREATE TABLE instructors (\n            id          INTEGER PRIMARY KEY,\n            name        TEXT NOT NULL,\n            email       TEXT,\n            department  TEXT,\n            bio         TEXT\n        );\n\n        CREATE TABLE courses (\n            id              INTEGER PRIMARY KEY,\n            code            TEXT NOT NULL UNIQUE,\n            title           TEXT NOT NULL,\n            description     TEXT,\n            credits         INTEGER,\n            level           TEXT CHECK(level IN ('intro', 'intermediate', 'advanced')),\n            instructor_id   INTEGER REFERENCES instructors(id),\n            max_enrollment  INTEGER\n        );\n\n        CREATE TABLE schedules (\n            id          INTEGER PRIMARY KEY,\n            course_id   INTEGER REFERENCES courses(id),\n            days        TEXT,\n            time_start  TEXT,\n            time_end    TEXT,\n            room        TEXT,\n            semester    TEXT\n        );\n\n        CREATE VIRTUAL TABLE course_embeddings USING vec0(\n            course_id INTEGER PRIMARY KEY,\n            embedding FLOAT[384]\n        );\n    \"\"\")\n\n    # --- Instructors ---\n    cursor.executemany(\n        \"INSERT INTO instructors (name, email, department, bio) VALUES (?, ?, ?, ?)\",\n        [\n            (\"Dr. Sarah Chen\", \"s.chen@university.edu\", \"Computer Science\",\n             \"Specializes in machine learning and NLP. Author of 'Practical Deep Learning'.\"),\n            (\"Prof. Marcus Webb\", \"m.webb@university.edu\", \"Computer Science\",\n             \"Focuses on systems programming and computer architecture.\"),\n            (\"Dr. Priya Nair\", \"p.nair@university.edu\", \"Data Science\",\n             \"Expert in statistical learning, data visualization, and reproducible research.\"),\n            (\"Prof. James Okafor\", \"j.okafor@university.edu\", \"Computer Science\",\n             \"Teaches software engineering and has 10 years of industry experience at major tech firms.\"),\n            (\"Dr. Elena Russo\", \"e.russo@university.edu\", \"Mathematics\",\n             \"Research interests include linear algebra, optimization, and mathematical foundations of AI.\"),\n        ]\n    )\n\n    # --- Courses ---\n    cursor.executemany(\n        \"\"\"INSERT INTO courses (code, title, description, credits, level, instructor_id, max_enrollment)\n           VALUES (?, ?, ?, ?, ?, ?, ?)\"\"\",\n        [\n            (\"CS-101\", \"Introduction to Programming\",\n             \"Fundamentals of programming using Python. Covers variables, control flow, functions, and basic data structures.\",\n             3, \"intro\", 2, 40),\n            (\"CS-201\", \"Data Structures and Algorithms\",\n             \"Core data structures including linked lists, trees, graphs, and hash tables. Algorithm design and complexity analysis.\",\n             3, \"intermediate\", 2, 35),\n            (\"CS-301\", \"Machine Learning Fundamentals\",\n             \"Supervised and unsupervised learning, model evaluation, feature engineering, and scikit-learn. Final project required.\",\n             4, \"intermediate\", 1, 30),\n            (\"CS-394\", \"How Generative AI Works\",\n             \"Transformer architectures, large language models, prompt engineering, fine-tuning, and deployment. Hands-on with open-source models.\",\n             3, \"advanced\", 1, 25),\n            (\"CS-310\", \"Database Systems\",\n             \"Relational database design, SQL, transactions, indexing, and an introduction to NoSQL systems.\",\n             3, \"intermediate\", 4, 20),\n        ]\n    )\n\n    # --- Schedules ---\n    cursor.executemany(\n        \"\"\"INSERT INTO schedules (course_id, days, time_start, time_end, room, semester)\n           VALUES (?, ?, ?, ?, ?, ?)\"\"\",\n        [\n            (1, \"Mon/Wed/Fri\", \"09:00\", \"09:50\", \"Room 101\", \"Spring 2026\"),\n            (2, \"Tue/Thu\",     \"10:00\", \"11:20\", \"Room 204\", \"Spring 2026\"),\n            (3, \"Mon/Wed\",     \"13:00\", \"14:20\", \"Lab 12\",   \"Spring 2026\"),\n            (4, \"Tue/Thu\",     \"14:00\", \"15:20\", \"Lab 12\",   \"Spring 2026\"),\n            (5, \"Mon/Wed/Fri\", \"11:00\", \"11:50\", \"Room 305\", \"Spring 2026\"),\n        ]\n    )\n\n    conn.commit()\n\n    # --- Embeddings ---\n    # Embed each course as \"title: description\" so the vector captures both\n    print(\"Generating embeddings...\")\n    courses = conn.execute(\"SELECT id, title, description FROM courses\").fetchall()\n    for course in courses:\n        text = f\"{course['title']}: {course['description']}\"\n        embedding = embedder.encode(text).astype(np.float32)\n        cursor.execute(\n            \"INSERT INTO course_embeddings (course_id, embedding) VALUES (?, ?)\",\n            (course['id'], embedding.tobytes())\n        )\n\n    conn.commit()\n    print(\"Database created and populated successfully.\")\n    print(f\"  - {cursor.execute('SELECT COUNT(*) FROM instructors').fetchone()[0]} instructors\")\n    print(f\"  - {cursor.execute('SELECT COUNT(*) FROM courses').fetchone()[0]} courses\")\n    print(f\"  - {cursor.execute('SELECT COUNT(*) FROM schedules').fetchone()[0]} schedules\")\n    print(f\"  - {cursor.execute('SELECT COUNT(*) FROM course_embeddings').fetchone()[0]} embeddings\")\n\n    return conn\n\nconn = create_and_populate_db()\n\nCreating new database at '.data/course_catalog_rag.db'...\nGenerating embeddings...\nDatabase created and populated successfully.\n  - 5 instructors\n  - 5 courses\n  - 5 schedules\n  - 5 embeddings"
+    "text": "Create the SQLite db, if it doesn’t already exist\n\nimport os\nimport numpy as np\n\ndef create_connection(db_path=DB_PATH):\n    conn = sqlite3.connect(db_path)\n    conn.row_factory = sqlite3.Row\n    conn.enable_load_extension(True)\n    sqlite_vec.load(conn)\n    conn.enable_load_extension(False)\n    return conn\n\ndef create_and_populate_db(db_path=DB_PATH):\n    db_exists = os.path.exists(db_path)\n\n    conn = create_connection(db_path)\n    cursor = conn.cursor()\n\n    if db_exists:\n        print(f\"Found existing database at '{db_path}'. Skipping creation.\")\n        return conn\n\n    print(f\"Creating new database at '{db_path}'...\")\n\n    # --- Schema ---\n    cursor.executescript(\"\"\"\n        CREATE TABLE instructors (\n            id          INTEGER PRIMARY KEY,\n            name        TEXT NOT NULL,\n            email       TEXT,\n            department  TEXT,\n            bio         TEXT\n        );\n\n        CREATE TABLE courses (\n            id              INTEGER PRIMARY KEY,\n            code            TEXT NOT NULL UNIQUE,\n            title           TEXT NOT NULL,\n            description     TEXT,\n            credits         INTEGER,\n            level           TEXT CHECK(level IN ('intro', 'intermediate', 'advanced')),\n            instructor_id   INTEGER REFERENCES instructors(id),\n            max_enrollment  INTEGER\n        );\n\n        CREATE TABLE schedules (\n            id          INTEGER PRIMARY KEY,\n            course_id   INTEGER REFERENCES courses(id),\n            days        TEXT,\n            time_start  TEXT,\n            time_end    TEXT,\n            room        TEXT,\n            semester    TEXT\n        );\n\n        CREATE VIRTUAL TABLE course_embeddings USING vec0(\n            course_id INTEGER PRIMARY KEY,\n            embedding FLOAT[384]\n        );\n    \"\"\")\n\n    # --- Instructors ---\n    cursor.executemany(\n        \"INSERT INTO instructors (name, email, department, bio) VALUES (?, ?, ?, ?)\",\n        [\n            (\"Dr. Sarah Chen\", \"s.chen@university.edu\", \"Computer Science\",\n             \"Specializes in machine learning and NLP. Author of 'Practical Deep Learning'.\"),\n            (\"Prof. Marcus Webb\", \"m.webb@university.edu\", \"Computer Science\",\n             \"Focuses on systems programming and computer architecture.\"),\n            (\"Dr. Priya Nair\", \"p.nair@university.edu\", \"Data Science\",\n             \"Expert in statistical learning, data visualization, and reproducible research.\"),\n            (\"Prof. James Okafor\", \"j.okafor@university.edu\", \"Computer Science\",\n             \"Teaches software engineering and has 10 years of industry experience at major tech firms.\"),\n            (\"Dr. Elena Russo\", \"e.russo@university.edu\", \"Mathematics\",\n             \"Research interests include linear algebra, optimization, and mathematical foundations of AI.\"),\n        ]\n    )\n\n    # --- Courses ---\n    cursor.executemany(\n        \"\"\"INSERT INTO courses (code, title, description, credits, level, instructor_id, max_enrollment)\n           VALUES (?, ?, ?, ?, ?, ?, ?)\"\"\",\n        [\n            (\"CS-101\", \"Introduction to Programming\",\n             \"Fundamentals of programming using Python. Covers variables, control flow, functions, and basic data structures.\",\n             3, \"intro\", 2, 40),\n            (\"CS-201\", \"Data Structures and Algorithms\",\n             \"Core data structures including linked lists, trees, graphs, and hash tables. Algorithm design and complexity analysis.\",\n             3, \"intermediate\", 2, 35),\n            (\"CS-301\", \"Machine Learning Fundamentals\",\n             \"Supervised and unsupervised learning, model evaluation, feature engineering, and scikit-learn. Final project required.\",\n             4, \"intermediate\", 1, 30),\n            (\"CS-394\", \"How Generative AI Works\",\n             \"Transformer architectures, large language models, prompt engineering, fine-tuning, and deployment. Hands-on with open-source models.\",\n             3, \"advanced\", 1, 25),\n            (\"CS-310\", \"Database Systems\",\n             \"Relational database design, SQL, transactions, indexing, and an introduction to NoSQL systems.\",\n             3, \"intermediate\", 4, 20),\n        ]\n    )\n\n    # --- Schedules ---\n    cursor.executemany(\n        \"\"\"INSERT INTO schedules (course_id, days, time_start, time_end, room, semester)\n           VALUES (?, ?, ?, ?, ?, ?)\"\"\",\n        [\n            (1, \"Mon/Wed/Fri\", \"09:00\", \"09:50\", \"Room 101\", \"Spring 2026\"),\n            (2, \"Tue/Thu\",     \"10:00\", \"11:20\", \"Room 204\", \"Spring 2026\"),\n            (3, \"Mon/Wed\",     \"13:00\", \"14:20\", \"Lab 12\",   \"Spring 2026\"),\n            (4, \"Tue/Thu\",     \"14:00\", \"15:20\", \"Lab 12\",   \"Spring 2026\"),\n            (5, \"Mon/Wed/Fri\", \"11:00\", \"11:50\", \"Room 305\", \"Spring 2026\"),\n        ]\n    )\n\n    conn.commit()\n\n    # --- Embeddings ---\n    # Embed each course as \"title: description\" so the vector captures both\n    print(\"Generating embeddings...\")\n    courses = conn.execute(\"SELECT id, title, description FROM courses\").fetchall()\n    for course in courses:\n        text = f\"{course['title']}: {course['description']}\"\n        embedding = embedder.encode(text).astype(np.float32)\n        cursor.execute(\n            \"INSERT INTO course_embeddings (course_id, embedding) VALUES (?, ?)\",\n            (course['id'], embedding.tobytes())\n        )\n\n    conn.commit()\n    print(\"Database created and populated successfully.\")\n    print(f\"  - {cursor.execute('SELECT COUNT(*) FROM instructors').fetchone()[0]} instructors\")\n    print(f\"  - {cursor.execute('SELECT COUNT(*) FROM courses').fetchone()[0]} courses\")\n    print(f\"  - {cursor.execute('SELECT COUNT(*) FROM schedules').fetchone()[0]} schedules\")\n    print(f\"  - {cursor.execute('SELECT COUNT(*) FROM course_embeddings').fetchone()[0]} embeddings\")\n\n    return conn\n\nconn = create_and_populate_db()\n\nCreating new database at '.data/course_catalog_rag.db'...\nGenerating embeddings...\nDatabase created and populated successfully.\n  - 5 instructors\n  - 5 courses\n  - 5 schedules\n  - 5 embeddings",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "rag.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/rag.html#retrieval-functions",
     "href": "src/06/notebooks/rag.html#retrieval-functions",
     "title": "RAG (Retrieval Augmented Generation)",
     "section": "Retrieval functions",
-    "text": "Retrieval functions\n\ndef search_courses(conn, user_query, top_k=3):\n    \"\"\"\n    Embed the user query and find the most semantically similar courses.\n    Returns the top_k closest courses with full details.\n    \"\"\"\n    query_embedding = embedder.encode(user_query).astype(np.float32)\n\n    return conn.execute(\"\"\"\n        SELECT\n            c.code,\n            c.title,\n            c.description,\n            c.credits,\n            c.level,\n            c.max_enrollment,\n            i.name AS instructor,\n            i.email AS instructor_email,\n            s.days,\n            s.time_start,\n            s.time_end,\n            s.room,\n            s.semester,\n            e.distance\n        FROM course_embeddings e\n        JOIN courses c    ON e.course_id = c.id\n        JOIN instructors i ON c.instructor_id = i.id\n        JOIN schedules s   ON s.course_id = c.id\n        WHERE e.embedding MATCH ?\n          AND k = ?\n        ORDER BY e.distance\n    \"\"\", (query_embedding.tobytes(), top_k)).fetchall()\n\n\ndef rows_to_text(rows):\n    if not rows:\n        return \"No results found.\"\n    if isinstance(rows, sqlite3.Row):\n        rows = [rows]\n    return \"\\n\".join(\n        \"  \" + \", \".join(f\"{k}: {row[k]}\" for k in row.keys())\n        for row in rows\n    )\n\n\ndef build_context(conn, user_query):\n    rows = search_courses(conn, user_query)\n    return f\"Most relevant courses for the query:\\n{rows_to_text(rows)}\""
+    "text": "Retrieval functions\n\ndef search_courses(conn, user_query, top_k=3):\n    \"\"\"\n    Embed the user query and find the most semantically similar courses.\n    Returns the top_k closest courses with full details.\n    \"\"\"\n    query_embedding = embedder.encode(user_query).astype(np.float32)\n\n    return conn.execute(\"\"\"\n        SELECT\n            c.code,\n            c.title,\n            c.description,\n            c.credits,\n            c.level,\n            c.max_enrollment,\n            i.name AS instructor,\n            i.email AS instructor_email,\n            s.days,\n            s.time_start,\n            s.time_end,\n            s.room,\n            s.semester,\n            e.distance\n        FROM course_embeddings e\n        JOIN courses c    ON e.course_id = c.id\n        JOIN instructors i ON c.instructor_id = i.id\n        JOIN schedules s   ON s.course_id = c.id\n        WHERE e.embedding MATCH ?\n          AND k = ?\n        ORDER BY e.distance\n    \"\"\", (query_embedding.tobytes(), top_k)).fetchall()\n\n\ndef rows_to_text(rows):\n    if not rows:\n        return \"No results found.\"\n    if isinstance(rows, sqlite3.Row):\n        rows = [rows]\n    return \"\\n\".join(\n        \"  \" + \", \".join(f\"{k}: {row[k]}\" for k in row.keys())\n        for row in rows\n    )\n\n\ndef build_context(conn, user_query):\n    rows = search_courses(conn, user_query)\n    return f\"Most relevant courses for the query:\\n{rows_to_text(rows)}\"",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "rag.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/rag.html#get-the-openrouter-api-key",
     "href": "src/06/notebooks/rag.html#get-the-openrouter-api-key",
     "title": "RAG (Retrieval Augmented Generation)",
     "section": "Get the OpenRouter API key",
-    "text": "Get the OpenRouter API key\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  OPENROUTER_API_KEY = userdata.get('OPENROUTER_API_KEY')\n  os.environ[\"OPENROUTER_API_KEY\"] = OPENROUTER_API_KEY\n  print(\"Loaded key from Colab\")\nelse:\n  load_dotenv()\n  print(\"Loaded key locally\")\n\nLoaded key locally"
+    "text": "Get the OpenRouter API key\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  OPENROUTER_API_KEY = userdata.get('OPENROUTER_API_KEY')\n  os.environ[\"OPENROUTER_API_KEY\"] = OPENROUTER_API_KEY\n  print(\"Loaded key from Colab\")\nelse:\n  load_dotenv()\n  print(\"Loaded key locally\")\n\nLoaded key locally",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "rag.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/rag.html#setup-openrouter-client",
     "href": "src/06/notebooks/rag.html#setup-openrouter-client",
     "title": "RAG (Retrieval Augmented Generation)",
     "section": "Setup OpenRouter Client",
-    "text": "Setup OpenRouter Client\n\nMODEL = \"nvidia/nemotron-nano-9b-v2:free\"\n\nimport openai\n\nclient = openai.OpenAI(\n    base_url='https://openrouter.ai/api/v1',\n    api_key=os.environ[\"OPENROUTER_API_KEY\"],\n)"
+    "text": "Setup OpenRouter Client\n\nMODEL = \"nvidia/nemotron-nano-9b-v2:free\"\n\nimport openai\n\nclient = openai.OpenAI(\n    base_url='https://openrouter.ai/api/v1',\n    api_key=os.environ[\"OPENROUTER_API_KEY\"],\n)",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "rag.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/rag.html#user-query",
     "href": "src/06/notebooks/rag.html#user-query",
     "title": "RAG (Retrieval Augmented Generation)",
     "section": "User query",
-    "text": "User query\n\nUSER_PROMPT = \"Which courses teach about generative AI?\""
+    "text": "User query\n\nUSER_PROMPT = \"Which courses teach about generative AI?\"",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "rag.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/rag.html#call-without-injecting-course-information",
     "href": "src/06/notebooks/rag.html#call-without-injecting-course-information",
     "title": "RAG (Retrieval Augmented Generation)",
     "section": "Call without injecting course information",
-    "text": "Call without injecting course information\n\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": \"You help students lookup course information.\"},\n        {\"role\": \"user\", \"content\": USER_PROMPT},\n    ],\n)\nresponse.choices[0].message.content\n\n'To find courses on generative AI, I’d need a bit more detail:  \\n- Are you looking for courses at a specific university or online platform (e.g., Coursera, edX, Udacity)?  \\n- Do you prefer beginner-friendly or advanced-level courses?  \\n\\nLet me know, and I’ll help guide you to the right resources! 😊\\n'"
+    "text": "Call without injecting course information\n\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": \"You help students lookup course information.\"},\n        {\"role\": \"user\", \"content\": USER_PROMPT},\n    ],\n)\nresponse.choices[0].message.content\n\n'To find courses on generative AI, I’d need a bit more detail:  \\n- Are you looking for courses at a specific university or online platform (e.g., Coursera, edX, Udacity)?  \\n- Do you prefer beginner-friendly or advanced-level courses?  \\n\\nLet me know, and I’ll help guide you to the right resources! 😊\\n'",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "rag.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/rag.html#call-with-injecting-course-information",
     "href": "src/06/notebooks/rag.html#call-with-injecting-course-information",
     "title": "RAG (Retrieval Augmented Generation)",
     "section": "Call with injecting course information",
-    "text": "Call with injecting course information\n\n# Connect to the sqlite database\nconn = create_and_populate_db()\n\n# Query the database based on the user prompt\ncontext = build_context(conn, USER_PROMPT)\n\n# Create system prompt\nSYSTEM_PROMPT = f\"\"\"\nYou help students lookup course information. Here are the course details:\n\n---COURSE INFORMATION---\n{context}\n---END COURSE INFORMATION---\n\"\"\"\n\n# Query the model\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": USER_PROMPT},\n    ],\n)\nresponse.choices[0].message.content\n\nFound existing database at '.data/course_catalog_rag.db'. Skipping creation.\n\n\n'The course that specifically teaches about generative AI is:\\n\\n**CS-394: How Generative AI Works**  \\n- **Description**: Covers transformer architectures, large language models, prompt engineering, fine-tuning, and deployment. Includes hands-on work with open-source models.  \\n- **Details**:  \\n  - Credits: 3 | Level: Advanced  \\n  - Instructor: Dr. Sarah Chen | [Contact](mailto:s.chen@university.edu)  \\n  - Time: Tue/Thu 14:00–15:20 | Room: Lab 12  \\n  - Semester: Spring 2026  \\n\\nThis course directly addresses generative AI concepts and techniques.\\n'"
+    "text": "Call with injecting course information\n\n# Connect to the sqlite database\nconn = create_and_populate_db()\n\n# Query the database based on the user prompt\ncontext = build_context(conn, USER_PROMPT)\n\n# Create system prompt\nSYSTEM_PROMPT = f\"\"\"\nYou help students lookup course information. Here are the course details:\n\n---COURSE INFORMATION---\n{context}\n---END COURSE INFORMATION---\n\"\"\"\n\n# Query the model\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": USER_PROMPT},\n    ],\n)\nresponse.choices[0].message.content\n\nFound existing database at '.data/course_catalog_rag.db'. Skipping creation.\n\n\n'The course that specifically teaches about generative AI is:\\n\\n**CS-394: How Generative AI Works**  \\n- **Description**: Covers transformer architectures, large language models, prompt engineering, fine-tuning, and deployment. Includes hands-on work with open-source models.  \\n- **Details**:  \\n  - Credits: 3 | Level: Advanced  \\n  - Instructor: Dr. Sarah Chen | [Contact](mailto:s.chen@university.edu)  \\n  - Time: Tue/Thu 14:00–15:20 | Room: Lab 12  \\n  - Semester: Spring 2026  \\n\\nThis course directly addresses generative AI concepts and techniques.\\n'",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "rag.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/generate-synthetic.html#data-generation-settings",
     "href": "src/06/notebooks/generate-synthetic.html#data-generation-settings",
     "title": "Generate Synthetic Training Data",
     "section": "Data generation settings",
-    "text": "Data generation settings\n\nNUM_TRAIN_EXAMPLES = 8000  # @param {type:\"number\"}\nNUM_VAL_EXAMPLES = 1000  # @param {type:\"number\"}\nNUM_TEST_EXAMPLES = 100 # @param {type:\"number\"}\nTEMPERATURE = 0.8  # @param {type:\"number\"}\n\nDATA_FOLDER = \"./.data/generated\"\n!mkdir -p {DATA_FOLDER}\n\nDATAGEN_MODEL = \"nvidia/nemotron-3-nano-30b-a3b:free\""
+    "text": "Data generation settings\n\nNUM_TRAIN_EXAMPLES = 8000  # @param {type:\"number\"}\nNUM_VAL_EXAMPLES = 1000  # @param {type:\"number\"}\nNUM_TEST_EXAMPLES = 100 # @param {type:\"number\"}\nTEMPERATURE = 0.8  # @param {type:\"number\"}\n\nDATA_FOLDER = \"./.data/generated\"\n!mkdir -p {DATA_FOLDER}\n\nDATAGEN_MODEL = \"nvidia/nemotron-3-nano-30b-a3b:free\"",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "generate-synthetic.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/generate-synthetic.html#dataset-diversity",
     "href": "src/06/notebooks/generate-synthetic.html#dataset-diversity",
     "title": "Generate Synthetic Training Data",
     "section": "Dataset diversity",
-    "text": "Dataset diversity\n\nTOPICS = [\n    \"Strings\",\n    \"input()\", \n    \"print()\",\n    \"Creating variables\",\n    \"Concatenating strings\"\n    \"Lists\",\n    \"if/else constructs\",\n    \"in operator\",\n    \"list methods: append and remove\",\n    \"list methods: index, pop, and insert\",\n    \"list methods: slicing\",\n    \"list methods: deleting an item\",\n    \"for loops\",\n    \"range() and str()\",\n    \"== comparison operator\",\n    \"len() function\",\n    \"code commenting with #\",\n    \"Comparison operators: !=, &gt;, &gt;=, &lt;, &lt;=\",\n    \"String methods: .lower(), .upper(), .title(), .capitalize()\",\n    \"Using the newline character in strings\",\n    \"int()\",\n    \"float()\",\n    \"elif\",\n    \"import keyword\",\n    \"random module\",\n    \"while keyword\",\n    \"or and not operators\",\n    \"booleans\",\n    \"list methods: .clear(), .copy(), .count(), .extend(), .reverse(), .sort()\",\n    \"Dictionaries\",\n    \"Dictionary methods: .items(), .keys(), .values(), .update(), .pop()\",\n    \"Dictonary methods: .get(), .format()\",\n    \"String methods: .find(), .join(), .replace(), .split(), .swapcase()\",\n    \"Functions: using def and return keywords\", \n    \"Function methods: .isinstance()\",\n    \"Raising exceptions\",\n    \"Exceptions: TypeError() and ValueError()\",\n    \"Function keywords: as and from\",\n    \"The sys module\",\n    \"The with keyword\",\n    \"Tuples\",\n    \"The lambda keyword\",\n    \"The built-in map function\",\n    \"The time module\",\n    \"Built in methods: __init()__ and __str()__\",\n    \"Double underscore for private methods\",\n    \"Classes\"\n]\n\nCODE_LENGTH = [\n    \"short\",\n    \"paragraph\",\n    \"small_function\",\n    \"large_function\",\n]\nCODE_LENGTH_WEIGHTS = [0.25, 0.25, 0.25, 0.25]"
+    "text": "Dataset diversity\n\nTOPICS = [\n    \"Strings\",\n    \"input()\", \n    \"print()\",\n    \"Creating variables\",\n    \"Concatenating strings\"\n    \"Lists\",\n    \"if/else constructs\",\n    \"in operator\",\n    \"list methods: append and remove\",\n    \"list methods: index, pop, and insert\",\n    \"list methods: slicing\",\n    \"list methods: deleting an item\",\n    \"for loops\",\n    \"range() and str()\",\n    \"== comparison operator\",\n    \"len() function\",\n    \"code commenting with #\",\n    \"Comparison operators: !=, &gt;, &gt;=, &lt;, &lt;=\",\n    \"String methods: .lower(), .upper(), .title(), .capitalize()\",\n    \"Using the newline character in strings\",\n    \"int()\",\n    \"float()\",\n    \"elif\",\n    \"import keyword\",\n    \"random module\",\n    \"while keyword\",\n    \"or and not operators\",\n    \"booleans\",\n    \"list methods: .clear(), .copy(), .count(), .extend(), .reverse(), .sort()\",\n    \"Dictionaries\",\n    \"Dictionary methods: .items(), .keys(), .values(), .update(), .pop()\",\n    \"Dictonary methods: .get(), .format()\",\n    \"String methods: .find(), .join(), .replace(), .split(), .swapcase()\",\n    \"Functions: using def and return keywords\", \n    \"Function methods: .isinstance()\",\n    \"Raising exceptions\",\n    \"Exceptions: TypeError() and ValueError()\",\n    \"Function keywords: as and from\",\n    \"The sys module\",\n    \"The with keyword\",\n    \"Tuples\",\n    \"The lambda keyword\",\n    \"The built-in map function\",\n    \"The time module\",\n    \"Built in methods: __init()__ and __str()__\",\n    \"Double underscore for private methods\",\n    \"Classes\"\n]\n\nCODE_LENGTH = [\n    \"short\",\n    \"paragraph\",\n    \"small_function\",\n    \"large_function\",\n]\nCODE_LENGTH_WEIGHTS = [0.25, 0.25, 0.25, 0.25]",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "generate-synthetic.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/generate-synthetic.html#model-for-structured-output",
     "href": "src/06/notebooks/generate-synthetic.html#model-for-structured-output",
     "title": "Generate Synthetic Training Data",
     "section": "Model for structured output",
-    "text": "Model for structured output\n\nfrom pydantic import BaseModel\n\nclass CodeExplanation(BaseModel):\n    code: str\n    explanation: str"
+    "text": "Model for structured output\n\nfrom pydantic import BaseModel\n\nclass CodeExplanation(BaseModel):\n    code: str\n    explanation: str",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "generate-synthetic.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/generate-synthetic.html#get-openrouter-api-key",
     "href": "src/06/notebooks/generate-synthetic.html#get-openrouter-api-key",
     "title": "Generate Synthetic Training Data",
     "section": "Get OpenRouter API key",
-    "text": "Get OpenRouter API key\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  os.environ['OPENROUTER_API_KEY'] = userdata.get('OPENROUTER_API_KEY')\nelse:\n  load_dotenv()"
+    "text": "Get OpenRouter API key\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  os.environ['OPENROUTER_API_KEY'] = userdata.get('OPENROUTER_API_KEY')\nelse:\n  load_dotenv()",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "generate-synthetic.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/generate-synthetic.html#conversation-generation-functions",
     "href": "src/06/notebooks/generate-synthetic.html#conversation-generation-functions",
     "title": "Generate Synthetic Training Data",
     "section": "Conversation generation functions",
-    "text": "Conversation generation functions\n\nimport openai\nimport os\n\nclient = openai.OpenAI(\n    base_url=\"https://openrouter.ai/api/v1\",\n    api_key=os.environ.get(\"OPENROUTER_API_KEY\"),\n)\n\ndef generate_completion(prompt: str) -&gt; CodeExplanation | None:\n    response = client.responses.parse(\n        model=DATAGEN_MODEL,\n        input=[{\"role\": \"user\", \"content\": prompt}],\n        temperature=TEMPERATURE,\n        stream=False,\n        text_format=CodeExplanation\n    )\n\n    return response.output_parsed\n\ndef create_conversation(topic: str, code_length: str) -&gt; CodeExplanation | None:\n    request = \"\"\n    if code_length == \"short\":\n        request = f\"2 - 4 lines of Python code about {topic}\"\n    elif code_length == \"paragraph\":\n        request = f\"3 - 6 lines of Python code about {topic}\"\n    elif code_length == \"small_function\":\n        request = f\"a small function (around 10 lines of Python code) about {topic}\"\n    elif code_length == \"large_function\":\n        request = f\"a large function (around 10 - 20 lines of Python code) about {topic}\"\n    else:\n        request = f\"a Python code example about {topic}\"\n\n    prompt = f\"\"\"\n        Generate me {request}.\n\n        For this selection of code, generate a short 2 paragraph explanation of what the selected code does:\n        - The explanation should be suitable for a high school student learning Python.\n        - When it makes sense, the second paragraph of the explanation should use an analogy to help the student better understand the code.\n        - DO NOT wrap the code in a ```python block\n\n        Return the following:\n        1. The original code as a string. \n        2. Your explanation of what the selected code does as a string.\n    \"\"\"\n\n    return generate_completion(prompt)"
+    "text": "Conversation generation functions\n\nimport openai\nimport os\n\nclient = openai.OpenAI(\n    base_url=\"https://openrouter.ai/api/v1\",\n    api_key=os.environ.get(\"OPENROUTER_API_KEY\"),\n)\n\ndef generate_completion(prompt: str) -&gt; CodeExplanation | None:\n    response = client.responses.parse(\n        model=DATAGEN_MODEL,\n        input=[{\"role\": \"user\", \"content\": prompt}],\n        temperature=TEMPERATURE,\n        stream=False,\n        text_format=CodeExplanation\n    )\n\n    return response.output_parsed\n\ndef create_conversation(topic: str, code_length: str) -&gt; CodeExplanation | None:\n    request = \"\"\n    if code_length == \"short\":\n        request = f\"2 - 4 lines of Python code about {topic}\"\n    elif code_length == \"paragraph\":\n        request = f\"3 - 6 lines of Python code about {topic}\"\n    elif code_length == \"small_function\":\n        request = f\"a small function (around 10 lines of Python code) about {topic}\"\n    elif code_length == \"large_function\":\n        request = f\"a large function (around 10 - 20 lines of Python code) about {topic}\"\n    else:\n        request = f\"a Python code example about {topic}\"\n\n    prompt = f\"\"\"\n        Generate me {request}.\n\n        For this selection of code, generate a short 2 paragraph explanation of what the selected code does:\n        - The explanation should be suitable for a high school student learning Python.\n        - When it makes sense, the second paragraph of the explanation should use an analogy to help the student better understand the code.\n        - DO NOT wrap the code in a ```python block\n\n        Return the following:\n        1. The original code as a string. \n        2. Your explanation of what the selected code does as a string.\n    \"\"\"\n\n    return generate_completion(prompt)",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "generate-synthetic.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/generate-synthetic.html#dataset-generation-functions",
     "href": "src/06/notebooks/generate-synthetic.html#dataset-generation-functions",
     "title": "Generate Synthetic Training Data",
     "section": "Dataset generation functions",
-    "text": "Dataset generation functions\n\nimport random\nimport json\nfrom tqdm import tqdm\n\ndef generate_dataset(num_examples: int, filename: str) -&gt; None:\n  with open(filename, \"w\", encoding=\"utf-8\") as f:\n    for idx in tqdm(range(num_examples)):\n      topic = random.choice(TOPICS)\n      code_length = random.choices(CODE_LENGTH, weights=CODE_LENGTH_WEIGHTS)[0]\n\n      conversation = None\n      while conversation == None:\n        conversation = create_conversation(topic, code_length)\n        if conversation == None:\n          print(f\"Error generating conversation for example {idx}\")\n      \n      template = {\n          \"messages\": [\n              {\"role\": \"user\", \"content\": conversation.code},\n              {\n                  \"role\": \"assistant\",\n                  \"content\": conversation.explanation,\n              },\n          ]\n      }\n      line = json.dumps(template) + \"\\n\"\n      f.write(line)\n      f.flush()\n\n    f.flush()\n    f.close()"
+    "text": "Dataset generation functions\n\nimport random\nimport json\nfrom tqdm import tqdm\n\ndef generate_dataset(num_examples: int, filename: str) -&gt; None:\n  with open(filename, \"w\", encoding=\"utf-8\") as f:\n    for idx in tqdm(range(num_examples)):\n      topic = random.choice(TOPICS)\n      code_length = random.choices(CODE_LENGTH, weights=CODE_LENGTH_WEIGHTS)[0]\n\n      conversation = None\n      while conversation == None:\n        conversation = create_conversation(topic, code_length)\n        if conversation == None:\n          print(f\"Error generating conversation for example {idx}\")\n      \n      template = {\n          \"messages\": [\n              {\"role\": \"user\", \"content\": conversation.code},\n              {\n                  \"role\": \"assistant\",\n                  \"content\": conversation.explanation,\n              },\n          ]\n      }\n      line = json.dumps(template) + \"\\n\"\n      f.write(line)\n      f.flush()\n\n    f.flush()\n    f.close()",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "generate-synthetic.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/generate-synthetic.html#generate-all-the-data",
     "href": "src/06/notebooks/generate-synthetic.html#generate-all-the-data",
     "title": "Generate Synthetic Training Data",
     "section": "Generate all the data!",
-    "text": "Generate all the data!\n\nfrom datetime import datetime\n\nTRAIN_FILE = f\"{DATA_FOLDER}/train_{datetime.now().strftime('%Y-%m-%d-%H:%M:%S')}.jsonl\"\nVALID_FILE = f\"{DATA_FOLDER}/valid_{datetime.now().strftime('%Y-%m-%d-%H:%M:%S')}.jsonl\"\nTEST_FILE = f\"{DATA_FOLDER}/test_{datetime.now().strftime('%Y-%m-%d-%H:%M:%S')}.jsonl\"\n\ngenerate_dataset(10, TRAIN_FILE)\n\n100%|██████████| 10/10 [00:52&lt;00:00,  5.24s/it]"
+    "text": "Generate all the data!\n\nfrom datetime import datetime\n\nTRAIN_FILE = f\"{DATA_FOLDER}/train_{datetime.now().strftime('%Y-%m-%d-%H:%M:%S')}.jsonl\"\nVALID_FILE = f\"{DATA_FOLDER}/valid_{datetime.now().strftime('%Y-%m-%d-%H:%M:%S')}.jsonl\"\nTEST_FILE = f\"{DATA_FOLDER}/test_{datetime.now().strftime('%Y-%m-%d-%H:%M:%S')}.jsonl\"\n\ngenerate_dataset(10, TRAIN_FILE)\n\n100%|██████████| 10/10 [00:52&lt;00:00,  5.24s/it]",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "generate-synthetic.ipynb"
+    ]
   },
   {
     "objectID": "src/05/notebooks/python-binding.html",
@@ -913,7 +1003,7 @@
     "href": "src/06/slides.html#lesson-objectives",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Lesson Objectives",
-    "text": "Lesson Objectives\n\nUnderstand model training, dataset curation, what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy\nExplore use cases, advantages, and disadvantages of prompt engineering\nIntroduce and implement RAG (Retrieval-Augmented Generation) to increase the accuracy of a limited SLM\nStart exploring how to fine-tune models using LoRA (Low Ranked Adaptation)\nGenerate synthetic data for fine-tuning a 1B parameter model",
+    "text": "Lesson Objectives\n\nUnderstand model training, dataset curation, what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy\nExplore use cases, advantages, and disadvantages of prompt engineering\nIntroduce and implement RAG (Retrieval-Augmented Generation) to increase the accuracy of a limited SLM\nStart exploring how to fine-tune models\nGenerate synthetic data for fine-tuning a small language model",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -924,7 +1014,7 @@
     "href": "src/06/slides.html#hallucinations-1",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Hallucinations",
-    "text": "Hallucinations\n\nModels hallucinate!\n\nEspecially noticable on older and smaller models\nMany hallucinations can be difficult to spot as they sound so plausible\nPlausible sounding requests (i.e., asking about something that doesn’t exist) often results in a hallucination",
+    "text": "Hallucinations\n\nBreaking News: Models hallucinate!\n\nEspecially noticable on older and smaller models\nMany hallucinations can be difficult to spot as they sound so plausible\nPlausible sounding requests (i.e., asking about something that doesn’t exist) often results in a hallucination",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -1045,7 +1135,7 @@
     "href": "src/06/slides.html#model-accuracy-1",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Model Accuracy",
-    "text": "Model Accuracy\n\nFortunately, we can improve the accuracy of models using several techniques\n\nPrompt Engineering\nReasoning/Thinking Models\nContext Injection\nFine-tuning",
+    "text": "Model Accuracy\n\nFortunately, we can improve the accuracy of models using several techniques:\n\nPrompt Engineering\nReasoning/Thinking Models\nContext Injection\nFine-tuning",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -1067,7 +1157,7 @@
     "href": "src/06/slides.html#prompt-engineering-2",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Prompt Engineering",
-    "text": "Prompt Engineering\n\nOutput-formmatting examples:\n\nProviding 2-5 examples of desired output can dramatically improve performance\n“Please provide your output as…”\n“Format your answer in the following way…”\n(Of course, structured outputs, if it’s available, can be more reliable)",
+    "text": "Prompt Engineering\n\nOutput-formatting examples:\n\nProviding 2-5 examples of desired output can dramatically improve performance\n“Please provide your output as…”\n“Format your answer in the following way…”\n(Of course, structured outputs, if it’s available, can be more reliable)",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -1078,7 +1168,7 @@
     "href": "src/06/slides.html#prompt-engineering-3",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Prompt Engineering",
-    "text": "Prompt Engineering\n\nFew-shot exmaples:\n\nProviding 2-5 examples of input/output pairs dramatically improves performance\nExample: “Q: What’s 15% of 80? A: Let me calculate: 80 × 0.15 = 12”\nEspecially effective for formatting, tone, or structure-heavy tasks",
+    "text": "Prompt Engineering\n\nFew-shot examples:\n\nProviding 2-5 examples of input/output pairs dramatically improves performance\nExample: “Q: What’s 15% of 80? A: Let me calculate: 80 × 0.15 = 12”\nEspecially effective for formatting, tone, or structure-heavy tasks",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -1100,7 +1190,7 @@
     "href": "src/06/slides.html#prompt-engineering-5",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Prompt Engineering",
-    "text": "Prompt Engineering\n\nNegative Samples:\n\nShowing what not to do alongside positive examples\n“Do not add ```python markdown code fences before generating code”\n\nChain-of-Thought:\n\nExplicitly asking the model to “think step-by-step”\nWhich introduces our next technique: reasoning/thinking models",
+    "text": "Prompt Engineering\n\nNegative samples:\n\nShowing what not to do alongside positive examples\n“Do not add ```python markdown code fences before generating code”\n\nChain-of-Thought:\n\nExplicitly asking the model to “think step-by-step”\nWhich introduces our next technique: reasoning/thinking models",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -1111,7 +1201,7 @@
     "href": "src/06/slides.html#reasoningthinking-models-1",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Reasoning/Thinking Models",
-    "text": "Reasoning/Thinking Models\n\nIn 2022, Google researchers showed that prompting models to think “step by step” dramatically improved performance on math and reasoning tasks.\n\nPaper: Chain-of-Thought Prompting Elicits Reasoning in Large Language Models” paper (Wei et al., 2022)\nThis prompt engineering technique is known as “Chain-of-Thought”\ni.e., showing your work helped arrive at better answers",
+    "text": "Reasoning/Thinking Models\n\nIn 2022, Google researchers showed that prompting models to think “step by step” dramatically improved performance on math and reasoning tasks.\n\nPaper: “Chain-of-Thought Prompting Elicits Reasoning in Large Language Models” (Wei et al. 2022)\nThis prompt engineering technique is known as “Chain-of-Thought”\ni.e., showing your work helped arrive at better answers",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -1133,7 +1223,7 @@
     "href": "src/06/slides.html#reasoningthinking-models-3",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Reasoning/Thinking Models",
-    "text": "Reasoning/Thinking Models\n\nHow do reasoning/thinking models work?\n\nModels are fine-tuned to produce “thinking tokens” before their final answer\nThe model learns to use the thinking phase as a “scratch space” where it can explore, self-correct, and reason\nThinking tokens in open-weight models are often in-between  and  tokens (or just a single  token to divide the two)\nThinking tokens for closed models (e.g., o1/o3) are typically hidden",
+    "text": "Reasoning/Thinking Models\n\nHow do reasoning/thinking models work?\n\nModels are fine-tuned to produce “thinking tokens” before their final answer\nThe model learns to use the thinking phase as a “scratch space” where it can explore, self-correct, and reason\nThinking tokens in open-weight models are often in-between &lt;think&gt; and &lt;/think&gt; tokens (or just a single &lt;/think&gt; token to divide the two)\nThinking tokens for closed models (e.g., o1/o3) are typically hidden",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -1199,7 +1289,7 @@
     "href": "src/06/slides.html#context-injection-2",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Context Injection",
-    "text": "Context Injection\n\nHow it works\n\nTake the user’s prompt (e.g., “Who teaches CS-394?”)\nDo a database look-up to find relevant information (context)\nInject that context into the system prompt\nCall the model with the modified system prompt",
+    "text": "Context Injection\n\nHow it works\n\nTake the user’s prompt (e.g., “Who teaches CS-394?”)\nBefore sending the prompt to the model, do a database look-up to find relevant information (context)\nInject that context into the system prompt\nCall the model with the modified system prompt",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -1287,7 +1377,7 @@
     "href": "src/06/slides.html#sql-augmented-generation-6",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "SQL-Augmented Generation",
-    "text": "SQL-Augmented Generation\n\nGood results, but…\n\nRequires the course code to be in the user prompt, matched to a RegEx pattern\nWill answer “Who teaches CS-394?” and “When is CS-394 held?”\nWon’t answer broader queries:\n\n“What courses teach generative AI?”\n“Which courses are on Friday afternoons?”\n\nCould make a free-text search through the database…\nBut there’s a better way…",
+    "text": "SQL-Augmented Generation\n\nImproved results, but…\n\nRequires the course code to be in the user prompt, matched to a RegEx pattern\nWill answer “Who teaches CS-394?” and “When is CS-394 held?”\nWon’t answer broader queries:\n\n“What courses teach generative AI?”\n“Which courses are on Friday afternoons?”\n\nCould make a free-text search through the database…\nBut there’s a better way…",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -1298,7 +1388,7 @@
     "href": "src/06/slides.html#rag-retrieval-augmented-generation",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "RAG: Retrieval-Augmented Generation",
-    "text": "RAG: Retrieval-Augmented Generation\n\nRoots of RAG trace back to 1950s and 60s, when researchers were working with vector space models\nTerm was coined in 2020 in “Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks” by Patrick Lewis et. al (https://arxiv.org/pdf/2005.11401)\n“We definitely would have put more thought into the name had we known our work would become so widespread”",
+    "text": "RAG: Retrieval-Augmented Generation\n\nRoots of RAG trace back to 1950s and 60s, when researchers were working with vector space models\nTerm was coined in 2020 in “Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks” (Lewis et al. 2020)\n“We definitely would have put more thought into the name had we known our work would become so widespread”",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -1397,7 +1487,7 @@
     "href": "src/06/slides.html#rag-databases",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "RAG Databases",
-    "text": "RAG Databases\n\nExtensions\n\nsqlite-vec: SQLite Extension (we’ve been using that!)\npgvector: PostgreSQL extension\n\nLibraries\n\nFAISS (Meta): In-memory vector index vs. database. Very fast.",
+    "text": "RAG Databases\n\nExtensions\n\nsqlite-vec: SQLite Extension (we’ve been using that!)\npgvector: PostgreSQL extension\n\nLibraries\n\nFAISS: (From Meta) In-memory vector index vs. database. Very fast.",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -1518,7 +1608,7 @@
     "href": "src/06/slides.html#fine-tuning-1",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Fine-tuning",
-    "text": "Fine-tuning\n\nPrompt Engineering, using Reasoning/Thinking, and Context Injection (RAG) can help improve the output and accuracy of models\nHowever, sometimes you need the model to have more consistency in its style, structure, or behavior\nEnter fine-tuning…",
+    "text": "Fine-tuning\n\nPrompt engineering, using thinking models, and context injection (RAG) can help improve the output and accuracy of models\nHowever, sometimes you need the model to have more consistency in its style, structure, or behavior\nEnter fine-tuning…",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -1683,7 +1773,7 @@
     "href": "src/06/slides.html#references-1",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "References",
-    "text": "References",
+    "text": "References\n\n\n\n\nLewis, Patrick, Ethan Perez, Aleksandra Piktus, Fabio Petroni, Vladimir Karpukhin, Naman Goyal, Heinrich Küttler, et al. 2020. “Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.” Advances in Neural Information Processing Systems 33: 9459–74. https://arxiv.org/abs/2005.11401.\n\n\nWei, Jason, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, Brian Ichter, Fei Xia, Ed H. Chi, Quoc V. Le, and Denny Zhou. 2022. “Chain-of-Thought Prompting Elicits Reasoning in Large Language Models.” Advances in Neural Information Processing Systems 35: 24824–37. https://arxiv.org/abs/2201.11903.",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -7436,90 +7526,155 @@
     "href": "src/06/notebooks/hallucinations.html#get-the-openrouter-api-key",
     "title": "Hallucinations",
     "section": "Get the OpenRouter API key",
-    "text": "Get the OpenRouter API key\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  OPENROUTER_API_KEY = userdata.get('OPENROUTER_API_KEY')\n  os.environ[\"OPENROUTER_API_KEY\"] = OPENROUTER_API_KEY\n  print(\"Loaded key from Colab\")\nelse:\n  load_dotenv()\n  print(\"Loaded key locally\")\n\nLoaded key locally"
+    "text": "Get the OpenRouter API key\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  OPENROUTER_API_KEY = userdata.get('OPENROUTER_API_KEY')\n  os.environ[\"OPENROUTER_API_KEY\"] = OPENROUTER_API_KEY\n  print(\"Loaded key from Colab\")\nelse:\n  load_dotenv()\n  print(\"Loaded key locally\")\n\nLoaded key locally",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "hallucinations.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/hallucinations.html#setup-openrouter-client",
     "href": "src/06/notebooks/hallucinations.html#setup-openrouter-client",
     "title": "Hallucinations",
     "section": "Setup OpenRouter client",
-    "text": "Setup OpenRouter client\n\nMODEL = \"meta-llama/llama-3.2-1b-instruct\"\n\nimport openai\n\nclient = openai.OpenAI(\n    base_url='https://openrouter.ai/api/v1',\n    api_key=os.environ[\"OPENROUTER_API_KEY\"],\n)"
+    "text": "Setup OpenRouter client\n\nMODEL = \"meta-llama/llama-3.2-1b-instruct\"\n\nimport openai\n\nclient = openai.OpenAI(\n    base_url='https://openrouter.ai/api/v1',\n    api_key=os.environ[\"OPENROUTER_API_KEY\"],\n)",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "hallucinations.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/hallucinations.html#hallucinate-citations-andor-references",
     "href": "src/06/notebooks/hallucinations.html#hallucinate-citations-andor-references",
     "title": "Hallucinations",
     "section": "Hallucinate: Citations and/or references",
-    "text": "Hallucinate: Citations and/or references\n\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": \"You help students generate citations for their coursework.\"},\n        {\"role\": \"user\", \"content\": \"Can you cite three academic papers on transfomer efficiency. I'm looking for the author names, journals, years, and titles.\"},\n    ],\n)\nresponse.choices[0].message.content\n\n'Here are three academic papers on transformer efficiency:\\n\\n1. **\"Attention is a Limited Resource: The Case for Unique Attention Mechanisms in Deep Neural Networks\"**\\n\\nAuthor: Vaswani et al.\\n\\nJournal: Nature\\n\\nYear: 2017\\n\\nTitle: Attention is a Limited Resource: The Case for Unique Attention Mechanisms in Deep Neural Networks\\n\\nThis paper proposes a new approach to attention mechanisms in deep neural networks, which suggests that attention is not just a simple linear scaling of the input features, but rather a complex mechanism that involves multiple stages and attention weights. The authors demonstrate that this approach can improve the performance of deep neural networks on various tasks.\\n\\n2. **\"Attention is All You Need\"**\\n\\nAuthor: Vaswani et al.\\n\\nJournal: Nature\\n\\nYear: 2017\\n\\nTitle: Attention is All You Need\\n\\nThis paper presents a new approach to attention mechanisms in deep neural networks, which suggests that attention is not just a simple linear scaling of the input features, but rather a complex mechanism that involves multiple stages and attention weights. The authors demonstrate that this approach can improve the performance of deep neural networks on various tasks.\\n\\n3. **\"Attention is a Key to Efficient Neural Network Training\"**\\n\\nAuthor: He et al.\\n\\nJournal: Proceedings of the 32nd International Conference on Machine Learning (ICML)\\n\\nYear: 2015\\n\\nTitle: Attention is a Key to Efficient Neural Network Training\\n\\nThis paper presents a new approach to attention mechanisms in deep neural networks, which suggests that attention is a key factor in improving the efficiency of neural network training. The authors demonstrate that attention mechanisms can significantly improve the training speed and accuracy of deep neural networks on various tasks.\\n\\nNote: These papers are just a few examples of the many papers that have explored transformer efficiency.'"
+    "text": "Hallucinate: Citations and/or references\n\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": \"You help students generate citations for their coursework.\"},\n        {\"role\": \"user\", \"content\": \"Can you cite three academic papers on transfomer efficiency. I'm looking for the author names, journals, years, and titles.\"},\n    ],\n)\nresponse.choices[0].message.content\n\n'Here are three academic papers on transformer efficiency:\\n\\n1. **\"Attention is a Limited Resource: The Case for Unique Attention Mechanisms in Deep Neural Networks\"**\\n\\nAuthor: Vaswani et al.\\n\\nJournal: Nature\\n\\nYear: 2017\\n\\nTitle: Attention is a Limited Resource: The Case for Unique Attention Mechanisms in Deep Neural Networks\\n\\nThis paper proposes a new approach to attention mechanisms in deep neural networks, which suggests that attention is not just a simple linear scaling of the input features, but rather a complex mechanism that involves multiple stages and attention weights. The authors demonstrate that this approach can improve the performance of deep neural networks on various tasks.\\n\\n2. **\"Attention is All You Need\"**\\n\\nAuthor: Vaswani et al.\\n\\nJournal: Nature\\n\\nYear: 2017\\n\\nTitle: Attention is All You Need\\n\\nThis paper presents a new approach to attention mechanisms in deep neural networks, which suggests that attention is not just a simple linear scaling of the input features, but rather a complex mechanism that involves multiple stages and attention weights. The authors demonstrate that this approach can improve the performance of deep neural networks on various tasks.\\n\\n3. **\"Attention is a Key to Efficient Neural Network Training\"**\\n\\nAuthor: He et al.\\n\\nJournal: Proceedings of the 32nd International Conference on Machine Learning (ICML)\\n\\nYear: 2015\\n\\nTitle: Attention is a Key to Efficient Neural Network Training\\n\\nThis paper presents a new approach to attention mechanisms in deep neural networks, which suggests that attention is a key factor in improving the efficiency of neural network training. The authors demonstrate that attention mechanisms can significantly improve the training speed and accuracy of deep neural networks on various tasks.\\n\\nNote: These papers are just a few examples of the many papers that have explored transformer efficiency.'",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "hallucinations.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/hallucinations.html#hallucinate-local-knowledge-gaps",
     "href": "src/06/notebooks/hallucinations.html#hallucinate-local-knowledge-gaps",
     "title": "Hallucinations",
     "section": "Hallucinate: Local knowledge gaps",
-    "text": "Hallucinate: Local knowledge gaps\n\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": \"You help provide information about software applications.\"},\n        {\"role\": \"user\", \"content\": \"Tell me more about FilterGenie, software for the Mac that allows you to apply dynamic filters to images.\"},\n    ],\n)\nresponse.choices[0].message.content\n\n\"FilterGenie is a powerful image editing software for Mac that allows you to apply dynamic filters to images. It's a popular tool among photographers, graphic designers, and anyone looking to enhance and transform their images with ease.\\n\\nHere are some key features and benefits of FilterGenie:\\n\\n**Key Features:**\\n\\n1. **Dynamic Filters**: FilterGenie offers a wide range of dynamic filters that can be applied to images, including:\\n\\t* Color correction and adjustment\\n\\t* Noise reduction and sharpening\\n\\t* Texture and pattern overlays\\n\\t* Effects like blur, vignette, and glow\\n\\t* And many more!\\n2. **Adjustable Parameters**: Each filter has adjustable parameters, allowing you to fine-tune the effect to your liking.\\n3. **Support for Multiple Image Files**: FilterGenie supports a wide range of image file formats, including JPEG, PNG, and TIFF.\\n4. **Batch Processing**: You can apply filters to multiple images at once, making it a great tool for editing multiple images in a single session.\\n5. **Export Options**: FilterGenie allows you to export your edited images in various formats, including JPEG, PNG, and PSD.\\n\\n**Benefits:**\\n\\n1. **Easy to Use**: FilterGenie's intuitive interface makes it easy to apply filters to images, even for those without extensive image editing experience.\\n2. **Versatile**: The software offers a wide range of filters to suit various image editing needs, from basic adjustments to more advanced effects.\\n3. **High-Quality Results**: FilterGenie's filters are designed to produce high-quality results, ensuring your images look professional and polished.\\n4. **Cross-Platform Compatibility**: FilterGenie is available for Mac, Windows, and Linux, making it a great option for users with multiple operating systems.\\n\\n**System Requirements:**\\n\\nTo run FilterGenie, you'll need:\\n\\n* Mac with macOS 10.12 or later\\n* 2 GB RAM or more\\n* 2 GB free disk space\\n* A compatible graphics card (Intel Core i5 or later recommended)\\n\\n**Pricing:**\\n\\nFilterGenie offers a free trial version, as well as a one-time purchase option for the full version. The full version costs around $49.99 USD.\\n\\nOverall, FilterGenie is a powerful and versatile image editing software that's perfect for anyone looking to enhance and transform their images with dynamic filters.\""
+    "text": "Hallucinate: Local knowledge gaps\n\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": \"You help provide information about software applications.\"},\n        {\"role\": \"user\", \"content\": \"Tell me more about FilterGenie, software for the Mac that allows you to apply dynamic filters to images.\"},\n    ],\n)\nresponse.choices[0].message.content\n\n\"FilterGenie is a powerful image editing software for Mac that allows you to apply dynamic filters to images. It's a popular tool among photographers, graphic designers, and anyone looking to enhance and transform their images with ease.\\n\\nHere are some key features and benefits of FilterGenie:\\n\\n**Key Features:**\\n\\n1. **Dynamic Filters**: FilterGenie offers a wide range of dynamic filters that can be applied to images, including:\\n\\t* Color correction and adjustment\\n\\t* Noise reduction and sharpening\\n\\t* Texture and pattern overlays\\n\\t* Effects like blur, vignette, and glow\\n\\t* And many more!\\n2. **Adjustable Parameters**: Each filter has adjustable parameters, allowing you to fine-tune the effect to your liking.\\n3. **Support for Multiple Image Files**: FilterGenie supports a wide range of image file formats, including JPEG, PNG, and TIFF.\\n4. **Batch Processing**: You can apply filters to multiple images at once, making it a great tool for editing multiple images in a single session.\\n5. **Export Options**: FilterGenie allows you to export your edited images in various formats, including JPEG, PNG, and PSD.\\n\\n**Benefits:**\\n\\n1. **Easy to Use**: FilterGenie's intuitive interface makes it easy to apply filters to images, even for those without extensive image editing experience.\\n2. **Versatile**: The software offers a wide range of filters to suit various image editing needs, from basic adjustments to more advanced effects.\\n3. **High-Quality Results**: FilterGenie's filters are designed to produce high-quality results, ensuring your images look professional and polished.\\n4. **Cross-Platform Compatibility**: FilterGenie is available for Mac, Windows, and Linux, making it a great option for users with multiple operating systems.\\n\\n**System Requirements:**\\n\\nTo run FilterGenie, you'll need:\\n\\n* Mac with macOS 10.12 or later\\n* 2 GB RAM or more\\n* 2 GB free disk space\\n* A compatible graphics card (Intel Core i5 or later recommended)\\n\\n**Pricing:**\\n\\nFilterGenie offers a free trial version, as well as a one-time purchase option for the full version. The full version costs around $49.99 USD.\\n\\nOverall, FilterGenie is a powerful and versatile image editing software that's perfect for anyone looking to enhance and transform their images with dynamic filters.\"",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "hallucinations.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/hallucinations.html#hallucinate-summarization",
     "href": "src/06/notebooks/hallucinations.html#hallucinate-summarization",
     "title": "Hallucinations",
     "section": "Hallucinate: Summarization",
-    "text": "Hallucinate: Summarization\n\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": \"You help users summarize documents and published papers.\"},\n        {\"role\": \"user\", \"content\": \"Can you summarize the key findings of the 2019 WHO report on urban air quality in South Asia.\"},\n    ],\n)\nresponse.choices[0].message.content\n\n\"I couldn't find a specific 2019 WHO report on urban air quality in South Asia. However, I can provide some general information on the topic and highlight some key findings from previous reports.\\n\\nThe World Health Organization (WHO) has published several reports on air quality in South Asia, including:\\n\\n1. **2018 WHO Air Quality Guidelines**: In 2018, WHO published guidelines for air quality in urban areas, which emphasized the importance of reducing air pollution from domestic and industrial sources. The guidelines recommended that cities implement measures to reduce particulate matter (PM2.5) and other pollutants.\\n2. **2019 WHO Air Quality Report**: In 2019, WHO published a report on air quality in South Asia, which highlighted the region's vulnerability to air pollution. The report noted that South Asia is home to some of the world's most populous cities, including Delhi, Mumbai, and Dhaka, which are among the most polluted cities in the world.\\n3. **2019 WHO Air Quality Report: South Asia**: This report focused on the health impacts of air pollution in South Asia, including the estimated number of premature deaths and hospitalizations due to air pollution. The report also highlighted the need for cities to implement effective air quality management strategies to reduce pollution.\\n\\nSome key findings from these reports include:\\n\\n* **Air pollution is a major public health concern in South Asia**: The region is home to some of the world's most polluted cities, with PM2.5 levels exceeding the WHO's recommended limits in many areas.\\n* **Air pollution affects vulnerable populations**: The report highlighted the disproportionate impact of air pollution on vulnerable populations, including children, the elderly, and people with pre-existing respiratory conditions.\\n* **Air pollution is linked to increased mortality**: The report estimated that air pollution is responsible for an estimated 1.8 million premature deaths per year in South Asia, primarily due to respiratory diseases such as bronchitis and lung cancer.\\n* **Air pollution affects economic productivity**: The report noted that air pollution can have significant economic impacts, including reduced economic productivity and increased healthcare costs.\\n\\nSome specific data points from the 2019 WHO Air Quality Report include:\\n\\n* Delhi, India: PM2.5 levels exceeded the WHO's recommended limit in 2019, with an average annual concentration of 44.4 μg/m3.\\n* Mumbai, India: PM2.5 levels exceeded the WHO's recommended limit in 2019, with an average annual concentration of 35.4 μg/m3.\\n* Dhaka, Bangladesh: PM2.5 levels exceeded the WHO's recommended limit in 2019, with an average annual concentration of 23.4 μg/m3.\\n\\nOverall, the 2019 WHO Air Quality Report highlights the urgent need for cities in South Asia to take action to reduce air pollution and protect public health.\""
+    "text": "Hallucinate: Summarization\n\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": \"You help users summarize documents and published papers.\"},\n        {\"role\": \"user\", \"content\": \"Can you summarize the key findings of the 2019 WHO report on urban air quality in South Asia.\"},\n    ],\n)\nresponse.choices[0].message.content\n\n\"I couldn't find a specific 2019 WHO report on urban air quality in South Asia. However, I can provide some general information on the topic and highlight some key findings from previous reports.\\n\\nThe World Health Organization (WHO) has published several reports on air quality in South Asia, including:\\n\\n1. **2018 WHO Air Quality Guidelines**: In 2018, WHO published guidelines for air quality in urban areas, which emphasized the importance of reducing air pollution from domestic and industrial sources. The guidelines recommended that cities implement measures to reduce particulate matter (PM2.5) and other pollutants.\\n2. **2019 WHO Air Quality Report**: In 2019, WHO published a report on air quality in South Asia, which highlighted the region's vulnerability to air pollution. The report noted that South Asia is home to some of the world's most populous cities, including Delhi, Mumbai, and Dhaka, which are among the most polluted cities in the world.\\n3. **2019 WHO Air Quality Report: South Asia**: This report focused on the health impacts of air pollution in South Asia, including the estimated number of premature deaths and hospitalizations due to air pollution. The report also highlighted the need for cities to implement effective air quality management strategies to reduce pollution.\\n\\nSome key findings from these reports include:\\n\\n* **Air pollution is a major public health concern in South Asia**: The region is home to some of the world's most polluted cities, with PM2.5 levels exceeding the WHO's recommended limits in many areas.\\n* **Air pollution affects vulnerable populations**: The report highlighted the disproportionate impact of air pollution on vulnerable populations, including children, the elderly, and people with pre-existing respiratory conditions.\\n* **Air pollution is linked to increased mortality**: The report estimated that air pollution is responsible for an estimated 1.8 million premature deaths per year in South Asia, primarily due to respiratory diseases such as bronchitis and lung cancer.\\n* **Air pollution affects economic productivity**: The report noted that air pollution can have significant economic impacts, including reduced economic productivity and increased healthcare costs.\\n\\nSome specific data points from the 2019 WHO Air Quality Report include:\\n\\n* Delhi, India: PM2.5 levels exceeded the WHO's recommended limit in 2019, with an average annual concentration of 44.4 μg/m3.\\n* Mumbai, India: PM2.5 levels exceeded the WHO's recommended limit in 2019, with an average annual concentration of 35.4 μg/m3.\\n* Dhaka, Bangladesh: PM2.5 levels exceeded the WHO's recommended limit in 2019, with an average annual concentration of 23.4 μg/m3.\\n\\nOverall, the 2019 WHO Air Quality Report highlights the urgent need for cities in South Asia to take action to reduce air pollution and protect public health.\"",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "hallucinations.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/sql-augmented.html",
     "href": "src/06/notebooks/sql-augmented.html",
     "title": "SQL-Augmented Generation",
     "section": "",
-    "text": "!mkdir -p .data # Create the data directory, if it doesn't exist\nDB_PATH = \".data/course_catalog.db\""
+    "text": "!mkdir -p .data # Create the data directory, if it doesn't exist\nDB_PATH = \".data/course_catalog.db\"",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "sql-augmented.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/sql-augmented.html#create-the-sqlite-db-if-it-doesnt-already-exist",
     "href": "src/06/notebooks/sql-augmented.html#create-the-sqlite-db-if-it-doesnt-already-exist",
     "title": "SQL-Augmented Generation",
     "section": "Create the SQLite db, if it doesn’t already exist",
-    "text": "Create the SQLite db, if it doesn’t already exist\n\nimport sqlite3\nimport os\n\ndef create_and_populate_db(db_path=DB_PATH):\n    db_exists = os.path.exists(db_path)\n\n    conn = sqlite3.connect(db_path)\n    conn.row_factory = sqlite3.Row\n    cursor = conn.cursor()\n\n    if db_exists:\n        print(f\"Found existing database at '{db_path}'. Skipping creation.\")\n        return conn\n\n    print(f\"Creating new database at '{db_path}'...\")\n\n    # --- Schema ---\n    cursor.executescript(\"\"\"\n        CREATE TABLE instructors (\n            id          INTEGER PRIMARY KEY,\n            name        TEXT NOT NULL,\n            email       TEXT,\n            department  TEXT,\n            bio         TEXT\n        );\n\n        CREATE TABLE courses (\n            id              INTEGER PRIMARY KEY,\n            code            TEXT NOT NULL UNIQUE,\n            title           TEXT NOT NULL,\n            description     TEXT,\n            credits         INTEGER,\n            level           TEXT CHECK(level IN ('intro', 'intermediate', 'advanced')),\n            instructor_id   INTEGER REFERENCES instructors(id),\n            max_enrollment  INTEGER\n        );\n\n        CREATE TABLE schedules (\n            id          INTEGER PRIMARY KEY,\n            course_id   INTEGER REFERENCES courses(id),\n            days        TEXT,\n            time_start  TEXT,\n            time_end    TEXT,\n            room        TEXT,\n            semester    TEXT\n        );\n    \"\"\")\n\n    # --- Instructors ---\n    cursor.executemany(\n        \"INSERT INTO instructors (name, email, department, bio) VALUES (?, ?, ?, ?)\",\n        [\n            (\"Dr. Sarah Chen\", \"s.chen@university.edu\", \"Computer Science\",\n             \"Specializes in machine learning and NLP. Author of 'Practical Deep Learning'.\"),\n            (\"Prof. Marcus Webb\", \"m.webb@university.edu\", \"Computer Science\",\n             \"Focuses on systems programming and computer architecture.\"),\n            (\"Dr. Priya Nair\", \"p.nair@university.edu\", \"Data Science\",\n             \"Expert in statistical learning, data visualization, and reproducible research.\"),\n            (\"Prof. James Okafor\", \"j.okafor@university.edu\", \"Computer Science\",\n             \"Teaches software engineering and has 10 years of industry experience at major tech firms.\"),\n            (\"Dr. Elena Russo\", \"e.russo@university.edu\", \"Mathematics\",\n             \"Research interests include linear algebra, optimization, and mathematical foundations of AI.\"),\n        ]\n    )\n\n    # --- Courses ---\n    cursor.executemany(\n        \"\"\"INSERT INTO courses (code, title, description, credits, level, instructor_id, max_enrollment)\n           VALUES (?, ?, ?, ?, ?, ?, ?)\"\"\",\n        [\n            (\"CS-101\", \"Introduction to Programming\",\n             \"Fundamentals of programming using Python. Covers variables, control flow, functions, and basic data structures.\",\n             3, \"intro\", 2, 40),\n            (\"CS-201\", \"Data Structures and Algorithms\",\n             \"Core data structures including linked lists, trees, graphs, and hash tables. Algorithm design and complexity analysis.\",\n             3, \"intermediate\", 2, 35),\n            (\"CS-301\", \"Machine Learning Fundamentals\",\n             \"Supervised and unsupervised learning, model evaluation, feature engineering, and scikit-learn. Final project required.\",\n             4, \"intermediate\", 1, 30),\n            (\"CS-394\", \"How Generative AI Works\",\n             \"Transformer architectures, large language models, prompt engineering, fine-tuning, and deployment. Hands-on with open-source models.\",\n             3, \"advanced\", 1, 25),\n            (\"CS-310\", \"Database Systems\",\n             \"Relational database design, SQL, transactions, indexing, and an introduction to NoSQL systems.\",\n             3, \"intermediate\", 2, 20)\n        ]\n    )\n\n    # --- Schedules ---\n    cursor.executemany(\n        \"\"\"INSERT INTO schedules (course_id, days, time_start, time_end, room, semester)\n           VALUES (?, ?, ?, ?, ?, ?)\"\"\",\n        [\n            (1,  \"Mon/Wed/Fri\", \"09:00\", \"09:50\", \"Room 101\", \"Spring 2026\"),\n            (2,  \"Tue/Thu\",     \"10:00\", \"11:20\", \"Room 204\", \"Spring 2026\"),\n            (3,  \"Mon/Wed\",     \"13:00\", \"14:20\", \"Lab 12\",   \"Spring 2026\"),\n            (4,  \"Tue/Thu\",     \"14:00\", \"15:20\", \"Lab 12\",   \"Spring 2026\"),\n            (5,  \"Mon/Wed/Fri\", \"11:00\", \"11:50\", \"Room 305\", \"Spring 2026\"),\n        ]\n    )\n\n    conn.commit()\n    print(\"Database created and populated successfully.\")\n    print(f\"  - {cursor.execute('SELECT COUNT(*) FROM instructors').fetchone()[0]} instructors\")\n    print(f\"  - {cursor.execute('SELECT COUNT(*) FROM courses').fetchone()[0]} courses\")\n    print(f\"  - {cursor.execute('SELECT COUNT(*) FROM schedules').fetchone()[0]} schedules\")\n\n    return conn\n\ncreate_and_populate_db()\n\nCreating new database at '.data/course_catalog.db'...\nDatabase created and populated successfully.\n  - 5 instructors\n  - 5 courses\n  - 5 schedules\n\n\n&lt;sqlite3.Connection at 0x1102f7790&gt;"
+    "text": "Create the SQLite db, if it doesn’t already exist\n\nimport sqlite3\nimport os\n\ndef create_and_populate_db(db_path=DB_PATH):\n    db_exists = os.path.exists(db_path)\n\n    conn = sqlite3.connect(db_path)\n    conn.row_factory = sqlite3.Row\n    cursor = conn.cursor()\n\n    if db_exists:\n        print(f\"Found existing database at '{db_path}'. Skipping creation.\")\n        return conn\n\n    print(f\"Creating new database at '{db_path}'...\")\n\n    # --- Schema ---\n    cursor.executescript(\"\"\"\n        CREATE TABLE instructors (\n            id          INTEGER PRIMARY KEY,\n            name        TEXT NOT NULL,\n            email       TEXT,\n            department  TEXT,\n            bio         TEXT\n        );\n\n        CREATE TABLE courses (\n            id              INTEGER PRIMARY KEY,\n            code            TEXT NOT NULL UNIQUE,\n            title           TEXT NOT NULL,\n            description     TEXT,\n            credits         INTEGER,\n            level           TEXT CHECK(level IN ('intro', 'intermediate', 'advanced')),\n            instructor_id   INTEGER REFERENCES instructors(id),\n            max_enrollment  INTEGER\n        );\n\n        CREATE TABLE schedules (\n            id          INTEGER PRIMARY KEY,\n            course_id   INTEGER REFERENCES courses(id),\n            days        TEXT,\n            time_start  TEXT,\n            time_end    TEXT,\n            room        TEXT,\n            semester    TEXT\n        );\n    \"\"\")\n\n    # --- Instructors ---\n    cursor.executemany(\n        \"INSERT INTO instructors (name, email, department, bio) VALUES (?, ?, ?, ?)\",\n        [\n            (\"Dr. Sarah Chen\", \"s.chen@university.edu\", \"Computer Science\",\n             \"Specializes in machine learning and NLP. Author of 'Practical Deep Learning'.\"),\n            (\"Prof. Marcus Webb\", \"m.webb@university.edu\", \"Computer Science\",\n             \"Focuses on systems programming and computer architecture.\"),\n            (\"Dr. Priya Nair\", \"p.nair@university.edu\", \"Data Science\",\n             \"Expert in statistical learning, data visualization, and reproducible research.\"),\n            (\"Prof. James Okafor\", \"j.okafor@university.edu\", \"Computer Science\",\n             \"Teaches software engineering and has 10 years of industry experience at major tech firms.\"),\n            (\"Dr. Elena Russo\", \"e.russo@university.edu\", \"Mathematics\",\n             \"Research interests include linear algebra, optimization, and mathematical foundations of AI.\"),\n        ]\n    )\n\n    # --- Courses ---\n    cursor.executemany(\n        \"\"\"INSERT INTO courses (code, title, description, credits, level, instructor_id, max_enrollment)\n           VALUES (?, ?, ?, ?, ?, ?, ?)\"\"\",\n        [\n            (\"CS-101\", \"Introduction to Programming\",\n             \"Fundamentals of programming using Python. Covers variables, control flow, functions, and basic data structures.\",\n             3, \"intro\", 2, 40),\n            (\"CS-201\", \"Data Structures and Algorithms\",\n             \"Core data structures including linked lists, trees, graphs, and hash tables. Algorithm design and complexity analysis.\",\n             3, \"intermediate\", 2, 35),\n            (\"CS-301\", \"Machine Learning Fundamentals\",\n             \"Supervised and unsupervised learning, model evaluation, feature engineering, and scikit-learn. Final project required.\",\n             4, \"intermediate\", 1, 30),\n            (\"CS-394\", \"How Generative AI Works\",\n             \"Transformer architectures, large language models, prompt engineering, fine-tuning, and deployment. Hands-on with open-source models.\",\n             3, \"advanced\", 1, 25),\n            (\"CS-310\", \"Database Systems\",\n             \"Relational database design, SQL, transactions, indexing, and an introduction to NoSQL systems.\",\n             3, \"intermediate\", 2, 20)\n        ]\n    )\n\n    # --- Schedules ---\n    cursor.executemany(\n        \"\"\"INSERT INTO schedules (course_id, days, time_start, time_end, room, semester)\n           VALUES (?, ?, ?, ?, ?, ?)\"\"\",\n        [\n            (1,  \"Mon/Wed/Fri\", \"09:00\", \"09:50\", \"Room 101\", \"Spring 2026\"),\n            (2,  \"Tue/Thu\",     \"10:00\", \"11:20\", \"Room 204\", \"Spring 2026\"),\n            (3,  \"Mon/Wed\",     \"13:00\", \"14:20\", \"Lab 12\",   \"Spring 2026\"),\n            (4,  \"Tue/Thu\",     \"14:00\", \"15:20\", \"Lab 12\",   \"Spring 2026\"),\n            (5,  \"Mon/Wed/Fri\", \"11:00\", \"11:50\", \"Room 305\", \"Spring 2026\"),\n        ]\n    )\n\n    conn.commit()\n    print(\"Database created and populated successfully.\")\n    print(f\"  - {cursor.execute('SELECT COUNT(*) FROM instructors').fetchone()[0]} instructors\")\n    print(f\"  - {cursor.execute('SELECT COUNT(*) FROM courses').fetchone()[0]} courses\")\n    print(f\"  - {cursor.execute('SELECT COUNT(*) FROM schedules').fetchone()[0]} schedules\")\n\n    return conn\n\ncreate_and_populate_db()\n\nCreating new database at '.data/course_catalog.db'...\nDatabase created and populated successfully.\n  - 5 instructors\n  - 5 courses\n  - 5 schedules\n\n\n&lt;sqlite3.Connection at 0x1102f7790&gt;",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "sql-augmented.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/sql-augmented.html#retrieval-functions",
     "href": "src/06/notebooks/sql-augmented.html#retrieval-functions",
     "title": "SQL-Augmented Generation",
     "section": "Retrieval functions",
-    "text": "Retrieval functions\n\nimport sqlite3\nimport re\n\ndef get_course_by_code(conn, code):\n    \"\"\"Return full details for a single course by its code (e.g. 'CS-394').\"\"\"\n    return conn.execute(\"\"\"\n        SELECT\n            c.code,\n            c.title,\n            c.credits,\n            c.level,\n            c.description,\n            c.max_enrollment,\n            i.name AS instructor,\n            i.email AS instructor_email,\n            i.bio AS instructor_bio,\n            s.days,\n            s.time_start,\n            s.time_end,\n            s.room,\n            s.semester\n        FROM courses c\n        JOIN instructors i ON c.instructor_id = i.id\n        JOIN schedules s   ON s.course_id = c.id\n        WHERE UPPER(c.code) = UPPER(?)\n    \"\"\", (code,)).fetchone()\n\n\n\ndef rows_to_text(rows):\n    \"\"\"Convert sqlite3.Row results into a readable string block.\"\"\"\n    if not rows:\n        return \"No results found.\"\n    if isinstance(rows, sqlite3.Row):\n        rows = [rows]\n    return \"\\n\".join(\n        \"  \" + \", \".join(f\"{k}: {row[k]}\" for k in row.keys())\n        for row in rows\n    )\n\n\ndef build_context(conn, user_query):\n    \"\"\"\n    Extract a course code from the user query and retrieve its details.\n    Returns a formatted string ready to inject into the system prompt.\n    \"\"\"\n    code_match = re.search(r'\\b([A-Z]{2,4}-\\d{3})\\b', user_query.upper())\n\n    if not code_match:\n        return \"No course code found in query. Please include a course code (e.g. CS-394).\"\n\n    code = code_match.group(1)\n    course = get_course_by_code(conn, code)\n\n    if not course:\n        return f\"No course found with code {code}.\"\n\n    return (\n        f\"Course details for {code}:\\n{rows_to_text(course)}\\n\\n\"\n    )"
+    "text": "Retrieval functions\n\nimport sqlite3\nimport re\n\ndef get_course_by_code(conn, code):\n    \"\"\"Return full details for a single course by its code (e.g. 'CS-394').\"\"\"\n    return conn.execute(\"\"\"\n        SELECT\n            c.code,\n            c.title,\n            c.credits,\n            c.level,\n            c.description,\n            c.max_enrollment,\n            i.name AS instructor,\n            i.email AS instructor_email,\n            i.bio AS instructor_bio,\n            s.days,\n            s.time_start,\n            s.time_end,\n            s.room,\n            s.semester\n        FROM courses c\n        JOIN instructors i ON c.instructor_id = i.id\n        JOIN schedules s   ON s.course_id = c.id\n        WHERE UPPER(c.code) = UPPER(?)\n    \"\"\", (code,)).fetchone()\n\n\n\ndef rows_to_text(rows):\n    \"\"\"Convert sqlite3.Row results into a readable string block.\"\"\"\n    if not rows:\n        return \"No results found.\"\n    if isinstance(rows, sqlite3.Row):\n        rows = [rows]\n    return \"\\n\".join(\n        \"  \" + \", \".join(f\"{k}: {row[k]}\" for k in row.keys())\n        for row in rows\n    )\n\n\ndef build_context(conn, user_query):\n    \"\"\"\n    Extract a course code from the user query and retrieve its details.\n    Returns a formatted string ready to inject into the system prompt.\n    \"\"\"\n    code_match = re.search(r'\\b([A-Z]{2,4}-\\d{3})\\b', user_query.upper())\n\n    if not code_match:\n        return \"No course code found in query. Please include a course code (e.g. CS-394).\"\n\n    code = code_match.group(1)\n    course = get_course_by_code(conn, code)\n\n    if not course:\n        return f\"No course found with code {code}.\"\n\n    return (\n        f\"Course details for {code}:\\n{rows_to_text(course)}\\n\\n\"\n    )",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "sql-augmented.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/sql-augmented.html#get-the-openrouter-api-key",
     "href": "src/06/notebooks/sql-augmented.html#get-the-openrouter-api-key",
     "title": "SQL-Augmented Generation",
     "section": "Get the OpenRouter API key",
-    "text": "Get the OpenRouter API key\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  OPENROUTER_API_KEY = userdata.get('OPENROUTER_API_KEY')\n  os.environ[\"OPENROUTER_API_KEY\"] = OPENROUTER_API_KEY\n  print(\"Loaded key from Colab\")\nelse:\n  load_dotenv()\n  print(\"Loaded key locally\")\n\nLoaded key locally"
+    "text": "Get the OpenRouter API key\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  OPENROUTER_API_KEY = userdata.get('OPENROUTER_API_KEY')\n  os.environ[\"OPENROUTER_API_KEY\"] = OPENROUTER_API_KEY\n  print(\"Loaded key from Colab\")\nelse:\n  load_dotenv()\n  print(\"Loaded key locally\")\n\nLoaded key locally",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "sql-augmented.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/sql-augmented.html#setup-openrouter-client",
     "href": "src/06/notebooks/sql-augmented.html#setup-openrouter-client",
     "title": "SQL-Augmented Generation",
     "section": "Setup OpenRouter Client",
-    "text": "Setup OpenRouter Client\n\nMODEL = \"nvidia/nemotron-nano-9b-v2:free\"\n\nimport openai\n\nclient = openai.OpenAI(\n    base_url='https://openrouter.ai/api/v1',\n    api_key=os.environ[\"OPENROUTER_API_KEY\"],\n)"
+    "text": "Setup OpenRouter Client\n\nMODEL = \"nvidia/nemotron-nano-9b-v2:free\"\n\nimport openai\n\nclient = openai.OpenAI(\n    base_url='https://openrouter.ai/api/v1',\n    api_key=os.environ[\"OPENROUTER_API_KEY\"],\n)",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "sql-augmented.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/sql-augmented.html#user-query",
     "href": "src/06/notebooks/sql-augmented.html#user-query",
     "title": "SQL-Augmented Generation",
     "section": "User query",
-    "text": "User query\n\nUSER_PROMPT = \"Who teaches CS-394?\""
+    "text": "User query\n\nUSER_PROMPT = \"Who teaches CS-394?\"",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "sql-augmented.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/sql-augmented.html#call-without-injecting-course-information",
     "href": "src/06/notebooks/sql-augmented.html#call-without-injecting-course-information",
     "title": "SQL-Augmented Generation",
     "section": "Call without injecting course information",
-    "text": "Call without injecting course information\n\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": \"You help students lookup course information.\"},\n        {\"role\": \"user\", \"content\": USER_PROMPT},\n    ],\n)\nresponse.choices[0].message.content\n\n\"I don't have access to specific course details like instructors for CS-394, as that information is typically managed by educational institutions. To find out who teaches CS-394, you could:\\n\\n1. Check your university/department's official course schedule or syllabus.  \\n2. Contact the course instructor or department directly via email or phone.  \\n3. Use your school's learning management system (e.g., Moodle, Canvas) if the course is listed there.  \\n\\nLet me know if you'd help drafting a message to inquire!\\n\""
+    "text": "Call without injecting course information\n\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": \"You help students lookup course information.\"},\n        {\"role\": \"user\", \"content\": USER_PROMPT},\n    ],\n)\nresponse.choices[0].message.content\n\n\"I don't have access to specific course details like instructors for CS-394, as that information is typically managed by educational institutions. To find out who teaches CS-394, you could:\\n\\n1. Check your university/department's official course schedule or syllabus.  \\n2. Contact the course instructor or department directly via email or phone.  \\n3. Use your school's learning management system (e.g., Moodle, Canvas) if the course is listed there.  \\n\\nLet me know if you'd help drafting a message to inquire!\\n\"",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "sql-augmented.ipynb"
+    ]
   },
   {
     "objectID": "src/06/notebooks/sql-augmented.html#call-with-injecting-course-information",
     "href": "src/06/notebooks/sql-augmented.html#call-with-injecting-course-information",
     "title": "SQL-Augmented Generation",
     "section": "Call with injecting course information",
-    "text": "Call with injecting course information\n\n# Connect to the sqlite database\nconn = create_and_populate_db()\n\n# Query the database based on the user prompt\ncontext = build_context(conn, USER_PROMPT)\n\n# Create system prompt\nSYSTEM_PROMPT = f\"\"\"\nYou help students lookup course information. Here are the course details:\n\n---COURSE INFORMATION---\n{context}\n---END COURSE INFORMATION---\n\"\"\"\n\n# Query the model\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": USER_PROMPT},\n    ],\n)\nresponse.choices[0].message.content\n\nFound existing database at '.data/course_catalog.db'. Skipping creation.\n\n\n'The instructor for CS-394 \"How Generative AI Works\" is **Dr. Sarah Chen**.\\n'"
+    "text": "Call with injecting course information\n\n# Connect to the sqlite database\nconn = create_and_populate_db()\n\n# Query the database based on the user prompt\ncontext = build_context(conn, USER_PROMPT)\n\n# Create system prompt\nSYSTEM_PROMPT = f\"\"\"\nYou help students lookup course information. Here are the course details:\n\n---COURSE INFORMATION---\n{context}\n---END COURSE INFORMATION---\n\"\"\"\n\n# Query the model\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": USER_PROMPT},\n    ],\n)\nresponse.choices[0].message.content\n\nFound existing database at '.data/course_catalog.db'. Skipping creation.\n\n\n'The instructor for CS-394 \"How Generative AI Works\" is **Dr. Sarah Chen**.\\n'",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Notebooks",
+      "sql-augmented.ipynb"
+    ]
   }
 ]

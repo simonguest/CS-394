@@ -96,7 +96,27 @@
     code span.va { color: #e36209; } /* Variable */
     code span.vs { color: #032f62; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-eeafb82a00776dbd0312b01cd21cfa25.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -217,8 +237,8 @@
 <li class="fragment">Understand model training, dataset curation, what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy</li>
 <li class="fragment">Explore use cases, advantages, and disadvantages of prompt engineering</li>
 <li class="fragment">Introduce and implement RAG (Retrieval-Augmented Generation) to increase the accuracy of a limited SLM</li>
-<li class="fragment">Start exploring how to fine-tune models using LoRA (Low Ranked Adaptation)</li>
-<li class="fragment">Generate synthetic data for fine-tuning a 1B parameter model</li>
+<li class="fragment">Start exploring how to fine-tune models</li>
+<li class="fragment">Generate synthetic data for fine-tuning a small language model</li>
 </ul>
 </section>
 <section>
@@ -229,7 +249,7 @@
 <section id="hallucinations-1" class="slide level2">
 <h2>Hallucinations</h2>
 <ul>
-<li class="fragment">Models hallucinate!
+<li class="fragment">Breaking News: Models hallucinate!
 <ul>
 <li class="fragment">Especially noticable on older and smaller models</li>
 <li class="fragment">Many hallucinations can be difficult to spot as they sound so plausible</li>
@@ -369,7 +389,7 @@
 <section id="model-accuracy-1" class="slide level2">
 <h2>Model Accuracy</h2>
 <ul>
-<li class="fragment">Fortunately, we can improve the accuracy of models using several techniques
+<li class="fragment">Fortunately, we can improve the accuracy of models using several techniques:
 <ul>
 <li class="fragment">Prompt Engineering</li>
 <li class="fragment">Reasoning/Thinking Models</li>
@@ -388,20 +408,20 @@
 <ul>
 <li class="fragment">Best practices (introduced in Module 2)
 <ul>
-<li class="fragment"><strong>Be specific</strong>: “You are a Python programming tutor who explains concepts using simple analogies and provides code examples.”</li>
-<li class="fragment"><strong>Define output</strong>: “List no more than 3 suggestions. Always show your work step by step.”</li>
-<li class="fragment"><strong>Set boundaries</strong>: “If you are asked questions outside coding, politely redirect the student back to the task.”</li>
+<li class="fragment"><strong>Be specific</strong>: <em>“You are a Python programming tutor who explains concepts using simple analogies and provides code examples.”</em></li>
+<li class="fragment"><strong>Define output</strong>: <em>“List no more than 3 suggestions. Always show your work step by step.”</em></li>
+<li class="fragment"><strong>Set boundaries</strong>: <em>“If you are asked questions outside coding, politely redirect the student back to the task.”</em></li>
 </ul></li>
 </ul>
 </section>
 <section id="prompt-engineering-2" class="slide level2">
 <h2>Prompt Engineering</h2>
 <ul>
-<li class="fragment">Output-formmatting examples:
+<li class="fragment">Output-formatting examples:
 <ul>
 <li class="fragment">Providing 2-5 examples of desired output can dramatically improve performance</li>
-<li class="fragment">“Please provide your output as…”</li>
-<li class="fragment">“Format your answer in the following way…”</li>
+<li class="fragment"><em>“Please provide your output as…”</em></li>
+<li class="fragment"><em>“Format your answer in the following way…”</em></li>
 <li class="fragment">(Of course, structured outputs, if it’s available, can be more reliable)</li>
 </ul></li>
 </ul>
@@ -409,10 +429,10 @@
 <section id="prompt-engineering-3" class="slide level2">
 <h2>Prompt Engineering</h2>
 <ul>
-<li class="fragment">Few-shot exmaples:
+<li class="fragment">Few-shot examples:
 <ul>
 <li class="fragment">Providing 2-5 examples of input/output pairs dramatically improves performance</li>
-<li class="fragment">Example: “Q: What’s 15% of 80? A: Let me calculate: 80 × 0.15 = 12”</li>
+<li class="fragment">Example: <em>“Q: What’s 15% of 80? A: Let me calculate: 80 × 0.15 = 12”</em></li>
 <li class="fragment">Especially effective for formatting, tone, or structure-heavy tasks</li>
 </ul></li>
 </ul>
@@ -423,18 +443,18 @@
 <li class="fragment">Role/persona assignment:
 <ul>
 <li class="fragment">It can be common to add role/persona to help guide the model</li>
-<li class="fragment">“You are a senior engineer reviewing code for a junior developer”</li>
-<li class="fragment">“You are a geography teacher working with high school students”</li>
+<li class="fragment"><em>“You are a senior engineer reviewing code for a junior developer”</em></li>
+<li class="fragment"><em>“You are a geography teacher working with high school students”</em></li>
 </ul></li>
 </ul>
 </section>
 <section id="prompt-engineering-5" class="slide level2">
 <h2>Prompt Engineering</h2>
 <ul>
-<li class="fragment">Negative Samples:
+<li class="fragment">Negative samples:
 <ul>
 <li class="fragment">Showing what not to do alongside positive examples</li>
-<li class="fragment">“Do not add ```python markdown code fences before generating code”</li>
+<li class="fragment"><em>“Do not add ```python markdown code fences before generating code”</em></li>
 </ul></li>
 <li class="fragment">Chain-of-Thought:
 <ul>
@@ -453,7 +473,7 @@
 <ul>
 <li class="fragment">In 2022, Google researchers showed that prompting models to think “step by step” dramatically improved performance on math and reasoning tasks.
 <ul>
-<li class="fragment">Paper: Chain-of-Thought Prompting Elicits Reasoning in Large Language Models” paper (Wei et al., 2022)</li>
+<li class="fragment">Paper: “Chain-of-Thought Prompting Elicits Reasoning in Large Language Models” <span class="citation" data-cites="wei2022chain">(<a href="#/references-1" role="doc-biblioref" onclick="">Wei et al. 2022</a>)</span></li>
 <li class="fragment">This prompt engineering technique is known as “Chain-of-Thought”</li>
 <li class="fragment">i.e., showing your work helped arrive at better answers</li>
 </ul></li>
@@ -462,9 +482,9 @@
 <section id="reasoningthinking-models-2" class="slide level2">
 <h2>Reasoning/Thinking Models</h2>
 <ul>
-<li class="fragment">2023: Models began to be trained with reinforcement learning on reasoning processes, not just final answers</li>
-<li class="fragment">2024-25: OpenAI released o1 and o3 models. “Thinking tokens” are a separate hidden phase before generating visible output.</li>
-<li class="fragment">Today: Thousands of models on Hugging Face, often suffixed with <strong>-Thinking</strong></li>
+<li class="fragment"><strong>2023:</strong> Models began to be trained with reinforcement learning on reasoning processes, not just final answers</li>
+<li class="fragment"><strong>2024-25:</strong> OpenAI released o1 and o3 models. “Thinking tokens” are a separate hidden phase before generating visible output.</li>
+<li class="fragment"><strong>Today:</strong> Thousands of models on Hugging Face, often suffixed with <strong>-Thinking</strong></li>
 </ul>
 </section>
 <section id="reasoningthinking-models-3" class="slide level2">
@@ -474,7 +494,7 @@
 <ul>
 <li class="fragment">Models are fine-tuned to produce “thinking tokens” before their final answer</li>
 <li class="fragment">The model learns to use the thinking phase as a “scratch space” where it can explore, self-correct, and reason</li>
-<li class="fragment">Thinking tokens in open-weight models are often in-between <think> and </think> tokens (or just a single  token to divide the two)</li>
+<li class="fragment">Thinking tokens in open-weight models are often in-between <code>&lt;think&gt;</code> and <code>&lt;/think&gt;</code> tokens (or just a single <code>&lt;/think&gt;</code> token to divide the two)</li>
 <li class="fragment">Thinking tokens for closed models (e.g., o1/o3) are typically hidden</li>
 </ul></li>
 </ul>
@@ -546,7 +566,7 @@
 <li class="fragment">How it works
 <ul>
 <li class="fragment">Take the user’s prompt (e.g., “Who teaches CS-394?”)</li>
-<li class="fragment">Do a database look-up to find relevant information (context)</li>
+<li class="fragment">Before sending the prompt to the model, do a database look-up to find relevant information (context)</li>
 <li class="fragment">Inject that context into the system prompt</li>
 <li class="fragment">Call the model with the modified system prompt</li>
 </ul></li>
@@ -822,14 +842,14 @@
 <section id="sql-augmented-generation-6" class="slide level2">
 <h2>SQL-Augmented Generation</h2>
 <ul>
-<li class="fragment">Good results, but…
+<li class="fragment">Improved results, but…
 <ul>
 <li class="fragment">Requires the course code to be in the user prompt, matched to a RegEx pattern</li>
-<li class="fragment">Will answer “Who teaches CS-394?” and “When is CS-394 held?”</li>
+<li class="fragment">Will answer <em>“Who teaches CS-394?”</em> and <em>“When is CS-394 held?”</em></li>
 <li class="fragment">Won’t answer broader queries:
 <ul>
-<li class="fragment">“What courses teach generative AI?”</li>
-<li class="fragment">“Which courses are on Friday afternoons?”</li>
+<li class="fragment"><em>“What courses teach generative AI?”</em></li>
+<li class="fragment"><em>“Which courses are on Friday afternoons?”</em></li>
 </ul></li>
 <li class="fragment">Could make a free-text search through the database…</li>
 <li class="fragment">But there’s a better way…</li>
@@ -840,8 +860,8 @@
 <h2>RAG: Retrieval-Augmented Generation</h2>
 <ul>
 <li class="fragment">Roots of RAG trace back to 1950s and 60s, when researchers were working with vector space models</li>
-<li class="fragment">Term was coined in 2020 in “Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks” by Patrick Lewis et. al (https://arxiv.org/pdf/2005.11401)</li>
-<li class="fragment">“We definitely would have put more thought into the name had we known our work would become so widespread”</li>
+<li class="fragment">Term was coined in 2020 in “Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks” <span class="citation" data-cites="lewis2020retrieval">(<a href="#/references-1" role="doc-biblioref" onclick="">Lewis et al. 2020</a>)</span></li>
+<li class="fragment"><em>“We definitely would have put more thought into the name had we known our work would become so widespread”</em></li>
 </ul>
 </section>
 <section id="how-rag-works" class="slide level2">
@@ -1100,7 +1120,7 @@
 <section id="how-rag-works-4" class="slide level2">
 <h2>How RAG Works</h2>
 <ul>
-<li class="fragment">“Which courses teach about generative AI?”</li>
+<li class="fragment"><em>“Which courses teach about generative AI?”</em></li>
 </ul>
 </section>
 <section id="how-rag-works-5" class="slide level2">
@@ -1129,28 +1149,28 @@
 <h1>Hands-on</h1>
 <p>Investigate sql-augmented.ipynb and rag.ipynb</p>
 <p>Try different queries. Which work well on both?</p>
-<p>Recreate the database with different data.</p>
+<p>Recreate the database with different data</p>
 </section>
 <section id="rag-databases" class="slide level2">
 <h2>RAG Databases</h2>
 <ul>
 <li class="fragment">Extensions
 <ul>
-<li class="fragment">sqlite-vec: SQLite Extension (we’ve been using that!)</li>
-<li class="fragment">pgvector: PostgreSQL extension</li>
+<li class="fragment"><strong>sqlite-vec:</strong> SQLite Extension (we’ve been using that!)</li>
+<li class="fragment"><strong>pgvector:</strong> PostgreSQL extension</li>
 </ul></li>
 <li class="fragment">Libraries
 <ul>
-<li class="fragment">FAISS (Meta): In-memory vector index vs.&nbsp;database. Very fast.</li>
+<li class="fragment"><strong>FAISS:</strong> (From Meta) In-memory vector index vs.&nbsp;database. Very fast.</li>
 </ul></li>
 </ul>
 </section>
 <section id="rag-databases-1" class="slide level2">
 <h2>RAG Databases</h2>
 <ul>
-<li class="fragment">Pinecone: Popular commercial managed/cloud option.</li>
-<li class="fragment">Qdrant: Open-source dedicated db, written in Rust.</li>
-<li class="fragment">Milvus: Open-source. Heavier to operate, but can exceed a billion embeddings.</li>
+<li class="fragment"><strong>Pinecone:</strong> Popular commercial managed/cloud option.</li>
+<li class="fragment"><strong>Qdrant:</strong> Open-source dedicated db, written in Rust.</li>
+<li class="fragment"><strong>Milvus:</strong> Open-source. Heavier to operate, but can exceed a billion embeddings.</li>
 </ul>
 </section></section>
 <section>
@@ -1285,7 +1305,7 @@
 <section id="fine-tuning-1" class="slide level2">
 <h2>Fine-tuning</h2>
 <ul>
-<li class="fragment">Prompt Engineering, using Reasoning/Thinking, and Context Injection (RAG) can help improve the output and accuracy of models</li>
+<li class="fragment">Prompt engineering, using thinking models, and context injection (RAG) can help improve the output and accuracy of models</li>
 <li class="fragment">However, sometimes you need the model to have more consistency in its style, structure, or behavior</li>
 <li class="fragment">Enter fine-tuning…</li>
 </ul>
@@ -1311,10 +1331,10 @@
 <section id="history-of-fine-tuning" class="slide level2">
 <h2>History of Fine-tuning</h2>
 <ul>
-<li class="fragment">2010s: Fine-tuning became prevalent in computer vision (e.g., ImageNet-trained CNNs for medical)</li>
-<li class="fragment">2018: BERT demonstrated that a language model could be fine-tuned for sentiment, Q&amp;A, and classification</li>
-<li class="fragment">2022: InstructGPT fine-tuning on human-curated instruction-response pairs</li>
-<li class="fragment">Today: Very popular technique for adapting trained models to different use cases</li>
+<li class="fragment"><strong>2010s:</strong> Fine-tuning became prevalent in computer vision (e.g., ImageNet-trained CNNs for medical)</li>
+<li class="fragment"><strong>2018:</strong> BERT demonstrated that a language model could be fine-tuned for sentiment, Q&amp;A, and classification</li>
+<li class="fragment"><strong>2022:</strong> InstructGPT fine-tuning on human-curated instruction-response pairs</li>
+<li class="fragment"><strong>Today:</strong> Very popular technique for adapting trained models to different use cases</li>
 </ul>
 </section>
 <section id="when-to-pick-what" class="slide level2">
@@ -1426,7 +1446,7 @@
 </ul></li>
 <li class="fragment">Synthetic Data
 <ul>
-<li class="fragment">“Generate n examples of students asking their teacher a geography question”</li>
+<li class="fragment"><em>“Generate n examples of students asking their teacher a geography question”</em></li>
 <li class="fragment">Often use structured outputs to map to jsonl conversational format</li>
 </ul></li>
 </ul>
@@ -1455,10 +1475,18 @@
 <h1>References</h1>
 
 </section>
-<section id="references-1" class="slide level2">
+<section id="references-1" class="slide level2 smaller scrollable">
 <h2>References</h2>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-lewis2020retrieval" class="csl-entry" role="listitem">
+Lewis, Patrick, Ethan Perez, Aleksandra Piktus, Fabio Petroni, Vladimir Karpukhin, Naman Goyal, Heinrich Küttler, et al. 2020. <span>“Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.”</span> <em>Advances in Neural Information Processing Systems</em> 33: 9459–74. <a href="https://arxiv.org/abs/2005.11401">https://arxiv.org/abs/2005.11401</a>.
+</div>
+<div id="ref-wei2022chain" class="csl-entry" role="listitem">
+Wei, Jason, Xuezhi Wang, Dale Schuurmans, Maarten Bosma, Brian Ichter, Fei Xia, Ed H. Chi, Quoc V. Le, and Denny Zhou. 2022. <span>“Chain-of-Thought Prompting Elicits Reasoning in Large Language Models.”</span> <em>Advances in Neural Information Processing Systems</em> 35: 24824–37. <a href="https://arxiv.org/abs/2201.11903">https://arxiv.org/abs/2201.11903</a>.
+</div>
+</div>
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
