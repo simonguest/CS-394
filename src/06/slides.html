@@ -377,23 +377,69 @@
 <li class="fragment">Fine-tuning</li>
 </ul></li>
 </ul>
-</section>
-<section id="prompt-engineering" class="slide level2">
-<h2>Prompt Engineering</h2>
-<ul>
-<li class="fragment">TBD</li>
-<li class="fragment">Back to the three areas we mentioned in module 2</li>
-<li class="fragment">Maybe look at the system prompts</li>
-</ul>
+</section></section>
+<section>
+<section id="prompt-engineering" class="title-slide slide level1 center">
+<h1>Prompt Engineering</h1>
+
 </section>
 <section id="prompt-engineering-1" class="slide level2">
 <h2>Prompt Engineering</h2>
 <ul>
-<li class="fragment">System Prompt best practices
+<li class="fragment">Best practices (introduced in Module 2)
 <ul>
 <li class="fragment"><strong>Be specific</strong>: “You are a Python programming tutor who explains concepts using simple analogies and provides code examples.”</li>
 <li class="fragment"><strong>Define output</strong>: “List no more than 3 suggestions. Always show your work step by step.”</li>
 <li class="fragment"><strong>Set boundaries</strong>: “If you are asked questions outside coding, politely redirect the student back to the task.”</li>
+</ul></li>
+</ul>
+</section>
+<section id="prompt-engineering-2" class="slide level2">
+<h2>Prompt Engineering</h2>
+<ul>
+<li class="fragment">Output-formmatting examples:
+<ul>
+<li class="fragment">Providing 2-5 examples of desired output can dramatically improve performance</li>
+<li class="fragment">“Please provide your output as…”</li>
+<li class="fragment">“Format your answer in the following way…”</li>
+<li class="fragment">(Of course, structured outputs, if it’s available, can be more reliable)</li>
+</ul></li>
+</ul>
+</section>
+<section id="prompt-engineering-3" class="slide level2">
+<h2>Prompt Engineering</h2>
+<ul>
+<li class="fragment">Few-shot exmaples:
+<ul>
+<li class="fragment">Providing 2-5 examples of input/output pairs dramatically improves performance</li>
+<li class="fragment">Example: “Q: What’s 15% of 80? A: Let me calculate: 80 × 0.15 = 12”</li>
+<li class="fragment">Especially effective for formatting, tone, or structure-heavy tasks</li>
+</ul></li>
+</ul>
+</section>
+<section id="prompt-engineering-4" class="slide level2">
+<h2>Prompt Engineering</h2>
+<ul>
+<li class="fragment">Role/persona assignment:
+<ul>
+<li class="fragment">It can be common to add role/persona to help guide the model</li>
+<li class="fragment">“You are a senior engineer reviewing code for a junior developer”</li>
+<li class="fragment">“You are a geography teacher working with high school students”</li>
+</ul></li>
+</ul>
+</section>
+<section id="prompt-engineering-5" class="slide level2">
+<h2>Prompt Engineering</h2>
+<ul>
+<li class="fragment">Negative Samples:
+<ul>
+<li class="fragment">Showing what not to do alongside positive examples</li>
+<li class="fragment">“Do not add ```python markdown code fences before generating code”</li>
+</ul></li>
+<li class="fragment">Chain-of-Thought:
+<ul>
+<li class="fragment">Explicitly asking the model to “think step-by-step”</li>
+<li class="fragment">Which introduces our next technique: reasoning/thinking models</li>
 </ul></li>
 </ul>
 </section></section>
@@ -1106,30 +1152,37 @@
 <li class="fragment">Qdrant: Open-source dedicated db, written in Rust.</li>
 <li class="fragment">Milvus: Open-source. Heavier to operate, but can exceed a billion embeddings.</li>
 </ul>
-</section>
-<section id="beyond-rag" class="slide level2">
-<h2>Beyond RAG</h2>
-<ul>
-<li class="fragment">While system prompting and RAG go so far, there are cases where you want the model to do something beyond</li>
-<li class="fragment">Examples</li>
-<li class="fragment">Fine-Tuning</li>
-</ul>
 </section></section>
 <section>
-<section id="evaluating-models" class="title-slide slide level1 center">
-<h1>Evaluating Models</h1>
+<section id="side-topic-evaluating-models" class="title-slide slide level1 center">
+<h1>Side Topic: Evaluating Models</h1>
 
+</section>
+<section id="evaluating-models" class="slide level2">
+<h2>Evaluating Models</h2>
+<ul>
+<li class="fragment">How do we know whether we are improving a model’s accuracy?
+<ul>
+<li class="fragment">Run evaluations (commonly known as “evals”)</li>
+<li class="fragment">Allows us to benchmark progress, especially for fine-tuning</li>
+<li class="fragment">We also want to know if performance has regressed (degraded) on certain tasks</li>
+<li class="fragment">Evals also help grade models within certain domains (e.g., what is the SOTA model for math, coding, medical, law, etc.)</li>
+</ul></li>
+</ul>
 </section>
 <section id="evaluating-models-1" class="slide level2">
 <h2>Evaluating Models</h2>
 <ul>
-<li class="fragment">TBD</li>
-<li class="fragment">Before we look at improving accuracy of models, should understand how models are evaluated</li>
-<li class="fragment">How evaluations work, especially on non-multiple choice questions</li>
+<li class="fragment">How evals are created:
+<ul>
+<li class="fragment">Curated question sets: Experts write or gather questions based on ground truth answers</li>
+<li class="fragment">Human-validated responses: For open-ended tasks (e.g., coding) human evaluators score model responses - or models are testing against validation logic (e.g., unit tests)</li>
+<li class="fragment">Adversarial design: The best evals try to anticipate how models might “cheat” - e.g., avoiding questions in training data, including distractors and edge cases</li>
+</ul></li>
 </ul>
 </section>
-<section id="mmlu-pro-massive-multitask-language-understanding" class="slide level2">
-<h2>MMLU-Pro (Massive Multitask Language Understanding)</h2>
+<section id="popular-evals-mmlu-pro" class="slide level2">
+<h2>Popular Evals: MMLU Pro</h2>
 <p><a href="https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro" class="external" target="_blank">https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro</a></p>
 <ul>
 <li class="fragment"><strong>What it tests:</strong> 12K questions across 14 subject areas that cover STEM, humanities, social sciences, and professional domains.
@@ -1143,8 +1196,8 @@
 </ul></li>
 </ul>
 </section>
-<section id="gpqa-graduate-level-google-proof-qa" class="slide level2">
-<h2>GPQA (Graduate-Level Google-Proof Q&amp;A)</h2>
+<section id="popular-evals-gpqa" class="slide level2">
+<h2>Popular Evals: GPQA</h2>
 <p><a href="https://huggingface.co/datasets/Idavidrein/gpqa" class="external" target="_blank">https://huggingface.co/datasets/Idavidrein/gpqa</a></p>
 <ul>
 <li class="fragment"><strong>What it tests:</strong> Graduate/PhD-level scientific reasoning in biology, physics, and chemistry through multiple-choice questions
@@ -1159,8 +1212,8 @@
 </ul></li>
 </ul>
 </section>
-<section id="swe-bench" class="slide level2">
-<h2>SWE-Bench</h2>
+<section id="popular-evals-swe-bench" class="slide level2">
+<h2>Popular Evals: SWE-Bench</h2>
 <p><a href="https://www.swebench.com/" class="external" target="_blank">https://www.swebench.com/</a></p>
 <ul>
 <li class="fragment"><strong>What it tests:</strong> AI systems’ ability to solve real-world software engineering tasks by resolving actual GitHub issues from popular open-source Python repositories</li>
@@ -1172,8 +1225,8 @@
 </ul></li>
 </ul>
 </section>
-<section id="hle-humanitys-last-exam" class="slide level2">
-<h2>HLE (Humanity’s Last Exam)</h2>
+<section id="popular-evals-hle" class="slide level2">
+<h2>Popular Evals: HLE</h2>
 <p><a href="https://huggingface.co/datasets/cais/hle" class="external" target="_blank">https://huggingface.co/datasets/cais/hle</a></p>
 <ul>
 <li class="fragment"><strong>What it tests:</strong> 2,500 expert-level questions across dozens of subjects, including mathematics, humanities, and the natural sciences.
@@ -1187,20 +1240,41 @@
 <li class="fragment">Led by: Dan Hendrycks (who also created MMLU and MATH benchmarks)</li>
 </ul></li>
 </ul>
-</section></section>
-<section>
-<section id="demo-of-benchmarks" class="title-slide slide level1 center">
-<h1>Demo of Benchmarks</h1>
-
 </section>
-<section id="challenges-with-eval-benchmarks" class="slide level2">
-<h2>Challenges with Eval Benchmarks</h2>
+<section id="challenges-with-evals" class="slide level2">
+<h2>Challenges With Evals</h2>
 <ul>
-<li class="fragment">TBD</li>
-<li class="fragment">Speak about officially testing vs.&nbsp;self reporting</li>
-<li class="fragment">Dataset contamination</li>
-<li class="fragment">Link to HF’s latest efforts to try to curb this</li>
-<li class="fragment">Don’t test creativity</li>
+<li class="fragment">Dataset contamination
+<ul>
+<li class="fragment">Many popular benchmarks (MMLU, HumanEval) have been around for years and “leaked” into training data</li>
+<li class="fragment">Models can achieve a high score my memorizing the questions/answers vs.&nbsp;true reasoning</li>
+</ul></li>
+<li class="fragment">Gaming the benchmark
+<ul>
+<li class="fragment">Researchers may optimize models specifically for benchmark performance without improving general capability - also known as “teaching to the test”</li>
+</ul></li>
+</ul>
+</section>
+<section id="challenges-with-evals-1" class="slide level2">
+<h2>Challenges With Evals</h2>
+<ul>
+<li class="fragment">Synthetic vs.&nbsp;human generated problems
+<ul>
+<li class="fragment">Many evals use multiple-choice, clean, well formatted problems.</li>
+<li class="fragment">Real users index towards more open-ended questions, which may have typos, missing context, and other edge cases.</li>
+</ul></li>
+<li class="fragment">Bias and fairness
+<ul>
+<li class="fragment">Standard evals rarely measure performance across demographics - a model might excel on average, but fail for under-represented groups or languages.</li>
+</ul></li>
+</ul>
+</section>
+<section id="whats-next-for-evals" class="slide level2">
+<h2>What’s Next For Evals?</h2>
+<ul>
+<li class="fragment"><strong>Agentic and multi-step workflows:</strong> Moving beyond single-question tests to measure performance on longer tasks like research, multi-file codebases, and customer support conversations</li>
+<li class="fragment"><strong>Contamination-resistant design:</strong> Hugging Face’s Benchmarks and dynamic benchmarks that refresh regularly (like SWE-Bench Live) or generate novel questions programmatically to avoid training data leakage</li>
+<li class="fragment"><strong>Process evaluation over outcomes:</strong> Testing <em>how</em> models reason, not just final answers — can the model self-correct, identify its mistakes, and explain its reasoning?</li>
 </ul>
 </section></section>
 <section>
@@ -1211,8 +1285,9 @@
 <section id="fine-tuning-1" class="slide level2">
 <h2>Fine-tuning</h2>
 <ul>
-<li class="fragment">Prompt Engineering and Context Injection (RAG) can help improve the output and accuracy of models</li>
+<li class="fragment">Prompt Engineering, using Reasoning/Thinking, and Context Injection (RAG) can help improve the output and accuracy of models</li>
 <li class="fragment">However, sometimes you need the model to have more consistency in its style, structure, or behavior</li>
+<li class="fragment">Enter fine-tuning…</li>
 </ul>
 </section>
 <section id="fine-tuning-2" class="slide level2">

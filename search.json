@@ -1052,22 +1052,55 @@
     ]
   },
   {
-    "objectID": "src/06/slides.html#prompt-engineering",
-    "href": "src/06/slides.html#prompt-engineering",
+    "objectID": "src/06/slides.html#prompt-engineering-1",
+    "href": "src/06/slides.html#prompt-engineering-1",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Prompt Engineering",
-    "text": "Prompt Engineering\n\nTBD\nBack to the three areas we mentioned in module 2\nMaybe look at the system prompts",
+    "text": "Prompt Engineering\n\nBest practices (introduced in Module 2)\n\nBe specific: “You are a Python programming tutor who explains concepts using simple analogies and provides code examples.”\nDefine output: “List no more than 3 suggestions. Always show your work step by step.”\nSet boundaries: “If you are asked questions outside coding, politely redirect the student back to the task.”",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/06/slides.html#prompt-engineering-1",
-    "href": "src/06/slides.html#prompt-engineering-1",
+    "objectID": "src/06/slides.html#prompt-engineering-2",
+    "href": "src/06/slides.html#prompt-engineering-2",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Prompt Engineering",
-    "text": "Prompt Engineering\n\nSystem Prompt best practices\n\nBe specific: “You are a Python programming tutor who explains concepts using simple analogies and provides code examples.”\nDefine output: “List no more than 3 suggestions. Always show your work step by step.”\nSet boundaries: “If you are asked questions outside coding, politely redirect the student back to the task.”",
+    "text": "Prompt Engineering\n\nOutput-formmatting examples:\n\nProviding 2-5 examples of desired output can dramatically improve performance\n“Please provide your output as…”\n“Format your answer in the following way…”\n(Of course, structured outputs, if it’s available, can be more reliable)",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/06/slides.html#prompt-engineering-3",
+    "href": "src/06/slides.html#prompt-engineering-3",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
+    "section": "Prompt Engineering",
+    "text": "Prompt Engineering\n\nFew-shot exmaples:\n\nProviding 2-5 examples of input/output pairs dramatically improves performance\nExample: “Q: What’s 15% of 80? A: Let me calculate: 80 × 0.15 = 12”\nEspecially effective for formatting, tone, or structure-heavy tasks",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/06/slides.html#prompt-engineering-4",
+    "href": "src/06/slides.html#prompt-engineering-4",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
+    "section": "Prompt Engineering",
+    "text": "Prompt Engineering\n\nRole/persona assignment:\n\nIt can be common to add role/persona to help guide the model\n“You are a senior engineer reviewing code for a junior developer”\n“You are a geography teacher working with high school students”",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/06/slides.html#prompt-engineering-5",
+    "href": "src/06/slides.html#prompt-engineering-5",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
+    "section": "Prompt Engineering",
+    "text": "Prompt Engineering\n\nNegative Samples:\n\nShowing what not to do alongside positive examples\n“Do not add ```python markdown code fences before generating code”\n\nChain-of-Thought:\n\nExplicitly asking the model to “think step-by-step”\nWhich introduces our next technique: reasoning/thinking models",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -1382,11 +1415,11 @@
     ]
   },
   {
-    "objectID": "src/06/slides.html#beyond-rag",
-    "href": "src/06/slides.html#beyond-rag",
+    "objectID": "src/06/slides.html#evaluating-models",
+    "href": "src/06/slides.html#evaluating-models",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
-    "section": "Beyond RAG",
-    "text": "Beyond RAG\n\nWhile system prompting and RAG go so far, there are cases where you want the model to do something beyond\nExamples\nFine-Tuning",
+    "section": "Evaluating Models",
+    "text": "Evaluating Models\n\nHow do we know whether we are improving a model’s accuracy?\n\nRun evaluations (commonly known as “evals”)\nAllows us to benchmark progress, especially for fine-tuning\nWe also want to know if performance has regressed (degraded) on certain tasks\nEvals also help grade models within certain domains (e.g., what is the SOTA model for math, coding, medical, law, etc.)",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -1397,62 +1430,84 @@
     "href": "src/06/slides.html#evaluating-models-1",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Evaluating Models",
-    "text": "Evaluating Models\n\nTBD\nBefore we look at improving accuracy of models, should understand how models are evaluated\nHow evaluations work, especially on non-multiple choice questions",
+    "text": "Evaluating Models\n\nHow evals are created:\n\nCurated question sets: Experts write or gather questions based on ground truth answers\nHuman-validated responses: For open-ended tasks (e.g., coding) human evaluators score model responses - or models are testing against validation logic (e.g., unit tests)\nAdversarial design: The best evals try to anticipate how models might “cheat” - e.g., avoiding questions in training data, including distractors and edge cases",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/06/slides.html#mmlu-pro-massive-multitask-language-understanding",
-    "href": "src/06/slides.html#mmlu-pro-massive-multitask-language-understanding",
+    "objectID": "src/06/slides.html#popular-evals-mmlu-pro",
+    "href": "src/06/slides.html#popular-evals-mmlu-pro",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
-    "section": "MMLU-Pro (Massive Multitask Language Understanding)",
-    "text": "MMLU-Pro (Massive Multitask Language Understanding)\nhttps://huggingface.co/datasets/TIGER-Lab/MMLU-Pro\n\nWhat it tests: 12K questions across 14 subject areas that cover STEM, humanities, social sciences, and professional domains.\n\nMultiple-choice questions (10 options) testing both factual knowledge and reasoning across elementary to professional levels.\n\nHistory: Original MMLU published in 2021 by Dan Hendrycks et al. \n\nMMLU-Pro created because models were plateauing on MMLU (hitting 85-90%+)\nPro released in June 2024 by the TIGER-AI-Lab team and accepted at NeurIPS 2024",
+    "section": "Popular Evals: MMLU Pro",
+    "text": "Popular Evals: MMLU Pro\nhttps://huggingface.co/datasets/TIGER-Lab/MMLU-Pro\n\nWhat it tests: 12K questions across 14 subject areas that cover STEM, humanities, social sciences, and professional domains.\n\nMultiple-choice questions (10 options) testing both factual knowledge and reasoning across elementary to professional levels.\n\nHistory: Original MMLU published in 2021 by Dan Hendrycks et al. \n\nMMLU-Pro created because models were plateauing on MMLU (hitting 85-90%+)\nPro released in June 2024 by the TIGER-AI-Lab team and accepted at NeurIPS 2024",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/06/slides.html#gpqa-graduate-level-google-proof-qa",
-    "href": "src/06/slides.html#gpqa-graduate-level-google-proof-qa",
+    "objectID": "src/06/slides.html#popular-evals-gpqa",
+    "href": "src/06/slides.html#popular-evals-gpqa",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
-    "section": "GPQA (Graduate-Level Google-Proof Q&A)",
-    "text": "GPQA (Graduate-Level Google-Proof Q&A)\nhttps://huggingface.co/datasets/Idavidrein/gpqa\n\nWhat it tests: Graduate/PhD-level scientific reasoning in biology, physics, and chemistry through multiple-choice questions\n\nRequire deep domain understanding, not just fact recall\nCannot be solved by web search (the “Google-proof” property)\nTest genuine conceptual reasoning and problem-solving\n\nHistory:\n\nCreated Nov 2023 by David Rein et al. (includes researchers from NYU, Anthropic, and other institutions)",
+    "section": "Popular Evals: GPQA",
+    "text": "Popular Evals: GPQA\nhttps://huggingface.co/datasets/Idavidrein/gpqa\n\nWhat it tests: Graduate/PhD-level scientific reasoning in biology, physics, and chemistry through multiple-choice questions\n\nRequire deep domain understanding, not just fact recall\nCannot be solved by web search (the “Google-proof” property)\nTest genuine conceptual reasoning and problem-solving\n\nHistory:\n\nCreated Nov 2023 by David Rein et al. (includes researchers from NYU, Anthropic, and other institutions)",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/06/slides.html#swe-bench",
-    "href": "src/06/slides.html#swe-bench",
+    "objectID": "src/06/slides.html#popular-evals-swe-bench",
+    "href": "src/06/slides.html#popular-evals-swe-bench",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
-    "section": "SWE-Bench",
-    "text": "SWE-Bench\nhttps://www.swebench.com/\n\nWhat it tests: AI systems’ ability to solve real-world software engineering tasks by resolving actual GitHub issues from popular open-source Python repositories\nHistory: Created: 2023 by Princeton NLP group (Carlos E. Jimenez et al.)\n\nOriginal dataset was 2,294 GitHub issues from 12 popular Python repositories (Django, scikit-learn, Flask, Matplotlib, Requests, SymPy, pytest, Sphinx, etc.)\nThree major variants: Lite, Verified, and Pro\nMicrosoft also publishes a “Live” version with monthly curated updates",
+    "section": "Popular Evals: SWE-Bench",
+    "text": "Popular Evals: SWE-Bench\nhttps://www.swebench.com/\n\nWhat it tests: AI systems’ ability to solve real-world software engineering tasks by resolving actual GitHub issues from popular open-source Python repositories\nHistory: Created: 2023 by Princeton NLP group (Carlos E. Jimenez et al.)\n\nOriginal dataset was 2,294 GitHub issues from 12 popular Python repositories (Django, scikit-learn, Flask, Matplotlib, Requests, SymPy, pytest, Sphinx, etc.)\nThree major variants: Lite, Verified, and Pro\nMicrosoft also publishes a “Live” version with monthly curated updates",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/06/slides.html#hle-humanitys-last-exam",
-    "href": "src/06/slides.html#hle-humanitys-last-exam",
+    "objectID": "src/06/slides.html#popular-evals-hle",
+    "href": "src/06/slides.html#popular-evals-hle",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
-    "section": "HLE (Humanity’s Last Exam)",
-    "text": "HLE (Humanity’s Last Exam)\nhttps://huggingface.co/datasets/cais/hle\n\nWhat it tests: 2,500 expert-level questions across dozens of subjects, including mathematics, humanities, and the natural sciences.\n\nHLE is developed globally by subject-matter experts and consists of multiple-choice and short-answer questions suitable for automated grading.\nRequire multimodal, multi-step reasoning rather than pattern matching or recall\nBe “Google-proof” (can’t be quickly answered by web search)\n\nHistory: Created in late 2024 by the Center for AI Safety (CAIS) and Scale AI\n\nLed by: Dan Hendrycks (who also created MMLU and MATH benchmarks)",
+    "section": "Popular Evals: HLE",
+    "text": "Popular Evals: HLE\nhttps://huggingface.co/datasets/cais/hle\n\nWhat it tests: 2,500 expert-level questions across dozens of subjects, including mathematics, humanities, and the natural sciences.\n\nHLE is developed globally by subject-matter experts and consists of multiple-choice and short-answer questions suitable for automated grading.\nRequire multimodal, multi-step reasoning rather than pattern matching or recall\nBe “Google-proof” (can’t be quickly answered by web search)\n\nHistory: Created in late 2024 by the Center for AI Safety (CAIS) and Scale AI\n\nLed by: Dan Hendrycks (who also created MMLU and MATH benchmarks)",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/06/slides.html#challenges-with-eval-benchmarks",
-    "href": "src/06/slides.html#challenges-with-eval-benchmarks",
+    "objectID": "src/06/slides.html#challenges-with-evals",
+    "href": "src/06/slides.html#challenges-with-evals",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
-    "section": "Challenges with Eval Benchmarks",
-    "text": "Challenges with Eval Benchmarks\n\nTBD\nSpeak about officially testing vs. self reporting\nDataset contamination\nLink to HF’s latest efforts to try to curb this\nDon’t test creativity",
+    "section": "Challenges With Evals",
+    "text": "Challenges With Evals\n\nDataset contamination\n\nMany popular benchmarks (MMLU, HumanEval) have been around for years and “leaked” into training data\nModels can achieve a high score my memorizing the questions/answers vs. true reasoning\n\nGaming the benchmark\n\nResearchers may optimize models specifically for benchmark performance without improving general capability - also known as “teaching to the test”",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/06/slides.html#challenges-with-evals-1",
+    "href": "src/06/slides.html#challenges-with-evals-1",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
+    "section": "Challenges With Evals",
+    "text": "Challenges With Evals\n\nSynthetic vs. human generated problems\n\nMany evals use multiple-choice, clean, well formatted problems.\nReal users index towards more open-ended questions, which may have typos, missing context, and other edge cases.\n\nBias and fairness\n\nStandard evals rarely measure performance across demographics - a model might excel on average, but fail for under-represented groups or languages.",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/06/slides.html#whats-next-for-evals",
+    "href": "src/06/slides.html#whats-next-for-evals",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
+    "section": "What’s Next For Evals?",
+    "text": "What’s Next For Evals?\n\nAgentic and multi-step workflows: Moving beyond single-question tests to measure performance on longer tasks like research, multi-file codebases, and customer support conversations\nContamination-resistant design: Hugging Face’s Benchmarks and dynamic benchmarks that refresh regularly (like SWE-Bench Live) or generate novel questions programmatically to avoid training data leakage\nProcess evaluation over outcomes: Testing how models reason, not just final answers — can the model self-correct, identify its mistakes, and explain its reasoning?",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -1463,7 +1518,7 @@
     "href": "src/06/slides.html#fine-tuning-1",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Fine-tuning",
-    "text": "Fine-tuning\n\nPrompt Engineering and Context Injection (RAG) can help improve the output and accuracy of models\nHowever, sometimes you need the model to have more consistency in its style, structure, or behavior",
+    "text": "Fine-tuning\n\nPrompt Engineering, using Reasoning/Thinking, and Context Injection (RAG) can help improve the output and accuracy of models\nHowever, sometimes you need the model to have more consistency in its style, structure, or behavior\nEnter fine-tuning…",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
