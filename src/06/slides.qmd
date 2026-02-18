@@ -227,6 +227,10 @@ Okay, the user is asking about FilterGenie, a macOS software for applying dynami
 
 ## SQL-Augmented Generation
 
+![](diagrams/sql.svg){.lightbox fig-align="center" width="600px"}
+
+## SQL-Augmented Generation
+
 {{< embed notebooks/sql-augmented.ipynb#create-db echo=true outputs=false >}}
 
 ## SQL-Augmented Generation
@@ -276,6 +280,10 @@ Okay, the user is asking about FilterGenie, a macOS software for applying dynami
 
 ## How RAG Works
 
+![](diagrams/rag.svg){.lightbox fig-align="center" width="600px"}
+
+## How RAG Works
+
 {{< embed notebooks/rag.ipynb#create-db echo=true outputs=false >}}
 
 ## How RAG Works
@@ -294,10 +302,6 @@ Okay, the user is asking about FilterGenie, a macOS software for applying dynami
 
 {{< embed notebooks/rag.ipynb#call-with echo=false >}}
 
-## How RAG Works
-
-![](diagrams/rag.svg){.lightbox fig-align="center" width="600px"}
-
 # Hands-on
 
 Investigate sql-augmented.ipynb and rag.ipynb
@@ -305,6 +309,17 @@ Investigate sql-augmented.ipynb and rag.ipynb
 Try different queries. Which work well on both?
 
 Recreate the database with different data
+
+## RAG for Photo Indexing
+
+- Documents can be created using VLMs (Vision Language Models)
+  - Descriptions from VLMs (together with photo metadata) can then be used for lookup
+  - *"Find me photos with two dogs next to the beach"*
+  - *"Show me all my photos of sunsets in Hawaii"*
+
+## RAG for Photo Indexing
+
+![](diagrams/rag-photo.svg){.lightbox fig-align="center" width="600px"}
 
 ## RAG Databases
 
