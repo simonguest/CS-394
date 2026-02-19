@@ -37,9 +37,9 @@ bibliography: references.bib
 ## Hallucinations
 
 - Breaking News: Models hallucinate!
-  - Especially noticable on older and smaller models
+  - Especially noticeable on older and smaller models
   - Many hallucinations can be difficult to spot as they sound so plausible
-  - Plausible sounding requests (i.e., asking about something that doesn't exist) often results in a hallucination
+  - Plausible sounding requests (i.e., asking about something that doesn't exist) often result in a hallucination
 
 ## Hallucinations
 
@@ -79,7 +79,7 @@ bibliography: references.bib
 
 ## Why Do Models Hallucinate?
 
-- Models are trained on a large corpora of Internet data
+- Models are trained on a large corpus of Internet data
   - Data on the Internet is often uneven
   - Full of gaps
   - Often contradictory
@@ -128,7 +128,7 @@ bibliography: references.bib
 ## Prompt Engineering
 
 - Role/persona assignment:
-  - It can be common to add role/persona to help guide the model
+  - It is common to add a role/persona to help guide the model
   - *"You are a senior engineer reviewing code for a junior developer"*
   - *"You are a geography teacher working with high school students"*
 
@@ -188,7 +188,7 @@ Okay, the user is asking about FilterGenie, a macOS software for applying dynami
 
 ## Reasoning/Thinking Models
 
-- Prompt engineering and reasoning help the model increase it's accuracy for the data that it's been trained on
+- Prompt engineering and reasoning help the model increase its accuracy for the data that it's been trained on
 - But it doesn't account for data that it doesn't know about
 - Enter context injection...
 
@@ -196,7 +196,7 @@ Okay, the user is asking about FilterGenie, a macOS software for applying dynami
 
 ## Context Injection
 
-- A model's training data will only only answer so much
+- A model's training data will only answer so much
   - Training data has a cut-off: Your model won't know anything after that
   - Your model won't know if anything has changed since being trained
   - Function calling can help bridge this gap, but context injection is often simpler and more flexible
@@ -349,7 +349,7 @@ Recreate the database with different data
 
 - How evals are created:
   - Curated question sets: Experts write or gather questions based on ground truth answers
-  - Human-validated responses: For open-ended tasks (e.g., coding) human evaluators score model responses - or models are testing against validation logic (e.g., unit tests)
+  - Human-validated responses: For open-ended tasks (e.g., coding) human evaluators score model responses - or models are tested against validation logic (e.g., unit tests)
   - Adversarial design: The best evals try to anticipate how models might "cheat" - e.g., avoiding questions in training data, including distractors and edge cases
 
 ## Popular Evals: MMLU Pro
@@ -398,7 +398,7 @@ Recreate the database with different data
 
 - Dataset contamination
   - Many popular benchmarks (MMLU, HumanEval) have been around for years and "leaked" into training data
-  - Models can achieve a high score my memorizing the questions/answers vs. true reasoning
+  - Models can achieve a high score by memorizing the questions/answers vs. true reasoning
 - Gaming the benchmark
   - Researchers may optimize models specifically for benchmark performance without improving general capability - also known as "teaching to the test"
 
@@ -456,7 +456,7 @@ Recreate the database with different data
   - 60x faster and 652x cheaper than original GPT-2 in 2019
 - But you may not have the data nor the GPU compute to build a capable model
   - Trained on [fineweb-edu](https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu){.external target="_blank"}
-  - GPT-2 level: 3 hours on a 8xH100 GPU
+  - GPT-2 level: 3 hours on an 8xH100 GPU
 
 # Generating Training Data
 
@@ -516,6 +516,7 @@ Recreate the database with different data
 - How do we generate this data?
   - Create the file by hand!
   - Generate **synthetic data** from a more capable model (and review for quality)
+  - Known as "data distillation"
 - Synthetic Data
   - *"Generate n examples of students asking their teacher a geography question"*
   - Often use structured outputs to map to jsonl conversational format
