@@ -1300,95 +1300,95 @@
     "href": "src/06/slides.html#context-injection-3",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Context Injection",
-    "text": "Context Injection\n\nThe injected information is called ‘context’, and adding it is called ‘augmenting’ the prompt\n\nHence the popular term, augmented generation\nTwo examples:\n\nSQL-Augmented Generation\nRetrieval-Augmented Generation",
+    "text": "Context Injection\n\nThe injected information is called ‘context’, and adding it is called ‘augmenting’ the prompt\n\nHence the popular term, augmented generation\nTwo examples:\n\nText-to-SQL\nRetrieval-Augmented Generation",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/06/slides.html#sql-augmented-generation",
-    "href": "src/06/slides.html#sql-augmented-generation",
+    "objectID": "src/06/slides.html#text-to-sql",
+    "href": "src/06/slides.html#text-to-sql",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
-    "section": "SQL-Augmented Generation",
-    "text": "SQL-Augmented Generation\n\n\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": \"You help students lookup course information.\"},\n        {\"role\": \"user\", \"content\": USER_PROMPT},\n    ],\n)\nresponse.choices[0].message.content",
+    "section": "Text-to-SQL",
+    "text": "Text-to-SQL\n\n\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": \"You help students lookup course information.\"},\n        {\"role\": \"user\", \"content\": USER_PROMPT},\n    ],\n)\nresponse.choices[0].message.content",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/06/slides.html#sql-augmented-generation-1",
-    "href": "src/06/slides.html#sql-augmented-generation-1",
+    "objectID": "src/06/slides.html#text-to-sql-1",
+    "href": "src/06/slides.html#text-to-sql-1",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
-    "section": "SQL-Augmented Generation",
-    "text": "SQL-Augmented Generation\n\n\n\n\"I don't have access to specific course details like instructors for CS-394, as that information is typically managed by educational institutions. To find out who teaches CS-394, you could:\\n\\n1. Check your university/department's official course schedule or syllabus.  \\n2. Contact the course instructor or department directly via email or phone.  \\n3. Use your school's learning management system (e.g., Moodle, Canvas) if the course is listed there.  \\n\\nLet me know if you'd help drafting a message to inquire!\\n\"",
+    "section": "Text-to-SQL",
+    "text": "Text-to-SQL\n\n\n\n\"I don't have access to specific course details like instructors for CS-394, as that information is typically managed by educational institutions. To find out who teaches CS-394, you could:\\n\\n1. Check your university/department's official course schedule or syllabus.  \\n2. Contact the course instructor or department directly via email or phone.  \\n3. Use your school's learning management system (e.g., Moodle, Canvas) if the course is listed there.  \\n\\nLet me know if you'd help drafting a message to inquire!\\n\"",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/06/slides.html#sql-augmented-generation-2",
-    "href": "src/06/slides.html#sql-augmented-generation-2",
+    "objectID": "src/06/slides.html#text-to-sql-2",
+    "href": "src/06/slides.html#text-to-sql-2",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
-    "section": "SQL-Augmented Generation",
-    "text": "SQL-Augmented Generation",
+    "section": "Text-to-SQL",
+    "text": "Text-to-SQL",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/06/slides.html#sql-augmented-generation-3",
-    "href": "src/06/slides.html#sql-augmented-generation-3",
+    "objectID": "src/06/slides.html#text-to-sql-3",
+    "href": "src/06/slides.html#text-to-sql-3",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
-    "section": "SQL-Augmented Generation",
-    "text": "SQL-Augmented Generation\n\n\nimport sqlite3\nimport os\n\ndef create_and_populate_db(db_path=DB_PATH):\n    db_exists = os.path.exists(db_path)\n\n    conn = sqlite3.connect(db_path)\n    conn.row_factory = sqlite3.Row\n    cursor = conn.cursor()\n\n    if db_exists:\n        print(f\"Found existing database at '{db_path}'. Skipping creation.\")\n        return conn\n\n    print(f\"Creating new database at '{db_path}'...\")\n\n    # --- Schema ---\n    cursor.executescript(\"\"\"\n        CREATE TABLE instructors (\n            id          INTEGER PRIMARY KEY,\n            name        TEXT NOT NULL,\n            email       TEXT,\n            department  TEXT,\n            bio         TEXT\n        );\n\n        CREATE TABLE courses (\n            id              INTEGER PRIMARY KEY,\n            code            TEXT NOT NULL UNIQUE,\n            title           TEXT NOT NULL,\n            description     TEXT,\n            credits         INTEGER,\n            level           TEXT CHECK(level IN ('intro', 'intermediate', 'advanced')),\n            instructor_id   INTEGER REFERENCES instructors(id),\n            max_enrollment  INTEGER\n        );\n\n        CREATE TABLE schedules (\n            id          INTEGER PRIMARY KEY,\n            course_id   INTEGER REFERENCES courses(id),\n            days        TEXT,\n            time_start  TEXT,\n            time_end    TEXT,\n            room        TEXT,\n            semester    TEXT\n        );\n    \"\"\")\n\n    # --- Instructors ---\n    cursor.executemany(\n        \"INSERT INTO instructors (name, email, department, bio) VALUES (?, ?, ?, ?)\",\n        [\n            (\"Dr. Sarah Chen\", \"s.chen@university.edu\", \"Computer Science\",\n             \"Specializes in machine learning and NLP. Author of 'Practical Deep Learning'.\"),\n            (\"Prof. Marcus Webb\", \"m.webb@university.edu\", \"Computer Science\",\n             \"Focuses on systems programming and computer architecture.\"),\n            (\"Dr. Priya Nair\", \"p.nair@university.edu\", \"Data Science\",\n             \"Expert in statistical learning, data visualization, and reproducible research.\"),\n            (\"Prof. James Okafor\", \"j.okafor@university.edu\", \"Computer Science\",\n             \"Teaches software engineering and has 10 years of industry experience at major tech firms.\"),\n            (\"Dr. Elena Russo\", \"e.russo@university.edu\", \"Mathematics\",\n             \"Research interests include linear algebra, optimization, and mathematical foundations of AI.\"),\n        ]\n    )\n\n    # --- Courses ---\n    cursor.executemany(\n        \"\"\"INSERT INTO courses (code, title, description, credits, level, instructor_id, max_enrollment)\n           VALUES (?, ?, ?, ?, ?, ?, ?)\"\"\",\n        [\n            (\"CS-101\", \"Introduction to Programming\",\n             \"Fundamentals of programming using Python. Covers variables, control flow, functions, and basic data structures.\",\n             3, \"intro\", 2, 40),\n            (\"CS-201\", \"Data Structures and Algorithms\",\n             \"Core data structures including linked lists, trees, graphs, and hash tables. Algorithm design and complexity analysis.\",\n             3, \"intermediate\", 2, 35),\n            (\"CS-301\", \"Machine Learning Fundamentals\",\n             \"Supervised and unsupervised learning, model evaluation, feature engineering, and scikit-learn. Final project required.\",\n             4, \"intermediate\", 1, 30),\n            (\"CS-394\", \"How Generative AI Works\",\n             \"Transformer architectures, large language models, prompt engineering, fine-tuning, and deployment. Hands-on with open-source models.\",\n             3, \"advanced\", 1, 25),\n            (\"CS-310\", \"Database Systems\",\n             \"Relational database design, SQL, transactions, indexing, and an introduction to NoSQL systems.\",\n             3, \"intermediate\", 2, 20)\n        ]\n    )\n\n    # --- Schedules ---\n    cursor.executemany(\n        \"\"\"INSERT INTO schedules (course_id, days, time_start, time_end, room, semester)\n           VALUES (?, ?, ?, ?, ?, ?)\"\"\",\n        [\n            (1,  \"Mon/Wed/Fri\", \"09:00\", \"09:50\", \"Room 101\", \"Spring 2026\"),\n            (2,  \"Tue/Thu\",     \"10:00\", \"11:20\", \"Room 204\", \"Spring 2026\"),\n            (3,  \"Mon/Wed\",     \"13:00\", \"14:20\", \"Lab 12\",   \"Spring 2026\"),\n            (4,  \"Tue/Thu\",     \"14:00\", \"15:20\", \"Lab 12\",   \"Spring 2026\"),\n            (5,  \"Mon/Wed/Fri\", \"11:00\", \"11:50\", \"Room 305\", \"Spring 2026\"),\n        ]\n    )\n\n    conn.commit()\n    print(\"Database created and populated successfully.\")\n    print(f\"  - {cursor.execute('SELECT COUNT(*) FROM instructors').fetchone()[0]} instructors\")\n    print(f\"  - {cursor.execute('SELECT COUNT(*) FROM courses').fetchone()[0]} courses\")\n    print(f\"  - {cursor.execute('SELECT COUNT(*) FROM schedules').fetchone()[0]} schedules\")\n\n    return conn\n\ncreate_and_populate_db()",
+    "section": "Text-to-SQL",
+    "text": "Text-to-SQL\n\n\nimport sqlite3\nimport os\n\ndef create_and_populate_db(db_path=DB_PATH):\n    db_exists = os.path.exists(db_path)\n\n    conn = sqlite3.connect(db_path)\n    conn.row_factory = sqlite3.Row\n    cursor = conn.cursor()\n\n    if db_exists:\n        print(f\"Found existing database at '{db_path}'. Skipping creation.\")\n        return conn\n\n    print(f\"Creating new database at '{db_path}'...\")\n\n    # --- Schema ---\n    cursor.executescript(\"\"\"\n        CREATE TABLE instructors (\n            id          INTEGER PRIMARY KEY,\n            name        TEXT NOT NULL,\n            email       TEXT,\n            department  TEXT,\n            bio         TEXT\n        );\n\n        CREATE TABLE courses (\n            id              INTEGER PRIMARY KEY,\n            code            TEXT NOT NULL UNIQUE,\n            title           TEXT NOT NULL,\n            description     TEXT,\n            credits         INTEGER,\n            level           TEXT CHECK(level IN ('intro', 'intermediate', 'advanced')),\n            instructor_id   INTEGER REFERENCES instructors(id),\n            max_enrollment  INTEGER\n        );\n\n        CREATE TABLE schedules (\n            id          INTEGER PRIMARY KEY,\n            course_id   INTEGER REFERENCES courses(id),\n            days        TEXT,\n            time_start  TEXT,\n            time_end    TEXT,\n            room        TEXT,\n            semester    TEXT\n        );\n    \"\"\")\n\n    # --- Instructors ---\n    cursor.executemany(\n        \"INSERT INTO instructors (name, email, department, bio) VALUES (?, ?, ?, ?)\",\n        [\n            (\"Dr. Sarah Chen\", \"s.chen@university.edu\", \"Computer Science\",\n             \"Specializes in machine learning and NLP. Author of 'Practical Deep Learning'.\"),\n            (\"Prof. Marcus Webb\", \"m.webb@university.edu\", \"Computer Science\",\n             \"Focuses on systems programming and computer architecture.\"),\n            (\"Dr. Priya Nair\", \"p.nair@university.edu\", \"Data Science\",\n             \"Expert in statistical learning, data visualization, and reproducible research.\"),\n            (\"Prof. James Okafor\", \"j.okafor@university.edu\", \"Computer Science\",\n             \"Teaches software engineering and has 10 years of industry experience at major tech firms.\"),\n            (\"Dr. Elena Russo\", \"e.russo@university.edu\", \"Mathematics\",\n             \"Research interests include linear algebra, optimization, and mathematical foundations of AI.\"),\n        ]\n    )\n\n    # --- Courses ---\n    cursor.executemany(\n        \"\"\"INSERT INTO courses (code, title, description, credits, level, instructor_id, max_enrollment)\n           VALUES (?, ?, ?, ?, ?, ?, ?)\"\"\",\n        [\n            (\"CS-101\", \"Introduction to Programming\",\n             \"Fundamentals of programming using Python. Covers variables, control flow, functions, and basic data structures.\",\n             3, \"intro\", 2, 40),\n            (\"CS-201\", \"Data Structures and Algorithms\",\n             \"Core data structures including linked lists, trees, graphs, and hash tables. Algorithm design and complexity analysis.\",\n             3, \"intermediate\", 2, 35),\n            (\"CS-301\", \"Machine Learning Fundamentals\",\n             \"Supervised and unsupervised learning, model evaluation, feature engineering, and scikit-learn. Final project required.\",\n             4, \"intermediate\", 1, 30),\n            (\"CS-394\", \"How Generative AI Works\",\n             \"Transformer architectures, large language models, prompt engineering, fine-tuning, and deployment. Hands-on with open-source models.\",\n             3, \"advanced\", 1, 25),\n            (\"CS-310\", \"Database Systems\",\n             \"Relational database design, SQL, transactions, indexing, and an introduction to NoSQL systems.\",\n             3, \"intermediate\", 2, 20)\n        ]\n    )\n\n    # --- Schedules ---\n    cursor.executemany(\n        \"\"\"INSERT INTO schedules (course_id, days, time_start, time_end, room, semester)\n           VALUES (?, ?, ?, ?, ?, ?)\"\"\",\n        [\n            (1,  \"Mon/Wed/Fri\", \"09:00\", \"09:50\", \"Room 101\", \"Spring 2026\"),\n            (2,  \"Tue/Thu\",     \"10:00\", \"11:20\", \"Room 204\", \"Spring 2026\"),\n            (3,  \"Mon/Wed\",     \"13:00\", \"14:20\", \"Lab 12\",   \"Spring 2026\"),\n            (4,  \"Tue/Thu\",     \"14:00\", \"15:20\", \"Lab 12\",   \"Spring 2026\"),\n            (5,  \"Mon/Wed/Fri\", \"11:00\", \"11:50\", \"Room 305\", \"Spring 2026\"),\n        ]\n    )\n\n    conn.commit()\n    print(\"Database created and populated successfully.\")\n    print(f\"  - {cursor.execute('SELECT COUNT(*) FROM instructors').fetchone()[0]} instructors\")\n    print(f\"  - {cursor.execute('SELECT COUNT(*) FROM courses').fetchone()[0]} courses\")\n    print(f\"  - {cursor.execute('SELECT COUNT(*) FROM schedules').fetchone()[0]} schedules\")\n\n    return conn\n\ncreate_and_populate_db()",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/06/slides.html#sql-augmented-generation-4",
-    "href": "src/06/slides.html#sql-augmented-generation-4",
+    "objectID": "src/06/slides.html#text-to-sql-4",
+    "href": "src/06/slides.html#text-to-sql-4",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
-    "section": "SQL-Augmented Generation",
-    "text": "SQL-Augmented Generation\n\n\nimport sqlite3\nimport re\n\ndef get_course_by_code(conn, code):\n    \"\"\"Return full details for a single course by its code (e.g. 'CS-394').\"\"\"\n    return conn.execute(\"\"\"\n        SELECT\n            c.code,\n            c.title,\n            c.credits,\n            c.level,\n            c.description,\n            c.max_enrollment,\n            i.name AS instructor,\n            i.email AS instructor_email,\n            i.bio AS instructor_bio,\n            s.days,\n            s.time_start,\n            s.time_end,\n            s.room,\n            s.semester\n        FROM courses c\n        JOIN instructors i ON c.instructor_id = i.id\n        JOIN schedules s   ON s.course_id = c.id\n        WHERE UPPER(c.code) = UPPER(?)\n    \"\"\", (code,)).fetchone()\n\n\n\ndef rows_to_text(rows):\n    \"\"\"Convert sqlite3.Row results into a readable string block.\"\"\"\n    if not rows:\n        return \"No results found.\"\n    if isinstance(rows, sqlite3.Row):\n        rows = [rows]\n    return \"\\n\".join(\n        \"  \" + \", \".join(f\"{k}: {row[k]}\" for k in row.keys())\n        for row in rows\n    )\n\n\ndef build_context(conn, user_query):\n    \"\"\"\n    Extract a course code from the user query and retrieve its details.\n    Returns a formatted string ready to inject into the system prompt.\n    \"\"\"\n    code_match = re.search(r'\\b([A-Z]{2,4}-\\d{3})\\b', user_query.upper())\n\n    if not code_match:\n        return \"No course code found in query. Please include a course code (e.g. CS-394).\"\n\n    code = code_match.group(1)\n    course = get_course_by_code(conn, code)\n\n    if not course:\n        return f\"No course found with code {code}.\"\n\n    return (\n        f\"Course details for {code}:\\n{rows_to_text(course)}\\n\\n\"\n    )",
+    "section": "Text-to-SQL",
+    "text": "Text-to-SQL\n\n\nimport sqlite3\nimport re\n\ndef get_course_by_code(conn, code):\n    \"\"\"Return full details for a single course by its code (e.g. 'CS-394').\"\"\"\n    return conn.execute(\"\"\"\n        SELECT\n            c.code,\n            c.title,\n            c.credits,\n            c.level,\n            c.description,\n            c.max_enrollment,\n            i.name AS instructor,\n            i.email AS instructor_email,\n            i.bio AS instructor_bio,\n            s.days,\n            s.time_start,\n            s.time_end,\n            s.room,\n            s.semester\n        FROM courses c\n        JOIN instructors i ON c.instructor_id = i.id\n        JOIN schedules s   ON s.course_id = c.id\n        WHERE UPPER(c.code) = UPPER(?)\n    \"\"\", (code,)).fetchone()\n\n\n\ndef rows_to_text(rows):\n    \"\"\"Convert sqlite3.Row results into a readable string block.\"\"\"\n    if not rows:\n        return \"No results found.\"\n    if isinstance(rows, sqlite3.Row):\n        rows = [rows]\n    return \"\\n\".join(\n        \"  \" + \", \".join(f\"{k}: {row[k]}\" for k in row.keys())\n        for row in rows\n    )\n\n\ndef build_context(conn, user_query):\n    \"\"\"\n    Extract a course code from the user query and retrieve its details.\n    Returns a formatted string ready to inject into the system prompt.\n    \"\"\"\n    code_match = re.search(r'\\b([A-Z]{2,4}-\\d{3})\\b', user_query.upper())\n\n    if not code_match:\n        return \"No course code found in query. Please include a course code (e.g. CS-394).\"\n\n    code = code_match.group(1)\n    course = get_course_by_code(conn, code)\n\n    if not course:\n        return f\"No course found with code {code}.\"\n\n    return (\n        f\"Course details for {code}:\\n{rows_to_text(course)}\\n\\n\"\n    )",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/06/slides.html#sql-augmented-generation-5",
-    "href": "src/06/slides.html#sql-augmented-generation-5",
+    "objectID": "src/06/slides.html#text-to-sql-5",
+    "href": "src/06/slides.html#text-to-sql-5",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
-    "section": "SQL-Augmented Generation",
-    "text": "SQL-Augmented Generation\n\n\n# Connect to the sqlite database\nconn = create_and_populate_db()\n\n# Query the database based on the user prompt\ncontext = build_context(conn, USER_PROMPT)\n\n# Create system prompt\nSYSTEM_PROMPT = f\"\"\"\nYou help students lookup course information. Here are the course details:\n\n---COURSE INFORMATION---\n{context}\n---END COURSE INFORMATION---\n\"\"\"\n\n# Query the model\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": USER_PROMPT},\n    ],\n)\nresponse.choices[0].message.content",
+    "section": "Text-to-SQL",
+    "text": "Text-to-SQL\n\n\n# Connect to the sqlite database\nconn = create_and_populate_db()\n\n# Query the database based on the user prompt\ncontext = build_context(conn, USER_PROMPT)\n\n# Create system prompt\nSYSTEM_PROMPT = f\"\"\"\nYou help students lookup course information. Here are the course details:\n\n---COURSE INFORMATION---\n{context}\n---END COURSE INFORMATION---\n\"\"\"\n\n# Query the model\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": USER_PROMPT},\n    ],\n)\nresponse.choices[0].message.content",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/06/slides.html#sql-augmented-generation-6",
-    "href": "src/06/slides.html#sql-augmented-generation-6",
+    "objectID": "src/06/slides.html#text-to-sql-6",
+    "href": "src/06/slides.html#text-to-sql-6",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
-    "section": "SQL-Augmented Generation",
-    "text": "SQL-Augmented Generation\n\n\n\nFound existing database at '.data/course_catalog.db'. Skipping creation.\n\n\n'The instructor for CS-394 \"How Generative AI Works\" is **Dr. Sarah Chen**.\\n'",
+    "section": "Text-to-SQL",
+    "text": "Text-to-SQL\n\n\n\nFound existing database at '.data/course_catalog.db'. Skipping creation.\n\n\n'The instructor for CS-394 \"How Generative AI Works\" is **Dr. Sarah Chen**.\\n'",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/06/slides.html#sql-augmented-generation-7",
-    "href": "src/06/slides.html#sql-augmented-generation-7",
+    "objectID": "src/06/slides.html#text-to-sql-7",
+    "href": "src/06/slides.html#text-to-sql-7",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
-    "section": "SQL-Augmented Generation",
-    "text": "SQL-Augmented Generation\n\nImproved results, but…\n\nRequires the course code to be in the user prompt, matched to a RegEx pattern\nWill answer “Who teaches CS-394?” and “When is CS-394 held?”\nWon’t answer broader queries:\n\n“What courses teach generative AI?”\n“Which courses are on Friday afternoons?”\n\nCould make a free-text search through the database…\nBut there’s a better way…",
+    "section": "Text-to-SQL",
+    "text": "Text-to-SQL\n\nImproved results, but…\n\nRequires the course code to be in the user prompt, matched to a RegEx pattern\nWill answer “Who teaches CS-394?” and “When is CS-394 held?”\nWon’t answer broader queries:\n\n“What courses teach generative AI?”\n“Which courses are on Friday afternoons?”\n\nCould make a free-text search through the database…\nBut there’s a better way…",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -7659,99 +7659,99 @@
     ]
   },
   {
-    "objectID": "src/06/notebooks/sql-augmented.html",
-    "href": "src/06/notebooks/sql-augmented.html",
-    "title": "SQL-Augmented Generation",
+    "objectID": "src/06/notebooks/text-to-sql.html",
+    "href": "src/06/notebooks/text-to-sql.html",
+    "title": "Text-to-SQL",
     "section": "",
     "text": "!mkdir -p .data # Create the data directory, if it doesn't exist\nDB_PATH = \".data/course_catalog.db\"",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Notebooks",
-      "sql-augmented.ipynb"
+      "text-to-sql.ipynb"
     ]
   },
   {
-    "objectID": "src/06/notebooks/sql-augmented.html#create-the-sqlite-db-if-it-doesnt-already-exist",
-    "href": "src/06/notebooks/sql-augmented.html#create-the-sqlite-db-if-it-doesnt-already-exist",
-    "title": "SQL-Augmented Generation",
+    "objectID": "src/06/notebooks/text-to-sql.html#create-the-sqlite-db-if-it-doesnt-already-exist",
+    "href": "src/06/notebooks/text-to-sql.html#create-the-sqlite-db-if-it-doesnt-already-exist",
+    "title": "Text-to-SQL",
     "section": "Create the SQLite db, if it doesn’t already exist",
     "text": "Create the SQLite db, if it doesn’t already exist\n\nimport sqlite3\nimport os\n\ndef create_and_populate_db(db_path=DB_PATH):\n    db_exists = os.path.exists(db_path)\n\n    conn = sqlite3.connect(db_path)\n    conn.row_factory = sqlite3.Row\n    cursor = conn.cursor()\n\n    if db_exists:\n        print(f\"Found existing database at '{db_path}'. Skipping creation.\")\n        return conn\n\n    print(f\"Creating new database at '{db_path}'...\")\n\n    # --- Schema ---\n    cursor.executescript(\"\"\"\n        CREATE TABLE instructors (\n            id          INTEGER PRIMARY KEY,\n            name        TEXT NOT NULL,\n            email       TEXT,\n            department  TEXT,\n            bio         TEXT\n        );\n\n        CREATE TABLE courses (\n            id              INTEGER PRIMARY KEY,\n            code            TEXT NOT NULL UNIQUE,\n            title           TEXT NOT NULL,\n            description     TEXT,\n            credits         INTEGER,\n            level           TEXT CHECK(level IN ('intro', 'intermediate', 'advanced')),\n            instructor_id   INTEGER REFERENCES instructors(id),\n            max_enrollment  INTEGER\n        );\n\n        CREATE TABLE schedules (\n            id          INTEGER PRIMARY KEY,\n            course_id   INTEGER REFERENCES courses(id),\n            days        TEXT,\n            time_start  TEXT,\n            time_end    TEXT,\n            room        TEXT,\n            semester    TEXT\n        );\n    \"\"\")\n\n    # --- Instructors ---\n    cursor.executemany(\n        \"INSERT INTO instructors (name, email, department, bio) VALUES (?, ?, ?, ?)\",\n        [\n            (\"Dr. Sarah Chen\", \"s.chen@university.edu\", \"Computer Science\",\n             \"Specializes in machine learning and NLP. Author of 'Practical Deep Learning'.\"),\n            (\"Prof. Marcus Webb\", \"m.webb@university.edu\", \"Computer Science\",\n             \"Focuses on systems programming and computer architecture.\"),\n            (\"Dr. Priya Nair\", \"p.nair@university.edu\", \"Data Science\",\n             \"Expert in statistical learning, data visualization, and reproducible research.\"),\n            (\"Prof. James Okafor\", \"j.okafor@university.edu\", \"Computer Science\",\n             \"Teaches software engineering and has 10 years of industry experience at major tech firms.\"),\n            (\"Dr. Elena Russo\", \"e.russo@university.edu\", \"Mathematics\",\n             \"Research interests include linear algebra, optimization, and mathematical foundations of AI.\"),\n        ]\n    )\n\n    # --- Courses ---\n    cursor.executemany(\n        \"\"\"INSERT INTO courses (code, title, description, credits, level, instructor_id, max_enrollment)\n           VALUES (?, ?, ?, ?, ?, ?, ?)\"\"\",\n        [\n            (\"CS-101\", \"Introduction to Programming\",\n             \"Fundamentals of programming using Python. Covers variables, control flow, functions, and basic data structures.\",\n             3, \"intro\", 2, 40),\n            (\"CS-201\", \"Data Structures and Algorithms\",\n             \"Core data structures including linked lists, trees, graphs, and hash tables. Algorithm design and complexity analysis.\",\n             3, \"intermediate\", 2, 35),\n            (\"CS-301\", \"Machine Learning Fundamentals\",\n             \"Supervised and unsupervised learning, model evaluation, feature engineering, and scikit-learn. Final project required.\",\n             4, \"intermediate\", 1, 30),\n            (\"CS-394\", \"How Generative AI Works\",\n             \"Transformer architectures, large language models, prompt engineering, fine-tuning, and deployment. Hands-on with open-source models.\",\n             3, \"advanced\", 1, 25),\n            (\"CS-310\", \"Database Systems\",\n             \"Relational database design, SQL, transactions, indexing, and an introduction to NoSQL systems.\",\n             3, \"intermediate\", 2, 20)\n        ]\n    )\n\n    # --- Schedules ---\n    cursor.executemany(\n        \"\"\"INSERT INTO schedules (course_id, days, time_start, time_end, room, semester)\n           VALUES (?, ?, ?, ?, ?, ?)\"\"\",\n        [\n            (1,  \"Mon/Wed/Fri\", \"09:00\", \"09:50\", \"Room 101\", \"Spring 2026\"),\n            (2,  \"Tue/Thu\",     \"10:00\", \"11:20\", \"Room 204\", \"Spring 2026\"),\n            (3,  \"Mon/Wed\",     \"13:00\", \"14:20\", \"Lab 12\",   \"Spring 2026\"),\n            (4,  \"Tue/Thu\",     \"14:00\", \"15:20\", \"Lab 12\",   \"Spring 2026\"),\n            (5,  \"Mon/Wed/Fri\", \"11:00\", \"11:50\", \"Room 305\", \"Spring 2026\"),\n        ]\n    )\n\n    conn.commit()\n    print(\"Database created and populated successfully.\")\n    print(f\"  - {cursor.execute('SELECT COUNT(*) FROM instructors').fetchone()[0]} instructors\")\n    print(f\"  - {cursor.execute('SELECT COUNT(*) FROM courses').fetchone()[0]} courses\")\n    print(f\"  - {cursor.execute('SELECT COUNT(*) FROM schedules').fetchone()[0]} schedules\")\n\n    return conn\n\ncreate_and_populate_db()\n\nCreating new database at '.data/course_catalog.db'...\nDatabase created and populated successfully.\n  - 5 instructors\n  - 5 courses\n  - 5 schedules\n\n\n&lt;sqlite3.Connection at 0x1102f7790&gt;",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Notebooks",
-      "sql-augmented.ipynb"
+      "text-to-sql.ipynb"
     ]
   },
   {
-    "objectID": "src/06/notebooks/sql-augmented.html#retrieval-functions",
-    "href": "src/06/notebooks/sql-augmented.html#retrieval-functions",
-    "title": "SQL-Augmented Generation",
+    "objectID": "src/06/notebooks/text-to-sql.html#retrieval-functions",
+    "href": "src/06/notebooks/text-to-sql.html#retrieval-functions",
+    "title": "Text-to-SQL",
     "section": "Retrieval functions",
     "text": "Retrieval functions\n\nimport sqlite3\nimport re\n\ndef get_course_by_code(conn, code):\n    \"\"\"Return full details for a single course by its code (e.g. 'CS-394').\"\"\"\n    return conn.execute(\"\"\"\n        SELECT\n            c.code,\n            c.title,\n            c.credits,\n            c.level,\n            c.description,\n            c.max_enrollment,\n            i.name AS instructor,\n            i.email AS instructor_email,\n            i.bio AS instructor_bio,\n            s.days,\n            s.time_start,\n            s.time_end,\n            s.room,\n            s.semester\n        FROM courses c\n        JOIN instructors i ON c.instructor_id = i.id\n        JOIN schedules s   ON s.course_id = c.id\n        WHERE UPPER(c.code) = UPPER(?)\n    \"\"\", (code,)).fetchone()\n\n\n\ndef rows_to_text(rows):\n    \"\"\"Convert sqlite3.Row results into a readable string block.\"\"\"\n    if not rows:\n        return \"No results found.\"\n    if isinstance(rows, sqlite3.Row):\n        rows = [rows]\n    return \"\\n\".join(\n        \"  \" + \", \".join(f\"{k}: {row[k]}\" for k in row.keys())\n        for row in rows\n    )\n\n\ndef build_context(conn, user_query):\n    \"\"\"\n    Extract a course code from the user query and retrieve its details.\n    Returns a formatted string ready to inject into the system prompt.\n    \"\"\"\n    code_match = re.search(r'\\b([A-Z]{2,4}-\\d{3})\\b', user_query.upper())\n\n    if not code_match:\n        return \"No course code found in query. Please include a course code (e.g. CS-394).\"\n\n    code = code_match.group(1)\n    course = get_course_by_code(conn, code)\n\n    if not course:\n        return f\"No course found with code {code}.\"\n\n    return (\n        f\"Course details for {code}:\\n{rows_to_text(course)}\\n\\n\"\n    )",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Notebooks",
-      "sql-augmented.ipynb"
+      "text-to-sql.ipynb"
     ]
   },
   {
-    "objectID": "src/06/notebooks/sql-augmented.html#get-the-openrouter-api-key",
-    "href": "src/06/notebooks/sql-augmented.html#get-the-openrouter-api-key",
-    "title": "SQL-Augmented Generation",
+    "objectID": "src/06/notebooks/text-to-sql.html#get-the-openrouter-api-key",
+    "href": "src/06/notebooks/text-to-sql.html#get-the-openrouter-api-key",
+    "title": "Text-to-SQL",
     "section": "Get the OpenRouter API key",
     "text": "Get the OpenRouter API key\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  OPENROUTER_API_KEY = userdata.get('OPENROUTER_API_KEY')\n  os.environ[\"OPENROUTER_API_KEY\"] = OPENROUTER_API_KEY\n  print(\"Loaded key from Colab\")\nelse:\n  load_dotenv()\n  print(\"Loaded key locally\")\n\nLoaded key locally",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Notebooks",
-      "sql-augmented.ipynb"
+      "text-to-sql.ipynb"
     ]
   },
   {
-    "objectID": "src/06/notebooks/sql-augmented.html#setup-openrouter-client",
-    "href": "src/06/notebooks/sql-augmented.html#setup-openrouter-client",
-    "title": "SQL-Augmented Generation",
+    "objectID": "src/06/notebooks/text-to-sql.html#setup-openrouter-client",
+    "href": "src/06/notebooks/text-to-sql.html#setup-openrouter-client",
+    "title": "Text-to-SQL",
     "section": "Setup OpenRouter Client",
     "text": "Setup OpenRouter Client\n\nMODEL = \"nvidia/nemotron-nano-9b-v2:free\"\n\nimport openai\n\nclient = openai.OpenAI(\n    base_url='https://openrouter.ai/api/v1',\n    api_key=os.environ[\"OPENROUTER_API_KEY\"],\n)",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Notebooks",
-      "sql-augmented.ipynb"
+      "text-to-sql.ipynb"
     ]
   },
   {
-    "objectID": "src/06/notebooks/sql-augmented.html#user-query",
-    "href": "src/06/notebooks/sql-augmented.html#user-query",
-    "title": "SQL-Augmented Generation",
+    "objectID": "src/06/notebooks/text-to-sql.html#user-query",
+    "href": "src/06/notebooks/text-to-sql.html#user-query",
+    "title": "Text-to-SQL",
     "section": "User query",
     "text": "User query\n\nUSER_PROMPT = \"Who teaches CS-394?\"",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Notebooks",
-      "sql-augmented.ipynb"
+      "text-to-sql.ipynb"
     ]
   },
   {
-    "objectID": "src/06/notebooks/sql-augmented.html#call-without-injecting-course-information",
-    "href": "src/06/notebooks/sql-augmented.html#call-without-injecting-course-information",
-    "title": "SQL-Augmented Generation",
+    "objectID": "src/06/notebooks/text-to-sql.html#call-without-injecting-course-information",
+    "href": "src/06/notebooks/text-to-sql.html#call-without-injecting-course-information",
+    "title": "Text-to-SQL",
     "section": "Call without injecting course information",
     "text": "Call without injecting course information\n\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": \"You help students lookup course information.\"},\n        {\"role\": \"user\", \"content\": USER_PROMPT},\n    ],\n)\nresponse.choices[0].message.content\n\n\"I don't have access to specific course details like instructors for CS-394, as that information is typically managed by educational institutions. To find out who teaches CS-394, you could:\\n\\n1. Check your university/department's official course schedule or syllabus.  \\n2. Contact the course instructor or department directly via email or phone.  \\n3. Use your school's learning management system (e.g., Moodle, Canvas) if the course is listed there.  \\n\\nLet me know if you'd help drafting a message to inquire!\\n\"",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Notebooks",
-      "sql-augmented.ipynb"
+      "text-to-sql.ipynb"
     ]
   },
   {
-    "objectID": "src/06/notebooks/sql-augmented.html#call-with-injecting-course-information",
-    "href": "src/06/notebooks/sql-augmented.html#call-with-injecting-course-information",
-    "title": "SQL-Augmented Generation",
+    "objectID": "src/06/notebooks/text-to-sql.html#call-with-injecting-course-information",
+    "href": "src/06/notebooks/text-to-sql.html#call-with-injecting-course-information",
+    "title": "Text-to-SQL",
     "section": "Call with injecting course information",
     "text": "Call with injecting course information\n\n# Connect to the sqlite database\nconn = create_and_populate_db()\n\n# Query the database based on the user prompt\ncontext = build_context(conn, USER_PROMPT)\n\n# Create system prompt\nSYSTEM_PROMPT = f\"\"\"\nYou help students lookup course information. Here are the course details:\n\n---COURSE INFORMATION---\n{context}\n---END COURSE INFORMATION---\n\"\"\"\n\n# Query the model\nresponse = client.chat.completions.create(\n    model=MODEL,\n    messages=[\n        {\"role\": \"system\", \"content\": SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": USER_PROMPT},\n    ],\n)\nresponse.choices[0].message.content\n\nFound existing database at '.data/course_catalog.db'. Skipping creation.\n\n\n'The instructor for CS-394 \"How Generative AI Works\" is **Dr. Sarah Chen**.\\n'",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Notebooks",
-      "sql-augmented.ipynb"
+      "text-to-sql.ipynb"
     ]
   }
 ]

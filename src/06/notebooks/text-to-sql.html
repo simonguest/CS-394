@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>SQL-Augmented Generation – CS-394</title>
+<title>Text-to-SQL – CS-394</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -284,7 +284,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/06/slides.html"><strong>Module 6:</strong> Increasing Model Accuracy (Part 1)</a></li><li class="breadcrumb-item"><a href="../../../src/06/notebooks/hallucinations.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../src/06/notebooks/sql-augmented.html">sql-augmented.ipynb</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/06/slides.html"><strong>Module 6:</strong> Increasing Model Accuracy (Part 1)</a></li><li class="breadcrumb-item"><a href="../../../src/06/notebooks/hallucinations.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../src/06/notebooks/text-to-sql.html">text-to-sql.ipynb</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -767,8 +767,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/06/notebooks/sql-augmented.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">sql-augmented.ipynb</span></a>
+  <a href="../../../src/06/notebooks/text-to-sql.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">text-to-sql.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -869,9 +869,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/06/slides.html"><strong>Module 6:</strong> Increasing Model Accuracy (Part 1)</a></li><li class="breadcrumb-item"><a href="../../../src/06/notebooks/hallucinations.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../src/06/notebooks/sql-augmented.html">sql-augmented.ipynb</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/06/slides.html"><strong>Module 6:</strong> Increasing Model Accuracy (Part 1)</a></li><li class="breadcrumb-item"><a href="../../../src/06/notebooks/hallucinations.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../src/06/notebooks/text-to-sql.html">text-to-sql.ipynb</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">SQL-Augmented Generation</h1>
+<h1 class="title">Text-to-SQL</h1>
 </div>
 
 
@@ -888,7 +888,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><a target="_blank" href="https://colab.research.google.com/github/simonguest/CS-394/blob/main/src/06/notebooks/sql-augmented.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"> </a> <a target="_blank" href="https://github.com/simonguest/CS-394/raw/refs/heads/main/src/06/notebooks/sql-augmented.ipynb"> <img src="https://img.shields.io/badge/Download_.ipynb-blue" alt="Download .ipynb"> </a></p>
+<p><a target="_blank" href="https://colab.research.google.com/github/simonguest/CS-394/blob/main/src/06/notebooks/text-to-sql.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"> </a> <a target="_blank" href="https://github.com/simonguest/CS-394/raw/refs/heads/main/src/06/notebooks/text-to-sql.ipynb"> <img src="https://img.shields.io/badge/Download_.ipynb-blue" alt="Download .ipynb"> </a></p>
 <div id="69b049fd" class="cell" data-execution_count="32">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>mkdir <span class="op">-</span>p .data <span class="co"># Create the data directory, if it doesn't exist</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>DB_PATH <span class="op">=</span> <span class="st">".data/course_catalog.db"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

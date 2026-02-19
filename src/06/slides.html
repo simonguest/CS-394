@@ -580,15 +580,15 @@
 <li class="fragment">Hence the popular term, augmented generation</li>
 <li class="fragment">Two examples:
 <ul>
-<li class="fragment">SQL-Augmented Generation</li>
+<li class="fragment">Text-to-SQL</li>
 <li class="fragment">Retrieval-Augmented Generation</li>
 </ul></li>
 </ul></li>
 </ul>
 </section>
-<section id="sql-augmented-generation" class="slide level2">
-<h2>SQL-Augmented Generation</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/06/notebooks/sql-augmented.ipynb" data-notebook-title="SQL-Augmented Generation" data-notebook-cellid="call-without">
+<section id="text-to-sql" class="slide level2">
+<h2>Text-to-SQL</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/06/notebooks/text-to-sql.ipynb" data-notebook-title="Text-to-SQL" data-notebook-cellid="call-without">
 <div id="call-without" class="cell" data-execution_count="38">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a>response <span class="op">=</span> client.chat.completions.create(</span>
 <span id="cb11-2"><a></a>    model<span class="op">=</span>MODEL,</span>
@@ -601,9 +601,9 @@
 </div>
 </div>
 </section>
-<section id="sql-augmented-generation-1" class="slide level2">
-<h2>SQL-Augmented Generation</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/06/notebooks/sql-augmented.ipynb" data-notebook-title="SQL-Augmented Generation" data-notebook-cellid="call-without">
+<section id="text-to-sql-1" class="slide level2">
+<h2>Text-to-SQL</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/06/notebooks/text-to-sql.ipynb" data-notebook-title="Text-to-SQL" data-notebook-cellid="call-without">
 <div id="call-without" class="cell" data-execution_count="38">
 <div class="cell-output cell-output-display" data-execution_count="38">
 <pre><code>"I don't have access to specific course details like instructors for CS-394, as that information is typically managed by educational institutions. To find out who teaches CS-394, you could:\n\n1. Check your university/department's official course schedule or syllabus.  \n2. Contact the course instructor or department directly via email or phone.  \n3. Use your school's learning management system (e.g., Moodle, Canvas) if the course is listed there.  \n\nLet me know if you'd help drafting a message to inquire!\n"</code></pre>
@@ -611,17 +611,17 @@
 </div>
 </div>
 </section>
-<section id="sql-augmented-generation-2" class="slide level2">
-<h2>SQL-Augmented Generation</h2>
+<section id="text-to-sql-2" class="slide level2">
+<h2>Text-to-SQL</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><a href="diagrams/sql.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img data-src="diagrams/sql.svg" class="quarto-figure quarto-figure-center" width="600"></a></p>
 </figure>
 </div>
 </section>
-<section id="sql-augmented-generation-3" class="slide level2">
-<h2>SQL-Augmented Generation</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/06/notebooks/sql-augmented.ipynb" data-notebook-title="SQL-Augmented Generation" data-notebook-cellid="create-db">
+<section id="text-to-sql-3" class="slide level2">
+<h2>Text-to-SQL</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/06/notebooks/text-to-sql.ipynb" data-notebook-title="Text-to-SQL" data-notebook-cellid="create-db">
 <div id="create-db" class="cell" data-execution_count="33">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="im">import</span> sqlite3</span>
 <span id="cb13-2"><a></a><span class="im">import</span> os</span>
@@ -736,9 +736,9 @@
 </div>
 </div>
 </section>
-<section id="sql-augmented-generation-4" class="slide level2">
-<h2>SQL-Augmented Generation</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/06/notebooks/sql-augmented.ipynb" data-notebook-title="SQL-Augmented Generation" data-notebook-cellid="build-context">
+<section id="text-to-sql-4" class="slide level2">
+<h2>Text-to-SQL</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/06/notebooks/text-to-sql.ipynb" data-notebook-title="Text-to-SQL" data-notebook-cellid="build-context">
 <div id="build-context" class="cell" data-execution_count="34">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="im">import</span> sqlite3</span>
 <span id="cb14-2"><a></a><span class="im">import</span> re</span>
@@ -803,9 +803,9 @@
 </div>
 </div>
 </section>
-<section id="sql-augmented-generation-5" class="slide level2">
-<h2>SQL-Augmented Generation</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/06/notebooks/sql-augmented.ipynb" data-notebook-title="SQL-Augmented Generation" data-notebook-cellid="call-with">
+<section id="text-to-sql-5" class="slide level2">
+<h2>Text-to-SQL</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/06/notebooks/text-to-sql.ipynb" data-notebook-title="Text-to-SQL" data-notebook-cellid="call-with">
 <div id="call-with" class="cell" data-execution_count="39">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a><span class="co"># Connect to the sqlite database</span></span>
 <span id="cb15-2"><a></a>conn <span class="op">=</span> create_and_populate_db()</span>
@@ -834,9 +834,9 @@
 </div>
 </div>
 </section>
-<section id="sql-augmented-generation-6" class="slide level2">
-<h2>SQL-Augmented Generation</h2>
-<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/06/notebooks/sql-augmented.ipynb" data-notebook-title="SQL-Augmented Generation" data-notebook-cellid="call-with">
+<section id="text-to-sql-6" class="slide level2">
+<h2>Text-to-SQL</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/06/notebooks/text-to-sql.ipynb" data-notebook-title="Text-to-SQL" data-notebook-cellid="call-with">
 <div id="call-with" class="cell" data-execution_count="39">
 <div class="cell-output cell-output-stdout">
 <pre><code>Found existing database at '.data/course_catalog.db'. Skipping creation.</code></pre>
@@ -847,8 +847,8 @@
 </div>
 </div>
 </section>
-<section id="sql-augmented-generation-7" class="slide level2">
-<h2>SQL-Augmented Generation</h2>
+<section id="text-to-sql-7" class="slide level2">
+<h2>Text-to-SQL</h2>
 <ul>
 <li class="fragment">Improved results, but…
 <ul>
@@ -1155,7 +1155,7 @@
 <section>
 <section id="hands-on-1" class="title-slide slide level1 center">
 <h1>Hands-on</h1>
-<p>Investigate sql-augmented.ipynb and rag.ipynb</p>
+<p>Investigate text-to-sql.ipynb and rag.ipynb</p>
 <p>Try different queries. Which work well on both?</p>
 <p>Recreate the database with different data</p>
 </section>
