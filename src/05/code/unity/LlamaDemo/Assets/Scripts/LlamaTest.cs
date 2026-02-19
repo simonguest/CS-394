@@ -69,7 +69,7 @@ public class LlamaTest : MonoBehaviour
             using var context = model.CreateContext(parameters);
             var executor = new InteractiveExecutor(context);
             
-            var prompt = "What is 2+2? Answer briefly.";
+            var prompt = "<start_of_turn>user\nTell me a joke about AI<end_of_turn>\n<start_of_turn>model\n";
             Debug.Log($"Prompt: {prompt}");
             Debug.Log("Generating response...");
             
