@@ -214,38 +214,38 @@ Okay, the user is asking about FilterGenie, a macOS software for applying dynami
 - The injected information is called 'context', and adding it is called 'augmenting' the prompt
   - Hence the popular term, augmented generation
   - Two examples:
-    - SQL-Augmented Generation
+    - Text-to-SQL
     - Retrieval-Augmented Generation
 
-## SQL-Augmented Generation
+## Text-to-SQL
 
-{{< embed notebooks/sql-augmented.ipynb#call-without echo=true outputs=false >}}
+{{< embed notebooks/text-to-sql.ipynb#call-without echo=true outputs=false >}}
 
-## SQL-Augmented Generation
+## Text-to-SQL
 
-{{< embed notebooks/sql-augmented.ipynb#call-without echo=false >}}
+{{< embed notebooks/text-to-sql.ipynb#call-without echo=false >}}
 
-## SQL-Augmented Generation
+## Text-to-SQL
 
 ![](diagrams/sql.svg){.lightbox fig-align="center" width="600px"}
 
-## SQL-Augmented Generation
+## Text-to-SQL
 
-{{< embed notebooks/sql-augmented.ipynb#create-db echo=true outputs=false >}}
+{{< embed notebooks/text-to-sql.ipynb#create-db echo=true outputs=false >}}
 
-## SQL-Augmented Generation
+## Text-to-SQL
 
-{{< embed notebooks/sql-augmented.ipynb#build-context echo=true outputs=false >}}
+{{< embed notebooks/text-to-sql.ipynb#build-context echo=true outputs=false >}}
 
-## SQL-Augmented Generation
+## Text-to-SQL
 
-{{< embed notebooks/sql-augmented.ipynb#call-with echo=true outputs=false >}}
+{{< embed notebooks/text-to-sql.ipynb#call-with echo=true outputs=false >}}
 
-## SQL-Augmented Generation
+## Text-to-SQL
 
-{{< embed notebooks/sql-augmented.ipynb#call-with echo=false >}}
+{{< embed notebooks/text-to-sql.ipynb#call-with echo=false >}}
 
-## SQL-Augmented Generation
+## Text-to-SQL
 
 - Improved results, but...
   - Requires the course code to be in the user prompt, matched to a RegEx pattern
@@ -304,7 +304,7 @@ Okay, the user is asking about FilterGenie, a macOS software for applying dynami
 
 # Hands-on
 
-Investigate sql-augmented.ipynb and rag.ipynb
+Investigate text-to-sql.ipynb and rag.ipynb
 
 Try different queries. Which work well on both?
 
