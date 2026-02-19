@@ -310,8 +310,17 @@ Try different queries. Which work well on both?
 
 Recreate the database with different data
 
+## RAG Chunking
+
+- Large documents will require splitting (a.k.a. chunking)
+- How documents are split before embedding has a major impact on retrieval quality
+  - **Fixed-size:** Split every N tokens, with optional overlap (e.g., 512 tokens, 50-token overlap). Simple and predictable, but can cut mid-sentence.
+  - **Sentence/paragraph-aware:** Split on natural boundaries (sentences, paragraphs). Better coherence, though chunk sizes will vary.
+  - **Semantic chunking:** Group sentences by embedding similarity, splitting where meaning shifts. Highest quality, but more complex.
+
 ## RAG for Photo Indexing
 
+- RAG can also be used for photo/image indexing
 - Documents can be created using VLMs (Vision Language Models)
   - Descriptions from VLMs (together with photo metadata) can then be used for lookup
   - *"Find me photos with two dogs next to the beach"*
