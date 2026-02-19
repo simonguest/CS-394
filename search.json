@@ -1494,11 +1494,22 @@
     ]
   },
   {
+    "objectID": "src/06/slides.html#rag-chunking",
+    "href": "src/06/slides.html#rag-chunking",
+    "title": "Module 6: Increasing Model Accuracy (Part 1)",
+    "section": "RAG Chunking",
+    "text": "RAG Chunking\n\nLarge documents will require splitting (a.k.a. chunking)\nHow documents are split before embedding has a major impact on retrieval quality\n\nFixed-size: Split every N tokens, with optional overlap (e.g., 512 tokens, 50-token overlap). Simple and predictable, but can cut mid-sentence.\nSentence/paragraph-aware: Split on natural boundaries (sentences, paragraphs). Better coherence, though chunk sizes will vary.\nSemantic chunking: Group sentences by embedding similarity, splitting where meaning shifts. Highest quality, but more complex.",
+    "crumbs": [
+      "**Module 6:** Increasing Model Accuracy (Part 1)",
+      "Slides"
+    ]
+  },
+  {
     "objectID": "src/06/slides.html#rag-for-photo-indexing",
     "href": "src/06/slides.html#rag-for-photo-indexing",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "RAG for Photo Indexing",
-    "text": "RAG for Photo Indexing\n\nDocuments can be created using VLMs (Vision Language Models)\n\nDescriptions from VLMs (together with photo metadata) can then be used for lookup\n“Find me photos with two dogs next to the beach”\n“Show me all my photos of sunsets in Hawaii”",
+    "text": "RAG for Photo Indexing\n\nRAG can also be used for photo/image indexing\nDocuments can be created using VLMs (Vision Language Models)\n\nDescriptions from VLMs (together with photo metadata) can then be used for lookup\n“Find me photos with two dogs next to the beach”\n“Show me all my photos of sunsets in Hawaii”",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"

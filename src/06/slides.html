@@ -1159,9 +1159,22 @@
 <p>Try different queries. Which work well on both?</p>
 <p>Recreate the database with different data</p>
 </section>
+<section id="rag-chunking" class="slide level2">
+<h2>RAG Chunking</h2>
+<ul>
+<li class="fragment">Large documents will require splitting (a.k.a. chunking)</li>
+<li class="fragment">How documents are split before embedding has a major impact on retrieval quality
+<ul>
+<li class="fragment"><strong>Fixed-size:</strong> Split every N tokens, with optional overlap (e.g., 512 tokens, 50-token overlap). Simple and predictable, but can cut mid-sentence.</li>
+<li class="fragment"><strong>Sentence/paragraph-aware:</strong> Split on natural boundaries (sentences, paragraphs). Better coherence, though chunk sizes will vary.</li>
+<li class="fragment"><strong>Semantic chunking:</strong> Group sentences by embedding similarity, splitting where meaning shifts. Highest quality, but more complex.</li>
+</ul></li>
+</ul>
+</section>
 <section id="rag-for-photo-indexing" class="slide level2">
 <h2>RAG for Photo Indexing</h2>
 <ul>
+<li class="fragment">RAG can also be used for photo/image indexing</li>
 <li class="fragment">Documents can be created using VLMs (Vision Language Models)
 <ul>
 <li class="fragment">Descriptions from VLMs (together with photo metadata) can then be used for lookup</li>
