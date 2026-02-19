@@ -251,9 +251,9 @@
 <ul>
 <li class="fragment">Breaking News: Models hallucinate!
 <ul>
-<li class="fragment">Especially noticable on older and smaller models</li>
+<li class="fragment">Especially noticeable on older and smaller models</li>
 <li class="fragment">Many hallucinations can be difficult to spot as they sound so plausible</li>
-<li class="fragment">Plausible sounding requests (i.e., asking about something that doesn’t exist) often results in a hallucination</li>
+<li class="fragment">Plausible sounding requests (i.e., asking about something that doesn’t exist) often result in a hallucination</li>
 </ul></li>
 </ul>
 </section>
@@ -362,7 +362,7 @@
 <section id="why-do-models-hallucinate-1" class="slide level2">
 <h2>Why Do Models Hallucinate?</h2>
 <ul>
-<li class="fragment">Models are trained on a large corpora of Internet data
+<li class="fragment">Models are trained on a large corpus of Internet data
 <ul>
 <li class="fragment">Data on the Internet is often uneven</li>
 <li class="fragment">Full of gaps</li>
@@ -442,7 +442,7 @@
 <ul>
 <li class="fragment">Role/persona assignment:
 <ul>
-<li class="fragment">It can be common to add role/persona to help guide the model</li>
+<li class="fragment">It is common to add a role/persona to help guide the model</li>
 <li class="fragment"><em>“You are a senior engineer reviewing code for a junior developer”</em></li>
 <li class="fragment"><em>“You are a geography teacher working with high school students”</em></li>
 </ul></li>
@@ -539,7 +539,7 @@
 <section id="reasoningthinking-models-7" class="slide level2">
 <h2>Reasoning/Thinking Models</h2>
 <ul>
-<li class="fragment">Prompt engineering and reasoning help the model increase it’s accuracy for the data that it’s been trained on</li>
+<li class="fragment">Prompt engineering and reasoning help the model increase its accuracy for the data that it’s been trained on</li>
 <li class="fragment">But it doesn’t account for data that it doesn’t know about</li>
 <li class="fragment">Enter context injection…</li>
 </ul>
@@ -552,7 +552,7 @@
 <section id="context-injection-1" class="slide level2">
 <h2>Context Injection</h2>
 <ul>
-<li class="fragment">A model’s training data will only only answer so much
+<li class="fragment">A model’s training data will only answer so much
 <ul>
 <li class="fragment">Training data has a cut-off: Your model won’t know anything after that</li>
 <li class="fragment">Your model won’t know if anything has changed since being trained</li>
@@ -1223,7 +1223,7 @@
 <li class="fragment">How evals are created:
 <ul>
 <li class="fragment">Curated question sets: Experts write or gather questions based on ground truth answers</li>
-<li class="fragment">Human-validated responses: For open-ended tasks (e.g., coding) human evaluators score model responses - or models are testing against validation logic (e.g., unit tests)</li>
+<li class="fragment">Human-validated responses: For open-ended tasks (e.g., coding) human evaluators score model responses - or models are tested against validation logic (e.g., unit tests)</li>
 <li class="fragment">Adversarial design: The best evals try to anticipate how models might “cheat” - e.g., avoiding questions in training data, including distractors and edge cases</li>
 </ul></li>
 </ul>
@@ -1294,7 +1294,7 @@
 <li class="fragment">Dataset contamination
 <ul>
 <li class="fragment">Many popular benchmarks (MMLU, HumanEval) have been around for years and “leaked” into training data</li>
-<li class="fragment">Models can achieve a high score my memorizing the questions/answers vs.&nbsp;true reasoning</li>
+<li class="fragment">Models can achieve a high score by memorizing the questions/answers vs.&nbsp;true reasoning</li>
 </ul></li>
 <li class="fragment">Gaming the benchmark
 <ul>
@@ -1383,7 +1383,7 @@
 <li class="fragment">But you may not have the data nor the GPU compute to build a capable model
 <ul>
 <li class="fragment">Trained on <a href="https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu" class="external" target="_blank">fineweb-edu</a></li>
-<li class="fragment">GPT-2 level: 3 hours on a 8xH100 GPU</li>
+<li class="fragment">GPT-2 level: 3 hours on an 8xH100 GPU</li>
 </ul></li>
 </ul>
 </section></section>
@@ -1470,6 +1470,7 @@
 <ul>
 <li class="fragment">Create the file by hand!</li>
 <li class="fragment">Generate <strong>synthetic data</strong> from a more capable model (and review for quality)</li>
+<li class="fragment">Known as “data distillation”</li>
 </ul></li>
 <li class="fragment">Synthetic Data
 <ul>

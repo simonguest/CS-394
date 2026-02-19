@@ -1014,7 +1014,7 @@
     "href": "src/06/slides.html#hallucinations-1",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Hallucinations",
-    "text": "Hallucinations\n\nBreaking News: Models hallucinate!\n\nEspecially noticable on older and smaller models\nMany hallucinations can be difficult to spot as they sound so plausible\nPlausible sounding requests (i.e., asking about something that doesn’t exist) often results in a hallucination",
+    "text": "Hallucinations\n\nBreaking News: Models hallucinate!\n\nEspecially noticeable on older and smaller models\nMany hallucinations can be difficult to spot as they sound so plausible\nPlausible sounding requests (i.e., asking about something that doesn’t exist) often result in a hallucination",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -1113,7 +1113,7 @@
     "href": "src/06/slides.html#why-do-models-hallucinate-1",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Why Do Models Hallucinate?",
-    "text": "Why Do Models Hallucinate?\n\nModels are trained on a large corpora of Internet data\n\nData on the Internet is often uneven\nFull of gaps\nOften contradictory",
+    "text": "Why Do Models Hallucinate?\n\nModels are trained on a large corpus of Internet data\n\nData on the Internet is often uneven\nFull of gaps\nOften contradictory",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -1179,7 +1179,7 @@
     "href": "src/06/slides.html#prompt-engineering-4",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Prompt Engineering",
-    "text": "Prompt Engineering\n\nRole/persona assignment:\n\nIt can be common to add role/persona to help guide the model\n“You are a senior engineer reviewing code for a junior developer”\n“You are a geography teacher working with high school students”",
+    "text": "Prompt Engineering\n\nRole/persona assignment:\n\nIt is common to add a role/persona to help guide the model\n“You are a senior engineer reviewing code for a junior developer”\n“You are a geography teacher working with high school students”",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -1267,7 +1267,7 @@
     "href": "src/06/slides.html#reasoningthinking-models-7",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Reasoning/Thinking Models",
-    "text": "Reasoning/Thinking Models\n\nPrompt engineering and reasoning help the model increase it’s accuracy for the data that it’s been trained on\nBut it doesn’t account for data that it doesn’t know about\nEnter context injection…",
+    "text": "Reasoning/Thinking Models\n\nPrompt engineering and reasoning help the model increase its accuracy for the data that it’s been trained on\nBut it doesn’t account for data that it doesn’t know about\nEnter context injection…",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -1278,7 +1278,7 @@
     "href": "src/06/slides.html#context-injection-1",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Context Injection",
-    "text": "Context Injection\n\nA model’s training data will only only answer so much\n\nTraining data has a cut-off: Your model won’t know anything after that\nYour model won’t know if anything has changed since being trained\nFunction calling can help bridge this gap, but context injection is often simpler and more flexible",
+    "text": "Context Injection\n\nA model’s training data will only answer so much\n\nTraining data has a cut-off: Your model won’t know anything after that\nYour model won’t know if anything has changed since being trained\nFunction calling can help bridge this gap, but context injection is often simpler and more flexible",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -1553,7 +1553,7 @@
     "href": "src/06/slides.html#evaluating-models-1",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Evaluating Models",
-    "text": "Evaluating Models\n\nHow evals are created:\n\nCurated question sets: Experts write or gather questions based on ground truth answers\nHuman-validated responses: For open-ended tasks (e.g., coding) human evaluators score model responses - or models are testing against validation logic (e.g., unit tests)\nAdversarial design: The best evals try to anticipate how models might “cheat” - e.g., avoiding questions in training data, including distractors and edge cases",
+    "text": "Evaluating Models\n\nHow evals are created:\n\nCurated question sets: Experts write or gather questions based on ground truth answers\nHuman-validated responses: For open-ended tasks (e.g., coding) human evaluators score model responses - or models are tested against validation logic (e.g., unit tests)\nAdversarial design: The best evals try to anticipate how models might “cheat” - e.g., avoiding questions in training data, including distractors and edge cases",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -1608,7 +1608,7 @@
     "href": "src/06/slides.html#challenges-with-evals",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Challenges With Evals",
-    "text": "Challenges With Evals\n\nDataset contamination\n\nMany popular benchmarks (MMLU, HumanEval) have been around for years and “leaked” into training data\nModels can achieve a high score my memorizing the questions/answers vs. true reasoning\n\nGaming the benchmark\n\nResearchers may optimize models specifically for benchmark performance without improving general capability - also known as “teaching to the test”",
+    "text": "Challenges With Evals\n\nDataset contamination\n\nMany popular benchmarks (MMLU, HumanEval) have been around for years and “leaked” into training data\nModels can achieve a high score by memorizing the questions/answers vs. true reasoning\n\nGaming the benchmark\n\nResearchers may optimize models specifically for benchmark performance without improving general capability - also known as “teaching to the test”",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -1696,7 +1696,7 @@
     "href": "src/06/slides.html#sidebar-can-we-train-models-from-scratch",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Sidebar: Can We Train Models From Scratch?",
-    "text": "Sidebar: Can We Train Models From Scratch?\n\nNanoChat shows that it’s possible\n\n60x faster and 652x cheaper than original GPT-2 in 2019\n\nBut you may not have the data nor the GPU compute to build a capable model\n\nTrained on fineweb-edu\nGPT-2 level: 3 hours on a 8xH100 GPU",
+    "text": "Sidebar: Can We Train Models From Scratch?\n\nNanoChat shows that it’s possible\n\n60x faster and 652x cheaper than original GPT-2 in 2019\n\nBut you may not have the data nor the GPU compute to build a capable model\n\nTrained on fineweb-edu\nGPT-2 level: 3 hours on an 8xH100 GPU",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -1784,7 +1784,7 @@
     "href": "src/06/slides.html#generating-training-data-8",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Generating Training Data",
-    "text": "Generating Training Data\n\nHow do we generate this data?\n\nCreate the file by hand!\nGenerate synthetic data from a more capable model (and review for quality)\n\nSynthetic Data\n\n“Generate n examples of students asking their teacher a geography question”\nOften use structured outputs to map to jsonl conversational format",
+    "text": "Generating Training Data\n\nHow do we generate this data?\n\nCreate the file by hand!\nGenerate synthetic data from a more capable model (and review for quality)\nKnown as “data distillation”\n\nSynthetic Data\n\n“Generate n examples of students asking their teacher a geography question”\nOften use structured outputs to map to jsonl conversational format",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
