@@ -138,8 +138,8 @@
 <li class="fragment">Understood model training, dataset curation, what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy</li>
 <li class="fragment">Explored use cases, advantages, and disadvantages of prompt engineering</li>
 <li class="fragment">Introduced and implemented RAG (Retrieval Augmented Generation) to increase the accuracy of a limited SLM</li>
-<li class="fragment">Started the exploration of how to fine-tune models using LoRA (Low Ranked Adaptation)</li>
-<li class="fragment">Used a foundational model to generate synthetic data for fine-tuning a 1B parameter model</li>
+<li class="fragment">Started the exploration of how to fine-tune models</li>
+<li class="fragment">Used a foundational model to generate synthetic data for fine-tuning a small language model</li>
 </ul>
 </section>
 <section id="lesson-objectives" class="slide level2">
@@ -152,6 +152,150 @@
 <li class="fragment">Understand and create a model card, upload the model to Hugging Face and share</li>
 </ul>
 </section>
+<section>
+<section id="model-training-stages" class="title-slide slide level1 center">
+<h1>Model Training Stages</h1>
+
+</section>
+<section id="model-training-stages-1" class="slide level2">
+<h2>Model Training Stages</h2>
+<ul>
+<li class="fragment">There are typically three main stages of training a model:
+<ul>
+<li class="fragment"><strong>Pretraining:</strong> The initial, large-scale training run that creates a base model with pretrained weights
+<ul>
+<li class="fragment">Training data: Trillions of tokens from the internet, books, code, etc.</li>
+</ul></li>
+<li class="fragment"><strong>Supervised Fine-Tuning (SFT):</strong> Shapes the base model to follow instructions and respond in a desired style or fornat
+<ul>
+<li class="fragment">Training data: Hundreds to thousands of input/output pairs</li>
+</ul></li>
+<li class="fragment"><strong>Alignment:</strong> Further refines the model toward preferred behaviors and values
+<ul>
+<li class="fragment">Training data: Human-curated preferences and/or reward-based feedback</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="model-training-stages-2" class="slide level2">
+<h2>Model Training Stages</h2>
+<p>TBD: Diagram</p>
+</section>
+<section id="model-training-stages-3" class="slide level2">
+<h2>Model Training Stages</h2>
+<ul>
+<li class="fragment">Many models (e.g., Gemma3-it) have already gone through these three stages
+<ul>
+<li class="fragment">We will be adding a fourth stage. An SFT of an existing “polished” model</li>
+</ul></li>
+<li class="fragment">Why?
+<ul>
+<li class="fragment">The model already knows how to follow instructions, answer questions, etc.</li>
+<li class="fragment">They need far less training data to get good results</li>
+<li class="fragment">Training tends to be faster and more stable since they are starting from a good baseline</li>
+</ul></li>
+</ul>
+</section>
+<section id="model-training-stages-4" class="slide level2">
+<h2>Model Training Stages</h2>
+<p>TBD: Updated diagram</p>
+</section></section>
+<section>
+<section id="supervised-fine-tuning-sft" class="title-slide slide level1 center">
+<h1>Supervised Fine-Tuning (SFT)</h1>
+
+</section>
+<section id="supervised-fine-tuning-sft-1" class="slide level2">
+<h2>Supervised Fine-Tuning (SFT)</h2>
+<ul>
+<li class="fragment">How does SFT work?
+<ul>
+<li class="fragment">Build a dataset (we did this already!)</li>
+<li class="fragment">Feed the prompts into the model and compare the desired output tokens with the model’s predictions</li>
+<li class="fragment">The difference between the two is known as the “training loss”</li>
+<li class="fragment">Backpropagate through the model, nudging the weights to guide toward the desired output</li>
+<li class="fragment">This “nudging” is done using an optimizer (typically AdamW)</li>
+<li class="fragment">Repeat for typically 1-3 epochs (complete passes through the dataset)</li>
+<li class="fragment">Monitor validation loss to detect overfitting or diminishing returns</li>
+</ul></li>
+</ul>
+</section>
+<section id="supervised-fine-tuning-sft-2" class="slide level2">
+<h2>Supervised Fine-Tuning (SFT)</h2>
+<p>TBD: Diagram</p>
+</section>
+<section id="supervised-fine-tuning-sft-with-lora" class="slide level2">
+<h2>Supervised Fine-Tuning (SFT) with LoRA</h2>
+<ul>
+<li class="fragment">Adjusting all parameters in a model can be compute and memory intensive</li>
+<li class="fragment">We will use LoRA (Low-Rank Adaptation), a Parameter Efficient Fine-Tuning (PEFT) strategy</li>
+<li class="fragment">How LoRA works:
+<ul>
+<li class="fragment">The model’s base weights (W) are frozen (never updated) during training</li>
+<li class="fragment">Two small matrices (A and B) are introduced, whose product represents the desired change to W</li>
+<li class="fragment">Only A and B are updated during training — a tiny fraction of the total parameters</li>
+<li class="fragment">After training, these matrices are known as an “adapter”</li>
+<li class="fragment">The adapter can be kept separate (swappable) or merged back into W to create a new, standalone model</li>
+</ul></li>
+</ul>
+</section>
+<section id="supervised-fine-tuning-sft-with-lora-1" class="slide level2">
+<h2>Supervised Fine-Tuning (SFT) with LoRA</h2>
+<p>TBD: Diagram</p>
+</section>
+<section id="supervised-fine-tuning-sft-with-qlora" class="slide level2">
+<h2>Supervised Fine-Tuning (SFT) with QLoRA</h2>
+<ul>
+<li class="fragment">To further increase memory efficiency, we will use QLoRA (Quantized LoRA)
+<ul>
+<li class="fragment">The base model weights (W) are quantized to 4-bit (NF4 format) for storage</li>
+<li class="fragment">During the forward pass, W is dequantized to bf16 on the fly for computation, then discarded</li>
+<li class="fragment">Adapter matrices A and B are kept at full precision (bf16) for training accuracy</li>
+<li class="fragment">Since only A and B are trained, optimizer states (which can be 3-4x the size of W at full precision) only exist for the tiny adapter matrices — dramatically reducing memory usage</li>
+</ul></li>
+</ul>
+</section>
+<section id="supervised-fine-tuning-sft-with-qlora-1" class="slide level2">
+<h2>Supervised Fine-Tuning (SFT) with QLoRA</h2>
+<p>TBD: Diagram</p>
+</section></section>
+<section>
+<section id="fine-tuning-steps" class="title-slide slide level1 center">
+<h1>Fine-Tuning Steps</h1>
+
+</section>
+<section id="fine-tuning-steps-1" class="slide level2">
+<h2>Fine-Tuning Steps</h2>
+<ul>
+<li class="fragment">Upload our .jsonl files to Hugging Face to create a dataset</li>
+<li class="fragment">In our training notebook…
+<ul>
+<li class="fragment">Download the dataset</li>
+<li class="fragment">Format our training data to match the chat template</li>
+<li class="fragment">Start our training run!</li>
+</ul></li>
+<li class="fragment">Use W&amp;B (Weights &amp; Biases) to monitor how well our model is learning
+<ul>
+<li class="fragment">Training loss</li>
+<li class="fragment">Validation loss</li>
+</ul></li>
+</ul>
+</section>
+<section id="fine-tuning-steps-2" class="slide level2">
+<h2>Fine-Tuning Steps</h2>
+<ul>
+<li class="fragment">After training has completed…
+<ul>
+<li class="fragment">Test (both manually and automatic)</li>
+</ul></li>
+<li class="fragment">Assuming things went well…
+<ul>
+<li class="fragment">Merge and upload our model to Hugging Face</li>
+<li class="fragment">Quantize our model (create a GGUF) and upload to Hugging Face</li>
+<li class="fragment">Publish a model card</li>
+</ul></li>
+</ul>
+</section></section>
 <section>
 <section id="looking-ahead" class="title-slide slide level1 center">
 <h1>Looking Ahead</h1>

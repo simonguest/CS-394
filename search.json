@@ -6864,7 +6864,7 @@
     "href": "src/07/slides.html#recap",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Recap",
-    "text": "Recap\n\nUnderstood model training, dataset curation, what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy\nExplored use cases, advantages, and disadvantages of prompt engineering\nIntroduced and implemented RAG (Retrieval Augmented Generation) to increase the accuracy of a limited SLM\nStarted the exploration of how to fine-tune models using LoRA (Low Ranked Adaptation)\nUsed a foundational model to generate synthetic data for fine-tuning a 1B parameter model",
+    "text": "Recap\n\nUnderstood model training, dataset curation, what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy\nExplored use cases, advantages, and disadvantages of prompt engineering\nIntroduced and implemented RAG (Retrieval Augmented Generation) to increase the accuracy of a limited SLM\nStarted the exploration of how to fine-tune models\nUsed a foundational model to generate synthetic data for fine-tuning a small language model",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -6876,6 +6876,138 @@
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Lesson Objectives",
     "text": "Lesson Objectives\n\nUse generated synthetic data to fine-tune a 1B parameter model\nUse W&B (Weights and Biases) to observe parameters during the training run\nPost-training, use W&B to use cosine similarity and LLM-as-a-Judge to evaluate the accuracy of our trained model\nTrain smaller models (270M parameters) and compare the results\nUnderstand and create a model card, upload the model to Hugging Face and share",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#model-training-stages-1",
+    "href": "src/07/slides.html#model-training-stages-1",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Model Training Stages",
+    "text": "Model Training Stages\n\nThere are typically three main stages of training a model:\n\nPretraining: The initial, large-scale training run that creates a base model with pretrained weights\n\nTraining data: Trillions of tokens from the internet, books, code, etc.\n\nSupervised Fine-Tuning (SFT): Shapes the base model to follow instructions and respond in a desired style or fornat\n\nTraining data: Hundreds to thousands of input/output pairs\n\nAlignment: Further refines the model toward preferred behaviors and values\n\nTraining data: Human-curated preferences and/or reward-based feedback",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#model-training-stages-2",
+    "href": "src/07/slides.html#model-training-stages-2",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Model Training Stages",
+    "text": "Model Training Stages\nTBD: Diagram",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#model-training-stages-3",
+    "href": "src/07/slides.html#model-training-stages-3",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Model Training Stages",
+    "text": "Model Training Stages\n\nMany models (e.g., Gemma3-it) have already gone through these three stages\n\nWe will be adding a fourth stage. An SFT of an existing “polished” model\n\nWhy?\n\nThe model already knows how to follow instructions, answer questions, etc.\nThey need far less training data to get good results\nTraining tends to be faster and more stable since they are starting from a good baseline",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#model-training-stages-4",
+    "href": "src/07/slides.html#model-training-stages-4",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Model Training Stages",
+    "text": "Model Training Stages\nTBD: Updated diagram",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#supervised-fine-tuning-sft-1",
+    "href": "src/07/slides.html#supervised-fine-tuning-sft-1",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Supervised Fine-Tuning (SFT)",
+    "text": "Supervised Fine-Tuning (SFT)\n\nHow does SFT work?\n\nBuild a dataset (we did this already!)\nFeed the prompts into the model and compare the desired output tokens with the model’s predictions\nThe difference between the two is known as the “training loss”\nBackpropagate through the model, nudging the weights to guide toward the desired output\nThis “nudging” is done using an optimizer (typically AdamW)\nRepeat for typically 1-3 epochs (complete passes through the dataset)\nMonitor validation loss to detect overfitting or diminishing returns",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#supervised-fine-tuning-sft-2",
+    "href": "src/07/slides.html#supervised-fine-tuning-sft-2",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Supervised Fine-Tuning (SFT)",
+    "text": "Supervised Fine-Tuning (SFT)\nTBD: Diagram",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#supervised-fine-tuning-sft-with-lora",
+    "href": "src/07/slides.html#supervised-fine-tuning-sft-with-lora",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Supervised Fine-Tuning (SFT) with LoRA",
+    "text": "Supervised Fine-Tuning (SFT) with LoRA\n\nAdjusting all parameters in a model can be compute and memory intensive\nWe will use LoRA (Low-Rank Adaptation), a Parameter Efficient Fine-Tuning (PEFT) strategy\nHow LoRA works:\n\nThe model’s base weights (W) are frozen (never updated) during training\nTwo small matrices (A and B) are introduced, whose product represents the desired change to W\nOnly A and B are updated during training — a tiny fraction of the total parameters\nAfter training, these matrices are known as an “adapter”\nThe adapter can be kept separate (swappable) or merged back into W to create a new, standalone model",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#supervised-fine-tuning-sft-with-lora-1",
+    "href": "src/07/slides.html#supervised-fine-tuning-sft-with-lora-1",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Supervised Fine-Tuning (SFT) with LoRA",
+    "text": "Supervised Fine-Tuning (SFT) with LoRA\nTBD: Diagram",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#supervised-fine-tuning-sft-with-qlora",
+    "href": "src/07/slides.html#supervised-fine-tuning-sft-with-qlora",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Supervised Fine-Tuning (SFT) with QLoRA",
+    "text": "Supervised Fine-Tuning (SFT) with QLoRA\n\nTo further increase memory efficiency, we will use QLoRA (Quantized LoRA)\n\nThe base model weights (W) are quantized to 4-bit (NF4 format) for storage\nDuring the forward pass, W is dequantized to bf16 on the fly for computation, then discarded\nAdapter matrices A and B are kept at full precision (bf16) for training accuracy\nSince only A and B are trained, optimizer states (which can be 3-4x the size of W at full precision) only exist for the tiny adapter matrices — dramatically reducing memory usage",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#supervised-fine-tuning-sft-with-qlora-1",
+    "href": "src/07/slides.html#supervised-fine-tuning-sft-with-qlora-1",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Supervised Fine-Tuning (SFT) with QLoRA",
+    "text": "Supervised Fine-Tuning (SFT) with QLoRA\nTBD: Diagram",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#fine-tuning-steps-1",
+    "href": "src/07/slides.html#fine-tuning-steps-1",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Fine-Tuning Steps",
+    "text": "Fine-Tuning Steps\n\nUpload our .jsonl files to Hugging Face to create a dataset\nIn our training notebook…\n\nDownload the dataset\nFormat our training data to match the chat template\nStart our training run!\n\nUse W&B (Weights & Biases) to monitor how well our model is learning\n\nTraining loss\nValidation loss",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#fine-tuning-steps-2",
+    "href": "src/07/slides.html#fine-tuning-steps-2",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Fine-Tuning Steps",
+    "text": "Fine-Tuning Steps\n\nAfter training has completed…\n\nTest (both manually and automatic)\n\nAssuming things went well…\n\nMerge and upload our model to Hugging Face\nQuantize our model (create a GGUF) and upload to Hugging Face\nPublish a model card",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
