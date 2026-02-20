@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -27,6 +27,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #24292e;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #24292e; } /* Normal */
+    code span.al { color: #ff5555; font-weight: bold; } /* Alert */
+    code span.an { color: #6a737d; } /* Annotation */
+    code span.at { color: #d73a49; } /* Attribute */
+    code span.bn { color: #005cc5; } /* BaseN */
+    code span.bu { color: #d73a49; } /* BuiltIn */
+    code span.cf { color: #d73a49; } /* ControlFlow */
+    code span.ch { color: #032f62; } /* Char */
+    code span.cn { color: #005cc5; } /* Constant */
+    code span.co { color: #6a737d; } /* Comment */
+    code span.cv { color: #6a737d; } /* CommentVar */
+    code span.do { color: #6a737d; } /* Documentation */
+    code span.dt { color: #d73a49; } /* DataType */
+    code span.dv { color: #005cc5; } /* DecVal */
+    code span.er { color: #ff5555; text-decoration: underline; } /* Error */
+    code span.ex { color: #d73a49; font-weight: bold; } /* Extension */
+    code span.fl { color: #005cc5; } /* Float */
+    code span.fu { color: #6f42c1; } /* Function */
+    code span.im { color: #032f62; } /* Import */
+    code span.in { color: #6a737d; } /* Information */
+    code span.kw { color: #d73a49; } /* Keyword */
+    code span.op { color: #24292e; } /* Operator */
+    code span.ot { color: #6f42c1; } /* Other */
+    code span.pp { color: #d73a49; } /* Preprocessor */
+    code span.re { color: #6a737d; } /* RegionMarker */
+    code span.sc { color: #005cc5; } /* SpecialChar */
+    code span.ss { color: #032f62; } /* SpecialString */
+    code span.st { color: #032f62; } /* String */
+    code span.va { color: #e36209; } /* Variable */
+    code span.vs { color: #032f62; } /* VerbatimString */
+    code span.wa { color: #ff5555; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-eeafb82a00776dbd0312b01cd21cfa25.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -120,6 +186,10 @@
       margin-right: 0; 
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+  
+  <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+  <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -260,12 +330,12 @@
 <p>TBD: Diagram</p>
 </section></section>
 <section>
-<section id="fine-tuning-steps" class="title-slide slide level1 center">
-<h1>Fine-Tuning Steps</h1>
+<section id="fine-tuning-plan" class="title-slide slide level1 center">
+<h1>Fine-Tuning Plan</h1>
 
 </section>
-<section id="fine-tuning-steps-1" class="slide level2">
-<h2>Fine-Tuning Steps</h2>
+<section id="fine-tuning-plan-1" class="slide level2">
+<h2>Fine-Tuning Plan</h2>
 <ul>
 <li class="fragment">Upload our .jsonl files to Hugging Face to create a dataset</li>
 <li class="fragment">In our training notebook…
@@ -281,8 +351,8 @@
 </ul></li>
 </ul>
 </section>
-<section id="fine-tuning-steps-2" class="slide level2">
-<h2>Fine-Tuning Steps</h2>
+<section id="fine-tuning-plan-2" class="slide level2">
+<h2>Fine-Tuning Plan</h2>
 <ul>
 <li class="fragment">After training has completed…
 <ul>
@@ -296,6 +366,107 @@
 </ul></li>
 </ul>
 </section></section>
+<section>
+<section id="upload-training-files" class="title-slide slide level1 center">
+<h1>Upload Training Files</h1>
+
+</section>
+<section id="upload-training-files-1" class="slide level2">
+<h2>Upload Training Files</h2>
+<ul>
+<li class="fragment">Upload our train.jsonl, validation.jsonl, and test.jsonl files to a Hugging Face Dataset</li>
+<li class="fragment">Why?
+<ul>
+<li class="fragment">Single repository</li>
+<li class="fragment">Easy to hook into training runs</li>
+<li class="fragment">Shareable with others</li>
+<li class="fragment">Better UI and query semantics vs.&nbsp;raw .jsonl files</li>
+</ul></li>
+</ul>
+</section>
+<section id="upload-training-files-2" class="slide level2">
+<h2>Upload Training Files</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/07/notebooks/create-dataset.ipynb" data-notebook-title="Create Hugging Face Dataset" data-notebook-cellid="create-dataset">
+<div id="create-dataset" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">from</span> datasets <span class="im">import</span> Dataset, DatasetDict</span>
+<span id="cb1-2"><a></a><span class="im">import</span> json</span>
+<span id="cb1-3"><a></a></span>
+<span id="cb1-4"><a></a></span>
+<span id="cb1-5"><a></a><span class="kw">def</span> load_jsonl(file_path):</span>
+<span id="cb1-6"><a></a>    data <span class="op">=</span> []</span>
+<span id="cb1-7"><a></a>    <span class="cf">with</span> <span class="bu">open</span>(file_path, <span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb1-8"><a></a>        <span class="cf">for</span> line_num, line <span class="kw">in</span> <span class="bu">enumerate</span>(f, <span class="dv">1</span>):</span>
+<span id="cb1-9"><a></a>            line <span class="op">=</span> line.strip()</span>
+<span id="cb1-10"><a></a>            <span class="cf">if</span> <span class="kw">not</span> line:  <span class="co"># Skip empty lines</span></span>
+<span id="cb1-11"><a></a>                <span class="cf">continue</span></span>
+<span id="cb1-12"><a></a>            <span class="cf">try</span>:</span>
+<span id="cb1-13"><a></a>                <span class="co"># Try parsing the line</span></span>
+<span id="cb1-14"><a></a>                data.append(json.loads(line))</span>
+<span id="cb1-15"><a></a>            <span class="cf">except</span> json.JSONDecodeError <span class="im">as</span> e:</span>
+<span id="cb1-16"><a></a>                <span class="bu">print</span>(<span class="ss">f"Warning: Error parsing line </span><span class="sc">{</span>line_num<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-17"><a></a>                <span class="bu">print</span>(<span class="ss">f"Problematic line: </span><span class="sc">{</span>line[:<span class="dv">200</span>]<span class="sc">}</span><span class="ss">..."</span>)</span>
+<span id="cb1-18"><a></a>    <span class="cf">return</span> data</span>
+<span id="cb1-19"><a></a></span>
+<span id="cb1-20"><a></a></span>
+<span id="cb1-21"><a></a><span class="kw">def</span> create_hf_dataset(train_file, val_file, test_file):</span>
+<span id="cb1-22"><a></a>    <span class="co"># Load the data</span></span>
+<span id="cb1-23"><a></a>    train_data <span class="op">=</span> load_jsonl(train_file)</span>
+<span id="cb1-24"><a></a>    val_data <span class="op">=</span> load_jsonl(val_file)</span>
+<span id="cb1-25"><a></a>    test_data <span class="op">=</span> load_jsonl(test_file)</span>
+<span id="cb1-26"><a></a></span>
+<span id="cb1-27"><a></a>    <span class="co"># Create datasets</span></span>
+<span id="cb1-28"><a></a>    train_dataset <span class="op">=</span> Dataset.from_list(train_data)</span>
+<span id="cb1-29"><a></a>    val_dataset <span class="op">=</span> Dataset.from_list(val_data)</span>
+<span id="cb1-30"><a></a>    test_dataset <span class="op">=</span> Dataset.from_list(test_data)</span>
+<span id="cb1-31"><a></a></span>
+<span id="cb1-32"><a></a>    <span class="co"># Combine into DatasetDict</span></span>
+<span id="cb1-33"><a></a>    dataset_dict <span class="op">=</span> DatasetDict(</span>
+<span id="cb1-34"><a></a>        {</span>
+<span id="cb1-35"><a></a>            <span class="st">"train"</span>: train_dataset,</span>
+<span id="cb1-36"><a></a>            <span class="st">"validation"</span>: val_dataset,</span>
+<span id="cb1-37"><a></a>            <span class="st">"test"</span>: test_dataset,</span>
+<span id="cb1-38"><a></a>        }</span>
+<span id="cb1-39"><a></a>    )</span>
+<span id="cb1-40"><a></a></span>
+<span id="cb1-41"><a></a>    <span class="cf">return</span> dataset_dict</span>
+<span id="cb1-42"><a></a></span>
+<span id="cb1-43"><a></a></span>
+<span id="cb1-44"><a></a><span class="co"># Create and validate the dataset is ready to upload</span></span>
+<span id="cb1-45"><a></a>dataset <span class="op">=</span> create_hf_dataset(TRAIN_FILE, VALIDATION_FILE, TEST_FILE)</span>
+<span id="cb1-46"><a></a><span class="bu">print</span>(<span class="ss">f"Train samples: </span><span class="sc">{</span><span class="bu">len</span>(dataset[<span class="st">'train'</span>])<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-47"><a></a><span class="bu">print</span>(<span class="ss">f"Validation samples: </span><span class="sc">{</span><span class="bu">len</span>(dataset[<span class="st">'validation'</span>])<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-48"><a></a><span class="bu">print</span>(<span class="ss">f"Test samples: </span><span class="sc">{</span><span class="bu">len</span>(dataset[<span class="st">'test'</span>])<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-49"><a></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Sample entry: </span><span class="sc">{</span>dataset[<span class="st">'train'</span>][<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="upload-training-files-3" class="slide level2">
+<h2>Upload Training Files</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/07/notebooks/create-dataset.ipynb" data-notebook-title="Create Hugging Face Dataset" data-notebook-cellid="upload">
+<div id="upload" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">import</span> os</span>
+<span id="cb2-2"><a></a></span>
+<span id="cb2-3"><a></a><span class="kw">def</span> upload_dataset(dataset_dict, repo_name, token):</span>
+<span id="cb2-4"><a></a>    <span class="co">"""Upload dataset to Hugging Face Hub"""</span></span>
+<span id="cb2-5"><a></a>    </span>
+<span id="cb2-6"><a></a>    <span class="co"># Push to hub</span></span>
+<span id="cb2-7"><a></a>    dataset_dict.push_to_hub(</span>
+<span id="cb2-8"><a></a>        repo_name,</span>
+<span id="cb2-9"><a></a>        token<span class="op">=</span>token,</span>
+<span id="cb2-10"><a></a>        private<span class="op">=</span><span class="va">False</span>  <span class="co"># Set to True if you want it private</span></span>
+<span id="cb2-11"><a></a>    )</span>
+<span id="cb2-12"><a></a>    </span>
+<span id="cb2-13"><a></a>    <span class="bu">print</span>(<span class="ss">f"Dataset uploaded successfully to: https://huggingface.co/datasets/</span><span class="sc">{</span>repo_name<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-14"><a></a></span>
+<span id="cb2-15"><a></a>upload_dataset(dataset, DATASET_REPO, os.environ.get(<span class="st">"HF_TOKEN"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section></section>
+<section id="demo" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p>Uploading the training data file to Hugging Face Dataset</p>
+</section>
+
 <section>
 <section id="looking-ahead" class="title-slide slide level1 center">
 <h1>Looking Ahead</h1>
