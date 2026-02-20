@@ -105,9 +105,9 @@ TBD: Diagram
 
 TBD: Diagram
 
-# Fine-Tuning Steps
+# Fine-Tuning Plan
 
-## Fine-Tuning Steps
+## Fine-Tuning Plan
 
 - Upload our .jsonl files to Hugging Face to create a dataset
 - In our training notebook...
@@ -118,7 +118,7 @@ TBD: Diagram
   - Training loss
   - Validation loss
 
-## Fine-Tuning Steps 
+## Fine-Tuning Plan 
 
 - After training has completed...
   - Test (both manually and automatic)
@@ -127,6 +127,31 @@ TBD: Diagram
   - Quantize our model (create a GGUF) and upload to Hugging Face
   - Publish a model card
   
+# Upload Training Files
+
+## Upload Training Files
+
+- Upload our train.jsonl, validation.jsonl, and test.jsonl files to a Hugging Face Dataset
+- Why?
+  - Single repository
+  - Easy to hook into training runs
+  - Shareable with others
+  - Better UI and query semantics vs. raw .jsonl files
+
+## Upload Training Files
+
+{{< embed notebooks/create-dataset.ipynb#create-dataset echo=true outputs=false >}}
+
+## Upload Training Files
+
+{{< embed notebooks/create-dataset.ipynb#upload echo=true outputs=false >}}
+
+# Demo
+
+Uploading the training data file to Hugging Face Dataset
+
+
+
 # Looking Ahead
 
 ## Looking Ahead
