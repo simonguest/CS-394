@@ -6128,7 +6128,7 @@
     "href": "src/06/assignment.html#hints",
     "title": "Module 6 Assignment: Generate a Fine-tuning Dataset",
     "section": "Hints",
-    "text": "Hints\n\nStart by copying the generate-synthetic.ipynb notebook and modifying it for your use case\nThink carefully about your prompt – the quality of your synthetic data depends almost entirely on how well you describe the task to the generation model\nSmaller datasets with high quality are better than large datasets with noise. Start with 50 training examples and review them before scaling up\nUse structured outputs (Pydantic models) to keep your generated data consistent, as demonstrated in the notebook\nBe careful with the model you select to generate the data (as hundreds or thousands of calls will run up charges on paid models)\nYou will use these datasets to fine-tune a model in Module 7, so pick a use case you’re genuinely interested in!",
+    "text": "Hints\n\nStart by copying the generate-synthetic.ipynb notebook and modifying it for your use case\nYou can run this notebook locally or on Colab. If you use Colab, don’t forget to download your .jsonl files before you terminate your instance (otherwise you’ll lose your data!)\nPick a large, capable model that will generate quality data. I’ve used nvidia/nemotron-3-nano-30b-a3b:free in the demo workbook, but you may want to switch to one of the GPT models.\nBe careful with the model you select to generate the data (thousands of calls will run up charges on paid models). I’ve seen around $5 for 5000 examples using openai/gpt-5.2-chat\nSmaller datasets with high quality are better than large datasets with noise. Start with 10-50 training examples and review them before scaling up\nThink carefully about your prompt. The quality of your synthetic data depends almost entirely on how well you describe the task to the generation model\nUse structured outputs (Pydantic models) to keep your generated data consistent, as demonstrated in the notebook\nYou will use these datasets to fine-tune a model in Module 7, so pick a use case you’re genuinely interested in!",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Assignment"
@@ -6150,7 +6150,7 @@
     "href": "src/06/slides.html#lesson-objectives",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Lesson Objectives",
-    "text": "Lesson Objectives\n\nUnderstand model training, dataset curation, what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy\nExplore use cases, advantages, and disadvantages of prompt engineering\nIntroduce and implement RAG (Retrieval-Augmented Generation) to increase the accuracy of a limited SLM\nStart exploring how to fine-tune models\nGenerate synthetic data for fine-tuning a small language model",
+    "text": "Lesson Objectives\n\nUnderstand what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy\nExplore prompt engineering and thinking models\nIntroduce and implement Text-to-SQL and RAG (Retrieval-Augmented Generation) to increase the accuracy of a limited SLM\nStart exploring model fine-tuning\nGenerate synthetic data for fine-tuning a small language model",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -6447,7 +6447,7 @@
     "href": "src/06/slides.html#context-injection-3",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Context Injection",
-    "text": "Context Injection\n\nThe injected information is called ‘context’, and adding it is called ‘augmenting’ the prompt\n\nHence the popular term, augmented generation\nTwo examples:\n\nText-to-SQL\nRetrieval-Augmented Generation",
+    "text": "Context Injection\n\nThe injected information is called “context”, and adding it is called “augmenting” the prompt\n\nHence the popular term, augmented generation\nTwo examples:\n\nText-to-SQL\nRetrieval-Augmented Generation",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -6645,7 +6645,7 @@
     "href": "src/06/slides.html#rag-chunking",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "RAG Chunking",
-    "text": "RAG Chunking\n\nLarge documents will require splitting (a.k.a. chunking)\nHow documents are split before embedding has a major impact on retrieval quality\n\nFixed-size: Split every N tokens, with optional overlap (e.g., 512 tokens, 50-token overlap). Simple and predictable, but can cut mid-sentence.\nSentence/paragraph-aware: Split on natural boundaries (sentences, paragraphs). Better coherence, though chunk sizes will vary.\nSemantic chunking: Group sentences by embedding similarity, splitting where meaning shifts. Highest quality, but more complex.",
+    "text": "RAG Chunking\n\nLarge documents will require splitting (a.k.a. chunking)\nHow documents are split before embedding has a major impact on retrieval quality\n\nFixed-size: Split every N tokens, with optional overlap. Simple and predictable, but can cut mid-sentence.\nSentence/paragraph-aware: Split on natural boundaries (sentences, paragraphs). Better coherence, though chunk sizes will vary.\nSemantic chunking: Group sentences by embedding similarity, splitting where meaning shifts. Highest quality, but more complex.",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -6689,7 +6689,7 @@
     "href": "src/06/slides.html#rag-databases-1",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "RAG Databases",
-    "text": "RAG Databases\n\nPinecone: Popular commercial managed/cloud option.\nQdrant: Open-source dedicated db, written in Rust.\nMilvus: Open-source. Heavier to operate, but can exceed a billion embeddings.",
+    "text": "RAG Databases\n\nOpenAI: Vector Stores (we used this in Module 3 for FileSearch)\nPinecone: Popular commercial managed/cloud option\nQdrant: Open-source dedicated db, written in Rust\nMilvus: Open-source. Heavier to operate, but can exceed a billion embeddings",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -6722,7 +6722,7 @@
     "href": "src/06/slides.html#popular-evals-mmlu-pro",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Popular Evals: MMLU Pro",
-    "text": "Popular Evals: MMLU Pro\nhttps://huggingface.co/datasets/TIGER-Lab/MMLU-Pro\n\nWhat it tests: 12K questions across 14 subject areas that cover STEM, humanities, social sciences, and professional domains.\n\nMultiple-choice questions (10 options) testing both factual knowledge and reasoning across elementary to professional levels.\n\nHistory: Original MMLU published in 2021 by Dan Hendrycks et al. \n\nMMLU-Pro created because models were plateauing on MMLU (hitting 85-90%+)\nPro released in June 2024 by the TIGER-AI-Lab team and accepted at NeurIPS 2024",
+    "text": "Popular Evals: MMLU Pro\nhttps://huggingface.co/datasets/TIGER-Lab/MMLU-Pro\n\nWhat it tests: 12K questions across 14 subject areas that cover STEM, humanities, social sciences, and professional domains.\nHistory: Original MMLU published in 2021 by Dan Hendrycks et al. \n\nMMLU-Pro created because models were plateauing on MMLU (hitting 85-90%+)\nPro released in June 2024 by the TIGER-AI-Lab team and accepted at NeurIPS 2024",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -6733,7 +6733,7 @@
     "href": "src/06/slides.html#popular-evals-gpqa",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Popular Evals: GPQA",
-    "text": "Popular Evals: GPQA\nhttps://huggingface.co/datasets/Idavidrein/gpqa\n\nWhat it tests: Graduate/PhD-level scientific reasoning in biology, physics, and chemistry through multiple-choice questions\n\nRequire deep domain understanding, not just fact recall\nCannot be solved by web search (the “Google-proof” property)\nTest genuine conceptual reasoning and problem-solving\n\nHistory:\n\nCreated Nov 2023 by David Rein et al. (includes researchers from NYU, Anthropic, and other institutions)",
+    "text": "Popular Evals: GPQA\nhttps://huggingface.co/datasets/Idavidrein/gpqa\n\nWhat it tests: Graduate/PhD-level scientific reasoning in biology, physics, and chemistry through multiple-choice questions\n\nRequire deep domain understanding, not just fact recall\nCannot be solved by web search (the “Google-proof” property)\n\nHistory:\n\nCreated Nov 2023 by David Rein et al. (includes researchers from NYU, Anthropic, and other institutions)",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -6744,7 +6744,7 @@
     "href": "src/06/slides.html#popular-evals-swe-bench",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Popular Evals: SWE-Bench",
-    "text": "Popular Evals: SWE-Bench\nhttps://www.swebench.com/\n\nWhat it tests: AI systems’ ability to solve real-world software engineering tasks by resolving actual GitHub issues from popular open-source Python repositories\nHistory: Created: 2023 by Princeton NLP group (Carlos E. Jimenez et al.)\n\nOriginal dataset was 2,294 GitHub issues from 12 popular Python repositories (Django, scikit-learn, Flask, Matplotlib, Requests, SymPy, pytest, Sphinx, etc.)\nThree major variants: Lite, Verified, and Pro\nMicrosoft also publishes a “Live” version with monthly curated updates",
+    "text": "Popular Evals: SWE-Bench\nhttps://www.swebench.com/\n\nWhat it tests: AI systems’ ability to solve real-world software engineering tasks by resolving actual GitHub issues from popular open-source Python repositories\nHistory: Created: 2023 by Princeton NLP group (Carlos E. Jimenez et al.)\n\nOriginal dataset was 2,294 GitHub issues from 12 popular Python repositories\nThree major variants: Lite, Verified, and Pro\nMicrosoft also publishes a “Live” version with monthly curated updates",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -6755,7 +6755,7 @@
     "href": "src/06/slides.html#popular-evals-hle",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "Popular Evals: HLE",
-    "text": "Popular Evals: HLE\nhttps://huggingface.co/datasets/cais/hle\n\nWhat it tests: 2,500 expert-level questions across dozens of subjects, including mathematics, humanities, and the natural sciences.\n\nHLE is developed globally by subject-matter experts and consists of multiple-choice and short-answer questions suitable for automated grading.\nRequire multimodal, multi-step reasoning rather than pattern matching or recall\nBe “Google-proof” (can’t be quickly answered by web search)\n\nHistory: Created in late 2024 by the Center for AI Safety (CAIS) and Scale AI\n\nLed by: Dan Hendrycks (who also created MMLU and MATH benchmarks)",
+    "text": "Popular Evals: HLE\nhttps://huggingface.co/datasets/cais/hle\n\nWhat it tests: 2,500 expert-level questions across dozens of subjects, including mathematics, humanities, and the natural sciences.\n\nRequire multimodal, multi-step reasoning rather than pattern matching or recall\n\nHistory: Created in late 2024 by the Center for AI Safety (CAIS) and Scale AI\n\nLed by: Dan Hendrycks (who also created MMLU and MATH benchmarks)",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -6788,7 +6788,7 @@
     "href": "src/06/slides.html#whats-next-for-evals",
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "What’s Next For Evals?",
-    "text": "What’s Next For Evals?\n\nAgentic and multi-step workflows: Moving beyond single-question tests to measure performance on longer tasks like research, multi-file codebases, and customer support conversations\nContamination-resistant design: Hugging Face’s Benchmarks and dynamic benchmarks that refresh regularly (like SWE-Bench Live) or generate novel questions programmatically to avoid training data leakage\nProcess evaluation over outcomes: Testing how models reason, not just final answers — can the model self-correct, identify its mistakes, and explain its reasoning?",
+    "text": "What’s Next For Evals?\n\nAgentic and multi-step workflows: Moving beyond single-question tests to longer tasks like research, multi-file codebases, and customer support conversations\nOvercoming data contamination: Hugging Face’s Benchmarks and dynamic benchmarks that refresh regularly (like SWE-Bench Live) or generate novel questions programmatically to avoid training data leakage\nProcess evaluation over outcomes: Testing how models reason, not just final answers — can the model self-correct, identify its mistakes, and explain its reasoning?",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"
@@ -6833,17 +6833,6 @@
     "title": "Module 6: Increasing Model Accuracy (Part 1)",
     "section": "History of Fine-tuning",
     "text": "History of Fine-tuning\n\n2010s: Fine-tuning became prevalent in computer vision (e.g., ImageNet-trained CNNs for medical)\n2018: BERT demonstrated that a language model could be fine-tuned for sentiment, Q&A, and classification\n2022: InstructGPT fine-tuning on human-curated instruction-response pairs\nToday: Very popular technique for adapting trained models to different use cases",
-    "crumbs": [
-      "**Module 6:** Increasing Model Accuracy (Part 1)",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/06/slides.html#when-to-pick-what",
-    "href": "src/06/slides.html#when-to-pick-what",
-    "title": "Module 6: Increasing Model Accuracy (Part 1)",
-    "section": "When To Pick What",
-    "text": "When To Pick What\n\nPrompt Engineering shapes how the model responds to input\nContext Injection (RAG) augments the context with data\nFine-tuning reshapes the model itself\n(A combination of all three are often used together)",
     "crumbs": [
       "**Module 6:** Increasing Model Accuracy (Part 1)",
       "Slides"

@@ -859,11 +859,11 @@ ul.task-list li input[type="checkbox"] {
 <p>Your dataset should teach a model a specific <strong>style</strong>, <strong>structure</strong>, or <strong>behavior</strong>: something that prompt engineering alone would struggle to achieve consistently at scale.</p>
 <p><strong>Some initial ideas:</strong></p>
 <ul>
-<li><strong>Language Tutor</strong> – Generate conversation pairs where a tutor explains vocabulary and grammar in a specific language (e.g., Spanish, Japanese, Mandarin) at a beginner level, using simple analogies</li>
-<li><strong>Fitness Coach</strong> – Generate workout recommendations and exercise explanations tailored to different fitness levels, always responding in a motivational tone</li>
-<li><strong>Recipe Assistant</strong> – Generate cooking instructions that always follow a structured format (ingredients, steps, tips) and adapt to dietary restrictions (vegan, gluten-free, etc.)</li>
-<li><strong>Customer Support Agent</strong> – Generate support conversations for a fictional product, including handling complaints, answering FAQs, and escalating issues appropriately</li>
-<li><strong>Creative Writing Helper</strong> – Generate story continuations or writing feedback in a particular genre (sci-fi, mystery, romance), maintaining consistent narrative style</li>
+<li><strong>Language Tutor:</strong> Generate conversation pairs where a tutor explains vocabulary and grammar in a specific language (e.g., Spanish, Japanese, Mandarin) at a beginner level, using simple analogies</li>
+<li><strong>Fitness Coach:</strong> Generate workout recommendations and exercise explanations tailored to different fitness levels, always responding in a motivational tone</li>
+<li><strong>Recipe Generator:</strong> Generate cooking instructions that always follow a structured format (ingredients, steps, tips)</li>
+<li><strong>Customer Support Agent:</strong> Generate support conversations for a fictional product, including handling complaints, answering FAQs, and escalating issues appropriately</li>
+<li><strong>Creative Writing Helper:</strong> Generate story continuations or writing feedback in a particular genre (sci-fi, mystery, romance), maintaining consistent narrative style</li>
 </ul>
 <hr>
 <section id="requirements" class="level2">
@@ -901,10 +901,12 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="hints">Hints</h2>
 <ul>
 <li>Start by copying the <code>generate-synthetic.ipynb</code> notebook and modifying it for your use case</li>
-<li>Think carefully about your prompt – the quality of your synthetic data depends almost entirely on how well you describe the task to the generation model</li>
-<li>Smaller datasets with high quality are better than large datasets with noise. Start with 50 training examples and review them before scaling up</li>
+<li>You can run this notebook locally or on Colab. If you use Colab, don’t forget to download your .jsonl files before you terminate your instance (otherwise you’ll lose your data!)</li>
+<li>Pick a large, capable model that will generate quality data. I’ve used <code>nvidia/nemotron-3-nano-30b-a3b:free</code> in the demo workbook, but you may want to switch to one of the GPT models.</li>
+<li>Be careful with the model you select to generate the data (thousands of calls will run up charges on paid models). I’ve seen around $5 for 5000 examples using <code>openai/gpt-5.2-chat</code></li>
+<li>Smaller datasets with high quality are better than large datasets with noise. Start with 10-50 training examples and review them before scaling up</li>
+<li>Think carefully about your prompt. The quality of your synthetic data depends almost entirely on how well you describe the task to the generation model</li>
 <li>Use structured outputs (Pydantic models) to keep your generated data consistent, as demonstrated in the notebook</li>
-<li>Be careful with the model you select to generate the data (as hundreds or thousands of calls will run up charges on paid models)</li>
 <li>You will use these datasets to fine-tune a model in Module 7, so pick a use case you’re genuinely interested in!</li>
 </ul>
 

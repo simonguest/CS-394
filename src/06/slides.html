@@ -234,10 +234,10 @@
 <section id="lesson-objectives" class="slide level2">
 <h2>Lesson Objectives</h2>
 <ul>
-<li class="fragment">Understand model training, dataset curation, what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy</li>
-<li class="fragment">Explore use cases, advantages, and disadvantages of prompt engineering</li>
-<li class="fragment">Introduce and implement RAG (Retrieval-Augmented Generation) to increase the accuracy of a limited SLM</li>
-<li class="fragment">Start exploring how to fine-tune models</li>
+<li class="fragment">Understand what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy</li>
+<li class="fragment">Explore prompt engineering and thinking models</li>
+<li class="fragment">Introduce and implement Text-to-SQL and RAG (Retrieval-Augmented Generation) to increase the accuracy of a limited SLM</li>
+<li class="fragment">Start exploring model fine-tuning</li>
 <li class="fragment">Generate synthetic data for fine-tuning a small language model</li>
 </ul>
 </section>
@@ -529,7 +529,8 @@
 <section id="hands-on" class="title-slide slide level1 center">
 <h1>Hands-on</h1>
 <p>Test out different prompts in the hallucinations notebook (hallucinations.ipynb)</p>
-<p>Try some of the hallucination prompts with Qwen 4B Thinking (thinking.ipynb)</p>
+<p>Try different prompts with Qwen 4B Thinking (thinking.ipynb)</p>
+<p>(You may have to increase <code>max_new_tokens</code> in the pipeline constructor)</p>
 </section>
 <section id="reasoningthinking-models-6" class="slide level2">
 <h2>Reasoning/Thinking Models</h2>
@@ -575,7 +576,7 @@
 <section id="context-injection-3" class="slide level2">
 <h2>Context Injection</h2>
 <ul>
-<li class="fragment">The injected information is called ‘context’, and adding it is called ‘augmenting’ the prompt
+<li class="fragment">The injected information is called “context”, and adding it is called “augmenting” the prompt
 <ul>
 <li class="fragment">Hence the popular term, augmented generation</li>
 <li class="fragment">Two examples:
@@ -1156,8 +1157,7 @@
 <section id="hands-on-1" class="title-slide slide level1 center">
 <h1>Hands-on</h1>
 <p>Investigate text-to-sql.ipynb and rag.ipynb</p>
-<p>Try different queries. Which work well on both?</p>
-<p>Recreate the database with different data</p>
+<p>Try different queries - e.g., ask for courses on particular days on in particular locations</p>
 </section>
 <section id="rag-chunking" class="slide level2">
 <h2>RAG Chunking</h2>
@@ -1165,7 +1165,7 @@
 <li class="fragment">Large documents will require splitting (a.k.a. chunking)</li>
 <li class="fragment">How documents are split before embedding has a major impact on retrieval quality
 <ul>
-<li class="fragment"><strong>Fixed-size:</strong> Split every N tokens, with optional overlap (e.g., 512 tokens, 50-token overlap). Simple and predictable, but can cut mid-sentence.</li>
+<li class="fragment"><strong>Fixed-size:</strong> Split every N tokens, with optional overlap. Simple and predictable, but can cut mid-sentence.</li>
 <li class="fragment"><strong>Sentence/paragraph-aware:</strong> Split on natural boundaries (sentences, paragraphs). Better coherence, though chunk sizes will vary.</li>
 <li class="fragment"><strong>Semantic chunking:</strong> Group sentences by embedding similarity, splitting where meaning shifts. Highest quality, but more complex.</li>
 </ul></li>
@@ -1208,9 +1208,10 @@
 <section id="rag-databases-1" class="slide level2">
 <h2>RAG Databases</h2>
 <ul>
-<li class="fragment"><strong>Pinecone:</strong> Popular commercial managed/cloud option.</li>
-<li class="fragment"><strong>Qdrant:</strong> Open-source dedicated db, written in Rust.</li>
-<li class="fragment"><strong>Milvus:</strong> Open-source. Heavier to operate, but can exceed a billion embeddings.</li>
+<li class="fragment"><strong>OpenAI:</strong> Vector Stores (we used this in Module 3 for FileSearch)</li>
+<li class="fragment"><strong>Pinecone:</strong> Popular commercial managed/cloud option</li>
+<li class="fragment"><strong>Qdrant:</strong> Open-source dedicated db, written in Rust</li>
+<li class="fragment"><strong>Milvus:</strong> Open-source. Heavier to operate, but can exceed a billion embeddings</li>
 </ul>
 </section></section>
 <section>
@@ -1245,10 +1246,7 @@
 <h2>Popular Evals: MMLU Pro</h2>
 <p><a href="https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro" class="external" target="_blank">https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro</a></p>
 <ul>
-<li class="fragment"><strong>What it tests:</strong> 12K questions across 14 subject areas that cover STEM, humanities, social sciences, and professional domains.
-<ul>
-<li class="fragment">Multiple-choice questions (10 options) testing both factual knowledge and reasoning across elementary to professional levels.</li>
-</ul></li>
+<li class="fragment"><strong>What it tests:</strong> 12K questions across 14 subject areas that cover STEM, humanities, social sciences, and professional domains.</li>
 <li class="fragment"><strong>History:</strong> Original MMLU published in 2021 by Dan Hendrycks et al.&nbsp;
 <ul>
 <li class="fragment">MMLU-Pro created because models were plateauing on MMLU (hitting 85-90%+)</li>
@@ -1264,7 +1262,6 @@
 <ul>
 <li class="fragment">Require deep domain understanding, not just fact recall</li>
 <li class="fragment">Cannot be solved by web search (the “Google-proof” property)</li>
-<li class="fragment">Test genuine conceptual reasoning and problem-solving</li>
 </ul></li>
 <li class="fragment"><strong>History:</strong>
 <ul>
@@ -1279,7 +1276,7 @@
 <li class="fragment"><strong>What it tests:</strong> AI systems’ ability to solve real-world software engineering tasks by resolving actual GitHub issues from popular open-source Python repositories</li>
 <li class="fragment"><strong>History:</strong> Created: 2023 by Princeton NLP group (Carlos E. Jimenez et al.)
 <ul>
-<li class="fragment">Original dataset was 2,294 GitHub issues from 12 popular Python repositories (Django, scikit-learn, Flask, Matplotlib, Requests, SymPy, pytest, Sphinx, etc.)</li>
+<li class="fragment">Original dataset was 2,294 GitHub issues from 12 popular Python repositories</li>
 <li class="fragment">Three major variants: Lite, Verified, and Pro</li>
 <li class="fragment">Microsoft also publishes a “Live” version with monthly curated updates</li>
 </ul></li>
@@ -1291,9 +1288,7 @@
 <ul>
 <li class="fragment"><strong>What it tests:</strong> 2,500 expert-level questions across dozens of subjects, including mathematics, humanities, and the natural sciences.
 <ul>
-<li class="fragment">HLE is developed globally by subject-matter experts and consists of multiple-choice and short-answer questions suitable for automated grading.</li>
 <li class="fragment">Require multimodal, multi-step reasoning rather than pattern matching or recall</li>
-<li class="fragment">Be “Google-proof” (can’t be quickly answered by web search)</li>
 </ul></li>
 <li class="fragment"><strong>History:</strong> Created in late 2024 by the Center for AI Safety (CAIS) and Scale AI
 <ul>
@@ -1332,8 +1327,8 @@
 <section id="whats-next-for-evals" class="slide level2">
 <h2>What’s Next For Evals?</h2>
 <ul>
-<li class="fragment"><strong>Agentic and multi-step workflows:</strong> Moving beyond single-question tests to measure performance on longer tasks like research, multi-file codebases, and customer support conversations</li>
-<li class="fragment"><strong>Contamination-resistant design:</strong> Hugging Face’s Benchmarks and dynamic benchmarks that refresh regularly (like SWE-Bench Live) or generate novel questions programmatically to avoid training data leakage</li>
+<li class="fragment"><strong>Agentic and multi-step workflows:</strong> Moving beyond single-question tests to longer tasks like research, multi-file codebases, and customer support conversations</li>
+<li class="fragment"><strong>Overcoming data contamination:</strong> Hugging Face’s Benchmarks and dynamic benchmarks that refresh regularly (like SWE-Bench Live) or generate novel questions programmatically to avoid training data leakage</li>
 <li class="fragment"><strong>Process evaluation over outcomes:</strong> Testing <em>how</em> models reason, not just final answers — can the model self-correct, identify its mistakes, and explain its reasoning?</li>
 </ul>
 </section></section>
@@ -1375,15 +1370,6 @@
 <li class="fragment"><strong>2018:</strong> BERT demonstrated that a language model could be fine-tuned for sentiment, Q&amp;A, and classification</li>
 <li class="fragment"><strong>2022:</strong> InstructGPT fine-tuning on human-curated instruction-response pairs</li>
 <li class="fragment"><strong>Today:</strong> Very popular technique for adapting trained models to different use cases</li>
-</ul>
-</section>
-<section id="when-to-pick-what" class="slide level2">
-<h2>When To Pick What</h2>
-<ul>
-<li class="fragment">Prompt Engineering shapes how the model responds to input</li>
-<li class="fragment">Context Injection (RAG) augments the context with data</li>
-<li class="fragment">Fine-tuning reshapes the model itself</li>
-<li class="fragment">(A combination of all three are often used together)</li>
 </ul>
 </section>
 <section id="sidebar-can-we-train-models-from-scratch" class="slide level2">
