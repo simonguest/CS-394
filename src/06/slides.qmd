@@ -26,10 +26,10 @@ bibliography: references.bib
 
 ## Lesson Objectives
 
-- Understand model training, dataset curation, what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy
-- Explore use cases, advantages, and disadvantages of prompt engineering
-- Introduce and implement RAG (Retrieval-Augmented Generation) to increase the accuracy of a limited SLM
-- Start exploring how to fine-tune models
+- Understand what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy
+- Explore prompt engineering and thinking models
+- Introduce and implement Text-to-SQL and RAG (Retrieval-Augmented Generation) to increase the accuracy of a limited SLM
+- Start exploring model fine-tuning
 - Generate synthetic data for fine-tuning a small language model
 
 # Hallucinations
@@ -176,7 +176,9 @@ bibliography: references.bib
 
 Test out different prompts in the hallucinations notebook (hallucinations.ipynb)
 
-Try some of the hallucination prompts with Qwen 4B Thinking (thinking.ipynb)
+Try different prompts with Qwen 4B Thinking (thinking.ipynb)
+
+(You may have to increase `max_new_tokens` in the pipeline constructor)
 
 ## Reasoning/Thinking Models
 
@@ -211,7 +213,7 @@ Okay, the user is asking about FilterGenie, a macOS software for applying dynami
 
 ## Context Injection
 
-- The injected information is called 'context', and adding it is called 'augmenting' the prompt
+- The injected information is called "context", and adding it is called "augmenting" the prompt
   - Hence the popular term, augmented generation
   - Two examples:
     - Text-to-SQL
@@ -306,15 +308,13 @@ Okay, the user is asking about FilterGenie, a macOS software for applying dynami
 
 Investigate text-to-sql.ipynb and rag.ipynb
 
-Try different queries. Which work well on both?
-
-Recreate the database with different data
+Try different queries - e.g., ask for courses on particular days on in particular locations
 
 ## RAG Chunking
 
 - Large documents will require splitting (a.k.a. chunking)
 - How documents are split before embedding has a major impact on retrieval quality
-  - **Fixed-size:** Split every N tokens, with optional overlap (e.g., 512 tokens, 50-token overlap). Simple and predictable, but can cut mid-sentence.
+  - **Fixed-size:** Split every N tokens, with optional overlap. Simple and predictable, but can cut mid-sentence.
   - **Sentence/paragraph-aware:** Split on natural boundaries (sentences, paragraphs). Better coherence, though chunk sizes will vary.
   - **Semantic chunking:** Group sentences by embedding similarity, splitting where meaning shifts. Highest quality, but more complex.
 
@@ -340,9 +340,10 @@ Recreate the database with different data
 
 ## RAG Databases
 
-- **Pinecone:** Popular commercial managed/cloud option.
-- **Qdrant:** Open-source dedicated db, written in Rust.
-- **Milvus:** Open-source. Heavier to operate, but can exceed a billion embeddings.
+- **OpenAI:** Vector Stores (we used this in Module 3 for FileSearch)
+- **Pinecone:** Popular commercial managed/cloud option
+- **Qdrant:** Open-source dedicated db, written in Rust
+- **Milvus:** Open-source. Heavier to operate, but can exceed a billion embeddings
 
 # Side Topic: Evaluating Models
 
@@ -366,7 +367,6 @@ Recreate the database with different data
 [https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro](https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro){.external target="_blank"}
 
 - **What it tests:** 12K questions across 14 subject areas that cover STEM, humanities, social sciences, and professional domains. 
-  - Multiple-choice questions (10 options) testing both factual knowledge and reasoning across elementary to professional levels.
 - **History:** Original MMLU published in 2021 by Dan Hendrycks et al. 
   - MMLU-Pro created because models were plateauing on MMLU (hitting 85-90%+)
   - Pro released in June 2024 by the TIGER-AI-Lab team and accepted at NeurIPS 2024
@@ -378,7 +378,6 @@ Recreate the database with different data
 - **What it tests:** Graduate/PhD-level scientific reasoning in biology, physics, and chemistry through multiple-choice questions
   - Require deep domain understanding, not just fact recall
   - Cannot be solved by web search (the "Google-proof" property)
-  - Test genuine conceptual reasoning and problem-solving
 - **History:**
   - Created Nov 2023 by David Rein et al. (includes researchers from NYU, Anthropic, and other institutions)
 
@@ -388,7 +387,7 @@ Recreate the database with different data
 
 - **What it tests:** AI systems' ability to solve real-world software engineering tasks by resolving actual GitHub issues from popular open-source Python repositories
 - **History:** Created: 2023 by Princeton NLP group (Carlos E. Jimenez et al.)
-  - Original dataset was 2,294 GitHub issues from 12 popular Python repositories (Django, scikit-learn, Flask, Matplotlib, Requests, SymPy, pytest, Sphinx, etc.)
+  - Original dataset was 2,294 GitHub issues from 12 popular Python repositories
   - Three major variants: Lite, Verified, and Pro
   - Microsoft also publishes a "Live" version with monthly curated updates
 
@@ -397,9 +396,7 @@ Recreate the database with different data
 [https://huggingface.co/datasets/cais/hle](https://huggingface.co/datasets/cais/hle){.external target="_blank"}
 
 - **What it tests:** 2,500 expert-level questions across dozens of subjects, including mathematics, humanities, and the natural sciences. 
-  - HLE is developed globally by subject-matter experts and consists of multiple-choice and short-answer questions suitable for automated grading.
   - Require multimodal, multi-step reasoning rather than pattern matching or recall
-  - Be "Google-proof" (can't be quickly answered by web search)
 - **History:** Created in late 2024 by the Center for AI Safety (CAIS) and Scale AI
   - Led by: Dan Hendrycks (who also created MMLU and MATH benchmarks)
 
@@ -421,8 +418,8 @@ Recreate the database with different data
 
 ## What's Next For Evals?
 
-- **Agentic and multi-step workflows:** Moving beyond single-question tests to measure performance on longer tasks like research, multi-file codebases, and customer support conversations
-- **Contamination-resistant design:** Hugging Face's Benchmarks and dynamic benchmarks that refresh regularly (like SWE-Bench Live) or generate novel questions programmatically to avoid training data leakage
+- **Agentic and multi-step workflows:** Moving beyond single-question tests to longer tasks like research, multi-file codebases, and customer support conversations
+- **Overcoming data contamination:** Hugging Face's Benchmarks and dynamic benchmarks that refresh regularly (like SWE-Bench Live) or generate novel questions programmatically to avoid training data leakage
 - **Process evaluation over outcomes:** Testing *how* models reason, not just final answers — can the model self-correct, identify its mistakes, and explain its reasoning?
 
 # Fine-tuning
@@ -451,13 +448,6 @@ Recreate the database with different data
 - **2018:** BERT demonstrated that a language model could be fine-tuned for sentiment, Q&A, and classification
 - **2022:** InstructGPT fine-tuning on human-curated instruction-response pairs
 - **Today:** Very popular technique for adapting trained models to different use cases
-
-## When To Pick What
-
-- Prompt Engineering shapes how the model responds to input
-- Context Injection (RAG) augments the context with data
-- Fine-tuning reshapes the model itself
-- (A combination of all three are often used together)
 
 ## Sidebar: Can We Train Models From Scratch?
 

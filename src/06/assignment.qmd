@@ -14,11 +14,11 @@ Your dataset should teach a model a specific **style**, **structure**, or **beha
 
 **Some initial ideas:**
 
-- **Language Tutor** -- Generate conversation pairs where a tutor explains vocabulary and grammar in a specific language (e.g., Spanish, Japanese, Mandarin) at a beginner level, using simple analogies
-- **Fitness Coach** -- Generate workout recommendations and exercise explanations tailored to different fitness levels, always responding in a motivational tone
-- **Recipe Assistant** -- Generate cooking instructions that always follow a structured format (ingredients, steps, tips) and adapt to dietary restrictions (vegan, gluten-free, etc.)
-- **Customer Support Agent** -- Generate support conversations for a fictional product, including handling complaints, answering FAQs, and escalating issues appropriately
-- **Creative Writing Helper** -- Generate story continuations or writing feedback in a particular genre (sci-fi, mystery, romance), maintaining consistent narrative style
+- **Language Tutor:** Generate conversation pairs where a tutor explains vocabulary and grammar in a specific language (e.g., Spanish, Japanese, Mandarin) at a beginner level, using simple analogies
+- **Fitness Coach:** Generate workout recommendations and exercise explanations tailored to different fitness levels, always responding in a motivational tone
+- **Recipe Generator:** Generate cooking instructions that always follow a structured format (ingredients, steps, tips)
+- **Customer Support Agent:** Generate support conversations for a fictional product, including handling complaints, answering FAQs, and escalating issues appropriately
+- **Creative Writing Helper:** Generate story continuations or writing feedback in a particular genre (sci-fi, mystery, romance), maintaining consistent narrative style
 
 ---
 
@@ -51,8 +51,10 @@ A GitHub repository (can be the same repo you've been using for assignments) con
 ## Hints
 
 - Start by copying the `generate-synthetic.ipynb` notebook and modifying it for your use case
-- Think carefully about your prompt -- the quality of your synthetic data depends almost entirely on how well you describe the task to the generation model
-- Smaller datasets with high quality are better than large datasets with noise. Start with 50 training examples and review them before scaling up
+- You can run this notebook locally or on Colab. If you use Colab, don't forget to download your .jsonl files before you terminate your instance (otherwise you'll lose your data!)
+- Pick a large, capable model that will generate quality data. I've used `nvidia/nemotron-3-nano-30b-a3b:free` in the demo workbook, but you may want to switch to one of the GPT models.
+- Be careful with the model you select to generate the data (thousands of calls will run up charges on paid models). I've seen around $5 for 5000 examples using `openai/gpt-5.2-chat`
+- Smaller datasets with high quality are better than large datasets with noise. Start with 10-50 training examples and review them before scaling up
+- Think carefully about your prompt. The quality of your synthetic data depends almost entirely on how well you describe the task to the generation model
 - Use structured outputs (Pydantic models) to keep your generated data consistent, as demonstrated in the notebook
-- Be careful with the model you select to generate the data (as hundreds or thousands of calls will run up charges on paid models)
 - You will use these datasets to fine-tune a model in Module 7, so pick a use case you're genuinely interested in!
