@@ -891,7 +891,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a target="_blank" href="https://colab.research.google.com/github/simonguest/CS-394/blob/main/src/06/notebooks/generate-synthetic.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"> </a> <a target="_blank" href="https://github.com/simonguest/CS-394/raw/refs/heads/main/src/06/notebooks/generate-synthetic.ipynb"> <img src="https://img.shields.io/badge/Download_.ipynb-blue" alt="Download .ipynb"> </a></p>
 <section id="data-generation-settings" class="level2">
 <h2 class="anchored" data-anchor-id="data-generation-settings">Data generation settings</h2>
-<div id="d29c9393" class="cell" data-execution_count="27">
+<div id="d29c9393" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>NUM_TRAIN_EXAMPLES <span class="op">=</span> <span class="dv">8000</span>  <span class="co"># @param {type:"number"}</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>NUM_VAL_EXAMPLES <span class="op">=</span> <span class="dv">1000</span>  <span class="co"># @param {type:"number"}</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>NUM_TEST_EXAMPLES <span class="op">=</span> <span class="dv">100</span> <span class="co"># @param {type:"number"}</span></span>
@@ -900,12 +900,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>DATA_FOLDER <span class="op">=</span> <span class="st">"./.data/generated"</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>mkdir <span class="op">-</span>p {DATA_FOLDER}</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>DATAGEN_MODEL <span class="op">=</span> <span class="st">"nvidia/nemotron-3-nano-30b-a3b:free"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>DATAGEN_URL <span class="op">=</span> <span class="st">"https://openrouter.ai/api/v1"</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>DATAGEN_MODEL <span class="op">=</span> <span class="st">"openai/gpt-5.1-chat"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="dataset-diversity" class="level2">
 <h2 class="anchored" data-anchor-id="dataset-diversity">Dataset diversity</h2>
-<div id="a485a8de" class="cell">
+<div id="a485a8de" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>TOPICS <span class="op">=</span> [</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Strings"</span>,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"input()"</span>, </span>
@@ -967,7 +968,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="model-for-structured-output" class="level2">
 <h2 class="anchored" data-anchor-id="model-for-structured-output">Model for structured output</h2>
-<div id="91787f37" class="cell" data-execution_count="29">
+<div id="91787f37" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CodeExplanation(BaseModel):</span>
@@ -977,7 +978,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="get-openrouter-api-key" class="level2">
 <h2 class="anchored" data-anchor-id="get-openrouter-api-key">Get OpenRouter API key</h2>
-<div id="bc6fd261" class="cell" data-execution_count="30">
+<div id="bc6fd261" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
@@ -991,12 +992,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="conversation-generation-functions" class="level2">
 <h2 class="anchored" data-anchor-id="conversation-generation-functions">Conversation generation functions</h2>
-<div id="1ce9bb29" class="cell" data-execution_count="31">
+<div id="1ce9bb29" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> openai.OpenAI(</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    base_url<span class="op">=</span><span class="st">"https://openrouter.ai/api/v1"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    base_url<span class="op">=</span>DATAGEN_URL,</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    api_key<span class="op">=</span>os.environ.get(<span class="st">"OPENROUTER_API_KEY"</span>),</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
@@ -1042,7 +1043,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="dataset-generation-functions" class="level2">
 <h2 class="anchored" data-anchor-id="dataset-generation-functions">Dataset generation functions</h2>
-<div id="e79b6bfc" class="cell" data-execution_count="32">
+<div id="e79b6bfc" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm <span class="im">import</span> tqdm</span>
@@ -1078,16 +1079,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="generate-all-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="generate-all-the-data">Generate all the data!</h2>
-<div id="4fc06c35" class="cell" data-execution_count="33">
+<div id="4fc06c35" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datetime <span class="im">import</span> datetime</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>TRAIN_FILE <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>DATA_FOLDER<span class="sc">}</span><span class="ss">/train_</span><span class="sc">{</span>datetime<span class="sc">.</span>now()<span class="sc">.</span>strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">-%H:%M:%S'</span>)<span class="sc">}</span><span class="ss">.jsonl"</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>VALID_FILE <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>DATA_FOLDER<span class="sc">}</span><span class="ss">/valid_</span><span class="sc">{</span>datetime<span class="sc">.</span>now()<span class="sc">.</span>strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">-%H:%M:%S'</span>)<span class="sc">}</span><span class="ss">.jsonl"</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>TEST_FILE <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>DATA_FOLDER<span class="sc">}</span><span class="ss">/test_</span><span class="sc">{</span>datetime<span class="sc">.</span>now()<span class="sc">.</span>strftime(<span class="st">'%Y-%m-</span><span class="sc">%d</span><span class="st">-%H:%M:%S'</span>)<span class="sc">}</span><span class="ss">.jsonl"</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>generate_dataset(<span class="dv">10</span>, TRAIN_FILE)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>generate_dataset(<span class="dv">10</span>, TEST_FILE)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>100%|██████████| 10/10 [00:52&lt;00:00,  5.24s/it]</code></pre>
+<pre><code>100%|██████████| 10/10 [00:41&lt;00:00,  4.12s/it]</code></pre>
 </div>
 </div>
 
