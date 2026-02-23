@@ -387,7 +387,7 @@
 <section id="upload-training-files-2" class="slide level2">
 <h2>Upload Training Files</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/07/notebooks/create-dataset.ipynb" data-notebook-title="Create Hugging Face Dataset" data-notebook-cellid="create-dataset">
-<div id="create-dataset" class="cell" data-execution_count="3">
+<div id="create-dataset" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">from</span> datasets <span class="im">import</span> Dataset, DatasetDict</span>
 <span id="cb1-2"><a></a><span class="im">import</span> json</span>
 <span id="cb1-3"><a></a></span>
@@ -443,22 +443,17 @@
 <section id="upload-training-files-3" class="slide level2">
 <h2>Upload Training Files</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/07/notebooks/create-dataset.ipynb" data-notebook-title="Create Hugging Face Dataset" data-notebook-cellid="upload">
-<div id="upload" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">import</span> os</span>
-<span id="cb2-2"><a></a></span>
-<span id="cb2-3"><a></a><span class="kw">def</span> upload_dataset(dataset_dict, repo_name, token):</span>
-<span id="cb2-4"><a></a>    <span class="co">"""Upload dataset to Hugging Face Hub"""</span></span>
-<span id="cb2-5"><a></a>    </span>
-<span id="cb2-6"><a></a>    <span class="co"># Push to hub</span></span>
-<span id="cb2-7"><a></a>    dataset_dict.push_to_hub(</span>
-<span id="cb2-8"><a></a>        repo_name,</span>
-<span id="cb2-9"><a></a>        token<span class="op">=</span>token,</span>
-<span id="cb2-10"><a></a>        private<span class="op">=</span><span class="va">False</span>  <span class="co"># Set to True if you want it private</span></span>
-<span id="cb2-11"><a></a>    )</span>
-<span id="cb2-12"><a></a>    </span>
-<span id="cb2-13"><a></a>    <span class="bu">print</span>(<span class="ss">f"Dataset uploaded successfully to: https://huggingface.co/datasets/</span><span class="sc">{</span>repo_name<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb2-14"><a></a></span>
-<span id="cb2-15"><a></a>upload_dataset(dataset, DATASET_REPO, os.environ.get(<span class="st">"HF_TOKEN"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="upload" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="kw">def</span> upload_dataset(dataset, repo_name, token):</span>
+<span id="cb2-2"><a></a>    dataset.push_to_hub(</span>
+<span id="cb2-3"><a></a>        repo_name,</span>
+<span id="cb2-4"><a></a>        token<span class="op">=</span>token,</span>
+<span id="cb2-5"><a></a>        private<span class="op">=</span><span class="va">False</span></span>
+<span id="cb2-6"><a></a>    )</span>
+<span id="cb2-7"><a></a>    </span>
+<span id="cb2-8"><a></a>    <span class="bu">print</span>(<span class="ss">f"Dataset uploaded successfully to: https://huggingface.co/datasets/</span><span class="sc">{</span>repo_name<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-9"><a></a></span>
+<span id="cb2-10"><a></a>upload_dataset(dataset, DATASET_REPO, os.environ.get(<span class="st">"HF_TOKEN"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section></section>

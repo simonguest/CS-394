@@ -4,28 +4,42 @@
     "href": "src/07/notebooks/create-dataset.html#install-dependencies",
     "title": "Create Hugging Face Dataset",
     "section": "Install dependencies",
-    "text": "Install dependencies\n\n!uv pip install datasets\n\n\nUsing Python 3.13.1 environment at: /Users/simon/Dev/CS-394/.venv\n\nAudited 1 package in 11ms"
+    "text": "Install dependencies\n\n!uv pip install datasets\n\n\nUsing Python 3.13.1 environment at: /Users/simon/Dev/CS-394/.venv\n\nAudited 1 package in 24ms"
   },
   {
     "objectID": "src/07/notebooks/create-dataset.html#configuration",
     "href": "src/07/notebooks/create-dataset.html#configuration",
     "title": "Create Hugging Face Dataset",
     "section": "Configuration",
-    "text": "Configuration\n\nTRAIN_FILE = \"../code/train.jsonl\"\nVALIDATION_FILE = \"../code/validation.jsonl\"\nTEST_FILE = \"../code/test.jsonl\"\n\nDATASET_REPO = \"simonguest/test-dataset\""
+    "text": "Configuration\nNote: If you are running this notebook on Colab, be sure to first upload your training data (.jsonl) files and the dataset card.\n\nTRAIN_FILE = \"./train.jsonl\"\nVALIDATION_FILE = \"./validation.jsonl\"\nTEST_FILE = \"./test.jsonl\"\nDATASET_CARD = \"./DATASET_CARD.md\"\n\nDATASET_REPO = \"simonguest/test-dataset\""
   },
   {
     "objectID": "src/07/notebooks/create-dataset.html#create-dataset-functions",
     "href": "src/07/notebooks/create-dataset.html#create-dataset-functions",
     "title": "Create Hugging Face Dataset",
     "section": "Create dataset functions",
-    "text": "Create dataset functions\n\nfrom datasets import Dataset, DatasetDict\nimport json\n\n\ndef load_jsonl(file_path):\n    data = []\n    with open(file_path, \"r\", encoding=\"utf-8\") as f:\n        for line_num, line in enumerate(f, 1):\n            line = line.strip()\n            if not line:  # Skip empty lines\n                continue\n            try:\n                # Try parsing the line\n                data.append(json.loads(line))\n            except json.JSONDecodeError as e:\n                print(f\"Warning: Error parsing line {line_num}: {e}\")\n                print(f\"Problematic line: {line[:200]}...\")\n    return data\n\n\ndef create_hf_dataset(train_file, val_file, test_file):\n    # Load the data\n    train_data = load_jsonl(train_file)\n    val_data = load_jsonl(val_file)\n    test_data = load_jsonl(test_file)\n\n    # Create datasets\n    train_dataset = Dataset.from_list(train_data)\n    val_dataset = Dataset.from_list(val_data)\n    test_dataset = Dataset.from_list(test_data)\n\n    # Combine into DatasetDict\n    dataset_dict = DatasetDict(\n        {\n            \"train\": train_dataset,\n            \"validation\": val_dataset,\n            \"test\": test_dataset,\n        }\n    )\n\n    return dataset_dict\n\n\n# Create and validate the dataset is ready to upload\ndataset = create_hf_dataset(TRAIN_FILE, VALIDATION_FILE, TEST_FILE)\nprint(f\"Train samples: {len(dataset['train'])}\")\nprint(f\"Validation samples: {len(dataset['validation'])}\")\nprint(f\"Test samples: {len(dataset['test'])}\")\nprint(f\"\\nSample entry: {dataset['train'][0]}\")\n\nTrain samples: 10\nValidation samples: 3\nTest samples: 1\n\nSample entry: {'messages': [{'content': 'import keyword\\nprint(keyword.kwlist)', 'role': 'user'}, {'content': \"This code first imports Python's built‑in `keyword` module, which contains information about the language's reserved words. Then it prints the list of all keywords that Python recognizes, so you can see exactly which words are reserved and cannot be used as variable names or function names.\\n\\nThink of the keyword list like a list of stop signs at an intersection: each stop sign tells drivers (or in this case, the Python interpreter) that they must stop and follow a specific rule. Just as you can't drive through a stop sign, you can't use these words as your own identifiers—they're reserved for special meanings in the language.\", 'role': 'assistant'}]}"
+    "text": "Create dataset functions\n\nfrom datasets import Dataset, DatasetDict\nimport json\n\n\ndef load_jsonl(file_path):\n    data = []\n    with open(file_path, \"r\", encoding=\"utf-8\") as f:\n        for line_num, line in enumerate(f, 1):\n            line = line.strip()\n            if not line:  # Skip empty lines\n                continue\n            try:\n                # Try parsing the line\n                data.append(json.loads(line))\n            except json.JSONDecodeError as e:\n                print(f\"Warning: Error parsing line {line_num}: {e}\")\n                print(f\"Problematic line: {line[:200]}...\")\n    return data\n\n\ndef create_hf_dataset(train_file, val_file, test_file):\n    # Load the data\n    train_data = load_jsonl(train_file)\n    val_data = load_jsonl(val_file)\n    test_data = load_jsonl(test_file)\n\n    # Create datasets\n    train_dataset = Dataset.from_list(train_data)\n    val_dataset = Dataset.from_list(val_data)\n    test_dataset = Dataset.from_list(test_data)\n\n    # Combine into DatasetDict\n    dataset_dict = DatasetDict(\n        {\n            \"train\": train_dataset,\n            \"validation\": val_dataset,\n            \"test\": test_dataset,\n        }\n    )\n\n    return dataset_dict\n\n\n# Create and validate the dataset is ready to upload\ndataset = create_hf_dataset(TRAIN_FILE, VALIDATION_FILE, TEST_FILE)\nprint(f\"Train samples: {len(dataset['train'])}\")\nprint(f\"Validation samples: {len(dataset['validation'])}\")\nprint(f\"Test samples: {len(dataset['test'])}\")\nprint(f\"\\nSample entry: {dataset['train'][0]}\")\n\nTrain samples: 5000\nValidation samples: 500\nTest samples: 10\n\nSample entry: {'messages': [{'content': 'x = 10\\ny = 3.5\\nname = \"Alex\"\\nis_student = True', 'role': 'user'}, {'content': 'This code creates four variables: x stores a whole number, y stores a decimal number, name stores text, and is_student stores a True/False value. Each variable holds information that your program can use later.\\n\\nYou can think of variables like labeled boxes. You place different kinds of items into different boxes, and each box has a name so you can easily find what you stored inside.', 'role': 'assistant'}]}"
+  },
+  {
+    "objectID": "src/07/notebooks/create-dataset.html#get-hugging-face-token",
+    "href": "src/07/notebooks/create-dataset.html#get-hugging-face-token",
+    "title": "Create Hugging Face Dataset",
+    "section": "Get Hugging Face Token",
+    "text": "Get Hugging Face Token\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  os.environ['HF_TOKEN'] = userdata.get('HF_TOKEN')\n  print(\"HF API Token set for Colab\")\nelse:\n  load_dotenv()\n  print(\"Loaded env vars from .env\")\n\nLoaded env vars from .env"
   },
   {
     "objectID": "src/07/notebooks/create-dataset.html#upload-to-hugging-face",
     "href": "src/07/notebooks/create-dataset.html#upload-to-hugging-face",
     "title": "Create Hugging Face Dataset",
     "section": "Upload to Hugging Face",
-    "text": "Upload to Hugging Face\n\nimport os\n\ndef upload_dataset(dataset_dict, repo_name, token):\n    \"\"\"Upload dataset to Hugging Face Hub\"\"\"\n    \n    # Push to hub\n    dataset_dict.push_to_hub(\n        repo_name,\n        token=token,\n        private=False  # Set to True if you want it private\n    )\n    \n    print(f\"Dataset uploaded successfully to: https://huggingface.co/datasets/{repo_name}\")\n\nupload_dataset(dataset, DATASET_REPO, os.environ.get(\"HF_TOKEN\"))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDataset uploaded successfully to: https://huggingface.co/datasets/simonguest/test-dataset"
+    "text": "Upload to Hugging Face\n\ndef upload_dataset(dataset, repo_name, token):\n    dataset.push_to_hub(\n        repo_name,\n        token=token,\n        private=False\n    )\n    \n    print(f\"Dataset uploaded successfully to: https://huggingface.co/datasets/{repo_name}\")\n\nupload_dataset(dataset, DATASET_REPO, os.environ.get(\"HF_TOKEN\"))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDataset uploaded successfully to: https://huggingface.co/datasets/simonguest/test-dataset"
+  },
+  {
+    "objectID": "src/07/notebooks/create-dataset.html#upload-the-dataset-card",
+    "href": "src/07/notebooks/create-dataset.html#upload-the-dataset-card",
+    "title": "Create Hugging Face Dataset",
+    "section": "Upload the Dataset Card",
+    "text": "Upload the Dataset Card\n\nfrom huggingface_hub import HfApi\n\napi = HfApi()\napi.upload_file(\n    path_or_fileobj=DATASET_CARD,\n    path_in_repo=\"README.md\",\n    repo_id=DATASET_REPO,\n    repo_type=\"dataset\",\n)\n\nCommitInfo(commit_url='https://huggingface.co/datasets/simonguest/test-dataset/commit/debbc8c9e4e94646b5ee769874a27abc00da093c', commit_message='Upload README.md with huggingface_hub', commit_description='', oid='debbc8c9e4e94646b5ee769874a27abc00da093c', pr_url=None, repo_url=RepoUrl('https://huggingface.co/datasets/simonguest/test-dataset', endpoint='https://huggingface.co', repo_type='dataset', repo_id='simonguest/test-dataset'), pr_revision=None, pr_num=None)"
   },
   {
     "objectID": "src/06/notebooks/text-to-sql.html",
@@ -1070,7 +1084,7 @@
     "href": "src/07/slides.html#upload-training-files-3",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Upload Training Files",
-    "text": "Upload Training Files\n\n\nimport os\n\ndef upload_dataset(dataset_dict, repo_name, token):\n    \"\"\"Upload dataset to Hugging Face Hub\"\"\"\n    \n    # Push to hub\n    dataset_dict.push_to_hub(\n        repo_name,\n        token=token,\n        private=False  # Set to True if you want it private\n    )\n    \n    print(f\"Dataset uploaded successfully to: https://huggingface.co/datasets/{repo_name}\")\n\nupload_dataset(dataset, DATASET_REPO, os.environ.get(\"HF_TOKEN\"))",
+    "text": "Upload Training Files\n\n\ndef upload_dataset(dataset, repo_name, token):\n    dataset.push_to_hub(\n        repo_name,\n        token=token,\n        private=False\n    )\n    \n    print(f\"Dataset uploaded successfully to: https://huggingface.co/datasets/{repo_name}\")\n\nupload_dataset(dataset, DATASET_REPO, os.environ.get(\"HF_TOKEN\"))",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"

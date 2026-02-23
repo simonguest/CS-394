@@ -893,13 +893,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a target="_blank" href="https://colab.research.google.com/github/simonguest/CS-394/blob/main/src/06/notebooks/create-dataset.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"> </a> <a target="_blank" href="https://github.com/simonguest/CS-394/raw/refs/heads/main/src/06/notebooks/create-dataset.ipynb"> <img src="https://img.shields.io/badge/Download_.ipynb-blue" alt="Download .ipynb"> </a></p>
 <section id="install-dependencies" class="level2">
 <h2 class="anchored" data-anchor-id="install-dependencies">Install dependencies</h2>
-<div id="8862dfe2" class="cell" data-execution_count="1">
+<div id="8862dfe2" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>uv pip install datasets</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Using Python 3.13.1 environment at: /Users/simon/Dev/CS-394/.venv
 
-Audited <span style="font-weight:bold;opacity:0.7">1 package</span> in 11ms
+Audited <span style="font-weight:bold;opacity:0.7">1 package</span> in 24ms
 </pre>
 </div>
 </div>
@@ -907,17 +907,19 @@ Audited <span style="font-weight:bold;opacity:0.7">1 package</span> in 11ms
 </section>
 <section id="configuration" class="level2">
 <h2 class="anchored" data-anchor-id="configuration">Configuration</h2>
-<div id="52033058" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>TRAIN_FILE <span class="op">=</span> <span class="st">"../code/train.jsonl"</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>VALIDATION_FILE <span class="op">=</span> <span class="st">"../code/validation.jsonl"</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>TEST_FILE <span class="op">=</span> <span class="st">"../code/test.jsonl"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>DATASET_REPO <span class="op">=</span> <span class="st">"simonguest/test-dataset"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Note: If you are running this notebook on Colab, be sure to first upload your training data (.jsonl) files and the dataset card.</p>
+<div id="52033058" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>TRAIN_FILE <span class="op">=</span> <span class="st">"./train.jsonl"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>VALIDATION_FILE <span class="op">=</span> <span class="st">"./validation.jsonl"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>TEST_FILE <span class="op">=</span> <span class="st">"./test.jsonl"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>DATASET_CARD <span class="op">=</span> <span class="st">"./DATASET_CARD.md"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>DATASET_REPO <span class="op">=</span> <span class="st">"simonguest/test-dataset"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="create-dataset-functions" class="level2">
 <h2 class="anchored" data-anchor-id="create-dataset-functions">Create dataset functions</h2>
-<div id="create-dataset" class="cell" data-execution_count="3">
+<div id="create-dataset" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datasets <span class="im">import</span> Dataset, DatasetDict</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -968,94 +970,125 @@ Audited <span style="font-weight:bold;opacity:0.7">1 package</span> in 11ms
 <span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Test samples: </span><span class="sc">{</span><span class="bu">len</span>(dataset[<span class="st">'test'</span>])<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Sample entry: </span><span class="sc">{</span>dataset[<span class="st">'train'</span>][<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Train samples: 10
-Validation samples: 3
-Test samples: 1
+<pre><code>Train samples: 5000
+Validation samples: 500
+Test samples: 10
 
-Sample entry: {'messages': [{'content': 'import keyword\nprint(keyword.kwlist)', 'role': 'user'}, {'content': "This code first imports Python's built‑in `keyword` module, which contains information about the language's reserved words. Then it prints the list of all keywords that Python recognizes, so you can see exactly which words are reserved and cannot be used as variable names or function names.\n\nThink of the keyword list like a list of stop signs at an intersection: each stop sign tells drivers (or in this case, the Python interpreter) that they must stop and follow a specific rule. Just as you can't drive through a stop sign, you can't use these words as your own identifiers—they're reserved for special meanings in the language.", 'role': 'assistant'}]}</code></pre>
+Sample entry: {'messages': [{'content': 'x = 10\ny = 3.5\nname = "Alex"\nis_student = True', 'role': 'user'}, {'content': 'This code creates four variables: x stores a whole number, y stores a decimal number, name stores text, and is_student stores a True/False value. Each variable holds information that your program can use later.\n\nYou can think of variables like labeled boxes. You place different kinds of items into different boxes, and each box has a name so you can easily find what you stored inside.', 'role': 'assistant'}]}</code></pre>
+</div>
+</div>
+</section>
+<section id="get-hugging-face-token" class="level2">
+<h2 class="anchored" data-anchor-id="get-hugging-face-token">Get Hugging Face Token</h2>
+<div id="f2326726" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'google.colab'</span> <span class="kw">in</span> sys.modules:</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="im">from</span> google.colab <span class="im">import</span> userdata <span class="co"># type:ignore</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  os.environ[<span class="st">'HF_TOKEN'</span>] <span class="op">=</span> userdata.get(<span class="st">'HF_TOKEN'</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"HF API Token set for Colab"</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  load_dotenv()</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"Loaded env vars from .env"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Loaded env vars from .env</code></pre>
 </div>
 </div>
 </section>
 <section id="upload-to-hugging-face" class="level2">
 <h2 class="anchored" data-anchor-id="upload-to-hugging-face">Upload to Hugging Face</h2>
-<div id="upload" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> upload_dataset(dataset_dict, repo_name, token):</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Upload dataset to Hugging Face Hub"""</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Push to hub</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    dataset_dict.push_to_hub(</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        repo_name,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        token<span class="op">=</span>token,</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        private<span class="op">=</span><span class="va">False</span>  <span class="co"># Set to True if you want it private</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Dataset uploaded successfully to: https://huggingface.co/datasets/</span><span class="sc">{</span>repo_name<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>upload_dataset(dataset, DATASET_REPO, os.environ.get(<span class="st">"HF_TOKEN"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="upload" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> upload_dataset(dataset, repo_name, token):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    dataset.push_to_hub(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        repo_name,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        token<span class="op">=</span>token,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        private<span class="op">=</span><span class="va">False</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Dataset uploaded successfully to: https://huggingface.co/datasets/</span><span class="sc">{</span>repo_name<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>upload_dataset(dataset, DATASET_REPO, os.environ.get(<span class="st">"HF_TOKEN"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"9cd4b3b3a2574ce38ca221ea12ecfcfc","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"f0f0ef9f74db45a58341e82288738a0c","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"69c7920e9cde4f5abcc2ea8dfc7dc43a","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"33942bc984194d4b86b57437c840e946","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"2e67e91ff30a4c5ca5e56f361afd0a97","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"eaebe7865dce479ba5707d52100b2d75","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"0c4d57f714be4230bf4d20ed9c11c845","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"c46fe1db61ba4a5583bf9782cbca7501","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"46a3c6b93e254cd4857f54c960a6d799","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"ddcad37c48434019b6c50564a3f5279d","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"5ed3bc932837470ebab286cb1bef544c","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"e48a9c6415aa4b2d851f3f5612318af1","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"1c099ed68ba74831a34423f75cdbc389","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"62d94aea48d84114b9e533927225bd78","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"a2fbea9083b849bcb09dc496739b36d7","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"5307608f640b43be907ce12cc71c8951","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"e8254620c2364fe0b39b4984ebfbe746","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"3760b9e5a4eb49dba446367d55c7614f","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"555c208edd5046f5837b2e5fd0e3e0fb","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"60300b6e21dc4ad0a59e1542468166a1","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"f5b886948c6b42aa8013341473e49e47","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"48ff393f23474f8dacf913dcf9e55105","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id":"0f670014b4e141bb8cb16bdb47d5407e","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+{"model_id":"8f1ff86f378c454e8c2a212bcc11f5a7","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
 </script>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Dataset uploaded successfully to: https://huggingface.co/datasets/simonguest/test-dataset</code></pre>
+</div>
+</div>
+</section>
+<section id="upload-the-dataset-card" class="level2">
+<h2 class="anchored" data-anchor-id="upload-the-dataset-card">Upload the Dataset Card</h2>
+<div id="41d3b0f2" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> huggingface_hub <span class="im">import</span> HfApi</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>api <span class="op">=</span> HfApi()</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>api.upload_file(</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    path_or_fileobj<span class="op">=</span>DATASET_CARD,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    path_in_repo<span class="op">=</span><span class="st">"README.md"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    repo_id<span class="op">=</span>DATASET_REPO,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    repo_type<span class="op">=</span><span class="st">"dataset"</span>,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<pre><code>CommitInfo(commit_url='https://huggingface.co/datasets/simonguest/test-dataset/commit/debbc8c9e4e94646b5ee769874a27abc00da093c', commit_message='Upload README.md with huggingface_hub', commit_description='', oid='debbc8c9e4e94646b5ee769874a27abc00da093c', pr_url=None, repo_url=RepoUrl('https://huggingface.co/datasets/simonguest/test-dataset', endpoint='https://huggingface.co', repo_type='dataset', repo_id='simonguest/test-dataset'), pr_revision=None, pr_num=None)</code></pre>
 </div>
 </div>
 
