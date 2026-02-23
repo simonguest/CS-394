@@ -11,7 +11,7 @@
     "href": "src/07/notebooks/train-cuda.html#training-parameters",
     "title": "Supervised Fine-Tuning on CUDA",
     "section": "Training parameters",
-    "text": "Training parameters\n\nimport os\n\nDATASET_REPO = \"simonguest/test-dataset\" # Change this to your own dataset location on HF\nBASE_MODEL = \"google/gemma-3-1b-it\" # Base model that will be fine-tuned\nMODEL_NAME = \"code-explainer\" # Name of the model you want to create\nos.environ[\"WANDB_PROJECT\"] = MODEL_NAME # WandB project name\n\nMODEL_FOLDER = f\"./models/{MODEL_NAME}\"\n\n# Training run parameters\n\nBATCH_SIZE = 4\nGRADIENT_ACCUMULATION_STEPS = 4\nLEARNING_RATE = 2e-4\nNUM_EPOCHS = 3\nMAX_SEQ_LENGTH = 512\n\n# LoRA parameters\nLORA_R = 16\nLORA_ALPHA = 32\nLORA_DROPOUT = 0.05\n\n# Use 4-bit quantization for efficiency (QLoRA)\nUSE_4BIT = True"
+    "text": "Training parameters\n\nimport os\n\nDATASET_REPO = \"simonguest/test-dataset\" # Change this to your own dataset location on HF\nBASE_MODEL = \"google/gemma-3-1b-it\" # Base model that will be fine-tuned\nMODEL_NAME = \"code-explainer\" # Name of the model you want to create\nos.environ[\"WANDB_PROJECT\"] = MODEL_NAME # WandB project name\nHF_USERNAME = \"simonguest\" # Hugging Face username - used to upload your final models\n\nMODEL_FOLDER = f\"./models/{MODEL_NAME}\"\n\n# Training run parameters\n\nBATCH_SIZE = 4\nGRADIENT_ACCUMULATION_STEPS = 4\nLEARNING_RATE = 2e-4\nNUM_EPOCHS = 3\nMAX_SEQ_LENGTH = 512\n\n# LoRA parameters\nLORA_R = 16\nLORA_ALPHA = 32\nLORA_DROPOUT = 0.05\n\n# Use 4-bit quantization for efficiency (QLoRA)\nUSE_4BIT = True"
   },
   {
     "objectID": "src/07/notebooks/train-cuda.html#api-keys-and-tokens",
@@ -47,6 +47,48 @@
     "title": "Supervised Fine-Tuning on CUDA",
     "section": "Create training configuration and trainer",
     "text": "Create training configuration and trainer\n\nimport os\nfrom transformers import TrainingArguments\nfrom trl import SFTTrainer\n\nreport_to = \"none\"\nif os.environ.get(\"WANDB_API_KEY\") != None:\n  report_to = \"wandb\"\n\n# Training arguments\ntraining_args = TrainingArguments(\n    output_dir=MODEL_FOLDER,\n    num_train_epochs=NUM_EPOCHS,\n    per_device_train_batch_size=BATCH_SIZE,\n    per_device_eval_batch_size=BATCH_SIZE,\n    gradient_accumulation_steps=GRADIENT_ACCUMULATION_STEPS,\n    learning_rate=LEARNING_RATE,\n    lr_scheduler_type=\"cosine\",\n    warmup_ratio=0.1,\n    logging_steps=10,\n    eval_strategy=\"steps\",\n    eval_steps=100,\n    save_strategy=\"steps\",\n    save_steps=100,\n    save_total_limit=2,\n    bf16=True,\n    gradient_checkpointing=True,\n    optim=\"paged_adamw_8bit\",\n    report_to=report_to,\n    load_best_model_at_end=True,\n    metric_for_best_model=\"eval_loss\",\n)\n\n# Create trainer\ntrainer = SFTTrainer(\n    model=model,\n    args=training_args,\n    train_dataset=formatted_dataset[\"train\"],\n    eval_dataset=formatted_dataset[\"validation\"],\n    processing_class=tokenizer,\n)\n\n# Save the tokenizer model as this won't change during training\ntokenizer.save_pretrained(f\"{MODEL_FOLDER}/lora\")"
+  },
+  {
+    "objectID": "src/07/notebooks/train-cuda.html#train-and-save-the-final-model",
+    "href": "src/07/notebooks/train-cuda.html#train-and-save-the-final-model",
+    "title": "Supervised Fine-Tuning on CUDA",
+    "section": "Train and save the final model",
+    "text": "Train and save the final model\n\n# Start training\ntrainer.train()\n\n# Save the final model\ntrainer.save_model(f\"{MODEL_FOLDER}/lora\")"
+  },
+  {
+    "objectID": "src/07/notebooks/train-cuda.html#load-the-final-model",
+    "href": "src/07/notebooks/train-cuda.html#load-the-final-model",
+    "title": "Supervised Fine-Tuning on CUDA",
+    "section": "Load the final model",
+    "text": "Load the final model\n\nfrom transformers import pipeline\n\npipe = pipeline(\n    \"text-generation\",\n    model=f\"{MODEL_FOLDER}/lora\",\n    tokenizer=f\"{MODEL_FOLDER}/lora\",\n    temperature = 0.7,\n    max_new_tokens = 256,\n)"
+  },
+  {
+    "objectID": "src/07/notebooks/train-cuda.html#test-the-final-model-using-the-test-dataset",
+    "href": "src/07/notebooks/train-cuda.html#test-the-final-model-using-the-test-dataset",
+    "title": "Supervised Fine-Tuning on CUDA",
+    "section": "Test the final model using the test dataset",
+    "text": "Test the final model using the test dataset\n\nimport random\n\nidx = random.randint(0, len(formatted_dataset['test']) -1)\ntest_data = formatted_dataset['test'][idx][\"text\"]\n\noutput = pipe(test_data)\nprint(output[0]['generated_text'])"
+  },
+  {
+    "objectID": "src/07/notebooks/train-cuda.html#create-a-model-card",
+    "href": "src/07/notebooks/train-cuda.html#create-a-model-card",
+    "title": "Supervised Fine-Tuning on CUDA",
+    "section": "Create a model card",
+    "text": "Create a model card\n\nfrom huggingface_hub import ModelCard\n\ncard_content = f\"\"\"---\nbase_model: {BASE_MODEL}\ntags:\n- peft\n- lora\n- text-generation\n---\n\n# {MODEL_NAME}\n\n## Model Description\nFine-tuned from `{BASE_MODEL}` using QLoRA (4-bit) with supervised fine-tuning.\n\n## Training Details\n- Dataset: `{DATASET_REPO}`\n- LoRA rank: {LORA_R}, alpha: {LORA_ALPHA}\n- Epochs: {NUM_EPOCHS}, Learning rate: {LEARNING_RATE}\n\n## Intended Use\n\nThis model is a test model used for the CS-394/594 class at DigiPen.\n\nThe model is designed to provide a summary explanation of a snippet of Python code, to be used in an IDE. This model takes a snippet of code (passed as the user prompt) and returns a two paragraph explanation of what the code does, including an analogy that helps students better understand how the code functions.\n\n## Limitations\n\nThis model is a single-turn model and has not been trained on support long, multi-turn conversations.\n\"\"\"\n\ncard = ModelCard(card_content)\ncard.save(f\"{MODEL_FOLDER}/lora/README.md\")"
+  },
+  {
+    "objectID": "src/07/notebooks/train-cuda.html#merge-the-models",
+    "href": "src/07/notebooks/train-cuda.html#merge-the-models",
+    "title": "Supervised Fine-Tuning on CUDA",
+    "section": "Merge the models",
+    "text": "Merge the models\n\nimport torch\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nfrom peft import PeftModel\n\n# Load the configuration and model\nbase_model = AutoModelForCausalLM.from_pretrained(\n    BASE_MODEL,\n    device_map=\"auto\",\n    dtype=torch.bfloat16,\n)\nadapter_model = PeftModel.from_pretrained(base_model, f\"{MODEL_FOLDER}/lora\")\n\n# Merge and save the model\nmerged_model = adapter_model.merge_and_unload() # type: ignore\nmerged_model.save_pretrained(f\"{MODEL_FOLDER}/merged\")\n# Save the tokenizer\ntokenizer = AutoTokenizer.from_pretrained(BASE_MODEL)\ntokenizer.save_pretrained(f\"{MODEL_FOLDER}/merged\")\n\n# Copy the model card to the merged folder\n!cp {MODEL_FOLDER}/lora/README.md {MODEL_FOLDER}/merged/."
+  },
+  {
+    "objectID": "src/07/notebooks/train-cuda.html#upload-the-merged-model-and-adapter-to-hugging-face",
+    "href": "src/07/notebooks/train-cuda.html#upload-the-merged-model-and-adapter-to-hugging-face",
+    "title": "Supervised Fine-Tuning on CUDA",
+    "section": "Upload the merged model and adapter to Hugging Face",
+    "text": "Upload the merged model and adapter to Hugging Face\n\nfrom huggingface_hub import HfApi, create_repo\n\n# Set the MODEL_REPO\nMODEL_REPO = f\"{HF_USERNAME}/{MODEL_NAME}\"\n\n# Initialize the API\napi = HfApi()\n\n# Create the repository (if it doesn't exist)\ntry:\n    create_repo(MODEL_REPO, repo_type=\"model\", exist_ok=True, private=False)\n    print(f\"Repository {MODEL_REPO} created or already exists\")\nexcept Exception as e:\n    print(f\"Error creating repo: {e}\")\n\n# Upload merged model files to root (this is the main model)\nprint(\"\\nUploading merged model to root...\")\napi.upload_folder(\n    folder_path=f\"{MODEL_FOLDER}/merged\",\n    repo_id=MODEL_REPO,\n    repo_type=\"model\",\n    path_in_repo=\"\",  # Empty string uploads to root\n    commit_message=\"Upload merged model\"\n)\n\n# Upload LoRA adapter to subfolder (optional but useful for reference)\nprint(\"\\nUploading LoRA adapter...\")\napi.upload_folder(\n    folder_path=f\"{MODEL_FOLDER}/lora\",\n    repo_id=MODEL_REPO,\n    repo_type=\"model\",\n    path_in_repo=\"lora_adapter\",  # Keep adapter in subfolder\n    commit_message=\"Upload LoRA adapter\"\n)\n\nprint(f\"\\n✓ All files uploaded successfully to https://huggingface.co/{MODEL_REPO}\")"
   },
   {
     "objectID": "src/06/notebooks/thinking.html",
@@ -6902,7 +6944,7 @@
     "href": "src/07/slides.html#recap",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Recap",
-    "text": "Recap\n\nUnderstood model training, dataset curation, what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy\nExplored use cases, advantages, and disadvantages of prompt engineering\nIntroduced and implemented RAG (Retrieval Augmented Generation) to increase the accuracy of a limited SLM\nStarted the exploration of how to fine-tune models\nUsed a foundational model to generate synthetic data for fine-tuning a small language model",
+    "text": "Recap\n\nUnderstood what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy\nExplored prompt engineering and thinking models\nIntroduced and implemented Text-to-SQL and RAG (Retrieval-Augmented Generation) to increase the accuracy of a limited SLM\nStarted exploring model fine-tuning\nGenerated synthetic data for fine-tuning a small language model",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -6913,7 +6955,7 @@
     "href": "src/07/slides.html#lesson-objectives",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Lesson Objectives",
-    "text": "Lesson Objectives\n\nUse generated synthetic data to fine-tune a 1B parameter model\nUse W&B (Weights and Biases) to observe parameters during the training run\nPost-training, use W&B to use cosine similarity and LLM-as-a-Judge to evaluate the accuracy of our trained model\nTrain smaller models (270M parameters) and compare the results\nUnderstand and create a model card, upload the model to Hugging Face and share",
+    "text": "Lesson Objectives\n\nUse your generated synthetic data to fine-tune a SLM model using QLoRA\nUse W&B (Weights and Biases) to observe metrics during the training run\nPost-training, test and evaluate the accuracy of your fine-tuned model\nMerge, quantize, and upload your model to Hugging Face to share with others\nUnderstand and create a model card for your newly fine-tuned model",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -6924,7 +6966,7 @@
     "href": "src/07/slides.html#model-training-stages-1",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Model Training Stages",
-    "text": "Model Training Stages\n\nThere are typically three main stages of training a model:\n\nPretraining: The initial, large-scale training run that creates a base model with pretrained weights\n\nTraining data: Trillions of tokens from the internet, books, code, etc.\n\nSupervised Fine-Tuning (SFT): Shapes the base model to follow instructions and respond in a desired style or fornat\n\nTraining data: Hundreds to thousands of input/output pairs\n\nAlignment: Further refines the model toward preferred behaviors and values\n\nTraining data: Human-curated preferences and/or reward-based feedback",
+    "text": "Model Training Stages\n\nThere are three main stages of training a model:\n\nPretraining: The initial, large-scale training run that creates a base model with pretrained weights\n\nTraining data: Trillions of tokens from the internet, books, code, etc.\n\nSupervised Fine-Tuning (SFT): Shapes the base model to follow instructions and respond in a desired style or fornat\n\nTraining data: Hundreds to thousands of input/output pairs\n\nAlignment: Further refines the model toward preferred behaviors and values\n\nTraining data: Human-curated preferences and/or reward-based feedback",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -6946,7 +6988,7 @@
     "href": "src/07/slides.html#model-training-stages-3",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Model Training Stages",
-    "text": "Model Training Stages\n\nMany models (e.g., Gemma3-it) have already gone through these three stages\n\nWe will be adding a fourth stage. An SFT of an existing “polished” model\n\nWhy?\n\nThe model already knows how to follow instructions, answer questions, etc.\nThey need far less training data to get good results\nTraining tends to be faster and more stable since they are starting from a good baseline",
+    "text": "Model Training Stages\n\nMany models (e.g., google/gemma-3-it) have already gone through these three stages\n\nWe will be adding a fourth stage. An SFT of an existing “polished” model\n\nWhy?\n\nThe model already knows how to follow instructions, answer questions, etc.\nThey need far less training data to get good results\nTraining tends to be faster and more stable since they are starting from a good baseline",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -7123,6 +7165,127 @@
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Training Notebook",
     "text": "Training Notebook\n\nTBD: Walkthrough of the training notebook.",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#wb-metrics-1",
+    "href": "src/07/slides.html#wb-metrics-1",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "W&B Metrics",
+    "text": "W&B Metrics\n\nTBD: screenshot of system metrics",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#wb-metrics-2",
+    "href": "src/07/slides.html#wb-metrics-2",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "W&B Metrics",
+    "text": "W&B Metrics\n\nSystem Metrics\n\nMetrics on the health of the underlying hardware used to train the model\nProviding automatically via the W&B library\nUseful for hardware capacity monitoring, especially if the training run crashes\n\nWhat to look for:\n\nStability - i.e., not running out of VRAM, disk space, etc.",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#wb-metrics-3",
+    "href": "src/07/slides.html#wb-metrics-3",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "W&B Metrics",
+    "text": "W&B Metrics\n\nTBD: screenshot of training metrics",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#wb-metrics-4",
+    "href": "src/07/slides.html#wb-metrics-4",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "W&B Metrics",
+    "text": "W&B Metrics\n\nTraining Metrics\n\nMetrics on the performance of the training process (how accurate are the output tokens matching the training data)\nNumber of tokens, token accuracy, training loss, grad_norm, etc.\n\nWhat to look for:\n\nToken accuracy should increase quickly and plateau\nTraining loss should decrease quickly and plateau\nGrad norm should not have drastic spikes (e.g., to 100)",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#wb-metrics-5",
+    "href": "src/07/slides.html#wb-metrics-5",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "W&B Metrics",
+    "text": "W&B Metrics\n\nTBD: screenshot of evaluation metrics",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#wb-metrics-6",
+    "href": "src/07/slides.html#wb-metrics-6",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "W&B Metrics",
+    "text": "W&B Metrics\n\nEval Metrics\n\nMetrics on the validation runs during training (how well is the model able to match the output from the validation set)\nNumber of tokens, token accuracy, eval loss (a.k.a. validation loss)\n\nWhat the look for:\n\nToken accuracy should increase quickly and plateau\nValidation loss should decrease quickly and plateau\nValidation loss should be very close to training loss (maybe slightly behind)\nValidation loss should not start to increase (strongest signal that the model is overfitting)",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#post-training-1",
+    "href": "src/07/slides.html#post-training-1",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Post-Training",
+    "text": "Post-Training\n\nTBD: Test the model with a random one from our dataset",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#post-training-2",
+    "href": "src/07/slides.html#post-training-2",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Post-Training",
+    "text": "Post-Training\n\nTBD: Create a model card, merge the models and upload everything to Hugging Face",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#post-training-3",
+    "href": "src/07/slides.html#post-training-3",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Post-Training",
+    "text": "Post-Training\n\nTBD: Quantize the model and upload to Hugging Face",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#post-training-4",
+    "href": "src/07/slides.html#post-training-4",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Post-Training",
+    "text": "Post-Training\n\nTBD: Create and upload your model card to Hugging Face",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#post-training-5",
+    "href": "src/07/slides.html#post-training-5",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Post-Training",
+    "text": "Post-Training\n\nTBD: Download the model in LM Studio and test!!!",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"

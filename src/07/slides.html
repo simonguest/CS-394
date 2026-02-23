@@ -205,21 +205,21 @@
 <section id="recap" class="slide level2">
 <h2>Recap</h2>
 <ul>
-<li class="fragment">Understood model training, dataset curation, what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy</li>
-<li class="fragment">Explored use cases, advantages, and disadvantages of prompt engineering</li>
-<li class="fragment">Introduced and implemented RAG (Retrieval Augmented Generation) to increase the accuracy of a limited SLM</li>
-<li class="fragment">Started the exploration of how to fine-tune models</li>
-<li class="fragment">Used a foundational model to generate synthetic data for fine-tuning a small language model</li>
+<li class="fragment">Understood what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy</li>
+<li class="fragment">Explored prompt engineering and thinking models</li>
+<li class="fragment">Introduced and implemented Text-to-SQL and RAG (Retrieval-Augmented Generation) to increase the accuracy of a limited SLM</li>
+<li class="fragment">Started exploring model fine-tuning</li>
+<li class="fragment">Generated synthetic data for fine-tuning a small language model</li>
 </ul>
 </section>
 <section id="lesson-objectives" class="slide level2">
 <h2>Lesson Objectives</h2>
 <ul>
-<li class="fragment">Use generated synthetic data to fine-tune a 1B parameter model</li>
-<li class="fragment">Use W&amp;B (Weights and Biases) to observe parameters during the training run</li>
-<li class="fragment">Post-training, use W&amp;B to use cosine similarity and LLM-as-a-Judge to evaluate the accuracy of our trained model</li>
-<li class="fragment">Train smaller models (270M parameters) and compare the results</li>
-<li class="fragment">Understand and create a model card, upload the model to Hugging Face and share</li>
+<li class="fragment">Use your generated synthetic data to fine-tune a SLM model using QLoRA</li>
+<li class="fragment">Use W&amp;B (Weights and Biases) to observe metrics during the training run</li>
+<li class="fragment">Post-training, test and evaluate the accuracy of your fine-tuned model</li>
+<li class="fragment">Merge, quantize, and upload your model to Hugging Face to share with others</li>
+<li class="fragment">Understand and create a model card for your newly fine-tuned model</li>
 </ul>
 </section>
 <section>
@@ -230,7 +230,7 @@
 <section id="model-training-stages-1" class="slide level2">
 <h2>Model Training Stages</h2>
 <ul>
-<li class="fragment">There are typically three main stages of training a model:
+<li class="fragment">There are three main stages of training a model:
 <ul>
 <li class="fragment"><strong>Pretraining:</strong> The initial, large-scale training run that creates a base model with pretrained weights
 <ul>
@@ -254,7 +254,7 @@
 <section id="model-training-stages-3" class="slide level2">
 <h2>Model Training Stages</h2>
 <ul>
-<li class="fragment">Many models (e.g., Gemma3-it) have already gone through these three stages
+<li class="fragment">Many models (e.g., google/gemma-3-it) have already gone through these three stages
 <ul>
 <li class="fragment">We will be adding a fourth stage. An SFT of an existing “polished” model</li>
 </ul></li>
@@ -499,16 +499,122 @@
 </section></section>
 <section id="demo-1" class="title-slide slide level1 center">
 <h1>Demo</h1>
-<p>Running the training notebook</p>
+<p>Starting the training run!</p>
 </section>
 
+<section>
+<section id="wb-metrics" class="title-slide slide level1 center">
+<h1>W&amp;B Metrics</h1>
+
+</section>
+<section id="wb-metrics-1" class="slide level2">
+<h2>W&amp;B Metrics</h2>
+<ul>
+<li class="fragment">TBD: screenshot of system metrics</li>
+</ul>
+</section>
+<section id="wb-metrics-2" class="slide level2">
+<h2>W&amp;B Metrics</h2>
+<ul>
+<li class="fragment">System Metrics
+<ul>
+<li class="fragment">Metrics on the health of the underlying hardware used to train the model</li>
+<li class="fragment">Providing automatically via the W&amp;B library</li>
+<li class="fragment">Useful for hardware capacity monitoring, especially if the training run crashes</li>
+</ul></li>
+<li class="fragment">What to look for:
+<ul>
+<li class="fragment">Stability - i.e., not running out of VRAM, disk space, etc.</li>
+</ul></li>
+</ul>
+</section>
+<section id="wb-metrics-3" class="slide level2">
+<h2>W&amp;B Metrics</h2>
+<ul>
+<li class="fragment">TBD: screenshot of training metrics</li>
+</ul>
+</section>
+<section id="wb-metrics-4" class="slide level2">
+<h2>W&amp;B Metrics</h2>
+<ul>
+<li class="fragment">Training Metrics
+<ul>
+<li class="fragment">Metrics on the performance of the training process (how accurate are the output tokens matching the training data)</li>
+<li class="fragment">Number of tokens, token accuracy, training loss, grad_norm, etc.</li>
+</ul></li>
+<li class="fragment">What to look for:
+<ul>
+<li class="fragment">Token accuracy should increase quickly and plateau</li>
+<li class="fragment">Training loss should decrease quickly and plateau</li>
+<li class="fragment">Grad norm should not have drastic spikes (e.g., to 100)</li>
+</ul></li>
+</ul>
+</section>
+<section id="wb-metrics-5" class="slide level2">
+<h2>W&amp;B Metrics</h2>
+<ul>
+<li class="fragment">TBD: screenshot of evaluation metrics</li>
+</ul>
+</section>
+<section id="wb-metrics-6" class="slide level2">
+<h2>W&amp;B Metrics</h2>
+<ul>
+<li class="fragment">Eval Metrics
+<ul>
+<li class="fragment">Metrics on the validation runs during training (how well is the model able to match the output from the validation set)</li>
+<li class="fragment">Number of tokens, token accuracy, eval loss (a.k.a. validation loss)</li>
+</ul></li>
+<li class="fragment">What the look for:
+<ul>
+<li class="fragment">Token accuracy should increase quickly and plateau</li>
+<li class="fragment">Validation loss should decrease quickly and plateau</li>
+<li class="fragment">Validation loss should be very close to training loss (maybe slightly behind)</li>
+<li class="fragment">Validation loss should not start to increase (strongest signal that the model is overfitting)</li>
+</ul></li>
+</ul>
+</section></section>
 <section id="hands-on-1" class="title-slide slide level1 center">
 <h1>Hands-on</h1>
 <p>Create your WandB account, download API key</p>
-<p>Configure the training notebook for your own dataset</p>
-<p>Train!</p>
+<p>Configure the training notebook for your own dataset and base model</p>
+<p>Start the training run!</p>
 </section>
 
+<section>
+<section id="post-training" class="title-slide slide level1 center">
+<h1>Post-Training</h1>
+
+</section>
+<section id="post-training-1" class="slide level2">
+<h2>Post-Training</h2>
+<ul>
+<li class="fragment">TBD: Test the model with a random one from our dataset</li>
+</ul>
+</section>
+<section id="post-training-2" class="slide level2">
+<h2>Post-Training</h2>
+<ul>
+<li class="fragment">TBD: Create a model card, merge the models and upload everything to Hugging Face</li>
+</ul>
+</section>
+<section id="post-training-3" class="slide level2">
+<h2>Post-Training</h2>
+<ul>
+<li class="fragment">TBD: Quantize the model and upload to Hugging Face</li>
+</ul>
+</section>
+<section id="post-training-4" class="slide level2">
+<h2>Post-Training</h2>
+<ul>
+<li class="fragment">TBD: Create and upload your model card to Hugging Face</li>
+</ul>
+</section>
+<section id="post-training-5" class="slide level2">
+<h2>Post-Training</h2>
+<ul>
+<li class="fragment">TBD: Download the model in LM Studio and test!!!</li>
+</ul>
+</section></section>
 <section>
 <section id="looking-ahead" class="title-slide slide level1 center">
 <h1>Looking Ahead</h1>
