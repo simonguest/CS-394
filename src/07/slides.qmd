@@ -18,25 +18,25 @@ bibliography: references.bib
 
 ## Recap
 
-- Understood model training, dataset curation, what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy
-- Explored use cases, advantages, and disadvantages of prompt engineering
-- Introduced and implemented RAG (Retrieval Augmented Generation) to increase the accuracy of a limited SLM
-- Started the exploration of how to fine-tune models
-- Used a foundational model to generate synthetic data for fine-tuning a small language model
+- Understood what leads to hallucinations in models, how models are evaluated, and an overview of techniques to increase accuracy
+- Explored prompt engineering and thinking models
+- Introduced and implemented Text-to-SQL and RAG (Retrieval-Augmented Generation) to increase the accuracy of a limited SLM
+- Started exploring model fine-tuning
+- Generated synthetic data for fine-tuning a small language model
 
 ## Lesson Objectives
 
-- Use generated synthetic data to fine-tune a 1B parameter model
-- Use W&B (Weights and Biases) to observe parameters during the training run
-- Post-training, use W&B to use cosine similarity and LLM-as-a-Judge to evaluate the accuracy of our trained model
-- Train smaller models (270M parameters) and compare the results
-- Understand and create a model card, upload the model to Hugging Face and share
+- Use your generated synthetic data to fine-tune a SLM model using QLoRA
+- Use W&B (Weights and Biases) to observe metrics during the training run
+- Post-training, test and evaluate the accuracy of your fine-tuned model
+- Merge, quantize, and upload your model to Hugging Face to share with others
+- Understand and create a model card for your newly fine-tuned model
 
 # Model Training Stages
 
 ## Model Training Stages
 
-- There are typically three main stages of training a model:
+- There are three main stages of training a model:
   - **Pretraining:** The initial, large-scale training run that creates a base model with pretrained weights
     - Training data: Trillions of tokens from the internet, books, code, etc.
   - **Supervised Fine-Tuning (SFT):** Shapes the base model to follow instructions and respond in a desired style or fornat
@@ -50,7 +50,7 @@ TBD: Diagram
 
 ## Model Training Stages
 
-- Many models (e.g., Gemma3-it) have already gone through these three stages
+- Many models (e.g., google/gemma-3-it) have already gone through these three stages
   - We will be adding a fourth stage. An SFT of an existing "polished" model
 - Why?
   - The model already knows how to follow instructions, answer questions, etc.
@@ -175,17 +175,81 @@ Upload your training data files to Hugging Face Dataset
 
 # Demo
 
-Running the training notebook
+Starting the training run!
+
+# W&B Metrics
+
+## W&B Metrics
+
+- TBD: screenshot of system metrics
+
+## W&B Metrics
+
+- System Metrics
+  - Metrics on the health of the underlying hardware used to train the model
+  - Providing automatically via the W&B library
+  - Useful for hardware capacity monitoring, especially if the training run crashes
+- What to look for:
+  - Stability - i.e., not running out of VRAM, disk space, etc.
+
+## W&B Metrics
+
+- TBD: screenshot of training metrics
+
+## W&B Metrics
+
+- Training Metrics
+  - Metrics on the performance of the training process (how accurate are the output tokens matching the training data)
+  - Number of tokens, token accuracy, training loss, grad_norm, etc.
+- What to look for:
+  - Token accuracy should increase quickly and plateau
+  - Training loss should decrease quickly and plateau
+  - Grad norm should not have drastic spikes (e.g., to 100)
+
+## W&B Metrics
+
+- TBD: screenshot of evaluation metrics
+
+## W&B Metrics
+
+- Eval Metrics
+  - Metrics on the validation runs during training (how well is the model able to match the output from the validation set)
+  - Number of tokens, token accuracy, eval loss (a.k.a. validation loss)
+- What the look for:
+  - Token accuracy should increase quickly and plateau
+  - Validation loss should decrease quickly and plateau
+  - Validation loss should be very close to training loss (maybe slightly behind)
+  - Validation loss should not start to increase (strongest signal that the model is overfitting)
 
 # Hands-on
 
 Create your WandB account, download API key
 
-Configure the training notebook for your own dataset
+Configure the training notebook for your own dataset and base model
 
-Train!
+Start the training run!
 
+# Post-Training
 
+## Post-Training
+
+- TBD: Test the model with a random one from our dataset
+
+## Post-Training
+
+- TBD: Create a model card, merge the models and upload everything to Hugging Face
+
+## Post-Training
+
+- TBD: Quantize the model and upload to Hugging Face
+
+## Post-Training
+
+- TBD: Create and upload your model card to Hugging Face
+
+## Post-Training
+
+- TBD: Download the model in LM Studio and test!!!
 
 # Looking Ahead
 
