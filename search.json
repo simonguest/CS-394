@@ -8176,7 +8176,7 @@
     "href": "src/07/notebooks/create-dataset.html#configuration",
     "title": "Create Hugging Face Dataset",
     "section": "Configuration",
-    "text": "Configuration\nNote: If you are running this notebook on Colab, be sure to first upload your training data (.jsonl) files.\n\nTRAIN_FILE = \"./train.jsonl\"\nVALIDATION_FILE = \"./validation.jsonl\"\nTEST_FILE = \"./test.jsonl\"\nDATASET_CARD = \"./DATASET_CARD.md\"\n\nDATASET_REPO = \"simonguest/test-dataset\""
+    "text": "Configuration\nNote: If you are running this notebook on Colab, be sure to first upload your training data (.jsonl) files.\n\nTRAIN_FILE = \"./train.jsonl\"\nVALIDATION_FILE = \"./validation.jsonl\"\nTEST_FILE = \"./test.jsonl\"\n\nDATASET_REPO = \"simonguest/test-dataset\""
   },
   {
     "objectID": "src/07/notebooks/create-dataset.html#create-dataset-functions",
