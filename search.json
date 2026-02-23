@@ -7164,7 +7164,7 @@
     "href": "src/07/slides.html#training-notebook",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Training Notebook",
-    "text": "Training Notebook\n\nTBD: Walkthrough of the training notebook.",
+    "text": "Training Notebook\n\nTBD: Walkthrough of the training notebook.\nTBD: LORA Hyperparameters",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -7241,7 +7241,7 @@
     "href": "src/07/slides.html#post-training-1",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Post-Training",
-    "text": "Post-Training\n\nTBD: Test the model with a random one from our dataset",
+    "text": "Post-Training\n\nTBD: Test the model with a random one from our test dataset",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -7272,17 +7272,6 @@
   {
     "objectID": "src/07/slides.html#post-training-4",
     "href": "src/07/slides.html#post-training-4",
-    "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "Post-Training",
-    "text": "Post-Training\n\nTBD: Create and upload your model card to Hugging Face",
-    "crumbs": [
-      "**Module 7:** Increasing Model Accuracy (Part 2)",
-      "Slides"
-    ]
-  },
-  {
-    "objectID": "src/07/slides.html#post-training-5",
-    "href": "src/07/slides.html#post-training-5",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Post-Training",
     "text": "Post-Training\n\nTBD: Download the model in LM Studio and test!!!",
@@ -8187,7 +8176,7 @@
     "href": "src/07/notebooks/create-dataset.html#configuration",
     "title": "Create Hugging Face Dataset",
     "section": "Configuration",
-    "text": "Configuration\nNote: If you are running this notebook on Colab, be sure to first upload your training data (.jsonl) files and the dataset card.\n\nTRAIN_FILE = \"./train.jsonl\"\nVALIDATION_FILE = \"./validation.jsonl\"\nTEST_FILE = \"./test.jsonl\"\nDATASET_CARD = \"./DATASET_CARD.md\"\n\nDATASET_REPO = \"simonguest/test-dataset\""
+    "text": "Configuration\nNote: If you are running this notebook on Colab, be sure to first upload your training data (.jsonl) files.\n\nTRAIN_FILE = \"./train.jsonl\"\nVALIDATION_FILE = \"./validation.jsonl\"\nTEST_FILE = \"./test.jsonl\"\nDATASET_CARD = \"./DATASET_CARD.md\"\n\nDATASET_REPO = \"simonguest/test-dataset\""
   },
   {
     "objectID": "src/07/notebooks/create-dataset.html#create-dataset-functions",
@@ -8200,8 +8189,8 @@
     "objectID": "src/07/notebooks/create-dataset.html#get-hugging-face-token",
     "href": "src/07/notebooks/create-dataset.html#get-hugging-face-token",
     "title": "Create Hugging Face Dataset",
-    "section": "Get Hugging Face Token",
-    "text": "Get Hugging Face Token\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  os.environ['HF_TOKEN'] = userdata.get('HF_TOKEN')\n  print(\"HF API Token set for Colab\")\nelse:\n  load_dotenv()\n  print(\"Loaded env vars from .env\")\n\nLoaded env vars from .env"
+    "section": "Get Hugging Face token",
+    "text": "Get Hugging Face token\n\nimport sys\nimport os\nfrom dotenv import load_dotenv\n\nif 'google.colab' in sys.modules:\n  from google.colab import userdata # type:ignore\n  os.environ['HF_TOKEN'] = userdata.get('HF_TOKEN')\n  print(\"HF API Token set for Colab\")\nelse:\n  load_dotenv()\n  print(\"Loaded env vars from .env\")\n\nLoaded env vars from .env"
   },
   {
     "objectID": "src/07/notebooks/create-dataset.html#upload-to-hugging-face",
@@ -8211,10 +8200,17 @@
     "text": "Upload to Hugging Face\n\ndef upload_dataset(dataset, repo_name, token):\n    dataset.push_to_hub(\n        repo_name,\n        token=token,\n        private=False\n    )\n    \n    print(f\"Dataset uploaded successfully to: https://huggingface.co/datasets/{repo_name}\")\n\nupload_dataset(dataset, DATASET_REPO, os.environ.get(\"HF_TOKEN\"))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDataset uploaded successfully to: https://huggingface.co/datasets/simonguest/test-dataset"
   },
   {
+    "objectID": "src/07/notebooks/create-dataset.html#create-the-dataset-card",
+    "href": "src/07/notebooks/create-dataset.html#create-the-dataset-card",
+    "title": "Create Hugging Face Dataset",
+    "section": "Create the dataset card",
+    "text": "Create the dataset card\n\nfrom huggingface_hub import DatasetCard\n\ncard_content = f\"\"\"---\n---\npretty_name: \"Test Dataset for CS-394\"\nlicense: mit\n---\n\n# Test Dataset\n\nThis is a test dataset of Python code snippets and explanations, used in DigiPen's CS-394 course.\n\"\"\"\n\ncard = DatasetCard(card_content)\ncard.save(f\"./README.md\")"
+  },
+  {
     "objectID": "src/07/notebooks/create-dataset.html#upload-the-dataset-card",
     "href": "src/07/notebooks/create-dataset.html#upload-the-dataset-card",
     "title": "Create Hugging Face Dataset",
-    "section": "Upload the Dataset Card",
-    "text": "Upload the Dataset Card\n\nfrom huggingface_hub import HfApi\n\napi = HfApi()\napi.upload_file(\n    path_or_fileobj=DATASET_CARD,\n    path_in_repo=\"README.md\",\n    repo_id=DATASET_REPO,\n    repo_type=\"dataset\",\n)\n\nCommitInfo(commit_url='https://huggingface.co/datasets/simonguest/test-dataset/commit/debbc8c9e4e94646b5ee769874a27abc00da093c', commit_message='Upload README.md with huggingface_hub', commit_description='', oid='debbc8c9e4e94646b5ee769874a27abc00da093c', pr_url=None, repo_url=RepoUrl('https://huggingface.co/datasets/simonguest/test-dataset', endpoint='https://huggingface.co', repo_type='dataset', repo_id='simonguest/test-dataset'), pr_revision=None, pr_num=None)"
+    "section": "Upload the dataset card",
+    "text": "Upload the dataset card\n\nfrom huggingface_hub import HfApi\n\napi = HfApi()\napi.upload_file(\n    path_or_fileobj=DATASET_CARD,\n    path_in_repo=\"README.md\",\n    repo_id=DATASET_REPO,\n    repo_type=\"dataset\",\n)\n\nCommitInfo(commit_url='https://huggingface.co/datasets/simonguest/test-dataset/commit/debbc8c9e4e94646b5ee769874a27abc00da093c', commit_message='Upload README.md with huggingface_hub', commit_description='', oid='debbc8c9e4e94646b5ee769874a27abc00da093c', pr_url=None, repo_url=RepoUrl('https://huggingface.co/datasets/simonguest/test-dataset', endpoint='https://huggingface.co', repo_type='dataset', repo_id='simonguest/test-dataset'), pr_revision=None, pr_num=None)"
   }
 ]
