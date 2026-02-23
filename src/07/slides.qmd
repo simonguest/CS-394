@@ -172,6 +172,7 @@ Upload your training data files to Hugging Face Dataset
 ## Training Notebook
 
 - TBD: Walkthrough of the training notebook.
+- TBD: LORA Hyperparameters
 
 # Demo
 
@@ -233,7 +234,7 @@ Start the training run!
 
 ## Post-Training
 
-- TBD: Test the model with a random one from our dataset
+- TBD: Test the model with a random one from our test dataset
 
 ## Post-Training
 
@@ -242,10 +243,6 @@ Start the training run!
 ## Post-Training
 
 - TBD: Quantize the model and upload to Hugging Face
-
-## Post-Training
-
-- TBD: Create and upload your model card to Hugging Face
 
 ## Post-Training
 
