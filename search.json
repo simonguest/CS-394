@@ -11,7 +11,7 @@
     "href": "src/07/notebooks/train-cuda.html#training-parameters",
     "title": "Supervised Fine-Tuning on CUDA",
     "section": "Training parameters",
-    "text": "Training parameters\n\nimport os\n\nDATASET_REPO = \"simonguest/test-dataset\" # Change this to your own dataset location on HF\nBASE_MODEL = \"google/gemma-3-1b-it\" # Base model that will be fine-tuned\nMODEL_NAME = \"code-explainer\" # Name of the model you want to create\nos.environ[\"WANDB_PROJECT\"] = MODEL_NAME # WandB project name\nHF_USERNAME = \"simonguest\" # Hugging Face username - used to upload your final models\n\nMODEL_FOLDER = f\"./models/{MODEL_NAME}\"\n\n# Training run parameters\n\nBATCH_SIZE = 4\nGRADIENT_ACCUMULATION_STEPS = 4\nLEARNING_RATE = 2e-4\nNUM_EPOCHS = 3\nMAX_SEQ_LENGTH = 512\n\n# LoRA parameters\nLORA_R = 16\nLORA_ALPHA = 32\nLORA_DROPOUT = 0.05\n\n# Use 4-bit quantization for efficiency (QLoRA)\nUSE_4BIT = True"
+    "text": "Training parameters\n\nimport os\n\nDATASET_REPO = \"simonguest/test-dataset\" # Change this to your own dataset location on HF\nBASE_MODEL = \"google/gemma-3-1b-it\" # Base model that will be fine-tuned\nMODEL_NAME = \"code-explainer\" # Name of the model you want to create\nos.environ[\"WANDB_PROJECT\"] = MODEL_NAME # WandB project name\nHF_USERNAME = \"simonguest\" # Hugging Face username - used to upload your final models\n\nMODEL_FOLDER = f\"./models/{MODEL_NAME}\"\n\n# Training run parameters\n\nBATCH_SIZE = 4\nGRADIENT_ACCUMULATION_STEPS = 4\nLEARNING_RATE = 1e-4\nNUM_EPOCHS = 3\nMAX_SEQ_LENGTH = 512\n\n# LoRA parameters\nLORA_R = 16\nLORA_ALPHA = 32\nLORA_DROPOUT = 0.1\n\n# Use 4-bit quantization for efficiency (QLoRA)\nUSE_4BIT = True"
   },
   {
     "objectID": "src/07/notebooks/train-cuda.html#api-keys-and-tokens",
