@@ -146,9 +146,44 @@ TBD: Diagram
 
 {{< embed notebooks/create-dataset.ipynb#upload echo=true outputs=false >}}
 
+## Upload Training Files
+
+- TBD: Will take a while before you can browse your data
+- TBD: Conversion to Parquet format
+
 # Demo
 
-Uploading the training data file to Hugging Face Dataset
+Uploading the training data files to Hugging Face Dataset
+
+# Hands-on
+
+Upload your training data files to Hugging Face Dataset
+
+# Let's Train!
+
+## Let's Train!
+
+- TBD
+
+## Sidebar: Weights and Biases
+
+- TBD. Explain what W&B is and how we'll be using it
+
+## Training Notebook
+
+- TBD: Walkthrough of the training notebook.
+
+# Demo
+
+Running the training notebook
+
+# Hands-on
+
+Create your WandB account, download API key
+
+Configure the training notebook for your own dataset
+
+Train!
 
 
 
