@@ -907,7 +907,7 @@ Audited <span style="font-weight:bold;opacity:0.7">1 package</span> in 27ms
 </section>
 <section id="clone-and-build-llama.cpp-for-running-on-colab" class="level2">
 <h2 class="anchored" data-anchor-id="clone-and-build-llama.cpp-for-running-on-colab">Clone and build llama.cpp (for running on Colab)</h2>
-<div id="build-llama" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="14eb357d-4ef0-49c3-bf2f-bfbb4a3371a6" data-execution_count="1">
+<div id="build-llama" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="14eb357d-4ef0-49c3-bf2f-bfbb4a3371a6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>TEMP_FOLDER <span class="op">=</span> <span class="st">"/content/tmp"</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a temporary location and clone llama.cpp</span></span>
@@ -915,7 +915,7 @@ Audited <span style="font-weight:bold;opacity:0.7">1 package</span> in 27ms
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cd {TEMP_FOLDER} <span class="op">&amp;&amp;</span> git clone https:<span class="op">//</span>github.com<span class="op">/</span>ggml<span class="op">-</span>org<span class="op">/</span>llama.cpp</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cd {TEMP_FOLDER}<span class="op">/</span>llama.cpp <span class="op">&amp;&amp;</span> cmake <span class="op">-</span>B build</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cd {TEMP_FOLDER}<span class="op">/</span>llama.cpp <span class="op">&amp;&amp;</span> cmake <span class="op">--</span>build build <span class="op">--</span>config Release <span class="op">--</span>target llama<span class="op">-</span>quantize</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>cd {TEMP_FOLDER}<span class="op">/</span>llama.cpp <span class="op">&amp;&amp;</span> cmake <span class="op">--</span>build build <span class="op">--</span>config Release <span class="op">--</span>target llama<span class="op">-</span>quantize <span class="op">-</span>j <span class="dv">8</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
 <pre>Cloning into 'llama.cpp'...
