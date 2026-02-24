@@ -330,12 +330,12 @@
 <p>TBD: Diagram</p>
 </section></section>
 <section>
-<section id="fine-tuning-plan" class="title-slide slide level1 center">
-<h1>Fine-Tuning Plan</h1>
+<section id="todays-fine-tuning-plan" class="title-slide slide level1 center">
+<h1>Today’s Fine-Tuning Plan</h1>
 
 </section>
-<section id="fine-tuning-plan-1" class="slide level2">
-<h2>Fine-Tuning Plan</h2>
+<section id="todays-fine-tuning-plan-1" class="slide level2">
+<h2>Today’s Fine-Tuning Plan</h2>
 <ul>
 <li class="fragment">Upload our .jsonl files to Hugging Face to create a dataset</li>
 <li class="fragment">In our training notebook…
@@ -351,8 +351,8 @@
 </ul></li>
 </ul>
 </section>
-<section id="fine-tuning-plan-2" class="slide level2">
-<h2>Fine-Tuning Plan</h2>
+<section id="todays-fine-tuning-plan-2" class="slide level2">
+<h2>Today’s Fine-Tuning Plan</h2>
 <ul>
 <li class="fragment">After training has completed…
 <ul>
@@ -460,8 +460,11 @@
 <section id="upload-training-files-4" class="slide level2">
 <h2>Upload Training Files</h2>
 <ul>
-<li class="fragment">TBD: Will take a while before you can browse your data</li>
-<li class="fragment">TBD: Conversion to Parquet format</li>
+<li class="fragment">After you’ve uploaded
+<ul>
+<li class="fragment">It will take a few minutes before you can browse your data</li>
+<li class="fragment">About 24-48 hours, you will likely receive an email about conversion to parquet format</li>
+</ul></li>
 </ul>
 </section></section>
 <section id="demo" class="title-slide slide level1 center">
@@ -485,37 +488,41 @@
 <li class="fragment">TBD</li>
 </ul>
 </section>
-<section id="sidebar-weights-and-biases" class="slide level2">
-<h2>Sidebar: Weights and Biases</h2>
-<ul>
-<li class="fragment">TBD. Explain what W&amp;B is and how we’ll be using it</li>
-</ul>
-</section>
-<section id="training-notebook" class="slide level2">
-<h2>Training Notebook</h2>
-<ul>
-<li class="fragment">TBD: Walkthrough of the training notebook.</li>
-<li class="fragment">TBD: LORA Hyperparameters</li>
-</ul>
+<section id="lora-hyperparameters" class="slide level2">
+<h2>LoRA Hyperparameters</h2>
+<p>BATCH_SIZE = 4 GRADIENT_ACCUMULATION_STEPS = 4 LEARNING_RATE = 2e-4 NUM_EPOCHS = 3 MAX_SEQ_LENGTH = 512 LORA_R = 16 LORA_ALPHA = 32 LORA_DROPOUT = 0.05 USE_4BIT = True</p>
 </section></section>
 <section id="demo-1" class="title-slide slide level1 center">
 <h1>Demo</h1>
+<p>Walkthrough of the training notebook.</p>
 <p>Starting the training run!</p>
 </section>
 
 <section>
-<section id="wb-metrics" class="title-slide slide level1 center">
-<h1>W&amp;B Metrics</h1>
+<section id="weights-biases" class="title-slide slide level1 center">
+<h1>Weights &amp; Biases</h1>
 
 </section>
-<section id="wb-metrics-1" class="slide level2">
-<h2>W&amp;B Metrics</h2>
+<section id="weights-biases-1" class="slide level2">
+<h2>Weights &amp; Biases</h2>
+<ul>
+<li class="fragment">What is Weights &amp; Biases (W&amp;B)?
+<ul>
+<li class="fragment">Founded in 2018 after founders noticed that researchers were keeping hyperparameters and training run details in spreadsheets / on paper, etc.</li>
+<li class="fragment">Stream any metric (accuracy, loss, GPU utilization) to a single dashboard; compare training runs side-by-side to improve model accuracy</li>
+<li class="fragment">Used either standalone via <code>wandb.log()</code> calls and/or integrated into many training libraries</li>
+<li class="fragment">Generous free tier and education/researcher plans</li>
+</ul></li>
+</ul>
+</section>
+<section id="weights-biases-2" class="slide level2">
+<h2>Weights &amp; Biases</h2>
 <ul>
 <li class="fragment">TBD: screenshot of system metrics</li>
 </ul>
 </section>
-<section id="wb-metrics-2" class="slide level2">
-<h2>W&amp;B Metrics</h2>
+<section id="weights-biases-3" class="slide level2">
+<h2>Weights &amp; Biases</h2>
 <ul>
 <li class="fragment">System Metrics
 <ul>
@@ -529,14 +536,14 @@
 </ul></li>
 </ul>
 </section>
-<section id="wb-metrics-3" class="slide level2">
-<h2>W&amp;B Metrics</h2>
+<section id="weights-biases-4" class="slide level2">
+<h2>Weights &amp; Biases</h2>
 <ul>
 <li class="fragment">TBD: screenshot of training metrics</li>
 </ul>
 </section>
-<section id="wb-metrics-4" class="slide level2">
-<h2>W&amp;B Metrics</h2>
+<section id="weights-biases-5" class="slide level2">
+<h2>Weights &amp; Biases</h2>
 <ul>
 <li class="fragment">Training Metrics
 <ul>
@@ -551,14 +558,14 @@
 </ul></li>
 </ul>
 </section>
-<section id="wb-metrics-5" class="slide level2">
-<h2>W&amp;B Metrics</h2>
+<section id="weights-biases-6" class="slide level2">
+<h2>Weights &amp; Biases</h2>
 <ul>
 <li class="fragment">TBD: screenshot of evaluation metrics</li>
 </ul>
 </section>
-<section id="wb-metrics-6" class="slide level2">
-<h2>W&amp;B Metrics</h2>
+<section id="weights-biases-7" class="slide level2">
+<h2>Weights &amp; Biases</h2>
 <ul>
 <li class="fragment">Eval Metrics
 <ul>
@@ -576,9 +583,9 @@
 </section></section>
 <section id="hands-on-1" class="title-slide slide level1 center">
 <h1>Hands-on</h1>
-<p>Create your WandB account, download API key</p>
-<p>Configure the training notebook for your own dataset and base model</p>
-<p>Start the training run!</p>
+<p>Create your W&amp;B account (https://wandb.ai), download API key, set in Colab</p>
+<p>Configure the training notebook for your own dataset, base model, and WANDB API key</p>
+<p>Start your training run!</p>
 </section>
 
 <section>

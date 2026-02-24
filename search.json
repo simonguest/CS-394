@@ -1134,22 +1134,22 @@
     ]
   },
   {
-    "objectID": "src/07/slides.html#fine-tuning-plan-1",
-    "href": "src/07/slides.html#fine-tuning-plan-1",
+    "objectID": "src/07/slides.html#todays-fine-tuning-plan-1",
+    "href": "src/07/slides.html#todays-fine-tuning-plan-1",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "Fine-Tuning Plan",
-    "text": "Fine-Tuning Plan\n\nUpload our .jsonl files to Hugging Face to create a dataset\nIn our training notebook…\n\nDownload the dataset\nFormat our training data to match the chat template\nStart our training run!\n\nUse W&B (Weights & Biases) to monitor how well our model is learning\n\nTraining loss\nValidation loss",
+    "section": "Today’s Fine-Tuning Plan",
+    "text": "Today’s Fine-Tuning Plan\n\nUpload our .jsonl files to Hugging Face to create a dataset\nIn our training notebook…\n\nDownload the dataset\nFormat our training data to match the chat template\nStart our training run!\n\nUse W&B (Weights & Biases) to monitor how well our model is learning\n\nTraining loss\nValidation loss",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#fine-tuning-plan-2",
-    "href": "src/07/slides.html#fine-tuning-plan-2",
+    "objectID": "src/07/slides.html#todays-fine-tuning-plan-2",
+    "href": "src/07/slides.html#todays-fine-tuning-plan-2",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "Fine-Tuning Plan",
-    "text": "Fine-Tuning Plan\n\nAfter training has completed…\n\nTest (both manually and automatic)\n\nAssuming things went well…\n\nMerge and upload our model to Hugging Face\nQuantize our model (create a GGUF) and upload to Hugging Face\nPublish a model card",
+    "section": "Today’s Fine-Tuning Plan",
+    "text": "Today’s Fine-Tuning Plan\n\nAfter training has completed…\n\nTest (both manually and automatic)\n\nAssuming things went well…\n\nMerge and upload our model to Hugging Face\nQuantize our model (create a GGUF) and upload to Hugging Face\nPublish a model card",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1193,7 +1193,7 @@
     "href": "src/07/slides.html#upload-training-files-4",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Upload Training Files",
-    "text": "Upload Training Files\n\nTBD: Will take a while before you can browse your data\nTBD: Conversion to Parquet format",
+    "text": "Upload Training Files\n\nAfter you’ve uploaded\n\nIt will take a few minutes before you can browse your data\nAbout 24-48 hours, you will likely receive an email about conversion to parquet format",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1211,88 +1211,88 @@
     ]
   },
   {
-    "objectID": "src/07/slides.html#sidebar-weights-and-biases",
-    "href": "src/07/slides.html#sidebar-weights-and-biases",
+    "objectID": "src/07/slides.html#lora-hyperparameters",
+    "href": "src/07/slides.html#lora-hyperparameters",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "Sidebar: Weights and Biases",
-    "text": "Sidebar: Weights and Biases\n\nTBD. Explain what W&B is and how we’ll be using it",
+    "section": "LoRA Hyperparameters",
+    "text": "LoRA Hyperparameters\nBATCH_SIZE = 4 GRADIENT_ACCUMULATION_STEPS = 4 LEARNING_RATE = 2e-4 NUM_EPOCHS = 3 MAX_SEQ_LENGTH = 512 LORA_R = 16 LORA_ALPHA = 32 LORA_DROPOUT = 0.05 USE_4BIT = True",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#training-notebook",
-    "href": "src/07/slides.html#training-notebook",
+    "objectID": "src/07/slides.html#weights-biases-1",
+    "href": "src/07/slides.html#weights-biases-1",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "Training Notebook",
-    "text": "Training Notebook\n\nTBD: Walkthrough of the training notebook.\nTBD: LORA Hyperparameters",
+    "section": "Weights & Biases",
+    "text": "Weights & Biases\n\nWhat is Weights & Biases (W&B)?\n\nFounded in 2018 after founders noticed that researchers were keeping hyperparameters and training run details in spreadsheets / on paper, etc.\nStream any metric (accuracy, loss, GPU utilization) to a single dashboard; compare training runs side-by-side to improve model accuracy\nUsed either standalone via wandb.log() calls and/or integrated into many training libraries\nGenerous free tier and education/researcher plans",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#wb-metrics-1",
-    "href": "src/07/slides.html#wb-metrics-1",
+    "objectID": "src/07/slides.html#weights-biases-2",
+    "href": "src/07/slides.html#weights-biases-2",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "W&B Metrics",
-    "text": "W&B Metrics\n\nTBD: screenshot of system metrics",
+    "section": "Weights & Biases",
+    "text": "Weights & Biases\n\nTBD: screenshot of system metrics",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#wb-metrics-2",
-    "href": "src/07/slides.html#wb-metrics-2",
+    "objectID": "src/07/slides.html#weights-biases-3",
+    "href": "src/07/slides.html#weights-biases-3",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "W&B Metrics",
-    "text": "W&B Metrics\n\nSystem Metrics\n\nMetrics on the health of the underlying hardware used to train the model\nProviding automatically via the W&B library\nUseful for hardware capacity monitoring, especially if the training run crashes\n\nWhat to look for:\n\nStability - i.e., not running out of VRAM, disk space, etc.",
+    "section": "Weights & Biases",
+    "text": "Weights & Biases\n\nSystem Metrics\n\nMetrics on the health of the underlying hardware used to train the model\nProviding automatically via the W&B library\nUseful for hardware capacity monitoring, especially if the training run crashes\n\nWhat to look for:\n\nStability - i.e., not running out of VRAM, disk space, etc.",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#wb-metrics-3",
-    "href": "src/07/slides.html#wb-metrics-3",
+    "objectID": "src/07/slides.html#weights-biases-4",
+    "href": "src/07/slides.html#weights-biases-4",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "W&B Metrics",
-    "text": "W&B Metrics\n\nTBD: screenshot of training metrics",
+    "section": "Weights & Biases",
+    "text": "Weights & Biases\n\nTBD: screenshot of training metrics",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#wb-metrics-4",
-    "href": "src/07/slides.html#wb-metrics-4",
+    "objectID": "src/07/slides.html#weights-biases-5",
+    "href": "src/07/slides.html#weights-biases-5",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "W&B Metrics",
-    "text": "W&B Metrics\n\nTraining Metrics\n\nMetrics on the performance of the training process (how accurate are the output tokens matching the training data)\nNumber of tokens, token accuracy, training loss, grad_norm, etc.\n\nWhat to look for:\n\nToken accuracy should increase quickly and plateau\nTraining loss should decrease quickly and plateau\nGrad norm should not have drastic spikes (e.g., to 100)",
+    "section": "Weights & Biases",
+    "text": "Weights & Biases\n\nTraining Metrics\n\nMetrics on the performance of the training process (how accurate are the output tokens matching the training data)\nNumber of tokens, token accuracy, training loss, grad_norm, etc.\n\nWhat to look for:\n\nToken accuracy should increase quickly and plateau\nTraining loss should decrease quickly and plateau\nGrad norm should not have drastic spikes (e.g., to 100)",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#wb-metrics-5",
-    "href": "src/07/slides.html#wb-metrics-5",
+    "objectID": "src/07/slides.html#weights-biases-6",
+    "href": "src/07/slides.html#weights-biases-6",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "W&B Metrics",
-    "text": "W&B Metrics\n\nTBD: screenshot of evaluation metrics",
+    "section": "Weights & Biases",
+    "text": "Weights & Biases\n\nTBD: screenshot of evaluation metrics",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#wb-metrics-6",
-    "href": "src/07/slides.html#wb-metrics-6",
+    "objectID": "src/07/slides.html#weights-biases-7",
+    "href": "src/07/slides.html#weights-biases-7",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "W&B Metrics",
-    "text": "W&B Metrics\n\nEval Metrics\n\nMetrics on the validation runs during training (how well is the model able to match the output from the validation set)\nNumber of tokens, token accuracy, eval loss (a.k.a. validation loss)\n\nWhat the look for:\n\nToken accuracy should increase quickly and plateau\nValidation loss should decrease quickly and plateau\nValidation loss should be very close to training loss (maybe slightly behind)\nValidation loss should not start to increase (strongest signal that the model is overfitting)",
+    "section": "Weights & Biases",
+    "text": "Weights & Biases\n\nEval Metrics\n\nMetrics on the validation runs during training (how well is the model able to match the output from the validation set)\nNumber of tokens, token accuracy, eval loss (a.k.a. validation loss)\n\nWhat the look for:\n\nToken accuracy should increase quickly and plateau\nValidation loss should decrease quickly and plateau\nValidation loss should be very close to training loss (maybe slightly behind)\nValidation loss should not start to increase (strongest signal that the model is overfitting)",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
