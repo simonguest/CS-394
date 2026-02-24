@@ -105,9 +105,9 @@ TBD: Diagram
 
 TBD: Diagram
 
-# Fine-Tuning Plan
+# Today's Fine-Tuning Plan
 
-## Fine-Tuning Plan
+## Today's Fine-Tuning Plan
 
 - Upload our .jsonl files to Hugging Face to create a dataset
 - In our training notebook...
@@ -118,7 +118,7 @@ TBD: Diagram
   - Training loss
   - Validation loss
 
-## Fine-Tuning Plan 
+## Today's Fine-Tuning Plan 
 
 - After training has completed...
   - Test (both manually and automatic)
@@ -148,8 +148,9 @@ TBD: Diagram
 
 ## Upload Training Files
 
-- TBD: Will take a while before you can browse your data
-- TBD: Conversion to Parquet format
+- After you've uploaded
+  - It will take a few minutes before you can browse your data
+  - About 24-48 hours, you will likely receive an email about conversion to parquet format
 
 # Demo
 
@@ -165,26 +166,39 @@ Upload your training data files to Hugging Face Dataset
 
 - TBD
 
-## Sidebar: Weights and Biases
+## LoRA Hyperparameters
 
-- TBD. Explain what W&B is and how we'll be using it
-
-## Training Notebook
-
-- TBD: Walkthrough of the training notebook.
-- TBD: LORA Hyperparameters
+BATCH_SIZE = 4
+GRADIENT_ACCUMULATION_STEPS = 4
+LEARNING_RATE = 2e-4
+NUM_EPOCHS = 3
+MAX_SEQ_LENGTH = 512
+LORA_R = 16
+LORA_ALPHA = 32
+LORA_DROPOUT = 0.05
+USE_4BIT = True
 
 # Demo
 
+Walkthrough of the training notebook.
+
 Starting the training run!
 
-# W&B Metrics
+# Weights & Biases
 
-## W&B Metrics
+## Weights & Biases
+
+- What is Weights & Biases (W&B)?
+  - Founded in 2018 after founders noticed that researchers were keeping hyperparameters and training run details in spreadsheets / on paper, etc.
+  - Stream any metric (accuracy, loss, GPU utilization) to a single dashboard; compare training runs side-by-side to improve model accuracy
+  - Used either standalone via `wandb.log()` calls and/or integrated into many training libraries
+  - Generous free tier and education/researcher plans
+
+## Weights & Biases
 
 - TBD: screenshot of system metrics
 
-## W&B Metrics
+## Weights & Biases
 
 - System Metrics
   - Metrics on the health of the underlying hardware used to train the model
@@ -193,11 +207,11 @@ Starting the training run!
 - What to look for:
   - Stability - i.e., not running out of VRAM, disk space, etc.
 
-## W&B Metrics
+## Weights & Biases
 
 - TBD: screenshot of training metrics
 
-## W&B Metrics
+## Weights & Biases
 
 - Training Metrics
   - Metrics on the performance of the training process (how accurate are the output tokens matching the training data)
@@ -207,11 +221,11 @@ Starting the training run!
   - Training loss should decrease quickly and plateau
   - Grad norm should not have drastic spikes (e.g., to 100)
 
-## W&B Metrics
+## Weights & Biases
 
 - TBD: screenshot of evaluation metrics
 
-## W&B Metrics
+## Weights & Biases
 
 - Eval Metrics
   - Metrics on the validation runs during training (how well is the model able to match the output from the validation set)
@@ -224,11 +238,11 @@ Starting the training run!
 
 # Hands-on
 
-Create your WandB account, download API key
+Create your W&B account (https://wandb.ai), download API key, set in Colab
 
-Configure the training notebook for your own dataset and base model
+Configure the training notebook for your own dataset, base model, and WANDB API key
 
-Start the training run!
+Start your training run!
 
 # Post-Training
 
