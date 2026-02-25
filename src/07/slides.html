@@ -6,7 +6,10 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.26">
 
   <title>CS-394 – Module 7: Increasing Model Accuracy (Part 2)</title>
@@ -215,8 +218,8 @@
 <section id="lesson-objectives" class="slide level2">
 <h2>Lesson Objectives</h2>
 <ul>
-<li class="fragment">Use your generated synthetic data to fine-tune a SLM model using QLoRA</li>
-<li class="fragment">Use W&amp;B (Weights and Biases) to observe metrics during the training run</li>
+<li class="fragment">Use your generated synthetic data to fine-tune an SLM using QLoRA</li>
+<li class="fragment">Use W&amp;B (Weights &amp; Biases) to observe metrics during the training run</li>
 <li class="fragment">Post-training, test and evaluate the accuracy of your fine-tuned model</li>
 <li class="fragment">Merge, quantize, and upload your model to Hugging Face to share with others</li>
 <li class="fragment">Understand and create a model card for your newly fine-tuned model</li>
@@ -249,7 +252,11 @@
 </section>
 <section id="model-training-stages-2" class="slide level2">
 <h2>Model Training Stages</h2>
-<p>TBD: Diagram</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="diagrams/stages.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img data-src="diagrams/stages.svg" class="quarto-figure quarto-figure-center" width="600"></a></p>
+</figure>
+</div>
 </section>
 <section id="model-training-stages-3" class="slide level2">
 <h2>Model Training Stages</h2>
@@ -268,7 +275,11 @@
 </section>
 <section id="model-training-stages-4" class="slide level2">
 <h2>Model Training Stages</h2>
-<p>TBD: Updated diagram</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="diagrams/stages-loop.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img data-src="diagrams/stages-loop.svg" class="quarto-figure quarto-figure-center" width="600"></a></p>
+</figure>
+</div>
 </section></section>
 <section>
 <section id="supervised-fine-tuning-sft" class="title-slide slide level1 center">
@@ -299,6 +310,11 @@
 <ul>
 <li class="fragment">Adjusting all parameters in a model can be compute and memory intensive</li>
 <li class="fragment">We will use LoRA (Low-Rank Adaptation), a Parameter Efficient Fine-Tuning (PEFT) strategy</li>
+</ul>
+</section>
+<section id="supervised-fine-tuning-sft-with-lora-1" class="slide level2">
+<h2>Supervised Fine-Tuning (SFT) with LoRA</h2>
+<ul>
 <li class="fragment">How LoRA works:
 <ul>
 <li class="fragment">The model’s base weights (W) are frozen (never updated) during training</li>
@@ -309,7 +325,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="supervised-fine-tuning-sft-with-lora-1" class="slide level2">
+<section id="supervised-fine-tuning-sft-with-lora-2" class="slide level2">
 <h2>Supervised Fine-Tuning (SFT) with LoRA</h2>
 <p>TBD: Diagram</p>
 </section>
@@ -362,7 +378,7 @@
 <ul>
 <li class="fragment">Merge and upload our model to Hugging Face</li>
 <li class="fragment">Quantize our model (create a GGUF) and upload to Hugging Face</li>
-<li class="fragment">Publish a model card</li>
+<li class="fragment">Download and test our model in LM Studio</li>
 </ul></li>
 </ul>
 </section></section>
@@ -456,6 +472,11 @@
 <span id="cb2-10"><a></a>upload_dataset(dataset, DATASET_REPO, os.environ.get(<span class="st">"HF_TOKEN"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
+</section></section>
+<section>
+<section id="demo" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p>Uploading the training data files to Hugging Face Dataset</p>
 </section>
 <section id="upload-training-files-4" class="slide level2">
 <h2>Upload Training Files</h2>
@@ -467,11 +488,6 @@
 </ul></li>
 </ul>
 </section></section>
-<section id="demo" class="title-slide slide level1 center">
-<h1>Demo</h1>
-<p>Uploading the training data files to Hugging Face Dataset</p>
-</section>
-
 <section id="hands-on" class="title-slide slide level1 center">
 <h1>Hands-on</h1>
 <p>Upload your training data files to Hugging Face Dataset</p>
@@ -1023,6 +1039,38 @@
         }
       });
       </script>
+    <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+    (function() {
+      let previousOnload = window.onload;
+      window.onload = () => {
+        if (previousOnload) {
+          previousOnload();
+        }
+        lightboxQuarto.on('slide_before_load', (data) => {
+          const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+          const href = trigger.getAttribute('href');
+          if (href !== null) {
+            const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+            if (imgEl !== null) {
+              const srcAttr = imgEl.getAttribute("src");
+              if (srcAttr && srcAttr.startsWith("data:")) {
+                slideConfig.href = srcAttr;
+              }
+            }
+          } 
+        });
+      
+        lightboxQuarto.on('slide_after_load', (data) => {
+          const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(slideNode);
+          }
+        });
+      
+      };
+      
+    })();
+              </script>
     
 
 </body></html>
