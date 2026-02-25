@@ -177,6 +177,12 @@ website:
             href: src/07/resources.qmd
           - section: "Notebooks"
             contents:
+            - text: "create-dataset.ipynb"
+              href: src/07/notebooks/create-dataset.ipynb
+            - text: "train-cuda.ipynb"
+              href: src/07/notebooks/train-cuda.ipynb
+            - text: "quantize.ipynb"
+              href: src/07/notebooks/quantize.ipynb
           - text: "Assignment"
             href: src/07/assignment.qmd
       - section: "**Module 8:** Ethics, IP, and Safety"

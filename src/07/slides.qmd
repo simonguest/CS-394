@@ -26,8 +26,8 @@ bibliography: references.bib
 
 ## Lesson Objectives
 
-- Use your generated synthetic data to fine-tune a SLM model using QLoRA
-- Use W&B (Weights and Biases) to observe metrics during the training run
+- Use your generated synthetic data to fine-tune an SLM using QLoRA
+- Use W&B (Weights & Biases) to observe metrics during the training run
 - Post-training, test and evaluate the accuracy of your fine-tuned model
 - Merge, quantize, and upload your model to Hugging Face to share with others
 - Understand and create a model card for your newly fine-tuned model
@@ -46,7 +46,7 @@ bibliography: references.bib
 
 ## Model Training Stages
 
-TBD: Diagram
+![](diagrams/stages.svg){.lightbox fig-align="center" width="600px"}
 
 ## Model Training Stages
 
@@ -59,7 +59,7 @@ TBD: Diagram
 
 ## Model Training Stages
 
-TBD: Updated diagram
+![](diagrams/stages-loop.svg){.lightbox fig-align="center" width="600px"}
 
 # Supervised Fine-Tuning (SFT)
 
@@ -76,12 +76,15 @@ TBD: Updated diagram
 
 ## Supervised Fine-Tuning (SFT)
 
-TBD: Diagram 
+TBD: Diagram
 
 ## Supervised Fine-Tuning (SFT) with LoRA
 
 - Adjusting all parameters in a model can be compute and memory intensive
 - We will use LoRA (Low-Rank Adaptation), a Parameter Efficient Fine-Tuning (PEFT) strategy
+
+## Supervised Fine-Tuning (SFT) with LoRA
+
 - How LoRA works:
   - The model's base weights (W) are frozen (never updated) during training
   - Two small matrices (A and B) are introduced, whose product represents the desired change to W
@@ -125,7 +128,7 @@ TBD: Diagram
 - Assuming things went well...
   - Merge and upload our model to Hugging Face
   - Quantize our model (create a GGUF) and upload to Hugging Face
-  - Publish a model card
+  - Download and test our model in LM Studio
   
 # Upload Training Files
 
@@ -146,15 +149,15 @@ TBD: Diagram
 
 {{< embed notebooks/create-dataset.ipynb#upload echo=true outputs=false >}}
 
+# Demo
+
+Uploading the training data files to Hugging Face Dataset
+
 ## Upload Training Files
 
 - After you've uploaded
   - It will take a few minutes before you can browse your data
   - About 24-48 hours, you will likely receive an email about conversion to parquet format
-
-# Demo
-
-Uploading the training data files to Hugging Face Dataset
 
 # Hands-on
 
