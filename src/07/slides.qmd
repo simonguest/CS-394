@@ -76,7 +76,11 @@ bibliography: references.bib
 
 ## Supervised Fine-Tuning (SFT)
 
-TBD: Diagram
+![](diagrams/sft-training.svg){.lightbox fig-align="center" width="600px"}
+
+## Supervised Fine-Tuning (SFT)
+
+![](diagrams/sft-validation.svg){.lightbox fig-align="center" width="600px"}
 
 ## Supervised Fine-Tuning (SFT) with LoRA
 
@@ -94,7 +98,7 @@ TBD: Diagram
 
 ## Supervised Fine-Tuning (SFT) with LoRA
 
-TBD: Diagram
+![](diagrams/sft-lora.svg){.lightbox fig-align="center" width="600px"}
 
 ## Supervised Fine-Tuning (SFT) with QLoRA
 
@@ -106,7 +110,7 @@ TBD: Diagram
 
 ## Supervised Fine-Tuning (SFT) with QLoRA
 
-TBD: Diagram
+![](diagrams/sft-qlora.svg){.lightbox fig-align="center" width="600px"}
 
 # Today's Fine-Tuning Plan
 
@@ -129,6 +133,7 @@ TBD: Diagram
   - Merge and upload our model to Hugging Face
   - Quantize our model (create a GGUF) and upload to Hugging Face
   - Download and test our model in LM Studio
+- Phew!
   
 # Upload Training Files
 
