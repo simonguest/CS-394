@@ -1,7 +1,62 @@
 ---
-title: "Module 7 Assignment"
+title: "Module 7 Assignment: Fine-Tune and Publish Your Model"
+format: html
+execute:
+  enabled: false
+---
+**Objective:** Complete the fine-tuning pipeline started in class, publishing a quantized GGUF of your fine-tuned model to Hugging Face and documenting your findings.
+
+**Background:**
+
+You (hopefully!) completed most of your training run during class. This assignment is about seeing it through to the finish line: evaluating the result, sharing it with the world as a downloadable GGUF, and reflecting on what the training data produced and what you'd do differently.
+
 ---
 
-## Assignment
+## Requirements
 
-TBD
+### 1. Complete the Training Run
+
+- Finish running `train-cuda.ipynb` on a Colab A100 instance (if your run did not complete in class)
+- Verify your training run completed without errors (check W&B for a clean loss curve)
+- Use the test cell in the notebook to run against your fine-tuned adapter and note the outputs
+
+### 2. Merge and Upload the Model
+
+- Merge your LoRA adapter back into the base model using the merge cells in `train-cuda.ipynb`
+- Create a model card (`README.md`) for your model on Hugging Face that includes:
+  - A brief description of what the model does and what it was trained on
+  - **Instructions on how to use the model** (system prompt, example input/output, recommended settings)
+  - Training details (base model, dataset size, number of epochs, key hyperparameters)
+  - Known limitations or failure modes you observed during testing
+- Upload the merged model to your Hugging Face account
+
+### 3. Quantize and Publish the GGUF
+
+- Run `quantize.ipynb` to build llama.cpp and convert your merged model to GGUF format
+- Upload the GGUF file(s) to the root of your Hugging Face model repository (so it is discoverable in LM Studio)
+- Confirm you can find and download your model by searching for your Hugging Face username in LM Studio
+
+### 4. Write an Observations Document
+
+Write a short document (1 page is fine, any format: Notebook, Markdown, PDF, Google Doc) covering:
+
+- **What worked well:** Which types of prompts did the model handle correctly? Did it pick up the style/structure/behavior you intended?
+- **What didn't work:** Where did the model fall short or produce unexpected outputs? Include specific examples.
+- **Your W&B loss curves:** Briefly describe what you observed — did training loss and validation loss behave as expected? Any signs of overfitting?
+- **What you would change:** If you ran fine-tuning again, what would you do differently? (Consider: training data quality, diversity dimensions, number of examples, hyperparameters, number of epochs, or the use case itself.)
+
+---
+
+## Deliverables
+
+- **Published GGUF (Q4_K_M) on Hugging Face:** Link to your Hugging Face model page in Moodle
+- **Observations 1-pager:** Link to your observations doc in Moodle
+
+---
+
+## Hints
+
+- **Don't forget to stop your Colab instance** once training and quantization are complete — A100 hours are expensive and you will burn down your credits!
+- **If your training run crashed or produced poor results**, don't worry! — document what happened and try a smaller dataset or fewer epochs. A "failed" run with good observations is better than a fabricated one
+- **Check your loss curves before merging** — if your validation loss was increasing by the end of training, your model may be overfitting. You can load an earlier checkpoint instead (I can talk you through this in office hours)
+- **Model card quality matters** — think of it as a README for a project you will be sharing with a future employer!
