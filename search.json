@@ -1195,7 +1195,18 @@
     "href": "src/07/slides.html#supervised-fine-tuning-sft-2",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Supervised Fine-Tuning (SFT)",
-    "text": "Supervised Fine-Tuning (SFT)\nTBD: Diagram",
+    "text": "Supervised Fine-Tuning (SFT)",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#supervised-fine-tuning-sft-3",
+    "href": "src/07/slides.html#supervised-fine-tuning-sft-3",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Supervised Fine-Tuning (SFT)",
+    "text": "Supervised Fine-Tuning (SFT)",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1228,7 +1239,7 @@
     "href": "src/07/slides.html#supervised-fine-tuning-sft-with-lora-2",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Supervised Fine-Tuning (SFT) with LoRA",
-    "text": "Supervised Fine-Tuning (SFT) with LoRA\nTBD: Diagram",
+    "text": "Supervised Fine-Tuning (SFT) with LoRA",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1250,7 +1261,7 @@
     "href": "src/07/slides.html#supervised-fine-tuning-sft-with-qlora-1",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Supervised Fine-Tuning (SFT) with QLoRA",
-    "text": "Supervised Fine-Tuning (SFT) with QLoRA\nTBD: Diagram",
+    "text": "Supervised Fine-Tuning (SFT) with QLoRA",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1272,7 +1283,7 @@
     "href": "src/07/slides.html#todays-fine-tuning-plan-22",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Today’s Fine-Tuning Plan (2/2)",
-    "text": "Today’s Fine-Tuning Plan (2/2)\n\nAfter training has completed…\n\nTest (both manually and automatic)\n\nAssuming things went well…\n\nMerge and upload our model to Hugging Face\nQuantize our model (create a GGUF) and upload to Hugging Face\nDownload and test our model in LM Studio",
+    "text": "Today’s Fine-Tuning Plan (2/2)\n\nAfter training has completed…\n\nTest (both manually and automatic)\n\nAssuming things went well…\n\nMerge and upload our model to Hugging Face\nQuantize our model (create a GGUF) and upload to Hugging Face\nDownload and test our model in LM Studio\n\nPhew!",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
