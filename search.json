@@ -1129,7 +1129,7 @@
     "href": "src/07/slides.html#lesson-objectives",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Lesson Objectives",
-    "text": "Lesson Objectives\n\nUse your generated synthetic data to fine-tune an SLM using QLoRA\nUse W&B (Weights & Biases) to observe metrics during the training run\nPost-training, test and evaluate the accuracy of your fine-tuned model\nMerge, quantize, and upload your model to Hugging Face to share with others\nUnderstand and create a model card for your newly fine-tuned model",
+    "text": "Lesson Objectives\n\nUse your generated synthetic data to fine-tune an SLM using QLoRA\nUse W&B (Weights & Biases) to observe metrics during the training run\nPost-training, test and evaluate the accuracy of your fine-tuned model\nMerge, quantize, and upload your model to Hugging Face to share with others\nCreate a model card for your newly fine-tuned model",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1140,7 +1140,7 @@
     "href": "src/07/slides.html#model-training-stages-1",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Model Training Stages",
-    "text": "Model Training Stages\n\nThere are three main stages of training a model:\n\nPretraining: The initial, large-scale training run that creates a base model with pretrained weights\n\nTraining data: Trillions of tokens from the internet, books, code, etc.\n\nSupervised Fine-Tuning (SFT): Shapes the base model to follow instructions and respond in a desired style or fornat\n\nTraining data: Hundreds to thousands of input/output pairs\n\nAlignment: Further refines the model toward preferred behaviors and values\n\nTraining data: Human-curated preferences and/or reward-based feedback",
+    "text": "Model Training Stages\n\nThere are three main stages of training a model:\n\nPretraining: The initial, large-scale training run that creates a base model with pretrained weights\nSupervised Fine-Tuning (SFT): Shapes the base model to follow instructions and respond in a desired style or format\nAlignment: Further refines the model toward preferred behaviors and values",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1162,7 +1162,7 @@
     "href": "src/07/slides.html#model-training-stages-3",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Model Training Stages",
-    "text": "Model Training Stages\n\nMany models (e.g., google/gemma-3-it) have already gone through these three stages\n\nWe will be adding a fourth stage. An SFT of an existing “polished” model\n\nWhy?\n\nThe model already knows how to follow instructions, answer questions, etc.\nThey need far less training data to get good results\nTraining tends to be faster and more stable since they are starting from a good baseline",
+    "text": "Model Training Stages\n\nMany models (e.g., Qwen3-1.7B) have already gone through these three stages\n\nWe will be adding a fourth stage. An SFT of an existing “polished” model\n\nWhy?\n\nThe model already knows how to follow instructions, answer questions, etc.\nThey need far less training data to get good results\nTraining tends to be faster and more stable since they are starting from a good baseline",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1184,7 +1184,7 @@
     "href": "src/07/slides.html#supervised-fine-tuning-sft-1",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Supervised Fine-Tuning (SFT)",
-    "text": "Supervised Fine-Tuning (SFT)\n\nHow does SFT work?\n\nBuild a dataset (we did this already!)\nFeed the prompts into the model and compare the desired output tokens with the model’s predictions\nThe difference between the two is known as the “training loss”\nBackpropagate through the model, nudging the weights to guide toward the desired output\nThis “nudging” is done using an optimizer (typically AdamW)\nRepeat for typically 1-3 epochs (complete passes through the dataset)\nMonitor validation loss to detect overfitting or diminishing returns",
+    "text": "Supervised Fine-Tuning (SFT)\n\nHow does SFT work?\n\nBuild training and validation datasets (we did this already!)\nFeed the prompts into the model and compare the desired output tokens with the model’s predictions\nThe difference between the two is known as the training loss",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1195,7 +1195,7 @@
     "href": "src/07/slides.html#supervised-fine-tuning-sft-2",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Supervised Fine-Tuning (SFT)",
-    "text": "Supervised Fine-Tuning (SFT)",
+    "text": "Supervised Fine-Tuning (SFT)\n\nHow does SFT work?\n\nBack propagate through the model, nudging the weights to guide toward the desired output\nThis “nudging” is done using an optimizer (typically AdamW)\nRepeat for typically 1-3 epochs (epoch = complete pass through the dataset)\nMonitor validation loss and checkpoint the model at regular intervals",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1213,77 +1213,99 @@
     ]
   },
   {
-    "objectID": "src/07/slides.html#supervised-fine-tuning-sft-with-lora",
-    "href": "src/07/slides.html#supervised-fine-tuning-sft-with-lora",
+    "objectID": "src/07/slides.html#supervised-fine-tuning-sft-4",
+    "href": "src/07/slides.html#supervised-fine-tuning-sft-4",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "Supervised Fine-Tuning (SFT) with LoRA",
-    "text": "Supervised Fine-Tuning (SFT) with LoRA\n\nAdjusting all parameters in a model can be compute and memory intensive\nWe will use LoRA (Low-Rank Adaptation), a Parameter Efficient Fine-Tuning (PEFT) strategy",
+    "section": "Supervised Fine-Tuning (SFT)",
+    "text": "Supervised Fine-Tuning (SFT)",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#supervised-fine-tuning-sft-with-lora-1",
-    "href": "src/07/slides.html#supervised-fine-tuning-sft-with-lora-1",
+    "objectID": "src/07/slides.html#supervised-fine-tuning-sft-5",
+    "href": "src/07/slides.html#supervised-fine-tuning-sft-5",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "Supervised Fine-Tuning (SFT) with LoRA",
-    "text": "Supervised Fine-Tuning (SFT) with LoRA\n\nHow LoRA works:\n\nThe model’s base weights (W) are frozen (never updated) during training\nTwo small matrices (A and B) are introduced, whose product represents the desired change to W\nOnly A and B are updated during training — a tiny fraction of the total parameters\nAfter training, these matrices are known as an “adapter”\nThe adapter can be kept separate (swappable) or merged back into W to create a new, standalone model",
+    "section": "Supervised Fine-Tuning (SFT)",
+    "text": "Supervised Fine-Tuning (SFT)\n\nTraining Loss tells us how close the model predicts vs. our desired outputs\nValidation Loss tells us how well the model predicts on data that it hasn’t been trained on\n\nPrevents the model from memorizing the training data vs. generalizing\n“Memorizing training data” known as overfitting",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#supervised-fine-tuning-sft-with-lora-2",
-    "href": "src/07/slides.html#supervised-fine-tuning-sft-with-lora-2",
+    "objectID": "src/07/slides.html#introducing-lora",
+    "href": "src/07/slides.html#introducing-lora",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "Supervised Fine-Tuning (SFT) with LoRA",
-    "text": "Supervised Fine-Tuning (SFT) with LoRA",
+    "section": "Introducing LoRA",
+    "text": "Introducing LoRA\n\nAdjusting all parameters in a model can be compute and memory intensive\nIntroducing LoRA: Low-Rank Adaptation of Large Language Models (Hu et al. 2021)",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#supervised-fine-tuning-sft-with-qlora",
-    "href": "src/07/slides.html#supervised-fine-tuning-sft-with-qlora",
+    "objectID": "src/07/slides.html#introducing-lora-1",
+    "href": "src/07/slides.html#introducing-lora-1",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "Supervised Fine-Tuning (SFT) with QLoRA",
-    "text": "Supervised Fine-Tuning (SFT) with QLoRA\n\nTo further increase memory efficiency, we will use QLoRA (Quantized LoRA)\n\nThe base model weights (W) are quantized to 4-bit (NF4 format) for storage\nDuring the forward pass, W is dequantized to bf16 on the fly for computation, then discarded\nAdapter matrices A and B are kept at full precision (bf16) for training accuracy\nSince only A and B are trained, optimizer states (which can be 3-4x the size of W at full precision) only exist for the tiny adapter matrices — dramatically reducing memory usage",
+    "section": "Introducing LoRA",
+    "text": "Introducing LoRA\n\nHow LoRA works:\n\nThe model’s base weights (W) are frozen (never updated) during training\nTwo small matrices (A and B) are introduced, whose product represents the desired change to W\nOnly A and B are updated during training — a tiny fraction of the total parameters\nAfter training, these matrices are known as an “adapter”\nThe adapter can be kept separate (swappable) or merged back into W to create a new, standalone model",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#supervised-fine-tuning-sft-with-qlora-1",
-    "href": "src/07/slides.html#supervised-fine-tuning-sft-with-qlora-1",
+    "objectID": "src/07/slides.html#introducing-lora-2",
+    "href": "src/07/slides.html#introducing-lora-2",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "Supervised Fine-Tuning (SFT) with QLoRA",
-    "text": "Supervised Fine-Tuning (SFT) with QLoRA",
+    "section": "Introducing LoRA",
+    "text": "Introducing LoRA",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#todays-fine-tuning-plan-12",
-    "href": "src/07/slides.html#todays-fine-tuning-plan-12",
+    "objectID": "src/07/slides.html#introducing-qlora",
+    "href": "src/07/slides.html#introducing-qlora",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "Today’s Fine-Tuning Plan (1/2)",
-    "text": "Today’s Fine-Tuning Plan (1/2)\n\nUpload our .jsonl files to Hugging Face to create a dataset\nIn our training notebook…\n\nDownload the dataset\nFormat our training data to match the chat template\nStart our training run!\n\nUse W&B (Weights & Biases) to monitor how well our model is learning\n\nTraining loss\nValidation loss",
+    "section": "Introducing QLoRA",
+    "text": "Introducing QLoRA\n\nTo further increase memory efficiency, we will use QLoRA (Quantized LoRA)\n\nIntroducing QLoRA: Efficient Finetuning of Quantized LLMs (Dettmers et al. 2023)\nThe base model weights (W) are quantized to 4-bit (NF4 format) for storage\nDuring the forward pass, W is dequantized to bf16 on the fly for computation, then discarded\nAdapter matrices A and B are kept at full precision (bf16) for training accuracy",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#todays-fine-tuning-plan-22",
-    "href": "src/07/slides.html#todays-fine-tuning-plan-22",
+    "objectID": "src/07/slides.html#introducing-qlora-1",
+    "href": "src/07/slides.html#introducing-qlora-1",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "Today’s Fine-Tuning Plan (2/2)",
-    "text": "Today’s Fine-Tuning Plan (2/2)\n\nAfter training has completed…\n\nTest (both manually and automatic)\n\nAssuming things went well…\n\nMerge and upload our model to Hugging Face\nQuantize our model (create a GGUF) and upload to Hugging Face\nDownload and test our model in LM Studio\n\nPhew!",
+    "section": "Introducing QLoRA",
+    "text": "Introducing QLoRA",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#our-fine-tuning-plan-12",
+    "href": "src/07/slides.html#our-fine-tuning-plan-12",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Our Fine-Tuning Plan (1/2)",
+    "text": "Our Fine-Tuning Plan (1/2)\n\nUpload our .jsonl files to Hugging Face to create a dataset\nIn our training notebook…\n\nDownload the dataset\nFormat our training data to match the chat template\n\ni.e., convert JSON to &lt;|imstart|&gt;user... etc.\n\nStart our training run!\n\nUse W&B (Weights & Biases) to monitor how well our model is learning\n\nTraining loss and validation loss",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#our-fine-tuning-plan-22",
+    "href": "src/07/slides.html#our-fine-tuning-plan-22",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Our Fine-Tuning Plan (2/2)",
+    "text": "Our Fine-Tuning Plan (2/2)\n\nAfter training has completed…\n\nTest (both manually and automatic)\n\nAssuming things went well…\n\nMerge and upload our model to Hugging Face\nQuantize our model (create a GGUF) and upload to Hugging Face\nDownload and test our model in LM Studio\n\nPhew!",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1294,7 +1316,7 @@
     "href": "src/07/slides.html#upload-training-files-1",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Upload Training Files",
-    "text": "Upload Training Files\n\nUpload our train.jsonl, validation.jsonl, and test.jsonl files to a Hugging Face Dataset\nWhy?\n\nSingle repository\nEasy to hook into training runs\nShareable with others\nBetter UI and query semantics vs. raw .jsonl files",
+    "text": "Upload Training Files\n\nUpload our train.jsonl, validation.jsonl, and test.jsonl files to a Hugging Face Dataset\nWhy do this?\n\nSingle repository\nEasy to hook into training libraries\nShareable with others\nBetter UI and query semantics vs. raw .jsonl files",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1338,7 +1360,7 @@
     "href": "src/07/slides.html#the-training-notebook-1",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "The Training Notebook",
-    "text": "The Training Notebook\n\ntrain-cuda.ipynb contains the steps to fine-tune a small model\nMain sections\n\nSet training parameters\nDownload dataset from Hugging Face\nCreate formatted dataset that uses the chat template\nLoad base model and configure for QLoRA\nCreate our trainer\nTrain!",
+    "text": "The Training Notebook\n\ntrain-cuda.ipynb contains the steps to fine-tune a small model\nMain sections\n\nSet training parameters\nDownload datasets from Hugging Face\nCreate formatted dataset that uses the chat template\nLoad base model and configure for QLoRA\nCreate our trainer\nTrain!",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1356,99 +1378,99 @@
     ]
   },
   {
-    "objectID": "src/07/slides.html#lora-hyperparameters",
-    "href": "src/07/slides.html#lora-hyperparameters",
+    "objectID": "src/07/slides.html#training-hyperparameters-1",
+    "href": "src/07/slides.html#training-hyperparameters-1",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "LoRA Hyperparameters",
-    "text": "LoRA Hyperparameters\nBATCH_SIZE = 4\n\nNumber of training examples processed together in a single forward/backward pass\nLarger batches = more stable gradient estimates, but consume more memory\n2-8 recommended",
+    "section": "Training Hyperparameters",
+    "text": "Training Hyperparameters\nBATCH_SIZE = 4\n\nNumber of training examples processed together in a single forward/backward pass\nLarger batches = more stable gradient estimates, but consume more memory\n2-8 recommended",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#lora-hyperparameters-1",
-    "href": "src/07/slides.html#lora-hyperparameters-1",
+    "objectID": "src/07/slides.html#training-hyperparameters-2",
+    "href": "src/07/slides.html#training-hyperparameters-2",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "LoRA Hyperparameters",
-    "text": "LoRA Hyperparameters\nGRADIENT_ACCUMULATION_STEPS = 4\n\nInstead of updating weights after every batch, accumulate over this many batches before taking an optimizer step\nMemory-efficient way to increase the batch size\n2-16 recommended",
+    "section": "Training Hyperparameters",
+    "text": "Training Hyperparameters\nGRADIENT_ACCUMULATION_STEPS = 4\n\nInstead of updating weights after every batch, accumulate over this many batches before taking an optimizer step\nMemory-efficient way to increase the batch size\n2-16 recommended",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#lora-hyperparameters-2",
-    "href": "src/07/slides.html#lora-hyperparameters-2",
+    "objectID": "src/07/slides.html#training-hyperparameters-3",
+    "href": "src/07/slides.html#training-hyperparameters-3",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "LoRA Hyperparameters",
-    "text": "LoRA Hyperparameters\nLEARNING_RATE = 2e-4\n\nHow large a step the optimizer takes when updating weights\nToo high = training becomes unstable\nToo low = training is too slow or gets stuck\n1e-4 or 2e-4 are common starting points",
+    "section": "Training Hyperparameters",
+    "text": "Training Hyperparameters\nLEARNING_RATE = 2e-4 (or 0.0002)\n\nHow large a step the optimizer takes when updating weights\nToo high = training becomes unstable\nToo low = training is too slow or gets stuck\n1e-4 or 2e-4 are common starting points",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#lora-hyperparameters-3",
-    "href": "src/07/slides.html#lora-hyperparameters-3",
+    "objectID": "src/07/slides.html#training-hyperparameters-4",
+    "href": "src/07/slides.html#training-hyperparameters-4",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "LoRA Hyperparameters",
-    "text": "LoRA Hyperparameters\nNUM_EPOCHS = 3\n\nNumber of times the model sees the entire dataset\nMore epochs can improve training, but with the risk of overfitting\n2-5 epochs for a few thousand examples recommended",
+    "section": "Training Hyperparameters",
+    "text": "Training Hyperparameters\nNUM_EPOCHS = 3\n\nNumber of times the model sees the entire dataset\nMore epochs can improve training, but with the risk of overfitting\n2-5 epochs for a few thousand examples recommended",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#lora-hyperparameters-4",
-    "href": "src/07/slides.html#lora-hyperparameters-4",
+    "objectID": "src/07/slides.html#training-hyperparameters-5",
+    "href": "src/07/slides.html#training-hyperparameters-5",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "LoRA Hyperparameters",
-    "text": "LoRA Hyperparameters\nMAX_SEQ_LENGTH = 512\n\nThe maximum number of tokens in a single training example\n(Length of one of the lines in your jsonl file)\nShould cover your longest examples without too much padding",
+    "section": "Training Hyperparameters",
+    "text": "Training Hyperparameters\nMAX_SEQ_LENGTH = 512\n\nThe maximum number of tokens in a single training example\n(Length of one of the lines in your jsonl file)\nShould cover your longest examples without too much padding",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#lora-hyperparameters-5",
-    "href": "src/07/slides.html#lora-hyperparameters-5",
+    "objectID": "src/07/slides.html#training-hyperparameters-6",
+    "href": "src/07/slides.html#training-hyperparameters-6",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "LoRA Hyperparameters",
-    "text": "LoRA Hyperparameters\nLORA_R = 16\n\nThe rank of the adapter matrics - i.e., how many parameters are added during fine-tuning\nHigher rank = more capacity, but also more memory and risk of overfitting\n4, 8, 16, 32 common values; 8-16 for small models",
+    "section": "Training Hyperparameters",
+    "text": "Training Hyperparameters\nLORA_R = 16\n\nThe rank of the adapter matrices - i.e., how many parameters are added during fine-tuning\nHigher rank = more capacity, but also more memory and risk of overfitting\n\ne.g., 4096 x 4096 weight matrix = 16M parameters\nA = 4096x16; B=16x4096; Total = 131K parameters to be trained\n\n4, 8, 16, 32 common values; 8-16 for small models",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#lora-hyperparameters-6",
-    "href": "src/07/slides.html#lora-hyperparameters-6",
+    "objectID": "src/07/slides.html#training-hyperparameters-7",
+    "href": "src/07/slides.html#training-hyperparameters-7",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "LoRA Hyperparameters",
-    "text": "LoRA Hyperparameters\nLORA_ALPHA = 32\n\nA scaling factor for the LoRA updates\nUsually set to 2x the rank (LORA_R)",
+    "section": "Training Hyperparameters",
+    "text": "Training Hyperparameters\nLORA_ALPHA = 32\n\nA scaling factor for the LoRA updates\nUsually set to 2x the rank (LORA_R)",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#lora-hyperparameters-7",
-    "href": "src/07/slides.html#lora-hyperparameters-7",
+    "objectID": "src/07/slides.html#training-hyperparameters-8",
+    "href": "src/07/slides.html#training-hyperparameters-8",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "LoRA Hyperparameters",
-    "text": "LoRA Hyperparameters\nLORA_DROPOUT = 0.05\n\nRandomly zero out a small fraction of the adapter activations during training\nRegulation technique to prevent overfitting\n0.0 to 0.1 common range; use lower values for very small datasets",
+    "section": "Training Hyperparameters",
+    "text": "Training Hyperparameters\nLORA_DROPOUT = 0.05\n\nRandomly zero out a small fraction of the adapter activations during training\nRegularization technique to prevent overfitting\n0.0 to 0.1 common range; use lower values for very small datasets",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#lora-hyperparameters-8",
-    "href": "src/07/slides.html#lora-hyperparameters-8",
+    "objectID": "src/07/slides.html#training-hyperparameters-9",
+    "href": "src/07/slides.html#training-hyperparameters-9",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "LoRA Hyperparameters",
-    "text": "LoRA Hyperparameters\nUSE_4BIT = True\n\nEnables QLoRA by loading the base model weights (W) in 4-bit precision\nOptional for training 1B models in 8Gb VRAM\nDefinitely needed for 7B and 13B fine-tuning runs",
+    "section": "Training Hyperparameters",
+    "text": "Training Hyperparameters\nUSE_4BIT = True\n\nEnables QLoRA by loading the base model weights (W) in 4-bit precision\nOptional for training 1B models in 8Gb VRAM\nDefinitely needed for 7B and 13B fine-tuning runs",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1470,7 +1492,7 @@
     "href": "src/07/slides.html#weights-biases-2",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Weights & Biases",
-    "text": "Weights & Biases",
+    "text": "Weights & Biases\n\nSystem Metrics\n\nMetrics on the health of the underlying hardware used to train the model\nProvided automatically via the W&B library\nUseful for hardware capacity monitoring, especially if the training run crashes\n\nWhat to look for:\n\nStability - i.e., not running out of VRAM, disk space, etc.",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1481,7 +1503,7 @@
     "href": "src/07/slides.html#weights-biases-3",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Weights & Biases",
-    "text": "Weights & Biases\n\nSystem Metrics\n\nMetrics on the health of the underlying hardware used to train the model\nProviding automatically via the W&B library\nUseful for hardware capacity monitoring, especially if the training run crashes\n\nWhat to look for:\n\nStability - i.e., not running out of VRAM, disk space, etc.",
+    "text": "Weights & Biases",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1492,7 +1514,7 @@
     "href": "src/07/slides.html#weights-biases-4",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Weights & Biases",
-    "text": "Weights & Biases",
+    "text": "Weights & Biases\n\nTraining Metrics\n\nMetrics on the performance of the training process (how accurate are the output tokens matching the training data)\nNumber of tokens, token accuracy, training loss, grad_norm, etc.\n\nWhat to look for:\n\nToken accuracy should increase quickly and plateau\nTraining loss should decrease quickly and plateau\nGrad norm should not have drastic spikes (e.g., to 100)",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1503,7 +1525,7 @@
     "href": "src/07/slides.html#weights-biases-5",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Weights & Biases",
-    "text": "Weights & Biases\n\nTraining Metrics\n\nMetrics on the performance of the training process (how accurate are the output tokens matching the training data)\nNumber of tokens, token accuracy, training loss, grad_norm, etc.\n\nWhat to look for:\n\nToken accuracy should increase quickly and plateau\nTraining loss should decrease quickly and plateau\nGrad norm should not have drastic spikes (e.g., to 100)",
+    "text": "Weights & Biases",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1514,7 +1536,7 @@
     "href": "src/07/slides.html#weights-biases-6",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Weights & Biases",
-    "text": "Weights & Biases",
+    "text": "Weights & Biases\n\nEval Metrics\n\nMetrics on the validation runs during training (predictions using the validation dataset)\nNumber of tokens, token accuracy, eval loss (a.k.a. validation loss)\n\nWhat to look for:\n\nValidation loss should decrease quickly and plateau\nValidation loss should be very close to training loss\nValidation loss should not start to increase (indicates overfitting)",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1525,7 +1547,7 @@
     "href": "src/07/slides.html#weights-biases-7",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Weights & Biases",
-    "text": "Weights & Biases\n\nEval Metrics\n\nMetrics on the validation runs during training (how well is the model able to match the output from the validation set)\nNumber of tokens, token accuracy, eval loss (a.k.a. validation loss)\n\nWhat the look for:\n\nToken accuracy should increase quickly and plateau\nValidation loss should decrease quickly and plateau\nValidation loss should be very close to training loss (maybe slightly behind)\nValidation loss should not start to increase (strongest signal that the model is overfitting)",
+    "text": "Weights & Biases",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1536,7 +1558,7 @@
     "href": "src/07/slides.html#post-training-1",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Post-Training",
-    "text": "Post-Training\n\nAfter training has completed:\n\nTest the model using a random input from our test dataset\nCreate a model card, merge the models, and upload to Hugging Face\nQuantize the model and upgrade the GGUF to Hugging Face\nDownload the GGUF in LM Studio!",
+    "text": "Post-Training\n\nAfter training has completed:\n\nTest the model using a random input from our test dataset\nCreate a model card, merge the models, and upload to Hugging Face\nQuantize the model and upload the GGUF to Hugging Face\nDownload the GGUF in LM Studio!",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1712,7 +1734,7 @@
     "href": "src/07/slides.html#references-1",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "References",
-    "text": "References",
+    "text": "References\n\n\n\n\nDettmers, Tim, Artidoro Pagnoni, Ari Holtzman, and Luke Zettlemoyer. 2023. “QLoRA: Efficient Finetuning of Quantized LLMs.” Advances in Neural Information Processing Systems 36. https://arxiv.org/abs/2305.14314.\n\n\nHu, Edward J., Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu Wang, and Weizhu Chen. 2021. “LoRA: Low-Rank Adaptation of Large Language Models.” arXiv Preprint arXiv:2106.09685. https://arxiv.org/abs/2106.09685.",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1721,20 +1743,42 @@
   {
     "objectID": "src/07/assignment.html",
     "href": "src/07/assignment.html",
-    "title": "Module 7 Assignment",
+    "title": "Module 7 Assignment: Fine-Tune and Publish Your Model",
     "section": "",
-    "text": "TBD",
+    "text": "Objective: Complete the fine-tuning pipeline started in class, publishing a quantized GGUF of your fine-tuned model to Hugging Face and documenting your findings.\nBackground:\nYou (hopefully!) completed most of your training run during class. This assignment is about seeing it through to the finish line: evaluating the result, sharing it with the world as a downloadable GGUF, and reflecting on what the training data produced and what you’d do differently.",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Assignment"
     ]
   },
   {
-    "objectID": "src/07/assignment.html#assignment",
-    "href": "src/07/assignment.html#assignment",
-    "title": "Module 7 Assignment",
-    "section": "",
-    "text": "TBD",
+    "objectID": "src/07/assignment.html#requirements",
+    "href": "src/07/assignment.html#requirements",
+    "title": "Module 7 Assignment: Fine-Tune and Publish Your Model",
+    "section": "Requirements",
+    "text": "Requirements\n\n1. Complete the Training Run\n\nFinish running train-cuda.ipynb on a Colab A100 instance (if your run did not complete in class)\nVerify your training run completed without errors (check W&B for a clean loss curve)\nUse the test cell in the notebook to run against your fine-tuned adapter and note the outputs\n\n\n\n2. Merge and Upload the Model\n\nMerge your LoRA adapter back into the base model using the merge cells in train-cuda.ipynb\nCreate a model card (README.md) for your model on Hugging Face that includes:\n\nA brief description of what the model does and what it was trained on\nInstructions on how to use the model (system prompt, example input/output, recommended settings)\nTraining details (base model, dataset size, number of epochs, key hyperparameters)\nKnown limitations or failure modes you observed during testing\n\nUpload the merged model to your Hugging Face account\n\n\n\n3. Quantize and Publish the GGUF\n\nRun quantize.ipynb to build llama.cpp and convert your merged model to GGUF format\nUpload the GGUF file(s) to the root of your Hugging Face model repository (so it is discoverable in LM Studio)\nConfirm you can find and download your model by searching for your Hugging Face username in LM Studio\n\n\n\n4. Write an Observations Document\nWrite a short document (1 page is fine, any format: Notebook, Markdown, PDF, Google Doc) covering:\n\nWhat worked well: Which types of prompts did the model handle correctly? Did it pick up the style/structure/behavior you intended?\nWhat didn’t work: Where did the model fall short or produce unexpected outputs? Include specific examples.\nYour W&B loss curves: Briefly describe what you observed — did training loss and validation loss behave as expected? Any signs of overfitting?\nWhat you would change: If you ran fine-tuning again, what would you do differently? (Consider: training data quality, diversity dimensions, number of examples, hyperparameters, number of epochs, or the use case itself.)",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Assignment"
+    ]
+  },
+  {
+    "objectID": "src/07/assignment.html#deliverables",
+    "href": "src/07/assignment.html#deliverables",
+    "title": "Module 7 Assignment: Fine-Tune and Publish Your Model",
+    "section": "Deliverables",
+    "text": "Deliverables\n\nPublished GGUF (Q4_K_M) on Hugging Face: Link to your Hugging Face model page in Moodle\nObservations 1-pager: Link to your observations doc in Moodle",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Assignment"
+    ]
+  },
+  {
+    "objectID": "src/07/assignment.html#hints",
+    "href": "src/07/assignment.html#hints",
+    "title": "Module 7 Assignment: Fine-Tune and Publish Your Model",
+    "section": "Hints",
+    "text": "Hints\n\nDon’t forget to stop your Colab instance once training and quantization are complete — A100 hours are expensive and you will burn down your credits!\nIf your training run crashed or produced poor results, don’t worry! — document what happened and try a smaller dataset or fewer epochs. A “failed” run with good observations is better than a fabricated one\nCheck your loss curves before merging — if your validation loss was increasing by the end of training, your model may be overfitting. You can load an earlier checkpoint instead (I can talk you through this in office hours)\nModel card quality matters — think of it as a README for a project you will be sharing with a future employer!",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Assignment"
@@ -7584,7 +7628,73 @@
     "href": "src/07/resources.html",
     "title": "Resources",
     "section": "",
-    "text": "References Slide",
+    "text": "LoRA Paper - “LoRA: Low-Rank Adaptation of Large Language Models” (Hu et al., 2021)\nPEFT on GitHub - Hugging Face’s Parameter-Efficient Fine-Tuning library, supporting LoRA, QLoRA, and other adapters",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/07/resources.html#lora",
+    "href": "src/07/resources.html#lora",
+    "title": "Resources",
+    "section": "",
+    "text": "LoRA Paper - “LoRA: Low-Rank Adaptation of Large Language Models” (Hu et al., 2021)\nPEFT on GitHub - Hugging Face’s Parameter-Efficient Fine-Tuning library, supporting LoRA, QLoRA, and other adapters",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/07/resources.html#qlora",
+    "href": "src/07/resources.html#qlora",
+    "title": "Resources",
+    "section": "QLoRA",
+    "text": "QLoRA\n\nQLoRA Paper - “QLoRA: Efficient Finetuning of Quantized LLMs” (Dettmers et al., 2023)\nbitsandbytes on GitHub - Library providing 4-bit and 8-bit quantization support used by QLoRA",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/07/resources.html#fine-tuning-frameworks",
+    "href": "src/07/resources.html#fine-tuning-frameworks",
+    "title": "Resources",
+    "section": "Fine-Tuning Frameworks",
+    "text": "Fine-Tuning Frameworks\n\nTRL (Transformer Reinforcement Learning) - Hugging Face’s training library, including the SFTTrainer used in this module\nUnsloth on GitHub - Fast and memory-efficient QLoRA/LoRA training with optimized CUDA kernels",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/07/resources.html#weights-biases",
+    "href": "src/07/resources.html#weights-biases",
+    "title": "Resources",
+    "section": "Weights & Biases",
+    "text": "Weights & Biases\n\nWeights & Biases - ML experiment tracking and visualization platform used to monitor training runs\nW&B Quickstart - Getting started guide for logging metrics and comparing runs\nW&B Hugging Face Integration - Automatic integration with Hugging Face Trainer for zero-config logging",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/07/resources.html#hugging-face",
+    "href": "src/07/resources.html#hugging-face",
+    "title": "Resources",
+    "section": "Hugging Face",
+    "text": "Hugging Face\n\nHugging Face Hub - Central repository for sharing models, datasets, and demos\nDatasets Documentation - Library for loading, processing, and publishing datasets\nModel Cards Guide - Best practices for writing model cards, including recommended sections and metadata",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "src/07/resources.html#quantization-and-local-deployment",
+    "href": "src/07/resources.html#quantization-and-local-deployment",
+    "title": "Resources",
+    "section": "Quantization and Local Deployment",
+    "text": "Quantization and Local Deployment\n\nllama.cpp on GitHub - C/C++ library for GGUF quantization (llama-quantize) and local inference\nLM Studio - Desktop GUI for discovering, downloading, and chatting with quantized models from Hugging Face",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Resources"
@@ -7594,8 +7704,8 @@
     "objectID": "src/07/resources.html#citations",
     "href": "src/07/resources.html#citations",
     "title": "Resources",
-    "section": "",
-    "text": "References Slide",
+    "section": "Citations",
+    "text": "Citations\n\nReferences Slide",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Resources"

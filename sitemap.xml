@@ -2,258 +2,258 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://simonguest.github.io/CS-394/src/07/notebooks/train-cuda.html</loc>
-    <lastmod>2026-02-26T18:41:50.520Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.983Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/07/notebooks/create-dataset.html</loc>
-    <lastmod>2026-02-26T18:41:50.519Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.982Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/06/notebooks/text-to-sql.html</loc>
-    <lastmod>2026-02-26T18:41:50.495Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.956Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/06/notebooks/hallucinations.html</loc>
-    <lastmod>2026-02-26T18:41:50.495Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.956Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/05/notebooks/quantization.html</loc>
-    <lastmod>2026-02-26T18:41:50.493Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.954Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/05/notebooks/moe-heatmap.html</loc>
-    <lastmod>2026-02-26T18:41:50.493Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.953Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/04/notebooks/vlm-gemma-3-4b.html</loc>
-    <lastmod>2026-02-26T18:41:50.468Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.926Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/04/notebooks/text-to-image-replicate.html</loc>
-    <lastmod>2026-02-26T18:41:50.455Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.912Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/04/notebooks/outpainting.html</loc>
-    <lastmod>2026-02-26T18:41:50.410Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.862Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/04/notebooks/image-to-image-sd-1.5.html</loc>
-    <lastmod>2026-02-26T18:41:50.393Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.843Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/04/notebooks/depth-map-as-context.html</loc>
-    <lastmod>2026-02-26T18:41:50.360Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.808Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/03/notebooks/open-meteo-mcp.html</loc>
-    <lastmod>2026-02-26T18:41:50.270Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.709Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/03/notebooks/campus-agent.html</loc>
-    <lastmod>2026-02-26T18:41:50.268Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.708Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/02/notebooks/structured-outputs.html</loc>
-    <lastmod>2026-02-26T18:41:50.206Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.640Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/02/notebooks/gradio.html</loc>
-    <lastmod>2026-02-26T18:41:50.206Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.640Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/02/notebooks/chat-completion-openai.html</loc>
-    <lastmod>2026-02-26T18:41:50.205Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.639Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/01/notebooks/translation-transformer.html</loc>
-    <lastmod>2026-02-26T18:41:50.188Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.620Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/01/notebooks/GPT-2.html</loc>
-    <lastmod>2026-02-26T18:41:50.188Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.620Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/08/resources.html</loc>
-    <lastmod>2026-02-26T18:41:50.538Z</lastmod>
+    <lastmod>2026-02-26T21:25:55.008Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/07/slides.html</loc>
-    <lastmod>2026-02-26T18:41:50.537Z</lastmod>
+    <lastmod>2026-02-26T21:25:55.007Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/07/assignment.html</loc>
-    <lastmod>2026-02-26T18:41:50.495Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.956Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/06/resources.html</loc>
-    <lastmod>2026-02-26T18:41:50.495Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.956Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/05/slides.html</loc>
-    <lastmod>2026-02-26T18:41:50.493Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.954Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/05/assignment.html</loc>
-    <lastmod>2026-02-26T18:41:50.468Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.927Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/04/resources.html</loc>
-    <lastmod>2026-02-26T18:41:50.468Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.927Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/03/slides.html</loc>
-    <lastmod>2026-02-26T18:41:50.270Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.709Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/03/assignment.html</loc>
-    <lastmod>2026-02-26T18:41:50.206Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.640Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/02/resources.html</loc>
-    <lastmod>2026-02-26T18:41:50.206Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.640Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/01/slides.html</loc>
-    <lastmod>2026-02-26T18:41:50.188Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.620Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/01/assignment.html</loc>
-    <lastmod>2026-02-26T18:41:50.187Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.620Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/00/slides.html</loc>
-    <lastmod>2026-02-26T18:41:50.187Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.620Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/00/final-rubric-394.html</loc>
-    <lastmod>2026-02-26T18:41:50.187Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.620Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/index.html</loc>
-    <lastmod>2026-02-26T18:41:50.187Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.619Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/00/final-rubric-594.html</loc>
-    <lastmod>2026-02-26T18:41:50.187Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.620Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/00/weekly-rubric.html</loc>
-    <lastmod>2026-02-26T18:41:50.187Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.620Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/01/resources.html</loc>
-    <lastmod>2026-02-26T18:41:50.188Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.620Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/02/assignment.html</loc>
-    <lastmod>2026-02-26T18:41:50.188Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.620Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/02/slides.html</loc>
-    <lastmod>2026-02-26T18:41:50.206Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.640Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/03/resources.html</loc>
-    <lastmod>2026-02-26T18:41:50.270Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.709Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/04/assignment.html</loc>
-    <lastmod>2026-02-26T18:41:50.270Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.709Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/04/slides.html</loc>
-    <lastmod>2026-02-26T18:41:50.468Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.927Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/05/resources.html</loc>
-    <lastmod>2026-02-26T18:41:50.493Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.954Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/06/assignment.html</loc>
-    <lastmod>2026-02-26T18:41:50.493Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.954Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/06/slides.html</loc>
-    <lastmod>2026-02-26T18:41:50.495Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.956Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/07/resources.html</loc>
-    <lastmod>2026-02-26T18:41:50.537Z</lastmod>
+    <lastmod>2026-02-26T21:25:55.007Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/08/assignment.html</loc>
-    <lastmod>2026-02-26T18:41:50.537Z</lastmod>
+    <lastmod>2026-02-26T21:25:55.007Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/08/slides.html</loc>
-    <lastmod>2026-02-26T18:41:50.538Z</lastmod>
+    <lastmod>2026-02-26T21:25:55.008Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/01/notebooks/hello-world.html</loc>
-    <lastmod>2026-02-26T18:41:50.188Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.620Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/01/notebooks/word2vec.html</loc>
-    <lastmod>2026-02-26T18:41:50.188Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.620Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/02/notebooks/chat-completion-openrouter.html</loc>
-    <lastmod>2026-02-26T18:41:50.206Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.640Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/02/notebooks/instruction-tuned.html</loc>
-    <lastmod>2026-02-26T18:41:50.206Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.640Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/02/notebooks/token-streaming.html</loc>
-    <lastmod>2026-02-26T18:41:50.206Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.640Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/03/notebooks/memory.html</loc>
-    <lastmod>2026-02-26T18:41:50.270Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.709Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/04/notebooks/controlnet-openpose-sd-1.5.html</loc>
-    <lastmod>2026-02-26T18:41:50.324Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.769Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/04/notebooks/generate-depth-map.html</loc>
-    <lastmod>2026-02-26T18:41:50.361Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.809Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/04/notebooks/inpainting.html</loc>
-    <lastmod>2026-02-26T18:41:50.393Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.843Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/04/notebooks/pbr-creator.html</loc>
-    <lastmod>2026-02-26T18:41:50.440Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.896Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/04/notebooks/text-to-image-sd-1.5.html</loc>
-    <lastmod>2026-02-26T18:41:50.467Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.926Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/05/notebooks/local-webserver.html</loc>
-    <lastmod>2026-02-26T18:41:50.492Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.952Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/05/notebooks/python-binding.html</loc>
-    <lastmod>2026-02-26T18:41:50.493Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.953Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/06/notebooks/generate-synthetic.html</loc>
-    <lastmod>2026-02-26T18:41:50.495Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.955Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/06/notebooks/rag.html</loc>
-    <lastmod>2026-02-26T18:41:50.495Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.956Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/06/notebooks/thinking.html</loc>
-    <lastmod>2026-02-26T18:41:50.495Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.956Z</lastmod>
   </url>
   <url>
     <loc>https://simonguest.github.io/CS-394/src/07/notebooks/quantize.html</loc>
-    <lastmod>2026-02-26T18:41:50.520Z</lastmod>
+    <lastmod>2026-02-26T21:25:54.983Z</lastmod>
   </url>
 </urlset>

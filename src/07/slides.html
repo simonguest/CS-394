@@ -96,7 +96,27 @@
     code span.va { color: #e36209; } /* Variable */
     code span.vs { color: #032f62; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-eeafb82a00776dbd0312b01cd21cfa25.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -222,7 +242,7 @@
 <li class="fragment">Use W&amp;B (Weights &amp; Biases) to observe metrics during the training run</li>
 <li class="fragment">Post-training, test and evaluate the accuracy of your fine-tuned model</li>
 <li class="fragment">Merge, quantize, and upload your model to Hugging Face to share with others</li>
-<li class="fragment">Understand and create a model card for your newly fine-tuned model</li>
+<li class="fragment">Create a model card for your newly fine-tuned model</li>
 </ul>
 </section>
 <section>
@@ -235,18 +255,9 @@
 <ul>
 <li class="fragment">There are three main stages of training a model:
 <ul>
-<li class="fragment"><strong>Pretraining:</strong> The initial, large-scale training run that creates a base model with pretrained weights
-<ul>
-<li class="fragment">Training data: Trillions of tokens from the internet, books, code, etc.</li>
-</ul></li>
-<li class="fragment"><strong>Supervised Fine-Tuning (SFT):</strong> Shapes the base model to follow instructions and respond in a desired style or fornat
-<ul>
-<li class="fragment">Training data: Hundreds to thousands of input/output pairs</li>
-</ul></li>
-<li class="fragment"><strong>Alignment:</strong> Further refines the model toward preferred behaviors and values
-<ul>
-<li class="fragment">Training data: Human-curated preferences and/or reward-based feedback</li>
-</ul></li>
+<li class="fragment"><strong>Pretraining:</strong> The initial, large-scale training run that creates a base model with pretrained weights</li>
+<li class="fragment"><strong>Supervised Fine-Tuning (SFT):</strong> Shapes the base model to follow instructions and respond in a desired style or format</li>
+<li class="fragment"><strong>Alignment:</strong> Further refines the model toward preferred behaviors and values</li>
 </ul></li>
 </ul>
 </section>
@@ -261,7 +272,7 @@
 <section id="model-training-stages-3" class="slide level2">
 <h2>Model Training Stages</h2>
 <ul>
-<li class="fragment">Many models (e.g., google/gemma-3-it) have already gone through these three stages
+<li class="fragment">Many models (e.g., Qwen3-1.7B) have already gone through these three stages
 <ul>
 <li class="fragment">We will be adding a fourth stage. An SFT of an existing “polished” model</li>
 </ul></li>
@@ -291,17 +302,25 @@
 <ul>
 <li class="fragment">How does SFT work?
 <ul>
-<li class="fragment">Build a dataset (we did this already!)</li>
+<li class="fragment">Build training and validation datasets (we did this already!)</li>
 <li class="fragment">Feed the prompts into the model and compare the desired output tokens with the model’s predictions</li>
-<li class="fragment">The difference between the two is known as the “training loss”</li>
-<li class="fragment">Backpropagate through the model, nudging the weights to guide toward the desired output</li>
-<li class="fragment">This “nudging” is done using an optimizer (typically AdamW)</li>
-<li class="fragment">Repeat for typically 1-3 epochs (complete passes through the dataset)</li>
-<li class="fragment">Monitor validation loss to detect overfitting or diminishing returns</li>
+<li class="fragment">The difference between the two is known as the <strong>training loss</strong></li>
 </ul></li>
 </ul>
 </section>
 <section id="supervised-fine-tuning-sft-2" class="slide level2">
+<h2>Supervised Fine-Tuning (SFT)</h2>
+<ul>
+<li class="fragment">How does SFT work?
+<ul>
+<li class="fragment">Back propagate through the model, nudging the weights to guide toward the desired output</li>
+<li class="fragment">This “nudging” is done using an optimizer (typically AdamW)</li>
+<li class="fragment">Repeat for typically 1-3 epochs (epoch = complete pass through the dataset)</li>
+<li class="fragment">Monitor validation loss and checkpoint the model at regular intervals</li>
+</ul></li>
+</ul>
+</section>
+<section id="supervised-fine-tuning-sft-3" class="slide level2">
 <h2>Supervised Fine-Tuning (SFT)</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -309,7 +328,7 @@
 </figure>
 </div>
 </section>
-<section id="supervised-fine-tuning-sft-3" class="slide level2">
+<section id="supervised-fine-tuning-sft-4" class="slide level2">
 <h2>Supervised Fine-Tuning (SFT)</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -317,15 +336,26 @@
 </figure>
 </div>
 </section>
-<section id="supervised-fine-tuning-sft-with-lora" class="slide level2">
-<h2>Supervised Fine-Tuning (SFT) with LoRA</h2>
+<section id="supervised-fine-tuning-sft-5" class="slide level2">
+<h2>Supervised Fine-Tuning (SFT)</h2>
 <ul>
-<li class="fragment">Adjusting all parameters in a model can be compute and memory intensive</li>
-<li class="fragment">We will use LoRA (Low-Rank Adaptation), a Parameter Efficient Fine-Tuning (PEFT) strategy</li>
+<li class="fragment"><strong>Training Loss</strong> tells us how close the model predicts vs.&nbsp;our desired outputs</li>
+<li class="fragment"><strong>Validation Loss</strong> tells us how well the model predicts on data that it hasn’t been trained on
+<ul>
+<li class="fragment">Prevents the model from memorizing the training data vs.&nbsp;generalizing</li>
+<li class="fragment">“Memorizing training data” known as <strong>overfitting</strong></li>
+</ul></li>
 </ul>
 </section>
-<section id="supervised-fine-tuning-sft-with-lora-1" class="slide level2">
-<h2>Supervised Fine-Tuning (SFT) with LoRA</h2>
+<section id="introducing-lora" class="slide level2">
+<h2>Introducing LoRA</h2>
+<ul>
+<li class="fragment">Adjusting all parameters in a model can be compute and memory intensive</li>
+<li class="fragment">Introducing LoRA: Low-Rank Adaptation of Large Language Models <span class="citation" data-cites="hu2021lora">(<a href="#/references-1" role="doc-biblioref" onclick="">Hu et al. 2021</a>)</span></li>
+</ul>
+</section>
+<section id="introducing-lora-1" class="slide level2">
+<h2>Introducing LoRA</h2>
 <ul>
 <li class="fragment">How LoRA works:
 <ul>
@@ -337,28 +367,28 @@
 </ul></li>
 </ul>
 </section>
-<section id="supervised-fine-tuning-sft-with-lora-2" class="slide level2">
-<h2>Supervised Fine-Tuning (SFT) with LoRA</h2>
+<section id="introducing-lora-2" class="slide level2">
+<h2>Introducing LoRA</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><a href="diagrams/sft-lora.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img data-src="diagrams/sft-lora.svg" class="quarto-figure quarto-figure-center" width="600"></a></p>
 </figure>
 </div>
 </section>
-<section id="supervised-fine-tuning-sft-with-qlora" class="slide level2">
-<h2>Supervised Fine-Tuning (SFT) with QLoRA</h2>
+<section id="introducing-qlora" class="slide level2">
+<h2>Introducing QLoRA</h2>
 <ul>
 <li class="fragment">To further increase memory efficiency, we will use QLoRA (Quantized LoRA)
 <ul>
+<li class="fragment">Introducing QLoRA: Efficient Finetuning of Quantized LLMs <span class="citation" data-cites="dettmers2023qlora">(<a href="#/references-1" role="doc-biblioref" onclick="">Dettmers et al. 2023</a>)</span></li>
 <li class="fragment">The base model weights (W) are quantized to 4-bit (NF4 format) for storage</li>
 <li class="fragment">During the forward pass, W is dequantized to bf16 on the fly for computation, then discarded</li>
 <li class="fragment">Adapter matrices A and B are kept at full precision (bf16) for training accuracy</li>
-<li class="fragment">Since only A and B are trained, optimizer states (which can be 3-4x the size of W at full precision) only exist for the tiny adapter matrices — dramatically reducing memory usage</li>
 </ul></li>
 </ul>
 </section>
-<section id="supervised-fine-tuning-sft-with-qlora-1" class="slide level2">
-<h2>Supervised Fine-Tuning (SFT) with QLoRA</h2>
+<section id="introducing-qlora-1" class="slide level2">
+<h2>Introducing QLoRA</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><a href="diagrams/sft-qlora.svg" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img data-src="diagrams/sft-qlora.svg" class="quarto-figure quarto-figure-center" width="600"></a></p>
@@ -366,29 +396,31 @@
 </div>
 </section></section>
 <section>
-<section id="todays-fine-tuning-plan" class="title-slide slide level1 center">
-<h1>Today’s Fine-Tuning Plan</h1>
+<section id="our-fine-tuning-plan" class="title-slide slide level1 center">
+<h1>Our Fine-Tuning Plan</h1>
 
 </section>
-<section id="todays-fine-tuning-plan-12" class="slide level2">
-<h2>Today’s Fine-Tuning Plan (1/2)</h2>
+<section id="our-fine-tuning-plan-12" class="slide level2">
+<h2>Our Fine-Tuning Plan (1/2)</h2>
 <ul>
 <li class="fragment">Upload our .jsonl files to Hugging Face to create a dataset</li>
 <li class="fragment">In our training notebook…
 <ul>
 <li class="fragment">Download the dataset</li>
-<li class="fragment">Format our training data to match the chat template</li>
+<li class="fragment">Format our training data to match the chat template
+<ul>
+<li class="fragment">i.e., convert JSON to <code>&lt;|imstart|&gt;user... etc.</code></li>
+</ul></li>
 <li class="fragment">Start our training run!</li>
 </ul></li>
 <li class="fragment">Use W&amp;B (Weights &amp; Biases) to monitor how well our model is learning
 <ul>
-<li class="fragment">Training loss</li>
-<li class="fragment">Validation loss</li>
+<li class="fragment">Training loss and validation loss</li>
 </ul></li>
 </ul>
 </section>
-<section id="todays-fine-tuning-plan-22" class="slide level2">
-<h2>Today’s Fine-Tuning Plan (2/2)</h2>
+<section id="our-fine-tuning-plan-22" class="slide level2">
+<h2>Our Fine-Tuning Plan (2/2)</h2>
 <ul>
 <li class="fragment">After training has completed…
 <ul>
@@ -411,11 +443,11 @@
 <section id="upload-training-files-1" class="slide level2">
 <h2>Upload Training Files</h2>
 <ul>
-<li class="fragment">Upload our train.jsonl, validation.jsonl, and test.jsonl files to a Hugging Face Dataset</li>
-<li class="fragment">Why?
+<li class="fragment">Upload our <code>train.jsonl</code>, <code>validation.jsonl</code>, and <code>test.jsonl</code> files to a Hugging Face Dataset</li>
+<li class="fragment">Why do this?
 <ul>
 <li class="fragment">Single repository</li>
-<li class="fragment">Easy to hook into training runs</li>
+<li class="fragment">Easy to hook into training libraries</li>
 <li class="fragment">Shareable with others</li>
 <li class="fragment">Better UI and query semantics vs.&nbsp;raw .jsonl files</li>
 </ul></li>
@@ -527,7 +559,7 @@
 <li class="fragment">Main sections
 <ul>
 <li class="fragment">Set training parameters</li>
-<li class="fragment">Download dataset from Hugging Face</li>
+<li class="fragment">Download datasets from Hugging Face</li>
 <li class="fragment">Create formatted dataset that uses the chat template</li>
 <li class="fragment">Load base model and configure for QLoRA</li>
 <li class="fragment">Create our trainer</li>
@@ -551,9 +583,14 @@
 <li class="fragment">We can monitor using <code>tqdm</code> (a popular Python progress bar)</li>
 </ul></li>
 </ul>
+</section></section>
+<section>
+<section id="training-hyperparameters" class="title-slide slide level1 center">
+<h1>Training Hyperparameters</h1>
+
 </section>
-<section id="lora-hyperparameters" class="slide level2">
-<h2>LoRA Hyperparameters</h2>
+<section id="training-hyperparameters-1" class="slide level2">
+<h2>Training Hyperparameters</h2>
 <p><code>BATCH_SIZE = 4</code></p>
 <ul>
 <li class="fragment">Number of training examples processed together in a single forward/backward pass</li>
@@ -561,8 +598,8 @@
 <li class="fragment">2-8 recommended</li>
 </ul>
 </section>
-<section id="lora-hyperparameters-1" class="slide level2">
-<h2>LoRA Hyperparameters</h2>
+<section id="training-hyperparameters-2" class="slide level2">
+<h2>Training Hyperparameters</h2>
 <p><code>GRADIENT_ACCUMULATION_STEPS = 4</code></p>
 <ul>
 <li class="fragment">Instead of updating weights after every batch, accumulate over this many batches before taking an optimizer step</li>
@@ -570,9 +607,9 @@
 <li class="fragment">2-16 recommended</li>
 </ul>
 </section>
-<section id="lora-hyperparameters-2" class="slide level2">
-<h2>LoRA Hyperparameters</h2>
-<p><code>LEARNING_RATE = 2e-4</code></p>
+<section id="training-hyperparameters-3" class="slide level2">
+<h2>Training Hyperparameters</h2>
+<p><code>LEARNING_RATE = 2e-4</code> (or 0.0002)</p>
 <ul>
 <li class="fragment">How large a step the optimizer takes when updating weights</li>
 <li class="fragment">Too high = training becomes unstable</li>
@@ -580,8 +617,8 @@
 <li class="fragment">1e-4 or 2e-4 are common starting points</li>
 </ul>
 </section>
-<section id="lora-hyperparameters-3" class="slide level2">
-<h2>LoRA Hyperparameters</h2>
+<section id="training-hyperparameters-4" class="slide level2">
+<h2>Training Hyperparameters</h2>
 <p><code>NUM_EPOCHS = 3</code></p>
 <ul>
 <li class="fragment">Number of times the model sees the entire dataset</li>
@@ -589,8 +626,8 @@
 <li class="fragment">2-5 epochs for a few thousand examples recommended</li>
 </ul>
 </section>
-<section id="lora-hyperparameters-4" class="slide level2">
-<h2>LoRA Hyperparameters</h2>
+<section id="training-hyperparameters-5" class="slide level2">
+<h2>Training Hyperparameters</h2>
 <p><code>MAX_SEQ_LENGTH = 512</code></p>
 <ul>
 <li class="fragment">The maximum number of tokens in a single training example</li>
@@ -598,34 +635,38 @@
 <li class="fragment">Should cover your longest examples without too much padding</li>
 </ul>
 </section>
-<section id="lora-hyperparameters-5" class="slide level2">
-<h2>LoRA Hyperparameters</h2>
+<section id="training-hyperparameters-6" class="slide level2">
+<h2>Training Hyperparameters</h2>
 <p><code>LORA_R = 16</code></p>
 <ul>
-<li class="fragment">The rank of the adapter matrics - i.e., how many parameters are added during fine-tuning</li>
-<li class="fragment">Higher rank = more capacity, but also more memory and risk of overfitting</li>
+<li class="fragment">The rank of the adapter matrices - i.e., how many parameters are added during fine-tuning</li>
+<li class="fragment">Higher rank = more capacity, but also more memory and risk of overfitting
+<ul>
+<li class="fragment">e.g., 4096 x 4096 weight matrix = 16M parameters</li>
+<li class="fragment">A = 4096x16; B=16x4096; Total = 131K parameters to be trained</li>
+</ul></li>
 <li class="fragment">4, 8, 16, 32 common values; 8-16 for small models</li>
 </ul>
 </section>
-<section id="lora-hyperparameters-6" class="slide level2">
-<h2>LoRA Hyperparameters</h2>
+<section id="training-hyperparameters-7" class="slide level2">
+<h2>Training Hyperparameters</h2>
 <p><code>LORA_ALPHA = 32</code></p>
 <ul>
 <li class="fragment">A scaling factor for the LoRA updates</li>
 <li class="fragment">Usually set to 2x the rank (LORA_R)</li>
 </ul>
 </section>
-<section id="lora-hyperparameters-7" class="slide level2">
-<h2>LoRA Hyperparameters</h2>
+<section id="training-hyperparameters-8" class="slide level2">
+<h2>Training Hyperparameters</h2>
 <p><code>LORA_DROPOUT = 0.05</code></p>
 <ul>
 <li class="fragment">Randomly zero out a small fraction of the adapter activations during training</li>
-<li class="fragment">Regulation technique to prevent overfitting</li>
+<li class="fragment">Regularization technique to prevent overfitting</li>
 <li class="fragment">0.0 to 0.1 common range; use lower values for very small datasets</li>
 </ul>
 </section>
-<section id="lora-hyperparameters-8" class="slide level2">
-<h2>LoRA Hyperparameters</h2>
+<section id="training-hyperparameters-9" class="slide level2">
+<h2>Training Hyperparameters</h2>
 <p><code>USE_4BIT = True</code></p>
 <ul>
 <li class="fragment">Enables QLoRA by loading the base model weights (W) in 4-bit precision</li>
@@ -657,19 +698,11 @@
 </section>
 <section id="weights-biases-2" class="slide level2">
 <h2>Weights &amp; Biases</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><a href="images/wandb-system.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img data-src="images/wandb-system.png" class="quarto-figure quarto-figure-center" width="600"></a></p>
-</figure>
-</div>
-</section>
-<section id="weights-biases-3" class="slide level2">
-<h2>Weights &amp; Biases</h2>
 <ul>
 <li class="fragment">System Metrics
 <ul>
 <li class="fragment">Metrics on the health of the underlying hardware used to train the model</li>
-<li class="fragment">Providing automatically via the W&amp;B library</li>
+<li class="fragment">Provided automatically via the W&amp;B library</li>
 <li class="fragment">Useful for hardware capacity monitoring, especially if the training run crashes</li>
 </ul></li>
 <li class="fragment">What to look for:
@@ -678,15 +711,15 @@
 </ul></li>
 </ul>
 </section>
-<section id="weights-biases-4" class="slide level2">
+<section id="weights-biases-3" class="slide level2">
 <h2>Weights &amp; Biases</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><a href="images/wandb-train.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img data-src="images/wandb-train.png" class="quarto-figure quarto-figure-center" width="600"></a></p>
+<p><a href="images/wandb-system.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img data-src="images/wandb-system.png" class="quarto-figure quarto-figure-center" width="600"></a></p>
 </figure>
 </div>
 </section>
-<section id="weights-biases-5" class="slide level2">
+<section id="weights-biases-4" class="slide level2">
 <h2>Weights &amp; Biases</h2>
 <ul>
 <li class="fragment">Training Metrics
@@ -702,41 +735,49 @@
 </ul></li>
 </ul>
 </section>
+<section id="weights-biases-5" class="slide level2">
+<h2>Weights &amp; Biases</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/wandb-train.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img data-src="images/wandb-train.png" class="quarto-figure quarto-figure-center" width="600"></a></p>
+</figure>
+</div>
+</section>
 <section id="weights-biases-6" class="slide level2">
+<h2>Weights &amp; Biases</h2>
+<ul>
+<li class="fragment">Eval Metrics
+<ul>
+<li class="fragment">Metrics on the validation runs during training (predictions using the validation dataset)</li>
+<li class="fragment">Number of tokens, token accuracy, eval loss (a.k.a. validation loss)</li>
+</ul></li>
+<li class="fragment">What to look for:
+<ul>
+<li class="fragment">Validation loss should decrease quickly and plateau</li>
+<li class="fragment">Validation loss should be very close to training loss</li>
+<li class="fragment">Validation loss should not start to increase (indicates overfitting)</li>
+</ul></li>
+</ul>
+</section>
+<section id="weights-biases-7" class="slide level2">
 <h2>Weights &amp; Biases</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><a href="images/wandb-eval.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img data-src="images/wandb-eval.png" class="quarto-figure quarto-figure-center" width="600"></a></p>
 </figure>
 </div>
-</section>
-<section id="weights-biases-7" class="slide level2">
-<h2>Weights &amp; Biases</h2>
-<ul>
-<li class="fragment">Eval Metrics
-<ul>
-<li class="fragment">Metrics on the validation runs during training (how well is the model able to match the output from the validation set)</li>
-<li class="fragment">Number of tokens, token accuracy, eval loss (a.k.a. validation loss)</li>
-</ul></li>
-<li class="fragment">What the look for:
-<ul>
-<li class="fragment">Token accuracy should increase quickly and plateau</li>
-<li class="fragment">Validation loss should decrease quickly and plateau</li>
-<li class="fragment">Validation loss should be very close to training loss (maybe slightly behind)</li>
-<li class="fragment">Validation loss should not start to increase (strongest signal that the model is overfitting)</li>
-</ul></li>
-</ul>
 </section></section>
 <section id="demo-3" class="title-slide slide level1 center">
 <h1>Demo</h1>
 <p>W&amp;B output during current training run</p>
 </section>
 
-<section id="hands-on-1" class="title-slide slide level1 center">
-<h1>Hands-on</h1>
-<p>Create your W&amp;B account (https://wandb.ai), download API key, set in Colab</p>
-<p>Configure the training notebook for your own dataset, base model, and WANDB API key</p>
-<p>Start your training run!</p>
+<section id="lets-do-this" class="title-slide slide level1 center">
+<h1>Let’s Do This!</h1>
+<p>Create your W&amp;B account (https://wandb.ai), download API key, set in Colab (WANDB_API_KEY)</p>
+<p>Open <strong>train-cuda.ipynb</strong> in Colab, configure the training parameters in the “Model parameters” cell</p>
+<p>Change runtype to A100 and start your training run!</p>
+<p><strong>Note: Run one cell at a time, not all!</strong></p>
 </section>
 
 <section>
@@ -751,7 +792,7 @@
 <ul>
 <li class="fragment">Test the model using a random input from our test dataset</li>
 <li class="fragment">Create a model card, merge the models, and upload to Hugging Face</li>
-<li class="fragment">Quantize the model and upgrade the GGUF to Hugging Face</li>
+<li class="fragment">Quantize the model and upload the GGUF to Hugging Face</li>
 <li class="fragment">Download the GGUF in LM Studio!</li>
 </ul></li>
 </ul>
@@ -1052,10 +1093,18 @@
 <h1>References</h1>
 
 </section>
-<section id="references-1" class="slide level2">
+<section id="references-1" class="slide level2 smaller scrollable">
 <h2>References</h2>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-dettmers2023qlora" class="csl-entry" role="listitem">
+Dettmers, Tim, Artidoro Pagnoni, Ari Holtzman, and Luke Zettlemoyer. 2023. <span>“QLoRA: Efficient Finetuning of Quantized LLMs.”</span> <em>Advances in Neural Information Processing Systems</em> 36. <a href="https://arxiv.org/abs/2305.14314">https://arxiv.org/abs/2305.14314</a>.
+</div>
+<div id="ref-hu2021lora" class="csl-entry" role="listitem">
+Hu, Edward J., Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu Wang, and Weizhu Chen. 2021. <span>“LoRA: Low-Rank Adaptation of Large Language Models.”</span> <em>arXiv Preprint arXiv:2106.09685</em>. <a href="https://arxiv.org/abs/2106.09685">https://arxiv.org/abs/2106.09685</a>.
+</div>
+</div>
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
