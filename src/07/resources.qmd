@@ -1,6 +1,41 @@
 ---
 title: "Resources"
+format: html
+execute:
+  enabled: false
 ---
+
+## LoRA
+
+- [LoRA Paper](https://arxiv.org/abs/2106.09685) - "LoRA: Low-Rank Adaptation of Large Language Models" (Hu et al., 2021)
+- [PEFT on GitHub](https://github.com/huggingface/peft) - Hugging Face's Parameter-Efficient Fine-Tuning library, supporting LoRA, QLoRA, and other adapters
+
+## QLoRA
+
+- [QLoRA Paper](https://arxiv.org/abs/2305.14314) - "QLoRA: Efficient Finetuning of Quantized LLMs" (Dettmers et al., 2023)
+- [bitsandbytes on GitHub](https://github.com/bitsandbytes-foundation/bitsandbytes) - Library providing 4-bit and 8-bit quantization support used by QLoRA
+
+## Fine-Tuning Frameworks
+
+- [TRL (Transformer Reinforcement Learning)](https://github.com/huggingface/trl) - Hugging Face's training library, including the SFTTrainer used in this module
+- [Unsloth on GitHub](https://github.com/unslothai/unsloth) - Fast and memory-efficient QLoRA/LoRA training with optimized CUDA kernels
+
+## Weights & Biases
+
+- [Weights & Biases](https://wandb.ai) - ML experiment tracking and visualization platform used to monitor training runs
+- [W&B Quickstart](https://docs.wandb.ai/quickstart) - Getting started guide for logging metrics and comparing runs
+- [W&B Hugging Face Integration](https://docs.wandb.ai/guides/integrations/huggingface) - Automatic integration with Hugging Face Trainer for zero-config logging
+
+## Hugging Face
+
+- [Hugging Face Hub](https://huggingface.co) - Central repository for sharing models, datasets, and demos
+- [Datasets Documentation](https://huggingface.co/docs/datasets) - Library for loading, processing, and publishing datasets
+- [Model Cards Guide](https://huggingface.co/docs/hub/model-cards) - Best practices for writing model cards, including recommended sections and metadata
+
+## Quantization and Local Deployment
+
+- [llama.cpp on GitHub](https://github.com/ggml-org/llama.cpp) - C/C++ library for GGUF quantization (`llama-quantize`) and local inference
+- [LM Studio](https://lmstudio.ai/) - Desktop GUI for discovering, downloading, and chatting with quantized models from Hugging Face
 
 ## Citations
 
