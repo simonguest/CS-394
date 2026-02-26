@@ -12,11 +12,23 @@
     ]
   },
   {
-    "objectID": "src/07/notebooks/train-cuda.html#training-parameters",
-    "href": "src/07/notebooks/train-cuda.html#training-parameters",
+    "objectID": "src/07/notebooks/train-cuda.html#model-parameters",
+    "href": "src/07/notebooks/train-cuda.html#model-parameters",
     "title": "Supervised Fine-Tuning on CUDA",
-    "section": "Training parameters",
-    "text": "Training parameters\n\nimport os\n\nDATASET_REPO = \"simonguest/test-dataset\" # Change this to your own dataset location on HF\n\nBASE_MODEL_VENDOR = \"Qwen\" # Change this to your desired base model\nBASE_MODEL_NAME = \"Qwen3-1.7B\" # Change this to your desired base model\nBASE_MODEL = f\"{BASE_MODEL_VENDOR}/{BASE_MODEL_NAME}\"\n\nPROJECT_NAME = \"code-explainer\" # Name of your training project\nos.environ[\"WANDB_PROJECT\"] = PROJECT_NAME # WandB will use the same project name\n\nMODEL_NAME = f\"{BASE_MODEL_NAME}-{PROJECT_NAME}\"\n\nHF_USERNAME = \"simonguest\" # Hugging Face username - used to upload your final models\n\nMODEL_FOLDER = f\"./models/{MODEL_NAME}\"\n\n# Training run parameters\n\nBATCH_SIZE = 4\nGRADIENT_ACCUMULATION_STEPS = 4\nLEARNING_RATE = 2e-4\nNUM_EPOCHS = 3\nMAX_SEQ_LENGTH = 512\n\n# LoRA parameters\nLORA_R = 16\nLORA_ALPHA = 32\nLORA_DROPOUT = 0.05\n\n# Use 4-bit quantization for efficiency (QLoRA)\nUSE_4BIT = True",
+    "section": "Model parameters",
+    "text": "Model parameters\n\nimport os\n\nDATASET_REPO = \"simonguest/test-dataset\" # Change this to your uploaded dataset location on HF\n\nBASE_MODEL_VENDOR = \"Qwen\" # Change this to your desired base model\nBASE_MODEL_NAME = \"Qwen3-1.7B\" # Change this to your desired base model\nBASE_MODEL = f\"{BASE_MODEL_VENDOR}/{BASE_MODEL_NAME}\"\n\nPROJECT_NAME = \"code-explainer\" # Name of your training project\nos.environ[\"WANDB_PROJECT\"] = PROJECT_NAME # WandB will use the same project name\n\nMODEL_NAME = f\"{BASE_MODEL_NAME}-{PROJECT_NAME}\" # Final model name\nHF_USERNAME = \"simonguest\" # Hugging Face username - used to upload your final models\n\nMODEL_FOLDER = f\"./models/{MODEL_NAME}\" # Local folder for storing the model files during training",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Notebooks",
+      "train-cuda.ipynb"
+    ]
+  },
+  {
+    "objectID": "src/07/notebooks/train-cuda.html#training-hyperparameters",
+    "href": "src/07/notebooks/train-cuda.html#training-hyperparameters",
+    "title": "Supervised Fine-Tuning on CUDA",
+    "section": "Training hyperparameters",
+    "text": "Training hyperparameters\n\nBATCH_SIZE = 4\nGRADIENT_ACCUMULATION_STEPS = 4\nLEARNING_RATE = 2e-4\nNUM_EPOCHS = 3\nMAX_SEQ_LENGTH = 512\n\n# LoRA-specific Parameters\nLORA_R = 16\nLORA_ALPHA = 32\nLORA_DROPOUT = 0.05\n\n# Use 4-bit quantization for efficiency (QLoRA)\nUSE_4BIT = True",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Notebooks",
@@ -1245,22 +1257,22 @@
     ]
   },
   {
-    "objectID": "src/07/slides.html#todays-fine-tuning-plan-1",
-    "href": "src/07/slides.html#todays-fine-tuning-plan-1",
+    "objectID": "src/07/slides.html#todays-fine-tuning-plan-12",
+    "href": "src/07/slides.html#todays-fine-tuning-plan-12",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "Today’s Fine-Tuning Plan",
-    "text": "Today’s Fine-Tuning Plan\n\nUpload our .jsonl files to Hugging Face to create a dataset\nIn our training notebook…\n\nDownload the dataset\nFormat our training data to match the chat template\nStart our training run!\n\nUse W&B (Weights & Biases) to monitor how well our model is learning\n\nTraining loss\nValidation loss",
+    "section": "Today’s Fine-Tuning Plan (1/2)",
+    "text": "Today’s Fine-Tuning Plan (1/2)\n\nUpload our .jsonl files to Hugging Face to create a dataset\nIn our training notebook…\n\nDownload the dataset\nFormat our training data to match the chat template\nStart our training run!\n\nUse W&B (Weights & Biases) to monitor how well our model is learning\n\nTraining loss\nValidation loss",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#todays-fine-tuning-plan-2",
-    "href": "src/07/slides.html#todays-fine-tuning-plan-2",
+    "objectID": "src/07/slides.html#todays-fine-tuning-plan-22",
+    "href": "src/07/slides.html#todays-fine-tuning-plan-22",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "Today’s Fine-Tuning Plan",
-    "text": "Today’s Fine-Tuning Plan\n\nAfter training has completed…\n\nTest (both manually and automatic)\n\nAssuming things went well…\n\nMerge and upload our model to Hugging Face\nQuantize our model (create a GGUF) and upload to Hugging Face\nDownload and test our model in LM Studio",
+    "section": "Today’s Fine-Tuning Plan (2/2)",
+    "text": "Today’s Fine-Tuning Plan (2/2)\n\nAfter training has completed…\n\nTest (both manually and automatic)\n\nAssuming things went well…\n\nMerge and upload our model to Hugging Face\nQuantize our model (create a GGUF) and upload to Hugging Face\nDownload and test our model in LM Studio",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1311,11 +1323,22 @@
     ]
   },
   {
-    "objectID": "src/07/slides.html#lets-train-1",
-    "href": "src/07/slides.html#lets-train-1",
+    "objectID": "src/07/slides.html#the-training-notebook-1",
+    "href": "src/07/slides.html#the-training-notebook-1",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "Let’s Train!",
-    "text": "Let’s Train!\n\nTBD: Interim slide required?",
+    "section": "The Training Notebook",
+    "text": "The Training Notebook\n\ntrain-cuda.ipynb contains the steps to fine-tune a small model\nMain sections\n\nSet training parameters\nDownload dataset from Hugging Face\nCreate formatted dataset that uses the chat template\nLoad base model and configure for QLoRA\nCreate our trainer\nTrain!",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#sidebar-how-long-will-training-take",
+    "href": "src/07/slides.html#sidebar-how-long-will-training-take",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Sidebar: How long will training take?",
+    "text": "Sidebar: How long will training take?\n\nFor Qwen3-1.7B using an A100 on Colab\n\nAbout 45 mins\n(20 mins if we are lucky and get upgraded to an RTX6000)\nWe can monitor using tqdm (a popular Python progress bar)",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1436,7 +1459,7 @@
     "href": "src/07/slides.html#weights-biases-2",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Weights & Biases",
-    "text": "Weights & Biases\n\nTBD: screenshot of system metrics",
+    "text": "Weights & Biases",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1458,7 +1481,7 @@
     "href": "src/07/slides.html#weights-biases-4",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Weights & Biases",
-    "text": "Weights & Biases\n\nTBD: screenshot of training metrics",
+    "text": "Weights & Biases",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1480,7 +1503,7 @@
     "href": "src/07/slides.html#weights-biases-6",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Weights & Biases",
-    "text": "Weights & Biases\n\nTBD: screenshot of evaluation metrics",
+    "text": "Weights & Biases",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"

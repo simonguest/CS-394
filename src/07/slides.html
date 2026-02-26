@@ -350,8 +350,8 @@
 <h1>Today’s Fine-Tuning Plan</h1>
 
 </section>
-<section id="todays-fine-tuning-plan-1" class="slide level2">
-<h2>Today’s Fine-Tuning Plan</h2>
+<section id="todays-fine-tuning-plan-12" class="slide level2">
+<h2>Today’s Fine-Tuning Plan (1/2)</h2>
 <ul>
 <li class="fragment">Upload our .jsonl files to Hugging Face to create a dataset</li>
 <li class="fragment">In our training notebook…
@@ -367,8 +367,8 @@
 </ul></li>
 </ul>
 </section>
-<section id="todays-fine-tuning-plan-2" class="slide level2">
-<h2>Today’s Fine-Tuning Plan</h2>
+<section id="todays-fine-tuning-plan-22" class="slide level2">
+<h2>Today’s Fine-Tuning Plan (2/2)</h2>
 <ul>
 <li class="fragment">After training has completed…
 <ul>
@@ -491,24 +491,45 @@
 <section id="hands-on" class="title-slide slide level1 center">
 <h1>Hands-on</h1>
 <p>Upload your training data files to Hugging Face Dataset</p>
+<p>(CPU instance on Colab is fine for this)</p>
 </section>
 
 <section>
-<section id="lets-train" class="title-slide slide level1 center">
-<h1>Let’s Train!</h1>
+<section id="the-training-notebook" class="title-slide slide level1 center">
+<h1>The Training Notebook</h1>
 
 </section>
-<section id="lets-train-1" class="slide level2">
-<h2>Let’s Train!</h2>
+<section id="the-training-notebook-1" class="slide level2">
+<h2>The Training Notebook</h2>
 <ul>
-<li class="fragment">TBD: Interim slide required?</li>
+<li class="fragment"><code>train-cuda.ipynb</code> contains the steps to fine-tune a small model</li>
+<li class="fragment">Main sections
+<ul>
+<li class="fragment">Set training parameters</li>
+<li class="fragment">Download dataset from Hugging Face</li>
+<li class="fragment">Create formatted dataset that uses the chat template</li>
+<li class="fragment">Load base model and configure for QLoRA</li>
+<li class="fragment">Create our trainer</li>
+<li class="fragment">Train!</li>
+</ul></li>
 </ul>
 </section></section>
 <section>
 <section id="demo-1" class="title-slide slide level1 center">
 <h1>Demo</h1>
 <p>Walkthrough of the training notebook</p>
-<p>Starting the training run!</p>
+<p>Set parameters and start training!</p>
+</section>
+<section id="sidebar-how-long-will-training-take" class="slide level2">
+<h2>Sidebar: How long will training take?</h2>
+<ul>
+<li class="fragment">For Qwen3-1.7B using an A100 on Colab
+<ul>
+<li class="fragment">About 45 mins</li>
+<li class="fragment">(20 mins if we are lucky and get upgraded to an RTX6000)</li>
+<li class="fragment">We can monitor using <code>tqdm</code> (a popular Python progress bar)</li>
+</ul></li>
+</ul>
 </section>
 <section id="lora-hyperparameters" class="slide level2">
 <h2>LoRA Hyperparameters</h2>
@@ -615,9 +636,11 @@
 </section>
 <section id="weights-biases-2" class="slide level2">
 <h2>Weights &amp; Biases</h2>
-<ul>
-<li class="fragment">TBD: screenshot of system metrics</li>
-</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/wandb-system.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img data-src="images/wandb-system.png" class="quarto-figure quarto-figure-center" width="600"></a></p>
+</figure>
+</div>
 </section>
 <section id="weights-biases-3" class="slide level2">
 <h2>Weights &amp; Biases</h2>
@@ -636,9 +659,11 @@
 </section>
 <section id="weights-biases-4" class="slide level2">
 <h2>Weights &amp; Biases</h2>
-<ul>
-<li class="fragment">TBD: screenshot of training metrics</li>
-</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/wandb-train.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img data-src="images/wandb-train.png" class="quarto-figure quarto-figure-center" width="600"></a></p>
+</figure>
+</div>
 </section>
 <section id="weights-biases-5" class="slide level2">
 <h2>Weights &amp; Biases</h2>
@@ -658,9 +683,11 @@
 </section>
 <section id="weights-biases-6" class="slide level2">
 <h2>Weights &amp; Biases</h2>
-<ul>
-<li class="fragment">TBD: screenshot of evaluation metrics</li>
-</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/wandb-eval.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img data-src="images/wandb-eval.png" class="quarto-figure quarto-figure-center" width="600"></a></p>
+</figure>
+</div>
 </section>
 <section id="weights-biases-7" class="slide level2">
 <h2>Weights &amp; Biases</h2>
@@ -968,7 +995,7 @@
 <h2>Post-Training: Use in LM Studio!</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><a href="images/lmstudio-search.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img data-src="images/lmstudio-search.png" class="quarto-figure quarto-figure-center" width="600"></a></p>
+<p><a href="images/lmstudio-search.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img data-src="images/lmstudio-search.png" class="quarto-figure quarto-figure-center" width="600"></a></p>
 </figure>
 </div>
 </section>
@@ -976,7 +1003,7 @@
 <h2>Post-Training: Use in LM Studio!</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><a href="images/lmstudio-chat.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img data-src="images/lmstudio-chat.png" class="quarto-figure quarto-figure-center" width="600"></a></p>
+<p><a href="images/lmstudio-chat.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img data-src="images/lmstudio-chat.png" class="quarto-figure quarto-figure-center" width="600"></a></p>
 </figure>
 </div>
 </section></section>
