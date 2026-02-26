@@ -79,9 +79,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-fb7c9abc17d36d8f171624f5bcedd762.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark-452555fb2cd10fd46433dc67f9b82a1c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../../site_libs/bootstrap/bootstrap-fb7c9abc17d36d8f171624f5bcedd762.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-a2370c85857dd8b424a4926875f0f1ff.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-2595c7eb050eebdfbc98b045594b8514.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-a2370c85857dd8b424a4926875f0f1ff.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -1130,7 +1130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="test-the-final-model-using-the-test-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="test-the-final-model-using-the-test-dataset">Test the final model using the test dataset</h2>
-<div id="c31a7d48" class="cell">
+<div id="test-model" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>idx <span class="op">=</span> random.randint(<span class="dv">0</span>, <span class="bu">len</span>(formatted_dataset[<span class="st">'test'</span>]) <span class="op">-</span><span class="dv">1</span>)</span>
@@ -1142,7 +1142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="create-a-model-card" class="level2">
 <h2 class="anchored" data-anchor-id="create-a-model-card">Create a model card</h2>
-<div id="9e59a5c5" class="cell">
+<div id="model-card" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> huggingface_hub <span class="im">import</span> ModelCard</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>card_content <span class="op">=</span> <span class="ss">f"""---</span></span>
@@ -1180,7 +1180,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="merge-the-models" class="level2">
 <h2 class="anchored" data-anchor-id="merge-the-models">Merge the models</h2>
-<div id="21aa916a" class="cell">
+<div id="merge-model" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoModelForCausalLM, AutoTokenizer</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1207,7 +1207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="upload-the-merged-model-and-adapter-to-hugging-face" class="level2">
 <h2 class="anchored" data-anchor-id="upload-the-merged-model-and-adapter-to-hugging-face">Upload the merged model and adapter to Hugging Face</h2>
-<div id="44c2b25c" class="cell">
+<div id="upload-model" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> huggingface_hub <span class="im">import</span> HfApi, create_repo</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the MODEL_REPO</span></span>

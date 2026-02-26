@@ -1315,7 +1315,7 @@
     "href": "src/07/slides.html#lets-train-1",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Let’s Train!",
-    "text": "Let’s Train!\n\nTBD",
+    "text": "Let’s Train!\n\nTBD: Interim slide required?",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1326,7 +1326,95 @@
     "href": "src/07/slides.html#lora-hyperparameters",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "LoRA Hyperparameters",
-    "text": "LoRA Hyperparameters\nBATCH_SIZE = 4 GRADIENT_ACCUMULATION_STEPS = 4 LEARNING_RATE = 2e-4 NUM_EPOCHS = 3 MAX_SEQ_LENGTH = 512 LORA_R = 16 LORA_ALPHA = 32 LORA_DROPOUT = 0.05 USE_4BIT = True",
+    "text": "LoRA Hyperparameters\nBATCH_SIZE = 4\n\nNumber of training examples processed together in a single forward/backward pass\nLarger batches = more stable gradient estimates, but consume more memory\n2-8 recommended",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#lora-hyperparameters-1",
+    "href": "src/07/slides.html#lora-hyperparameters-1",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "LoRA Hyperparameters",
+    "text": "LoRA Hyperparameters\nGRADIENT_ACCUMULATION_STEPS = 4\n\nInstead of updating weights after every batch, accumulate over this many batches before taking an optimizer step\nMemory-efficient way to increase the batch size\n2-16 recommended",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#lora-hyperparameters-2",
+    "href": "src/07/slides.html#lora-hyperparameters-2",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "LoRA Hyperparameters",
+    "text": "LoRA Hyperparameters\nLEARNING_RATE = 2e-4\n\nHow large a step the optimizer takes when updating weights\nToo high = training becomes unstable\nToo low = training is too slow or gets stuck\n1e-4 or 2e-4 are common starting points",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#lora-hyperparameters-3",
+    "href": "src/07/slides.html#lora-hyperparameters-3",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "LoRA Hyperparameters",
+    "text": "LoRA Hyperparameters\nNUM_EPOCHS = 3\n\nNumber of times the model sees the entire dataset\nMore epochs can improve training, but with the risk of overfitting\n2-5 epochs for a few thousand examples recommended",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#lora-hyperparameters-4",
+    "href": "src/07/slides.html#lora-hyperparameters-4",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "LoRA Hyperparameters",
+    "text": "LoRA Hyperparameters\nMAX_SEQ_LENGTH = 512\n\nThe maximum number of tokens in a single training example\n(Length of one of the lines in your jsonl file)\nShould cover your longest examples without too much padding",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#lora-hyperparameters-5",
+    "href": "src/07/slides.html#lora-hyperparameters-5",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "LoRA Hyperparameters",
+    "text": "LoRA Hyperparameters\nLORA_R = 16\n\nThe rank of the adapter matrics - i.e., how many parameters are added during fine-tuning\nHigher rank = more capacity, but also more memory and risk of overfitting\n4, 8, 16, 32 common values; 8-16 for small models",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#lora-hyperparameters-6",
+    "href": "src/07/slides.html#lora-hyperparameters-6",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "LoRA Hyperparameters",
+    "text": "LoRA Hyperparameters\nLORA_ALPHA = 32\n\nA scaling factor for the LoRA updates\nUsually set to 2x the rank (LORA_R)",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#lora-hyperparameters-7",
+    "href": "src/07/slides.html#lora-hyperparameters-7",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "LoRA Hyperparameters",
+    "text": "LoRA Hyperparameters\nLORA_DROPOUT = 0.05\n\nRandomly zero out a small fraction of the adapter activations during training\nRegulation technique to prevent overfitting\n0.0 to 0.1 common range; use lower values for very small datasets",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#lora-hyperparameters-8",
+    "href": "src/07/slides.html#lora-hyperparameters-8",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "LoRA Hyperparameters",
+    "text": "LoRA Hyperparameters\nUSE_4BIT = True\n\nEnables QLoRA by loading the base model weights (W) in 4-bit precision\nOptional for training 1B models in 8Gb VRAM\nDefinitely needed for 7B and 13B fine-tuning runs",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1414,40 +1502,161 @@
     "href": "src/07/slides.html#post-training-1",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Post-Training",
-    "text": "Post-Training\n\nTBD: Test the model with a random one from our test dataset",
+    "text": "Post-Training\n\nAfter training has completed:\n\nTest the model using a random input from our test dataset\nCreate a model card, merge the models, and upload to Hugging Face\nQuantize the model and upgrade the GGUF to Hugging Face\nDownload the GGUF in LM Studio!",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#post-training-2",
-    "href": "src/07/slides.html#post-training-2",
+    "objectID": "src/07/slides.html#post-training-test",
+    "href": "src/07/slides.html#post-training-test",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "Post-Training",
-    "text": "Post-Training\n\nTBD: Create a model card, merge the models and upload everything to Hugging Face",
+    "section": "Post-Training: Test",
+    "text": "Post-Training: Test\n\n\nimport random\n\nidx = random.randint(0, len(formatted_dataset['test']) -1)\ntest_data = formatted_dataset['test'][idx][\"text\"]\n\noutput = pipe(test_data)\nprint(output[0]['generated_text'])",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#post-training-3",
-    "href": "src/07/slides.html#post-training-3",
+    "objectID": "src/07/slides.html#post-training-create-model-card",
+    "href": "src/07/slides.html#post-training-create-model-card",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "Post-Training",
-    "text": "Post-Training\n\nTBD: Quantize the model and upload to Hugging Face",
+    "section": "Post-Training: Create Model Card",
+    "text": "Post-Training: Create Model Card\n\nWhat’s a model card?\n\nREADME.md for your model on Hugging Face\nCommon sections\n\nAn overview of the model\nHow the model was trained\nBenchmarks\nHow to use the model\nLimitations, best practices, risks, safety, author details",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
     ]
   },
   {
-    "objectID": "src/07/slides.html#post-training-4",
-    "href": "src/07/slides.html#post-training-4",
+    "objectID": "src/07/slides.html#post-training-create-model-card-1",
+    "href": "src/07/slides.html#post-training-create-model-card-1",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
-    "section": "Post-Training",
-    "text": "Post-Training\n\nTBD: Download the model in LM Studio and test!!!",
+    "section": "Post-Training: Create Model Card",
+    "text": "Post-Training: Create Model Card\n\nA default README.md will be generated by save_pretrained() method\nYou can overwrite this with your own\nOr create one programmatically",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#post-training-create-model-card-2",
+    "href": "src/07/slides.html#post-training-create-model-card-2",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Post-Training: Create Model Card",
+    "text": "Post-Training: Create Model Card\n\n\nfrom huggingface_hub import ModelCard\n\ncard_content = f\"\"\"---\nbase_model: {BASE_MODEL}\ntags:\n- peft\n- lora\n- text-generation\n---\n\n# {MODEL_NAME}\n\n## Model Description\nFine-tuned from `{BASE_MODEL}` using QLoRA (4-bit) with supervised fine-tuning.\n\n## Training Details\n- Dataset: `{DATASET_REPO}`\n- LoRA rank: {LORA_R}, alpha: {LORA_ALPHA}\n- Epochs: {NUM_EPOCHS}, Learning rate: {LEARNING_RATE}\n\n## Intended Use\n\nThis model is a test model used for the CS-394/594 class at DigiPen.\n\nThe model is designed to provide a summary explanation of a snippet of Python code, to be used in an IDE. This model takes a snippet of code (passed as the user prompt) and returns a two paragraph explanation of what the code does, including an analogy that helps students better understand how the code functions.\n\n## Limitations\n\nThis model is a single-turn model and has not been trained on support long, multi-turn conversations.\n\"\"\"\n\ncard = ModelCard(card_content)\ncard.save(f\"{MODEL_FOLDER}/lora/README.md\")",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#post-training-merge-and-upload",
+    "href": "src/07/slides.html#post-training-merge-and-upload",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Post-Training: Merge and Upload",
+    "text": "Post-Training: Merge and Upload\n\nMerging “fuses” the LoRA adapter and base model, creating a new model\nDoing this will enable others to use your model\nUpload your merged model (and optionally your adapter in a sub-folder) to Hugging Face",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#post-training-merge-and-upload-1",
+    "href": "src/07/slides.html#post-training-merge-and-upload-1",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Post-Training: Merge and Upload",
+    "text": "Post-Training: Merge and Upload\n\n\nimport torch\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nfrom peft import PeftModel\n\n# Load the configuration and model\nbase_model = AutoModelForCausalLM.from_pretrained(\n    BASE_MODEL,\n    device_map=\"auto\",\n    dtype=torch.bfloat16,\n)\nadapter_model = PeftModel.from_pretrained(base_model, f\"{MODEL_FOLDER}/lora\")\n\n# Merge and save the model\nmerged_model = adapter_model.merge_and_unload() # type: ignore\nmerged_model.save_pretrained(f\"{MODEL_FOLDER}/merged\")\n# Save the tokenizer\ntokenizer = AutoTokenizer.from_pretrained(BASE_MODEL)\ntokenizer.save_pretrained(f\"{MODEL_FOLDER}/merged\")\n\n# Copy the model card to the merged folder\n!cp {MODEL_FOLDER}/lora/README.md {MODEL_FOLDER}/merged/.",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#post-training-merge-and-upload-2",
+    "href": "src/07/slides.html#post-training-merge-and-upload-2",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Post-Training: Merge and Upload",
+    "text": "Post-Training: Merge and Upload\n\n\nfrom huggingface_hub import HfApi, create_repo\n\n# Set the MODEL_REPO\nMODEL_REPO = f\"{HF_USERNAME}/{MODEL_NAME}\"\n\n# Initialize the API\napi = HfApi()\n\n# Create the repository (if it doesn't exist)\ntry:\n    create_repo(MODEL_REPO, repo_type=\"model\", exist_ok=True, private=False)\n    print(f\"Repository {MODEL_REPO} created or already exists\")\nexcept Exception as e:\n    print(f\"Error creating repo: {e}\")\n\n# Upload merged model files to root (this is the main model)\nprint(\"\\nUploading merged model to root...\")\napi.upload_folder(\n    folder_path=f\"{MODEL_FOLDER}/merged\",\n    repo_id=MODEL_REPO,\n    repo_type=\"model\",\n    path_in_repo=\"\",  # Empty string uploads to root\n    commit_message=\"Upload merged model\"\n)\n\n# Upload LoRA adapter to subfolder (optional but useful for reference)\nprint(\"\\nUploading LoRA adapter...\")\napi.upload_folder(\n    folder_path=f\"{MODEL_FOLDER}/lora\",\n    repo_id=MODEL_REPO,\n    repo_type=\"model\",\n    path_in_repo=\"lora_adapter\",  # Keep adapter in subfolder\n    commit_message=\"Upload LoRA adapter\"\n)\n\nprint(f\"\\n✓ All files uploaded successfully to https://huggingface.co/{MODEL_REPO}\")",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#post-training-quantize",
+    "href": "src/07/slides.html#post-training-quantize",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Post-Training: Quantize",
+    "text": "Post-Training: Quantize\n\nEven though we used QLoRA, your merged model is still full precision\nTo enable others to run locally, we want to create quantized versions (GGUF)\nUse llama-quantize (part of llama.cpp) to quantize\nThen upload to Hugging Face (in the root of the model repo so it’s discoverable)",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#post-training-quantize-1",
+    "href": "src/07/slides.html#post-training-quantize-1",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Post-Training: Quantize",
+    "text": "Post-Training: Quantize\n\n\nTEMP_FOLDER = \"/content/tmp\"\n\n# Create a temporary location and clone llama.cpp\n!mkdir -p {TEMP_FOLDER}\n!cd {TEMP_FOLDER} && git clone https://github.com/ggml-org/llama.cpp\n\n!cd {TEMP_FOLDER}/llama.cpp && cmake -B build\n!cd {TEMP_FOLDER}/llama.cpp && cmake --build build --config Release --target llama-quantize -j 8",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#post-training-quantize-2",
+    "href": "src/07/slides.html#post-training-quantize-2",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Post-Training: Quantize",
+    "text": "Post-Training: Quantize\n\n\nfrom huggingface_hub import snapshot_download\n\nHF_USERNAME = \"simonguest\" # Change this to your Hugging Face username\nMODEL_NAME = \"Qwen3-1.7B-code-explainer\" # Change this to the repo of your merged model\nMODEL_REPO = f\"{HF_USERNAME}/{MODEL_NAME}\"\n\n# Working folders\nMODEL_FOLDER = \"/content/model\"\nGGUF_FOLDER = \"/content/ggufs\"\n\n!mkdir -p {MODEL_FOLDER}\n!mkdir -p {GGUF_FOLDER}\n\n# Download the model from Hugging Face at full precision\nsnapshot_download(repo_id=MODEL_REPO, local_dir=f\"{MODEL_FOLDER}\", repo_type=\"model\")\n\n# Convert to GGUF (fp16 first)\n!cd {TEMP_FOLDER}/llama.cpp && python convert_hf_to_gguf.py {MODEL_FOLDER} \\\n    --outfile {GGUF_FOLDER}/{MODEL_NAME}-F16.gguf \\\n    --outtype f16\n\n# # Convert gp16 GGUF to Q4_K_M\n!{TEMP_FOLDER}/llama.cpp/build/bin/llama-quantize {GGUF_FOLDER}/{MODEL_NAME}-F16.gguf \\\n    {GGUF_FOLDER}/{MODEL_NAME}-Q4_K_M.gguf \\\n    Q4_K_M",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#post-training-quantize-3",
+    "href": "src/07/slides.html#post-training-quantize-3",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Post-Training: Quantize",
+    "text": "Post-Training: Quantize\n\n\nfrom huggingface_hub import HfApi\n\n# Initialize the API\napi = HfApi()\n\n# Upload GGUF files to root\nprint(\"\\nUploading GGUF models to root...\")\napi.upload_folder(\n    folder_path=f\"{GGUF_FOLDER}\",\n    repo_id=MODEL_REPO,\n    repo_type=\"model\",\n    path_in_repo=\"\",  # GGUF files are typically found on the root level of a HF repo\n    commit_message=\"Upload GGUF quantized models\"\n)\n\nprint(f\"\\nGGUFs uploaded successfully to https://huggingface.co/{MODEL_REPO}\")",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#post-training-use-in-lm-studio",
+    "href": "src/07/slides.html#post-training-use-in-lm-studio",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Post-Training: Use in LM Studio!",
+    "text": "Post-Training: Use in LM Studio!\n\nUse LM Studio, search for your Hugging Face username\nDownload and test the GGUF of your newly fine-tuned model\n(Don’t forget to turn off your A100 Colab instance, if you haven’t already!)",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#post-training-use-in-lm-studio-1",
+    "href": "src/07/slides.html#post-training-use-in-lm-studio-1",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Post-Training: Use in LM Studio!",
+    "text": "Post-Training: Use in LM Studio!",
+    "crumbs": [
+      "**Module 7:** Increasing Model Accuracy (Part 2)",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/07/slides.html#post-training-use-in-lm-studio-2",
+    "href": "src/07/slides.html#post-training-use-in-lm-studio-2",
+    "title": "Module 7: Increasing Model Accuracy (Part 2)",
+    "section": "Post-Training: Use in LM Studio!",
+    "text": "Post-Training: Use in LM Studio!",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"
@@ -1458,7 +1667,7 @@
     "href": "src/07/slides.html#looking-ahead-1",
     "title": "Module 7: Increasing Model Accuracy (Part 2)",
     "section": "Looking Ahead",
-    "text": "Looking Ahead\n\nThis week’s assignment!\nTBD",
+    "text": "Looking Ahead\n\nThis week’s assignment!\nOur last lecture before spring break and final project!\nDiscuss ethical, IP, and safety concerns for Generative AI\nUse an evidence-based approach for each of the areas",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Slides"

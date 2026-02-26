@@ -501,17 +501,99 @@
 <section id="lets-train-1" class="slide level2">
 <h2>Let’s Train!</h2>
 <ul>
-<li class="fragment">TBD</li>
+<li class="fragment">TBD: Interim slide required?</li>
 </ul>
+</section></section>
+<section>
+<section id="demo-1" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p>Walkthrough of the training notebook</p>
+<p>Starting the training run!</p>
 </section>
 <section id="lora-hyperparameters" class="slide level2">
 <h2>LoRA Hyperparameters</h2>
-<p>BATCH_SIZE = 4 GRADIENT_ACCUMULATION_STEPS = 4 LEARNING_RATE = 2e-4 NUM_EPOCHS = 3 MAX_SEQ_LENGTH = 512 LORA_R = 16 LORA_ALPHA = 32 LORA_DROPOUT = 0.05 USE_4BIT = True</p>
+<p><code>BATCH_SIZE = 4</code></p>
+<ul>
+<li class="fragment">Number of training examples processed together in a single forward/backward pass</li>
+<li class="fragment">Larger batches = more stable gradient estimates, but consume more memory</li>
+<li class="fragment">2-8 recommended</li>
+</ul>
+</section>
+<section id="lora-hyperparameters-1" class="slide level2">
+<h2>LoRA Hyperparameters</h2>
+<p><code>GRADIENT_ACCUMULATION_STEPS = 4</code></p>
+<ul>
+<li class="fragment">Instead of updating weights after every batch, accumulate over this many batches before taking an optimizer step</li>
+<li class="fragment">Memory-efficient way to increase the batch size</li>
+<li class="fragment">2-16 recommended</li>
+</ul>
+</section>
+<section id="lora-hyperparameters-2" class="slide level2">
+<h2>LoRA Hyperparameters</h2>
+<p><code>LEARNING_RATE = 2e-4</code></p>
+<ul>
+<li class="fragment">How large a step the optimizer takes when updating weights</li>
+<li class="fragment">Too high = training becomes unstable</li>
+<li class="fragment">Too low = training is too slow or gets stuck</li>
+<li class="fragment">1e-4 or 2e-4 are common starting points</li>
+</ul>
+</section>
+<section id="lora-hyperparameters-3" class="slide level2">
+<h2>LoRA Hyperparameters</h2>
+<p><code>NUM_EPOCHS = 3</code></p>
+<ul>
+<li class="fragment">Number of times the model sees the entire dataset</li>
+<li class="fragment">More epochs can improve training, but with the risk of overfitting</li>
+<li class="fragment">2-5 epochs for a few thousand examples recommended</li>
+</ul>
+</section>
+<section id="lora-hyperparameters-4" class="slide level2">
+<h2>LoRA Hyperparameters</h2>
+<p><code>MAX_SEQ_LENGTH = 512</code></p>
+<ul>
+<li class="fragment">The maximum number of tokens in a single training example</li>
+<li class="fragment">(Length of one of the lines in your jsonl file)</li>
+<li class="fragment">Should cover your longest examples without too much padding</li>
+</ul>
+</section>
+<section id="lora-hyperparameters-5" class="slide level2">
+<h2>LoRA Hyperparameters</h2>
+<p><code>LORA_R = 16</code></p>
+<ul>
+<li class="fragment">The rank of the adapter matrics - i.e., how many parameters are added during fine-tuning</li>
+<li class="fragment">Higher rank = more capacity, but also more memory and risk of overfitting</li>
+<li class="fragment">4, 8, 16, 32 common values; 8-16 for small models</li>
+</ul>
+</section>
+<section id="lora-hyperparameters-6" class="slide level2">
+<h2>LoRA Hyperparameters</h2>
+<p><code>LORA_ALPHA = 32</code></p>
+<ul>
+<li class="fragment">A scaling factor for the LoRA updates</li>
+<li class="fragment">Usually set to 2x the rank (LORA_R)</li>
+</ul>
+</section>
+<section id="lora-hyperparameters-7" class="slide level2">
+<h2>LoRA Hyperparameters</h2>
+<p><code>LORA_DROPOUT = 0.05</code></p>
+<ul>
+<li class="fragment">Randomly zero out a small fraction of the adapter activations during training</li>
+<li class="fragment">Regulation technique to prevent overfitting</li>
+<li class="fragment">0.0 to 0.1 common range; use lower values for very small datasets</li>
+</ul>
+</section>
+<section id="lora-hyperparameters-8" class="slide level2">
+<h2>LoRA Hyperparameters</h2>
+<p><code>USE_4BIT = True</code></p>
+<ul>
+<li class="fragment">Enables QLoRA by loading the base model weights (W) in 4-bit precision</li>
+<li class="fragment">Optional for training 1B models in 8Gb VRAM</li>
+<li class="fragment">Definitely needed for 7B and 13B fine-tuning runs</li>
+</ul>
 </section></section>
-<section id="demo-1" class="title-slide slide level1 center">
+<section id="demo-2" class="title-slide slide level1 center">
 <h1>Demo</h1>
-<p>Walkthrough of the training notebook.</p>
-<p>Starting the training run!</p>
+<p>Let’s check on our training!</p>
 </section>
 
 <section>
@@ -597,6 +679,11 @@
 </ul></li>
 </ul>
 </section></section>
+<section id="demo-3" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p>W&amp;B output during current training run</p>
+</section>
+
 <section id="hands-on-1" class="title-slide slide level1 center">
 <h1>Hands-on</h1>
 <p>Create your W&amp;B account (https://wandb.ai), download API key, set in Colab</p>
@@ -612,27 +699,292 @@
 <section id="post-training-1" class="slide level2">
 <h2>Post-Training</h2>
 <ul>
-<li class="fragment">TBD: Test the model with a random one from our test dataset</li>
+<li class="fragment">After training has completed:
+<ul>
+<li class="fragment">Test the model using a random input from our test dataset</li>
+<li class="fragment">Create a model card, merge the models, and upload to Hugging Face</li>
+<li class="fragment">Quantize the model and upgrade the GGUF to Hugging Face</li>
+<li class="fragment">Download the GGUF in LM Studio!</li>
+</ul></li>
 </ul>
 </section>
-<section id="post-training-2" class="slide level2">
-<h2>Post-Training</h2>
+<section id="post-training-test" class="slide level2">
+<h2>Post-Training: Test</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/07/notebooks/train-cuda.ipynb" data-notebook-title="Supervised Fine-Tuning on CUDA" data-notebook-cellid="test-model">
+<div id="test-model" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">import</span> random</span>
+<span id="cb3-2"><a></a></span>
+<span id="cb3-3"><a></a>idx <span class="op">=</span> random.randint(<span class="dv">0</span>, <span class="bu">len</span>(formatted_dataset[<span class="st">'test'</span>]) <span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb3-4"><a></a>test_data <span class="op">=</span> formatted_dataset[<span class="st">'test'</span>][idx][<span class="st">"text"</span>]</span>
+<span id="cb3-5"><a></a></span>
+<span id="cb3-6"><a></a>output <span class="op">=</span> pipe(test_data)</span>
+<span id="cb3-7"><a></a><span class="bu">print</span>(output[<span class="dv">0</span>][<span class="st">'generated_text'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="post-training-create-model-card" class="slide level2">
+<h2>Post-Training: Create Model Card</h2>
 <ul>
-<li class="fragment">TBD: Create a model card, merge the models and upload everything to Hugging Face</li>
+<li class="fragment">What’s a model card?
+<ul>
+<li class="fragment"><code>README.md</code> for your model on Hugging Face</li>
+<li class="fragment">Common sections
+<ul>
+<li class="fragment">An overview of the model</li>
+<li class="fragment">How the model was trained</li>
+<li class="fragment">Benchmarks</li>
+<li class="fragment">How to use the model</li>
+<li class="fragment">Limitations, best practices, risks, safety, author details</li>
+</ul></li>
+</ul></li>
 </ul>
 </section>
-<section id="post-training-3" class="slide level2">
-<h2>Post-Training</h2>
+<section id="post-training-create-model-card-1" class="slide level2">
+<h2>Post-Training: Create Model Card</h2>
 <ul>
-<li class="fragment">TBD: Quantize the model and upload to Hugging Face</li>
+<li class="fragment">A default <code>README.md</code> will be generated by <code>save_pretrained()</code> method</li>
+<li class="fragment">You can overwrite this with your own</li>
+<li class="fragment">Or create one programmatically</li>
 </ul>
 </section>
-<section id="post-training-4" class="slide level2">
-<h2>Post-Training</h2>
+<section id="post-training-create-model-card-2" class="slide level2">
+<h2>Post-Training: Create Model Card</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/07/notebooks/train-cuda.ipynb" data-notebook-title="Supervised Fine-Tuning on CUDA" data-notebook-cellid="model-card">
+<div id="model-card" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">from</span> huggingface_hub <span class="im">import</span> ModelCard</span>
+<span id="cb4-2"><a></a></span>
+<span id="cb4-3"><a></a>card_content <span class="op">=</span> <span class="ss">f"""---</span></span>
+<span id="cb4-4"><a></a><span class="ss">base_model: </span><span class="sc">{</span>BASE_MODEL<span class="sc">}</span></span>
+<span id="cb4-5"><a></a><span class="ss">tags:</span></span>
+<span id="cb4-6"><a></a><span class="ss">- peft</span></span>
+<span id="cb4-7"><a></a><span class="ss">- lora</span></span>
+<span id="cb4-8"><a></a><span class="ss">- text-generation</span></span>
+<span id="cb4-9"><a></a><span class="ss">---</span></span>
+<span id="cb4-10"><a></a></span>
+<span id="cb4-11"><a></a><span class="ss"># </span><span class="sc">{</span>MODEL_NAME<span class="sc">}</span></span>
+<span id="cb4-12"><a></a></span>
+<span id="cb4-13"><a></a><span class="ss">## Model Description</span></span>
+<span id="cb4-14"><a></a><span class="ss">Fine-tuned from `</span><span class="sc">{</span>BASE_MODEL<span class="sc">}</span><span class="ss">` using QLoRA (4-bit) with supervised fine-tuning.</span></span>
+<span id="cb4-15"><a></a></span>
+<span id="cb4-16"><a></a><span class="ss">## Training Details</span></span>
+<span id="cb4-17"><a></a><span class="ss">- Dataset: `</span><span class="sc">{</span>DATASET_REPO<span class="sc">}</span><span class="ss">`</span></span>
+<span id="cb4-18"><a></a><span class="ss">- LoRA rank: </span><span class="sc">{</span>LORA_R<span class="sc">}</span><span class="ss">, alpha: </span><span class="sc">{</span>LORA_ALPHA<span class="sc">}</span></span>
+<span id="cb4-19"><a></a><span class="ss">- Epochs: </span><span class="sc">{</span>NUM_EPOCHS<span class="sc">}</span><span class="ss">, Learning rate: </span><span class="sc">{</span>LEARNING_RATE<span class="sc">}</span></span>
+<span id="cb4-20"><a></a></span>
+<span id="cb4-21"><a></a><span class="ss">## Intended Use</span></span>
+<span id="cb4-22"><a></a></span>
+<span id="cb4-23"><a></a><span class="ss">This model is a test model used for the CS-394/594 class at DigiPen.</span></span>
+<span id="cb4-24"><a></a></span>
+<span id="cb4-25"><a></a><span class="ss">The model is designed to provide a summary explanation of a snippet of Python code, to be used in an IDE. This model takes a snippet of code (passed as the user prompt) and returns a two paragraph explanation of what the code does, including an analogy that helps students better understand how the code functions.</span></span>
+<span id="cb4-26"><a></a></span>
+<span id="cb4-27"><a></a><span class="ss">## Limitations</span></span>
+<span id="cb4-28"><a></a></span>
+<span id="cb4-29"><a></a><span class="ss">This model is a single-turn model and has not been trained on support long, multi-turn conversations.</span></span>
+<span id="cb4-30"><a></a><span class="ss">"""</span></span>
+<span id="cb4-31"><a></a></span>
+<span id="cb4-32"><a></a>card <span class="op">=</span> ModelCard(card_content)</span>
+<span id="cb4-33"><a></a>card.save(<span class="ss">f"</span><span class="sc">{</span>MODEL_FOLDER<span class="sc">}</span><span class="ss">/lora/README.md"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="post-training-merge-and-upload" class="slide level2">
+<h2>Post-Training: Merge and Upload</h2>
 <ul>
-<li class="fragment">TBD: Download the model in LM Studio and test!!!</li>
+<li class="fragment">Merging “fuses” the LoRA adapter and base model, creating a new model</li>
+<li class="fragment">Doing this will enable others to use your model</li>
+<li class="fragment">Upload your merged model (and optionally your adapter in a sub-folder) to Hugging Face</li>
 </ul>
+</section>
+<section id="post-training-merge-and-upload-1" class="slide level2">
+<h2>Post-Training: Merge and Upload</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/07/notebooks/train-cuda.ipynb" data-notebook-title="Supervised Fine-Tuning on CUDA" data-notebook-cellid="merge-model">
+<div id="merge-model" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">import</span> torch</span>
+<span id="cb5-2"><a></a><span class="im">from</span> transformers <span class="im">import</span> AutoModelForCausalLM, AutoTokenizer</span>
+<span id="cb5-3"><a></a></span>
+<span id="cb5-4"><a></a><span class="im">from</span> peft <span class="im">import</span> PeftModel</span>
+<span id="cb5-5"><a></a></span>
+<span id="cb5-6"><a></a><span class="co"># Load the configuration and model</span></span>
+<span id="cb5-7"><a></a>base_model <span class="op">=</span> AutoModelForCausalLM.from_pretrained(</span>
+<span id="cb5-8"><a></a>    BASE_MODEL,</span>
+<span id="cb5-9"><a></a>    device_map<span class="op">=</span><span class="st">"auto"</span>,</span>
+<span id="cb5-10"><a></a>    dtype<span class="op">=</span>torch.bfloat16,</span>
+<span id="cb5-11"><a></a>)</span>
+<span id="cb5-12"><a></a>adapter_model <span class="op">=</span> PeftModel.from_pretrained(base_model, <span class="ss">f"</span><span class="sc">{</span>MODEL_FOLDER<span class="sc">}</span><span class="ss">/lora"</span>)</span>
+<span id="cb5-13"><a></a></span>
+<span id="cb5-14"><a></a><span class="co"># Merge and save the model</span></span>
+<span id="cb5-15"><a></a>merged_model <span class="op">=</span> adapter_model.merge_and_unload() <span class="co"># type: ignore</span></span>
+<span id="cb5-16"><a></a>merged_model.save_pretrained(<span class="ss">f"</span><span class="sc">{</span>MODEL_FOLDER<span class="sc">}</span><span class="ss">/merged"</span>)</span>
+<span id="cb5-17"><a></a><span class="co"># Save the tokenizer</span></span>
+<span id="cb5-18"><a></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(BASE_MODEL)</span>
+<span id="cb5-19"><a></a>tokenizer.save_pretrained(<span class="ss">f"</span><span class="sc">{</span>MODEL_FOLDER<span class="sc">}</span><span class="ss">/merged"</span>)</span>
+<span id="cb5-20"><a></a></span>
+<span id="cb5-21"><a></a><span class="co"># Copy the model card to the merged folder</span></span>
+<span id="cb5-22"><a></a><span class="op">!</span>cp {MODEL_FOLDER}<span class="op">/</span>lora<span class="op">/</span>README.md {MODEL_FOLDER}<span class="op">/</span>merged<span class="op">/</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="post-training-merge-and-upload-2" class="slide level2">
+<h2>Post-Training: Merge and Upload</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/07/notebooks/train-cuda.ipynb" data-notebook-title="Supervised Fine-Tuning on CUDA" data-notebook-cellid="upload-model">
+<div id="upload-model" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="im">from</span> huggingface_hub <span class="im">import</span> HfApi, create_repo</span>
+<span id="cb6-2"><a></a></span>
+<span id="cb6-3"><a></a><span class="co"># Set the MODEL_REPO</span></span>
+<span id="cb6-4"><a></a>MODEL_REPO <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>HF_USERNAME<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>MODEL_NAME<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb6-5"><a></a></span>
+<span id="cb6-6"><a></a><span class="co"># Initialize the API</span></span>
+<span id="cb6-7"><a></a>api <span class="op">=</span> HfApi()</span>
+<span id="cb6-8"><a></a></span>
+<span id="cb6-9"><a></a><span class="co"># Create the repository (if it doesn't exist)</span></span>
+<span id="cb6-10"><a></a><span class="cf">try</span>:</span>
+<span id="cb6-11"><a></a>    create_repo(MODEL_REPO, repo_type<span class="op">=</span><span class="st">"model"</span>, exist_ok<span class="op">=</span><span class="va">True</span>, private<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb6-12"><a></a>    <span class="bu">print</span>(<span class="ss">f"Repository </span><span class="sc">{</span>MODEL_REPO<span class="sc">}</span><span class="ss"> created or already exists"</span>)</span>
+<span id="cb6-13"><a></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb6-14"><a></a>    <span class="bu">print</span>(<span class="ss">f"Error creating repo: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-15"><a></a></span>
+<span id="cb6-16"><a></a><span class="co"># Upload merged model files to root (this is the main model)</span></span>
+<span id="cb6-17"><a></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Uploading merged model to root..."</span>)</span>
+<span id="cb6-18"><a></a>api.upload_folder(</span>
+<span id="cb6-19"><a></a>    folder_path<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>MODEL_FOLDER<span class="sc">}</span><span class="ss">/merged"</span>,</span>
+<span id="cb6-20"><a></a>    repo_id<span class="op">=</span>MODEL_REPO,</span>
+<span id="cb6-21"><a></a>    repo_type<span class="op">=</span><span class="st">"model"</span>,</span>
+<span id="cb6-22"><a></a>    path_in_repo<span class="op">=</span><span class="st">""</span>,  <span class="co"># Empty string uploads to root</span></span>
+<span id="cb6-23"><a></a>    commit_message<span class="op">=</span><span class="st">"Upload merged model"</span></span>
+<span id="cb6-24"><a></a>)</span>
+<span id="cb6-25"><a></a></span>
+<span id="cb6-26"><a></a><span class="co"># Upload LoRA adapter to subfolder (optional but useful for reference)</span></span>
+<span id="cb6-27"><a></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Uploading LoRA adapter..."</span>)</span>
+<span id="cb6-28"><a></a>api.upload_folder(</span>
+<span id="cb6-29"><a></a>    folder_path<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>MODEL_FOLDER<span class="sc">}</span><span class="ss">/lora"</span>,</span>
+<span id="cb6-30"><a></a>    repo_id<span class="op">=</span>MODEL_REPO,</span>
+<span id="cb6-31"><a></a>    repo_type<span class="op">=</span><span class="st">"model"</span>,</span>
+<span id="cb6-32"><a></a>    path_in_repo<span class="op">=</span><span class="st">"lora_adapter"</span>,  <span class="co"># Keep adapter in subfolder</span></span>
+<span id="cb6-33"><a></a>    commit_message<span class="op">=</span><span class="st">"Upload LoRA adapter"</span></span>
+<span id="cb6-34"><a></a>)</span>
+<span id="cb6-35"><a></a></span>
+<span id="cb6-36"><a></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">✓ All files uploaded successfully to https://huggingface.co/</span><span class="sc">{</span>MODEL_REPO<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
 </section></section>
+<section>
+<section id="demo-4" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p>Create model card, merge, and upload to Hugging Face</p>
+</section>
+<section id="post-training-quantize" class="slide level2">
+<h2>Post-Training: Quantize</h2>
+<ul>
+<li class="fragment">Even though we used QLoRA, your merged model is still full precision</li>
+<li class="fragment">To enable others to run locally, we want to create quantized versions (GGUF)</li>
+<li class="fragment">Use llama-quantize (part of llama.cpp) to quantize</li>
+<li class="fragment">Then upload to Hugging Face (in the root of the model repo so it’s discoverable)</li>
+</ul>
+</section>
+<section id="post-training-quantize-1" class="slide level2">
+<h2>Post-Training: Quantize</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/07/notebooks/quantize.ipynb" data-notebook-title="Quantize Your Fine-Tuned Model" data-notebook-cellid="build-llama">
+<div id="build-llama" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="14eb357d-4ef0-49c3-bf2f-bfbb4a3371a6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a>TEMP_FOLDER <span class="op">=</span> <span class="st">"/content/tmp"</span></span>
+<span id="cb7-2"><a></a></span>
+<span id="cb7-3"><a></a><span class="co"># Create a temporary location and clone llama.cpp</span></span>
+<span id="cb7-4"><a></a><span class="op">!</span>mkdir <span class="op">-</span>p {TEMP_FOLDER}</span>
+<span id="cb7-5"><a></a><span class="op">!</span>cd {TEMP_FOLDER} <span class="op">&amp;&amp;</span> git clone https:<span class="op">//</span>github.com<span class="op">/</span>ggml<span class="op">-</span>org<span class="op">/</span>llama.cpp</span>
+<span id="cb7-6"><a></a></span>
+<span id="cb7-7"><a></a><span class="op">!</span>cd {TEMP_FOLDER}<span class="op">/</span>llama.cpp <span class="op">&amp;&amp;</span> cmake <span class="op">-</span>B build</span>
+<span id="cb7-8"><a></a><span class="op">!</span>cd {TEMP_FOLDER}<span class="op">/</span>llama.cpp <span class="op">&amp;&amp;</span> cmake <span class="op">--</span>build build <span class="op">--</span>config Release <span class="op">--</span>target llama<span class="op">-</span>quantize <span class="op">-</span>j <span class="dv">8</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="post-training-quantize-2" class="slide level2">
+<h2>Post-Training: Quantize</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/07/notebooks/quantize.ipynb" data-notebook-title="Quantize Your Fine-Tuned Model" data-notebook-cellid="convert">
+<div id="convert" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000,&quot;referenced_widgets&quot;:[&quot;ae44dee311524895926f9e8abe85e25a&quot;,&quot;d1da0dbc1b8d453fb6c740d42284191e&quot;,&quot;ebe59d82062f48acb14d90a7589fdb92&quot;,&quot;19faff8ac6bd4c1f963eaff0cd36575b&quot;,&quot;06caea8b08674c928090c7672ae471e4&quot;,&quot;7df4f34f4593486faaead96cf6876032&quot;,&quot;fcc82250e51546f0bb8f5449b9241c60&quot;,&quot;429e052d7c234d5c989f718978a194e9&quot;,&quot;9e39c89dcb2a4595993d578108d85fbb&quot;,&quot;09efed9120334bf986783fff5fd076da&quot;,&quot;7cc3c04122044d8ab102f7a196324e62&quot;,&quot;a1e304a7afc7480fa3bf4cca5acbf413&quot;,&quot;6846af1e73874a2f9892b72daa8e8918&quot;,&quot;29a7646006b145c5bf9ebc26019a0921&quot;,&quot;87b1d00a16954c4e97e6fa1c49b5cc27&quot;,&quot;b02b701b76fa4262b437298a11088a9d&quot;,&quot;49db6beebb0140f5930cf7d532d2454d&quot;,&quot;a607fd74f4b14ce7949db2a12a867a1a&quot;,&quot;a2fb68ecde6b4e4f90e6fe0d528a1f75&quot;,&quot;4f67de272467463fbc5f7234513cd0da&quot;,&quot;06aa74172e7940508c67303fb454ae16&quot;,&quot;d83d1c14aa23406d869503afbae312fa&quot;]}}" data-outputid="5c4c9d8f-15af-4979-c93a-88f227f1e4f5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="im">from</span> huggingface_hub <span class="im">import</span> snapshot_download</span>
+<span id="cb8-2"><a></a></span>
+<span id="cb8-3"><a></a>HF_USERNAME <span class="op">=</span> <span class="st">"simonguest"</span> <span class="co"># Change this to your Hugging Face username</span></span>
+<span id="cb8-4"><a></a>MODEL_NAME <span class="op">=</span> <span class="st">"Qwen3-1.7B-code-explainer"</span> <span class="co"># Change this to the repo of your merged model</span></span>
+<span id="cb8-5"><a></a>MODEL_REPO <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>HF_USERNAME<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>MODEL_NAME<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb8-6"><a></a></span>
+<span id="cb8-7"><a></a><span class="co"># Working folders</span></span>
+<span id="cb8-8"><a></a>MODEL_FOLDER <span class="op">=</span> <span class="st">"/content/model"</span></span>
+<span id="cb8-9"><a></a>GGUF_FOLDER <span class="op">=</span> <span class="st">"/content/ggufs"</span></span>
+<span id="cb8-10"><a></a></span>
+<span id="cb8-11"><a></a><span class="op">!</span>mkdir <span class="op">-</span>p {MODEL_FOLDER}</span>
+<span id="cb8-12"><a></a><span class="op">!</span>mkdir <span class="op">-</span>p {GGUF_FOLDER}</span>
+<span id="cb8-13"><a></a></span>
+<span id="cb8-14"><a></a><span class="co"># Download the model from Hugging Face at full precision</span></span>
+<span id="cb8-15"><a></a>snapshot_download(repo_id<span class="op">=</span>MODEL_REPO, local_dir<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>MODEL_FOLDER<span class="sc">}</span><span class="ss">"</span>, repo_type<span class="op">=</span><span class="st">"model"</span>)</span>
+<span id="cb8-16"><a></a></span>
+<span id="cb8-17"><a></a><span class="co"># Convert to GGUF (fp16 first)</span></span>
+<span id="cb8-18"><a></a><span class="op">!</span>cd {TEMP_FOLDER}<span class="op">/</span>llama.cpp <span class="op">&amp;&amp;</span> python convert_hf_to_gguf.py {MODEL_FOLDER} <span class="op">\</span></span>
+<span id="cb8-19"><a></a>    <span class="op">--</span>outfile {GGUF_FOLDER}<span class="op">/</span>{MODEL_NAME}<span class="op">-</span>F16.gguf <span class="op">\</span></span>
+<span id="cb8-20"><a></a>    <span class="op">--</span>outtype f16</span>
+<span id="cb8-21"><a></a></span>
+<span id="cb8-22"><a></a><span class="co"># # Convert gp16 GGUF to Q4_K_M</span></span>
+<span id="cb8-23"><a></a><span class="op">!</span>{TEMP_FOLDER}<span class="op">/</span>llama.cpp<span class="op">/</span>build<span class="op">/</span><span class="bu">bin</span><span class="op">/</span>llama<span class="op">-</span>quantize {GGUF_FOLDER}<span class="op">/</span>{MODEL_NAME}<span class="op">-</span>F16.gguf <span class="op">\</span></span>
+<span id="cb8-24"><a></a>    {GGUF_FOLDER}<span class="op">/</span>{MODEL_NAME}<span class="op">-</span>Q4_K_M.gguf <span class="op">\</span></span>
+<span id="cb8-25"><a></a>    Q4_K_M</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="post-training-quantize-3" class="slide level2">
+<h2>Post-Training: Quantize</h2>
+<div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/src/07/notebooks/quantize.ipynb" data-notebook-title="Quantize Your Fine-Tuned Model" data-notebook-cellid="upload">
+<div id="upload" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="im">from</span> huggingface_hub <span class="im">import</span> HfApi</span>
+<span id="cb9-2"><a></a></span>
+<span id="cb9-3"><a></a><span class="co"># Initialize the API</span></span>
+<span id="cb9-4"><a></a>api <span class="op">=</span> HfApi()</span>
+<span id="cb9-5"><a></a></span>
+<span id="cb9-6"><a></a><span class="co"># Upload GGUF files to root</span></span>
+<span id="cb9-7"><a></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Uploading GGUF models to root..."</span>)</span>
+<span id="cb9-8"><a></a>api.upload_folder(</span>
+<span id="cb9-9"><a></a>    folder_path<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>GGUF_FOLDER<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb9-10"><a></a>    repo_id<span class="op">=</span>MODEL_REPO,</span>
+<span id="cb9-11"><a></a>    repo_type<span class="op">=</span><span class="st">"model"</span>,</span>
+<span id="cb9-12"><a></a>    path_in_repo<span class="op">=</span><span class="st">""</span>,  <span class="co"># GGUF files are typically found on the root level of a HF repo</span></span>
+<span id="cb9-13"><a></a>    commit_message<span class="op">=</span><span class="st">"Upload GGUF quantized models"</span></span>
+<span id="cb9-14"><a></a>)</span>
+<span id="cb9-15"><a></a></span>
+<span id="cb9-16"><a></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">GGUFs uploaded successfully to https://huggingface.co/</span><span class="sc">{</span>MODEL_REPO<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="demo-5" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p>Quantize and upload to Hugging Face</p>
+</section>
+<section id="post-training-use-in-lm-studio" class="slide level2">
+<h2>Post-Training: Use in LM Studio!</h2>
+<ul>
+<li class="fragment">Use LM Studio, search for your Hugging Face username</li>
+<li class="fragment">Download and test the GGUF of your newly fine-tuned model</li>
+<li class="fragment">(Don’t forget to turn off your A100 Colab instance, if you haven’t already!)</li>
+</ul>
+</section>
+<section id="post-training-use-in-lm-studio-1" class="slide level2">
+<h2>Post-Training: Use in LM Studio!</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/lmstudio-search.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img data-src="images/lmstudio-search.png" class="quarto-figure quarto-figure-center" width="600"></a></p>
+</figure>
+</div>
+</section>
+<section id="post-training-use-in-lm-studio-2" class="slide level2">
+<h2>Post-Training: Use in LM Studio!</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/lmstudio-chat.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img data-src="images/lmstudio-chat.png" class="quarto-figure quarto-figure-center" width="600"></a></p>
+</figure>
+</div>
+</section></section>
+<section id="demo-6" class="title-slide slide level1 center">
+<h1>Demo</h1>
+<p>Search and chat in LM Studio!</p>
+</section>
+
 <section>
 <section id="looking-ahead" class="title-slide slide level1 center">
 <h1>Looking Ahead</h1>
@@ -642,7 +994,9 @@
 <h2>Looking Ahead</h2>
 <ul>
 <li class="fragment"><a href="https://simonguest.github.io/CS-394/src/07/assignment.html" class="external" target="_blank">This week’s assignment!</a></li>
-<li class="fragment">TBD</li>
+<li class="fragment">Our last lecture before spring break and final project!</li>
+<li class="fragment">Discuss ethical, IP, and safety concerns for Generative AI</li>
+<li class="fragment">Use an evidence-based approach for each of the areas</li>
 </ul>
 </section></section>
 <section>
@@ -870,6 +1224,9 @@
           RevealZoom
         ]
       });
+    </script>
+    <script type="application/vnd.jupyter.widget-state+json">
+    {"06aa74172e7940508c67303fb454ae16":{"model_module":"@jupyter-widgets/base","model_module_version":"1.2.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"06caea8b08674c928090c7672ae471e4":{"model_module":"@jupyter-widgets/base","model_module_version":"1.2.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"09efed9120334bf986783fff5fd076da":{"model_module":"@jupyter-widgets/base","model_module_version":"1.2.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"19faff8ac6bd4c1f963eaff0cd36575b":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"HTMLView","description":"","description_tooltip":null,"layout":"IPY_MODEL_09efed9120334bf986783fff5fd076da","placeholder":"​","style":"IPY_MODEL_7cc3c04122044d8ab102f7a196324e62","value":" 1.52G/? [00:21&lt;00:00, 1.12GB/s]"}},"29a7646006b145c5bf9ebc26019a0921":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"FloatProgressModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"FloatProgressModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"ProgressView","bar_style":"success","description":"","description_tooltip":null,"layout":"IPY_MODEL_a2fb68ecde6b4e4f90e6fe0d528a1f75","max":10,"min":0,"orientation":"horizontal","style":"IPY_MODEL_4f67de272467463fbc5f7234513cd0da","value":10}},"429e052d7c234d5c989f718978a194e9":{"model_module":"@jupyter-widgets/base","model_module_version":"1.2.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":"20px"}},"49db6beebb0140f5930cf7d532d2454d":{"model_module":"@jupyter-widgets/base","model_module_version":"1.2.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"4f67de272467463fbc5f7234513cd0da":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"ProgressStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"ProgressStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"StyleView","bar_color":null,"description_width":""}},"6846af1e73874a2f9892b72daa8e8918":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"HTMLView","description":"","description_tooltip":null,"layout":"IPY_MODEL_49db6beebb0140f5930cf7d532d2454d","placeholder":"​","style":"IPY_MODEL_a607fd74f4b14ce7949db2a12a867a1a","value":"Fetching 10 files: 100%"}},"7cc3c04122044d8ab102f7a196324e62":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"DescriptionStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"DescriptionStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"StyleView","description_width":""}},"7df4f34f4593486faaead96cf6876032":{"model_module":"@jupyter-widgets/base","model_module_version":"1.2.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"87b1d00a16954c4e97e6fa1c49b5cc27":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"HTMLView","description":"","description_tooltip":null,"layout":"IPY_MODEL_06aa74172e7940508c67303fb454ae16","placeholder":"​","style":"IPY_MODEL_d83d1c14aa23406d869503afbae312fa","value":" 10/10 [00:02&lt;00:00,  2.82it/s]"}},"9e39c89dcb2a4595993d578108d85fbb":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"ProgressStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"ProgressStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"StyleView","bar_color":null,"description_width":""}},"a1e304a7afc7480fa3bf4cca5acbf413":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"HBoxModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"HBoxModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"HBoxView","box_style":"","children":["IPY_MODEL_6846af1e73874a2f9892b72daa8e8918","IPY_MODEL_29a7646006b145c5bf9ebc26019a0921","IPY_MODEL_87b1d00a16954c4e97e6fa1c49b5cc27"],"layout":"IPY_MODEL_b02b701b76fa4262b437298a11088a9d"}},"a2fb68ecde6b4e4f90e6fe0d528a1f75":{"model_module":"@jupyter-widgets/base","model_module_version":"1.2.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"a607fd74f4b14ce7949db2a12a867a1a":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"DescriptionStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"DescriptionStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"StyleView","description_width":""}},"ae44dee311524895926f9e8abe85e25a":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"HBoxModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"HBoxModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"HBoxView","box_style":"","children":["IPY_MODEL_d1da0dbc1b8d453fb6c740d42284191e","IPY_MODEL_ebe59d82062f48acb14d90a7589fdb92","IPY_MODEL_19faff8ac6bd4c1f963eaff0cd36575b"],"layout":"IPY_MODEL_06caea8b08674c928090c7672ae471e4"}},"b02b701b76fa4262b437298a11088a9d":{"model_module":"@jupyter-widgets/base","model_module_version":"1.2.0","model_name":"LayoutModel","state":{"_model_module":"@jupyter-widgets/base","_model_module_version":"1.2.0","_model_name":"LayoutModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"LayoutView","align_content":null,"align_items":null,"align_self":null,"border":null,"bottom":null,"display":null,"flex":null,"flex_flow":null,"grid_area":null,"grid_auto_columns":null,"grid_auto_flow":null,"grid_auto_rows":null,"grid_column":null,"grid_gap":null,"grid_row":null,"grid_template_areas":null,"grid_template_columns":null,"grid_template_rows":null,"height":null,"justify_content":null,"justify_items":null,"left":null,"margin":null,"max_height":null,"max_width":null,"min_height":null,"min_width":null,"object_fit":null,"object_position":null,"order":null,"overflow":null,"overflow_x":null,"overflow_y":null,"padding":null,"right":null,"top":null,"visibility":null,"width":null}},"d1da0dbc1b8d453fb6c740d42284191e":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"HTMLModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"HTMLModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"HTMLView","description":"","description_tooltip":null,"layout":"IPY_MODEL_7df4f34f4593486faaead96cf6876032","placeholder":"​","style":"IPY_MODEL_fcc82250e51546f0bb8f5449b9241c60","value":"Download complete: "}},"d83d1c14aa23406d869503afbae312fa":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"DescriptionStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"DescriptionStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"StyleView","description_width":""}},"ebe59d82062f48acb14d90a7589fdb92":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"FloatProgressModel","state":{"_dom_classes":[],"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"FloatProgressModel","_view_count":null,"_view_module":"@jupyter-widgets/controls","_view_module_version":"1.5.0","_view_name":"ProgressView","bar_style":"info","description":"","description_tooltip":null,"layout":"IPY_MODEL_429e052d7c234d5c989f718978a194e9","max":1,"min":0,"orientation":"horizontal","style":"IPY_MODEL_9e39c89dcb2a4595993d578108d85fbb","value":1}},"fcc82250e51546f0bb8f5449b9241c60":{"model_module":"@jupyter-widgets/controls","model_module_version":"1.5.0","model_name":"DescriptionStyleModel","state":{"_model_module":"@jupyter-widgets/controls","_model_module_version":"1.5.0","_model_name":"DescriptionStyleModel","_view_count":null,"_view_module":"@jupyter-widgets/base","_view_module_version":"1.2.0","_view_name":"StyleView","description_width":""}}}
     </script>
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
