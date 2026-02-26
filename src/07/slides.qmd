@@ -110,7 +110,7 @@ TBD: Diagram
 
 # Today's Fine-Tuning Plan
 
-## Today's Fine-Tuning Plan
+## Today's Fine-Tuning Plan (1/2)
 
 - Upload our .jsonl files to Hugging Face to create a dataset
 - In our training notebook...
@@ -121,7 +121,7 @@ TBD: Diagram
   - Training loss
   - Validation loss
 
-## Today's Fine-Tuning Plan 
+## Today's Fine-Tuning Plan (2/2)
 
 - After training has completed...
   - Test (both manually and automatic)
@@ -163,17 +163,33 @@ Uploading the training data files to Hugging Face Dataset
 
 Upload your training data files to Hugging Face Dataset
 
-# Let's Train!
+(CPU instance on Colab is fine for this)
 
-## Let's Train!
+# The Training Notebook
 
-- TBD: Interim slide required?
+## The Training Notebook
+
+- `train-cuda.ipynb` contains the steps to fine-tune a small model
+- Main sections
+  - Set training parameters
+  - Download dataset from Hugging Face
+  - Create formatted dataset that uses the chat template
+  - Load base model and configure for QLoRA
+  - Create our trainer
+  - Train!
 
 # Demo
 
 Walkthrough of the training notebook
 
-Starting the training run!
+Set parameters and start training!
+
+## Sidebar: How long will training take?
+
+- For Qwen3-1.7B using an A100 on Colab
+  - About 45 mins
+  - (20 mins if we are lucky and get upgraded to an RTX6000)
+  - We can monitor using `tqdm` (a popular Python progress bar)
 
 ## LoRA Hyperparameters
 
@@ -263,7 +279,7 @@ Let's check on our training!
 
 ## Weights & Biases
 
-- TBD: screenshot of system metrics
+![](images/wandb-system.png){.lightbox fig-align="center" width="600px"}
 
 ## Weights & Biases
 
@@ -276,7 +292,7 @@ Let's check on our training!
 
 ## Weights & Biases
 
-- TBD: screenshot of training metrics
+![](images/wandb-train.png){.lightbox fig-align="center" width="600px"}
 
 ## Weights & Biases
 
@@ -290,7 +306,7 @@ Let's check on our training!
 
 ## Weights & Biases
 
-- TBD: screenshot of evaluation metrics
+![](images/wandb-eval.png){.lightbox fig-align="center" width="600px"}
 
 ## Weights & Biases
 
