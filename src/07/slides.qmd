@@ -38,7 +38,7 @@ bibliography: references.bib
 
 - There are three main stages of training a model:
   - **Pretraining:** The initial, large-scale training run that creates a base model with pretrained weights
-  - **Supervised Fine-Tuning (SFT):** Shapes the base model to follow instructions and respond in a desired style or fornat
+  - **Supervised Fine-Tuning (SFT):** Shapes the base model to follow instructions and respond in a desired style or format
   - **Alignment:** Further refines the model toward preferred behaviors and values
 
 ## Model Training Stages
@@ -86,15 +86,14 @@ bibliography: references.bib
 ## Supervised Fine-Tuning (SFT)
 
 - **Training Loss** tells us how close the model predicts vs. our desired outputs
-- **Validation Loss** tells us how well the model predicts on data that it hasn't be trained on
+- **Validation Loss** tells us how well the model predicts on data that it hasn't been trained on
   - Prevents the model from memorizing the training data vs. generalizing
   - "Memorizing training data" known as **overfitting**
 
 ## Introducing LoRA
 
 - Adjusting all parameters in a model can be compute and memory intensive
-- Introducing LoRA: Low-Rank Adaptation of Large Language Models
-  - Paper: https://arxiv.org/abs/2106.09685
+- Introducing LoRA: Low-Rank Adaptation of Large Language Models [@hu2021lora]
 
 ## Introducing LoRA
 
@@ -112,8 +111,7 @@ bibliography: references.bib
 ## Introducing QLoRA
 
 - To further increase memory efficiency, we will use QLoRA (Quantized LoRA)
-  - Introducing QLoRA: Efficient Finetuning of Quantized LLMs
-    - https://arxiv.org/abs/2305.14314
+  - Introducing QLoRA: Efficient Finetuning of Quantized LLMs [@dettmers2023qlora]
   - The base model weights (W) are quantized to 4-bit (NF4 format) for storage
   - During the forward pass, W is dequantized to bf16 on the fly for computation, then discarded
   - Adapter matrices A and B are kept at full precision (bf16) for training accuracy
@@ -130,10 +128,10 @@ bibliography: references.bib
 - In our training notebook...
   - Download the dataset
   - Format our training data to match the chat template
+    - i.e., convert JSON to `<|imstart|>user... etc.`
   - Start our training run!
 - Use W&B (Weights & Biases) to monitor how well our model is learning
-  - Training loss
-  - Validation loss
+  - Training loss and validation loss
 
 ## Our Fine-Tuning Plan (2/2)
 
@@ -255,6 +253,8 @@ Set parameters and start training!
 
 - The rank of the adapter matrices - i.e., how many parameters are added during fine-tuning
 - Higher rank = more capacity, but also more memory and risk of overfitting
+  - e.g., 4096 x 4096 weight matrix = 16M parameters
+  - A = 4096x16; B=16x4096; Total = 131K parameters to be trained
 - 4, 8, 16, 32 common values; 8-16 for small models
 
 ## Training Hyperparameters
@@ -269,7 +269,7 @@ Set parameters and start training!
 `LORA_DROPOUT = 0.05`
 
 - Randomly zero out a small fraction of the adapter activations during training
-- Regulation technique to prevent overfitting
+- Regularization technique to prevent overfitting
 - 0.0 to 0.1 common range; use lower values for very small datasets
 
 ## Training Hyperparameters
@@ -326,7 +326,7 @@ Let's check on our training!
 - Eval Metrics
   - Metrics on the validation runs during training (predictions using the validation dataset)
   - Number of tokens, token accuracy, eval loss (a.k.a. validation loss)
-- What the look for:
+- What to look for:
   - Validation loss should decrease quickly and plateau
   - Validation loss should be very close to training loss
   - Validation loss should not start to increase (indicates overfitting)
@@ -356,7 +356,7 @@ Change runtype to A100 and start your training run!
 - After training has completed:
   - Test the model using a random input from our test dataset
   - Create a model card, merge the models, and upload to Hugging Face
-  - Quantize the model and upgrade the GGUF to Hugging Face
+  - Quantize the model and upload the GGUF to Hugging Face
   - Download the GGUF in LM Studio!
 
 ## Post-Training: Test
