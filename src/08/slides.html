@@ -135,23 +135,106 @@
 <section id="recap" class="slide level2">
 <h2>Recap</h2>
 <ul>
-<li class="fragment">Used generated synthetic data to fine-tune a 1B parameter model</li>
-<li class="fragment">Used W&amp;B (Weights and Biases) to observe parameters during the training run</li>
-<li class="fragment">Post-training, used W&amp;B to use cosine similarity and LLM-as-a-Judge to evaluate the accuracy of our trained model</li>
-<li class="fragment">Trained smaller models (270M parameters) and compared the results</li>
-<li class="fragment">Understood and created a model card, uploaded the model to Hugging Face and shared</li>
+<li class="fragment">Used your generated synthetic data to fine-tune an SLM using QLoRA</li>
+<li class="fragment">Used W&amp;B (Weights &amp; Biases) to observe metrics during the training run</li>
+<li class="fragment">Post-training, tested and evaluated the accuracy of your fine-tuned model</li>
+<li class="fragment">Merged, quantized, and uploaded your model to Hugging Face to share with others</li>
+<li class="fragment">Created a model card for your newly fine-tuned model</li>
 </ul>
 </section>
 <section id="lesson-objectives" class="slide level2">
 <h2>Lesson Objectives</h2>
 <ul>
 <li class="fragment">Discuss ethical, IP, and safety concerns for Generative AI</li>
-<li class="fragment">Use an evidence-based approach to explore ethical implications and potential mitigations</li>
-<li class="fragment">Use an evidence-based approach to explore IP implications and potential mitigations</li>
-<li class="fragment">Use an evidence-based approach to explore safety implications and potential mitigations</li>
+<li class="fragment">Use an evidence-based approach to explore <strong>ethical</strong>, <strong>IP</strong>, and <strong>safety</strong> implications and potential mitigations</li>
 <li class="fragment">Research a theme (or media claim) and author a paper confirming or challenging it</li>
 </ul>
 </section>
+<section>
+<section id="the-implications-of-ai-a-history" class="title-slide slide level1 center">
+<h1>The Implications of AI: A History</h1>
+
+</section>
+<section id="the-implications-of-ai-a-history-1" class="slide level2">
+<h2>The Implications of AI: A History</h2>
+<ul>
+<li class="fragment">TBD</li>
+<li class="fragment">TBD: Introduce the broad categories that we’ll cover today</li>
+</ul>
+</section></section>
+<section>
+<section id="ethics" class="title-slide slide level1 center">
+<h1>Ethics</h1>
+
+</section>
+<section id="ethics-1" class="slide level2">
+<h2>Ethics</h2>
+<ul>
+<li class="fragment">TBD: Intro</li>
+</ul>
+</section>
+<section id="bias-and-fairness" class="slide level2">
+<h2>Bias and Fairness</h2>
+<ul>
+<li class="fragment">Training data (used for pretraining) often contain societal biases.</li>
+<li class="fragment">These biases influence how models respond
+<ul>
+<li class="fragment">Sometimes in an explicit way, but often in more subtle ways or where input data contains diverse demographic details.</li>
+</ul></li>
+<li class="fragment">Why it happens
+<ul>
+<li class="fragment">Not accidental malice, but a mathematical inevitability</li>
+<li class="fragment">Models learn statistical patterns from data. If the data reflects historical inequities, the model will too.</li>
+</ul></li>
+</ul>
+</section>
+<section id="bias-and-fairness-1" class="slide level2">
+<h2>Bias and Fairness</h2>
+<ul>
+<li class="fragment">Examples:
+<ul>
+<li class="fragment"><a href="https://blog.google/products-and-platforms/products/gemini/gemini-image-generation-issue/" class="external" target="_blank"><strong>Google Gemini’s Image Generation (Feb 2024)</strong></a>: Google’s Gemini model was generating historically inaccurate images — e.g., racially diverse Nazi soldiers — when users asked for images of historical figures.</li>
+<li class="fragment"><a href="https://www.quinnemanuel.com/the-firm/publications/when-machines-discriminate-the-rise-of-ai-bias-lawsuits/" class="external" target="_blank"><strong>Workday AI Hiring Bias Lawsuit — Mobley v. Workday (2023–2025)</strong></a>: A Black job seeker over 40 with a disability sued Workday, alleging its AI applicant-screening system systematically rejected him based on race, age, and disability.</li>
+<li class="fragment"><a href="https://www.computerworld.com/article/4028148/bias-alert-llms-suggest-women-seek-lower-salaries-than-men-in-job-interviews.html" class="external" target="_blank"><strong>AI Salary Negotiation Bias (2025)</strong></a>: Researchers found that when LLMs including GPT-4o mini, Claude 3.5 Haiku, and others were asked to advise on salary negotiations, the chatbots recommended lower salaries to women and minority candidates compared to equally qualified white men.</li>
+</ul></li>
+</ul>
+</section>
+<section id="bias-and-fairness-2" class="slide level2">
+<h2>Bias and Fairness</h2>
+<ul>
+<li class="fragment">How can we mitigate?
+<ul>
+<li class="fragment">Before training:
+<ul>
+<li class="fragment">Sourcing of more balanced and representative datasets, intentionally oversampling underrepresented groups. Auditing for bias prior to training.</li>
+</ul></li>
+<li class="fragment">During Training:
+<ul>
+<li class="fragment">“Fairness constraints” built into the loss function. Mathematically elegant, but definition of “fair” can be subjective.</li>
+</ul></li>
+<li class="fragment">Alignment (e.g., RLHF):
+<ul>
+<li class="fragment">Where most of the foundational models focus their efforts. Human feedback to identify and down-weight biased output.</li>
+<li class="fragment"><a href="https://www.anthropic.com/constitution" class="external" target="_blank">Anthropic’s Constitutional AI</a> is a good example.</li>
+</ul></li>
+<li class="fragment">Inference Time:
+<ul>
+<li class="fragment">e.g., Injecting into the system prompt. Most brittle and non-deterministic.</li>
+</ul></li>
+<li class="fragment">Auditing and Red-Teaming:
+<ul>
+<li class="fragment">Independent bias audits to probe models for disparate outcomes across demographic groups.</li>
+<li class="fragment">e.g., <a href="https://pair-code.github.io/what-if-tool/" class="external" target="_blank">Google’s PAIR “What-If Tool”</a></li>
+<li class="fragment"><a href="https://research.ibm.com/blog/ai-fairness-360" class="external" target="_blank">IBM AI Fairness 360</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</section></section>
+<section id="what-do-you-think" class="title-slide slide level1 center">
+<h1>What do you think?</h1>
+
+</section>
+
 <section>
 <section id="looking-ahead" class="title-slide slide level1 center">
 <h1>Looking Ahead</h1>

@@ -7738,7 +7738,7 @@
     "href": "src/08/slides.html#recap",
     "title": "Module 8: Ethics, IP, and Safety",
     "section": "Recap",
-    "text": "Recap\n\nUsed generated synthetic data to fine-tune a 1B parameter model\nUsed W&B (Weights and Biases) to observe parameters during the training run\nPost-training, used W&B to use cosine similarity and LLM-as-a-Judge to evaluate the accuracy of our trained model\nTrained smaller models (270M parameters) and compared the results\nUnderstood and created a model card, uploaded the model to Hugging Face and shared",
+    "text": "Recap\n\nUsed your generated synthetic data to fine-tune an SLM using QLoRA\nUsed W&B (Weights & Biases) to observe metrics during the training run\nPost-training, tested and evaluated the accuracy of your fine-tuned model\nMerged, quantized, and uploaded your model to Hugging Face to share with others\nCreated a model card for your newly fine-tuned model",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
@@ -7749,7 +7749,62 @@
     "href": "src/08/slides.html#lesson-objectives",
     "title": "Module 8: Ethics, IP, and Safety",
     "section": "Lesson Objectives",
-    "text": "Lesson Objectives\n\nDiscuss ethical, IP, and safety concerns for Generative AI\nUse an evidence-based approach to explore ethical implications and potential mitigations\nUse an evidence-based approach to explore IP implications and potential mitigations\nUse an evidence-based approach to explore safety implications and potential mitigations\nResearch a theme (or media claim) and author a paper confirming or challenging it",
+    "text": "Lesson Objectives\n\nDiscuss ethical, IP, and safety concerns for Generative AI\nUse an evidence-based approach to explore ethical, IP, and safety implications and potential mitigations\nResearch a theme (or media claim) and author a paper confirming or challenging it",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#the-implications-of-ai-a-history-1",
+    "href": "src/08/slides.html#the-implications-of-ai-a-history-1",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "The Implications of AI: A History",
+    "text": "The Implications of AI: A History\n\nTBD\nTBD: Introduce the broad categories that we’ll cover today",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#ethics-1",
+    "href": "src/08/slides.html#ethics-1",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "Ethics",
+    "text": "Ethics\n\nTBD: Intro",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#bias-and-fairness",
+    "href": "src/08/slides.html#bias-and-fairness",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "Bias and Fairness",
+    "text": "Bias and Fairness\n\nTraining data (used for pretraining) often contain societal biases.\nThese biases influence how models respond\n\nSometimes in an explicit way, but often in more subtle ways or where input data contains diverse demographic details.\n\nWhy it happens\n\nNot accidental malice, but a mathematical inevitability\nModels learn statistical patterns from data. If the data reflects historical inequities, the model will too.",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#bias-and-fairness-1",
+    "href": "src/08/slides.html#bias-and-fairness-1",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "Bias and Fairness",
+    "text": "Bias and Fairness\n\nExamples:\n\nGoogle Gemini’s Image Generation (Feb 2024): Google’s Gemini model was generating historically inaccurate images — e.g., racially diverse Nazi soldiers — when users asked for images of historical figures.\nWorkday AI Hiring Bias Lawsuit — Mobley v. Workday (2023–2025): A Black job seeker over 40 with a disability sued Workday, alleging its AI applicant-screening system systematically rejected him based on race, age, and disability.\nAI Salary Negotiation Bias (2025): Researchers found that when LLMs including GPT-4o mini, Claude 3.5 Haiku, and others were asked to advise on salary negotiations, the chatbots recommended lower salaries to women and minority candidates compared to equally qualified white men.",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#bias-and-fairness-2",
+    "href": "src/08/slides.html#bias-and-fairness-2",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "Bias and Fairness",
+    "text": "Bias and Fairness\n\nHow can we mitigate?\n\nBefore training:\n\nSourcing of more balanced and representative datasets, intentionally oversampling underrepresented groups. Auditing for bias prior to training.\n\nDuring Training:\n\n“Fairness constraints” built into the loss function. Mathematically elegant, but definition of “fair” can be subjective.\n\nAlignment (e.g., RLHF):\n\nWhere most of the foundational models focus their efforts. Human feedback to identify and down-weight biased output.\nAnthropic’s Constitutional AI is a good example.\n\nInference Time:\n\ne.g., Injecting into the system prompt. Most brittle and non-deterministic.\n\nAuditing and Red-Teaming:\n\nIndependent bias audits to probe models for disparate outcomes across demographic groups.\ne.g., Google’s PAIR “What-If Tool”\nIBM AI Fairness 360",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
