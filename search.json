@@ -244,7 +244,7 @@
     "href": "src/07/notebooks/create-dataset.html#upload-the-dataset-card",
     "title": "Create Hugging Face Dataset",
     "section": "Upload the dataset card",
-    "text": "Upload the dataset card\n\nfrom huggingface_hub import HfApi\n\napi = HfApi()\napi.upload_file(\n    path_or_fileobj=DATASET_CARD,\n    path_in_repo=\"README.md\",\n    repo_id=DATASET_REPO,\n    repo_type=\"dataset\",\n)\n\nCommitInfo(commit_url='https://huggingface.co/datasets/simonguest/test-dataset/commit/debbc8c9e4e94646b5ee769874a27abc00da093c', commit_message='Upload README.md with huggingface_hub', commit_description='', oid='debbc8c9e4e94646b5ee769874a27abc00da093c', pr_url=None, repo_url=RepoUrl('https://huggingface.co/datasets/simonguest/test-dataset', endpoint='https://huggingface.co', repo_type='dataset', repo_id='simonguest/test-dataset'), pr_revision=None, pr_num=None)",
+    "text": "Upload the dataset card\n\nfrom huggingface_hub import HfApi\n\napi = HfApi()\napi.upload_file(\n    path_or_fileobj=\"./README.md\",\n    path_in_repo=\"README.md\",\n    repo_id=DATASET_REPO,\n    repo_type=\"dataset\",\n)\n\nCommitInfo(commit_url='https://huggingface.co/datasets/simonguest/test-dataset/commit/debbc8c9e4e94646b5ee769874a27abc00da093c', commit_message='Upload README.md with huggingface_hub', commit_description='', oid='debbc8c9e4e94646b5ee769874a27abc00da093c', pr_url=None, repo_url=RepoUrl('https://huggingface.co/datasets/simonguest/test-dataset', endpoint='https://huggingface.co', repo_type='dataset', repo_id='simonguest/test-dataset'), pr_revision=None, pr_num=None)",
     "crumbs": [
       "**Module 7:** Increasing Model Accuracy (Part 2)",
       "Notebooks",
