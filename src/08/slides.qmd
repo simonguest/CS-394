@@ -18,19 +18,65 @@ bibliography: references.bib
 
 ## Recap
 
-- Used generated synthetic data to fine-tune a 1B parameter model
-- Used W&B (Weights and Biases) to observe parameters during the training run
-- Post-training, used W&B to use cosine similarity and LLM-as-a-Judge to evaluate the accuracy of our trained model
-- Trained smaller models (270M parameters) and compared the results
-- Understood and created a model card, uploaded the model to Hugging Face and shared
+- Used your generated synthetic data to fine-tune an SLM using QLoRA
+- Used W&B (Weights & Biases) to observe metrics during the training run
+- Post-training, tested and evaluated the accuracy of your fine-tuned model
+- Merged, quantized, and uploaded your model to Hugging Face to share with others
+- Created a model card for your newly fine-tuned model
 
 ## Lesson Objectives
 
 - Discuss ethical, IP, and safety concerns for Generative AI
-- Use an evidence-based approach to explore ethical implications and potential mitigations
-- Use an evidence-based approach to explore IP implications and potential mitigations
-- Use an evidence-based approach to explore safety implications and potential mitigations
+- Use an evidence-based approach to explore **ethical**, **IP**, and **safety** implications and potential mitigations
 - Research a theme (or media claim) and author a paper confirming or challenging it
+
+# The Implications of AI: A History
+
+## The Implications of AI: A History
+
+- TBD
+- TBD: Introduce the broad categories that we'll cover today
+
+# Ethics
+
+## Ethics
+
+- TBD: Intro
+
+## Bias and Fairness
+
+- Training data (used for pretraining) often contain societal biases.
+- These biases influence how models respond 
+  - Sometimes in an explicit way, but often in more subtle ways or where input data contains diverse demographic details.
+- Why it happens
+  - Not accidental malice, but a mathematical inevitability
+  - Models learn statistical patterns from data. If the data reflects historical inequities, the model will too.
+
+## Bias and Fairness
+
+- Examples:
+  - [**Google Gemini's Image Generation (Feb 2024)**](https://blog.google/products-and-platforms/products/gemini/gemini-image-generation-issue/){.external target="_blank"}: Google's Gemini model was generating historically inaccurate images — e.g., racially diverse Nazi soldiers — when users asked for images of historical figures.
+  - [**Workday AI Hiring Bias Lawsuit — Mobley v. Workday (2023–2025)**](https://www.quinnemanuel.com/the-firm/publications/when-machines-discriminate-the-rise-of-ai-bias-lawsuits/){.external target="_blank"}: A Black job seeker over 40 with a disability sued Workday, alleging its AI applicant-screening system systematically rejected him based on race, age, and disability.
+  - [**AI Salary Negotiation Bias (2025)**](https://www.computerworld.com/article/4028148/bias-alert-llms-suggest-women-seek-lower-salaries-than-men-in-job-interviews.html){.external target="_blank"}: Researchers found that when LLMs including GPT-4o mini, Claude 3.5 Haiku, and others were asked to advise on salary negotiations, the chatbots recommended lower salaries to women and minority candidates compared to equally qualified white men.
+
+## Bias and Fairness
+
+- How can we mitigate?
+  - Before training: 
+    - Sourcing of more balanced and representative datasets, intentionally oversampling underrepresented groups. Auditing for bias prior to training.
+  - During Training:
+    - "Fairness constraints" built into the loss function. Mathematically elegant, but definition of "fair" can be subjective.
+  - Alignment (e.g., RLHF):
+    - Where most of the foundational models focus their efforts. Human feedback to identify and down-weight biased output. 
+    - [Anthropic's Constitutional AI](https://www.anthropic.com/constitution){.external target="_blank"} is a good example.
+  - Inference Time:
+    - e.g., Injecting into the system prompt. Most brittle and non-deterministic.
+  - Auditing and Red-Teaming:
+    - Independent bias audits to probe models for disparate outcomes across demographic groups.
+     - e.g., [Google's PAIR "What-If Tool"](https://pair-code.github.io/what-if-tool/){.external target="_blank"}
+     - [IBM AI Fairness 360](https://research.ibm.com/blog/ai-fairness-360){.external target="_blank"}
+
+# What do you think?
 
 # Looking Ahead
 
