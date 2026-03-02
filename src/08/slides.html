@@ -159,7 +159,7 @@
 <h2>The Implications of AI: A History</h2>
 <ul>
 <li class="fragment">TBD</li>
-<li class="fragment">TBD: Introduce the broad categories that we’ll cover today</li>
+<li class="fragment">TBD: Introduce the broad categories that we’ll cover today: Ethics, IP, Safety</li>
 </ul>
 </section></section>
 <section>
@@ -172,6 +172,11 @@
 <ul>
 <li class="fragment">TBD: Intro</li>
 </ul>
+</section></section>
+<section>
+<section id="ethics-bias-and-fairness" class="title-slide slide level1 center">
+<h1>Ethics: Bias and Fairness</h1>
+
 </section>
 <section id="bias-and-fairness" class="slide level2">
 <h2>Bias and Fairness</h2>
@@ -217,6 +222,12 @@
 <li class="fragment">Where most of the foundational models focus their efforts. Human feedback to identify and down-weight biased output.</li>
 <li class="fragment"><a href="https://www.anthropic.com/constitution" class="external" target="_blank">Anthropic’s Constitutional AI</a> is a good example.</li>
 </ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="bias-and-fairness-3" class="slide level2">
+<h2>Bias and Fairness</h2>
+<ul>
 <li class="fragment">Inference Time:
 <ul>
 <li class="fragment">e.g., Injecting into the system prompt. Most brittle and non-deterministic.</li>
@@ -227,7 +238,6 @@
 <li class="fragment">e.g., <a href="https://pair-code.github.io/what-if-tool/" class="external" target="_blank">Google’s PAIR “What-If Tool”</a></li>
 <li class="fragment"><a href="https://research.ibm.com/blog/ai-fairness-360" class="external" target="_blank">IBM AI Fairness 360</a></li>
 </ul></li>
-</ul></li>
 </ul>
 </section></section>
 <section id="what-do-you-think" class="title-slide slide level1 center">
@@ -235,6 +245,255 @@
 
 </section>
 
+<section>
+<section id="ethics-explainability" class="title-slide slide level1 center">
+<h1>Ethics: Explainability</h1>
+
+</section>
+<section id="explainability" class="slide level2">
+<h2>Explainability</h2>
+<ul>
+<li class="fragment">“Black box” models raise ethical concerns in high-stakes domains such as healthcare, criminal justice, military</li>
+<li class="fragment">If/when things go wrong, it can be challenging to audit the output and/or reasoning from a model</li>
+<li class="fragment">The over-confidence of today’s LLMs can compound the issue</li>
+</ul>
+</section>
+<section id="explainability-1" class="slide level2">
+<h2>Explainability</h2>
+<ul>
+<li class="fragment">Examples
+<ul>
+<li class="fragment"><a href="https://dl.acm.org/doi/10.1145/3759972.3760169" class="external" target="_blank">Healthcare</a>: In a survey of clinicians using LLM-based diagnostic tools, 68% were uncomfortable with the inability to follow traceable reasoning paths — an essential requirement for legal accountability and shared decision-making with patients.</li>
+<li class="fragment"><a href="https://hai.stanford.edu/news/hallucinating-law-legal-mistakes-large-language-models-are-pervasive" class="external" target="_blank">Legal Briefs</a>: In 2023, a New York lawyer submitted a legal brief to a federal court that had been generated largely by ChatGPT. The judge noted the brief was littered with “bogus judicial decisions, bogus quotes and bogus internal citations”</li>
+<li class="fragment"><a href="https://academic.oup.com/jla/article/16/1/235/7941565" class="external" target="_blank">Legal Decision Making</a>: In June 2024, the Shenzhen Intermediate Court in China unveiled an Intelligent Adjudication System. This is the first instance globally of a court methodically using an LLM to assist judges in deciding cases, covering family law, contracts, torts, and labor disputes.</li>
+</ul></li>
+</ul>
+</section>
+<section id="explainability-2" class="slide level2">
+<h2>Explainability</h2>
+<ul>
+<li class="fragment">How can we mitigate?
+<ul>
+<li class="fragment">Chain-of-Thought and Reasoning Models:
+<ul>
+<li class="fragment">Prompting or training LLMs to show their reasoning step-by-step before reaching a conclusion makes the logic auditable, even if the underlying mechanism remains opaque.</li>
+<li class="fragment">A clinician can at least see “the model considered these symptoms, ruled out these conditions, and arrived at this recommendation” rather than just receiving an output.</li>
+</ul></li>
+<li class="fragment">Retrieval Augmented Generateion (RAG):
+<ul>
+<li class="fragment">Rather than relying on an LLM’s parametric memory, RAG grounds responses in specific retrieved documents. E.g., clinical guidelines, case law, medical literature.</li>
+<li class="fragment">This doesn’t make the model itself explainable, but it makes the sources traceable.</li>
+</ul></li>
+<li class="fragment">Human-in-the-Loop Requirements
+<ul>
+<li class="fragment">Regulatory and procedural frameworks that mandate human review before any LLM output becomes a decision. (The EU AI Act essentially requires this for high-risk domains.)</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="explainability-3" class="slide level2">
+<h2>Explainability</h2>
+<ul>
+<li class="fragment">Domain-Specific Fine-Tuning and Evaluation
+<ul>
+<li class="fragment">Rather than deploying general-purpose LLMs in clinical or legal settings, fine-tuning on domain-specific, high-quality data and then rigorously red-teaming against known failure cases.</li>
+<li class="fragment">The Shenzhen court system is an example — they used a purpose-trained model rather than off-the-shelf ChatGPT.</li>
+</ul></li>
+<li class="fragment">Confidence Calibration and Uncertainty Quantification
+<ul>
+<li class="fragment">Another training/fine-tuning opportunity to train models to express uncertainty: e.g., “I’m not confident about this” vs.&nbsp;stating everything with conviction.</li>
+<li class="fragment">An active research area, although current LLMs remain notoriously over-confident.</li>
+</ul></li>
+</ul>
+</section></section>
+<section id="what-do-you-think-1" class="title-slide slide level1 center">
+<h1>What do you think?</h1>
+
+</section>
+
+<section>
+<section id="ethics-manipulative-content" class="title-slide slide level1 center">
+<h1>Ethics: Manipulative Content</h1>
+
+</section>
+<section id="manipulative-content" class="slide level2">
+<h2>Manipulative Content</h2>
+<ul>
+<li class="fragment">Deep fakes (synthetic media), exploitation of psychological vulnerabilities</li>
+<li class="fragment">TBD</li>
+</ul>
+</section>
+<section id="manipulative-content-1" class="slide level2">
+<h2>Manipulative Content</h2>
+<ul>
+<li class="fragment">Examples
+<ul>
+<li class="fragment"><a href="https://kathierobertslaw.com/protecting-seniors-from-ai-voice-cloning-scams-what-every-family-needs-to-know/" class="external" target="_blank">Personal</a>:
+<ul>
+<li class="fragment">Scammers are using AI voice cloning tools to impersonate family members in distress, requiring only a few seconds of audio scraped from social media.</li>
+<li class="fragment">In a recent Florida case, a mother sent $15,000 after receiving a call from someone using her daughter’s cloned voice claiming to be in an accident. She later discovered her daughter was safe and had never made the call.</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>TBD: Could I do a demo of voice cloning?</p>
+<ul>
+<li class="fragment"><a href="https://www.theguardian.com/technology/article/2024/may/17/uk-engineering-arup-deepfake-scam-hong-kong-ai-video" class="external" target="_blank">Financial</a>:
+<ul>
+<li class="fragment">In Jan 2024, fraudsters using deepfake technology impersonated a company’s CFO on a video call, tricking an employee into transferring $25 million.</li>
+<li class="fragment">The victim joined what appeared to be a legitimate multi-person video conference with colleagues and their CFO, all of whom were deepfake renderings.</li>
+</ul></li>
+<li class="fragment"><a href="https://publications.lawschool.cornell.edu/jlpp/2025/10/24/the-legal-gray-zone-of-deepfake-political-speech/" class="external" target="_blank">Political</a>:
+<ul>
+<li class="fragment">A 2024 report by Recorded Future documented 82 pieces of AI-generated deepfake content targeting public figures across 38 countries in a single year</li>
+<li class="fragment">A survey conducted by the identity verification firm Jumio found that 72% of Americans believed deepfakes would influence elections</li>
+</ul></li>
+</ul>
+</section>
+<section id="manipulative-content-2" class="slide level2">
+<h2>Manipulative Content</h2>
+<ul>
+<li class="fragment">How can we mitigate?
+<ul>
+<li class="fragment">Individual level: The “family safe word” has emerged as the most widely recommended mitigation for voice cloning scams specifically. i.e., a pre-agreed word or phrase that only genuine family members would know, used to verify identity before sending money.</li>
+<li class="fragment">Deepfake Detection Tech: An active area of research and development, but fundamentally a cat and mouse problem. Detection models are often trained on previous generations of fakes, and generative models tend to outpace them.</li>
+<li class="fragment">Cryptographic Watermarks: The Coalition for Content Provenance and Authenticity (C2PA) is developing open standards for embedding verifiable metadata into media at the point of creation (a cryptographic “certificate of authenticity” that travels with the file.) Major camera manufacturers, Adobe, and several AI companies have signed on.</li>
+<li class="fragment">Regulatory: The US TAKE IT DOWN Act (signed May 2025) criminalizes non-consensual intimate deepfakes at the federal level. The EU AI Act’s deepfake labeling requirements became mandatory in August 2025. Enforcement is of course challenging.</li>
+</ul></li>
+</ul>
+</section></section>
+<section id="what-do-you-think-2" class="title-slide slide level1 center">
+<h1>What do you think?</h1>
+
+</section>
+
+<section>
+<section id="ethics-labor-and-socioeconomic" class="title-slide slide level1 center">
+<h1>Ethics: Labor and Socioeconomic</h1>
+
+</section>
+<section id="labor-and-socioeconomic" class="slide level2">
+<h2>Labor and Socioeconomic</h2>
+<ul>
+<li class="fragment">TBD</li>
+<li class="fragment">AI takes everyones jobs, especially displacement of creative workers</li>
+<li class="fragment">Hidden labor behind AI (data labelers, content moderators)</li>
+</ul>
+</section>
+<section id="labor-and-socioeconomic-1" class="slide level2">
+<h2>Labor and Socioeconomic</h2>
+<ul>
+<li class="fragment">Examples
+<ul>
+<li class="fragment"><a href="https://www.reuters.com/sustainability/sustainable-finance-reporting/hollywood-performers-union-condemns-ai-generated-actress-tilly-norwood-2025-10-01" class="external" target="_blank">Synthetic Performers</a>: A fully AI-generated “virtual actress” named Tilly Norwood. The Screen Actors Guild-American Federation of Television and Radio Artists (SAG-AFTRA) condemned the project, framing it as a threat to actors’ livelihoods and creative labor, especially since the character was trained on uncredited human performances.</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="video" class="title-slide slide level1 center">
+<h1>Video</h1>
+<p>https://www.youtube.com/watch?v=qdYBwCwCtis</p>
+</section>
+<section id="labor-and-socioeconomic-2" class="slide level2">
+<h2>Labor and Socioeconomic</h2>
+<ul>
+<li class="fragment">Examples
+<ul>
+<li class="fragment"><a href="https://econofact.org/factbrief/fact-check-has-ai-already-caused-some-job-displacement" class="external" target="_blank">Corporate Restructuring</a>: In 2025–early 2026, major companies across tech and manufacturing cited AI as a reason for layoffs and workforce restructuring. In 2025, research firms attributed 17,000+ job cuts to AI, and another 20,000 to technological updates that likely include AI.
+<ul>
+<li class="fragment">Firms including Amazon, Dow, and Pinterest announced thousands of job cuts, in some cases explicitly linking AI investment or automation strategies to those decisions.</li>
+</ul></li>
+<li class="fragment"><a href="https://www.brookings.edu/articles/reimagining-the-future-of-data-and-ai-labor-in-the-global-south/?utm_source=chatgpt.com" class="external" target="_blank">Hidden Labor</a>: Investigations and worker advocacy reports from late 2024–2025 documented how large-scale AI training relies on low-paid, outsourced human workers doing data labeling, content moderation, and safety tagging.
+<ul>
+<li class="fragment">Low wages, long hours, exposure to graphic content, and lack of mental health support. Worker surveys describe the effects of constant exposure to violent or disturbing material and minimal oversight.</li>
+</ul></li>
+</ul></li>
+</ul>
+</section></section>
+<section id="what-do-you-think-3" class="title-slide slide level1 center">
+<h1>What do you think?</h1>
+
+</section>
+
+<section id="break" class="title-slide slide level1 center">
+<h1>Break</h1>
+
+</section>
+
+<section>
+<section id="ip" class="title-slide slide level1 center">
+<h1>IP</h1>
+
+</section>
+<section id="ip-1" class="slide level2">
+<h2>IP</h2>
+<ul>
+<li class="fragment">TBD: Intro to IP issues and concerns</li>
+</ul>
+</section></section>
+<section>
+<section id="ip-training-data-and-copyright" class="title-slide slide level1 center">
+<h1>IP: Training Data and Copyright</h1>
+
+</section>
+<section id="training-data-and-copyright" class="slide level2">
+<h2>Training Data and Copyright</h2>
+<ul>
+<li class="fragment">TBD</li>
+</ul>
+</section></section>
+<section>
+<section id="ip-model-weights-as-ip" class="title-slide slide level1 center">
+<h1>IP: Model Weights As IP</h1>
+
+</section>
+<section id="model-weights-as-ip" class="slide level2">
+<h2>Model Weights As IP</h2>
+<ul>
+<li class="fragment">TBD</li>
+</ul>
+</section></section>
+<section>
+<section id="ip-output-ownership" class="title-slide slide level1 center">
+<h1>IP: Output Ownership</h1>
+
+</section>
+<section id="output-ownership" class="slide level2">
+<h2>Output Ownership</h2>
+<ul>
+<li class="fragment">TBD</li>
+</ul>
+</section></section>
+<section>
+<section id="safety" class="title-slide slide level1 center">
+<h1>Safety</h1>
+<ul>
+<li class="fragment">TBD: Intro to safey issues and concerns</li>
+</ul>
+</section>
+<section id="safety-unintended-model-behavior" class="slide level2">
+<h2>Safety: Unintended Model Behavior</h2>
+<ul>
+<li class="fragment">TBD</li>
+</ul>
+</section>
+<section id="safety-jailbreaking" class="slide level2">
+<h2>Safety: Jailbreaking</h2>
+<ul>
+<li class="fragment">TBD</li>
+</ul>
+</section>
+<section id="safety-systemic-and-catastrophic-risk" class="slide level2">
+<h2>Safety: Systemic and Catastrophic Risk</h2>
+<ul>
+<li class="fragment">TBD</li>
+</ul>
+</section>
+<section id="safety-concentration-of-power" class="slide level2">
+<h2>Safety: Concentration of Power</h2>
+<ul>
+<li class="fragment">TBD</li>
+</ul>
+</section></section>
 <section>
 <section id="looking-ahead" class="title-slide slide level1 center">
 <h1>Looking Ahead</h1>
@@ -244,7 +503,9 @@
 <h2>Looking Ahead</h2>
 <ul>
 <li class="fragment"><a href="https://simonguest.github.io/CS-394/src/08/assignment.html" class="external" target="_blank">This week’s assignment!</a></li>
-<li class="fragment">TBD</li>
+<li class="fragment">Spring Break / GDC</li>
+<li class="fragment">Final Project!</li>
+<li class="fragment">30 min kick-off when we are back on Mar 21st!</li>
 </ul>
 </section></section>
 <section>
