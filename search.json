@@ -7947,7 +7947,29 @@
     "href": "src/08/slides.html#training-data-and-copyright",
     "title": "Module 8: Ethics, IP, and Safety",
     "section": "Training Data and Copyright",
-    "text": "Training Data and Copyright\n\nTBD",
+    "text": "Training Data and Copyright\n\nTBD Does training on copyrighted work constitute infringement?",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#training-data-and-copyright-1",
+    "href": "src/08/slides.html#training-data-and-copyright-1",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "Training Data and Copyright",
+    "text": "Training Data and Copyright\n\nExamples\n\nNew York Times: In late 2025, The New York Times filed a federal copyright infringement lawsuit against OpenAI and its partner Microsoft.\n\nThe Times alleges that OpenAI scraped and used millions of its articles, including behind paywalls, without permission to train the ChatGPT language models that power services like ChatGPT and Bing AI.\nThis case is one of the most high-profile disputes over AI training on copyrighted news content, and it’s still active in federal court.\n\nGetty Images: Getty Images sued Stability AI in UK and Europe alleging that its generative image model (e.g., Stable Diffusion) was trained on millions of Getty’s copyrighted photographs without permission.\n\nThe claim focused on the unlicensed use of high-value image assets as training data and argued that elements like watermarks showing up in outputs indicated the model had learned from copyrighted photos.\n\nAnthropic: Anthropic agreed to pay about $1.5 billion to settle copyright claims that it had trained its models on millions of authors’ works, including allegedly pirated copies used in model training.\n\nThe case included acquired books that Anthropic purchased: In some cases the company bought physical copies, digitally scanned them (“destructive digitization”), and used those scans in model training.",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#training-data-and-copyright-2",
+    "href": "src/08/slides.html#training-data-and-copyright-2",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "Training Data and Copyright",
+    "text": "Training Data and Copyright\n\nMitigations\n\nRobots.txt: Authors who publish online can add directives in their site’s robots.txt file to block known AI crawlers. (Voluntary compliance only)\n\nExample:\nUser-agent: GPTBot\nDisallow: /\n\nTechnical Poisioning/Watermarking:\n\nEmbed invisible watermarks. Challenging as these watermarks will degrade via the diffusion process.\nAdd adversarial pertubations (“defensive” and “poisioning”) to images to degrade model training.\n\n“Glaze” and “Nightshade” from UChicago\nAdds visual distortions based on a strength setting, with tags (e.g., hats become cars). Lowest strengths barely noticable side-by-side.\n\n\n\n\nTBD: Nightshade example side by side image\n\nLegal Tools\n\nCopyright registration and explicit licensing terms\nPotential to negotiate AI clauses in publishing contracts\nBut, courts are still determining if AI training consistutes fair use\n\nFuture Directions\n\nDataset transparency laws\nCollective licensing systems (similar to music royalties)",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
@@ -7958,7 +7980,18 @@
     "href": "src/08/slides.html#model-weights-as-ip",
     "title": "Module 8: Ethics, IP, and Safety",
     "section": "Model Weights As IP",
-    "text": "Model Weights As IP\n\nTBD",
+    "text": "Model Weights As IP\n\nTBD Do model weights infrige copyright if the model is trained on copyrighted data?\nTBD Can an organization patent or protect model weights?\nTBD Can other organizations use models to train their own models?\nTBD Anthropic’s recent case where Chinese labs were training off them",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#model-weights-as-ip-1",
+    "href": "src/08/slides.html#model-weights-as-ip-1",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "Model Weights As IP",
+    "text": "Model Weights As IP\n\nExamples\n\nGetty Images: In Nov 2025, the UK High Court explicitly addressed whether an AI model’s learned parameters (weights) constitute an infringing copy of copyrighted works used in training.\n\nThe judge held that Stable Diffusion’s model weights do not store or contain reproductions of Getty’s copyrighted images, and therefore the model itself is not an “infringing copy” under UK copyright law*.\n\nRothwell Figg: Few active cases in court, but companies routinely treat model weights as deeply valuable trade secrets, and this strategy is now being recognized as a major form of IP protection in industry and law.\n\nLegal analyses (and filings) note that model weights, parameters, training datasets and processes are prime candidates for trade secret protection, because they derive economic value from being secret and companies take “reasonable steps” to keep them confidential.\n\n\nMost legal experts agree that model weights are not copyrightable under current U.S. & UK copyright law because they are functional numeric parameters, not expressive works.\n\nTo be copyrighted, a work must be a copyable expression with human authorship.\n\nAnthropic: In Feb 2026, Anthropic publicly announced it had identified “industrial-scale campaigns” by three Chinese AI companies: DeepSeek, Moonshot AI, and MiniMax. They allegedly interacted with its Claude model tens of millions of times in order to extract its capabilities for training their own models.\n\nThese companies used “distillation” (where a model learns from a more capable model), creating roughly 24,000 fraudulent accounts and made over 16 million prompt interactions with Claude to mine its outputs.\nIrony not lost on social networks: “Why is it an attack? If they scraped my blog for training their model, is it attack on the blog? Isn’t that exactly like training on copyrighted materials?”\nAnthropic’s ToS prohibit Claude’s outputs to “build a competing product or service, including to train competing AI models” (https://news.ycombinator.com/item?id=44763110)",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
@@ -7969,7 +8002,7 @@
     "href": "src/08/slides.html#output-ownership",
     "title": "Module 8: Ethics, IP, and Safety",
     "section": "Output Ownership",
-    "text": "Output Ownership\n\nTBD",
+    "text": "Output Ownership\n\nTBD - Who owns AI generated content? Vendor? Developer? You?\nCan AI generated content be copyrighted?",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
@@ -7980,7 +8013,7 @@
     "href": "src/08/slides.html#safety-unintended-model-behavior",
     "title": "Module 8: Ethics, IP, and Safety",
     "section": "Safety: Unintended Model Behavior",
-    "text": "Safety: Unintended Model Behavior\n\nTBD",
+    "text": "Safety: Unintended Model Behavior\n\nTBD - Model goes off track beyond hallucination in a controlled setting\nBecause of the above, model starts creating some undesirable stuff",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
@@ -7991,7 +8024,7 @@
     "href": "src/08/slides.html#safety-jailbreaking",
     "title": "Module 8: Ethics, IP, and Safety",
     "section": "Safety: Jailbreaking",
-    "text": "Safety: Jailbreaking\n\nTBD",
+    "text": "Safety: Jailbreaking\n\nTBD - User try to jailbreak the model",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
@@ -8002,7 +8035,7 @@
     "href": "src/08/slides.html#safety-systemic-and-catastrophic-risk",
     "title": "Module 8: Ethics, IP, and Safety",
     "section": "Safety: Systemic and Catastrophic Risk",
-    "text": "Safety: Systemic and Catastrophic Risk\n\nTBD",
+    "text": "Safety: Systemic and Catastrophic Risk\n\nTBD - Models are given too much power / access to systems\nAgents going rogue / maybe use OpenClaw recent example",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
@@ -8013,7 +8046,7 @@
     "href": "src/08/slides.html#safety-concentration-of-power",
     "title": "Module 8: Ethics, IP, and Safety",
     "section": "Safety: Concentration of Power",
-    "text": "Safety: Concentration of Power\n\nTBD",
+    "text": "Safety: Concentration of Power\n\nTBD - Super intelligent models (AGI) controlled by one or few large corporations",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"

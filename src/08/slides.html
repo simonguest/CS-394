@@ -242,7 +242,7 @@
 </section></section>
 <section id="what-do-you-think" class="title-slide slide level1 center">
 <h1>What do you think?</h1>
-
+<p>TBD: Add starter questions</p>
 </section>
 
 <section>
@@ -438,9 +438,73 @@
 <section id="training-data-and-copyright" class="slide level2">
 <h2>Training Data and Copyright</h2>
 <ul>
-<li class="fragment">TBD</li>
+<li class="fragment">TBD Does training on copyrighted work constitute infringement?</li>
+</ul>
+</section>
+<section id="training-data-and-copyright-1" class="slide level2">
+<h2>Training Data and Copyright</h2>
+<ul>
+<li class="fragment">Examples
+<ul>
+<li class="fragment"><a href="https://www.trails.umd.edu/news/what-will-the-eu-ai-act-mean-for-ed-tech-in-the-us-fg3sf">New York Times</a>: In late 2025, The New York Times filed a federal copyright infringement lawsuit against OpenAI and its partner Microsoft.
+<ul>
+<li class="fragment">The Times alleges that OpenAI scraped and used millions of its articles, including behind paywalls, without permission to train the ChatGPT language models that power services like ChatGPT and Bing AI.</li>
+<li class="fragment">This case is one of the most high-profile disputes over AI training on copyrighted news content, and it’s still active in federal court.</li>
+</ul></li>
+<li class="fragment"><a href="https://katten.com/getty-images-v-stability-ai-intellectual-property-rights-in-the-age-of-generative-ai">Getty Images</a>: Getty Images sued Stability AI in UK and Europe alleging that its generative image model (e.g., Stable Diffusion) was trained on millions of Getty’s copyrighted photographs without permission.
+<ul>
+<li class="fragment">The claim focused on the unlicensed use of high-value image assets as training data and argued that elements like watermarks showing up in outputs indicated the model had learned from copyrighted photos.</li>
+</ul></li>
+<li class="fragment"><a href="https://en.wikipedia.org/wiki/Anthropic#Legal_issues">Anthropic</a>: Anthropic agreed to pay about $1.5 billion to settle copyright claims that it had trained its models on millions of authors’ works, including allegedly pirated copies used in model training.
+<ul>
+<li class="fragment">The case included acquired books that Anthropic purchased: In some cases the company bought physical copies, digitally scanned them (“destructive digitization”), and used those scans in model training.</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="training-data-and-copyright-2" class="slide level2">
+<h2>Training Data and Copyright</h2>
+<ul>
+<li class="fragment">Mitigations
+<ul>
+<li class="fragment">Robots.txt: Authors who publish online can add directives in their site’s robots.txt file to block known AI crawlers. (Voluntary compliance only)
+<ul>
+<li class="fragment"><p>Example:</p>
+<pre><code>User-agent: GPTBot
+Disallow: /</code></pre></li>
+</ul></li>
+<li class="fragment">Technical Poisioning/Watermarking:
+<ul>
+<li class="fragment">Embed invisible watermarks. Challenging as these watermarks will degrade via the diffusion process.</li>
+<li class="fragment">Add adversarial pertubations (“defensive” and “poisioning”) to images to degrade model training.
+<ul>
+<li class="fragment">“Glaze” and “Nightshade” from UChicago</li>
+<li class="fragment">Adds visual distortions based on a strength setting, with tags (e.g., hats become cars). Lowest strengths barely noticable side-by-side.</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<p>TBD: Nightshade example side by side image</p>
+<ul>
+<li class="fragment">Legal Tools
+<ul>
+<li class="fragment">Copyright registration and explicit licensing terms</li>
+<li class="fragment">Potential to negotiate AI clauses in publishing contracts</li>
+<li class="fragment">But, courts are still determining if AI training consistutes fair use</li>
+</ul></li>
+<li class="fragment">Future Directions
+<ul>
+<li class="fragment">Dataset transparency laws</li>
+<li class="fragment">Collective licensing systems (similar to music royalties)</li>
+</ul></li>
 </ul>
 </section></section>
+<section id="what-do-you-think-4" class="title-slide slide level1 center">
+<h1>What do you think?</h1>
+<p>Q: If reading a book and learning from it is legal for a human, should it also be legal for an AI model?</p>
+<p>Q: If not, what is the morally relevant difference?</p>
+</section>
+
 <section>
 <section id="ip-model-weights-as-ip" class="title-slide slide level1 center">
 <h1>IP: Model Weights As IP</h1>
@@ -449,9 +513,45 @@
 <section id="model-weights-as-ip" class="slide level2">
 <h2>Model Weights As IP</h2>
 <ul>
-<li class="fragment">TBD</li>
+<li class="fragment">TBD Do model weights infrige copyright if the model is trained on copyrighted data?</li>
+<li class="fragment">TBD Can an organization patent or protect model weights?</li>
+<li class="fragment">TBD Can other organizations use models to train their own models?</li>
+<li class="fragment">TBD Anthropic’s recent case where Chinese labs were training off them</li>
+</ul>
+</section>
+<section id="model-weights-as-ip-1" class="slide level2">
+<h2>Model Weights As IP</h2>
+<ul>
+<li class="fragment">Examples
+<ul>
+<li class="fragment"><a href="https://www.pearlcohen.com/uks-first-court-decision-on-copyright-works-in-ai-models">Getty Images</a>: In Nov 2025, the UK High Court explicitly addressed whether an AI model’s learned parameters (weights) constitute an infringing copy of copyrighted works used in training.
+<ul>
+<li class="fragment">The judge held that Stable Diffusion’s model weights do not store or contain reproductions of Getty’s copyrighted images, and therefore the model itself is not an “infringing copy” under UK copyright law*.</li>
+</ul></li>
+<li class="fragment"><a href="https://www.rothwellfigg.com/publication-the-pros-and-cons-of-protecting-ai-as-trade-secrets">Rothwell Figg</a>: Few active cases in court, but companies routinely treat model weights as deeply valuable trade secrets, and this strategy is now being recognized as a major form of IP protection in industry and law.
+<ul>
+<li class="fragment">Legal analyses (and filings) note that model weights, parameters, training datasets and processes are prime candidates for trade secret protection, because they derive economic value from being secret and companies take “reasonable steps” to keep them confidential.<br>
+</li>
+</ul></li>
+<li class="fragment">Most legal experts agree that model weights are not copyrightable under current U.S. &amp; UK copyright law because they are functional numeric parameters, not expressive works.
+<ul>
+<li class="fragment">To be copyrighted, a work must be a <em>copyable expression</em> with human authorship.</li>
+</ul></li>
+<li class="fragment"><a href="https://www.anthropic.com/news/detecting-and-preventing-distillation-attacks">Anthropic</a>: In Feb 2026, Anthropic publicly announced it had identified “industrial-scale campaigns” by three Chinese AI companies: DeepSeek, Moonshot AI, and MiniMax. They allegedly interacted with its Claude model tens of millions of times in order to extract its capabilities for training their own models.
+<ul>
+<li class="fragment">These companies used “distillation” (where a model learns from a more capable model), creating roughly 24,000 fraudulent accounts and made over 16 million prompt interactions with Claude to mine its outputs.</li>
+<li class="fragment">Irony not lost on <a href="https://www.reddit.com/r/ClaudeCode/comments/1rcp658/anthropic_weve_identified_industrialscale">social networks</a>: <em>“Why is it an attack? If they scraped my blog for training their model, is it attack on the blog? Isn’t that exactly like training on copyrighted materials?”</em></li>
+<li class="fragment">Anthropic’s ToS prohibit Claude’s outputs to “build a competing product or service, including to train competing AI models” (https://news.ycombinator.com/item?id=44763110)</li>
+</ul></li>
+</ul></li>
 </ul>
 </section></section>
+<section id="what-do-you-thnk" class="title-slide slide level1 center">
+<h1>What do you thnk?</h1>
+<p>Q: Is a model’s learned representation (weights) “creative enough” to deserve copyright protection?</p>
+<p>Q: Should companies be allow to prevent models being trained from their own models?</p>
+</section>
+
 <section>
 <section id="ip-output-ownership" class="title-slide slide level1 center">
 <h1>IP: Output Ownership</h1>
@@ -460,7 +560,8 @@
 <section id="output-ownership" class="slide level2">
 <h2>Output Ownership</h2>
 <ul>
-<li class="fragment">TBD</li>
+<li class="fragment">TBD - Who owns AI generated content? Vendor? Developer? You?</li>
+<li class="fragment">Can AI generated content be copyrighted?</li>
 </ul>
 </section></section>
 <section>
@@ -473,25 +574,27 @@
 <section id="safety-unintended-model-behavior" class="slide level2">
 <h2>Safety: Unintended Model Behavior</h2>
 <ul>
-<li class="fragment">TBD</li>
+<li class="fragment">TBD - Model goes off track beyond hallucination in a controlled setting</li>
+<li class="fragment">Because of the above, model starts creating some undesirable stuff</li>
 </ul>
 </section>
 <section id="safety-jailbreaking" class="slide level2">
 <h2>Safety: Jailbreaking</h2>
 <ul>
-<li class="fragment">TBD</li>
+<li class="fragment">TBD - User try to jailbreak the model</li>
 </ul>
 </section>
 <section id="safety-systemic-and-catastrophic-risk" class="slide level2">
 <h2>Safety: Systemic and Catastrophic Risk</h2>
 <ul>
-<li class="fragment">TBD</li>
+<li class="fragment">TBD - Models are given too much power / access to systems</li>
+<li class="fragment">Agents going rogue / maybe use OpenClaw recent example</li>
 </ul>
 </section>
 <section id="safety-concentration-of-power" class="slide level2">
 <h2>Safety: Concentration of Power</h2>
 <ul>
-<li class="fragment">TBD</li>
+<li class="fragment">TBD - Super intelligent models (AGI) controlled by one or few large corporations</li>
 </ul>
 </section></section>
 <section>
