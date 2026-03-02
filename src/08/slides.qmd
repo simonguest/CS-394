@@ -35,13 +35,15 @@ bibliography: references.bib
 ## The Implications of AI: A History
 
 - TBD
-- TBD: Introduce the broad categories that we'll cover today
+- TBD: Introduce the broad categories that we'll cover today: Ethics, IP, Safety
 
 # Ethics
 
 ## Ethics
 
 - TBD: Intro
+
+# Ethics: Bias and Fairness
 
 ## Bias and Fairness
 
@@ -69,6 +71,9 @@ bibliography: references.bib
   - Alignment (e.g., RLHF):
     - Where most of the foundational models focus their efforts. Human feedback to identify and down-weight biased output. 
     - [Anthropic's Constitutional AI](https://www.anthropic.com/constitution){.external target="_blank"} is a good example.
+
+## Bias and Fairness
+
   - Inference Time:
     - e.g., Injecting into the system prompt. Most brittle and non-deterministic.
   - Auditing and Red-Teaming:
@@ -78,12 +83,158 @@ bibliography: references.bib
 
 # What do you think?
 
+# Ethics: Explainability
+
+## Explainability
+
+- “Black box” models raise ethical concerns in high-stakes domains such as healthcare, criminal justice, military
+- If/when things go wrong, it can be challenging to audit the output and/or reasoning from a model
+- The over-confidence of today's LLMs can compound the issue
+
+## Explainability
+
+- Examples
+  - [Healthcare](https://dl.acm.org/doi/10.1145/3759972.3760169){.external target="_blank"}: In a survey of clinicians using LLM-based diagnostic tools, 68% were uncomfortable with the inability to follow traceable reasoning paths — an essential requirement for legal accountability and shared decision-making with patients.
+  - [Legal Briefs](https://hai.stanford.edu/news/hallucinating-law-legal-mistakes-large-language-models-are-pervasive){.external target="_blank"}: In 2023, a New York lawyer submitted a legal brief to a federal court that had been generated largely by ChatGPT. The judge noted the brief was littered with "bogus judicial decisions, bogus quotes and bogus internal citations"
+  - [Legal Decision Making](https://academic.oup.com/jla/article/16/1/235/7941565){.external target="_blank"}: In June 2024, the Shenzhen Intermediate Court in China unveiled an Intelligent Adjudication System. This is the first instance globally of a court methodically using an LLM to assist judges in deciding cases, covering family law, contracts, torts, and labor disputes.
+
+## Explainability
+
+- How can we mitigate?
+  - Chain-of-Thought and Reasoning Models:
+    - Prompting or training LLMs to show their reasoning step-by-step before reaching a conclusion makes the logic auditable, even if the underlying mechanism remains opaque. 
+    - A clinician can at least see "the model considered these symptoms, ruled out these conditions, and arrived at this recommendation" rather than just receiving an output.
+  - Retrieval Augmented Generateion (RAG):
+    - Rather than relying on an LLM's parametric memory, RAG grounds responses in specific retrieved documents. E.g., clinical guidelines, case law, medical literature.
+    - This doesn't make the model itself explainable, but it makes the sources traceable.
+   - Human-in-the-Loop Requirements
+     - Regulatory and procedural frameworks that mandate human review before any LLM output becomes a decision. (The EU AI Act essentially requires this for high-risk domains.)
+
+## Explainability
+
+- Domain-Specific Fine-Tuning and Evaluation
+  - Rather than deploying general-purpose LLMs in clinical or legal settings, fine-tuning on domain-specific, high-quality data and then rigorously red-teaming against known failure cases.
+  - The Shenzhen court system is an example — they used a purpose-trained model rather than off-the-shelf ChatGPT. 
+- Confidence Calibration and Uncertainty Quantification
+  - Another training/fine-tuning opportunity to train models to express uncertainty: e.g., "I'm not confident about this" vs. stating everything with conviction.
+  - An active research area, although current LLMs remain notoriously over-confident.
+
+# What do you think?
+
+# Ethics: Manipulative Content
+
+## Manipulative Content
+
+- Deep fakes (synthetic media), exploitation of psychological vulnerabilities
+- TBD
+
+## Manipulative Content
+
+- Examples
+  - [Personal](https://kathierobertslaw.com/protecting-seniors-from-ai-voice-cloning-scams-what-every-family-needs-to-know/){.external target="_blank"}:
+    - Scammers are using AI voice cloning tools to impersonate family members in distress, requiring only a few seconds of audio scraped from social media. 
+    - In a recent Florida case, a mother sent $15,000 after receiving a call from someone using her daughter's cloned voice claiming to be in an accident. She later discovered her daughter was safe and had never made the call.
+
+TBD: Could I do a demo of voice cloning?
+
+  - [Financial](https://www.theguardian.com/technology/article/2024/may/17/uk-engineering-arup-deepfake-scam-hong-kong-ai-video){.external target="_blank"}: 
+    - In Jan 2024, fraudsters using deepfake technology impersonated a company's CFO on a video call, tricking an employee into transferring $25 million.
+    - The victim joined what appeared to be a legitimate multi-person video conference with colleagues and their CFO, all of whom were deepfake renderings.
+  - [Political](https://publications.lawschool.cornell.edu/jlpp/2025/10/24/the-legal-gray-zone-of-deepfake-political-speech/){.external target="_blank"}: 
+    - A 2024 report by Recorded Future documented 82 pieces of AI-generated deepfake content targeting public figures across 38 countries in a single year
+    - A survey conducted by the identity verification firm Jumio found that 72% of Americans believed deepfakes would influence elections
+
+## Manipulative Content
+
+- How can we mitigate?
+  - Individual level: The "family safe word" has emerged as the most widely recommended mitigation for voice cloning scams specifically. i.e., a pre-agreed word or phrase that only genuine family members would know, used to verify identity before sending money.
+  - Deepfake Detection Tech: An active area of research and development, but fundamentally a cat and mouse problem. Detection models are often trained on previous generations of fakes, and generative models tend to outpace them.
+  - Cryptographic Watermarks: The Coalition for Content Provenance and Authenticity (C2PA) is developing open standards for embedding verifiable metadata into media at the point of creation (a cryptographic "certificate of authenticity" that travels with the file.) Major camera manufacturers, Adobe, and several AI companies have signed on.
+  - Regulatory: The US TAKE IT DOWN Act (signed May 2025) criminalizes non-consensual intimate deepfakes at the federal level. The EU AI Act's deepfake labeling requirements became mandatory in August 2025. Enforcement is of course challenging.
+
+# What do you think? 
+
+# Ethics: Labor and Socioeconomic
+
+## Labor and Socioeconomic
+
+- TBD
+- AI takes everyones jobs, especially displacement of creative workers
+- Hidden labor behind AI (data labelers, content moderators)
+
+## Labor and Socioeconomic
+
+- Examples
+  - [Synthetic Performers](https://www.reuters.com/sustainability/sustainable-finance-reporting/hollywood-performers-union-condemns-ai-generated-actress-tilly-norwood-2025-10-01){.external target="_blank"}: A fully AI-generated “virtual actress” named Tilly Norwood. The Screen Actors Guild-American Federation of Television and Radio Artists (SAG-AFTRA) condemned the project, framing it as a threat to actors’ livelihoods and creative labor, especially since the character was trained on uncredited human performances.
+
+# Video
+
+https://www.youtube.com/watch?v=qdYBwCwCtis
+
+## Labor and Socioeconomic
+
+- Examples
+  - [Corporate Restructuring](https://econofact.org/factbrief/fact-check-has-ai-already-caused-some-job-displacement){.external target="_blank"}: In 2025–early 2026, major companies across tech and manufacturing cited AI as a reason for layoffs and workforce restructuring. In 2025, research firms attributed 17,000+ job cuts to AI, and another 20,000 to technological updates that likely include AI.
+    - Firms including Amazon, Dow, and Pinterest announced thousands of job cuts, in some cases explicitly linking AI investment or automation strategies to those decisions.
+  - [Hidden Labor](https://www.brookings.edu/articles/reimagining-the-future-of-data-and-ai-labor-in-the-global-south/?utm_source=chatgpt.com){.external target="_blank"}: Investigations and worker advocacy reports from late 2024–2025 documented how large-scale AI training relies on low-paid, outsourced human workers doing data labeling, content moderation, and safety tagging.
+    - Low wages, long hours, exposure to graphic content, and lack of mental health support. Worker surveys describe the effects of constant exposure to violent or disturbing material and minimal oversight.
+
+# What do you think? 
+
+# Break
+
+# IP
+
+## IP
+
+- TBD: Intro to IP issues and concerns
+
+# IP: Training Data and Copyright
+
+## Training Data and Copyright
+
+- TBD
+
+# IP: Model Weights As IP
+
+## Model Weights As IP
+
+- TBD
+
+# IP: Output Ownership
+
+## Output Ownership
+
+- TBD
+
+# Safety
+
+- TBD: Intro to safey issues and concerns
+
+## Safety: Unintended Model Behavior
+
+- TBD
+
+## Safety: Jailbreaking
+
+- TBD
+
+## Safety: Systemic and Catastrophic Risk
+
+- TBD
+
+## Safety: Concentration of Power
+
+- TBD
+
 # Looking Ahead
 
 ## Looking Ahead
 
 - [This week's assignment!](https://simonguest.github.io/CS-394/src/08/assignment.html){.external target="_blank"}
-- TBD
+- Spring Break / GDC
+- Final Project!
+- 30 min kick-off when we are back on Mar 21st!
 
 # References
 
