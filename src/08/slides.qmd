@@ -270,11 +270,33 @@ Q: Should companies be allow to prevent models being trained from their own mode
 
 # IP: Output Ownership
 
-
 ## Output Ownership
 
 - TBD - Who owns AI generated content? Vendor? Developer? You?
 - Can AI generated content be copyrighted?
+
+## Output Ownership
+
+- Examples
+  - [Zarya of the Dawn](https://en.wikipedia.org/wiki/Zarya_of_the_Dawn): In 2022–2023, the U.S. Copyright Office initially granted copyright registration to the comic. After discovering the images were generated using Midjourney, the Office partially revoked the registration.
+    - Key ruling: The text and selection/arrangement of panels were copyrightable. The AI-generated images themselves were not, because they lacked sufficient human authorship.
+  - [Jason Allen](https://en.wikipedia.org/wiki/Th%C3%A9%C3%A2tre_D%27op%C3%A9ra_Spatial): A Colorado-based artist who became widely known in 2022 after winning first place in the digital art category of the Colorado State Fair (with a piece created using an AI image generator)
+    - TBD: Picture link here
+    - Produced through iterative prompting (624 prompts) using the text-to-image system Midjourney, followed by compositional editing in Photoshop and upscaling in Gigapixel AI.
+    - Critics argued that AI-generated images challenge traditional notions of creativity, while supporters contended that prompt engineering and artistic intent remain essential human contributions.
+    - In 2022, Allen applied for copyright registration of the image with US Copyright Office, which was later denied after appeal.
+  - [US Copyright Office AI Policy Guidance](): The Copyright Office released detailed guidance (in their 2024-2025 update) clarifying a spectrum model:
+    - Fully autonomous AI output: Not copyrightable
+    - AI + human curation/editing: Possibly copyrightable
+    - AI as assistive tool (e.g., Photoshop-level control): Copyrightable
+
+# What do you think?
+
+Q: Do you think the Copyright Office's detailed guidance is correct?
+
+Q: Where do you think there might be holes in this?
+
+Q: Should Jason Allen's image won first place? Can AI-generated art be used to enter competitions?
 
 # Safety
 
@@ -293,10 +315,8 @@ Q: Should companies be allow to prevent models being trained from their own mode
 
 - TBD - Models are given too much power / access to systems
 - Agents going rogue / maybe use OpenClaw recent example
+- Recent example of Anthropic and DoW
 
-## Safety: Concentration of Power
-
-- TBD - Super intelligent models (AGI) controlled by one or few large corporations
 
 # Looking Ahead
 
