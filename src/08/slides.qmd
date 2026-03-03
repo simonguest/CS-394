@@ -30,11 +30,13 @@ bibliography: references.bib
 - Discuss each area in depth and share different perspectives as a group
 - Research a theme (or media claim) and author a paper confirming or challenging it
 
-# The Implications of AI: A History
+# The Ethical, IP, and Safety Implications of AI
 
-## The Implications of AI: A History
+## The Ethical, IP, and Safety Implications of AI
 
-- TBD: One slide that introduces the broad categories that we'll cover today: Ethics, IP, Safety
+- **Ethics** — How AI systems can encode bias, resist accountability, enable manipulation, and reshape labor markets
+- **Intellectual Property** — Who owns training data, model weights, and AI-generated content, and what the courts are still figuring out
+- **Safety** — What happens when models go off-script, get manipulated, or are deliberately weaponized
 
 # Ethics
 
@@ -222,7 +224,10 @@ Q: Will AI job displacement follow the same pattern as past technological revolu
 
 ## IP
 
-- TBD: Intro to IP issues and concerns
+- The Intellectual Property (IP) aspects of AI models as it applies to:
+  - Training Data and Copyright
+  - Model Weights as IP
+  - Output Ownership
 
 # IP: Training Data and Copyright
 
@@ -340,7 +345,10 @@ Q: Should Jason Allen's image have won first place? Can AI-generated art be used
 
 # Safety
 
-- TBD: Intro to safey issues and concerns
+- The safety of AI models as it applies to:
+  - Unintended Model Behavior
+  - Jailbreaking
+  - Systemic and Catastrophic Risk
 
 # Safety: Unintended Model Behavior
 
