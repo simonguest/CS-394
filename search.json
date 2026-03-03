@@ -7756,11 +7756,11 @@
     ]
   },
   {
-    "objectID": "src/08/slides.html#the-implications-of-ai-a-history-1",
-    "href": "src/08/slides.html#the-implications-of-ai-a-history-1",
+    "objectID": "src/08/slides.html#the-ethical-ip-and-safety-implications-of-ai-1",
+    "href": "src/08/slides.html#the-ethical-ip-and-safety-implications-of-ai-1",
     "title": "Module 8: Ethics, IP, and Safety",
-    "section": "The Implications of AI: A History",
-    "text": "The Implications of AI: A History\n\nTBD: One slide that introduces the broad categories that we’ll cover today: Ethics, IP, Safety",
+    "section": "The Ethical, IP, and Safety Implications of AI",
+    "text": "The Ethical, IP, and Safety Implications of AI\n\nEthics — How AI systems can encode bias, resist accountability, enable manipulation, and reshape labor markets\nIntellectual Property — Who owns training data, model weights, and AI-generated content, and what the courts are still figuring out\nSafety — What happens when models go off-script, get manipulated, or are deliberately weaponized",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
@@ -7947,7 +7947,7 @@
     "href": "src/08/slides.html#ip-1",
     "title": "Module 8: Ethics, IP, and Safety",
     "section": "IP",
-    "text": "IP\n\nTBD: Intro to IP issues and concerns",
+    "text": "IP\n\nThe Intellectual Property (IP) aspects of AI models as it applies to:\n\nTraining Data and Copyright\nModel Weights as IP\nOutput Ownership",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
