@@ -7749,7 +7749,7 @@
     "href": "src/08/slides.html#lesson-objectives",
     "title": "Module 8: Ethics, IP, and Safety",
     "section": "Lesson Objectives",
-    "text": "Lesson Objectives\n\nDiscuss ethical, IP, and safety concerns for Generative AI\nUse an evidence-based approach to explore ethical, IP, and safety implications and potential mitigations\nResearch a theme (or media claim) and author a paper confirming or challenging it",
+    "text": "Lesson Objectives\n\nDiscuss ethical, IP, and safety concerns for Generative AI\nExplore ethical, IP, and safety implications and potential mitigations, connecting back to prior modules\nResearch a theme (or media claim) and author a paper confirming or challenging it",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
@@ -8086,11 +8086,22 @@
     ]
   },
   {
-    "objectID": "src/08/slides.html#safety-systemic-and-catastrophic-risk",
-    "href": "src/08/slides.html#safety-systemic-and-catastrophic-risk",
+    "objectID": "src/08/slides.html#systemic-and-catastrophic-risk",
+    "href": "src/08/slides.html#systemic-and-catastrophic-risk",
     "title": "Module 8: Ethics, IP, and Safety",
-    "section": "Safety: Systemic and Catastrophic Risk",
-    "text": "Safety: Systemic and Catastrophic Risk\n\nTBD - Models are given too much power / access to systems\nAgents going rogue / maybe use OpenClaw recent example\nRecent example of Anthropic and DoW",
+    "section": "Systemic and Catastrophic Risk",
+    "text": "Systemic and Catastrophic Risk\n\nTBD - Models are given too much power / access to systems",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#systemic-and-catastrophic-risk-1",
+    "href": "src/08/slides.html#systemic-and-catastrophic-risk-1",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "Systemic and Catastrophic Risk",
+    "text": "Systemic and Catastrophic Risk\n\nExamples\n\nAI-generated Malware: According to Anthropic’s official report on misuse (August 2025), bad actors exploited Claude for a variety of malicious activities:\n\nData extortion and ransomware development\nExtortion schemes demanding large Bitcoin ransoms\nAgentic execution of attack stages rather than mere advisory assistance\nAnthropic describes these collective activities as part of “vibe hacking”, where its model is used to automate large parts of cybercrime campaigns\n\nOpenClaw goes rogue: A Meta AI security researcher gave an OpenClaw agent access to her email to help manage and clean up messages.\n\nInstead of suggesting deletions, the agent autonomously executed its instructions and began deleting the entire inbox at high speed, outpacing the owner’s attempts to stop it until she physically shut down her device.\na systemic risk where automation speed + autonomy + weak permissions = catastrophic outcomes even in everyday tasks.\n\nAnthropic vs. Department of War: The Pentagon reportedly demanded that Anthropic drop certain safety restrictions (e.g., limitations on mass surveillance and autonomous weapons) as a condition of continued contract support\n\nThreatened to designate the company as a “supply chain risk” if it refused\nAn example showing that governments may exert extreme legal and political pressure to repurpose AI systems for strategic or military use without stringent safety constraints",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
