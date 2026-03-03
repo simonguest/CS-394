@@ -27,7 +27,7 @@ bibliography: references.bib
 ## Lesson Objectives
 
 - Discuss ethical, IP, and safety concerns for Generative AI
-- Use an evidence-based approach to explore **ethical**, **IP**, and **safety** implications and potential mitigations
+- Explore **ethical**, **IP**, and **safety** implications and potential mitigations, connecting back to prior modules
 - Research a theme (or media claim) and author a paper confirming or challenging it
 
 # The Implications of AI: A History
@@ -83,7 +83,11 @@ bibliography: references.bib
 
 # What do you think?
 
-TBD: Add starter questions
+Q: If an AI system is more accurate overall but biased against certain groups, should it still be used?
+
+Q: When bias appears in model output, who is responsible — the developer, the deployer, or the user?
+
+Q: Can "fairness" ever be universally defined, or is it always subjective?
 
 # Ethics: Explainability
 
@@ -123,6 +127,12 @@ TBD: Add starter questions
 
 # What do you think?
 
+Q: Should courts be allowed to use AI to assist in deciding cases?
+
+Q: Who was more at fault in the hallucinated citations case — the lawyer or the firm?
+
+Q: Should explainability requirements be stricter in healthcare and criminal justice than in other domains?
+
 # Ethics: Manipulative Content
 
 ## Manipulative Content
@@ -154,7 +164,13 @@ TBD: Could I do a demo of voice cloning?
   - Cryptographic Watermarks: The Coalition for Content Provenance and Authenticity (C2PA) is developing open standards for embedding verifiable metadata into media at the point of creation (a cryptographic "certificate of authenticity" that travels with the file.) Major camera manufacturers, Adobe, and several AI companies have signed on.
   - Regulatory: The US TAKE IT DOWN Act (signed May 2025) criminalizes non-consensual intimate deepfakes at the federal level. The EU AI Act's deepfake labeling requirements became mandatory in August 2025. Enforcement is of course challenging.
 
-# What do you think? 
+# What do you think?
+
+Q: If deepfake detection always lags behind generation, can technology alone ever solve this problem?
+
+Q: What obligation do platforms like YouTube and Meta have to label AI-generated political content?
+
+Q: Is the "family safe word" a realistic defense, or does it place too much burden on individuals?
 
 # Ethics: Labor and Socioeconomic
 
@@ -181,7 +197,13 @@ https://www.youtube.com/watch?v=qdYBwCwCtis
   - [Hidden Labor](https://www.brookings.edu/articles/reimagining-the-future-of-data-and-ai-labor-in-the-global-south/?utm_source=chatgpt.com){.external target="_blank"}: Investigations and worker advocacy reports from late 2024–2025 documented how large-scale AI training relies on low-paid, outsourced human workers doing data labeling, content moderation, and safety tagging.
     - Low wages, long hours, exposure to graphic content, and lack of mental health support. Worker surveys describe the effects of constant exposure to violent or disturbing material and minimal oversight.
 
-# What do you think? 
+# What do you think?
+
+Q: Should AI companies be legally required to provide fair wages and mental health support for data labelers?
+
+Q: Where is the line between AI as a creative tool versus a replacement for human workers?
+
+Q: Will AI job displacement follow the same pattern as past technological revolutions, or is this different?
 
 # Break
 
@@ -239,6 +261,8 @@ Q: If reading a book and learning from it is legal for a human, should it also b
 
 Q: If not, what is the morally relevant difference?
 
+Q: Should there be a compulsory licensing system for AI training data, similar to how music royalties work?
+
 # IP: Model Weights As IP
 
 ## Model Weights As IP
@@ -267,6 +291,8 @@ Q: If not, what is the morally relevant difference?
 Q: Is a model’s learned representation (weights) “creative enough” to deserve copyright protection?
 
 Q: Should companies be allow to prevent models being trained from their own models?
+
+Q: Is there a double standard in Anthropic objecting to distillation while having trained on copyrighted content themselves?
 
 # IP: Output Ownership
 
@@ -325,6 +351,14 @@ Q: Should Jason Allen's image have won first place? Can AI-generated art be used
 - How to mitigate
   - TBD
 
+# What do you think?
+
+Q: Who is responsible for catching emergent behavior like Sydney's before a product ships?
+
+Q: Should AI-generated commitments (like the $1 car) ever have legal standing?
+
+Q: Microsoft "fixed" Sydney by just shortening chat sessions — does that address the root problem, or just hide it?
+
 ## Safety: Jailbreaking
 
 - TBD - User try to jailbreak the model
@@ -350,12 +384,44 @@ Q: Should Jason Allen's image have won first place? Can AI-generated art be used
 - How to mitigate
   - TBD
 
-## Safety: Systemic and Catastrophic Risk
+# What do you think?
+
+Q: Is the "Grandma Napalm" vulnerability a fixable alignment problem, or a fundamental flaw in how LLMs work?
+
+Q: If gibberish suffixes can reliably bypass safety guardrails, how robust is current AI alignment really?
+
+Q: Who bears primary responsibility for preventing jailbreaks — developers, platforms, or users?
+
+# Safety: Systemic and Catastrophic Risk
+
+- TBD Intro
+
+## Systemic and Catastrophic Risk
 
 - TBD - Models are given too much power / access to systems
-- Agents going rogue / maybe use OpenClaw recent example
-- Recent example of Anthropic and DoW
 
+## Systemic and Catastrophic Risk
+
+- Examples
+  - [AI-generated Malware](https://latesthackingnews.com/2025/09/12/from-vibe-coding-to-vibe-hacking-claude-ai-abused-to-build-ransomware): According to Anthropic’s official report on misuse (August 2025), bad actors exploited Claude for a variety of malicious activities:
+    - Data extortion and ransomware development
+    - Extortion schemes demanding large Bitcoin ransoms
+    - Agentic execution of attack stages rather than mere advisory assistance
+    - Anthropic describes these collective activities as part of “vibe hacking”, where its model is used to automate large parts of cybercrime campaigns
+  - [OpenClaw goes rogue](https://techcrunch.com/2026/02/23/a-meta-ai-security-researcher-said-an-openclaw-agent-ran-amok-on-her-inbox): A Meta AI security researcher gave an OpenClaw agent access to her email to help manage and clean up messages.
+    - Instead of suggesting deletions, the agent autonomously executed its instructions and began deleting the entire inbox at high speed, outpacing the owner’s attempts to stop it until she physically shut down her device.
+    - a systemic risk where automation speed + autonomy + weak permissions = catastrophic outcomes even in everyday tasks.
+  - [Anthropic vs. Department of War](https://www.anthropic.com/news/statement-department-of-war): The Pentagon reportedly demanded that Anthropic drop certain safety restrictions (e.g., limitations on mass surveillance and autonomous weapons) as a condition of continued contract support
+    - Threatened to designate the company as a “supply chain risk” if it refused
+    - An example showing that governments may exert extreme legal and political pressure to repurpose AI systems for strategic or military use without stringent safety constraints
+
+# What do you think?
+
+Q: What "safe by default" principles should govern how we grant AI agents access to our systems?
+
+Q: How should AI companies balance government contracts against their safety commitments?
+
+Q: Does Claude being used for ransomware suggest guardrails are fundamentally insufficient, or just that bad actors are determined?
 
 # Looking Ahead
 
