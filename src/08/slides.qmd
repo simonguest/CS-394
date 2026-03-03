@@ -47,6 +47,7 @@ bibliography: references.bib
   - Explainability
   - Manipulative Content
   - Labor and Socioeconomic
+  - Environmental
 
 # Ethics: Bias and Fairness
 
@@ -217,6 +218,44 @@ Q: Should AI companies be legally required to provide fair wages and mental heal
 Q: Where is the line between AI as a creative tool versus a replacement for human workers?
 
 Q: Will AI job displacement follow the same pattern as past technological revolutions, or is this different?
+
+# Ethics: Environmental
+
+## Environmental
+
+- What do we mean by "Environmental"?
+  - Training and running large AI models consumes significant energy and water
+  - The infrastructure required (data centers, hardware) has a measurable carbon footprint
+  - Demand is accelerating faster than the grid's ability to supply it from renewable sources
+
+## Environmental
+
+- Examples
+  - [Training Energy Costs](https://arxiv.org/abs/1906.02243){.external target="_blank"}: A 2019 University of Massachusetts study (Strubell et al.) estimated that training a large transformer model can emit as much CO₂ as five cars over their entire lifetimes (~300,000 lbs).
+    - Since then, models have scaled by orders of magnitude. GPT-4 and its successors are estimated to have cost many multiples of that figure.
+  - [Data Center Water Use](https://www.theregister.com/2023/09/11/microsofts_ai_investments_skyrocketed_in/){.external target="_blank"}: Microsoft reported that its global water consumption increased 34% to 6.4 million cubic meters in 2022, largely attributed to AI infrastructure growth.
+    - Training GPT-3 alone is estimated to have evaporated 700,000 liters of freshwater for cooling — often in water-stressed regions.
+  - [Grid Pressure](https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai){.external target="_blank"}: The IEA projects global data center electricity consumption will roughly double to ~945 TWh by 2030, growing at ~15% per year — more than four times faster than all other sectors combined.
+    - In the US alone, data centers could account for up to 12% of national electricity demand by 2028, up from ~4% in 2023.
+
+## Environmental
+
+- How can we mitigate?
+  - Efficient Architectures: Model distillation, quantization, and sparse architectures (e.g., Mixture of Experts) reduce compute and energy per inference. Smaller, task-specific models often perform comparably to large general-purpose ones.
+    - [Intelligence per Watt (Stanford/Google, 2025)](https://arxiv.org/abs/2511.07885){.external target="_blank"}: Found that small local models can accurately answer **88.7%** of real-world single-turn chat and reasoning queries — suggesting most users don't need a frontier model for most tasks.
+  - Renewable Energy Sourcing: Locating data centers near renewable energy supplies or signing long-term Power Purchase Agreements (PPAs) with renewable providers.
+    - Google, Microsoft, and Meta have all made public net-zero or renewable commitments, though the definitions and timelines vary widely.
+  - Hardware Efficiency: Purpose-built AI accelerators (e.g., Google TPUs, Groq LPUs) are significantly more energy-efficient than general-purpose GPUs for inference workloads.
+  - Transparency and Reporting: Requiring standardized disclosure of training compute, energy use, and water consumption — analogous to financial reporting.
+    - The EU AI Act includes provisions for environmental impact documentation for high-capability models.
+
+# What do you think?
+
+Q: Should AI companies be required to publicly disclose the energy and water footprint of their models?
+
+Q: Is it ethical to train ever-larger models when the environmental cost is measurable and growing?
+
+Q: If AI can help solve climate change (e.g., optimize energy grids, accelerate materials science), does that offset its own footprint?
 
 # Break
 
