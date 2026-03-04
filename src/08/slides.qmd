@@ -53,7 +53,7 @@ bibliography: references.bib
 
 ## Bias and Fairness
 
-- Training data (used for pretraining) often contain societal biases
+- Training data (used for pretraining) often contains societal biases
 - These biases influence how models respond:
   - Often in more subtle ways or where input data contains diverse demographic details
 - Why it happens
@@ -93,7 +93,7 @@ bibliography: references.bib
   - Human feedback to identify and down-weight biased output. 
   - [Anthropic's Constitutional AI](https://www.anthropic.com/constitution){.external target="_blank"} provides a good overview of their approach.
 
-## How Can We Mitigate
+## How Can We Mitigate?
 
 - Inference Time:
   - e.g., Injecting into the system prompt. Most brittle and non-deterministic.
@@ -112,7 +112,7 @@ Q: Can "fairness" ever be universally defined, or is it always subjective?
 
 ## Explainability
 
-- “Black box” AI models raise ethical concerns in high-stakes domains such as healthcare, criminal justice, military
+- “Black box” AI models raise ethical concerns in high-stakes domains such as healthcare, criminal justice, and military
 - If/when things go wrong, it can be challenging to audit the output and/or reasoning from a model
 - The over-confidence of today's LLMs can compound the issue
 
@@ -375,24 +375,24 @@ Q: If AI can help solve climate change (e.g., optimize energy grids, accelerate 
 ## How Can We Mitigate?
 
 - Technical Poisioning/Watermarking:
-  - Add adversarial pertubations ("defensive" and "poisioning") to images to degrade model training
+  - Add adversarial perturbations ("defensive" and "poisoning") to images to degrade model training
     - "Glaze" and "Nightshade" from UChicago
     - Adds visual distortions based on a strength setting, with tags (e.g., hats become cars)
-    - Lowest strengths barely noticable side-by-side
+    - Lowest strengths barely noticeable side-by-side
   - Challenging as these watermarks will degrade via the forward diffusion process
 
-## How Can We Mitigate
+## How Can We Mitigate?
 
 TBD: Nightshade example side by side image
 
-## How Can We Mitigate
+## How Can We Mitigate?
 
 - Legal Tools
   - Copyright registration and explicit licensing terms
   - Potential to negotiate AI clauses in publishing contracts
-  - But, courts are still determining if AI training consistutes fair use
+  - But, courts are still determining if AI training constitutes fair use
 
-## How Can We Mitigate
+## How Can We Mitigate?
 
 - Other Proposed Directions
   - Dataset transparency laws
@@ -408,7 +408,7 @@ Q: Should there be a compulsory licensing system for AI training data? How might
 
 ## Model Weights as IP
 
-- Do model weights infrige copyright if the model is trained on copyrighted data?
+- Do model weights infringe copyright if the model is trained on copyrighted data?
 - Can an organization patent or protect model weights?
 - Can other organizations use models to train their own models?
 
@@ -566,7 +566,7 @@ Q: Should AI-generated commitments (like the $1 car or Air Canada refund) have l
 
 ## Jailbreaking
 
-- Users who purposefully attempt to bypass system prompts and other guardrails in order to force to model to generate disallowed content
+- Users who purposefully attempt to bypass system prompts and other guardrails in order to force the model to generate disallowed content
 - Or, in the case of agents, to perform operations they were not intended to do
 
 ## Examples
@@ -588,9 +588,9 @@ Q: Should AI-generated commitments (like the $1 car or Air Canada refund) have l
 ## Examples
 
 - [Adversarial Optimization](https://neurips.cc/virtual/2025/loc/san-diego/poster/116299){.external target="_blank"}: 
-  - By appending carefully optimized nonsense suffixes to prompts, researcher have found they could consistently bypass safeguards across models (similar approach to Nightshade)
+  - By appending carefully optimized nonsense suffixes to prompts, researchers have found they could consistently bypass safeguards across models (similar approach to Nightshade)
   - Suffixes looked gibberish to humans, discovered via gradient-based optimization, and reliably triggered harmful completions
-  - Aligment layers are fragile and small token changes can alter safety behavior
+  - Alignment layers are fragile and small token changes can alter safety behavior
   - The model becomes mathematically vulnerable
 
 ## How Can We Mitigate?
