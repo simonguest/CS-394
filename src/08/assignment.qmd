@@ -1,7 +1,80 @@
 ---
-title: "Module 8 Assignment"
+title: "Module 8 Assignment: Position Paper on AI Ethics, IP, or Safety"
+format: html
+execute:
+  enabled: false
+---
+**Objective:** Research a specific claim or theme in AI ethics, intellectual property, or safety, and write a paper documenting your initial perspective, the evidence you found, and how the research confirmed or challenged your thinking.
+
+**Background:**
+
+In the lecture, we covered a wide range of topics. Some of these may have confirmed things you already believed; others may have surprised you or raised new questions.
+
+For this assignment, you'll go deeper into one area you feel strongly about. You can choose a topic we covered in class, or explore one we didn't. The goal is not to write a summary of what others think, but to develop and defend your own informed position.
+
+A strong starting point is a headline, statistic, or widely-understood assertion that you want to test. Some examples:
+
+- *"AI will replace 300 million jobs within a decade"*
+- *"Deepfakes are already undermining democratic elections"*
+- *"Large AI models are now a meaningful contributor to climate change"*
+
+Anchoring your paper to a testable claim tends to produce a stronger, more focused argument than starting from a broad topic alone.
+
 ---
 
-## Assignment
+## Requirements
 
-TBD
+### 1. Choose Your Topic
+
+Select one of the following:
+
+- A topic covered in Module 8 (bias and fairness, explainability, manipulative content, labor and socioeconomic, environmental impact, training data copyright, model weights as IP, output ownership, unintended behavior, jailbreaking, systemic risk)
+- A related topic we did not cover (e.g., privacy, AI governance and regulation, and the digital divide) - but still under the umbrella of ethics, IP, and safety.
+
+### 2. Write the Paper
+
+Your paper should be **3–6 pages** (excluding references) and cover three parts:
+
+**Part 1: Your Initial Perspective**
+
+Before diving into research, describe what you believed or assumed about this topic. What was your gut reaction? What prior experiences, classes, or news stories shaped your view? There is no wrong starting position, so be honest about your initial beliefs.
+
+**Part 2: Research and Evidence**
+
+Present the evidence you find. This should include:
+
+- Credible sources (I'd recommend 3-5) across academic papers, news articles, court filings, technical reports, official government, or organizational publications
+- A fair presentation of multiple perspectives, including evidence that supports and evidence that complicates your initial view
+- Specific examples, data, or cases with hard metrics and/or numbers
+
+**Part 3: Reflect**
+
+How did your research affect your thinking? Did it confirm your initial view with stronger evidence? Challenge it? Reveal important nuances you hadn't considered? If your position changed, explain why. If it didn't, explain what the strongest counterargument is and why you find it unconvincing.
+
+### 3. Cite Your Sources
+
+Include a reference list at the end of your paper. Don't worry about the citation format (hyperlinks to articles work great). What matters is that every factual claim is traceable to a source.
+
+---
+
+## Deliverable
+
+Submit your paper via Moodle. Accepted formats: **PDF, Word, or Markdown**. If submitting an online document via Teams/Sharepoint, please ensure permissions are set correctly.
+
+---
+
+## Grading
+
+Your paper will be graded on the following: 1) Depth of Research; 2) Strength of Argument; 3) Your Reflection; and 4) Overall Clarity and Citations.
+
+Don't worry about the length of the paper and/or number of words.
+
+---
+
+## Hints
+
+- **Don't pick too broad of a topic.** "AI and bias" is a book, not a paper. "Whether hiring tools that use AI should be regulated under existing anti-discrimination laws" is the right level.
+- **The best papers take a position.** Try to avoid just summarizing other's positions. Instead, form and defend your own view.
+- **Disagreeing with my lecture material is fine** (and often makes for a more interesting paper!). If you think the environmental concerns about AI are overstated, or that AI-generated art *should* be copyrightable, argue with evidence.
+- **Primary sources beat secondary sources.** Court filings, research papers, and official reports are stronger than news articles summarizing them. Try to go one level deeper where possible.
+- **Don't make Part 1 too long.** A paragraph or two describing your starting point is enough. The research and reflection are the substance.
