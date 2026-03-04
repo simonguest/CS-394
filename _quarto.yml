@@ -190,5 +190,9 @@ website:
           - text: "Slides"
             href: src/08/slides.qmd
             target: blank
+          - section: "Notebooks"
+            contents:
+              - text: "qwen3-tts-voice-clone.ipynb"
+                href: src/08/notebooks/qwen3-tts-voice-clone.ipynb
           - text: "Assignment"
             href: src/08/assignment.qmd
