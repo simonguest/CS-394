@@ -28,15 +28,15 @@ bibliography: references.bib
 
 - Explore **ethical**, **IP**, and **safety** implications, examples, and potential mitigations, connecting back to prior modules
 - Discuss each area in depth and share different perspectives as a group
-- Research a theme (or media claim) and author a paper confirming or challenging it
+- Research a theme or media claim and author a paper confirming or challenging it
 
-# The Ethical, IP, and Safety Implications of AI
+# What Do We Mean By Ethics, IP, and Safety?
 
-## The Ethical, IP, and Safety Implications of AI
+## Ethical, IP, and Safety
 
-- **Ethics** — How AI systems can encode bias, resist accountability, enable manipulation, and reshape labor markets
-- **Intellectual Property** — Who owns training data, model weights, and AI-generated content, and what the courts are still figuring out
-- **Safety** — What happens when models go off-script, get manipulated, or are deliberately weaponized
+- **Ethics**: How AI systems can encode bias, resist accountability, enable manipulation, and reshape labor markets
+- **Intellectual Property**: Who owns training data, model weights, and AI-generated content, and what the courts are still figuring out
+- **Safety**: What happens when models go off-script, get manipulated, or are deliberately weaponized
 
 # Ethics
 
@@ -47,52 +47,64 @@ bibliography: references.bib
   - Explainability
   - Manipulative Content
   - Labor and Socioeconomic
-  - Environmental
+  - Environmental Concerns
 
 # Ethics: Bias and Fairness
 
 ## Bias and Fairness
 
-- What do we mean by "Bias and Fairness"?
-  - Training data (used for pretraining) often contain societal biases.
-  - These biases influence how models respond 
-    - Sometimes in an explicit way, but often in more subtle ways or where input data contains diverse demographic details.
-  - Why it happens
-    - Not accidental malice, but a mathematical inevitability
-    - Models learn statistical patterns from data. If the data reflects historical inequities, the model will too.
+- Training data (used for pretraining) often contain societal biases
+- These biases influence how models respond:
+  - Often in more subtle ways or where input data contains diverse demographic details
+- Why it happens
+  - Not accidental malice, but a mathematical inevitability
+  - Models learn statistical patterns from data. If the data reflects historical inequities, the model will too.
 
-## Bias and Fairness
+## Examples
 
-- Examples:
-  - [**Google Gemini's Image Generation (Feb 2024)**](https://blog.google/products-and-platforms/products/gemini/gemini-image-generation-issue/){.external target="_blank"}: Google's Gemini model was generating historically inaccurate images — e.g., racially diverse Nazi soldiers — when users asked for images of historical figures.
-  - [**Workday AI Hiring Bias Lawsuit — Mobley v. Workday (2023–2025)**](https://www.quinnemanuel.com/the-firm/publications/when-machines-discriminate-the-rise-of-ai-bias-lawsuits/){.external target="_blank"}: A Black job seeker over 40 with a disability sued Workday, alleging its AI applicant-screening system systematically rejected him based on race, age, and disability.
-  - [**AI Salary Negotiation Bias (2025)**](https://www.computerworld.com/article/4028148/bias-alert-llms-suggest-women-seek-lower-salaries-than-men-in-job-interviews.html){.external target="_blank"}: Researchers found that when LLMs including GPT-4o mini, Claude 3.5 Haiku, and others were asked to advise on salary negotiations, the chatbots recommended lower salaries to women and minority candidates compared to equally qualified white men.
+- [**Workday AI Hiring Bias Lawsuit: Mobley v. Workday**](https://www.quinnemanuel.com/the-firm/publications/when-machines-discriminate-the-rise-of-ai-bias-lawsuits/){.external target="_blank"}: 
+  - A Black job seeker over 40 with a disability sued Workday, alleging its AI applicant-screening system systematically rejected him based on race, age, and disability
+  - In May 2025, a federal judge allowed the case to move forward (as a class action)
+  - Plausible that Workday's tools violate the Age Discrimination in Employment Act (ADEA)
 
-## Bias and Fairness
+## Examples
 
-- How can we mitigate?
-  - Before training: 
-    - Sourcing of more balanced and representative datasets, intentionally oversampling underrepresented groups. Auditing for bias prior to training.
-  - During Training:
-    - "Fairness constraints" built into the loss function. Mathematically elegant, but definition of "fair" can be subjective.
-  - Alignment (e.g., RLHF):
-    - Where most of the foundational models focus their efforts. Human feedback to identify and down-weight biased output. 
-    - [Anthropic's Constitutional AI](https://www.anthropic.com/constitution){.external target="_blank"} is a good example.
+- [**AI Salary Negotiation Bias**](https://www.computerworld.com/article/4028148/bias-alert-llms-suggest-women-seek-lower-salaries-than-men-in-job-interviews.html){.external target="_blank"}: 
+  - Researchers at a technical university in Germany found that when LLMs including GPT-4o mini, Claude 3.5 Haiku, and others were asked to advise on salary negotiations, the chatbots recommended lower salaries to women and minority candidates compared to equally qualified white men.
+  - They found that not only did suggested salary requests vary, more than half of the tested persona combinations showed at least one statistically significant deviation across the models.
 
-## Bias and Fairness
+## Examples
 
-  - Inference Time:
-    - e.g., Injecting into the system prompt. Most brittle and non-deterministic.
-  - Auditing and Red-Teaming:
-    - Independent bias audits to probe models for disparate outcomes across demographic groups.
-     - e.g., [Google's PAIR "What-If Tool"](https://pair-code.github.io/what-if-tool/){.external target="_blank"}
-     - [IBM AI Fairness 360](https://research.ibm.com/blog/ai-fairness-360){.external target="_blank"}
+- [**Google Gemini's Image Generation**](https://blog.google/products-and-platforms/products/gemini/gemini-image-generation-issue/){.external target="_blank"}:
+  - Google's Gemini model was generating historically inaccurate images — e.g., racially diverse Nazi soldiers — when users asked for images of historical figures.
+  - While the Google blog post doesn't admit this, the alignment layer may have been over-compensating.
 
-# What do you think?
+## How Can We Mitigate?
+
+- Before Training: 
+  - Sourcing of more balanced and representative datasets, intentionally oversampling underrepresented groups. Auditing for bias prior to training.
+- During Training:
+  - "Fairness constraints" built into the loss function. Elegant, but definition of "fair" can be subjective.
+
+## How Can We Mitigate?
+
+- Alignment (e.g., RLHF):
+  - Where most of the foundational models focus their efforts. 
+  - Human feedback to identify and down-weight biased output. 
+  - [Anthropic's Constitutional AI](https://www.anthropic.com/constitution){.external target="_blank"} provides a good overview of their approach.
+
+## How Can We Mitigate
+
+- Inference Time:
+  - e.g., Injecting into the system prompt. Most brittle and non-deterministic.
+- Auditing and Red-Teaming:
+  - Independent bias audits to probe models for disparate outcomes across demographic groups.
+    - [Google's PAIR "What-If Tool"](https://pair-code.github.io/what-if-tool/){.external target="_blank"}
+    - [IBM AI Fairness 360](https://research.ibm.com/blog/ai-fairness-360){.external target="_blank"}
+
+# What Do You Think?
 
 Q: If an AI system is more accurate overall but biased against certain groups, should it still be used?
-
-Q: When bias appears in model output, who is responsible — the developer, the deployer, or the user?
 
 Q: Can "fairness" ever be universally defined, or is it always subjective?
 
@@ -100,120 +112,156 @@ Q: Can "fairness" ever be universally defined, or is it always subjective?
 
 ## Explainability
 
-- What do we mean by "Explainability"?
-  - “Black box” models raise ethical concerns in high-stakes domains such as healthcare, criminal justice, military
-  - If/when things go wrong, it can be challenging to audit the output and/or reasoning from a model
-  - The over-confidence of today's LLMs can compound the issue
+- “Black box” AI models raise ethical concerns in high-stakes domains such as healthcare, criminal justice, military
+- If/when things go wrong, it can be challenging to audit the output and/or reasoning from a model
+- The over-confidence of today's LLMs can compound the issue
 
-## Explainability
+## Examples
 
-- Examples
-  - [Healthcare](https://dl.acm.org/doi/10.1145/3759972.3760169){.external target="_blank"}: In a survey of clinicians using LLM-based diagnostic tools, 68% were uncomfortable with the inability to follow traceable reasoning paths — an essential requirement for legal accountability and shared decision-making with patients.
-  - [Legal Briefs](https://hai.stanford.edu/news/hallucinating-law-legal-mistakes-large-language-models-are-pervasive){.external target="_blank"}: In 2023, a New York lawyer submitted a legal brief to a federal court that had been generated largely by ChatGPT. The judge noted the brief was littered with "bogus judicial decisions, bogus quotes and bogus internal citations"
-  - [Legal Decision Making](https://academic.oup.com/jla/article/16/1/235/7941565){.external target="_blank"}: In June 2024, the Shenzhen Intermediate Court in China unveiled an Intelligent Adjudication System. This is the first instance globally of a court methodically using an LLM to assist judges in deciding cases, covering family law, contracts, torts, and labor disputes.
+- [Healthcare](https://dl.acm.org/doi/10.1145/3759972.3760169){.external target="_blank"}: 
+  - In a survey of clinicians using LLM-based diagnostic tools, 68% were uncomfortable with the inability to follow traceable reasoning paths.
+  - An essential requirement for legal accountability and shared decision-making with patients.
 
-## Explainability
+## Examples
 
-- How can we mitigate?
-  - Chain-of-Thought and Reasoning Models:
-    - Prompting or training LLMs to show their reasoning step-by-step before reaching a conclusion makes the logic auditable, even if the underlying mechanism remains opaque. 
-    - A clinician can at least see "the model considered these symptoms, ruled out these conditions, and arrived at this recommendation" rather than just receiving an output.
-  - Retrieval Augmented Generateion (RAG):
-    - Rather than relying on an LLM's parametric memory, RAG grounds responses in specific retrieved documents. E.g., clinical guidelines, case law, medical literature.
-    - This doesn't make the model itself explainable, but it makes the sources traceable.
-   - Human-in-the-Loop Requirements
-     - Regulatory and procedural frameworks that mandate human review before any LLM output becomes a decision. (The EU AI Act essentially requires this for high-risk domains.)
+- [Legal Briefs](https://hai.stanford.edu/news/hallucinating-law-legal-mistakes-large-language-models-are-pervasive){.external target="_blank"}:
+  - In 2023, a New York lawyer submitted a legal brief to a federal court that had been generated largely by ChatGPT. 
+  - The judge noted the brief was littered with "bogus judicial decisions, bogus quotes and bogus internal citations"
 
-## Explainability
+## Examples
+
+- [Legal Decision Making](https://academic.oup.com/jla/article/16/1/235/7941565){.external target="_blank"}: 
+  - In June 2024, the Shenzhen Intermediate Court in China unveiled an Intelligent Adjudication System
+  - The first instance globally of a court methodically using an LLM to assist judges in deciding cases, covering family law, contracts, torts, and labor disputes
+
+## How Can We Mitigate?
+
+- Chain-of-Thought and Reasoning Models:
+  - Prompting or training LLMs to show their reasoning step-by-step before reaching a conclusion makes the logic auditable, even if the underlying mechanism remains opaque 
+  - A clinician can at least see "the model considered these symptoms, ruled out these conditions, and arrived at this recommendation" rather than just receiving an output
+
+## How Can We Mitigate?
+
+- Retrieval Augmented Generation (RAG):
+  - Ensure the model has access to actual clinical guidelines, case law, medical documents vs. retrieving that knowledge from model weights
+  - This doesn't make the model itself explainable, but it makes the sources traceable
+
+## How Can We Mitigate?
+
+- Human-in-the-Loop Requirements
+  - Regulatory and procedural frameworks that mandate human review before any LLM output becomes a decision
+  - The [EU AI Act](https://artificialintelligenceact.eu/){.external target="_blank"} essentially requires this for high-risk domains
+
+## How Can We Mitigate?
 
 - Domain-Specific Fine-Tuning and Evaluation
-  - Rather than deploying general-purpose LLMs in clinical or legal settings, fine-tuning on domain-specific, high-quality data and then rigorously red-teaming against known failure cases.
-  - The Shenzhen court system is an example — they used a purpose-trained model rather than off-the-shelf ChatGPT. 
-- Confidence Calibration and Uncertainty Quantification
-  - Another training/fine-tuning opportunity to train models to express uncertainty: e.g., "I'm not confident about this" vs. stating everything with conviction.
-  - An active research area, although current LLMs remain notoriously over-confident.
+  - Rather than deploying general-purpose LLMs in clinical or legal settings, fine-tuning on domain-specific, high-quality data and then rigorously red-teaming against known failure cases
+  - The Shenzhen court system is an example: they used a purpose-trained model rather than off-the-shelf ChatGPT.
 
-# What do you think?
+## How Can We Mitigate?
+
+- Confidence Calibration
+  - Another training/fine-tuning opportunity to train models to express uncertainty: e.g., "I'm not confident about this" vs. stating everything with conviction
+  - An active research area, although current LLMs remain notoriously over-confident
+
+# What Do You Think?
 
 Q: Should courts be allowed to use AI to assist in deciding cases?
 
-Q: Who was more at fault in the hallucinated citations case — the lawyer or the firm?
-
-Q: Should explainability requirements be stricter in healthcare and criminal justice than in other domains?
+Q: Should explainability requirements be stricter in the healthcare domain? What tools would you use?
 
 # Ethics: Manipulative Content
 
 ## Manipulative Content
 
-- What do we mean by "Manipulative Content"?
-  - Synthetic media (deep fakes) across all mediums: text, images, video, audio
-  - Exploitation of psychological vulnerabilities for personal, financial, or political gain
+- Synthetic media (deep fakes) across all mediums: text, images, video, audio
+- Exploitation of psychological vulnerabilities for personal, financial, or political gain
 
-## Manipulative Content
+## Examples
 
-- Examples
-  - [Personal](https://kathierobertslaw.com/protecting-seniors-from-ai-voice-cloning-scams-what-every-family-needs-to-know/){.external target="_blank"}:
-    - Scammers are using AI voice cloning tools to impersonate family members in distress, requiring only a few seconds of audio scraped from social media. 
-    - In a recent Florida case, a mother sent $15,000 after receiving a call from someone using her daughter's cloned voice claiming to be in an accident. She later discovered her daughter was safe and had never made the call.
+- [Personal](https://kathierobertslaw.com/protecting-seniors-from-ai-voice-cloning-scams-what-every-family-needs-to-know/){.external target="_blank"}:
+  - Scammers are using AI voice cloning tools to impersonate family members in distress
+  - Requires only a few seconds of audio scraped from social media
+  - In a recent Florida case, a mother sent $15,000 after receiving a call from someone using her daughter's cloned voice claiming to be in an accident
+  - She later discovered her daughter was safe and had never made the call
 
 # Demo
 
 TBD: Potential demo of voice cloning?
 
-## Manipulative Content
+## Examples
 
-  - [Financial](https://www.theguardian.com/technology/article/2024/may/17/uk-engineering-arup-deepfake-scam-hong-kong-ai-video){.external target="_blank"}: 
-    - In Jan 2024, fraudsters using deepfake technology impersonated a company's CFO on a video call, tricking an employee into transferring $25 million.
-    - The victim joined what appeared to be a legitimate multi-person video conference with colleagues and their CFO, all of whom were deepfake renderings.
-  - [Political](https://publications.lawschool.cornell.edu/jlpp/2025/10/24/the-legal-gray-zone-of-deepfake-political-speech/){.external target="_blank"}: 
-    - A 2024 report by Recorded Future documented 82 pieces of AI-generated deepfake content targeting public figures across 38 countries in a single year
-    - A survey conducted by the identity verification firm Jumio found that 72% of Americans believed deepfakes would influence elections
+- [Financial](https://www.theguardian.com/technology/article/2024/may/17/uk-engineering-arup-deepfake-scam-hong-kong-ai-video){.external target="_blank"}: 
+  - In Jan 2024, fraudsters using deepfake technology impersonated a company's CFO on a video call, tricking an employee into transferring $25 million
+  - The victim joined what appeared to be a legitimate multi-person video conference with colleagues and their CFO, all of whom were deepfake renderings
 
-## Manipulative Content
+## Examples
 
-- How can we mitigate?
-  - Individual level: The "family safe word" has emerged as the most widely recommended mitigation for voice cloning scams specifically. i.e., a pre-agreed word or phrase that only genuine family members would know, used to verify identity before sending money.
-  - Deepfake Detection Tech: An active area of research and development, but fundamentally a cat and mouse problem. Detection models are often trained on previous generations of fakes, and generative models tend to outpace them.
-  - Cryptographic Watermarks: The Coalition for Content Provenance and Authenticity (C2PA) is developing open standards for embedding verifiable metadata into media at the point of creation (a cryptographic "certificate of authenticity" that travels with the file.) Major camera manufacturers, Adobe, and several AI companies have signed on.
-  - Regulatory: The US TAKE IT DOWN Act (signed May 2025) criminalizes non-consensual intimate deepfakes at the federal level. The EU AI Act's deepfake labeling requirements became mandatory in August 2025. Enforcement is of course challenging.
+- [Political](https://publications.lawschool.cornell.edu/jlpp/2025/10/24/the-legal-gray-zone-of-deepfake-political-speech/){.external target="_blank"}: 
+  - A 2024 report by Recorded Future documented 82 pieces of AI-generated deepfake content targeting public figures across 38 countries in a single year
+  - A survey conducted by the identity verification firm Jumio found that 72% of Americans believed deepfakes would influence elections
 
-# What do you think?
+## How Can We Mitigate?
 
-Q: If deepfake detection always lags behind generation, can technology alone ever solve this problem?
+- Individual level: The "family safe word" has emerged as the most widely recommended mitigation for voice cloning scams specifically
+  - i.e., a pre-agreed word or phrase that only genuine family members would know, used to verify identity before sending money
+
+## How Can We Mitigate?
+
+- Deepfake Detection Tech: An active area of research and development
+ - Fundamentally a cat and mouse problem
+ - Detection models are often trained on previous generations of fakes, and generative models tend to outpace them
+
+## How Can We Mitigate?
+
+- Cryptographic Watermarks: The Coalition for Content Provenance and Authenticity (C2PA) is developing open standards for embedding verifiable metadata into media at the point of creation (a cryptographic "certificate of authenticity" that travels with the file) 
+ - Major camera manufacturers, Adobe, and several AI companies have signed on
+
+## How Can We Mitigate?
+
+- Regulatory: The US TAKE IT DOWN Act (signed May 2025) criminalizes non-consensual intimate deepfakes at the federal level
+  - The EU AI Act's deepfake labeling requirements became mandatory in August 2025
+  - Enforcement is of course challenging
+
+# What Do You Think?
+
+Q: Can technology alone ever solve this problem?
 
 Q: What obligation do platforms like YouTube and Meta have to label AI-generated political content?
-
-Q: Is the "family safe word" a realistic defense, or does it place too much burden on individuals?
 
 # Ethics: Labor and Socioeconomic
 
 ## Labor and Socioeconomic
 
-- What do we mean by "Labor and Socioeconomic"?
-  - AI taking jobs, especially displacement of creative workers
-  - Organizations restructuring roles due to AI
-  - Hidden labor behind AI (data labelers, content moderators)
+- AI taking jobs, especially displacing creative workers
+- Organizations restructuring roles due to AI
+- Hidden labor behind AI (data labelers, content moderators)
 
-## Labor and Socioeconomic
+## Examples
 
-- Examples
-  - [Synthetic Performers](https://www.reuters.com/sustainability/sustainable-finance-reporting/hollywood-performers-union-condemns-ai-generated-actress-tilly-norwood-2025-10-01){.external target="_blank"}: A fully AI-generated “virtual actress” named Tilly Norwood. The Screen Actors Guild-American Federation of Television and Radio Artists (SAG-AFTRA) condemned the project, framing it as a threat to actors’ livelihoods and creative labor, especially since the character was trained on uncredited human performances.
+- [Synthetic Performers](https://www.reuters.com/sustainability/sustainable-finance-reporting/hollywood-performers-union-condemns-ai-generated-actress-tilly-norwood-2025-10-01){.external target="_blank"}: 
+  - A fully AI-generated “virtual actress” named Tilly Norwood
+  - The Screen Actors Guild-American Federation of Television and Radio Artists (SAG-AFTRA) condemned the project, framing it as a threat to actors’ livelihoods and creative labor, especially since the character was trained on uncredited human performances.
 
 # Video
 
-https://www.youtube.com/watch?v=qdYBwCwCtis
+[https://www.youtube.com/watch?v=qdYBwCwCtis](https://www.youtube.com/watch?v=qdYBwCwCtis){.external target="_blank"}
 
-## Labor and Socioeconomic
+## Examples
 
-- Examples
-  - [Corporate Restructuring](https://econofact.org/factbrief/fact-check-has-ai-already-caused-some-job-displacement){.external target="_blank"}: In 2025–early 2026, major companies across tech and manufacturing cited AI as a reason for layoffs and workforce restructuring. In 2025, research firms attributed 17,000+ job cuts to AI, and another 20,000 to technological updates that likely include AI.
-    - Firms including Amazon, Dow, and Pinterest announced thousands of job cuts, in some cases explicitly linking AI investment or automation strategies to those decisions.
-  - [Hidden Labor](https://www.brookings.edu/articles/reimagining-the-future-of-data-and-ai-labor-in-the-global-south/?utm_source=chatgpt.com){.external target="_blank"}: Investigations and worker advocacy reports from late 2024–2025 documented how large-scale AI training relies on low-paid, outsourced human workers doing data labeling, content moderation, and safety tagging.
-    - Low wages, long hours, exposure to graphic content, and lack of mental health support. Worker surveys describe the effects of constant exposure to violent or disturbing material and minimal oversight.
+- [Corporate Restructuring](https://econofact.org/factbrief/fact-check-has-ai-already-caused-some-job-displacement){.external target="_blank"}: 
+  - In 2025–early 2026, major companies across tech and manufacturing cited AI as a reason for layoffs and workforce restructuring
+  - In 2025, research firms attributed 17,000+ job cuts to AI, and another 20,000 to technological updates that likely include AI
+  - Firms including Amazon, Dow, and Pinterest announced thousands of job cuts, in some cases explicitly linking AI investment or automation strategies to those decisions
+  
+## Examples
 
-# What do you think?
+- [Hidden Labor](https://www.brookings.edu/articles/reimagining-the-future-of-data-and-ai-labor-in-the-global-south/?utm_source=chatgpt.com){.external target="_blank"}: 
+  - Investigations and worker advocacy reports from late 2024–2025 documented how large-scale AI training relies on low-paid, outsourced human workers doing data labeling, content moderation, and safety tagging
+  - Low wages, long hours, exposure to graphic content, and lack of mental health support
+  - Worker surveys describe the effects of constant exposure to violent or disturbing material and minimal oversight
 
-Q: Should AI companies be legally required to provide fair wages and mental health support for data labelers?
+# What Do You Think?
 
 Q: Where is the line between AI as a creative tool versus a replacement for human workers?
 
@@ -223,35 +271,53 @@ Q: Will AI job displacement follow the same pattern as past technological revolu
 
 ## Environmental
 
-- What do we mean by "Environmental"?
-  - Training and running large AI models consumes significant energy and water
-  - The infrastructure required (data centers, hardware) has a measurable carbon footprint
-  - Demand is accelerating faster than the grid's ability to supply it from renewable sources
+- Training and running large AI models consumes significant energy and water
+- The infrastructure required (data centers, hardware) has a measurable carbon footprint
+- Demand is accelerating faster than the grid's ability to supply it from renewable sources
 
-## Environmental
+## Examples
 
-- Examples
-  - [Training Energy Costs](https://arxiv.org/abs/1906.02243){.external target="_blank"}: A 2019 University of Massachusetts study (Strubell et al.) estimated that training a large transformer model can emit as much CO₂ as five cars over their entire lifetimes (~300,000 lbs).
-    - Since then, models have scaled by orders of magnitude. GPT-4 and its successors are estimated to have cost many multiples of that figure.
-  - [Data Center Water Use](https://www.theregister.com/2023/09/11/microsofts_ai_investments_skyrocketed_in/){.external target="_blank"}: Microsoft reported that its global water consumption increased 34% to 6.4 million cubic meters in 2022, largely attributed to AI infrastructure growth.
-    - Training GPT-3 alone is estimated to have evaporated 700,000 liters of freshwater for cooling — often in water-stressed regions.
-  - [Grid Pressure](https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai){.external target="_blank"}: The IEA projects global data center electricity consumption will roughly double to ~945 TWh by 2030, growing at ~15% per year — more than four times faster than all other sectors combined.
-    - In the US alone, data centers could account for up to 12% of national electricity demand by 2028, up from ~4% in 2023.
+- [Training Energy Costs](https://arxiv.org/abs/1906.02243){.external target="_blank"}: 
+  - A 2019 University of Massachusetts study (Strubell et al.) estimated that training a large transformer model can emit as much CO₂ as five cars over their entire lifetimes (~300,000 lbs)
+  - Since then, models have scaled by orders of magnitude
+  - GPT-4 and its successors are estimated to have cost many multiples of that figure
+  
+## Examples
 
-## Environmental
+- [Data Center Water Use](https://www.theregister.com/2023/09/11/microsofts_ai_investments_skyrocketed_in/){.external target="_blank"}: 
+  - Microsoft reported that its global water consumption increased 34% to 6.4 million cubic meters in 2022, largely attributed to AI infrastructure growth
+  - Training GPT-3 alone is estimated to have evaporated 700,000 liters of freshwater for cooling
+  - Datacenters are often located in water-stressed regions
 
-- How can we mitigate?
-  - Efficient Architectures: Model distillation, quantization, and sparse architectures (e.g., Mixture of Experts) reduce compute and energy per inference. Smaller, task-specific models often perform comparably to large general-purpose ones.
-    - [Intelligence per Watt (Stanford/Google, 2025)](https://arxiv.org/abs/2511.07885){.external target="_blank"}: Found that small local models can accurately answer **88.7%** of real-world single-turn chat and reasoning queries — suggesting most users don't need a frontier model for most tasks.
-  - Renewable Energy Sourcing: Locating data centers near renewable energy supplies or signing long-term Power Purchase Agreements (PPAs) with renewable providers.
-    - Google, Microsoft, and Meta have all made public net-zero or renewable commitments, though the definitions and timelines vary widely.
-  - Hardware Efficiency: Purpose-built AI accelerators (e.g., Google TPUs, Groq LPUs) are significantly more energy-efficient than general-purpose GPUs for inference workloads.
-  - Transparency and Reporting: Requiring standardized disclosure of training compute, energy use, and water consumption — analogous to financial reporting.
-    - The EU AI Act includes provisions for environmental impact documentation for high-capability models.
+## Examples
 
-# What do you think?
+- [Grid Pressure](https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai){.external target="_blank"}: 
+  - The IEA projects global data center electricity consumption will roughly double to ~945 TWh by 2030, growing at ~15% per year
+  - More than four times faster than all other sectors combined
+  - In the US alone, data centers could account for up to 12% of national electricity demand by 2028, up from ~4% in 2023
 
-Q: Should AI companies be required to publicly disclose the energy and water footprint of their models?
+## How Can We Mitigate?
+
+- Efficient Architectures: Model distillation, quantization, and sparse architectures (e.g., Mixture of Experts) reduce compute and energy per inference
+  - Smaller, task-specific models often perform comparably to large general-purpose ones
+
+## How Can We Mitigate?
+
+- [Intelligence per Watt (Stanford/Google, 2025)](https://arxiv.org/abs/2511.07885){.external target="_blank"}: Found that small local models can accurately answer 88.7% of real-world single-turn chat and reasoning queries
+  - This would suggest most users don't need a frontier model for most tasks
+
+## How Can We Mitigate?
+
+- Renewable Energy Sourcing: Locating data centers near renewable energy supplies or signing long-term Power Purchase Agreements (PPAs) with renewable providers
+  - Google, Microsoft, and Meta have all made public net-zero or renewable commitments
+  - Although the definitions and timelines vary widely
+
+## How Can We Mitigate?
+
+- Transparency and Reporting: Requiring standardized disclosure of training compute, energy use, and water consumption, analogous to financial reporting
+  - The EU AI Act includes provisions for environmental impact documentation for high-capability models
+
+# What Do You Think?
 
 Q: Is it ethical to train ever-larger models when the environmental cost is measurable and growing?
 
