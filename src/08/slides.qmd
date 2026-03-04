@@ -325,9 +325,9 @@ Q: If AI can help solve climate change (e.g., optimize energy grids, accelerate 
 
 # Break
 
-# IP
+# Intellectual Property (IP)
 
-## IP
+## Intellectual Property (IP)
 
 - The Intellectual Property (IP) aspects of AI models as it applies to:
   - Training Data and Copyright
@@ -338,82 +338,111 @@ Q: If AI can help solve climate change (e.g., optimize energy grids, accelerate 
 
 ## Training Data and Copyright
 
-- What do we mean by "Training Data and Copyright"?
-  - Does training on copyrighted work constitute infringement?
-  - Does this also apply for physical media?
+- Does training AI models on copyrighted work constitute infringement?
+- Does this also apply if AI models are trained on physical media (e.g., books)?
 
-## Training Data and Copyright
+## Examples
 
-- Examples
-  - [New York Times](https://www.trails.umd.edu/news/what-will-the-eu-ai-act-mean-for-ed-tech-in-the-us-fg3sf){.external target="_blank"}: In late 2025, The New York Times filed a federal copyright infringement lawsuit against OpenAI and its partner Microsoft.
-    - The Times alleges that OpenAI scraped and used millions of its articles, including behind paywalls, without permission to train the ChatGPT language models that power services like ChatGPT and Bing AI.
-    - This case is one of the most high-profile disputes over AI training on copyrighted news content, and it’s still active in federal court.
-  - [Getty Images](https://katten.com/getty-images-v-stability-ai-intellectual-property-rights-in-the-age-of-generative-ai){.external target="_blank"}: Getty Images sued Stability AI in UK and Europe alleging that its generative image model (e.g., Stable Diffusion) was trained on millions of Getty’s copyrighted photographs without permission.
-    - The claim focused on the unlicensed use of high-value image assets as training data and argued that elements like watermarks showing up in outputs indicated the model had learned from copyrighted photos.
-  - [Anthropic](https://en.wikipedia.org/wiki/Anthropic#Legal_issues){.external target="_blank"}: Anthropic agreed to pay about $1.5 billion to settle copyright claims that it had trained its models on millions of authors’ works, including allegedly pirated copies used in model training.
-    - The case included acquired books that Anthropic purchased: In some cases the company bought physical copies, digitally scanned them (“destructive digitization”), and used those scans in model training.
+- [New York Times](https://www.trails.umd.edu/news/what-will-the-eu-ai-act-mean-for-ed-tech-in-the-us-fg3sf){.external target="_blank"}:
+  - In late 2025, The New York Times filed a federal copyright infringement lawsuit against OpenAI and Microsoft
+  - The Times alleges that OpenAI scraped and used millions of its articles, including behind paywalls, without permission
+  - This case is one of the most high-profile disputes over AI training on copyrighted news content, and it’s still active in federal court
 
-## Training Data and Copyright
+## Examples
 
-- Mitigations
-  - Robots.txt: Authors who publish online can add directives in their site’s robots.txt file to block known AI crawlers. (Voluntary compliance only)
-    - Example:
-      ```
-      User-agent: GPTBot
-      Disallow: /
-      ```
-  - Technical Poisioning/Watermarking:
-    - Embed invisible watermarks. Challenging as these watermarks will degrade via the diffusion process.
-    - Add adversarial pertubations ("defensive" and "poisioning") to images to degrade model training.
-      - "Glaze" and "Nightshade" from UChicago
-      - Adds visual distortions based on a strength setting, with tags (e.g., hats become cars). Lowest strengths barely noticable side-by-side.
+- [Getty Images](https://katten.com/getty-images-v-stability-ai-intellectual-property-rights-in-the-age-of-generative-ai){.external target="_blank"}: 
+  - Getty Images sued Stability AI in UK and Europe alleging that its generative image model (Stable Diffusion) was trained on millions of Getty’s copyrighted photographs without permission
+  - The claim focused on the unlicensed use of high-value image assets as training data
+  - Also argued that elements like watermarks showing up in outputs indicated the model had learned from copyrighted photos
+
+## Examples
+
+- [Anthropic](https://en.wikipedia.org/wiki/Anthropic#Legal_issues){.external target="_blank"}: 
+  - Anthropic agreed to pay about $1.5B to settle copyright claims that it had trained its models on millions of authors’ works, including allegedly pirated copies used in model training
+  - The case included acquired books that Anthropic purchased
+  - The company bought physical copies, digitally scanned them ("destructive digitization"), and used those scans in model training
+
+## How Can We Mitigate?
+
+- Robots.txt: Authors who publish online can add directives in their site’s robots.txt file to block known AI crawlers
+  - Example:
+    ```
+    User-agent: GPTBot
+    Disallow: /
+    ```
+  - Voluntary compliance only
+
+## How Can We Mitigate?
+
+- Technical Poisioning/Watermarking:
+  - Add adversarial pertubations ("defensive" and "poisioning") to images to degrade model training
+    - "Glaze" and "Nightshade" from UChicago
+    - Adds visual distortions based on a strength setting, with tags (e.g., hats become cars)
+    - Lowest strengths barely noticable side-by-side
+  - Challenging as these watermarks will degrade via the forward diffusion process
+
+## How Can We Mitigate
 
 TBD: Nightshade example side by side image
 
-   - Legal Tools
-     - Copyright registration and explicit licensing terms
-     - Potential to negotiate AI clauses in publishing contracts
-     - But, courts are still determining if AI training consistutes fair use
-   - Future Directions
-     - Dataset transparency laws
-     - Collective licensing systems (similar to music royalties)
+## How Can We Mitigate
 
-# What do you think?
+- Legal Tools
+  - Copyright registration and explicit licensing terms
+  - Potential to negotiate AI clauses in publishing contracts
+  - But, courts are still determining if AI training consistutes fair use
+
+## How Can We Mitigate
+
+- Other Proposed Directions
+  - Dataset transparency laws
+  - Collective licensing systems (similar to music royalties)
+
+# What Do You Think?
 
 Q: If reading a book and learning from it is legal for a human, should it also be legal for an AI model?
 
-Q: If not, what is the morally relevant difference?
-
-Q: Should there be a compulsory licensing system for AI training data, similar to how music royalties work?
+Q: Should there be a compulsory licensing system for AI training data? How might this work?
 
 # IP: Model Weights as IP
 
 ## Model Weights as IP
 
-- What do we mean by "Model Weights As IP"?
-  - Do model weights infrige copyright if the model is trained on copyrighted data?
-  - Can an organization patent or protect model weights?
-  - Can other organizations use models to train their own models?
+- Do model weights infrige copyright if the model is trained on copyrighted data?
+- Can an organization patent or protect model weights?
+- Can other organizations use models to train their own models?
 
-## Model Weights as IP
+## Examples
 
-- Examples
-  - [Getty Images](https://www.pearlcohen.com/uks-first-court-decision-on-copyright-works-in-ai-models){.external target="_blank"}: In Nov 2025, the UK High Court explicitly addressed whether an AI model’s learned parameters (weights) constitute an infringing copy of copyrighted works used in training.
-    - The judge held that Stable Diffusion’s model weights do not store or contain reproductions of Getty’s copyrighted images, and therefore the model itself is not an “infringing copy” under UK copyright law*.
-  - [Rothwell Figg](https://www.rothwellfigg.com/publication-the-pros-and-cons-of-protecting-ai-as-trade-secrets){.external target="_blank"}: Few active cases in court, but companies routinely treat model weights as deeply valuable trade secrets, and this strategy is now being recognized as a major form of IP protection in industry and law.
-    - Legal analyses (and filings) note that model weights, parameters, training datasets and processes are prime candidates for trade secret protection, because they derive economic value from being secret and companies take “reasonable steps” to keep them confidential.  
-  - Most legal experts agree that model weights are not copyrightable under current U.S. & UK copyright law because they are functional numeric parameters, not expressive works.
-    - To be copyrighted, a work must be a *copyable expression* with human authorship. 
-  - [Anthropic](https://www.anthropic.com/news/detecting-and-preventing-distillation-attacks){.external target="_blank"}: In Feb 2026, Anthropic publicly announced it had identified “industrial-scale campaigns” by three Chinese AI companies: DeepSeek, Moonshot AI, and MiniMax. They allegedly interacted with its Claude model tens of millions of times in order to extract its capabilities for training their own models.
-    - These companies used "distillation" (where a model learns from a more capable model), creating roughly 24,000 fraudulent accounts and made over 16 million prompt interactions with Claude to mine its outputs.
-    - Irony not lost on [social networks](https://www.reddit.com/r/ClaudeCode/comments/1rcp658/anthropic_weve_identified_industrialscale){.external target="_blank"}: *“Why is it an attack? If they scraped my blog for training their model, is it attack on the blog? Isn’t that exactly like training on copyrighted materials?”*
-    - Anthropic's ToS prohibit Claude's outputs to "build a competing product or service, including to train competing AI models" (https://news.ycombinator.com/item?id=44763110)
+- [Getty Images](https://www.pearlcohen.com/uks-first-court-decision-on-copyright-works-in-ai-models){.external target="_blank"}: 
+  - In Nov 2025, the UK High Court addressed whether an AI model’s learned parameters (weights) constitute an infringing copy of copyrighted works used in training
+  - The judge held that Stable Diffusion’s model weights do not store or contain reproductions of Getty’s copyrighted images
+  - Therefore, the model itself is not an "infringing copy" under UK copyright law
 
-# What do you thnk?
+## Examples
+
+- [Rothwell Figg](https://www.rothwellfigg.com/publication-the-pros-and-cons-of-protecting-ai-as-trade-secrets){.external target="_blank"}: 
+  - Few active cases in court, but companies routinely treat model weights as deeply valuable trade secrets
+  - Legal filings note that model weights, parameters, training datasets and processes are prime candidates for trade secret protection
+  - Most legal experts agree that model weights are not copyrightable under current laws because they are functional numeric parameters, not expressive works
+  - (To be copyrighted, a work must be a *copyable expression* with human authorship)
+
+## Examples
+
+- [Anthropic](https://www.anthropic.com/news/detecting-and-preventing-distillation-attacks){.external target="_blank"}: 
+  - In Feb 2026, Anthropic publicly announced it had identified “industrial-scale campaigns” by three Chinese AI companies: DeepSeek, Moonshot AI, and MiniMax
+  - They allegedly interacted with its Claude model tens of millions of times in order to extract its capabilities for training their own models
+  - These companies used "distillation", creating roughly 24,000 fraudulent accounts and made over 16 million prompt interactions with Claude to mine its outputs
+
+## Examples
+
+- Irony not lost on [social networks](https://www.reddit.com/r/ClaudeCode/comments/1rcp658/anthropic_weve_identified_industrialscale){.external target="_blank"}: 
+  - *“Why is it an attack? If they scraped my blog for training their model, is it attack on my blog? Isn’t that exactly like training on copyrighted materials?”*
+  - Anthropic's ToS prohibit Claude's outputs to "build a competing product or service, including to train competing AI models"
+
+# What Do You Think?
 
 Q: Is a model’s learned representation (weights) “creative enough” to deserve copyright protection?
-
-Q: Should companies be allow to prevent models being trained from their own models?
 
 Q: Is there a double standard in Anthropic objecting to distillation while having trained on copyrighted content themselves?
 
@@ -421,30 +450,42 @@ Q: Is there a double standard in Anthropic objecting to distillation while havin
 
 ## Output Ownership
 
-- What do we mean by "Output Ownership"?
-  - Can AI generated content be copyrighted?
-  - Who owns AI generated content? Vendor? Developer? You?
+- Can AI generated content be copyrighted?
+- Who owns AI generated content? Vendor? Developer? You?
 
-## Output Ownership
+## Examples
 
-- Examples
-  - [Zarya of the Dawn](https://en.wikipedia.org/wiki/Zarya_of_the_Dawn){.external target="_blank"}: In 2022–2023, the U.S. Copyright Office initially granted copyright registration to the comic. After discovering the images were generated using Midjourney, the Office partially revoked the registration.
-    - Key ruling: The text and selection/arrangement of panels were copyrightable. The AI-generated images themselves were not, because they lacked sufficient human authorship.
-  - [Jason Allen](https://en.wikipedia.org/wiki/Th%C3%A9%C3%A2tre_D%27op%C3%A9ra_Spatial){.external target="_blank"}: A Colorado-based artist who became widely known in 2022 after winning first place in the digital art category of the Colorado State Fair (with a piece created using an AI image generator)
-    - TBD: Picture link here
-    - Produced through iterative prompting (624 prompts) using the text-to-image system Midjourney, followed by compositional editing in Photoshop and upscaling in Gigapixel AI.
-    - Critics argued that AI-generated images challenge traditional notions of creativity, while supporters contended that prompt engineering and artistic intent remain essential human contributions.
-    - In 2022, Allen applied for copyright registration of the image with US Copyright Office, which was later denied after appeal.
-  - [US Copyright Office AI Policy Guidance](https://www.copyright.gov/ai/ai_policy_guidance.pdf){.external target="_blank"}: The Copyright Office released detailed guidance (in their 2024-2025 update) clarifying a spectrum model:
+- [Zarya of the Dawn](https://en.wikipedia.org/wiki/Zarya_of_the_Dawn){.external target="_blank"}: 
+  - In 2022–2023, the U.S. Copyright Office initially granted copyright registration to the comic
+  - However, after discovering the images were generated using Midjourney, the Office partially revoked the registration
+  - Key ruling: The text and selection/arrangement of panels were copyrightable. The AI-generated images themselves were not, because they lacked sufficient human authorship.
+
+## Examples
+
+- [Jason Allen](https://en.wikipedia.org/wiki/Th%C3%A9%C3%A2tre_D%27op%C3%A9ra_Spatial){.external target="_blank"}: 
+  - A Colorado-based artist who became widely known in 2022 after winning first place in the digital art category of the Colorado State Fair (with a piece created using an AI image generator)
+
+## Examples
+
+TBD: Picture link here
+
+## Examples
+
+- Produced through iterative prompting (624 prompts) using Midjourney, followed by editing in Photoshop and upscaling in Gigapixel AI
+- Critics argued that AI-generated images challenge traditional notions of creativity, while supporters contended that prompt engineering and artistic intent remain essential human contributions
+- (In 2022, Allen applied for copyright registration of the image with US Copyright Office, which was later denied after appeal)
+
+## Examples
+
+- [US Copyright Office AI Policy Guidance](https://www.copyright.gov/ai/ai_policy_guidance.pdf){.external target="_blank"}: 
+  - The Copyright Office released detailed guidance (in their 2024-2025 update) clarifying a spectrum model:
     - Fully autonomous AI output: Not copyrightable
     - AI + human curation/editing: Possibly copyrightable
     - AI as assistive tool (e.g., Photoshop-level control): Copyrightable
 
-# What do you think?
+# What Do You Think?
 
-Q: Do you think the Copyright Office's detailed guidance is correct?
-
-Q: If AI output isn’t copyrightable, is it effectively public domain?
+Q: Do you think the Copyright Office's detailed guidance is correct? If AI output isn’t copyrightable, is it effectively public domain?
 
 Q: Should Jason Allen's image have won first place? Can AI-generated art be used to enter competitions?
 
