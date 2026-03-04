@@ -13,7 +13,6 @@ format:
     mermaid:
       theme: neutral
 logo: ../../theme/logos/DigiPen_RGB_Red.png
-bibliography: references.bib
 ---
 
 ## Recap
@@ -383,7 +382,7 @@ Q: If AI can help solve climate change (e.g., optimize energy grids, accelerate 
 
 ## How Can We Mitigate?
 
-TBD: Nightshade example side by side image
+![](images/nightshade.png){.lightbox fig-align="center" width="600px"}
 
 ## How Can We Mitigate?
 
@@ -429,6 +428,10 @@ Q: Should there be a compulsory licensing system for AI training data? How might
 
 ## Examples
 
+![](images/anthropic_tweet.png){.lightbox fig-align="center" width="600px"}
+
+## Examples
+
 - [Anthropic](https://www.anthropic.com/news/detecting-and-preventing-distillation-attacks){.external target="_blank"}: 
   - In Feb 2026, Anthropic publicly announced it had identified “industrial-scale campaigns” by three Chinese AI companies: DeepSeek, Moonshot AI, and MiniMax
   - They allegedly interacted with its Claude model tens of millions of times in order to extract its capabilities for training their own models
@@ -467,7 +470,7 @@ Q: Is there a double standard in Anthropic objecting to distillation while havin
 
 ## Examples
 
-TBD: Picture link here
+![](images/Théâtre_D’opéra_Spatial.png){.lightbox fig-align="center" width="600px"}
 
 ## Examples
 
@@ -524,7 +527,7 @@ Q: Should Jason Allen's image have won first place? Can AI-generated art be used
 
 ## Examples
 
-TBD: Screenshot of Chat
+![](images/chevrolet_bot.png){.lightbox fig-align="center" width="600px"}
 
 ## Examples
 
