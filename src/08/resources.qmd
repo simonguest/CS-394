@@ -1,7 +1,0 @@
----
-title: "Resources"
----
-
-## Citations
-
-- [References Slide](https://simonguest.github.io/CS-394/src/08/slides.html#/references-1){.external target="_blank"}
