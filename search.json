@@ -7749,18 +7749,18 @@
     "href": "src/08/slides.html#lesson-objectives",
     "title": "Module 8: Ethics, IP, and Safety",
     "section": "Lesson Objectives",
-    "text": "Lesson Objectives\n\nExplore ethical, IP, and safety implications, examples, and potential mitigations, connecting back to prior modules\nDiscuss each area in depth and share different perspectives as a group\nResearch a theme (or media claim) and author a paper confirming or challenging it",
+    "text": "Lesson Objectives\n\nExplore ethical, IP, and safety implications, examples, and potential mitigations, connecting back to prior modules\nDiscuss each area in depth and share different perspectives as a group\nResearch a theme or media claim and author a paper confirming or challenging it",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
     ]
   },
   {
-    "objectID": "src/08/slides.html#the-ethical-ip-and-safety-implications-of-ai-1",
-    "href": "src/08/slides.html#the-ethical-ip-and-safety-implications-of-ai-1",
+    "objectID": "src/08/slides.html#ethical-ip-and-safety",
+    "href": "src/08/slides.html#ethical-ip-and-safety",
     "title": "Module 8: Ethics, IP, and Safety",
-    "section": "The Ethical, IP, and Safety Implications of AI",
-    "text": "The Ethical, IP, and Safety Implications of AI\n\nEthics — How AI systems can encode bias, resist accountability, enable manipulation, and reshape labor markets\nIntellectual Property — Who owns training data, model weights, and AI-generated content, and what the courts are still figuring out\nSafety — What happens when models go off-script, get manipulated, or are deliberately weaponized",
+    "section": "Ethical, IP, and Safety",
+    "text": "Ethical, IP, and Safety\n\nEthics: How AI systems can encode bias, resist accountability, enable manipulation, and reshape labor markets\nIntellectual Property: Who owns training data, model weights, and AI-generated content, and what the courts are still figuring out\nSafety: What happens when models go off-script, get manipulated, or are deliberately weaponized",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
@@ -7771,7 +7771,7 @@
     "href": "src/08/slides.html#ethics-1",
     "title": "Module 8: Ethics, IP, and Safety",
     "section": "Ethics",
-    "text": "Ethics\n\nThe training and use of AI models as it applies to:\n\nBias and Fairness\nExplainability\nManipulative Content\nLabor and Socioeconomic\nEnvironmental",
+    "text": "Ethics\n\nThe training and use of AI models as it applies to:\n\nBias and Fairness\nExplainability\nManipulative Content\nLabor and Socioeconomic\nEnvironmental Concerns",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
@@ -7782,40 +7782,73 @@
     "href": "src/08/slides.html#bias-and-fairness",
     "title": "Module 8: Ethics, IP, and Safety",
     "section": "Bias and Fairness",
-    "text": "Bias and Fairness\n\nWhat do we mean by “Bias and Fairness”?\n\nTraining data (used for pretraining) often contain societal biases.\nThese biases influence how models respond\n\nSometimes in an explicit way, but often in more subtle ways or where input data contains diverse demographic details.\n\nWhy it happens\n\nNot accidental malice, but a mathematical inevitability\nModels learn statistical patterns from data. If the data reflects historical inequities, the model will too.",
+    "text": "Bias and Fairness\n\nTraining data (used for pretraining) often contain societal biases\nThese biases influence how models respond:\n\nOften in more subtle ways or where input data contains diverse demographic details\n\nWhy it happens\n\nNot accidental malice, but a mathematical inevitability\nModels learn statistical patterns from data. If the data reflects historical inequities, the model will too.",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
     ]
   },
   {
-    "objectID": "src/08/slides.html#bias-and-fairness-1",
-    "href": "src/08/slides.html#bias-and-fairness-1",
+    "objectID": "src/08/slides.html#examples",
+    "href": "src/08/slides.html#examples",
     "title": "Module 8: Ethics, IP, and Safety",
-    "section": "Bias and Fairness",
-    "text": "Bias and Fairness\n\nExamples:\n\nGoogle Gemini’s Image Generation (Feb 2024): Google’s Gemini model was generating historically inaccurate images — e.g., racially diverse Nazi soldiers — when users asked for images of historical figures.\nWorkday AI Hiring Bias Lawsuit — Mobley v. Workday (2023–2025): A Black job seeker over 40 with a disability sued Workday, alleging its AI applicant-screening system systematically rejected him based on race, age, and disability.\nAI Salary Negotiation Bias (2025): Researchers found that when LLMs including GPT-4o mini, Claude 3.5 Haiku, and others were asked to advise on salary negotiations, the chatbots recommended lower salaries to women and minority candidates compared to equally qualified white men.",
+    "section": "Examples",
+    "text": "Examples\n\nWorkday AI Hiring Bias Lawsuit: Mobley v. Workday:\n\nA Black job seeker over 40 with a disability sued Workday, alleging its AI applicant-screening system systematically rejected him based on race, age, and disability\nIn May 2025, a federal judge allowed the case to move forward (as a class action)\nPlausible that Workday’s tools violate the Age Discrimination in Employment Act (ADEA)",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
     ]
   },
   {
-    "objectID": "src/08/slides.html#bias-and-fairness-2",
-    "href": "src/08/slides.html#bias-and-fairness-2",
+    "objectID": "src/08/slides.html#examples-1",
+    "href": "src/08/slides.html#examples-1",
     "title": "Module 8: Ethics, IP, and Safety",
-    "section": "Bias and Fairness",
-    "text": "Bias and Fairness\n\nHow can we mitigate?\n\nBefore training:\n\nSourcing of more balanced and representative datasets, intentionally oversampling underrepresented groups. Auditing for bias prior to training.\n\nDuring Training:\n\n“Fairness constraints” built into the loss function. Mathematically elegant, but definition of “fair” can be subjective.\n\nAlignment (e.g., RLHF):\n\nWhere most of the foundational models focus their efforts. Human feedback to identify and down-weight biased output.\nAnthropic’s Constitutional AI is a good example.",
+    "section": "Examples",
+    "text": "Examples\n\nAI Salary Negotiation Bias:\n\nResearchers at a technical university in Germany found that when LLMs including GPT-4o mini, Claude 3.5 Haiku, and others were asked to advise on salary negotiations, the chatbots recommended lower salaries to women and minority candidates compared to equally qualified white men.\nThey found that not only did suggested salary requests vary, more than half of the tested persona combinations showed at least one statistically significant deviation across the models.",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
     ]
   },
   {
-    "objectID": "src/08/slides.html#bias-and-fairness-3",
-    "href": "src/08/slides.html#bias-and-fairness-3",
+    "objectID": "src/08/slides.html#examples-2",
+    "href": "src/08/slides.html#examples-2",
     "title": "Module 8: Ethics, IP, and Safety",
-    "section": "Bias and Fairness",
-    "text": "Bias and Fairness\n\nInference Time:\n\ne.g., Injecting into the system prompt. Most brittle and non-deterministic.\n\nAuditing and Red-Teaming:\n\nIndependent bias audits to probe models for disparate outcomes across demographic groups.\ne.g., Google’s PAIR “What-If Tool”\nIBM AI Fairness 360",
+    "section": "Examples",
+    "text": "Examples\n\nGoogle Gemini’s Image Generation:\n\nGoogle’s Gemini model was generating historically inaccurate images — e.g., racially diverse Nazi soldiers — when users asked for images of historical figures.\nWhile the Google blog post doesn’t admit this, the alignment layer may have been over-compensating.",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#how-can-we-mitigate",
+    "href": "src/08/slides.html#how-can-we-mitigate",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "How Can We Mitigate?",
+    "text": "How Can We Mitigate?\n\nBefore Training:\n\nSourcing of more balanced and representative datasets, intentionally oversampling underrepresented groups. Auditing for bias prior to training.\n\nDuring Training:\n\n“Fairness constraints” built into the loss function. Elegant, but definition of “fair” can be subjective.",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#how-can-we-mitigate-1",
+    "href": "src/08/slides.html#how-can-we-mitigate-1",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "How Can We Mitigate?",
+    "text": "How Can We Mitigate?\n\nAlignment (e.g., RLHF):\n\nWhere most of the foundational models focus their efforts.\nHuman feedback to identify and down-weight biased output.\nAnthropic’s Constitutional AI provides a good overview of their approach.",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#how-can-we-mitigate-2",
+    "href": "src/08/slides.html#how-can-we-mitigate-2",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "How Can We Mitigate",
+    "text": "How Can We Mitigate\n\nInference Time:\n\ne.g., Injecting into the system prompt. Most brittle and non-deterministic.\n\nAuditing and Red-Teaming:\n\nIndependent bias audits to probe models for disparate outcomes across demographic groups.\n\nGoogle’s PAIR “What-If Tool”\nIBM AI Fairness 360",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
@@ -7826,40 +7859,95 @@
     "href": "src/08/slides.html#explainability",
     "title": "Module 8: Ethics, IP, and Safety",
     "section": "Explainability",
-    "text": "Explainability\n\nWhat do we mean by “Explainability”?\n\n“Black box” models raise ethical concerns in high-stakes domains such as healthcare, criminal justice, military\nIf/when things go wrong, it can be challenging to audit the output and/or reasoning from a model\nThe over-confidence of today’s LLMs can compound the issue",
+    "text": "Explainability\n\n“Black box” AI models raise ethical concerns in high-stakes domains such as healthcare, criminal justice, military\nIf/when things go wrong, it can be challenging to audit the output and/or reasoning from a model\nThe over-confidence of today’s LLMs can compound the issue",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
     ]
   },
   {
-    "objectID": "src/08/slides.html#explainability-1",
-    "href": "src/08/slides.html#explainability-1",
+    "objectID": "src/08/slides.html#examples-3",
+    "href": "src/08/slides.html#examples-3",
     "title": "Module 8: Ethics, IP, and Safety",
-    "section": "Explainability",
-    "text": "Explainability\n\nExamples\n\nHealthcare: In a survey of clinicians using LLM-based diagnostic tools, 68% were uncomfortable with the inability to follow traceable reasoning paths — an essential requirement for legal accountability and shared decision-making with patients.\nLegal Briefs: In 2023, a New York lawyer submitted a legal brief to a federal court that had been generated largely by ChatGPT. The judge noted the brief was littered with “bogus judicial decisions, bogus quotes and bogus internal citations”\nLegal Decision Making: In June 2024, the Shenzhen Intermediate Court in China unveiled an Intelligent Adjudication System. This is the first instance globally of a court methodically using an LLM to assist judges in deciding cases, covering family law, contracts, torts, and labor disputes.",
+    "section": "Examples",
+    "text": "Examples\n\nHealthcare:\n\nIn a survey of clinicians using LLM-based diagnostic tools, 68% were uncomfortable with the inability to follow traceable reasoning paths.\nAn essential requirement for legal accountability and shared decision-making with patients.",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
     ]
   },
   {
-    "objectID": "src/08/slides.html#explainability-2",
-    "href": "src/08/slides.html#explainability-2",
+    "objectID": "src/08/slides.html#examples-4",
+    "href": "src/08/slides.html#examples-4",
     "title": "Module 8: Ethics, IP, and Safety",
-    "section": "Explainability",
-    "text": "Explainability\n\nHow can we mitigate?\n\nChain-of-Thought and Reasoning Models:\n\nPrompting or training LLMs to show their reasoning step-by-step before reaching a conclusion makes the logic auditable, even if the underlying mechanism remains opaque.\nA clinician can at least see “the model considered these symptoms, ruled out these conditions, and arrived at this recommendation” rather than just receiving an output.\n\nRetrieval Augmented Generateion (RAG):\n\nRather than relying on an LLM’s parametric memory, RAG grounds responses in specific retrieved documents. E.g., clinical guidelines, case law, medical literature.\nThis doesn’t make the model itself explainable, but it makes the sources traceable.\n\nHuman-in-the-Loop Requirements\n\nRegulatory and procedural frameworks that mandate human review before any LLM output becomes a decision. (The EU AI Act essentially requires this for high-risk domains.)",
+    "section": "Examples",
+    "text": "Examples\n\nLegal Briefs:\n\nIn 2023, a New York lawyer submitted a legal brief to a federal court that had been generated largely by ChatGPT.\nThe judge noted the brief was littered with “bogus judicial decisions, bogus quotes and bogus internal citations”",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
     ]
   },
   {
-    "objectID": "src/08/slides.html#explainability-3",
-    "href": "src/08/slides.html#explainability-3",
+    "objectID": "src/08/slides.html#examples-5",
+    "href": "src/08/slides.html#examples-5",
     "title": "Module 8: Ethics, IP, and Safety",
-    "section": "Explainability",
-    "text": "Explainability\n\nDomain-Specific Fine-Tuning and Evaluation\n\nRather than deploying general-purpose LLMs in clinical or legal settings, fine-tuning on domain-specific, high-quality data and then rigorously red-teaming against known failure cases.\nThe Shenzhen court system is an example — they used a purpose-trained model rather than off-the-shelf ChatGPT.\n\nConfidence Calibration and Uncertainty Quantification\n\nAnother training/fine-tuning opportunity to train models to express uncertainty: e.g., “I’m not confident about this” vs. stating everything with conviction.\nAn active research area, although current LLMs remain notoriously over-confident.",
+    "section": "Examples",
+    "text": "Examples\n\nLegal Decision Making:\n\nIn June 2024, the Shenzhen Intermediate Court in China unveiled an Intelligent Adjudication System\nThe first instance globally of a court methodically using an LLM to assist judges in deciding cases, covering family law, contracts, torts, and labor disputes",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#how-can-we-mitigate-3",
+    "href": "src/08/slides.html#how-can-we-mitigate-3",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "How Can We Mitigate?",
+    "text": "How Can We Mitigate?\n\nChain-of-Thought and Reasoning Models:\n\nPrompting or training LLMs to show their reasoning step-by-step before reaching a conclusion makes the logic auditable, even if the underlying mechanism remains opaque\nA clinician can at least see “the model considered these symptoms, ruled out these conditions, and arrived at this recommendation” rather than just receiving an output",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#how-can-we-mitigate-4",
+    "href": "src/08/slides.html#how-can-we-mitigate-4",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "How Can We Mitigate?",
+    "text": "How Can We Mitigate?\n\nRetrieval Augmented Generation (RAG):\n\nEnsure the model has access to actual clinical guidelines, case law, medical documents vs. retrieving that knowledge from model weights\nThis doesn’t make the model itself explainable, but it makes the sources traceable",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#how-can-we-mitigate-5",
+    "href": "src/08/slides.html#how-can-we-mitigate-5",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "How Can We Mitigate?",
+    "text": "How Can We Mitigate?\n\nHuman-in-the-Loop Requirements\n\nRegulatory and procedural frameworks that mandate human review before any LLM output becomes a decision\nThe EU AI Act essentially requires this for high-risk domains",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#how-can-we-mitigate-6",
+    "href": "src/08/slides.html#how-can-we-mitigate-6",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "How Can We Mitigate?",
+    "text": "How Can We Mitigate?\n\nDomain-Specific Fine-Tuning and Evaluation\n\nRather than deploying general-purpose LLMs in clinical or legal settings, fine-tuning on domain-specific, high-quality data and then rigorously red-teaming against known failure cases\nThe Shenzhen court system is an example: they used a purpose-trained model rather than off-the-shelf ChatGPT.",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#how-can-we-mitigate-7",
+    "href": "src/08/slides.html#how-can-we-mitigate-7",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "How Can We Mitigate?",
+    "text": "How Can We Mitigate?\n\nConfidence Calibration\n\nAnother training/fine-tuning opportunity to train models to express uncertainty: e.g., “I’m not confident about this” vs. stating everything with conviction\nAn active research area, although current LLMs remain notoriously over-confident",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
@@ -7870,40 +7958,84 @@
     "href": "src/08/slides.html#manipulative-content",
     "title": "Module 8: Ethics, IP, and Safety",
     "section": "Manipulative Content",
-    "text": "Manipulative Content\n\nWhat do we mean by “Manipulative Content”?\n\nSynthetic media (deep fakes) across all mediums: text, images, video, audio\nExploitation of psychological vulnerabilities for personal, financial, or political gain",
+    "text": "Manipulative Content\n\nSynthetic media (deep fakes) across all mediums: text, images, video, audio\nExploitation of psychological vulnerabilities for personal, financial, or political gain",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
     ]
   },
   {
-    "objectID": "src/08/slides.html#manipulative-content-1",
-    "href": "src/08/slides.html#manipulative-content-1",
+    "objectID": "src/08/slides.html#examples-6",
+    "href": "src/08/slides.html#examples-6",
     "title": "Module 8: Ethics, IP, and Safety",
-    "section": "Manipulative Content",
-    "text": "Manipulative Content\n\nExamples\n\nPersonal:\n\nScammers are using AI voice cloning tools to impersonate family members in distress, requiring only a few seconds of audio scraped from social media.\nIn a recent Florida case, a mother sent $15,000 after receiving a call from someone using her daughter’s cloned voice claiming to be in an accident. She later discovered her daughter was safe and had never made the call.",
+    "section": "Examples",
+    "text": "Examples\n\nPersonal:\n\nScammers are using AI voice cloning tools to impersonate family members in distress\nRequires only a few seconds of audio scraped from social media\nIn a recent Florida case, a mother sent $15,000 after receiving a call from someone using her daughter’s cloned voice claiming to be in an accident\nShe later discovered her daughter was safe and had never made the call",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
     ]
   },
   {
-    "objectID": "src/08/slides.html#manipulative-content-2",
-    "href": "src/08/slides.html#manipulative-content-2",
+    "objectID": "src/08/slides.html#examples-7",
+    "href": "src/08/slides.html#examples-7",
     "title": "Module 8: Ethics, IP, and Safety",
-    "section": "Manipulative Content",
-    "text": "Manipulative Content\n\nFinancial:\n\nIn Jan 2024, fraudsters using deepfake technology impersonated a company’s CFO on a video call, tricking an employee into transferring $25 million.\nThe victim joined what appeared to be a legitimate multi-person video conference with colleagues and their CFO, all of whom were deepfake renderings.\n\nPolitical:\n\nA 2024 report by Recorded Future documented 82 pieces of AI-generated deepfake content targeting public figures across 38 countries in a single year\nA survey conducted by the identity verification firm Jumio found that 72% of Americans believed deepfakes would influence elections",
+    "section": "Examples",
+    "text": "Examples\n\nFinancial:\n\nIn Jan 2024, fraudsters using deepfake technology impersonated a company’s CFO on a video call, tricking an employee into transferring $25 million\nThe victim joined what appeared to be a legitimate multi-person video conference with colleagues and their CFO, all of whom were deepfake renderings",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
     ]
   },
   {
-    "objectID": "src/08/slides.html#manipulative-content-3",
-    "href": "src/08/slides.html#manipulative-content-3",
+    "objectID": "src/08/slides.html#examples-8",
+    "href": "src/08/slides.html#examples-8",
     "title": "Module 8: Ethics, IP, and Safety",
-    "section": "Manipulative Content",
-    "text": "Manipulative Content\n\nHow can we mitigate?\n\nIndividual level: The “family safe word” has emerged as the most widely recommended mitigation for voice cloning scams specifically. i.e., a pre-agreed word or phrase that only genuine family members would know, used to verify identity before sending money.\nDeepfake Detection Tech: An active area of research and development, but fundamentally a cat and mouse problem. Detection models are often trained on previous generations of fakes, and generative models tend to outpace them.\nCryptographic Watermarks: The Coalition for Content Provenance and Authenticity (C2PA) is developing open standards for embedding verifiable metadata into media at the point of creation (a cryptographic “certificate of authenticity” that travels with the file.) Major camera manufacturers, Adobe, and several AI companies have signed on.\nRegulatory: The US TAKE IT DOWN Act (signed May 2025) criminalizes non-consensual intimate deepfakes at the federal level. The EU AI Act’s deepfake labeling requirements became mandatory in August 2025. Enforcement is of course challenging.",
+    "section": "Examples",
+    "text": "Examples\n\nPolitical:\n\nA 2024 report by Recorded Future documented 82 pieces of AI-generated deepfake content targeting public figures across 38 countries in a single year\nA survey conducted by the identity verification firm Jumio found that 72% of Americans believed deepfakes would influence elections",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#how-can-we-mitigate-8",
+    "href": "src/08/slides.html#how-can-we-mitigate-8",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "How Can We Mitigate?",
+    "text": "How Can We Mitigate?\n\nIndividual level: The “family safe word” has emerged as the most widely recommended mitigation for voice cloning scams specifically\n\ni.e., a pre-agreed word or phrase that only genuine family members would know, used to verify identity before sending money",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#how-can-we-mitigate-9",
+    "href": "src/08/slides.html#how-can-we-mitigate-9",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "How Can We Mitigate?",
+    "text": "How Can We Mitigate?\n\nDeepfake Detection Tech: An active area of research and development\nFundamentally a cat and mouse problem\nDetection models are often trained on previous generations of fakes, and generative models tend to outpace them",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#how-can-we-mitigate-10",
+    "href": "src/08/slides.html#how-can-we-mitigate-10",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "How Can We Mitigate?",
+    "text": "How Can We Mitigate?\n\nCryptographic Watermarks: The Coalition for Content Provenance and Authenticity (C2PA) is developing open standards for embedding verifiable metadata into media at the point of creation (a cryptographic “certificate of authenticity” that travels with the file)\nMajor camera manufacturers, Adobe, and several AI companies have signed on",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#how-can-we-mitigate-11",
+    "href": "src/08/slides.html#how-can-we-mitigate-11",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "How Can We Mitigate?",
+    "text": "How Can We Mitigate?\n\nRegulatory: The US TAKE IT DOWN Act (signed May 2025) criminalizes non-consensual intimate deepfakes at the federal level\n\nThe EU AI Act’s deepfake labeling requirements became mandatory in August 2025\nEnforcement is of course challenging",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
@@ -7914,29 +8046,40 @@
     "href": "src/08/slides.html#labor-and-socioeconomic",
     "title": "Module 8: Ethics, IP, and Safety",
     "section": "Labor and Socioeconomic",
-    "text": "Labor and Socioeconomic\n\nWhat do we mean by “Labor and Socioeconomic”?\n\nAI taking jobs, especially displacement of creative workers\nOrganizations restructuring roles due to AI\nHidden labor behind AI (data labelers, content moderators)",
+    "text": "Labor and Socioeconomic\n\nAI taking jobs, especially displacing creative workers\nOrganizations restructuring roles due to AI\nHidden labor behind AI (data labelers, content moderators)",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
     ]
   },
   {
-    "objectID": "src/08/slides.html#labor-and-socioeconomic-1",
-    "href": "src/08/slides.html#labor-and-socioeconomic-1",
+    "objectID": "src/08/slides.html#examples-9",
+    "href": "src/08/slides.html#examples-9",
     "title": "Module 8: Ethics, IP, and Safety",
-    "section": "Labor and Socioeconomic",
-    "text": "Labor and Socioeconomic\n\nExamples\n\nSynthetic Performers: A fully AI-generated “virtual actress” named Tilly Norwood. The Screen Actors Guild-American Federation of Television and Radio Artists (SAG-AFTRA) condemned the project, framing it as a threat to actors’ livelihoods and creative labor, especially since the character was trained on uncredited human performances.",
+    "section": "Examples",
+    "text": "Examples\n\nSynthetic Performers:\n\nA fully AI-generated “virtual actress” named Tilly Norwood\nThe Screen Actors Guild-American Federation of Television and Radio Artists (SAG-AFTRA) condemned the project, framing it as a threat to actors’ livelihoods and creative labor, especially since the character was trained on uncredited human performances.",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
     ]
   },
   {
-    "objectID": "src/08/slides.html#labor-and-socioeconomic-2",
-    "href": "src/08/slides.html#labor-and-socioeconomic-2",
+    "objectID": "src/08/slides.html#examples-10",
+    "href": "src/08/slides.html#examples-10",
     "title": "Module 8: Ethics, IP, and Safety",
-    "section": "Labor and Socioeconomic",
-    "text": "Labor and Socioeconomic\n\nExamples\n\nCorporate Restructuring: In 2025–early 2026, major companies across tech and manufacturing cited AI as a reason for layoffs and workforce restructuring. In 2025, research firms attributed 17,000+ job cuts to AI, and another 20,000 to technological updates that likely include AI.\n\nFirms including Amazon, Dow, and Pinterest announced thousands of job cuts, in some cases explicitly linking AI investment or automation strategies to those decisions.\n\nHidden Labor: Investigations and worker advocacy reports from late 2024–2025 documented how large-scale AI training relies on low-paid, outsourced human workers doing data labeling, content moderation, and safety tagging.\n\nLow wages, long hours, exposure to graphic content, and lack of mental health support. Worker surveys describe the effects of constant exposure to violent or disturbing material and minimal oversight.",
+    "section": "Examples",
+    "text": "Examples\n\nCorporate Restructuring:\n\nIn 2025–early 2026, major companies across tech and manufacturing cited AI as a reason for layoffs and workforce restructuring\nIn 2025, research firms attributed 17,000+ job cuts to AI, and another 20,000 to technological updates that likely include AI\nFirms including Amazon, Dow, and Pinterest announced thousands of job cuts, in some cases explicitly linking AI investment or automation strategies to those decisions",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#examples-11",
+    "href": "src/08/slides.html#examples-11",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "Examples",
+    "text": "Examples\n\nHidden Labor:\n\nInvestigations and worker advocacy reports from late 2024–2025 documented how large-scale AI training relies on low-paid, outsourced human workers doing data labeling, content moderation, and safety tagging\nLow wages, long hours, exposure to graphic content, and lack of mental health support\nWorker surveys describe the effects of constant exposure to violent or disturbing material and minimal oversight",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
@@ -7947,29 +8090,84 @@
     "href": "src/08/slides.html#environmental",
     "title": "Module 8: Ethics, IP, and Safety",
     "section": "Environmental",
-    "text": "Environmental\n\nWhat do we mean by “Environmental”?\n\nTraining and running large AI models consumes significant energy and water\nThe infrastructure required (data centers, hardware) has a measurable carbon footprint\nDemand is accelerating faster than the grid’s ability to supply it from renewable sources",
+    "text": "Environmental\n\nTraining and running large AI models consumes significant energy and water\nThe infrastructure required (data centers, hardware) has a measurable carbon footprint\nDemand is accelerating faster than the grid’s ability to supply it from renewable sources",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
     ]
   },
   {
-    "objectID": "src/08/slides.html#environmental-1",
-    "href": "src/08/slides.html#environmental-1",
+    "objectID": "src/08/slides.html#examples-12",
+    "href": "src/08/slides.html#examples-12",
     "title": "Module 8: Ethics, IP, and Safety",
-    "section": "Environmental",
-    "text": "Environmental\n\nExamples\n\nTraining Energy Costs: A 2019 University of Massachusetts study (Strubell et al.) estimated that training a large transformer model can emit as much CO₂ as five cars over their entire lifetimes (~300,000 lbs).\n\nSince then, models have scaled by orders of magnitude. GPT-4 and its successors are estimated to have cost many multiples of that figure.\n\nData Center Water Use: Microsoft reported that its global water consumption increased 34% to 6.4 million cubic meters in 2022, largely attributed to AI infrastructure growth.\n\nTraining GPT-3 alone is estimated to have evaporated 700,000 liters of freshwater for cooling — often in water-stressed regions.\n\nGrid Pressure: The IEA projects global data center electricity consumption will roughly double to ~945 TWh by 2030, growing at ~15% per year — more than four times faster than all other sectors combined.\n\nIn the US alone, data centers could account for up to 12% of national electricity demand by 2028, up from ~4% in 2023.",
+    "section": "Examples",
+    "text": "Examples\n\nTraining Energy Costs:\n\nA 2019 University of Massachusetts study (Strubell et al.) estimated that training a large transformer model can emit as much CO₂ as five cars over their entire lifetimes (~300,000 lbs)\nSince then, models have scaled by orders of magnitude\nGPT-4 and its successors are estimated to have cost many multiples of that figure",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
     ]
   },
   {
-    "objectID": "src/08/slides.html#environmental-2",
-    "href": "src/08/slides.html#environmental-2",
+    "objectID": "src/08/slides.html#examples-13",
+    "href": "src/08/slides.html#examples-13",
     "title": "Module 8: Ethics, IP, and Safety",
-    "section": "Environmental",
-    "text": "Environmental\n\nHow can we mitigate?\n\nEfficient Architectures: Model distillation, quantization, and sparse architectures (e.g., Mixture of Experts) reduce compute and energy per inference. Smaller, task-specific models often perform comparably to large general-purpose ones.\n\nIntelligence per Watt (Stanford/Google, 2025): Found that small local models can accurately answer 88.7% of real-world single-turn chat and reasoning queries — suggesting most users don’t need a frontier model for most tasks.\n\nRenewable Energy Sourcing: Locating data centers near renewable energy supplies or signing long-term Power Purchase Agreements (PPAs) with renewable providers.\n\nGoogle, Microsoft, and Meta have all made public net-zero or renewable commitments, though the definitions and timelines vary widely.\n\nHardware Efficiency: Purpose-built AI accelerators (e.g., Google TPUs, Groq LPUs) are significantly more energy-efficient than general-purpose GPUs for inference workloads.\nTransparency and Reporting: Requiring standardized disclosure of training compute, energy use, and water consumption — analogous to financial reporting.\n\nThe EU AI Act includes provisions for environmental impact documentation for high-capability models.",
+    "section": "Examples",
+    "text": "Examples\n\nData Center Water Use:\n\nMicrosoft reported that its global water consumption increased 34% to 6.4 million cubic meters in 2022, largely attributed to AI infrastructure growth\nTraining GPT-3 alone is estimated to have evaporated 700,000 liters of freshwater for cooling\nDatacenters are often located in water-stressed regions",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#examples-14",
+    "href": "src/08/slides.html#examples-14",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "Examples",
+    "text": "Examples\n\nGrid Pressure:\n\nThe IEA projects global data center electricity consumption will roughly double to ~945 TWh by 2030, growing at ~15% per year\nMore than four times faster than all other sectors combined\nIn the US alone, data centers could account for up to 12% of national electricity demand by 2028, up from ~4% in 2023",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#how-can-we-mitigate-12",
+    "href": "src/08/slides.html#how-can-we-mitigate-12",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "How Can We Mitigate?",
+    "text": "How Can We Mitigate?\n\nEfficient Architectures: Model distillation, quantization, and sparse architectures (e.g., Mixture of Experts) reduce compute and energy per inference\n\nSmaller, task-specific models often perform comparably to large general-purpose ones",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#how-can-we-mitigate-13",
+    "href": "src/08/slides.html#how-can-we-mitigate-13",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "How Can We Mitigate?",
+    "text": "How Can We Mitigate?\n\nIntelligence per Watt (Stanford/Google, 2025): Found that small local models can accurately answer 88.7% of real-world single-turn chat and reasoning queries\n\nThis would suggest most users don’t need a frontier model for most tasks",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#how-can-we-mitigate-14",
+    "href": "src/08/slides.html#how-can-we-mitigate-14",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "How Can We Mitigate?",
+    "text": "How Can We Mitigate?\n\nRenewable Energy Sourcing: Locating data centers near renewable energy supplies or signing long-term Power Purchase Agreements (PPAs) with renewable providers\n\nGoogle, Microsoft, and Meta have all made public net-zero or renewable commitments\nAlthough the definitions and timelines vary widely",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#how-can-we-mitigate-15",
+    "href": "src/08/slides.html#how-can-we-mitigate-15",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "How Can We Mitigate?",
+    "text": "How Can We Mitigate?\n\nTransparency and Reporting: Requiring standardized disclosure of training compute, energy use, and water consumption, analogous to financial reporting\n\nThe EU AI Act includes provisions for environmental impact documentation for high-capability models",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"

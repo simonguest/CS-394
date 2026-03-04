@@ -147,20 +147,20 @@
 <ul>
 <li class="fragment">Explore <strong>ethical</strong>, <strong>IP</strong>, and <strong>safety</strong> implications, examples, and potential mitigations, connecting back to prior modules</li>
 <li class="fragment">Discuss each area in depth and share different perspectives as a group</li>
-<li class="fragment">Research a theme (or media claim) and author a paper confirming or challenging it</li>
+<li class="fragment">Research a theme or media claim and author a paper confirming or challenging it</li>
 </ul>
 </section>
 <section>
-<section id="the-ethical-ip-and-safety-implications-of-ai" class="title-slide slide level1 center">
-<h1>The Ethical, IP, and Safety Implications of AI</h1>
+<section id="what-do-we-mean-by-ethics-ip-and-safety" class="title-slide slide level1 center">
+<h1>What Do We Mean By Ethics, IP, and Safety?</h1>
 
 </section>
-<section id="the-ethical-ip-and-safety-implications-of-ai-1" class="slide level2">
-<h2>The Ethical, IP, and Safety Implications of AI</h2>
+<section id="ethical-ip-and-safety" class="slide level2">
+<h2>Ethical, IP, and Safety</h2>
 <ul>
-<li class="fragment"><strong>Ethics</strong> — How AI systems can encode bias, resist accountability, enable manipulation, and reshape labor markets</li>
-<li class="fragment"><strong>Intellectual Property</strong> — Who owns training data, model weights, and AI-generated content, and what the courts are still figuring out</li>
-<li class="fragment"><strong>Safety</strong> — What happens when models go off-script, get manipulated, or are deliberately weaponized</li>
+<li class="fragment"><strong>Ethics</strong>: How AI systems can encode bias, resist accountability, enable manipulation, and reshape labor markets</li>
+<li class="fragment"><strong>Intellectual Property</strong>: Who owns training data, model weights, and AI-generated content, and what the courts are still figuring out</li>
+<li class="fragment"><strong>Safety</strong>: What happens when models go off-script, get manipulated, or are deliberately weaponized</li>
 </ul>
 </section></section>
 <section>
@@ -177,7 +177,7 @@
 <li class="fragment">Explainability</li>
 <li class="fragment">Manipulative Content</li>
 <li class="fragment">Labor and Socioeconomic</li>
-<li class="fragment">Environmental</li>
+<li class="fragment">Environmental Concerns</li>
 </ul></li>
 </ul>
 </section></section>
@@ -189,55 +189,75 @@
 <section id="bias-and-fairness" class="slide level2">
 <h2>Bias and Fairness</h2>
 <ul>
-<li class="fragment">What do we mean by “Bias and Fairness”?
+<li class="fragment">Training data (used for pretraining) often contain societal biases</li>
+<li class="fragment">These biases influence how models respond:
 <ul>
-<li class="fragment">Training data (used for pretraining) often contain societal biases.</li>
-<li class="fragment">These biases influence how models respond
-<ul>
-<li class="fragment">Sometimes in an explicit way, but often in more subtle ways or where input data contains diverse demographic details.</li>
+<li class="fragment">Often in more subtle ways or where input data contains diverse demographic details</li>
 </ul></li>
 <li class="fragment">Why it happens
 <ul>
 <li class="fragment">Not accidental malice, but a mathematical inevitability</li>
 <li class="fragment">Models learn statistical patterns from data. If the data reflects historical inequities, the model will too.</li>
 </ul></li>
+</ul>
+</section>
+<section id="examples" class="slide level2">
+<h2>Examples</h2>
+<ul>
+<li class="fragment"><a href="https://www.quinnemanuel.com/the-firm/publications/when-machines-discriminate-the-rise-of-ai-bias-lawsuits/" class="external" target="_blank"><strong>Workday AI Hiring Bias Lawsuit: Mobley v. Workday</strong></a>:
+<ul>
+<li class="fragment">A Black job seeker over 40 with a disability sued Workday, alleging its AI applicant-screening system systematically rejected him based on race, age, and disability</li>
+<li class="fragment">In May 2025, a federal judge allowed the case to move forward (as a class action)</li>
+<li class="fragment">Plausible that Workday’s tools violate the Age Discrimination in Employment Act (ADEA)</li>
 </ul></li>
 </ul>
 </section>
-<section id="bias-and-fairness-1" class="slide level2">
-<h2>Bias and Fairness</h2>
+<section id="examples-1" class="slide level2">
+<h2>Examples</h2>
 <ul>
-<li class="fragment">Examples:
+<li class="fragment"><a href="https://www.computerworld.com/article/4028148/bias-alert-llms-suggest-women-seek-lower-salaries-than-men-in-job-interviews.html" class="external" target="_blank"><strong>AI Salary Negotiation Bias</strong></a>:
 <ul>
-<li class="fragment"><a href="https://blog.google/products-and-platforms/products/gemini/gemini-image-generation-issue/" class="external" target="_blank"><strong>Google Gemini’s Image Generation (Feb 2024)</strong></a>: Google’s Gemini model was generating historically inaccurate images — e.g., racially diverse Nazi soldiers — when users asked for images of historical figures.</li>
-<li class="fragment"><a href="https://www.quinnemanuel.com/the-firm/publications/when-machines-discriminate-the-rise-of-ai-bias-lawsuits/" class="external" target="_blank"><strong>Workday AI Hiring Bias Lawsuit — Mobley v. Workday (2023–2025)</strong></a>: A Black job seeker over 40 with a disability sued Workday, alleging its AI applicant-screening system systematically rejected him based on race, age, and disability.</li>
-<li class="fragment"><a href="https://www.computerworld.com/article/4028148/bias-alert-llms-suggest-women-seek-lower-salaries-than-men-in-job-interviews.html" class="external" target="_blank"><strong>AI Salary Negotiation Bias (2025)</strong></a>: Researchers found that when LLMs including GPT-4o mini, Claude 3.5 Haiku, and others were asked to advise on salary negotiations, the chatbots recommended lower salaries to women and minority candidates compared to equally qualified white men.</li>
+<li class="fragment">Researchers at a technical university in Germany found that when LLMs including GPT-4o mini, Claude 3.5 Haiku, and others were asked to advise on salary negotiations, the chatbots recommended lower salaries to women and minority candidates compared to equally qualified white men.</li>
+<li class="fragment">They found that not only did suggested salary requests vary, more than half of the tested persona combinations showed at least one statistically significant deviation across the models.</li>
 </ul></li>
 </ul>
 </section>
-<section id="bias-and-fairness-2" class="slide level2">
-<h2>Bias and Fairness</h2>
+<section id="examples-2" class="slide level2">
+<h2>Examples</h2>
 <ul>
-<li class="fragment">How can we mitigate?
+<li class="fragment"><a href="https://blog.google/products-and-platforms/products/gemini/gemini-image-generation-issue/" class="external" target="_blank"><strong>Google Gemini’s Image Generation</strong></a>:
 <ul>
-<li class="fragment">Before training:
+<li class="fragment">Google’s Gemini model was generating historically inaccurate images — e.g., racially diverse Nazi soldiers — when users asked for images of historical figures.</li>
+<li class="fragment">While the Google blog post doesn’t admit this, the alignment layer may have been over-compensating.</li>
+</ul></li>
+</ul>
+</section>
+<section id="how-can-we-mitigate" class="slide level2">
+<h2>How Can We Mitigate?</h2>
+<ul>
+<li class="fragment">Before Training:
 <ul>
 <li class="fragment">Sourcing of more balanced and representative datasets, intentionally oversampling underrepresented groups. Auditing for bias prior to training.</li>
 </ul></li>
 <li class="fragment">During Training:
 <ul>
-<li class="fragment">“Fairness constraints” built into the loss function. Mathematically elegant, but definition of “fair” can be subjective.</li>
-</ul></li>
-<li class="fragment">Alignment (e.g., RLHF):
-<ul>
-<li class="fragment">Where most of the foundational models focus their efforts. Human feedback to identify and down-weight biased output.</li>
-<li class="fragment"><a href="https://www.anthropic.com/constitution" class="external" target="_blank">Anthropic’s Constitutional AI</a> is a good example.</li>
-</ul></li>
+<li class="fragment">“Fairness constraints” built into the loss function. Elegant, but definition of “fair” can be subjective.</li>
 </ul></li>
 </ul>
 </section>
-<section id="bias-and-fairness-3" class="slide level2">
-<h2>Bias and Fairness</h2>
+<section id="how-can-we-mitigate-1" class="slide level2">
+<h2>How Can We Mitigate?</h2>
+<ul>
+<li class="fragment">Alignment (e.g., RLHF):
+<ul>
+<li class="fragment">Where most of the foundational models focus their efforts.</li>
+<li class="fragment">Human feedback to identify and down-weight biased output.</li>
+<li class="fragment"><a href="https://www.anthropic.com/constitution" class="external" target="_blank">Anthropic’s Constitutional AI</a> provides a good overview of their approach.</li>
+</ul></li>
+</ul>
+</section>
+<section id="how-can-we-mitigate-2" class="slide level2">
+<h2>How Can We Mitigate</h2>
 <ul>
 <li class="fragment">Inference Time:
 <ul>
@@ -245,16 +265,17 @@
 </ul></li>
 <li class="fragment">Auditing and Red-Teaming:
 <ul>
-<li class="fragment">Independent bias audits to probe models for disparate outcomes across demographic groups.</li>
-<li class="fragment">e.g., <a href="https://pair-code.github.io/what-if-tool/" class="external" target="_blank">Google’s PAIR “What-If Tool”</a></li>
+<li class="fragment">Independent bias audits to probe models for disparate outcomes across demographic groups.
+<ul>
+<li class="fragment"><a href="https://pair-code.github.io/what-if-tool/" class="external" target="_blank">Google’s PAIR “What-If Tool”</a></li>
 <li class="fragment"><a href="https://research.ibm.com/blog/ai-fairness-360" class="external" target="_blank">IBM AI Fairness 360</a></li>
+</ul></li>
 </ul></li>
 </ul>
 </section></section>
 <section id="what-do-you-think" class="title-slide slide level1 center">
-<h1>What do you think?</h1>
+<h1>What Do You Think?</h1>
 <p>Q: If an AI system is more accurate overall but biased against certain groups, should it still be used?</p>
-<p>Q: When bias appears in model output, who is responsible — the developer, the deployer, or the user?</p>
 <p>Q: Can “fairness” ever be universally defined, or is it always subjective?</p>
 </section>
 
@@ -266,67 +287,95 @@
 <section id="explainability" class="slide level2">
 <h2>Explainability</h2>
 <ul>
-<li class="fragment">What do we mean by “Explainability”?
-<ul>
-<li class="fragment">“Black box” models raise ethical concerns in high-stakes domains such as healthcare, criminal justice, military</li>
+<li class="fragment">“Black box” AI models raise ethical concerns in high-stakes domains such as healthcare, criminal justice, military</li>
 <li class="fragment">If/when things go wrong, it can be challenging to audit the output and/or reasoning from a model</li>
 <li class="fragment">The over-confidence of today’s LLMs can compound the issue</li>
+</ul>
+</section>
+<section id="examples-3" class="slide level2">
+<h2>Examples</h2>
+<ul>
+<li class="fragment"><a href="https://dl.acm.org/doi/10.1145/3759972.3760169" class="external" target="_blank">Healthcare</a>:
+<ul>
+<li class="fragment">In a survey of clinicians using LLM-based diagnostic tools, 68% were uncomfortable with the inability to follow traceable reasoning paths.</li>
+<li class="fragment">An essential requirement for legal accountability and shared decision-making with patients.</li>
 </ul></li>
 </ul>
 </section>
-<section id="explainability-1" class="slide level2">
-<h2>Explainability</h2>
+<section id="examples-4" class="slide level2">
+<h2>Examples</h2>
 <ul>
-<li class="fragment">Examples
+<li class="fragment"><a href="https://hai.stanford.edu/news/hallucinating-law-legal-mistakes-large-language-models-are-pervasive" class="external" target="_blank">Legal Briefs</a>:
 <ul>
-<li class="fragment"><a href="https://dl.acm.org/doi/10.1145/3759972.3760169" class="external" target="_blank">Healthcare</a>: In a survey of clinicians using LLM-based diagnostic tools, 68% were uncomfortable with the inability to follow traceable reasoning paths — an essential requirement for legal accountability and shared decision-making with patients.</li>
-<li class="fragment"><a href="https://hai.stanford.edu/news/hallucinating-law-legal-mistakes-large-language-models-are-pervasive" class="external" target="_blank">Legal Briefs</a>: In 2023, a New York lawyer submitted a legal brief to a federal court that had been generated largely by ChatGPT. The judge noted the brief was littered with “bogus judicial decisions, bogus quotes and bogus internal citations”</li>
-<li class="fragment"><a href="https://academic.oup.com/jla/article/16/1/235/7941565" class="external" target="_blank">Legal Decision Making</a>: In June 2024, the Shenzhen Intermediate Court in China unveiled an Intelligent Adjudication System. This is the first instance globally of a court methodically using an LLM to assist judges in deciding cases, covering family law, contracts, torts, and labor disputes.</li>
+<li class="fragment">In 2023, a New York lawyer submitted a legal brief to a federal court that had been generated largely by ChatGPT.</li>
+<li class="fragment">The judge noted the brief was littered with “bogus judicial decisions, bogus quotes and bogus internal citations”</li>
 </ul></li>
 </ul>
 </section>
-<section id="explainability-2" class="slide level2">
-<h2>Explainability</h2>
+<section id="examples-5" class="slide level2">
+<h2>Examples</h2>
 <ul>
-<li class="fragment">How can we mitigate?
+<li class="fragment"><a href="https://academic.oup.com/jla/article/16/1/235/7941565" class="external" target="_blank">Legal Decision Making</a>:
+<ul>
+<li class="fragment">In June 2024, the Shenzhen Intermediate Court in China unveiled an Intelligent Adjudication System</li>
+<li class="fragment">The first instance globally of a court methodically using an LLM to assist judges in deciding cases, covering family law, contracts, torts, and labor disputes</li>
+</ul></li>
+</ul>
+</section>
+<section id="how-can-we-mitigate-3" class="slide level2">
+<h2>How Can We Mitigate?</h2>
 <ul>
 <li class="fragment">Chain-of-Thought and Reasoning Models:
 <ul>
-<li class="fragment">Prompting or training LLMs to show their reasoning step-by-step before reaching a conclusion makes the logic auditable, even if the underlying mechanism remains opaque.</li>
-<li class="fragment">A clinician can at least see “the model considered these symptoms, ruled out these conditions, and arrived at this recommendation” rather than just receiving an output.</li>
-</ul></li>
-<li class="fragment">Retrieval Augmented Generateion (RAG):
-<ul>
-<li class="fragment">Rather than relying on an LLM’s parametric memory, RAG grounds responses in specific retrieved documents. E.g., clinical guidelines, case law, medical literature.</li>
-<li class="fragment">This doesn’t make the model itself explainable, but it makes the sources traceable.</li>
-</ul></li>
-<li class="fragment">Human-in-the-Loop Requirements
-<ul>
-<li class="fragment">Regulatory and procedural frameworks that mandate human review before any LLM output becomes a decision. (The EU AI Act essentially requires this for high-risk domains.)</li>
-</ul></li>
+<li class="fragment">Prompting or training LLMs to show their reasoning step-by-step before reaching a conclusion makes the logic auditable, even if the underlying mechanism remains opaque</li>
+<li class="fragment">A clinician can at least see “the model considered these symptoms, ruled out these conditions, and arrived at this recommendation” rather than just receiving an output</li>
 </ul></li>
 </ul>
 </section>
-<section id="explainability-3" class="slide level2">
-<h2>Explainability</h2>
+<section id="how-can-we-mitigate-4" class="slide level2">
+<h2>How Can We Mitigate?</h2>
+<ul>
+<li class="fragment">Retrieval Augmented Generation (RAG):
+<ul>
+<li class="fragment">Ensure the model has access to actual clinical guidelines, case law, medical documents vs.&nbsp;retrieving that knowledge from model weights</li>
+<li class="fragment">This doesn’t make the model itself explainable, but it makes the sources traceable</li>
+</ul></li>
+</ul>
+</section>
+<section id="how-can-we-mitigate-5" class="slide level2">
+<h2>How Can We Mitigate?</h2>
+<ul>
+<li class="fragment">Human-in-the-Loop Requirements
+<ul>
+<li class="fragment">Regulatory and procedural frameworks that mandate human review before any LLM output becomes a decision</li>
+<li class="fragment">The <a href="https://artificialintelligenceact.eu/" class="external" target="_blank">EU AI Act</a> essentially requires this for high-risk domains</li>
+</ul></li>
+</ul>
+</section>
+<section id="how-can-we-mitigate-6" class="slide level2">
+<h2>How Can We Mitigate?</h2>
 <ul>
 <li class="fragment">Domain-Specific Fine-Tuning and Evaluation
 <ul>
-<li class="fragment">Rather than deploying general-purpose LLMs in clinical or legal settings, fine-tuning on domain-specific, high-quality data and then rigorously red-teaming against known failure cases.</li>
-<li class="fragment">The Shenzhen court system is an example — they used a purpose-trained model rather than off-the-shelf ChatGPT.</li>
+<li class="fragment">Rather than deploying general-purpose LLMs in clinical or legal settings, fine-tuning on domain-specific, high-quality data and then rigorously red-teaming against known failure cases</li>
+<li class="fragment">The Shenzhen court system is an example: they used a purpose-trained model rather than off-the-shelf ChatGPT.</li>
 </ul></li>
-<li class="fragment">Confidence Calibration and Uncertainty Quantification
+</ul>
+</section>
+<section id="how-can-we-mitigate-7" class="slide level2">
+<h2>How Can We Mitigate?</h2>
 <ul>
-<li class="fragment">Another training/fine-tuning opportunity to train models to express uncertainty: e.g., “I’m not confident about this” vs.&nbsp;stating everything with conviction.</li>
-<li class="fragment">An active research area, although current LLMs remain notoriously over-confident.</li>
+<li class="fragment">Confidence Calibration
+<ul>
+<li class="fragment">Another training/fine-tuning opportunity to train models to express uncertainty: e.g., “I’m not confident about this” vs.&nbsp;stating everything with conviction</li>
+<li class="fragment">An active research area, although current LLMs remain notoriously over-confident</li>
 </ul></li>
 </ul>
 </section></section>
 <section id="what-do-you-think-1" class="title-slide slide level1 center">
-<h1>What do you think?</h1>
+<h1>What Do You Think?</h1>
 <p>Q: Should courts be allowed to use AI to assist in deciding cases?</p>
-<p>Q: Who was more at fault in the hallucinated citations case — the lawyer or the firm?</p>
-<p>Q: Should explainability requirements be stricter in healthcare and criminal justice than in other domains?</p>
+<p>Q: Should explainability requirements be stricter in the healthcare domain? What tools would you use?</p>
 </section>
 
 <section>
@@ -337,23 +386,19 @@
 <section id="manipulative-content" class="slide level2">
 <h2>Manipulative Content</h2>
 <ul>
-<li class="fragment">What do we mean by “Manipulative Content”?
-<ul>
 <li class="fragment">Synthetic media (deep fakes) across all mediums: text, images, video, audio</li>
 <li class="fragment">Exploitation of psychological vulnerabilities for personal, financial, or political gain</li>
-</ul></li>
 </ul>
 </section>
-<section id="manipulative-content-1" class="slide level2">
-<h2>Manipulative Content</h2>
-<ul>
-<li class="fragment">Examples
+<section id="examples-6" class="slide level2">
+<h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://kathierobertslaw.com/protecting-seniors-from-ai-voice-cloning-scams-what-every-family-needs-to-know/" class="external" target="_blank">Personal</a>:
 <ul>
-<li class="fragment">Scammers are using AI voice cloning tools to impersonate family members in distress, requiring only a few seconds of audio scraped from social media.</li>
-<li class="fragment">In a recent Florida case, a mother sent $15,000 after receiving a call from someone using her daughter’s cloned voice claiming to be in an accident. She later discovered her daughter was safe and had never made the call.</li>
-</ul></li>
+<li class="fragment">Scammers are using AI voice cloning tools to impersonate family members in distress</li>
+<li class="fragment">Requires only a few seconds of audio scraped from social media</li>
+<li class="fragment">In a recent Florida case, a mother sent $15,000 after receiving a call from someone using her daughter’s cloned voice claiming to be in an accident</li>
+<li class="fragment">She later discovered her daughter was safe and had never made the call</li>
 </ul></li>
 </ul>
 </section></section>
@@ -362,14 +407,19 @@
 <h1>Demo</h1>
 <p>TBD: Potential demo of voice cloning?</p>
 </section>
-<section id="manipulative-content-2" class="slide level2">
-<h2>Manipulative Content</h2>
+<section id="examples-7" class="slide level2">
+<h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://www.theguardian.com/technology/article/2024/may/17/uk-engineering-arup-deepfake-scam-hong-kong-ai-video" class="external" target="_blank">Financial</a>:
 <ul>
-<li class="fragment">In Jan 2024, fraudsters using deepfake technology impersonated a company’s CFO on a video call, tricking an employee into transferring $25 million.</li>
-<li class="fragment">The victim joined what appeared to be a legitimate multi-person video conference with colleagues and their CFO, all of whom were deepfake renderings.</li>
+<li class="fragment">In Jan 2024, fraudsters using deepfake technology impersonated a company’s CFO on a video call, tricking an employee into transferring $25 million</li>
+<li class="fragment">The victim joined what appeared to be a legitimate multi-person video conference with colleagues and their CFO, all of whom were deepfake renderings</li>
 </ul></li>
+</ul>
+</section>
+<section id="examples-8" class="slide level2">
+<h2>Examples</h2>
+<ul>
 <li class="fragment"><a href="https://publications.lawschool.cornell.edu/jlpp/2025/10/24/the-legal-gray-zone-of-deepfake-political-speech/" class="external" target="_blank">Political</a>:
 <ul>
 <li class="fragment">A 2024 report by Recorded Future documented 82 pieces of AI-generated deepfake content targeting public figures across 38 countries in a single year</li>
@@ -377,23 +427,44 @@
 </ul></li>
 </ul>
 </section>
-<section id="manipulative-content-3" class="slide level2">
-<h2>Manipulative Content</h2>
+<section id="how-can-we-mitigate-8" class="slide level2">
+<h2>How Can We Mitigate?</h2>
 <ul>
-<li class="fragment">How can we mitigate?
+<li class="fragment">Individual level: The “family safe word” has emerged as the most widely recommended mitigation for voice cloning scams specifically
 <ul>
-<li class="fragment">Individual level: The “family safe word” has emerged as the most widely recommended mitigation for voice cloning scams specifically. i.e., a pre-agreed word or phrase that only genuine family members would know, used to verify identity before sending money.</li>
-<li class="fragment">Deepfake Detection Tech: An active area of research and development, but fundamentally a cat and mouse problem. Detection models are often trained on previous generations of fakes, and generative models tend to outpace them.</li>
-<li class="fragment">Cryptographic Watermarks: The Coalition for Content Provenance and Authenticity (C2PA) is developing open standards for embedding verifiable metadata into media at the point of creation (a cryptographic “certificate of authenticity” that travels with the file.) Major camera manufacturers, Adobe, and several AI companies have signed on.</li>
-<li class="fragment">Regulatory: The US TAKE IT DOWN Act (signed May 2025) criminalizes non-consensual intimate deepfakes at the federal level. The EU AI Act’s deepfake labeling requirements became mandatory in August 2025. Enforcement is of course challenging.</li>
+<li class="fragment">i.e., a pre-agreed word or phrase that only genuine family members would know, used to verify identity before sending money</li>
+</ul></li>
+</ul>
+</section>
+<section id="how-can-we-mitigate-9" class="slide level2">
+<h2>How Can We Mitigate?</h2>
+<ul>
+<li class="fragment">Deepfake Detection Tech: An active area of research and development</li>
+<li class="fragment">Fundamentally a cat and mouse problem</li>
+<li class="fragment">Detection models are often trained on previous generations of fakes, and generative models tend to outpace them</li>
+</ul>
+</section>
+<section id="how-can-we-mitigate-10" class="slide level2">
+<h2>How Can We Mitigate?</h2>
+<ul>
+<li class="fragment">Cryptographic Watermarks: The Coalition for Content Provenance and Authenticity (C2PA) is developing open standards for embedding verifiable metadata into media at the point of creation (a cryptographic “certificate of authenticity” that travels with the file)</li>
+<li class="fragment">Major camera manufacturers, Adobe, and several AI companies have signed on</li>
+</ul>
+</section>
+<section id="how-can-we-mitigate-11" class="slide level2">
+<h2>How Can We Mitigate?</h2>
+<ul>
+<li class="fragment">Regulatory: The US TAKE IT DOWN Act (signed May 2025) criminalizes non-consensual intimate deepfakes at the federal level
+<ul>
+<li class="fragment">The EU AI Act’s deepfake labeling requirements became mandatory in August 2025</li>
+<li class="fragment">Enforcement is of course challenging</li>
 </ul></li>
 </ul>
 </section></section>
 <section id="what-do-you-think-2" class="title-slide slide level1 center">
-<h1>What do you think?</h1>
-<p>Q: If deepfake detection always lags behind generation, can technology alone ever solve this problem?</p>
+<h1>What Do You Think?</h1>
+<p>Q: Can technology alone ever solve this problem?</p>
 <p>Q: What obligation do platforms like YouTube and Meta have to label AI-generated political content?</p>
-<p>Q: Is the “family safe word” a realistic defense, or does it place too much burden on individuals?</p>
 </section>
 
 <section>
@@ -404,47 +475,50 @@
 <section id="labor-and-socioeconomic" class="slide level2">
 <h2>Labor and Socioeconomic</h2>
 <ul>
-<li class="fragment">What do we mean by “Labor and Socioeconomic”?
-<ul>
-<li class="fragment">AI taking jobs, especially displacement of creative workers</li>
+<li class="fragment">AI taking jobs, especially displacing creative workers</li>
 <li class="fragment">Organizations restructuring roles due to AI</li>
 <li class="fragment">Hidden labor behind AI (data labelers, content moderators)</li>
-</ul></li>
 </ul>
 </section>
-<section id="labor-and-socioeconomic-1" class="slide level2">
-<h2>Labor and Socioeconomic</h2>
+<section id="examples-9" class="slide level2">
+<h2>Examples</h2>
 <ul>
-<li class="fragment">Examples
+<li class="fragment"><a href="https://www.reuters.com/sustainability/sustainable-finance-reporting/hollywood-performers-union-condemns-ai-generated-actress-tilly-norwood-2025-10-01" class="external" target="_blank">Synthetic Performers</a>:
 <ul>
-<li class="fragment"><a href="https://www.reuters.com/sustainability/sustainable-finance-reporting/hollywood-performers-union-condemns-ai-generated-actress-tilly-norwood-2025-10-01" class="external" target="_blank">Synthetic Performers</a>: A fully AI-generated “virtual actress” named Tilly Norwood. The Screen Actors Guild-American Federation of Television and Radio Artists (SAG-AFTRA) condemned the project, framing it as a threat to actors’ livelihoods and creative labor, especially since the character was trained on uncredited human performances.</li>
+<li class="fragment">A fully AI-generated “virtual actress” named Tilly Norwood</li>
+<li class="fragment">The Screen Actors Guild-American Federation of Television and Radio Artists (SAG-AFTRA) condemned the project, framing it as a threat to actors’ livelihoods and creative labor, especially since the character was trained on uncredited human performances.</li>
 </ul></li>
 </ul>
 </section></section>
 <section>
 <section id="video" class="title-slide slide level1 center">
 <h1>Video</h1>
-<p>https://www.youtube.com/watch?v=qdYBwCwCtis</p>
+<p><a href="https://www.youtube.com/watch?v=qdYBwCwCtis" class="external" target="_blank">https://www.youtube.com/watch?v=qdYBwCwCtis</a></p>
 </section>
-<section id="labor-and-socioeconomic-2" class="slide level2">
-<h2>Labor and Socioeconomic</h2>
+<section id="examples-10" class="slide level2">
+<h2>Examples</h2>
 <ul>
-<li class="fragment">Examples
+<li class="fragment"><a href="https://econofact.org/factbrief/fact-check-has-ai-already-caused-some-job-displacement" class="external" target="_blank">Corporate Restructuring</a>:
 <ul>
-<li class="fragment"><a href="https://econofact.org/factbrief/fact-check-has-ai-already-caused-some-job-displacement" class="external" target="_blank">Corporate Restructuring</a>: In 2025–early 2026, major companies across tech and manufacturing cited AI as a reason for layoffs and workforce restructuring. In 2025, research firms attributed 17,000+ job cuts to AI, and another 20,000 to technological updates that likely include AI.
-<ul>
-<li class="fragment">Firms including Amazon, Dow, and Pinterest announced thousands of job cuts, in some cases explicitly linking AI investment or automation strategies to those decisions.</li>
+<li class="fragment">In 2025–early 2026, major companies across tech and manufacturing cited AI as a reason for layoffs and workforce restructuring</li>
+<li class="fragment">In 2025, research firms attributed 17,000+ job cuts to AI, and another 20,000 to technological updates that likely include AI</li>
+<li class="fragment">Firms including Amazon, Dow, and Pinterest announced thousands of job cuts, in some cases explicitly linking AI investment or automation strategies to those decisions</li>
 </ul></li>
-<li class="fragment"><a href="https://www.brookings.edu/articles/reimagining-the-future-of-data-and-ai-labor-in-the-global-south/?utm_source=chatgpt.com" class="external" target="_blank">Hidden Labor</a>: Investigations and worker advocacy reports from late 2024–2025 documented how large-scale AI training relies on low-paid, outsourced human workers doing data labeling, content moderation, and safety tagging.
+</ul>
+</section>
+<section id="examples-11" class="slide level2">
+<h2>Examples</h2>
 <ul>
-<li class="fragment">Low wages, long hours, exposure to graphic content, and lack of mental health support. Worker surveys describe the effects of constant exposure to violent or disturbing material and minimal oversight.</li>
-</ul></li>
+<li class="fragment"><a href="https://www.brookings.edu/articles/reimagining-the-future-of-data-and-ai-labor-in-the-global-south/?utm_source=chatgpt.com" class="external" target="_blank">Hidden Labor</a>:
+<ul>
+<li class="fragment">Investigations and worker advocacy reports from late 2024–2025 documented how large-scale AI training relies on low-paid, outsourced human workers doing data labeling, content moderation, and safety tagging</li>
+<li class="fragment">Low wages, long hours, exposure to graphic content, and lack of mental health support</li>
+<li class="fragment">Worker surveys describe the effects of constant exposure to violent or disturbing material and minimal oversight</li>
 </ul></li>
 </ul>
 </section></section>
 <section id="what-do-you-think-3" class="title-slide slide level1 center">
-<h1>What do you think?</h1>
-<p>Q: Should AI companies be legally required to provide fair wages and mental health support for data labelers?</p>
+<h1>What Do You Think?</h1>
 <p>Q: Where is the line between AI as a creative tool versus a replacement for human workers?</p>
 <p>Q: Will AI job displacement follow the same pattern as past technological revolutions, or is this different?</p>
 </section>
@@ -457,58 +531,83 @@
 <section id="environmental" class="slide level2">
 <h2>Environmental</h2>
 <ul>
-<li class="fragment">What do we mean by “Environmental”?
-<ul>
 <li class="fragment">Training and running large AI models consumes significant energy and water</li>
 <li class="fragment">The infrastructure required (data centers, hardware) has a measurable carbon footprint</li>
 <li class="fragment">Demand is accelerating faster than the grid’s ability to supply it from renewable sources</li>
+</ul>
+</section>
+<section id="examples-12" class="slide level2">
+<h2>Examples</h2>
+<ul>
+<li class="fragment"><a href="https://arxiv.org/abs/1906.02243" class="external" target="_blank">Training Energy Costs</a>:
+<ul>
+<li class="fragment">A 2019 University of Massachusetts study (Strubell et al.) estimated that training a large transformer model can emit as much CO₂ as five cars over their entire lifetimes (~300,000 lbs)</li>
+<li class="fragment">Since then, models have scaled by orders of magnitude</li>
+<li class="fragment">GPT-4 and its successors are estimated to have cost many multiples of that figure</li>
 </ul></li>
 </ul>
 </section>
-<section id="environmental-1" class="slide level2">
-<h2>Environmental</h2>
+<section id="examples-13" class="slide level2">
+<h2>Examples</h2>
 <ul>
-<li class="fragment">Examples
+<li class="fragment"><a href="https://www.theregister.com/2023/09/11/microsofts_ai_investments_skyrocketed_in/" class="external" target="_blank">Data Center Water Use</a>:
 <ul>
-<li class="fragment"><a href="https://arxiv.org/abs/1906.02243" class="external" target="_blank">Training Energy Costs</a>: A 2019 University of Massachusetts study (Strubell et al.) estimated that training a large transformer model can emit as much CO₂ as five cars over their entire lifetimes (~300,000 lbs).
-<ul>
-<li class="fragment">Since then, models have scaled by orders of magnitude. GPT-4 and its successors are estimated to have cost many multiples of that figure.</li>
-</ul></li>
-<li class="fragment"><a href="https://www.theregister.com/2023/09/11/microsofts_ai_investments_skyrocketed_in/" class="external" target="_blank">Data Center Water Use</a>: Microsoft reported that its global water consumption increased 34% to 6.4 million cubic meters in 2022, largely attributed to AI infrastructure growth.
-<ul>
-<li class="fragment">Training GPT-3 alone is estimated to have evaporated 700,000 liters of freshwater for cooling — often in water-stressed regions.</li>
-</ul></li>
-<li class="fragment"><a href="https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai" class="external" target="_blank">Grid Pressure</a>: The IEA projects global data center electricity consumption will roughly double to ~945 TWh by 2030, growing at ~15% per year — more than four times faster than all other sectors combined.
-<ul>
-<li class="fragment">In the US alone, data centers could account for up to 12% of national electricity demand by 2028, up from ~4% in 2023.</li>
-</ul></li>
+<li class="fragment">Microsoft reported that its global water consumption increased 34% to 6.4 million cubic meters in 2022, largely attributed to AI infrastructure growth</li>
+<li class="fragment">Training GPT-3 alone is estimated to have evaporated 700,000 liters of freshwater for cooling</li>
+<li class="fragment">Datacenters are often located in water-stressed regions</li>
 </ul></li>
 </ul>
 </section>
-<section id="environmental-2" class="slide level2">
-<h2>Environmental</h2>
+<section id="examples-14" class="slide level2">
+<h2>Examples</h2>
 <ul>
-<li class="fragment">How can we mitigate?
+<li class="fragment"><a href="https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai" class="external" target="_blank">Grid Pressure</a>:
 <ul>
-<li class="fragment">Efficient Architectures: Model distillation, quantization, and sparse architectures (e.g., Mixture of Experts) reduce compute and energy per inference. Smaller, task-specific models often perform comparably to large general-purpose ones.
-<ul>
-<li class="fragment"><a href="https://arxiv.org/abs/2511.07885" class="external" target="_blank">Intelligence per Watt (Stanford/Google, 2025)</a>: Found that small local models can accurately answer <strong>88.7%</strong> of real-world single-turn chat and reasoning queries — suggesting most users don’t need a frontier model for most tasks.</li>
+<li class="fragment">The IEA projects global data center electricity consumption will roughly double to ~945 TWh by 2030, growing at ~15% per year</li>
+<li class="fragment">More than four times faster than all other sectors combined</li>
+<li class="fragment">In the US alone, data centers could account for up to 12% of national electricity demand by 2028, up from ~4% in 2023</li>
 </ul></li>
-<li class="fragment">Renewable Energy Sourcing: Locating data centers near renewable energy supplies or signing long-term Power Purchase Agreements (PPAs) with renewable providers.
+</ul>
+</section>
+<section id="how-can-we-mitigate-12" class="slide level2">
+<h2>How Can We Mitigate?</h2>
 <ul>
-<li class="fragment">Google, Microsoft, and Meta have all made public net-zero or renewable commitments, though the definitions and timelines vary widely.</li>
-</ul></li>
-<li class="fragment">Hardware Efficiency: Purpose-built AI accelerators (e.g., Google TPUs, Groq LPUs) are significantly more energy-efficient than general-purpose GPUs for inference workloads.</li>
-<li class="fragment">Transparency and Reporting: Requiring standardized disclosure of training compute, energy use, and water consumption — analogous to financial reporting.
+<li class="fragment">Efficient Architectures: Model distillation, quantization, and sparse architectures (e.g., Mixture of Experts) reduce compute and energy per inference
 <ul>
-<li class="fragment">The EU AI Act includes provisions for environmental impact documentation for high-capability models.</li>
+<li class="fragment">Smaller, task-specific models often perform comparably to large general-purpose ones</li>
 </ul></li>
+</ul>
+</section>
+<section id="how-can-we-mitigate-13" class="slide level2">
+<h2>How Can We Mitigate?</h2>
+<ul>
+<li class="fragment"><a href="https://arxiv.org/abs/2511.07885" class="external" target="_blank">Intelligence per Watt (Stanford/Google, 2025)</a>: Found that small local models can accurately answer 88.7% of real-world single-turn chat and reasoning queries
+<ul>
+<li class="fragment">This would suggest most users don’t need a frontier model for most tasks</li>
+</ul></li>
+</ul>
+</section>
+<section id="how-can-we-mitigate-14" class="slide level2">
+<h2>How Can We Mitigate?</h2>
+<ul>
+<li class="fragment">Renewable Energy Sourcing: Locating data centers near renewable energy supplies or signing long-term Power Purchase Agreements (PPAs) with renewable providers
+<ul>
+<li class="fragment">Google, Microsoft, and Meta have all made public net-zero or renewable commitments</li>
+<li class="fragment">Although the definitions and timelines vary widely</li>
+</ul></li>
+</ul>
+</section>
+<section id="how-can-we-mitigate-15" class="slide level2">
+<h2>How Can We Mitigate?</h2>
+<ul>
+<li class="fragment">Transparency and Reporting: Requiring standardized disclosure of training compute, energy use, and water consumption, analogous to financial reporting
+<ul>
+<li class="fragment">The EU AI Act includes provisions for environmental impact documentation for high-capability models</li>
 </ul></li>
 </ul>
 </section></section>
 <section id="what-do-you-think-4" class="title-slide slide level1 center">
-<h1>What do you think?</h1>
-<p>Q: Should AI companies be required to publicly disclose the energy and water footprint of their models?</p>
+<h1>What Do You Think?</h1>
 <p>Q: Is it ethical to train ever-larger models when the environmental cost is measurable and growing?</p>
 <p>Q: If AI can help solve climate change (e.g., optimize energy grids, accelerate materials science), does that offset its own footprint?</p>
 </section>
