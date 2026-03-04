@@ -8174,11 +8174,11 @@
     ]
   },
   {
-    "objectID": "src/08/slides.html#ip-1",
-    "href": "src/08/slides.html#ip-1",
+    "objectID": "src/08/slides.html#intellectual-property-ip-1",
+    "href": "src/08/slides.html#intellectual-property-ip-1",
     "title": "Module 8: Ethics, IP, and Safety",
-    "section": "IP",
-    "text": "IP\n\nThe Intellectual Property (IP) aspects of AI models as it applies to:\n\nTraining Data and Copyright\nModel Weights as IP\nOutput Ownership",
+    "section": "Intellectual Property (IP)",
+    "text": "Intellectual Property (IP)\n\nThe Intellectual Property (IP) aspects of AI models as it applies to:\n\nTraining Data and Copyright\nModel Weights as IP\nOutput Ownership",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
@@ -8189,29 +8189,95 @@
     "href": "src/08/slides.html#training-data-and-copyright",
     "title": "Module 8: Ethics, IP, and Safety",
     "section": "Training Data and Copyright",
-    "text": "Training Data and Copyright\n\nWhat do we mean by “Training Data and Copyright”?\n\nDoes training on copyrighted work constitute infringement?\nDoes this also apply for physical media?",
+    "text": "Training Data and Copyright\n\nDoes training AI models on copyrighted work constitute infringement?\nDoes this also apply if AI models are trained on physical media (e.g., books)?",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
     ]
   },
   {
-    "objectID": "src/08/slides.html#training-data-and-copyright-1",
-    "href": "src/08/slides.html#training-data-and-copyright-1",
+    "objectID": "src/08/slides.html#examples-15",
+    "href": "src/08/slides.html#examples-15",
     "title": "Module 8: Ethics, IP, and Safety",
-    "section": "Training Data and Copyright",
-    "text": "Training Data and Copyright\n\nExamples\n\nNew York Times: In late 2025, The New York Times filed a federal copyright infringement lawsuit against OpenAI and its partner Microsoft.\n\nThe Times alleges that OpenAI scraped and used millions of its articles, including behind paywalls, without permission to train the ChatGPT language models that power services like ChatGPT and Bing AI.\nThis case is one of the most high-profile disputes over AI training on copyrighted news content, and it’s still active in federal court.\n\nGetty Images: Getty Images sued Stability AI in UK and Europe alleging that its generative image model (e.g., Stable Diffusion) was trained on millions of Getty’s copyrighted photographs without permission.\n\nThe claim focused on the unlicensed use of high-value image assets as training data and argued that elements like watermarks showing up in outputs indicated the model had learned from copyrighted photos.\n\nAnthropic: Anthropic agreed to pay about $1.5 billion to settle copyright claims that it had trained its models on millions of authors’ works, including allegedly pirated copies used in model training.\n\nThe case included acquired books that Anthropic purchased: In some cases the company bought physical copies, digitally scanned them (“destructive digitization”), and used those scans in model training.",
+    "section": "Examples",
+    "text": "Examples\n\nNew York Times:\n\nIn late 2025, The New York Times filed a federal copyright infringement lawsuit against OpenAI and Microsoft\nThe Times alleges that OpenAI scraped and used millions of its articles, including behind paywalls, without permission\nThis case is one of the most high-profile disputes over AI training on copyrighted news content, and it’s still active in federal court",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
     ]
   },
   {
-    "objectID": "src/08/slides.html#training-data-and-copyright-2",
-    "href": "src/08/slides.html#training-data-and-copyright-2",
+    "objectID": "src/08/slides.html#examples-16",
+    "href": "src/08/slides.html#examples-16",
     "title": "Module 8: Ethics, IP, and Safety",
-    "section": "Training Data and Copyright",
-    "text": "Training Data and Copyright\n\nMitigations\n\nRobots.txt: Authors who publish online can add directives in their site’s robots.txt file to block known AI crawlers. (Voluntary compliance only)\n\nExample:\nUser-agent: GPTBot\nDisallow: /\n\nTechnical Poisioning/Watermarking:\n\nEmbed invisible watermarks. Challenging as these watermarks will degrade via the diffusion process.\nAdd adversarial pertubations (“defensive” and “poisioning”) to images to degrade model training.\n\n“Glaze” and “Nightshade” from UChicago\nAdds visual distortions based on a strength setting, with tags (e.g., hats become cars). Lowest strengths barely noticable side-by-side.\n\n\n\n\nTBD: Nightshade example side by side image\n\nLegal Tools\n\nCopyright registration and explicit licensing terms\nPotential to negotiate AI clauses in publishing contracts\nBut, courts are still determining if AI training consistutes fair use\n\nFuture Directions\n\nDataset transparency laws\nCollective licensing systems (similar to music royalties)",
+    "section": "Examples",
+    "text": "Examples\n\nGetty Images:\n\nGetty Images sued Stability AI in UK and Europe alleging that its generative image model (Stable Diffusion) was trained on millions of Getty’s copyrighted photographs without permission\nThe claim focused on the unlicensed use of high-value image assets as training data\nAlso argued that elements like watermarks showing up in outputs indicated the model had learned from copyrighted photos",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#examples-17",
+    "href": "src/08/slides.html#examples-17",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "Examples",
+    "text": "Examples\n\nAnthropic:\n\nAnthropic agreed to pay about $1.5B to settle copyright claims that it had trained its models on millions of authors’ works, including allegedly pirated copies used in model training\nThe case included acquired books that Anthropic purchased\nThe company bought physical copies, digitally scanned them (“destructive digitization”), and used those scans in model training",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#how-can-we-mitigate-16",
+    "href": "src/08/slides.html#how-can-we-mitigate-16",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "How Can We Mitigate?",
+    "text": "How Can We Mitigate?\n\nRobots.txt: Authors who publish online can add directives in their site’s robots.txt file to block known AI crawlers\n\nExample:\nUser-agent: GPTBot\nDisallow: /\nVoluntary compliance only",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#how-can-we-mitigate-17",
+    "href": "src/08/slides.html#how-can-we-mitigate-17",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "How Can We Mitigate?",
+    "text": "How Can We Mitigate?\n\nTechnical Poisioning/Watermarking:\n\nAdd adversarial pertubations (“defensive” and “poisioning”) to images to degrade model training\n\n“Glaze” and “Nightshade” from UChicago\nAdds visual distortions based on a strength setting, with tags (e.g., hats become cars)\nLowest strengths barely noticable side-by-side\n\nChallenging as these watermarks will degrade via the forward diffusion process",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#how-can-we-mitigate-18",
+    "href": "src/08/slides.html#how-can-we-mitigate-18",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "How Can We Mitigate",
+    "text": "How Can We Mitigate\nTBD: Nightshade example side by side image",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#how-can-we-mitigate-19",
+    "href": "src/08/slides.html#how-can-we-mitigate-19",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "How Can We Mitigate",
+    "text": "How Can We Mitigate\n\nLegal Tools\n\nCopyright registration and explicit licensing terms\nPotential to negotiate AI clauses in publishing contracts\nBut, courts are still determining if AI training consistutes fair use",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#how-can-we-mitigate-20",
+    "href": "src/08/slides.html#how-can-we-mitigate-20",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "How Can We Mitigate",
+    "text": "How Can We Mitigate\n\nOther Proposed Directions\n\nDataset transparency laws\nCollective licensing systems (similar to music royalties)",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
@@ -8222,18 +8288,51 @@
     "href": "src/08/slides.html#model-weights-as-ip",
     "title": "Module 8: Ethics, IP, and Safety",
     "section": "Model Weights as IP",
-    "text": "Model Weights as IP\n\nWhat do we mean by “Model Weights As IP”?\n\nDo model weights infrige copyright if the model is trained on copyrighted data?\nCan an organization patent or protect model weights?\nCan other organizations use models to train their own models?",
+    "text": "Model Weights as IP\n\nDo model weights infrige copyright if the model is trained on copyrighted data?\nCan an organization patent or protect model weights?\nCan other organizations use models to train their own models?",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
     ]
   },
   {
-    "objectID": "src/08/slides.html#model-weights-as-ip-1",
-    "href": "src/08/slides.html#model-weights-as-ip-1",
+    "objectID": "src/08/slides.html#examples-18",
+    "href": "src/08/slides.html#examples-18",
     "title": "Module 8: Ethics, IP, and Safety",
-    "section": "Model Weights as IP",
-    "text": "Model Weights as IP\n\nExamples\n\nGetty Images: In Nov 2025, the UK High Court explicitly addressed whether an AI model’s learned parameters (weights) constitute an infringing copy of copyrighted works used in training.\n\nThe judge held that Stable Diffusion’s model weights do not store or contain reproductions of Getty’s copyrighted images, and therefore the model itself is not an “infringing copy” under UK copyright law*.\n\nRothwell Figg: Few active cases in court, but companies routinely treat model weights as deeply valuable trade secrets, and this strategy is now being recognized as a major form of IP protection in industry and law.\n\nLegal analyses (and filings) note that model weights, parameters, training datasets and processes are prime candidates for trade secret protection, because they derive economic value from being secret and companies take “reasonable steps” to keep them confidential.\n\n\nMost legal experts agree that model weights are not copyrightable under current U.S. & UK copyright law because they are functional numeric parameters, not expressive works.\n\nTo be copyrighted, a work must be a copyable expression with human authorship.\n\nAnthropic: In Feb 2026, Anthropic publicly announced it had identified “industrial-scale campaigns” by three Chinese AI companies: DeepSeek, Moonshot AI, and MiniMax. They allegedly interacted with its Claude model tens of millions of times in order to extract its capabilities for training their own models.\n\nThese companies used “distillation” (where a model learns from a more capable model), creating roughly 24,000 fraudulent accounts and made over 16 million prompt interactions with Claude to mine its outputs.\nIrony not lost on social networks: “Why is it an attack? If they scraped my blog for training their model, is it attack on the blog? Isn’t that exactly like training on copyrighted materials?”\nAnthropic’s ToS prohibit Claude’s outputs to “build a competing product or service, including to train competing AI models” (https://news.ycombinator.com/item?id=44763110)",
+    "section": "Examples",
+    "text": "Examples\n\nGetty Images:\n\nIn Nov 2025, the UK High Court addressed whether an AI model’s learned parameters (weights) constitute an infringing copy of copyrighted works used in training\nThe judge held that Stable Diffusion’s model weights do not store or contain reproductions of Getty’s copyrighted images\nTherefore, the model itself is not an “infringing copy” under UK copyright law",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#examples-19",
+    "href": "src/08/slides.html#examples-19",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "Examples",
+    "text": "Examples\n\nRothwell Figg:\n\nFew active cases in court, but companies routinely treat model weights as deeply valuable trade secrets\nLegal filings note that model weights, parameters, training datasets and processes are prime candidates for trade secret protection\nMost legal experts agree that model weights are not copyrightable under current laws because they are functional numeric parameters, not expressive works\n(To be copyrighted, a work must be a copyable expression with human authorship)",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#examples-20",
+    "href": "src/08/slides.html#examples-20",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "Examples",
+    "text": "Examples\n\nAnthropic:\n\nIn Feb 2026, Anthropic publicly announced it had identified “industrial-scale campaigns” by three Chinese AI companies: DeepSeek, Moonshot AI, and MiniMax\nThey allegedly interacted with its Claude model tens of millions of times in order to extract its capabilities for training their own models\nThese companies used “distillation”, creating roughly 24,000 fraudulent accounts and made over 16 million prompt interactions with Claude to mine its outputs",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#examples-21",
+    "href": "src/08/slides.html#examples-21",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "Examples",
+    "text": "Examples\n\nIrony not lost on social networks:\n\n“Why is it an attack? If they scraped my blog for training their model, is it attack on my blog? Isn’t that exactly like training on copyrighted materials?”\nAnthropic’s ToS prohibit Claude’s outputs to “build a competing product or service, including to train competing AI models”",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
@@ -8244,18 +8343,62 @@
     "href": "src/08/slides.html#output-ownership",
     "title": "Module 8: Ethics, IP, and Safety",
     "section": "Output Ownership",
-    "text": "Output Ownership\n\nWhat do we mean by “Output Ownership”?\n\nCan AI generated content be copyrighted?\nWho owns AI generated content? Vendor? Developer? You?",
+    "text": "Output Ownership\n\nCan AI generated content be copyrighted?\nWho owns AI generated content? Vendor? Developer? You?",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
     ]
   },
   {
-    "objectID": "src/08/slides.html#output-ownership-1",
-    "href": "src/08/slides.html#output-ownership-1",
+    "objectID": "src/08/slides.html#examples-22",
+    "href": "src/08/slides.html#examples-22",
     "title": "Module 8: Ethics, IP, and Safety",
-    "section": "Output Ownership",
-    "text": "Output Ownership\n\nExamples\n\nZarya of the Dawn: In 2022–2023, the U.S. Copyright Office initially granted copyright registration to the comic. After discovering the images were generated using Midjourney, the Office partially revoked the registration.\n\nKey ruling: The text and selection/arrangement of panels were copyrightable. The AI-generated images themselves were not, because they lacked sufficient human authorship.\n\nJason Allen: A Colorado-based artist who became widely known in 2022 after winning first place in the digital art category of the Colorado State Fair (with a piece created using an AI image generator)\n\nTBD: Picture link here\nProduced through iterative prompting (624 prompts) using the text-to-image system Midjourney, followed by compositional editing in Photoshop and upscaling in Gigapixel AI.\nCritics argued that AI-generated images challenge traditional notions of creativity, while supporters contended that prompt engineering and artistic intent remain essential human contributions.\nIn 2022, Allen applied for copyright registration of the image with US Copyright Office, which was later denied after appeal.\n\nUS Copyright Office AI Policy Guidance: The Copyright Office released detailed guidance (in their 2024-2025 update) clarifying a spectrum model:\n\nFully autonomous AI output: Not copyrightable\nAI + human curation/editing: Possibly copyrightable\nAI as assistive tool (e.g., Photoshop-level control): Copyrightable",
+    "section": "Examples",
+    "text": "Examples\n\nZarya of the Dawn:\n\nIn 2022–2023, the U.S. Copyright Office initially granted copyright registration to the comic\nHowever, after discovering the images were generated using Midjourney, the Office partially revoked the registration\nKey ruling: The text and selection/arrangement of panels were copyrightable. The AI-generated images themselves were not, because they lacked sufficient human authorship.",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#examples-23",
+    "href": "src/08/slides.html#examples-23",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "Examples",
+    "text": "Examples\n\nJason Allen:\n\nA Colorado-based artist who became widely known in 2022 after winning first place in the digital art category of the Colorado State Fair (with a piece created using an AI image generator)",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#examples-24",
+    "href": "src/08/slides.html#examples-24",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "Examples",
+    "text": "Examples\nTBD: Picture link here",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#examples-25",
+    "href": "src/08/slides.html#examples-25",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "Examples",
+    "text": "Examples\n\nProduced through iterative prompting (624 prompts) using Midjourney, followed by editing in Photoshop and upscaling in Gigapixel AI\nCritics argued that AI-generated images challenge traditional notions of creativity, while supporters contended that prompt engineering and artistic intent remain essential human contributions\n(In 2022, Allen applied for copyright registration of the image with US Copyright Office, which was later denied after appeal)",
+    "crumbs": [
+      "**Module 8:** Ethics, IP, and Safety",
+      "Slides"
+    ]
+  },
+  {
+    "objectID": "src/08/slides.html#examples-26",
+    "href": "src/08/slides.html#examples-26",
+    "title": "Module 8: Ethics, IP, and Safety",
+    "section": "Examples",
+    "text": "Examples\n\nUS Copyright Office AI Policy Guidance:\n\nThe Copyright Office released detailed guidance (in their 2024-2025 update) clarifying a spectrum model:\n\nFully autonomous AI output: Not copyrightable\nAI + human curation/editing: Possibly copyrightable\nAI as assistive tool (e.g., Photoshop-level control): Copyrightable",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
