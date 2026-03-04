@@ -6,7 +6,10 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.26">
 
   <title>CS-394 – Module 8: Ethics, IP, and Safety</title>
@@ -189,7 +192,7 @@
 <section id="bias-and-fairness-1" class="slide level2">
 <h2>Bias and Fairness</h2>
 <ul>
-<li class="fragment">Training data (used for pretraining) often contain societal biases</li>
+<li class="fragment">Training data (used for pretraining) often contains societal biases</li>
 <li class="fragment">These biases influence how models respond:
 <ul>
 <li class="fragment">Often in more subtle ways or where input data contains diverse demographic details</li>
@@ -257,7 +260,7 @@
 </ul>
 </section>
 <section id="how-can-we-mitigate-2" class="slide level2">
-<h2>How Can We Mitigate</h2>
+<h2>How Can We Mitigate?</h2>
 <ul>
 <li class="fragment">Inference Time:
 <ul>
@@ -287,7 +290,7 @@
 <section id="explainability-1" class="slide level2">
 <h2>Explainability</h2>
 <ul>
-<li class="fragment">“Black box” AI models raise ethical concerns in high-stakes domains such as healthcare, criminal justice, military</li>
+<li class="fragment">“Black box” AI models raise ethical concerns in high-stakes domains such as healthcare, criminal justice, and military</li>
 <li class="fragment">If/when things go wrong, it can be challenging to audit the output and/or reasoning from a model</li>
 <li class="fragment">The over-confidence of today’s LLMs can compound the issue</li>
 </ul>
@@ -695,33 +698,37 @@ Disallow: /</code></pre></li>
 <ul>
 <li class="fragment">Technical Poisioning/Watermarking:
 <ul>
-<li class="fragment">Add adversarial pertubations (“defensive” and “poisioning”) to images to degrade model training
+<li class="fragment">Add adversarial perturbations (“defensive” and “poisoning”) to images to degrade model training
 <ul>
 <li class="fragment">“Glaze” and “Nightshade” from UChicago</li>
 <li class="fragment">Adds visual distortions based on a strength setting, with tags (e.g., hats become cars)</li>
-<li class="fragment">Lowest strengths barely noticable side-by-side</li>
+<li class="fragment">Lowest strengths barely noticeable side-by-side</li>
 </ul></li>
 <li class="fragment">Challenging as these watermarks will degrade via the forward diffusion process</li>
 </ul></li>
 </ul>
 </section>
 <section id="how-can-we-mitigate-18" class="slide level2">
-<h2>How Can We Mitigate</h2>
-<p>TBD: Nightshade example side by side image</p>
+<h2>How Can We Mitigate?</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/nightshade.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img data-src="images/nightshade.png" class="quarto-figure quarto-figure-center" width="600"></a></p>
+</figure>
+</div>
 </section>
 <section id="how-can-we-mitigate-19" class="slide level2">
-<h2>How Can We Mitigate</h2>
+<h2>How Can We Mitigate?</h2>
 <ul>
 <li class="fragment">Legal Tools
 <ul>
 <li class="fragment">Copyright registration and explicit licensing terms</li>
 <li class="fragment">Potential to negotiate AI clauses in publishing contracts</li>
-<li class="fragment">But, courts are still determining if AI training consistutes fair use</li>
+<li class="fragment">But, courts are still determining if AI training constitutes fair use</li>
 </ul></li>
 </ul>
 </section>
 <section id="how-can-we-mitigate-20" class="slide level2">
-<h2>How Can We Mitigate</h2>
+<h2>How Can We Mitigate?</h2>
 <ul>
 <li class="fragment">Other Proposed Directions
 <ul>
@@ -744,7 +751,7 @@ Disallow: /</code></pre></li>
 <section id="model-weights-as-ip-1" class="slide level2">
 <h2>Model Weights as IP</h2>
 <ul>
-<li class="fragment">Do model weights infrige copyright if the model is trained on copyrighted data?</li>
+<li class="fragment">Do model weights infringe copyright if the model is trained on copyrighted data?</li>
 <li class="fragment">Can an organization patent or protect model weights?</li>
 <li class="fragment">Can other organizations use models to train their own models?</li>
 </ul>
@@ -774,6 +781,14 @@ Disallow: /</code></pre></li>
 </section>
 <section id="examples-20" class="slide level2">
 <h2>Examples</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/anthropic_tweet.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img data-src="images/anthropic_tweet.png" class="quarto-figure quarto-figure-center" width="600"></a></p>
+</figure>
+</div>
+</section>
+<section id="examples-21" class="slide level2">
+<h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://www.anthropic.com/news/detecting-and-preventing-distillation-attacks" class="external" target="_blank">Anthropic</a>:
 <ul>
@@ -783,7 +798,7 @@ Disallow: /</code></pre></li>
 </ul></li>
 </ul>
 </section>
-<section id="examples-21" class="slide level2">
+<section id="examples-22" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment">Irony not lost on <a href="https://www.reddit.com/r/ClaudeCode/comments/1rcp658/anthropic_weve_identified_industrialscale" class="external" target="_blank">social networks</a>:
@@ -811,7 +826,7 @@ Disallow: /</code></pre></li>
 <li class="fragment">Who owns AI generated content? Vendor? Developer? You?</li>
 </ul>
 </section>
-<section id="examples-22" class="slide level2">
+<section id="examples-23" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://en.wikipedia.org/wiki/Zarya_of_the_Dawn" class="external" target="_blank">Zarya of the Dawn</a>:
@@ -822,7 +837,7 @@ Disallow: /</code></pre></li>
 </ul></li>
 </ul>
 </section>
-<section id="examples-23" class="slide level2">
+<section id="examples-24" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://en.wikipedia.org/wiki/Th%C3%A9%C3%A2tre_D%27op%C3%A9ra_Spatial" class="external" target="_blank">Jason Allen</a>:
@@ -831,11 +846,15 @@ Disallow: /</code></pre></li>
 </ul></li>
 </ul>
 </section>
-<section id="examples-24" class="slide level2">
-<h2>Examples</h2>
-<p>TBD: Picture link here</p>
-</section>
 <section id="examples-25" class="slide level2">
+<h2>Examples</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/Théâtre_D’opéra_Spatial.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img data-src="images/Théâtre_D’opéra_Spatial.png" class="quarto-figure quarto-figure-center" width="600"></a></p>
+</figure>
+</div>
+</section>
+<section id="examples-26" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment">Produced through iterative prompting (624 prompts) using Midjourney, followed by editing in Photoshop and upscaling in Gigapixel AI</li>
@@ -843,7 +862,7 @@ Disallow: /</code></pre></li>
 <li class="fragment">(In 2022, Allen applied for copyright registration of the image with US Copyright Office, which was later denied after appeal)</li>
 </ul>
 </section>
-<section id="examples-26" class="slide level2">
+<section id="examples-27" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://www.copyright.gov/ai/ai_policy_guidance.pdf" class="external" target="_blank">US Copyright Office AI Policy Guidance</a>:
@@ -892,7 +911,7 @@ Disallow: /</code></pre></li>
 <li class="fragment">Or results in real implications for organizations</li>
 </ul>
 </section>
-<section id="examples-27" class="slide level2">
+<section id="examples-28" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://en.wikipedia.org/wiki/Sydney_(Microsoft)" class="external" target="_blank">Sydney</a>:
@@ -904,7 +923,7 @@ Disallow: /</code></pre></li>
 </ul></li>
 </ul>
 </section>
-<section id="examples-28" class="slide level2">
+<section id="examples-29" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://cybernews.com/ai-news/chevrolet-dealership-chatbot-hack/" class="external" target="_blank">Chevrolet of Watsonville</a>:
@@ -916,11 +935,15 @@ Disallow: /</code></pre></li>
 </ul></li>
 </ul>
 </section>
-<section id="examples-29" class="slide level2">
-<h2>Examples</h2>
-<p>TBD: Screenshot of Chat</p>
-</section>
 <section id="examples-30" class="slide level2">
+<h2>Examples</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><a href="images/chevrolet_bot.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img data-src="images/chevrolet_bot.png" class="quarto-figure quarto-figure-center" width="600"></a></p>
+</figure>
+</div>
+</section>
+<section id="examples-31" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://arstechnica.com/tech-policy/2024/02/air-canada-must-honor-refund-policy-invented-by-airlines-chatbot/" class="external" target="_blank">Air Canada</a>:
@@ -982,11 +1005,11 @@ Disallow: /</code></pre></li>
 <section id="jailbreaking-1" class="slide level2">
 <h2>Jailbreaking</h2>
 <ul>
-<li class="fragment">Users who purposefully attempt to bypass system prompts and other guardrails in order to force to model to generate disallowed content</li>
+<li class="fragment">Users who purposefully attempt to bypass system prompts and other guardrails in order to force the model to generate disallowed content</li>
 <li class="fragment">Or, in the case of agents, to perform operations they were not intended to do</li>
 </ul>
 </section>
-<section id="examples-31" class="slide level2">
+<section id="examples-32" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://gist.github.com/coolaj86/6f4f7b30129b0251f61fa7baaa881516" class="external" target="_blank">DAN</a>:
@@ -998,7 +1021,7 @@ Disallow: /</code></pre></li>
 </ul></li>
 </ul>
 </section>
-<section id="examples-32" class="slide level2">
+<section id="examples-33" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://www.cyberark.com/resources/threat-research-blog/operation-grandma-a-tale-of-llm-chatbot-vulnerability" class="external" target="_blank">Fiction Framing Attacks</a>:
@@ -1010,14 +1033,14 @@ Disallow: /</code></pre></li>
 </ul></li>
 </ul>
 </section>
-<section id="examples-33" class="slide level2">
+<section id="examples-34" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://neurips.cc/virtual/2025/loc/san-diego/poster/116299" class="external" target="_blank">Adversarial Optimization</a>:
 <ul>
-<li class="fragment">By appending carefully optimized nonsense suffixes to prompts, researcher have found they could consistently bypass safeguards across models (similar approach to Nightshade)</li>
+<li class="fragment">By appending carefully optimized nonsense suffixes to prompts, researchers have found they could consistently bypass safeguards across models (similar approach to Nightshade)</li>
 <li class="fragment">Suffixes looked gibberish to humans, discovered via gradient-based optimization, and reliably triggered harmful completions</li>
-<li class="fragment">Aligment layers are fragile and small token changes can alter safety behavior</li>
+<li class="fragment">Alignment layers are fragile and small token changes can alter safety behavior</li>
 <li class="fragment">The model becomes mathematically vulnerable</li>
 </ul></li>
 </ul>
@@ -1074,7 +1097,7 @@ Disallow: /</code></pre></li>
 <li class="fragment">Governments exert political pressure to use AI models without stringent safety constraints</li>
 </ul>
 </section>
-<section id="examples-34" class="slide level2">
+<section id="examples-35" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://latesthackingnews.com/2025/09/12/from-vibe-coding-to-vibe-hacking-claude-ai-abused-to-build-ransomware" class="external" target="_blank">AI-generated Malware</a>:
@@ -1087,7 +1110,7 @@ Disallow: /</code></pre></li>
 </ul></li>
 </ul>
 </section>
-<section id="examples-35" class="slide level2">
+<section id="examples-36" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://techcrunch.com/2026/02/23/a-meta-ai-security-researcher-said-an-openclaw-agent-ran-amok-on-her-inbox" class="external" target="_blank">OpenClaw Goes Rogue</a>:
@@ -1098,7 +1121,7 @@ Disallow: /</code></pre></li>
 </ul></li>
 </ul>
 </section>
-<section id="examples-36" class="slide level2">
+<section id="examples-37" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://www.anthropic.com/news/statement-department-of-war" class="external" target="_blank">Anthropic vs.&nbsp;Department of War</a>:
@@ -1523,6 +1546,38 @@ Disallow: /</code></pre></li>
         }
       });
       </script>
+    <script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+    (function() {
+      let previousOnload = window.onload;
+      window.onload = () => {
+        if (previousOnload) {
+          previousOnload();
+        }
+        lightboxQuarto.on('slide_before_load', (data) => {
+          const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+          const href = trigger.getAttribute('href');
+          if (href !== null) {
+            const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+            if (imgEl !== null) {
+              const srcAttr = imgEl.getAttribute("src");
+              if (srcAttr && srcAttr.startsWith("data:")) {
+                slideConfig.href = srcAttr;
+              }
+            }
+          } 
+        });
+      
+        lightboxQuarto.on('slide_after_load', (data) => {
+          const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(slideNode);
+          }
+        });
+      
+      };
+      
+    })();
+              </script>
     
 
 </body></html>
