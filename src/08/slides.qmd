@@ -609,12 +609,16 @@ Q: Should AI-generated commitments (like the $1 car or Air Canada refund) have l
 ## How Can We Mitigate?
 
 - Separate Safety Classifiers: 
-  - Input and Output Filtering
-  - LLM as a Judge
+  - Input and Output Filtering (keywords, topics, basic profanity)
+  - LLM as a Judge (more accurate conversation analysis)
 
-# Demo
+# How Can We Mitigate?
 
-TBD - Potential demo of LLM as a Judge
+![](diagrams/filtering.svg){.lightbox fig-align="center" width="600px"}
+
+# How Can We Mitigate?
+
+![](diagrams/llm-as-judge.svg.svg){.lightbox fig-align="center" width="600px"}
 
 # What Do You Think?
 
