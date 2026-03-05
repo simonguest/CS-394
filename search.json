@@ -1857,7 +1857,7 @@
     "href": "src/08/slides.html#how-can-we-mitigate-28",
     "title": "Module 8: Ethics, IP, and Safety",
     "section": "How Can We Mitigate?",
-    "text": "How Can We Mitigate?\n\nSeparate Safety Classifiers:\n\nInput and Output Filtering\nLLM as a Judge",
+    "text": "How Can We Mitigate?\n\nSeparate Safety Classifiers:\n\nInput and Output Filtering (keywords, topics, basic profanity)\nLLM as a Judge (more accurate conversation analysis)",
     "crumbs": [
       "**Module 8:** Ethics, IP, and Safety",
       "Slides"
