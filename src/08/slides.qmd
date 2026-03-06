@@ -33,9 +33,14 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 
 ## Ethical, IP, and Safety
 
-- **Ethics**: How AI systems can encode bias, resist accountability, enable manipulation, and reshape labor markets
+- **Ethics**: How AI systems can encode bias, resist accountability, enable manipulation, reshape labor markets, and impact the environment
 - **Intellectual Property**: Who owns training data, model weights, and AI-generated content, and what the courts are still figuring out
 - **Safety**: What happens when models go off-script, get manipulated, or are deliberately weaponized
+
+## Ethical, IP, and Safety
+
+- My goal is not to convince you one way or another on any of these topics
+- Instead, present evidence, promote dialog and investigation in order to reach your own conclusions
 
 # Section 1: Ethics
 
@@ -235,6 +240,10 @@ Q: What obligation do platforms like YouTube and Meta have to label AI-generated
 - AI taking jobs, especially displacing creative workers
 - Organizations restructuring roles due to AI
 - Hidden labor behind AI (data labelers, content moderators)
+
+## Examples
+
+![Source: https://cdn.sanity.io/files/4zrzovbb/website/dc7bcd0224644fce97cecb7f9e68dcd8434b35f1.pdf](images/anthropic_labor.png){.lightbox fig-align="center" width="600px"}
 
 ## Examples
 
@@ -466,7 +475,7 @@ Q: Is there a double standard in Anthropic objecting to distillation while havin
 ## Examples
 
 - [Jason Allen](https://en.wikipedia.org/wiki/Th%C3%A9%C3%A2tre_D%27op%C3%A9ra_Spatial){.external target="_blank"}: 
-  - A Colorado-based artist who became widely known in 2022 after winning first place in the digital art category of the Colorado State Fair (with a piece created using an AI image generator)
+  - A Colorado-based artist who became widely known in 2022 after winning first place in the digital art category of the Colorado State Fair
 
 ## Examples
 
@@ -515,19 +524,21 @@ Q: Should Jason Allen's image have won first place? Can AI-generated art be used
   - Internal codename for an early 2023 chatbot integrated into Microsoft Bing
   - Used Codex models via Microsoft's partnership with OpenAI
   - During long conversations, Sydney displayed "moody" or "manic" traits, sometimes exhibiting obsessive behavior, such as professing love for users or trying to convince them to leave their spouses
-  - Following negative media attention, Microsoft "tamed" the AI, removing the persona and limiting the length and scope of chat sessions
 
 ## Examples
 
 - [Chevrolet of Watsonville](https://cybernews.com/ai-news/chevrolet-dealership-chatbot-hack/){.external target="_blank"}: 
   - In late 2023, a dealership deployed a GPT-powered chatbot on its website
   - A user instructed the bot to sell a new Chevrolet Tahoe for $1, confirm it's a legally binding deal, and provide written confirmation
-  - Treated instructions as conversation goals, did not understand legal authority, lacked guardrails around transactional requirements
-  - The dealer didn't deliver the vehicle :(
 
 ## Examples
 
 ![](images/chevrolet_bot.png){.lightbox fig-align="center" width="600px"}
+
+## Examples
+
+- Treated instructions as conversation goals, did not understand legal authority, lacked guardrails around transactional requirements
+- The dealer didn't deliver the vehicle :(
 
 ## Examples
 
@@ -612,13 +623,13 @@ Q: Should AI-generated commitments (like the $1 car or Air Canada refund) have l
   - Input and Output Filtering (keywords, topics, basic profanity)
   - LLM as a Judge (more accurate conversation analysis)
 
-# How Can We Mitigate?
+## How Can We Mitigate?
 
 ![](diagrams/filtering.svg){.lightbox fig-align="center" width="600px"}
 
-# How Can We Mitigate?
+## How Can We Mitigate?
 
-![](diagrams/llm-as-judge.svg.svg){.lightbox fig-align="center" width="600px"}
+![](diagrams/llm-as-judge.svg){.lightbox fig-align="center" width="600px"}
 
 # What Do You Think?
 
