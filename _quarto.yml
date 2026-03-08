@@ -38,6 +38,8 @@ website:
             href: src/00/final-rubric-394.qmd
           - text: "Rubric (Final Project for CS-594)"
             href: src/00/final-rubric-594.qmd
+          - text: "Glossary of Terms"
+            href: src/00/glossary.qmd
       - section: "**Module 1:** Foundations of Generative AI"
         contents:
           - text: "Slides"
