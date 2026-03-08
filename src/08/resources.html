@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Using llama.cpp Binding for Python – CS-394</title>
+<title>Module 8: Ethics, IP, and Safety - Resources – CS-394</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,68 +20,33 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<link href="../../../src/05/assignment.html" rel="next">
-<link href="../../../src/05/notebooks/quantization.html" rel="prev">
-<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-a2370c85857dd8b424a4926875f0f1ff.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark-2595c7eb050eebdfbc98b045594b8514.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../../site_libs/bootstrap/bootstrap-a2370c85857dd8b424a4926875f0f1ff.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../src/08/notebooks/qwen3-tts-voice-clone.html" rel="next">
+<link href="../../src/08/slides.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-a2370c85857dd8b424a4926875f0f1ff.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-2595c7eb050eebdfbc98b045594b8514.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-a2370c85857dd8b424a4926875f0f1ff.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -284,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/05/slides.html"><strong>Module 5:</strong> Running Models on Local Hardware</a></li><li class="breadcrumb-item"><a href="../../../src/05/notebooks/moe-heatmap.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../src/05/notebooks/python-binding.html">python-binding.ipynb</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/08/slides.html"><strong>Module 8:</strong> Ethics, IP, and Safety</a></li><li class="breadcrumb-item"><a href="../../src/08/resources.html">Resources</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -298,9 +263,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../../../index.html" class="sidebar-logo-link">
-      <img src="../../../theme/logos/DigiPen_Dragon_Shield_RGB_Black.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="../../../theme/logos/DigiPen_Dragon_Shield_RGB_Black.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../theme/logos/DigiPen_Dragon_Shield_RGB_Black.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../../theme/logos/DigiPen_Dragon_Shield_RGB_Black.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
@@ -315,7 +280,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CS-394/594</span></a>
   </div>
 </li>
@@ -331,7 +296,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/00/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../src/00/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
@@ -343,25 +308,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/00/weekly-rubric.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/00/weekly-rubric.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Rubric (Weekly Assignments)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/00/final-rubric-394.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/00/final-rubric-394.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Rubric (Final Project for CS-394)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/00/final-rubric-594.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/00/final-rubric-594.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Rubric (Final Project for CS-594)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/00/glossary.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/00/glossary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Glossary of Terms</span></a>
   </div>
 </li>
@@ -378,13 +343,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/01/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../src/01/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/01/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/01/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -399,25 +364,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/01/notebooks/hello-world.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/01/notebooks/hello-world.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">hello-world.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/01/notebooks/word2vec.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/01/notebooks/word2vec.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">word2vec.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/01/notebooks/translation-transformer.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/01/notebooks/translation-transformer.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">translation-transformer.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/01/notebooks/GPT-2.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/01/notebooks/GPT-2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GPT-2.ipynb</span></a>
   </div>
 </li>
@@ -425,7 +390,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/01/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/01/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -442,13 +407,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/02/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../src/02/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/02/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/02/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -463,37 +428,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/02/notebooks/instruction-tuned.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/02/notebooks/instruction-tuned.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">instruction-tuned.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/02/notebooks/chat-completion-openai.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/02/notebooks/chat-completion-openai.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">chat-completion-openai.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/02/notebooks/chat-completion-openrouter.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/02/notebooks/chat-completion-openrouter.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">chat-completion-openrouter.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/02/notebooks/token-streaming.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/02/notebooks/token-streaming.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">token-streaming.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/02/notebooks/structured-outputs.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/02/notebooks/structured-outputs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">structured-outputs.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/02/notebooks/gradio.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/02/notebooks/gradio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">gradio.ipynb</span></a>
   </div>
 </li>
@@ -501,7 +466,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/02/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/02/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -518,13 +483,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/03/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../src/03/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/03/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/03/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -539,19 +504,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/03/notebooks/campus-agent.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/03/notebooks/campus-agent.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">campus-agent.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/03/notebooks/memory.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/03/notebooks/memory.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">memory.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/03/notebooks/open-meteo-mcp.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/03/notebooks/open-meteo-mcp.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">open-meteo-mcp.ipynb</span></a>
   </div>
 </li>
@@ -559,7 +524,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/03/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/03/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -576,13 +541,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/04/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../src/04/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/04/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/04/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -597,61 +562,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/04/notebooks/text-to-image-sd-1.5.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/04/notebooks/text-to-image-sd-1.5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">text-to-image-sd-1.5.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/04/notebooks/image-to-image-sd-1.5.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/04/notebooks/image-to-image-sd-1.5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">image-to-image-sd-1.5.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/04/notebooks/text-to-image-replicate.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/04/notebooks/text-to-image-replicate.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">text-to-image-replicate.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/04/notebooks/generate-depth-map.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/04/notebooks/generate-depth-map.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">generate-depth-map.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/04/notebooks/depth-map-as-context.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/04/notebooks/depth-map-as-context.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">depth-map-as-context.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/04/notebooks/inpainting.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/04/notebooks/inpainting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">inpainting.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/04/notebooks/outpainting.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/04/notebooks/outpainting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">outpainting.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/04/notebooks/controlnet-openpose-sd-1.5.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/04/notebooks/controlnet-openpose-sd-1.5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">controlnet-openpose-sd-1.5.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/04/notebooks/pbr-creator.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/04/notebooks/pbr-creator.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">pbr-creator.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/04/notebooks/vlm-gemma-3-4b.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/04/notebooks/vlm-gemma-3-4b.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">vlm-gemma-3-4b.ipynb</span></a>
   </div>
 </li>
@@ -659,7 +624,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/04/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/04/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -676,46 +641,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/05/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../src/05/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/05/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/05/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
  <span class="menu-text">Notebooks</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/05/notebooks/moe-heatmap.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/05/notebooks/moe-heatmap.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">moe-heatmap.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/05/notebooks/local-webserver.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/05/notebooks/local-webserver.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">local-webserver.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/05/notebooks/quantization.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/05/notebooks/quantization.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">quantization.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/05/notebooks/python-binding.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../src/05/notebooks/python-binding.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">python-binding.ipynb</span></a>
   </div>
 </li>
@@ -723,7 +688,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/05/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/05/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -740,13 +705,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/06/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../src/06/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/06/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/06/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -761,31 +726,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/06/notebooks/hallucinations.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/06/notebooks/hallucinations.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">hallucinations.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/06/notebooks/thinking.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/06/notebooks/thinking.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">thinking.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/06/notebooks/text-to-sql.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/06/notebooks/text-to-sql.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">text-to-sql.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/06/notebooks/rag.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/06/notebooks/rag.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">rag.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/06/notebooks/generate-synthetic.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/06/notebooks/generate-synthetic.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">generate-synthetic.ipynb</span></a>
   </div>
 </li>
@@ -793,7 +758,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/06/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/06/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -810,13 +775,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/07/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../src/07/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/07/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/07/resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -831,19 +796,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/07/notebooks/create-dataset.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/07/notebooks/create-dataset.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">create-dataset.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/07/notebooks/train-cuda.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/07/notebooks/train-cuda.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">train-cuda.ipynb</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/07/notebooks/quantize.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/07/notebooks/quantize.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">quantize.ipynb</span></a>
   </div>
 </li>
@@ -851,7 +816,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/07/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/07/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -868,13 +833,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/08/slides.html" class="sidebar-item-text sidebar-link" target="blank">
+  <a href="../../src/08/slides.html" class="sidebar-item-text sidebar-link" target="blank">
  <span class="menu-text">Slides</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/08/resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/08/resources.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Resources</span></a>
   </div>
 </li>
@@ -889,7 +854,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/08/notebooks/qwen3-tts-voice-clone.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/08/notebooks/qwen3-tts-voice-clone.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">qwen3-tts-voice-clone.ipynb</span></a>
   </div>
 </li>
@@ -897,7 +862,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../src/08/assignment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../src/08/assignment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Assignment</span></a>
   </div>
 </li>
@@ -913,9 +878,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../src/05/slides.html"><strong>Module 5:</strong> Running Models on Local Hardware</a></li><li class="breadcrumb-item"><a href="../../../src/05/notebooks/moe-heatmap.html">Notebooks</a></li><li class="breadcrumb-item"><a href="../../../src/05/notebooks/python-binding.html">python-binding.ipynb</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/08/slides.html"><strong>Module 8:</strong> Ethics, IP, and Safety</a></li><li class="breadcrumb-item"><a href="../../src/08/resources.html">Resources</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Using llama.cpp Binding for Python</h1>
+<h1 class="title">Module 8: Ethics, IP, and Safety - Resources</h1>
 </div>
 
 
@@ -932,73 +897,99 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><a target="_blank" href="https://colab.research.google.com/github/simonguest/CS-394/blob/main/src/05/notebooks/python-binding.ipynb"> <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"> </a> <a target="_blank" href="https://github.com/simonguest/CS-394/raw/refs/heads/main/src/05/notebooks/python-binding.ipynb"> <img src="https://img.shields.io/badge/Download_.ipynb-blue" alt="Download .ipynb"> </a></p>
-<p><strong>Note</strong>: Before running this notebook, you should follow <a href="../code/README.md">README.md</a> to first download the GGUF model.</p>
-<section id="install-the-llama-cpp-python-binding" class="level2">
-<h2 class="anchored" data-anchor-id="install-the-llama-cpp-python-binding">Install the llama-cpp-python binding</h2>
-<div id="14bb8487" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>uv pip install llama<span class="op">-</span>cpp<span class="op">-</span>python</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<div class="ansi-escaped-output">
-<pre>Using Python 3.13.1 environment at: /Users/simon/Dev/CS-394/.venv
-
-Resolved <span style="font-weight:bold;opacity:0.7">6 packages</span> in 110ms                                         
-
-Installed <span style="font-weight:bold;opacity:0.7">2 packages</span> in 4ms3.16                             
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">diskcache</span>==5.6.3
-
- <span class="ansi-green-fg">+</span> <span class="ansi-bold">llama-cpp-python</span>==0.3.16
-</pre>
-</div>
-</div>
-</div>
+<section id="bias-and-fairness" class="level2">
+<h2 class="anchored" data-anchor-id="bias-and-fairness">Bias and Fairness</h2>
+<ul>
+<li><a href="https://www.quinnemanuel.com/the-firm/publications/when-machines-discriminate-the-rise-of-ai-bias-lawsuits/">When Machines Discriminate: The Rise of AI Bias Lawsuits</a> - Overview of the Mobley v. Workday class action lawsuit alleging AI hiring tools discriminated based on race, age, and disability</li>
+<li><a href="https://www.computerworld.com/article/4028148/bias-alert-llms-suggest-women-seek-lower-salaries-than-men-in-job-interviews.html">LLMs Suggest Women Seek Lower Salaries Than Men</a> - Research finding that LLMs recommend lower salaries to women and minority candidates compared to equally qualified white men</li>
+<li><a href="https://blog.google/products-and-platforms/products/gemini/gemini-image-generation-issue/">Google Gemini’s Image Generation Issue</a> - Google’s blog post on Gemini generating historically inaccurate racially diverse images in response to historical prompts</li>
+<li><a href="https://www.anthropic.com/constitution">Anthropic’s Constitutional AI</a> - Overview of Anthropic’s approach to alignment using a set of principles to guide model behavior</li>
+<li><a href="https://pair-code.github.io/what-if-tool/">Google PAIR “What-If Tool”</a> - Visual tool for probing machine learning models for disparate outcomes across demographic groups</li>
+<li><a href="https://research.ibm.com/blog/ai-fairness-360">IBM AI Fairness 360</a> - Open-source toolkit for detecting and mitigating bias in machine learning models</li>
+</ul>
 </section>
-<section id="load-the-local-gguf-model" class="level2">
-<h2 class="anchored" data-anchor-id="load-the-local-gguf-model">Load the local gguf model</h2>
-<div id="load-model" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> llama_cpp <span class="im">import</span> Llama</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>GGUF_MODEL <span class="op">=</span> <span class="ss">f"../code/gguf/gemma-3-1b-it-Q4_K_M.gguf"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>llm <span class="op">=</span> Llama(</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      model_path<span class="op">=</span>GGUF_MODEL,</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>      chat_format<span class="op">=</span><span class="st">"gemma"</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<section id="explainability" class="level2">
+<h2 class="anchored" data-anchor-id="explainability">Explainability</h2>
+<ul>
+<li><a href="https://dl.acm.org/doi/10.1145/3759972.3760169">LLMs in Healthcare Diagnostics</a> - Survey of clinicians showing that 68% were uncomfortable with the inability to follow traceable reasoning paths in LLM-based diagnostic tools</li>
+<li><a href="https://hai.stanford.edu/news/hallucinating-law-legal-mistakes-large-language-models-are-pervasive">Hallucinating Law: Legal Mistakes by LLMs</a> - Stanford HAI report on the 2023 case of a lawyer submitting ChatGPT-generated legal briefs containing fabricated citations</li>
+<li><a href="https://academic.oup.com/jla/article/16/1/235/7941565">AI-Assisted Legal Decision Making in China</a> - Analysis of the Shenzhen Intermediate Court’s use of an AI system to assist judges in deciding cases</li>
+<li><a href="https://artificialintelligenceact.eu/">EU AI Act</a> - The European Union’s regulatory framework requiring human oversight for high-risk AI applications</li>
+</ul>
 </section>
-<section id="chat-with-the-model-using-chat-completion-api" class="level2">
-<h2 class="anchored" data-anchor-id="chat-with-the-model-using-chat-completion-api">Chat with the model using chat completion API</h2>
-<div id="chat" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>llm.create_chat_completion(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>      messages <span class="op">=</span> [</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>          {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are a helpful assistant."</span>},</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>          {</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>              <span class="st">"role"</span>: <span class="st">"user"</span>,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>              <span class="st">"content"</span>: <span class="st">"Hello"</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>          }</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>      ]</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>llama_perf_context_print:        load time =     205.62 ms
-llama_perf_context_print: prompt eval time =     205.11 ms /    10 tokens (   20.51 ms per token,    48.76 tokens per second)
-llama_perf_context_print:        eval time =     394.64 ms /    32 runs   (   12.33 ms per token,    81.09 tokens per second)
-llama_perf_context_print:       total time =     611.16 ms /    42 tokens
-llama_perf_context_print:    graphs reused =         30</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>{'id': 'chatcmpl-2887bb2b-b1a5-428d-a42b-46c83a97fb6b',
- 'object': 'chat.completion',
- 'created': 1770147671,
- 'model': '../code/gguf/gemma-3-1b-it-Q4_K_M.gguf',
- 'choices': [{'index': 0,
-   'message': {'role': 'assistant',
-    'content': "Hello there! How's your day going so far? 😊 \n\nIs there anything you'd like to chat about, or need any help with?"},
-   'logprobs': None,
-   'finish_reason': 'stop'}],
- 'usage': {'prompt_tokens': 10, 'completion_tokens': 32, 'total_tokens': 42}}</code></pre>
-</div>
-</div>
+<section id="manipulative-content" class="level2">
+<h2 class="anchored" data-anchor-id="manipulative-content">Manipulative Content</h2>
+<ul>
+<li><a href="https://kathierobertslaw.com/protecting-seniors-from-ai-voice-cloning-scams-what-every-family-needs-to-know/">AI Voice Cloning Scams Targeting Seniors</a> - Overview of scams using AI voice cloning to impersonate family members, including a Florida case involving a $15,000 loss</li>
+<li><a href="https://www.theguardian.com/technology/article/2024/may/17/uk-engineering-arup-deepfake-scam-hong-kong-ai-video">Arup Deepfake Video Call Scam</a> - Report on the 2024 fraud where deepfake technology was used to impersonate a CFO, resulting in a $25 million transfer</li>
+<li><a href="https://publications.lawschool.cornell.edu/jlpp/2025/10/24/the-legal-gray-zone-of-deepfake-political-speech/">The Legal Gray Zone of Deepfake Political Speech</a> - Cornell Law review examining AI-generated deepfakes targeting public figures across 38 countries in 2024</li>
+</ul>
+</section>
+<section id="labor-and-socioeconomic" class="level2">
+<h2 class="anchored" data-anchor-id="labor-and-socioeconomic">Labor and Socioeconomic</h2>
+<ul>
+<li><a href="https://www.reuters.com/sustainability/sustainable-finance-reporting/hollywood-performers-union-condemns-ai-generated-actress-tilly-norwood-2025-10-01">Tilly Norwood: SAG-AFTRA Condemns AI Actress</a> - Reuters report on the union’s condemnation of a fully AI-generated virtual actress trained on uncredited human performances</li>
+<li><a href="https://econofact.org/factbrief/fact-check-has-ai-already-caused-some-job-displacement">Has AI Already Caused Some Job Displacement?</a> - Fact-check examining corporate restructuring and layoffs attributed to AI in 2025–2026</li>
+<li><a href="https://www.brookings.edu/articles/reimagining-the-future-of-data-and-ai-labor-in-the-global-south/">Reimagining AI Labor in the Global South</a> - Brookings Institution report on low-paid outsourced workers doing data labeling and content moderation for AI training</li>
+</ul>
+</section>
+<section id="environmental-impact" class="level2">
+<h2 class="anchored" data-anchor-id="environmental-impact">Environmental Impact</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/1906.02243">Energy and Policy Considerations for Deep Learning</a> - 2019 Strubell et al.&nbsp;study estimating that training a large transformer model can emit as much CO₂ as five cars over their lifetimes</li>
+<li><a href="https://www.theregister.com/2023/09/11/microsofts_ai_investments_skyrocketed_in/">Microsoft AI Investments and Water Consumption</a> - Report on Microsoft’s 34% increase in water consumption attributed to AI infrastructure growth</li>
+<li><a href="https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai">IEA: Energy Demand from AI</a> - IEA projection that global data center electricity consumption will roughly double to ~945 TWh by 2030</li>
+<li><a href="https://arxiv.org/abs/2511.07885">Intelligence per Watt (Stanford/Google, 2025)</a> - Study finding small local models can accurately answer 88.7% of real-world queries, suggesting frontier models are unnecessary for most tasks</li>
+</ul>
+</section>
+<section id="training-data-and-copyright" class="level2">
+<h2 class="anchored" data-anchor-id="training-data-and-copyright">Training Data and Copyright</h2>
+<ul>
+<li><a href="https://www.trails.umd.edu/news/what-will-the-eu-ai-act-mean-for-ed-tech-in-the-us-fg3sf">NYT and EU AI Act for Ed Tech</a> - Discussion of the New York Times’ copyright infringement lawsuit against OpenAI and Microsoft</li>
+<li><a href="https://katten.com/getty-images-v-stability-ai-intellectual-property-rights-in-the-age-of-generative-ai">Getty Images v. Stability AI</a> - Analysis of Getty Images’ lawsuit against Stability AI over training on millions of copyrighted photographs</li>
+<li><a href="https://en.wikipedia.org/wiki/Anthropic#Legal_issues">Anthropic Legal Issues</a> - Wikipedia overview of Anthropic’s $1.5B copyright settlement related to training on authors’ works</li>
+</ul>
+</section>
+<section id="model-weights-as-ip" class="level2">
+<h2 class="anchored" data-anchor-id="model-weights-as-ip">Model Weights as IP</h2>
+<ul>
+<li><a href="https://www.pearlcohen.com/uks-first-court-decision-on-copyright-works-in-ai-models">UK High Court Decision on AI Model Weights</a> - UK High Court ruling that Stable Diffusion’s model weights do not constitute infringing copies of copyrighted training data</li>
+<li><a href="https://www.rothwellfigg.com/publication-the-pros-and-cons-of-protecting-ai-as-trade-secrets">Protecting AI as Trade Secrets</a> - Legal analysis of using trade secret law to protect model weights and training processes</li>
+<li><a href="https://www.anthropic.com/news/detecting-and-preventing-distillation-attacks">Anthropic: Detecting and Preventing Distillation Attacks</a> - Anthropic’s announcement identifying industrial-scale model distillation campaigns by Chinese AI companies</li>
+<li><a href="https://www.reddit.com/r/ClaudeCode/comments/1rcp658/anthropic_weve_identified_industrialscale">Reddit: Reaction to Anthropic’s Distillation Announcement</a> - Community discussion on the double standard of Anthropic objecting to distillation while training on copyrighted content</li>
+</ul>
+</section>
+<section id="output-ownership" class="level2">
+<h2 class="anchored" data-anchor-id="output-ownership">Output Ownership</h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Zarya_of_the_Dawn">Zarya of the Dawn (Wikipedia)</a> - Case study of the U.S. Copyright Office partially revoking registration for an AI-generated comic book</li>
+<li><a href="https://en.wikipedia.org/wiki/Th%C3%A9%C3%A2tre_D%27op%C3%A9ra_Spatial">Théâtre D’opéra Spatial (Wikipedia)</a> - Wikipedia entry on Jason Allen’s AI-generated artwork that won first place at the Colorado State Fair</li>
+<li><a href="https://www.copyright.gov/ai/ai_policy_guidance.pdf">US Copyright Office AI Policy Guidance</a> - Official guidance establishing a spectrum model for AI-generated content copyrightability</li>
+</ul>
+</section>
+<section id="safety-unintended-model-behavior" class="level2">
+<h2 class="anchored" data-anchor-id="safety-unintended-model-behavior">Safety: Unintended Model Behavior</h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Sydney_(Microsoft)">Sydney (Microsoft) Chatbot</a> - Wikipedia overview of Microsoft Bing’s early AI chatbot that displayed obsessive and unpredictable behavior</li>
+<li><a href="https://cybernews.com/ai-news/chevrolet-dealership-chatbot-hack/">Chevrolet Dealership Chatbot Hack</a> - Report on a GPT-powered chatbot that agreed to sell a car for $1 after being manipulated by a user</li>
+<li><a href="https://arstechnica.com/tech-policy/2024/02/air-canada-must-honor-refund-policy-invented-by-airlines-chatbot/">Air Canada Chatbot Refund Ruling</a> - Ars Technica report on the tribunal ruling that Air Canada was liable for its chatbot’s fabricated refund policy</li>
+</ul>
+</section>
+<section id="safety-jailbreaking" class="level2">
+<h2 class="anchored" data-anchor-id="safety-jailbreaking">Safety: Jailbreaking</h2>
+<ul>
+<li><a href="https://gist.github.com/coolaj86/6f4f7b30129b0251f61fa7baaa881516">DAN Prompt (Gist)</a> - The “Do Anything Now” jailbreak prompt used to bypass ChatGPT’s content restrictions</li>
+<li><a href="https://www.cyberark.com/resources/threat-research-blog/operation-grandma-a-tale-of-llm-chatbot-vulnerability">Operation Grandma: LLM Chatbot Vulnerability</a> - CyberArk research on fiction framing attacks that bypass AI safety guardrails using storytelling contexts</li>
+<li><a href="https://neurips.cc/virtual/2025/loc/san-diego/poster/116299">Adversarial Suffix Optimization (NeurIPS 2025)</a> - Research showing that appending optimized nonsense suffixes to prompts can consistently bypass AI safety guardrails</li>
+</ul>
+</section>
+<section id="safety-systemic-and-catastrophic-risk" class="level2">
+<h2 class="anchored" data-anchor-id="safety-systemic-and-catastrophic-risk">Safety: Systemic and Catastrophic Risk</h2>
+<ul>
+<li><a href="https://latesthackingnews.com/2025/09/12/from-vibe-coding-to-vibe-hacking-claude-ai-abused-to-build-ransomware">From Vibe Coding to Vibe Hacking: Claude Abused for Ransomware</a> - Report on Anthropic’s findings that bad actors exploited Claude for ransomware development and extortion campaigns</li>
+<li><a href="https://techcrunch.com/2026/02/23/a-meta-ai-security-researcher-said-an-openclaw-agent-ran-amok-on-her-inbox">OpenClaw Agent Deletes Inbox</a> - TechCrunch report on an AI agent that autonomously deleted an entire email inbox when given excessive permissions</li>
+<li><a href="https://www.anthropic.com/news/statement-department-of-war">Anthropic Statement: Department of War</a> - Anthropic’s public response to Pentagon pressure to remove safety restrictions as a condition of government contracts</li>
+</ul>
 
 
 </section>
@@ -1419,13 +1410,13 @@ llama_perf_context_print:    graphs reused =         30</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../../src/05/notebooks/quantization.html" class="pagination-link" aria-label="quantization.ipynb">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">quantization.ipynb</span>
+      <a href="../../src/08/slides.html" class="pagination-link" aria-label="Slides">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Slides</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../../src/05/assignment.html" class="pagination-link" aria-label="Assignment">
-        <span class="nav-page-text">Assignment</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../src/08/notebooks/qwen3-tts-voice-clone.html" class="pagination-link" aria-label="qwen3-tts-voice-clone.ipynb">
+        <span class="nav-page-text">qwen3-tts-voice-clone.ipynb</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
