@@ -1,0 +1,75 @@
+---
+title: "Module 8: Ethics, IP, and Safety - Resources"
+---
+
+## Bias and Fairness
+
+- [When Machines Discriminate: The Rise of AI Bias Lawsuits](https://www.quinnemanuel.com/the-firm/publications/when-machines-discriminate-the-rise-of-ai-bias-lawsuits/) - Overview of the Mobley v. Workday class action lawsuit alleging AI hiring tools discriminated based on race, age, and disability
+- [LLMs Suggest Women Seek Lower Salaries Than Men](https://www.computerworld.com/article/4028148/bias-alert-llms-suggest-women-seek-lower-salaries-than-men-in-job-interviews.html) - Research finding that LLMs recommend lower salaries to women and minority candidates compared to equally qualified white men
+- [Google Gemini's Image Generation Issue](https://blog.google/products-and-platforms/products/gemini/gemini-image-generation-issue/) - Google's blog post on Gemini generating historically inaccurate racially diverse images in response to historical prompts
+- [Anthropic's Constitutional AI](https://www.anthropic.com/constitution) - Overview of Anthropic's approach to alignment using a set of principles to guide model behavior
+- [Google PAIR "What-If Tool"](https://pair-code.github.io/what-if-tool/) - Visual tool for probing machine learning models for disparate outcomes across demographic groups
+- [IBM AI Fairness 360](https://research.ibm.com/blog/ai-fairness-360) - Open-source toolkit for detecting and mitigating bias in machine learning models
+
+## Explainability
+
+- [LLMs in Healthcare Diagnostics](https://dl.acm.org/doi/10.1145/3759972.3760169) - Survey of clinicians showing that 68% were uncomfortable with the inability to follow traceable reasoning paths in LLM-based diagnostic tools
+- [Hallucinating Law: Legal Mistakes by LLMs](https://hai.stanford.edu/news/hallucinating-law-legal-mistakes-large-language-models-are-pervasive) - Stanford HAI report on the 2023 case of a lawyer submitting ChatGPT-generated legal briefs containing fabricated citations
+- [AI-Assisted Legal Decision Making in China](https://academic.oup.com/jla/article/16/1/235/7941565) - Analysis of the Shenzhen Intermediate Court's use of an AI system to assist judges in deciding cases
+- [EU AI Act](https://artificialintelligenceact.eu/) - The European Union's regulatory framework requiring human oversight for high-risk AI applications
+
+## Manipulative Content
+
+- [AI Voice Cloning Scams Targeting Seniors](https://kathierobertslaw.com/protecting-seniors-from-ai-voice-cloning-scams-what-every-family-needs-to-know/) - Overview of scams using AI voice cloning to impersonate family members, including a Florida case involving a $15,000 loss
+- [Arup Deepfake Video Call Scam](https://www.theguardian.com/technology/article/2024/may/17/uk-engineering-arup-deepfake-scam-hong-kong-ai-video) - Report on the 2024 fraud where deepfake technology was used to impersonate a CFO, resulting in a $25 million transfer
+- [The Legal Gray Zone of Deepfake Political Speech](https://publications.lawschool.cornell.edu/jlpp/2025/10/24/the-legal-gray-zone-of-deepfake-political-speech/) - Cornell Law review examining AI-generated deepfakes targeting public figures across 38 countries in 2024
+
+## Labor and Socioeconomic
+
+- [Tilly Norwood: SAG-AFTRA Condemns AI Actress](https://www.reuters.com/sustainability/sustainable-finance-reporting/hollywood-performers-union-condemns-ai-generated-actress-tilly-norwood-2025-10-01) - Reuters report on the union's condemnation of a fully AI-generated virtual actress trained on uncredited human performances
+- [Has AI Already Caused Some Job Displacement?](https://econofact.org/factbrief/fact-check-has-ai-already-caused-some-job-displacement) - Fact-check examining corporate restructuring and layoffs attributed to AI in 2025–2026
+- [Reimagining AI Labor in the Global South](https://www.brookings.edu/articles/reimagining-the-future-of-data-and-ai-labor-in-the-global-south/) - Brookings Institution report on low-paid outsourced workers doing data labeling and content moderation for AI training
+
+## Environmental Impact
+
+- [Energy and Policy Considerations for Deep Learning](https://arxiv.org/abs/1906.02243) - 2019 Strubell et al. study estimating that training a large transformer model can emit as much CO₂ as five cars over their lifetimes
+- [Microsoft AI Investments and Water Consumption](https://www.theregister.com/2023/09/11/microsofts_ai_investments_skyrocketed_in/) - Report on Microsoft's 34% increase in water consumption attributed to AI infrastructure growth
+- [IEA: Energy Demand from AI](https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai) - IEA projection that global data center electricity consumption will roughly double to ~945 TWh by 2030
+- [Intelligence per Watt (Stanford/Google, 2025)](https://arxiv.org/abs/2511.07885) - Study finding small local models can accurately answer 88.7% of real-world queries, suggesting frontier models are unnecessary for most tasks
+
+## Training Data and Copyright
+
+- [NYT and EU AI Act for Ed Tech](https://www.trails.umd.edu/news/what-will-the-eu-ai-act-mean-for-ed-tech-in-the-us-fg3sf) - Discussion of the New York Times' copyright infringement lawsuit against OpenAI and Microsoft
+- [Getty Images v. Stability AI](https://katten.com/getty-images-v-stability-ai-intellectual-property-rights-in-the-age-of-generative-ai) - Analysis of Getty Images' lawsuit against Stability AI over training on millions of copyrighted photographs
+- [Anthropic Legal Issues](https://en.wikipedia.org/wiki/Anthropic#Legal_issues) - Wikipedia overview of Anthropic's $1.5B copyright settlement related to training on authors' works
+
+## Model Weights as IP
+
+- [UK High Court Decision on AI Model Weights](https://www.pearlcohen.com/uks-first-court-decision-on-copyright-works-in-ai-models) - UK High Court ruling that Stable Diffusion's model weights do not constitute infringing copies of copyrighted training data
+- [Protecting AI as Trade Secrets](https://www.rothwellfigg.com/publication-the-pros-and-cons-of-protecting-ai-as-trade-secrets) - Legal analysis of using trade secret law to protect model weights and training processes
+- [Anthropic: Detecting and Preventing Distillation Attacks](https://www.anthropic.com/news/detecting-and-preventing-distillation-attacks) - Anthropic's announcement identifying industrial-scale model distillation campaigns by Chinese AI companies
+- [Reddit: Reaction to Anthropic's Distillation Announcement](https://www.reddit.com/r/ClaudeCode/comments/1rcp658/anthropic_weve_identified_industrialscale) - Community discussion on the double standard of Anthropic objecting to distillation while training on copyrighted content
+
+## Output Ownership
+
+- [Zarya of the Dawn (Wikipedia)](https://en.wikipedia.org/wiki/Zarya_of_the_Dawn) - Case study of the U.S. Copyright Office partially revoking registration for an AI-generated comic book
+- [Théâtre D'opéra Spatial (Wikipedia)](https://en.wikipedia.org/wiki/Th%C3%A9%C3%A2tre_D%27op%C3%A9ra_Spatial) - Wikipedia entry on Jason Allen's AI-generated artwork that won first place at the Colorado State Fair
+- [US Copyright Office AI Policy Guidance](https://www.copyright.gov/ai/ai_policy_guidance.pdf) - Official guidance establishing a spectrum model for AI-generated content copyrightability
+
+## Safety: Unintended Model Behavior
+
+- [Sydney (Microsoft) Chatbot](https://en.wikipedia.org/wiki/Sydney_(Microsoft)) - Wikipedia overview of Microsoft Bing's early AI chatbot that displayed obsessive and unpredictable behavior
+- [Chevrolet Dealership Chatbot Hack](https://cybernews.com/ai-news/chevrolet-dealership-chatbot-hack/) - Report on a GPT-powered chatbot that agreed to sell a car for $1 after being manipulated by a user
+- [Air Canada Chatbot Refund Ruling](https://arstechnica.com/tech-policy/2024/02/air-canada-must-honor-refund-policy-invented-by-airlines-chatbot/) - Ars Technica report on the tribunal ruling that Air Canada was liable for its chatbot's fabricated refund policy
+
+## Safety: Jailbreaking
+
+- [DAN Prompt (Gist)](https://gist.github.com/coolaj86/6f4f7b30129b0251f61fa7baaa881516) - The "Do Anything Now" jailbreak prompt used to bypass ChatGPT's content restrictions
+- [Operation Grandma: LLM Chatbot Vulnerability](https://www.cyberark.com/resources/threat-research-blog/operation-grandma-a-tale-of-llm-chatbot-vulnerability) - CyberArk research on fiction framing attacks that bypass AI safety guardrails using storytelling contexts
+- [Adversarial Suffix Optimization (NeurIPS 2025)](https://neurips.cc/virtual/2025/loc/san-diego/poster/116299) - Research showing that appending optimized nonsense suffixes to prompts can consistently bypass AI safety guardrails
+
+## Safety: Systemic and Catastrophic Risk
+
+- [From Vibe Coding to Vibe Hacking: Claude Abused for Ransomware](https://latesthackingnews.com/2025/09/12/from-vibe-coding-to-vibe-hacking-claude-ai-abused-to-build-ransomware) - Report on Anthropic's findings that bad actors exploited Claude for ransomware development and extortion campaigns
+- [OpenClaw Agent Deletes Inbox](https://techcrunch.com/2026/02/23/a-meta-ai-security-researcher-said-an-openclaw-agent-ran-amok-on-her-inbox) - TechCrunch report on an AI agent that autonomously deleted an entire email inbox when given excessive permissions
+- [Anthropic Statement: Department of War](https://www.anthropic.com/news/statement-department-of-war) - Anthropic's public response to Pentagon pressure to remove safety restrictions as a condition of government contracts
