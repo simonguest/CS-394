@@ -1,0 +1,83 @@
+---
+title: "Final Project Kick-Off"
+format:
+  revealjs:
+    slide-number: true
+    incremental: true
+    center-title-slide: true
+    theme: [default, ../../theme/digipen.scss]
+    highlight-style: github
+    width: 1050
+    height: 700
+    margin: 0.15 
+logo: ../../theme/logos/DigiPen_RGB_Red.png
+---
+
+## Final Project
+
+- Welcome to the CS-394/594 Final Project! 
+- Agenda
+  - Timeline
+  - Final project goals
+  - Grading
+  - Lab time and presentations
+  - First step: Project Brief
+
+## Timeline
+
+- Today (20th): Final project kick-off!
+  - This lecture and finalizing what to work on
+- Four weeks (Mar 27th, Apr 3rd, 10th, 17th) of "lab/project time"
+- Final presentation (w/o Apr 20th, exact date/time TBD)
+
+## Final Project Goals
+
+- Demonstrate concepts learned during the semester
+- Potentially expand on these concepts and learn something new
+- Build something you have a strong interest in
+- Build something for your portfolio
+- Practice presenting your project in front of peers and faculty
+
+## Final Project Grading
+
+- Final Project: 60% of grade
+  - Integration of AI Models: 10%
+  - Functionality: 10%
+  - Innovation and Creativity: 10%
+  - Ethical Analysis: 10%
+  - Presentation: 20%
+
+## Final Project Grading
+
+- [Rubric for the final project (CS-394)](final-rubric-394.qmd){.external target="_blank"}
+- [Rubric for the final project (CS-594)](final-rubric-594.qmd){.external target="_blank"}
+
+## Lab Time
+
+- Same time and place (Curie, Fridays. 2pm - 4.50pm)
+- I'll be here to:
+  - Check-in
+  - Offer advice
+  - Help troubleshoot / remove blockers
+- Adhoc talks/whiteboarding on topics
+  - Apr 3rd: Presentation Skills (45 mins)
+
+## Final Presentation
+
+- Time and place still TBD (w/o Apr 20th)
+- Peers plus some CS faculty
+- Potentially a guest judge or two :)
+- Plan for 15 mins presentation + 5 mins Q&A
+- More details as we get nearer
+
+## First Step: Project Brief
+
+- What is this?
+  - 1/2 page document on what you plan to create
+  - Why? Avoid creating something too simple (that doesn't score well) or too difficult (that you can't complete in time)
+- Due by Next Week
+  - Non-graded assignment
+  - Send via Teams or Moodle
+  - I'll provide feedback on complexity, time estimate, links to other projects that might be useful
+
+# Questions?

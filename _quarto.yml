@@ -34,6 +34,8 @@ website:
             target: blank
           - text: "Rubric (Weekly Assignments)"
             href: src/00/weekly-rubric.qmd
+          - text: "Final Project Kick-Off"
+            href: src/00/final-project.qmd
           - text: "Rubric (Final Project for CS-394)"
             href: src/00/final-rubric-394.qmd
           - text: "Rubric (Final Project for CS-594)"
