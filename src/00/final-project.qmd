@@ -18,10 +18,10 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 - Welcome to the CS-394/594 Final Project! 
 - Agenda
   - Timeline
-  - Final project goals
+  - Goals
   - Grading
   - Lab time and presentations
-  - First step: Project Brief
+  - Next step: Project Brief
 
 ## Timeline
 
@@ -67,17 +67,17 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 - Time and place still TBD (w/o Apr 20th)
 - Peers plus some CS faculty
 - Potentially a guest judge or two :)
-- Plan for 15 mins presentation + 5 mins Q&A
+- Plan for 15 min presentation/demo + 5 min Q&A
 - More details as we get nearer
 
 ## First Step: Project Brief
 
 - What is this?
-  - 1/2 page document on what you plan to create
+  - A half-page document on what you plan to create
   - Why? Avoid creating something too simple (that doesn't score well) or too difficult (that you can't complete in time)
-- Due by Next Week
+- I'd recommend completing before next week
   - Non-graded assignment
-  - Send via Teams or Moodle
-  - I'll provide feedback on complexity, time estimate, links to other projects that might be useful
+  - Talk through in-class - or send via Teams
+  - I'll provide feedback on complexity, time estimate, and links to other projects that might be useful
 
 # Questions?
