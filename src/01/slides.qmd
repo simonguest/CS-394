@@ -383,7 +383,7 @@ Experiment with your own phrases in the translation-transformer.ipynb notebook
 - top_k (top k tokens)
   - Narrow the next tokens to the top k (ordered by probability)
 - top_p (cumulative probability)
-  - Only return the top tokens whose culumative probability < top_p
+  - Only return the top tokens whose cumulative probability < top_p
 
 ## Example
 
