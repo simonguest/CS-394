@@ -194,6 +194,9 @@ website:
           - text: "Slides"
             href: src/08/slides.qmd
             target: blank
+          - text: "Slides (MFA guest lecture)"
+            href: src/08/slides-MFA.qmd
+            target: blank
           - text: "Resources"
             href: src/08/resources.qmd
           - section: "Notebooks"
