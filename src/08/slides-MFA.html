@@ -165,7 +165,6 @@
 <li class="fragment">The training and use of AI models as it applies to:
 <ul>
 <li class="fragment">Bias and Fairness</li>
-<li class="fragment">Explainability</li>
 <li class="fragment">Manipulative Content</li>
 <li class="fragment">Labor and Socioeconomic</li>
 <li class="fragment">Environmental Concerns</li>
@@ -271,105 +270,6 @@
 </section>
 
 <section>
-<section id="explainability" class="title-slide slide level1 center">
-<h1>Explainability</h1>
-
-</section>
-<section id="explainability-1" class="slide level2">
-<h2>Explainability</h2>
-<ul>
-<li class="fragment">“Black box” AI models raise ethical concerns in high-stakes domains such as healthcare, criminal justice, and military</li>
-<li class="fragment">If/when things go wrong, it can be challenging to audit the output and/or reasoning from a model</li>
-<li class="fragment">The over-confidence of today’s LLMs can compound the issue</li>
-</ul>
-</section>
-<section id="examples-3" class="slide level2">
-<h2>Examples</h2>
-<ul>
-<li class="fragment"><a href="https://dl.acm.org/doi/10.1145/3759972.3760169" class="external" target="_blank">Healthcare</a>:
-<ul>
-<li class="fragment">In a survey of clinicians using LLM-based diagnostic tools, 68% were uncomfortable with the inability to follow traceable reasoning paths.</li>
-<li class="fragment">An essential requirement for legal accountability and shared decision-making with patients.</li>
-</ul></li>
-</ul>
-</section>
-<section id="examples-4" class="slide level2">
-<h2>Examples</h2>
-<ul>
-<li class="fragment"><a href="https://hai.stanford.edu/news/hallucinating-law-legal-mistakes-large-language-models-are-pervasive" class="external" target="_blank">Legal Briefs</a>:
-<ul>
-<li class="fragment">In 2023, a New York lawyer submitted a legal brief to a federal court that had been generated largely by ChatGPT.</li>
-<li class="fragment">The judge noted the brief was littered with “bogus judicial decisions, bogus quotes and bogus internal citations”</li>
-</ul></li>
-</ul>
-</section>
-<section id="examples-5" class="slide level2">
-<h2>Examples</h2>
-<ul>
-<li class="fragment"><a href="https://academic.oup.com/jla/article/16/1/235/7941565" class="external" target="_blank">Legal Decision Making</a>:
-<ul>
-<li class="fragment">In June 2024, the Shenzhen Intermediate Court in China unveiled an Intelligent Adjudication System</li>
-<li class="fragment">The first instance globally of a court methodically using an LLM to assist judges in deciding cases, covering family law, contracts, torts, and labor disputes</li>
-</ul></li>
-</ul>
-</section>
-<section id="how-can-we-mitigate-3" class="slide level2">
-<h2>How Can We Mitigate?</h2>
-<ul>
-<li class="fragment">Chain-of-Thought and Reasoning Models:
-<ul>
-<li class="fragment">Prompting or training LLMs to show their reasoning step-by-step before reaching a conclusion makes the logic auditable, even if the underlying mechanism remains opaque</li>
-<li class="fragment">A clinician can at least see “the model considered these symptoms, ruled out these conditions, and arrived at this recommendation” rather than just receiving an output</li>
-</ul></li>
-</ul>
-</section>
-<section id="how-can-we-mitigate-4" class="slide level2">
-<h2>How Can We Mitigate?</h2>
-<ul>
-<li class="fragment">Retrieval Augmented Generation (RAG):
-<ul>
-<li class="fragment">Ensure the model has access to actual clinical guidelines, case law, medical documents vs.&nbsp;retrieving that knowledge from model weights</li>
-<li class="fragment">This doesn’t make the model itself explainable, but it makes the sources traceable</li>
-</ul></li>
-</ul>
-</section>
-<section id="how-can-we-mitigate-5" class="slide level2">
-<h2>How Can We Mitigate?</h2>
-<ul>
-<li class="fragment">Human-in-the-Loop Requirements
-<ul>
-<li class="fragment">Regulatory and procedural frameworks that mandate human review before any LLM output becomes a decision</li>
-<li class="fragment">The <a href="https://artificialintelligenceact.eu/" class="external" target="_blank">EU AI Act</a> essentially requires this for high-risk domains</li>
-</ul></li>
-</ul>
-</section>
-<section id="how-can-we-mitigate-6" class="slide level2">
-<h2>How Can We Mitigate?</h2>
-<ul>
-<li class="fragment">Domain-Specific Fine-Tuning and Evaluation
-<ul>
-<li class="fragment">Rather than deploying general-purpose LLMs in clinical or legal settings, fine-tuning on domain-specific, high-quality data and then rigorously red-teaming against known failure cases</li>
-<li class="fragment">The Shenzhen court system is an example: they used a purpose-trained model rather than off-the-shelf ChatGPT.</li>
-</ul></li>
-</ul>
-</section>
-<section id="how-can-we-mitigate-7" class="slide level2">
-<h2>How Can We Mitigate?</h2>
-<ul>
-<li class="fragment">Confidence Calibration
-<ul>
-<li class="fragment">Another training/fine-tuning opportunity to train models to express uncertainty: e.g., “I’m not confident about this” vs.&nbsp;stating everything with conviction</li>
-<li class="fragment">An active research area, although current LLMs remain notoriously over-confident</li>
-</ul></li>
-</ul>
-</section></section>
-<section id="what-do-you-think-1" class="title-slide slide level1 center">
-<h1>What Do You Think?</h1>
-<p>Q: Should courts be allowed to use AI to assist in deciding cases?</p>
-<p>Q: Should explainability requirements be stricter in the healthcare domain? What tools would you use?</p>
-</section>
-
-<section>
 <section id="manipulative-content" class="title-slide slide level1 center">
 <h1>Manipulative Content</h1>
 
@@ -381,7 +281,7 @@
 <li class="fragment">Exploitation of psychological vulnerabilities for personal, financial, or political gain</li>
 </ul>
 </section>
-<section id="examples-6" class="slide level2">
+<section id="examples-3" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://kathierobertslaw.com/protecting-seniors-from-ai-voice-cloning-scams-what-every-family-needs-to-know/" class="external" target="_blank">Personal</a>:
@@ -398,7 +298,7 @@
 <h1>Demo</h1>
 <p>The Accuracy of Qwen3-TTS for Voice Cloning</p>
 </section>
-<section id="examples-7" class="slide level2">
+<section id="examples-4" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://www.theguardian.com/technology/article/2024/may/17/uk-engineering-arup-deepfake-scam-hong-kong-ai-video" class="external" target="_blank">Financial</a>:
@@ -408,7 +308,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="examples-8" class="slide level2">
+<section id="examples-5" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://publications.lawschool.cornell.edu/jlpp/2025/10/24/the-legal-gray-zone-of-deepfake-political-speech/" class="external" target="_blank">Political</a>:
@@ -418,7 +318,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="how-can-we-mitigate-8" class="slide level2">
+<section id="how-can-we-mitigate-3" class="slide level2">
 <h2>How Can We Mitigate?</h2>
 <ul>
 <li class="fragment">Individual level: The “family safe word” has emerged as the most widely recommended mitigation for voice cloning scams specifically
@@ -427,7 +327,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="how-can-we-mitigate-9" class="slide level2">
+<section id="how-can-we-mitigate-4" class="slide level2">
 <h2>How Can We Mitigate?</h2>
 <ul>
 <li class="fragment">Deepfake Detection Tech: An active area of research and development
@@ -437,7 +337,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="how-can-we-mitigate-10" class="slide level2">
+<section id="how-can-we-mitigate-5" class="slide level2">
 <h2>How Can We Mitigate?</h2>
 <ul>
 <li class="fragment">Cryptographic Watermarks: The Coalition for Content Provenance and Authenticity (C2PA) is developing open standards for embedding verifiable metadata into media at the point of creation (a cryptographic “certificate of authenticity” that travels with the file)
@@ -446,7 +346,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="how-can-we-mitigate-11" class="slide level2">
+<section id="how-can-we-mitigate-6" class="slide level2">
 <h2>How Can We Mitigate?</h2>
 <ul>
 <li class="fragment">Cryptographic Watermarks: In Aug 2026, Anthropic announced text watermarks using statistical patterns based on the probability of the next token.
@@ -456,7 +356,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="how-can-we-mitigate-12" class="slide level2">
+<section id="how-can-we-mitigate-7" class="slide level2">
 <h2>How Can We Mitigate?</h2>
 <ul>
 <li class="fragment">Regulatory: The US TAKE IT DOWN Act (signed May 2025) criminalizes non-consensual intimate deepfakes at the federal level
@@ -466,7 +366,7 @@
 </ul></li>
 </ul>
 </section></section>
-<section id="what-do-you-think-2" class="title-slide slide level1 center">
+<section id="what-do-you-think-1" class="title-slide slide level1 center">
 <h1>What Do You Think?</h1>
 <p>Q: Can technology alone ever solve this problem?</p>
 <p>Q: What obligation do platforms like YouTube and Meta have to label AI-generated political content?</p>
@@ -485,7 +385,7 @@
 <li class="fragment">Hidden labor behind AI (data labelers, content moderators)</li>
 </ul>
 </section>
-<section id="examples-9" class="slide level2">
+<section id="examples-6" class="slide level2">
 <h2>Examples</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -498,7 +398,7 @@
 </figure>
 </div>
 </section>
-<section id="examples-10" class="slide level2">
+<section id="examples-7" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://www.reuters.com/sustainability/sustainable-finance-reporting/hollywood-performers-union-condemns-ai-generated-actress-tilly-norwood-2025-10-01" class="external" target="_blank">Synthetic Performers</a>:
@@ -513,7 +413,7 @@
 <h1>Video</h1>
 <p><a href="https://www.youtube.com/watch?v=qdYBwCwCtis" class="external" target="_blank">https://www.youtube.com/watch?v=qdYBwCwCtis</a></p>
 </section>
-<section id="examples-11" class="slide level2">
+<section id="examples-8" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://econofact.org/factbrief/fact-check-has-ai-already-caused-some-job-displacement" class="external" target="_blank">Corporate Restructuring</a>:
@@ -524,7 +424,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="examples-12" class="slide level2">
+<section id="examples-9" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://www.brookings.edu/articles/reimagining-the-future-of-data-and-ai-labor-in-the-global-south/?utm_source=chatgpt.com" class="external" target="_blank">Hidden Labor</a>:
@@ -535,7 +435,7 @@
 </ul></li>
 </ul>
 </section></section>
-<section id="what-do-you-think-3" class="title-slide slide level1 center">
+<section id="what-do-you-think-2" class="title-slide slide level1 center">
 <h1>What Do You Think?</h1>
 <p>Q: Where is the line between AI as a creative tool versus a replacement for human workers?</p>
 <p>Q: Will AI job displacement follow the same pattern as past technological revolutions, or is this different?</p>
@@ -554,7 +454,7 @@
 <li class="fragment">Demand is accelerating faster than the grid’s ability to supply it from renewable sources</li>
 </ul>
 </section>
-<section id="examples-13" class="slide level2">
+<section id="examples-10" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://arxiv.org/abs/1906.02243" class="external" target="_blank">Training Energy Costs</a>:
@@ -565,7 +465,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="examples-14" class="slide level2">
+<section id="examples-11" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://www.theregister.com/2023/09/11/microsofts_ai_investments_skyrocketed_in/" class="external" target="_blank">Data Center Water Use</a>:
@@ -576,7 +476,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="examples-15" class="slide level2">
+<section id="examples-12" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai" class="external" target="_blank">Grid Pressure</a>:
@@ -587,7 +487,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="how-can-we-mitigate-13" class="slide level2">
+<section id="how-can-we-mitigate-8" class="slide level2">
 <h2>How Can We Mitigate?</h2>
 <ul>
 <li class="fragment">Efficient Architectures: Model distillation, quantization, and sparse architectures (e.g., Mixture of Experts) reduce compute and energy per inference
@@ -596,7 +496,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="how-can-we-mitigate-14" class="slide level2">
+<section id="how-can-we-mitigate-9" class="slide level2">
 <h2>How Can We Mitigate?</h2>
 <ul>
 <li class="fragment"><a href="https://arxiv.org/abs/2511.07885" class="external" target="_blank">Intelligence per Watt (Stanford/Google, 2025)</a>: Found that small local models can accurately answer 88.7% of real-world single-turn chat and reasoning queries
@@ -605,7 +505,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="how-can-we-mitigate-15" class="slide level2">
+<section id="how-can-we-mitigate-10" class="slide level2">
 <h2>How Can We Mitigate?</h2>
 <ul>
 <li class="fragment">Renewable Energy Sourcing: Locating data centers near renewable energy supplies or signing long-term Power Purchase Agreements (PPAs) with renewable providers
@@ -615,7 +515,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="how-can-we-mitigate-16" class="slide level2">
+<section id="how-can-we-mitigate-11" class="slide level2">
 <h2>How Can We Mitigate?</h2>
 <ul>
 <li class="fragment">Transparency and Reporting: Requiring standardized disclosure of training compute, energy use, and water consumption, analogous to financial reporting
@@ -624,7 +524,7 @@
 </ul></li>
 </ul>
 </section></section>
-<section id="what-do-you-think-4" class="title-slide slide level1 center">
+<section id="what-do-you-think-3" class="title-slide slide level1 center">
 <h1>What Do You Think?</h1>
 <p>Q: Is it ethical to train ever-larger models when the environmental cost is measurable and growing?</p>
 <p>Q: If AI can help solve climate change (e.g., optimize energy grids, accelerate materials science), does that offset its own footprint?</p>
@@ -658,7 +558,7 @@
 <li class="fragment">Does this also apply if AI models are trained on physical media (e.g., books)?</li>
 </ul>
 </section>
-<section id="examples-16" class="slide level2">
+<section id="examples-13" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://www.trails.umd.edu/news/what-will-the-eu-ai-act-mean-for-ed-tech-in-the-us-fg3sf" class="external" target="_blank">New York Times</a>:
@@ -669,7 +569,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="examples-17" class="slide level2">
+<section id="examples-14" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://katten.com/getty-images-v-stability-ai-intellectual-property-rights-in-the-age-of-generative-ai" class="external" target="_blank">Getty Images</a>:
@@ -680,7 +580,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="examples-18" class="slide level2">
+<section id="examples-15" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://en.wikipedia.org/wiki/Anthropic#Legal_issues" class="external" target="_blank">Anthropic</a>:
@@ -691,7 +591,7 @@
 </ul></li>
 </ul>
 </section>
-<section id="how-can-we-mitigate-17" class="slide level2">
+<section id="how-can-we-mitigate-12" class="slide level2">
 <h2>How Can We Mitigate?</h2>
 <ul>
 <li class="fragment">Robots.txt: Authors who publish online can add directives in their site’s robots.txt file to block known AI crawlers
@@ -703,7 +603,7 @@ Disallow: /</code></pre></li>
 </ul></li>
 </ul>
 </section>
-<section id="how-can-we-mitigate-18" class="slide level2">
+<section id="how-can-we-mitigate-13" class="slide level2">
 <h2>How Can We Mitigate?</h2>
 <ul>
 <li class="fragment">Technical Poisioning/Watermarking:
@@ -718,7 +618,7 @@ Disallow: /</code></pre></li>
 </ul></li>
 </ul>
 </section>
-<section id="how-can-we-mitigate-19" class="slide level2">
+<section id="how-can-we-mitigate-14" class="slide level2">
 <h2>How Can We Mitigate?</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -726,7 +626,7 @@ Disallow: /</code></pre></li>
 </figure>
 </div>
 </section>
-<section id="how-can-we-mitigate-20" class="slide level2">
+<section id="how-can-we-mitigate-15" class="slide level2">
 <h2>How Can We Mitigate?</h2>
 <ul>
 <li class="fragment">Legal Tools
@@ -737,7 +637,7 @@ Disallow: /</code></pre></li>
 </ul></li>
 </ul>
 </section>
-<section id="how-can-we-mitigate-21" class="slide level2">
+<section id="how-can-we-mitigate-16" class="slide level2">
 <h2>How Can We Mitigate?</h2>
 <ul>
 <li class="fragment">Other Proposed Directions
@@ -747,7 +647,7 @@ Disallow: /</code></pre></li>
 </ul></li>
 </ul>
 </section></section>
-<section id="what-do-you-think-5" class="title-slide slide level1 center">
+<section id="what-do-you-think-4" class="title-slide slide level1 center">
 <h1>What Do You Think?</h1>
 <p>Q: If reading a book and learning from it is legal for a human, should it also be legal for an AI model?</p>
 <p>Q: Should there be a compulsory licensing system for AI training data? How might this work?</p>
@@ -766,7 +666,7 @@ Disallow: /</code></pre></li>
 <li class="fragment">Can other organizations use models to train their own models?</li>
 </ul>
 </section>
-<section id="examples-19" class="slide level2">
+<section id="examples-16" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://www.pearlcohen.com/uks-first-court-decision-on-copyright-works-in-ai-models" class="external" target="_blank">Getty Images</a>:
@@ -777,7 +677,7 @@ Disallow: /</code></pre></li>
 </ul></li>
 </ul>
 </section>
-<section id="examples-20" class="slide level2">
+<section id="examples-17" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://www.rothwellfigg.com/publication-the-pros-and-cons-of-protecting-ai-as-trade-secrets" class="external" target="_blank">Rothwell Figg</a>:
@@ -789,7 +689,7 @@ Disallow: /</code></pre></li>
 </ul></li>
 </ul>
 </section>
-<section id="examples-21" class="slide level2">
+<section id="examples-18" class="slide level2">
 <h2>Examples</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -797,7 +697,7 @@ Disallow: /</code></pre></li>
 </figure>
 </div>
 </section>
-<section id="examples-22" class="slide level2">
+<section id="examples-19" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://www.anthropic.com/news/detecting-and-preventing-distillation-attacks" class="external" target="_blank">Anthropic</a>:
@@ -808,7 +708,7 @@ Disallow: /</code></pre></li>
 </ul></li>
 </ul>
 </section>
-<section id="examples-23" class="slide level2">
+<section id="examples-20" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment">Irony not lost on <a href="https://www.reddit.com/r/ClaudeCode/comments/1rcp658/anthropic_weve_identified_industrialscale" class="external" target="_blank">social networks</a>:
@@ -818,7 +718,7 @@ Disallow: /</code></pre></li>
 </ul></li>
 </ul>
 </section></section>
-<section id="what-do-you-think-6" class="title-slide slide level1 center">
+<section id="what-do-you-think-5" class="title-slide slide level1 center">
 <h1>What Do You Think?</h1>
 <p>Q: Is a model’s learned representation (weights) “creative enough” to deserve copyright protection?</p>
 <p>Q: Is there a double standard in Anthropic objecting to distillation while having trained on copyrighted content themselves?</p>
@@ -836,7 +736,7 @@ Disallow: /</code></pre></li>
 <li class="fragment">Who owns AI generated content? Vendor? Developer? You?</li>
 </ul>
 </section>
-<section id="examples-24" class="slide level2">
+<section id="examples-21" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://en.wikipedia.org/wiki/Zarya_of_the_Dawn" class="external" target="_blank">Zarya of the Dawn</a>:
@@ -847,7 +747,7 @@ Disallow: /</code></pre></li>
 </ul></li>
 </ul>
 </section>
-<section id="examples-25" class="slide level2">
+<section id="examples-22" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://en.wikipedia.org/wiki/Th%C3%A9%C3%A2tre_D%27op%C3%A9ra_Spatial" class="external" target="_blank">Jason Allen</a>:
@@ -856,7 +756,7 @@ Disallow: /</code></pre></li>
 </ul></li>
 </ul>
 </section>
-<section id="examples-26" class="slide level2">
+<section id="examples-23" class="slide level2">
 <h2>Examples</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -864,7 +764,7 @@ Disallow: /</code></pre></li>
 </figure>
 </div>
 </section>
-<section id="examples-27" class="slide level2">
+<section id="examples-24" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment">Produced through iterative prompting (624 prompts) using Midjourney, followed by editing in Photoshop and upscaling in Gigapixel AI</li>
@@ -872,7 +772,7 @@ Disallow: /</code></pre></li>
 <li class="fragment">(In 2022, Allen applied for copyright registration of the image with US Copyright Office, which was later denied after appeal)</li>
 </ul>
 </section>
-<section id="examples-28" class="slide level2">
+<section id="examples-25" class="slide level2">
 <h2>Examples</h2>
 <ul>
 <li class="fragment"><a href="https://www.copyright.gov/ai/ai_policy_guidance.pdf" class="external" target="_blank">US Copyright Office AI Policy Guidance</a>:
@@ -886,7 +786,7 @@ Disallow: /</code></pre></li>
 </ul></li>
 </ul>
 </section></section>
-<section id="what-do-you-think-7" class="title-slide slide level1 center">
+<section id="what-do-you-think-6" class="title-slide slide level1 center">
 <h1>What Do You Think?</h1>
 <p>Q: Do you think the Copyright Office’s detailed guidance is correct? If AI output isn’t copyrightable, is it effectively public domain?</p>
 <p>Q: Should Jason Allen’s image have won first place? Can AI-generated art be used to enter competitions?</p>
@@ -903,7 +803,6 @@ Disallow: /</code></pre></li>
 <li class="fragment">The training and use of AI models as it applies to:
 <ul>
 <li class="fragment">Bias and Fairness</li>
-<li class="fragment">Explainability</li>
 <li class="fragment">Manipulative Content</li>
 <li class="fragment">Labor and Socioeconomic</li>
 <li class="fragment">Environmental Concerns</li>
