@@ -33,7 +33,6 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 
 - The training and use of AI models as it applies to:
   - Bias and Fairness
-  - Explainability
   - Manipulative Content
   - Labor and Socioeconomic
   - Environmental Concerns
@@ -96,68 +95,6 @@ logo: ../../theme/logos/DigiPen_RGB_Red.png
 Q: If an AI system is more accurate overall but biased against certain groups, should it still be used?
 
 Q: Can "fairness" ever be universally defined, or is it always subjective?
-
-# Explainability
-
-## Explainability
-
-- “Black box” AI models raise ethical concerns in high-stakes domains such as healthcare, criminal justice, and military
-- If/when things go wrong, it can be challenging to audit the output and/or reasoning from a model
-- The over-confidence of today's LLMs can compound the issue
-
-## Examples
-
-- [Healthcare](https://dl.acm.org/doi/10.1145/3759972.3760169){.external target="_blank"}: 
-  - In a survey of clinicians using LLM-based diagnostic tools, 68% were uncomfortable with the inability to follow traceable reasoning paths.
-  - An essential requirement for legal accountability and shared decision-making with patients.
-
-## Examples
-
-- [Legal Briefs](https://hai.stanford.edu/news/hallucinating-law-legal-mistakes-large-language-models-are-pervasive){.external target="_blank"}:
-  - In 2023, a New York lawyer submitted a legal brief to a federal court that had been generated largely by ChatGPT. 
-  - The judge noted the brief was littered with "bogus judicial decisions, bogus quotes and bogus internal citations"
-
-## Examples
-
-- [Legal Decision Making](https://academic.oup.com/jla/article/16/1/235/7941565){.external target="_blank"}: 
-  - In June 2024, the Shenzhen Intermediate Court in China unveiled an Intelligent Adjudication System
-  - The first instance globally of a court methodically using an LLM to assist judges in deciding cases, covering family law, contracts, torts, and labor disputes
-
-## How Can We Mitigate?
-
-- Chain-of-Thought and Reasoning Models:
-  - Prompting or training LLMs to show their reasoning step-by-step before reaching a conclusion makes the logic auditable, even if the underlying mechanism remains opaque 
-  - A clinician can at least see "the model considered these symptoms, ruled out these conditions, and arrived at this recommendation" rather than just receiving an output
-
-## How Can We Mitigate?
-
-- Retrieval Augmented Generation (RAG):
-  - Ensure the model has access to actual clinical guidelines, case law, medical documents vs. retrieving that knowledge from model weights
-  - This doesn't make the model itself explainable, but it makes the sources traceable
-
-## How Can We Mitigate?
-
-- Human-in-the-Loop Requirements
-  - Regulatory and procedural frameworks that mandate human review before any LLM output becomes a decision
-  - The [EU AI Act](https://artificialintelligenceact.eu/){.external target="_blank"} essentially requires this for high-risk domains
-
-## How Can We Mitigate?
-
-- Domain-Specific Fine-Tuning and Evaluation
-  - Rather than deploying general-purpose LLMs in clinical or legal settings, fine-tuning on domain-specific, high-quality data and then rigorously red-teaming against known failure cases
-  - The Shenzhen court system is an example: they used a purpose-trained model rather than off-the-shelf ChatGPT.
-
-## How Can We Mitigate?
-
-- Confidence Calibration
-  - Another training/fine-tuning opportunity to train models to express uncertainty: e.g., "I'm not confident about this" vs. stating everything with conviction
-  - An active research area, although current LLMs remain notoriously over-confident
-
-# What Do You Think?
-
-Q: Should courts be allowed to use AI to assist in deciding cases?
-
-Q: Should explainability requirements be stricter in the healthcare domain? What tools would you use?
 
 # Manipulative Content
 
@@ -496,7 +433,6 @@ Q: Should Jason Allen's image have won first place? Can AI-generated art be used
 
 - The training and use of AI models as it applies to:
   - Bias and Fairness
-  - Explainability
   - Manipulative Content
   - Labor and Socioeconomic
   - Environmental Concerns
