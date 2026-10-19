@@ -22,5 +22,6 @@
     "subsampling",
     "subword",
     "vaswani"
-  ]
+  ],
+  "csharp.suppressDotnetInstallWarning": true
 }
