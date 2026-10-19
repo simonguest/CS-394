@@ -27,181 +27,181 @@ website:
       - section: "**Welcome**"
         contents:
           - text: "Slides"
-            href: src/00/slides.qmd
+            href: modules/00/slides.qmd
             target: blank
           - text: "Syllabus"
             href: https://digipen824-my.sharepoint.com/:w:/g/personal/simon_guest_digipen_edu/IQDAYiVI08LMTaiWEhdq_j20AcJ8XmaTkdu4fQHdBJh86yQ?e=Cw9CTh
             target: blank
           - text: "Rubric (Weekly Assignments)"
-            href: src/00/weekly-rubric.qmd
+            href: modules/00/weekly-rubric.qmd
           - text: "Final Project Kick-Off"
-            href: src/00/final-project.qmd
+            href: modules/00/final-project.qmd
           - text: "Rubric (Final Project for CS-394)"
-            href: src/00/final-rubric-394.qmd
+            href: modules/00/final-rubric-394.qmd
           - text: "Rubric (Final Project for CS-594)"
-            href: src/00/final-rubric-594.qmd
+            href: modules/00/final-rubric-594.qmd
           - text: "Glossary of Terms"
-            href: src/00/glossary.qmd
+            href: modules/00/glossary.qmd
       - section: "**Module 1:** Foundations of Generative AI"
         contents:
           - text: "Slides"
-            href: src/01/slides.qmd
+            href: modules/01/slides.qmd
             target: blank
           - text: "Resources"
-            href: src/01/resources.qmd
+            href: modules/01/resources.qmd
           - section: "Notebooks"
             contents:
               - text: "hello-world.ipynb"
-                href: src/01/notebooks/hello-world.ipynb
+                href: modules/01/notebooks/hello-world.ipynb
               - text: "word2vec.ipynb"
-                href: src/01/notebooks/word2vec.ipynb
+                href: modules/01/notebooks/word2vec.ipynb
               - text: "translation-transformer.ipynb"
-                href: src/01/notebooks/translation-transformer.ipynb
+                href: modules/01/notebooks/translation-transformer.ipynb
               - text: "GPT-2.ipynb"
-                href: src/01/notebooks/GPT-2.ipynb
+                href: modules/01/notebooks/GPT-2.ipynb
           - text: "Assignment"
-            href: src/01/assignment.qmd
+            href: modules/01/assignment.qmd
       - section: "**Module 2:** Exploring Hosted LLMs"
         contents:
           - text: "Slides"
-            href: src/02/slides.qmd
+            href: modules/02/slides.qmd
             target: blank
           - text: "Resources"
-            href: src/02/resources.qmd
+            href: modules/02/resources.qmd
           - section: "Notebooks"
             contents:
               - text: "instruction-tuned.ipynb"
-                href: src/02/notebooks/instruction-tuned.ipynb
+                href: modules/02/notebooks/instruction-tuned.ipynb
               - text: "chat-completion-openai.ipynb"
-                href: src/02/notebooks/chat-completion-openai.ipynb
+                href: modules/02/notebooks/chat-completion-openai.ipynb
               - text: "chat-completion-openrouter.ipynb"
-                href: src/02/notebooks/chat-completion-openrouter.ipynb
+                href: modules/02/notebooks/chat-completion-openrouter.ipynb
               - text: "token-streaming.ipynb"
-                href: src/02/notebooks/token-streaming.ipynb
+                href: modules/02/notebooks/token-streaming.ipynb
               - text: "structured-outputs.ipynb"
-                href: src/02/notebooks/structured-outputs.ipynb
+                href: modules/02/notebooks/structured-outputs.ipynb
               - text: "gradio.ipynb"
-                href: src/02/notebooks/gradio.ipynb
+                href: modules/02/notebooks/gradio.ipynb
           - text: "Assignment"
-            href: src/02/assignment.qmd
+            href: modules/02/assignment.qmd
       - section: "**Module 3:** Agents and Tools"
         contents:
           - text: "Slides"
-            href: src/03/slides.qmd
+            href: modules/03/slides.qmd
             target: blank
           - text: "Resources"
-            href: src/03/resources.qmd
+            href: modules/03/resources.qmd
           - section: "Notebooks"
             contents:
               - text: "campus-agent.ipynb"
-                href: src/03/notebooks/campus-agent.ipynb
+                href: modules/03/notebooks/campus-agent.ipynb
               - text: "memory.ipynb"
-                href: src/03/notebooks/memory.ipynb
+                href: modules/03/notebooks/memory.ipynb
               - text: "open-meteo-mcp.ipynb"
-                href: src/03/notebooks/open-meteo-mcp.ipynb
+                href: modules/03/notebooks/open-meteo-mcp.ipynb
           - text: "Assignment"
-            href: src/03/assignment.qmd
+            href: modules/03/assignment.qmd
       - section: "**Module 4:** Multimedia and Multimodal Models"
         contents:
           - text: "Slides"
-            href: src/04/slides.qmd
+            href: modules/04/slides.qmd
             target: blank
           - text: "Resources"
-            href: src/04/resources.qmd
+            href: modules/04/resources.qmd
           - section: "Notebooks"
             contents:
               - text: "text-to-image-sd-1.5.ipynb"
-                href: src/04/notebooks/text-to-image-sd-1.5.ipynb
+                href: modules/04/notebooks/text-to-image-sd-1.5.ipynb
               - text: "image-to-image-sd-1.5.ipynb"
-                href: src/04/notebooks/image-to-image-sd-1.5.ipynb
+                href: modules/04/notebooks/image-to-image-sd-1.5.ipynb
               - text: "text-to-image-replicate.ipynb"
-                href: src/04/notebooks/text-to-image-replicate.ipynb
+                href: modules/04/notebooks/text-to-image-replicate.ipynb
               - text: "generate-depth-map.ipynb"
-                href: src/04/notebooks/generate-depth-map.ipynb
+                href: modules/04/notebooks/generate-depth-map.ipynb
               - text: "depth-map-as-context.ipynb"
-                href: src/04/notebooks/depth-map-as-context.ipynb
+                href: modules/04/notebooks/depth-map-as-context.ipynb
               - text: "inpainting.ipynb"
-                href: src/04/notebooks/inpainting.ipynb
+                href: modules/04/notebooks/inpainting.ipynb
               - text: "outpainting.ipynb"
-                href: src/04/notebooks/outpainting.ipynb
+                href: modules/04/notebooks/outpainting.ipynb
               - text: "controlnet-openpose-sd-1.5.ipynb"
-                href: src/04/notebooks/controlnet-openpose-sd-1.5.ipynb
+                href: modules/04/notebooks/controlnet-openpose-sd-1.5.ipynb
               - text: "pbr-creator.ipynb"
-                href: src/04/notebooks/pbr-creator.ipynb
+                href: modules/04/notebooks/pbr-creator.ipynb
               - text: "vlm-gemma-3-4b.ipynb"
-                href: src/04/notebooks/vlm-gemma-3-4b.ipynb
+                href: modules/04/notebooks/vlm-gemma-3-4b.ipynb
           - text: "Assignment"
-            href: src/04/assignment.qmd
+            href: modules/04/assignment.qmd
       - section: "**Module 5:** Running Models on Local Hardware"
         contents:
           - text: "Slides"
-            href: src/05/slides.qmd
+            href: modules/05/slides.qmd
             target: blank
           - text: "Resources"
-            href: src/05/resources.qmd
+            href: modules/05/resources.qmd
           - section: "Notebooks"
             contents:
               - text: "moe-heatmap.ipynb"
-                href: src/05/notebooks/moe-heatmap.ipynb
+                href: modules/05/notebooks/moe-heatmap.ipynb
               - text: "local-webserver.ipynb"
-                href: src/05/notebooks/local-webserver.ipynb
+                href: modules/05/notebooks/local-webserver.ipynb
               - text: "quantization.ipynb"
-                href: src/05/notebooks/quantization.ipynb
+                href: modules/05/notebooks/quantization.ipynb
               - text: "python-binding.ipynb"
-                href: src/05/notebooks/python-binding.ipynb
+                href: modules/05/notebooks/python-binding.ipynb
           - text: "Assignment"
-            href: src/05/assignment.qmd
+            href: modules/05/assignment.qmd
       - section: "**Module 6:** Increasing Model Accuracy (Part 1)"
         contents:
           - text: "Slides"
-            href: src/06/slides.qmd
+            href: modules/06/slides.qmd
             target: blank
           - text: "Resources"
-            href: src/06/resources.qmd
+            href: modules/06/resources.qmd
           - section: "Notebooks"
             contents:
               - text: "hallucinations.ipynb"
-                href: src/06/notebooks/hallucinations.ipynb
+                href: modules/06/notebooks/hallucinations.ipynb
               - text: "thinking.ipynb"
-                href: src/06/notebooks/thinking.ipynb
+                href: modules/06/notebooks/thinking.ipynb
               - text: "text-to-sql.ipynb"
-                href: src/06/notebooks/text-to-sql.ipynb
+                href: modules/06/notebooks/text-to-sql.ipynb
               - text: "rag.ipynb"
-                href: src/06/notebooks/rag.ipynb
+                href: modules/06/notebooks/rag.ipynb
               - text: "generate-synthetic.ipynb"
-                href: src/06/notebooks/generate-synthetic.ipynb
+                href: modules/06/notebooks/generate-synthetic.ipynb
           - text: "Assignment"
-            href: src/06/assignment.qmd
+            href: modules/06/assignment.qmd
       - section: "**Module 7:** Increasing Model Accuracy (Part 2)"
         contents:
           - text: "Slides"
-            href: src/07/slides.qmd
+            href: modules/07/slides.qmd
             target: blank
           - text: "Resources"
-            href: src/07/resources.qmd
+            href: modules/07/resources.qmd
           - section: "Notebooks"
             contents:
             - text: "create-dataset.ipynb"
-              href: src/07/notebooks/create-dataset.ipynb
+              href: modules/07/notebooks/create-dataset.ipynb
             - text: "train-cuda.ipynb"
-              href: src/07/notebooks/train-cuda.ipynb
+              href: modules/07/notebooks/train-cuda.ipynb
             - text: "quantize.ipynb"
-              href: src/07/notebooks/quantize.ipynb
+              href: modules/07/notebooks/quantize.ipynb
           - text: "Assignment"
-            href: src/07/assignment.qmd
+            href: modules/07/assignment.qmd
       - section: "**Module 8:** Ethics, IP, and Safety"
         contents:
           - text: "Slides"
-            href: src/08/slides.qmd
+            href: modules/08/slides.qmd
             target: blank
           - text: "Slides (MFA guest lecture)"
-            href: src/08/slides-MFA.qmd
+            href: modules/08/slides-MFA.qmd
             target: blank
           - text: "Resources"
-            href: src/08/resources.qmd
+            href: modules/08/resources.qmd
           - section: "Notebooks"
             contents:
               - text: "qwen3-tts-voice-clone.ipynb"
-                href: src/08/notebooks/qwen3-tts-voice-clone.ipynb
+                href: modules/08/notebooks/qwen3-tts-voice-clone.ipynb
           - text: "Assignment"
-            href: src/08/assignment.qmd
+            href: modules/08/assignment.qmd
