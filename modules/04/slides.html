@@ -6,8 +6,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.26">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-5c1318cf63eba56dbef7ba16bc7d56f5.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
 
   <title>CS-394 – Module 4: Multimedia and Multimodal Models</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -16,10 +16,16 @@
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -97,7 +103,6 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
-      margin-bottom: 0em;
     }
     .hanging-indent div.csl-entry {
       margin-left:2em;
@@ -114,7 +119,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-eeafb82a00776dbd0312b01cd21cfa25.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-c0f83db45831a6b0d0e18a94327038c6.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -412,18 +417,18 @@
 <h2>Text-to-Image with SD 1.5</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/04/notebooks/text-to-image-sd-1.5.ipynb" data-notebook-title="Text-to-Image using Stable Diffusion 1.5" data-notebook-cellid="load-model">
 <div id="load-model" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:704,&quot;referenced_widgets&quot;:[&quot;6a6e4539180343119f27baf41cfb6ce3&quot;,&quot;d3dda5fbb32c4930a85148ed43086e09&quot;,&quot;2d9f47f108124a46a21119c3c23d4882&quot;,&quot;425b2a085a5c47ee8bb8f6cf1d3e102b&quot;,&quot;b1e2419536774c92a73d6d96460e1e66&quot;,&quot;1f5c1eb431a941c9806737cc14f6781b&quot;,&quot;f644cb048e414dbc96407ada75d7cf9f&quot;,&quot;4a914c9fdb59498f9f6a5244771fb6ee&quot;,&quot;24e791938be547f38cb613438f2960ec&quot;,&quot;56a094c1e5474bdfa6f5bb62ac79200f&quot;,&quot;fa4e6b3deb9f40e088748ffa578008f5&quot;,&quot;50f05b48fb5c44f099f50397993d73c1&quot;,&quot;0ca1fb71b7fa4d34801f8b7e57d3b754&quot;,&quot;5a2ed13d725a4787997c557ad24c35c2&quot;,&quot;73e41ea12a1b42d9a05c507c6d8b39f3&quot;,&quot;1e6d1d21b5804070bbfb13374d5aaf74&quot;,&quot;dc6f6f161c8940d897c4e59e8c17387f&quot;,&quot;093baf3319534e9f88e33db901ce3620&quot;,&quot;6ba6781b4bf74d25b1e61d81cdcf4c74&quot;,&quot;a7dd1f1183be4a5aa8265bf56834b484&quot;,&quot;b1600503e3034d8888a7d28009d260a8&quot;,&quot;1a5cde824d1b4934b2931956aa5a9a98&quot;,&quot;5a3265a897844e3d9058e78105746cf6&quot;,&quot;965ad8614ec74b8aa5fb9c0096575f06&quot;,&quot;88a71acf15b94f979f77296e7410e574&quot;,&quot;0f334c0fac644f22bbc56437704a0037&quot;,&quot;247c647f64f54d8fa25a757b3043d9cf&quot;,&quot;9777a0166eaf43aab20893b36e754617&quot;,&quot;0ec09341266a441dadfa54b8264e2cdf&quot;,&quot;ef78e956bf2e4b52affdd102c94a744c&quot;,&quot;cff0ca23d886498d8c164365359bf2ac&quot;,&quot;8af9b903d42c465f9cc7b92b9e5fff5b&quot;,&quot;8fb3c0de10124fd6bbbb5f7be31b2de7&quot;,&quot;c9c208e5534f49f0b292e95c08eb34b5&quot;,&quot;c01101010de84782b692186434797533&quot;,&quot;2ee3ed7c07b34a17bb92da3617f34002&quot;,&quot;f4455eb4e4474400b3be05163e2117c4&quot;,&quot;a91fa258668147348a492eb49c4eb21f&quot;,&quot;959e11c1068f4ff0b58a285518690b18&quot;,&quot;b7f5f635623d4ebe932ba24bee4a41dc&quot;,&quot;af8d70e3d8d34da196fb767ec0f3c994&quot;,&quot;9172866563ce46b5b5b90de353bc54a1&quot;,&quot;39eed96f2c8a488482e8b29cdd27fa3f&quot;,&quot;130ed0f0ceaa46209a16e1852951bd7f&quot;,&quot;87b2ba02c8ce47df82fe38261645f8b5&quot;,&quot;2ff08cc2866d48b4b9ec9d04afc78dbf&quot;,&quot;de1f5fa929ff407bad01dbb6195b44b7&quot;,&quot;6722e1a9c3a54a8595c2b97ef20f05e6&quot;,&quot;da2e289b0e3a4056a91575c1863c1482&quot;,&quot;6a5c20d23b294e3caf5e6a4505b42d52&quot;,&quot;3791e7acbfd445e39f66b330894e7c2a&quot;,&quot;3dfb7fe59f374602910175117c972d1e&quot;,&quot;351be0b1b8674439bccac206862a733b&quot;,&quot;c7dda0e1a03c45ccb057834d47cebd0a&quot;,&quot;0690f77f39b944e0b844da7f2ad2a957&quot;,&quot;25a61b1fed2344218149fadb20cf1b65&quot;,&quot;a85874aaf3aa424aa64fe17f76175d67&quot;,&quot;a3767aa39a094260a461ab8a6c5f93ab&quot;,&quot;823dd20991784750a2cdfc008a7cbedc&quot;,&quot;765d57df30a74f3bbb83603cabda774b&quot;,&quot;8c64d1f3e6ed4405b5fecd5676a4f384&quot;,&quot;b36c137aed454065bc41768bf0999641&quot;,&quot;e80d2059ff8b40dc878ad2fcb5e6375b&quot;,&quot;529e953c401b4e94b2c3fd4f5de9d558&quot;,&quot;7e9c6f758a854feb99bbcdf9821c1caa&quot;,&quot;0becee6f59b645f0ac9615b53b735ee3&quot;,&quot;b167e78172e344f8bcfe89b17a252d8e&quot;,&quot;101270501e7e410e96c31da986c805c3&quot;,&quot;da722f5e4c1c4b759a7dbe9ce10c7dde&quot;,&quot;3fa679b964d548bd96d96277b9d06e64&quot;,&quot;8c293b8b43dc48cf93b3449a63320a81&quot;,&quot;98e6acc37a9740a1824ec52e17614813&quot;,&quot;c6f2c008d65b4a23980b69669accb485&quot;,&quot;9a6f80a8ea5248b2933d78205b252b36&quot;,&quot;365c09d742c04bccb9f6eb9669731a81&quot;,&quot;a780d02ac43a485aa3ec2081990688a1&quot;,&quot;2dd598e4a3064101a1e35072eb44f126&quot;,&quot;e497adf9e9954bf7b1bf1b041af46732&quot;,&quot;737e346ba3de45868defd94ba33694a6&quot;,&quot;e1d3f81330d24393bcd1901bb9bb9353&quot;,&quot;e6f3d0174dc04464b52653e539a78150&quot;,&quot;ba937f390a37427b9ed0cb6c330a8f33&quot;,&quot;291f766042f3424d8157be7d2c89d265&quot;,&quot;8ee03fdd3bc94e3b9ee0ca33a04a1d78&quot;,&quot;f7d5f86f7b3b40168bdbd5c3106cde15&quot;,&quot;2d594927021648559daf946e84264650&quot;,&quot;22d1895e3b68476f8dd1637fc8fc17e6&quot;,&quot;a2d757f83fc4476fb8b6e7fa9925ce60&quot;,&quot;f85ae4df068a4930a04ad12e1cf755dd&quot;,&quot;ea09d58f0a3b494980415d1d2878086a&quot;,&quot;ceec13316752479fa9c9475539f15160&quot;,&quot;443bfb1eda4e4b228a818c162069eb0c&quot;,&quot;c25153e473294e4abe1a12883a1d259c&quot;,&quot;a55720aec6ab40cea72370f4ff16b993&quot;,&quot;e83869149cee4e918ca417da8e1b55f8&quot;,&quot;a54484cbc7d047049ac8df868f0f49ee&quot;,&quot;66949aad545047428ba59ddd8f140bb4&quot;,&quot;05929c91f7ff4486a87b095d24480334&quot;,&quot;1f4685dd64e84e7ab244be2b25ce79e5&quot;,&quot;8966c6cf5e6f43928082f3d097be769f&quot;,&quot;b77b7dce80f3487a9260cd025c47d956&quot;,&quot;6840b54b73c04871a4dfab3701d93017&quot;,&quot;ef93577232fa49db9737af1c77feee5b&quot;,&quot;56f89368fcd046dfbd977b51ffe1dec3&quot;,&quot;550c44211c2847adb4b55c4f775886b2&quot;,&quot;4f0aa7be1d08477b9a2999d86f8b0e23&quot;,&quot;9bc5746b65c144098b7f27129766ab98&quot;,&quot;72e59640be5c4d3384f42c7a8dd89779&quot;,&quot;668833a6e902492aaab4562bd666f176&quot;,&quot;d9225e1d3ef94bd2bf868d59fa04338b&quot;,&quot;bddb58f605b946cc847bbbaa6c550ced&quot;,&quot;68c813b164ea4141a2ef7aaf56e23af3&quot;,&quot;8e1c2f4af3c847128aa7ba8d35f07ddc&quot;,&quot;f2ae5ca3880948e3b5f2b2d1459eae54&quot;,&quot;5950e404ac8b4f6aa54ebf8186a97fcb&quot;,&quot;5cd1996ac6024761958e853b826a6771&quot;,&quot;f8add8bdb401476f9a108b1b410e11b0&quot;,&quot;07d5900298974cb28ac7e8df75a70311&quot;,&quot;6deba887540d42559080e3d4a77fe540&quot;,&quot;ff841401828247b38a452e48f62c76ce&quot;,&quot;0dc30621e09944a4a43fbcc34aeeb9f7&quot;,&quot;dd3344bf6a0146e4bfc8abaf6b2a5caa&quot;,&quot;8435896e0a2e4f209b69191cc8d1ae65&quot;,&quot;29abcb32ee5546458d262b631b51e1c2&quot;,&quot;a10fd205ac85402a9c672a135394d792&quot;,&quot;bca87d88458f4ec7bd0dae9fecd181f8&quot;,&quot;83d1029ad7b04b3dab0c42754631c615&quot;,&quot;0f5b92e52a404a898f6aedcbe8fcab11&quot;,&quot;7116d359572d471c851f5d477437e9aa&quot;,&quot;425bd2ba9edc43409a8df5f3f8954b99&quot;,&quot;6d7a094154a946cf902033866b9a73c6&quot;,&quot;9905fe5e26bf4d909cd89f42ef216382&quot;,&quot;24cd050ae41f4cd6b84e522f249ce253&quot;,&quot;28008a40f6bc475d8ca8399ade1b358e&quot;,&quot;9d30e7ac7b8844ea82567e05b44dd3e2&quot;,&quot;daa35d0978154c03b926d0abbf23ee5e&quot;,&quot;61a7f81e34b24a5c93a0bd5959358ae9&quot;,&quot;f14667ff96424ef6b9a0c400172c3ecf&quot;,&quot;b9327c85b7d3414594b590fe2d490340&quot;,&quot;17e1e39276e547bcb727a88d9c650f19&quot;,&quot;c61c0330442345f2ab3dbbc3bc88a45a&quot;,&quot;0e57aa03cd81436683d049b1b52a1454&quot;,&quot;82ba207a9ecb41f78d02aa676dcfc11d&quot;,&quot;5d427a0b0e004f4b8674e0d296141b14&quot;,&quot;4151d2399a2e4e4c94557d9a0e761b55&quot;,&quot;ce94113e99824b509bc40db44ade2024&quot;,&quot;5cf3707226d849bdaaa78432815c5cda&quot;,&quot;22faa37c9b2d4f9bbe988087a4adeaf7&quot;,&quot;c2b5799b36bf473fb67177851c5e2fcc&quot;,&quot;081c46450f41478395323baf0baba4f3&quot;,&quot;c2c40e56b5bf458b80ff8cb603f8026e&quot;,&quot;0904b46d95ba4e529b0377819a877618&quot;,&quot;085082ebc5434a37a4e07259d6d207a2&quot;,&quot;2a117e6d992a4b78a0fe187a3948ec74&quot;,&quot;18c5df9e514f4ffa8cf167aa290d00c6&quot;,&quot;9f71ae8524c44cda832c199882d3b5c8&quot;,&quot;2924f7a015f0420aa99b2aac0920bb5b&quot;,&quot;7f2976314b5f42798b3add26b8938eff&quot;,&quot;5cbd62ed419e4207b677af86960a8a03&quot;,&quot;bed359cb0c6d4b5da15eddd85952499f&quot;,&quot;18384c9cb8994fbdbdfbf117d6876e58&quot;,&quot;38b0c47cc0ce41338b5efe0bf3a908cd&quot;,&quot;31e059f34ad44b5cacec044506c9ea09&quot;,&quot;63c2791bbe274b289d1daf943d80d01b&quot;,&quot;5f5bd8d2c6df40afb6d904f29e814397&quot;,&quot;01fa4ed1115342a2a99018ad0fea4faf&quot;,&quot;b348835ba86640a89539ff214cd4e216&quot;,&quot;555ee4f7621543709c1fb98fb4323bea&quot;,&quot;513c12ce601c4c869783342b048f53fd&quot;,&quot;96a2ebaef3444f4d8178eae6efe8f388&quot;,&quot;17fe6dc03a0247cbb7dfbe1c2a9e4573&quot;,&quot;c2de9ca0d5534ecca7662bc0b03daa7d&quot;,&quot;b99a5c53d5024099999746560f6c6f23&quot;,&quot;12ef08f721354508a7e1d854dc8db703&quot;,&quot;3d6e773ecea044c2aa4412788651b8e0&quot;,&quot;bf1201e97ffa4dac80e6d78e5386a3fa&quot;,&quot;500f361fdda940ec925766ada97820fb&quot;,&quot;c79d7a42a4d344e380960ddcb834743c&quot;,&quot;c0250d26977f47d89cce56bde18c5f8e&quot;,&quot;6cb2a00b7f0546b2839f230731571475&quot;,&quot;de3d3adfb0a746a49b0f07db954c32a9&quot;,&quot;f6736c5bdf4d47969c80808df0d9d3f3&quot;,&quot;eeaf9efc90194ef0a0b873025f0d0b7a&quot;,&quot;ee58b578e5234652b9891f56cac70222&quot;,&quot;dd420d4d85734969ad27fad7cef8dd6d&quot;,&quot;8e854a92c3b945948dffdb8e0e4f34d6&quot;,&quot;6e61552bc2d84f66b4e4b31ebbdd7ac6&quot;]}}" data-outputid="c990ac0b-aaef-4e18-d82b-8963ce6f9e5b" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> torch</span>
-<span id="cb1-2"><a></a><span class="im">from</span> diffusers <span class="im">import</span> StableDiffusionPipeline</span>
-<span id="cb1-3"><a></a></span>
-<span id="cb1-4"><a></a><span class="co"># Load a small diffusion model</span></span>
-<span id="cb1-5"><a></a>model_id <span class="op">=</span> <span class="st">"stable-diffusion-v1-5/stable-diffusion-v1-5"</span></span>
-<span id="cb1-6"><a></a>pipe <span class="op">=</span> StableDiffusionPipeline.from_pretrained(</span>
-<span id="cb1-7"><a></a>    model_id,</span>
-<span id="cb1-8"><a></a>)</span>
-<span id="cb1-9"><a></a></span>
-<span id="cb1-10"><a></a><span class="co"># Move to GPU if available</span></span>
-<span id="cb1-11"><a></a>device <span class="op">=</span> <span class="st">"cuda"</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="st">"cpu"</span></span>
-<span id="cb1-12"><a></a>pipe <span class="op">=</span> pipe.to(device)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a aria-label="1"></a><span class="im">import</span> torch</span>
+<span id="cb1-2"><a aria-label="2"></a><span class="im">from</span> diffusers <span class="im">import</span> StableDiffusionPipeline</span>
+<span id="cb1-3"><a aria-label="3"></a></span>
+<span id="cb1-4"><a aria-label="4"></a><span class="co"># Load a small diffusion model</span></span>
+<span id="cb1-5"><a aria-label="5"></a>model_id <span class="op">=</span> <span class="st">"stable-diffusion-v1-5/stable-diffusion-v1-5"</span></span>
+<span id="cb1-6"><a aria-label="6"></a>pipe <span class="op">=</span> StableDiffusionPipeline.from_pretrained(</span>
+<span id="cb1-7"><a aria-label="7"></a>    model_id,</span>
+<span id="cb1-8"><a aria-label="8"></a>)</span>
+<span id="cb1-9"><a aria-label="9"></a></span>
+<span id="cb1-10"><a aria-label="10"></a><span class="co"># Move to GPU if available</span></span>
+<span id="cb1-11"><a aria-label="11"></a>device <span class="op">=</span> <span class="st">"cuda"</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="st">"cpu"</span></span>
+<span id="cb1-12"><a aria-label="12"></a>pipe <span class="op">=</span> pipe.to(device)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -431,52 +436,52 @@
 <h2>Text-to-Image with SD 1.5</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/04/notebooks/text-to-image-sd-1.5.ipynb" data-notebook-title="Text-to-Image using Stable Diffusion 1.5" data-notebook-cellid="steps">
 <div id="steps" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:642,&quot;referenced_widgets&quot;:[&quot;0c3b24430ad54eb5b1ba5bc15f3cb1bc&quot;,&quot;6c15b3e33b404b7e862ec525682b6740&quot;,&quot;a3cc418dd7114427a2d107deaa3d264c&quot;,&quot;6357f9e4901c42d8be7384d07396e70d&quot;,&quot;04a724a5299342b6bd96712e56be5213&quot;,&quot;0b2ecb007bbd475bb19ba88672a0bc9e&quot;,&quot;3edee87a1373437d9078f089e61a0a51&quot;,&quot;0d37474e0b8f4e369d5d655f7b5ea353&quot;,&quot;83cea04b54174496abe3211413066571&quot;,&quot;b3e4f06470c64e9fa1c3fb3e1eefe39a&quot;,&quot;131db35a17194ea28b3779b10c264b7d&quot;]}}" data-outputid="94274b75-ed5e-4813-b57c-2b5b24e99d65" data-execution_count="14">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb2-2"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-3"><a></a></span>
-<span id="cb2-4"><a></a>PROMPT <span class="op">=</span> <span class="st">"a photograph of an astronaut riding a horse"</span> <span class="co">#@param {type:"string"}</span></span>
-<span id="cb2-5"><a></a>STEPS <span class="op">=</span> <span class="dv">50</span> <span class="co">#@param {type:"slider", min:10, max:100, step:1}</span></span>
-<span id="cb2-6"><a></a>SEED <span class="op">=</span> <span class="op">-</span><span class="dv">1</span> <span class="co">#@param {type:"integer"}</span></span>
-<span id="cb2-7"><a></a></span>
-<span id="cb2-8"><a></a>intermediate_images <span class="op">=</span> []</span>
-<span id="cb2-9"><a></a></span>
-<span id="cb2-10"><a></a><span class="kw">def</span> callback_fn(step, timestep, latents):</span>
-<span id="cb2-11"><a></a>    <span class="co">"""Capture intermediate denoising steps"""</span></span>
-<span id="cb2-12"><a></a>    <span class="co"># Decode latents to image every few steps</span></span>
-<span id="cb2-13"><a></a>    <span class="cf">if</span> step <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span> <span class="kw">or</span> step <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb2-14"><a></a>        <span class="cf">with</span> torch.no_grad():</span>
-<span id="cb2-15"><a></a>            <span class="co"># Decode the latent representation to an image</span></span>
-<span id="cb2-16"><a></a>            image <span class="op">=</span> pipe.vae.decode(latents <span class="op">/</span> pipe.vae.config.scaling_factor, return_dict<span class="op">=</span><span class="va">False</span>)[<span class="dv">0</span>]</span>
-<span id="cb2-17"><a></a>            image <span class="op">=</span> pipe.image_processor.postprocess(image, output_type<span class="op">=</span><span class="st">"pil"</span>)[<span class="dv">0</span>]</span>
-<span id="cb2-18"><a></a>            intermediate_images.append((step, image))</span>
-<span id="cb2-19"><a></a></span>
-<span id="cb2-20"><a></a>result <span class="op">=</span> pipe(</span>
-<span id="cb2-21"><a></a>    PROMPT,</span>
-<span id="cb2-22"><a></a>    num_inference_steps<span class="op">=</span>STEPS,</span>
-<span id="cb2-23"><a></a>    callback<span class="op">=</span>callback_fn,</span>
-<span id="cb2-24"><a></a>    callback_steps<span class="op">=</span><span class="dv">1</span>,</span>
-<span id="cb2-25"><a></a>    generator<span class="op">=</span>torch.Generator().manual_seed(SEED) <span class="cf">if</span> SEED <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span> <span class="cf">else</span> <span class="va">None</span>,</span>
-<span id="cb2-26"><a></a>).images[<span class="dv">0</span>]</span>
-<span id="cb2-27"><a></a></span>
-<span id="cb2-28"><a></a><span class="co"># Visualize the denoising process</span></span>
-<span id="cb2-29"><a></a>num_steps_to_show <span class="op">=</span> <span class="bu">min</span>(<span class="dv">10</span>, <span class="bu">len</span>(intermediate_images))</span>
-<span id="cb2-30"><a></a>step_indices <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="bu">len</span>(intermediate_images)<span class="op">-</span><span class="dv">1</span>, num_steps_to_show, dtype<span class="op">=</span><span class="bu">int</span>)</span>
-<span id="cb2-31"><a></a></span>
-<span id="cb2-32"><a></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">5</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">6</span>))</span>
-<span id="cb2-33"><a></a>fig.suptitle(<span class="ss">f'Real Diffusion Model Denoising Process</span><span class="ch">\n</span><span class="ss">Prompt: "</span><span class="sc">{</span>PROMPT<span class="sc">}</span><span class="ss">"'</span>)</span>
-<span id="cb2-34"><a></a></span>
-<span id="cb2-35"><a></a><span class="cf">for</span> idx, step_idx <span class="kw">in</span> <span class="bu">enumerate</span>(step_indices):</span>
-<span id="cb2-36"><a></a>    row <span class="op">=</span> idx <span class="op">//</span> <span class="dv">5</span></span>
-<span id="cb2-37"><a></a>    col <span class="op">=</span> idx <span class="op">%</span> <span class="dv">5</span></span>
-<span id="cb2-38"><a></a>    step_num, img <span class="op">=</span> intermediate_images[step_idx]</span>
-<span id="cb2-39"><a></a></span>
-<span id="cb2-40"><a></a>    axes[row, col].imshow(img)</span>
-<span id="cb2-41"><a></a>    axes[row, col].axis(<span class="st">'off'</span>)</span>
-<span id="cb2-42"><a></a>    axes[row, col].set_title(<span class="ss">f'Step </span><span class="sc">{</span>step_num<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>STEPS<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb2-43"><a></a></span>
-<span id="cb2-44"><a></a>plt.tight_layout()</span>
-<span id="cb2-45"><a></a>plt.savefig(<span class="st">'diffusion_process.png'</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
-<span id="cb2-46"><a></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a aria-label="1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-2"><a aria-label="2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-3"><a aria-label="3"></a></span>
+<span id="cb2-4"><a aria-label="4"></a>PROMPT <span class="op">=</span> <span class="st">"a photograph of an astronaut riding a horse"</span> <span class="co">#@param {type:"string"}</span></span>
+<span id="cb2-5"><a aria-label="5"></a>STEPS <span class="op">=</span> <span class="dv">50</span> <span class="co">#@param {type:"slider", min:10, max:100, step:1}</span></span>
+<span id="cb2-6"><a aria-label="6"></a>SEED <span class="op">=</span> <span class="op">-</span><span class="dv">1</span> <span class="co">#@param {type:"integer"}</span></span>
+<span id="cb2-7"><a aria-label="7"></a></span>
+<span id="cb2-8"><a aria-label="8"></a>intermediate_images <span class="op">=</span> []</span>
+<span id="cb2-9"><a aria-label="9"></a></span>
+<span id="cb2-10"><a aria-label="10"></a><span class="kw">def</span> callback_fn(step, timestep, latents):</span>
+<span id="cb2-11"><a aria-label="11"></a>    <span class="co">"""Capture intermediate denoising steps"""</span></span>
+<span id="cb2-12"><a aria-label="12"></a>    <span class="co"># Decode latents to image every few steps</span></span>
+<span id="cb2-13"><a aria-label="13"></a>    <span class="cf">if</span> step <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span> <span class="kw">or</span> step <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb2-14"><a aria-label="14"></a>        <span class="cf">with</span> torch.no_grad():</span>
+<span id="cb2-15"><a aria-label="15"></a>            <span class="co"># Decode the latent representation to an image</span></span>
+<span id="cb2-16"><a aria-label="16"></a>            image <span class="op">=</span> pipe.vae.decode(latents <span class="op">/</span> pipe.vae.config.scaling_factor, return_dict<span class="op">=</span><span class="va">False</span>)[<span class="dv">0</span>]</span>
+<span id="cb2-17"><a aria-label="17"></a>            image <span class="op">=</span> pipe.image_processor.postprocess(image, output_type<span class="op">=</span><span class="st">"pil"</span>)[<span class="dv">0</span>]</span>
+<span id="cb2-18"><a aria-label="18"></a>            intermediate_images.append((step, image))</span>
+<span id="cb2-19"><a aria-label="19"></a></span>
+<span id="cb2-20"><a aria-label="20"></a>result <span class="op">=</span> pipe(</span>
+<span id="cb2-21"><a aria-label="21"></a>    PROMPT,</span>
+<span id="cb2-22"><a aria-label="22"></a>    num_inference_steps<span class="op">=</span>STEPS,</span>
+<span id="cb2-23"><a aria-label="23"></a>    callback<span class="op">=</span>callback_fn,</span>
+<span id="cb2-24"><a aria-label="24"></a>    callback_steps<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb2-25"><a aria-label="25"></a>    generator<span class="op">=</span>torch.Generator().manual_seed(SEED) <span class="cf">if</span> SEED <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span> <span class="cf">else</span> <span class="va">None</span>,</span>
+<span id="cb2-26"><a aria-label="26"></a>).images[<span class="dv">0</span>]</span>
+<span id="cb2-27"><a aria-label="27"></a></span>
+<span id="cb2-28"><a aria-label="28"></a><span class="co"># Visualize the denoising process</span></span>
+<span id="cb2-29"><a aria-label="29"></a>num_steps_to_show <span class="op">=</span> <span class="bu">min</span>(<span class="dv">10</span>, <span class="bu">len</span>(intermediate_images))</span>
+<span id="cb2-30"><a aria-label="30"></a>step_indices <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="bu">len</span>(intermediate_images)<span class="op">-</span><span class="dv">1</span>, num_steps_to_show, dtype<span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb2-31"><a aria-label="31"></a></span>
+<span id="cb2-32"><a aria-label="32"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>, <span class="dv">5</span>, figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">6</span>))</span>
+<span id="cb2-33"><a aria-label="33"></a>fig.suptitle(<span class="ss">f'Real Diffusion Model Denoising Process</span><span class="ch">\n</span><span class="ss">Prompt: "</span><span class="sc">{</span>PROMPT<span class="sc">}</span><span class="ss">"'</span>)</span>
+<span id="cb2-34"><a aria-label="34"></a></span>
+<span id="cb2-35"><a aria-label="35"></a><span class="cf">for</span> idx, step_idx <span class="kw">in</span> <span class="bu">enumerate</span>(step_indices):</span>
+<span id="cb2-36"><a aria-label="36"></a>    row <span class="op">=</span> idx <span class="op">//</span> <span class="dv">5</span></span>
+<span id="cb2-37"><a aria-label="37"></a>    col <span class="op">=</span> idx <span class="op">%</span> <span class="dv">5</span></span>
+<span id="cb2-38"><a aria-label="38"></a>    step_num, img <span class="op">=</span> intermediate_images[step_idx]</span>
+<span id="cb2-39"><a aria-label="39"></a></span>
+<span id="cb2-40"><a aria-label="40"></a>    axes[row, col].imshow(img)</span>
+<span id="cb2-41"><a aria-label="41"></a>    axes[row, col].axis(<span class="st">'off'</span>)</span>
+<span id="cb2-42"><a aria-label="42"></a>    axes[row, col].set_title(<span class="ss">f'Step </span><span class="sc">{</span>step_num<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>STEPS<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb2-43"><a aria-label="43"></a></span>
+<span id="cb2-44"><a aria-label="44"></a>plt.tight_layout()</span>
+<span id="cb2-45"><a aria-label="45"></a>plt.savefig(<span class="st">'diffusion_process.png'</span>, dpi<span class="op">=</span><span class="dv">150</span>, bbox_inches<span class="op">=</span><span class="st">'tight'</span>)</span>
+<span id="cb2-46"><a aria-label="46"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -570,16 +575,16 @@
 <h2>Image-to-Image (Generate)</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/04/notebooks/image-to-image-sd-1.5.ipynb" data-notebook-title="Image-to-Image using Stable Diffusion 1.5" data-notebook-cellid="generate">
 <div id="generate" class="cell" data-execution_count="17">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="kw">def</span> generate_image(strength):</span>
-<span id="cb3-2"><a></a>  <span class="cf">return</span> pipe(</span>
-<span id="cb3-3"><a></a>      prompt<span class="op">=</span>PROMPT,</span>
-<span id="cb3-4"><a></a>      negative_prompt<span class="op">=</span>NEGATIVE_PROMPT,</span>
-<span id="cb3-5"><a></a>      image<span class="op">=</span>init_image,</span>
-<span id="cb3-6"><a></a>      strength<span class="op">=</span>strength,</span>
-<span id="cb3-7"><a></a>      guidance_scale<span class="op">=</span><span class="fl">7.5</span>,</span>
-<span id="cb3-8"><a></a>      num_inference_steps<span class="op">=</span><span class="dv">30</span>,</span>
-<span id="cb3-9"><a></a>      generator<span class="op">=</span>torch.Generator().manual_seed(SEED) <span class="cf">if</span> SEED <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span> <span class="cf">else</span> <span class="va">None</span>,</span>
-<span id="cb3-10"><a></a>  ).images[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a aria-label="1"></a><span class="kw">def</span> generate_image(strength):</span>
+<span id="cb3-2"><a aria-label="2"></a>  <span class="cf">return</span> pipe(</span>
+<span id="cb3-3"><a aria-label="3"></a>      prompt<span class="op">=</span>PROMPT,</span>
+<span id="cb3-4"><a aria-label="4"></a>      negative_prompt<span class="op">=</span>NEGATIVE_PROMPT,</span>
+<span id="cb3-5"><a aria-label="5"></a>      image<span class="op">=</span>init_image,</span>
+<span id="cb3-6"><a aria-label="6"></a>      strength<span class="op">=</span>strength,</span>
+<span id="cb3-7"><a aria-label="7"></a>      guidance_scale<span class="op">=</span><span class="fl">7.5</span>,</span>
+<span id="cb3-8"><a aria-label="8"></a>      num_inference_steps<span class="op">=</span><span class="dv">30</span>,</span>
+<span id="cb3-9"><a aria-label="9"></a>      generator<span class="op">=</span>torch.Generator().manual_seed(SEED) <span class="cf">if</span> SEED <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span> <span class="cf">else</span> <span class="va">None</span>,</span>
+<span id="cb3-10"><a aria-label="10"></a>  ).images[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -760,18 +765,18 @@
 <h2>Using the Replicate API</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/04/notebooks/text-to-image-replicate.ipynb" data-notebook-title="Text-to-Image using Replicate" data-notebook-cellid="run">
 <div id="run" class="cell" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">import</span> replicate</span>
-<span id="cb4-2"><a></a>output <span class="op">=</span> replicate.run(</span>
-<span id="cb4-3"><a></a>  <span class="st">"black-forest-labs/flux-pro"</span>,</span>
-<span id="cb4-4"><a></a>  <span class="bu">input</span><span class="op">=</span>{</span>
-<span id="cb4-5"><a></a>      <span class="st">"steps"</span>: <span class="dv">28</span>,</span>
-<span id="cb4-6"><a></a>      <span class="st">"prompt"</span>: <span class="st">"lemon cupcake spelling out the words 'DigiPen' with sparklers, tasty, food photography, dynamic shot"</span>,</span>
-<span id="cb4-7"><a></a>      <span class="st">"seed"</span>: <span class="dv">1564435</span>,</span>
-<span id="cb4-8"><a></a>      <span class="st">"output_format"</span>: <span class="st">"png"</span>,</span>
-<span id="cb4-9"><a></a>      <span class="st">"safety_tolerance"</span>: <span class="dv">2</span>,</span>
-<span id="cb4-10"><a></a>      <span class="st">"prompt_upsampling"</span>: <span class="va">False</span></span>
-<span id="cb4-11"><a></a>  },</span>
-<span id="cb4-12"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a aria-label="1"></a><span class="im">import</span> replicate</span>
+<span id="cb4-2"><a aria-label="2"></a>output <span class="op">=</span> replicate.run(</span>
+<span id="cb4-3"><a aria-label="3"></a>  <span class="st">"black-forest-labs/flux-pro"</span>,</span>
+<span id="cb4-4"><a aria-label="4"></a>  <span class="bu">input</span><span class="op">=</span>{</span>
+<span id="cb4-5"><a aria-label="5"></a>      <span class="st">"steps"</span>: <span class="dv">28</span>,</span>
+<span id="cb4-6"><a aria-label="6"></a>      <span class="st">"prompt"</span>: <span class="st">"lemon cupcake spelling out the words 'DigiPen' with sparklers, tasty, food photography, dynamic shot"</span>,</span>
+<span id="cb4-7"><a aria-label="7"></a>      <span class="st">"seed"</span>: <span class="dv">1564435</span>,</span>
+<span id="cb4-8"><a aria-label="8"></a>      <span class="st">"output_format"</span>: <span class="st">"png"</span>,</span>
+<span id="cb4-9"><a aria-label="9"></a>      <span class="st">"safety_tolerance"</span>: <span class="dv">2</span>,</span>
+<span id="cb4-10"><a aria-label="10"></a>      <span class="st">"prompt_upsampling"</span>: <span class="va">False</span></span>
+<span id="cb4-11"><a aria-label="11"></a>  },</span>
+<span id="cb4-12"><a aria-label="12"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -890,16 +895,16 @@
 <h2>Depth Maps</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/04/notebooks/generate-depth-map.ipynb" data-notebook-title="Depth Map Generation" data-notebook-cellid="run">
 <div id="run" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">import</span> replicate</span>
-<span id="cb5-2"><a></a></span>
-<span id="cb5-3"><a></a>MODEL <span class="op">=</span> <span class="st">"chenxwh/depth-anything-v2:b239ea33cff32bb7abb5db39ffe9a09c14cbc2894331d1ef66fe096eed88ebd4"</span></span>
-<span id="cb5-4"><a></a></span>
-<span id="cb5-5"><a></a>output <span class="op">=</span> replicate.run(</span>
-<span id="cb5-6"><a></a>  MODEL,</span>
-<span id="cb5-7"><a></a>  <span class="bu">input</span><span class="op">=</span>{</span>
-<span id="cb5-8"><a></a>      <span class="st">"image"</span>: INPUT_IMAGE,</span>
-<span id="cb5-9"><a></a>  },</span>
-<span id="cb5-10"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a aria-label="1"></a><span class="im">import</span> replicate</span>
+<span id="cb5-2"><a aria-label="2"></a></span>
+<span id="cb5-3"><a aria-label="3"></a>MODEL <span class="op">=</span> <span class="st">"chenxwh/depth-anything-v2:b239ea33cff32bb7abb5db39ffe9a09c14cbc2894331d1ef66fe096eed88ebd4"</span></span>
+<span id="cb5-4"><a aria-label="4"></a></span>
+<span id="cb5-5"><a aria-label="5"></a>output <span class="op">=</span> replicate.run(</span>
+<span id="cb5-6"><a aria-label="6"></a>  MODEL,</span>
+<span id="cb5-7"><a aria-label="7"></a>  <span class="bu">input</span><span class="op">=</span>{</span>
+<span id="cb5-8"><a aria-label="8"></a>      <span class="st">"image"</span>: INPUT_IMAGE,</span>
+<span id="cb5-9"><a aria-label="9"></a>  },</span>
+<span id="cb5-10"><a aria-label="10"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -940,19 +945,19 @@
 <h2>Depth Map as Control</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/04/notebooks/depth-map-as-context.ipynb" data-notebook-title="Depth Map as Context" data-notebook-cellid="run">
 <div id="run" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="im">import</span> replicate</span>
-<span id="cb6-2"><a></a></span>
-<span id="cb6-3"><a></a>MODEL <span class="op">=</span> <span class="st">"black-forest-labs/flux-depth-pro"</span></span>
-<span id="cb6-4"><a></a></span>
-<span id="cb6-5"><a></a>output <span class="op">=</span> replicate.run(</span>
-<span id="cb6-6"><a></a>  MODEL,</span>
-<span id="cb6-7"><a></a>  <span class="bu">input</span><span class="op">=</span>{</span>
-<span id="cb6-8"><a></a>      <span class="st">"control_image"</span>: CONTROL_IMAGE,</span>
-<span id="cb6-9"><a></a>      <span class="st">"output_format"</span>: <span class="st">"png"</span>,</span>
-<span id="cb6-10"><a></a>      <span class="st">"seed"</span>: <span class="dv">12345</span>,</span>
-<span id="cb6-11"><a></a>      <span class="st">"prompt"</span>: <span class="st">"A futuristic building set in 2050, neon lighting, night shot, dynamic"</span></span>
-<span id="cb6-12"><a></a>  },</span>
-<span id="cb6-13"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a aria-label="1"></a><span class="im">import</span> replicate</span>
+<span id="cb6-2"><a aria-label="2"></a></span>
+<span id="cb6-3"><a aria-label="3"></a>MODEL <span class="op">=</span> <span class="st">"black-forest-labs/flux-depth-pro"</span></span>
+<span id="cb6-4"><a aria-label="4"></a></span>
+<span id="cb6-5"><a aria-label="5"></a>output <span class="op">=</span> replicate.run(</span>
+<span id="cb6-6"><a aria-label="6"></a>  MODEL,</span>
+<span id="cb6-7"><a aria-label="7"></a>  <span class="bu">input</span><span class="op">=</span>{</span>
+<span id="cb6-8"><a aria-label="8"></a>      <span class="st">"control_image"</span>: CONTROL_IMAGE,</span>
+<span id="cb6-9"><a aria-label="9"></a>      <span class="st">"output_format"</span>: <span class="st">"png"</span>,</span>
+<span id="cb6-10"><a aria-label="10"></a>      <span class="st">"seed"</span>: <span class="dv">12345</span>,</span>
+<span id="cb6-11"><a aria-label="11"></a>      <span class="st">"prompt"</span>: <span class="st">"A futuristic building set in 2050, neon lighting, night shot, dynamic"</span></span>
+<span id="cb6-12"><a aria-label="12"></a>  },</span>
+<span id="cb6-13"><a aria-label="13"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -974,19 +979,19 @@
 <h2>Depth Map as Control</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/04/notebooks/depth-map-as-context.ipynb" data-notebook-title="Depth Map as Context" data-notebook-cellid="run-2">
 <div id="run-2" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="im">import</span> replicate</span>
-<span id="cb7-2"><a></a></span>
-<span id="cb7-3"><a></a>MODEL <span class="op">=</span> <span class="st">"black-forest-labs/flux-depth-pro"</span></span>
-<span id="cb7-4"><a></a></span>
-<span id="cb7-5"><a></a>output <span class="op">=</span> replicate.run(</span>
-<span id="cb7-6"><a></a>  MODEL,</span>
-<span id="cb7-7"><a></a>  <span class="bu">input</span><span class="op">=</span>{</span>
-<span id="cb7-8"><a></a>      <span class="st">"control_image"</span>: CONTROL_IMAGE,</span>
-<span id="cb7-9"><a></a>      <span class="st">"output_format"</span>: <span class="st">"png"</span>,</span>
-<span id="cb7-10"><a></a>      <span class="st">"seed"</span>: <span class="dv">12345</span>,</span>
-<span id="cb7-11"><a></a>      <span class="st">"prompt"</span>: <span class="st">"A historical castle set in medieval England, clear day, partially cloudy sky"</span></span>
-<span id="cb7-12"><a></a>  },</span>
-<span id="cb7-13"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a aria-label="1"></a><span class="im">import</span> replicate</span>
+<span id="cb7-2"><a aria-label="2"></a></span>
+<span id="cb7-3"><a aria-label="3"></a>MODEL <span class="op">=</span> <span class="st">"black-forest-labs/flux-depth-pro"</span></span>
+<span id="cb7-4"><a aria-label="4"></a></span>
+<span id="cb7-5"><a aria-label="5"></a>output <span class="op">=</span> replicate.run(</span>
+<span id="cb7-6"><a aria-label="6"></a>  MODEL,</span>
+<span id="cb7-7"><a aria-label="7"></a>  <span class="bu">input</span><span class="op">=</span>{</span>
+<span id="cb7-8"><a aria-label="8"></a>      <span class="st">"control_image"</span>: CONTROL_IMAGE,</span>
+<span id="cb7-9"><a aria-label="9"></a>      <span class="st">"output_format"</span>: <span class="st">"png"</span>,</span>
+<span id="cb7-10"><a aria-label="10"></a>      <span class="st">"seed"</span>: <span class="dv">12345</span>,</span>
+<span id="cb7-11"><a aria-label="11"></a>      <span class="st">"prompt"</span>: <span class="st">"A historical castle set in medieval England, clear day, partially cloudy sky"</span></span>
+<span id="cb7-12"><a aria-label="12"></a>  },</span>
+<span id="cb7-13"><a aria-label="13"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -1027,76 +1032,76 @@
 <h2>Inpainting</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/04/notebooks/inpainting.ipynb" data-notebook-title="Inpainting using black-forest-labs/flux-fill-pro" data-notebook-cellid="gradio">
 <div id="gradio" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="im">import</span> gradio <span class="im">as</span> gr</span>
-<span id="cb8-2"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb8-3"><a></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
-<span id="cb8-4"><a></a><span class="im">import</span> replicate</span>
-<span id="cb8-5"><a></a><span class="im">import</span> io</span>
-<span id="cb8-6"><a></a></span>
-<span id="cb8-7"><a></a><span class="kw">def</span> inpaint(image_data, prompt):</span>
-<span id="cb8-8"><a></a>    <span class="cf">if</span> image_data <span class="kw">is</span> <span class="va">None</span>:</span>
-<span id="cb8-9"><a></a>        <span class="cf">return</span> <span class="va">None</span></span>
-<span id="cb8-10"><a></a>    </span>
-<span id="cb8-11"><a></a>    <span class="co"># Get the original image from the background</span></span>
-<span id="cb8-12"><a></a>    original_image <span class="op">=</span> Image.fromarray(image_data[<span class="st">'background'</span>])</span>
-<span id="cb8-13"><a></a>    </span>
-<span id="cb8-14"><a></a>    <span class="co"># Get the mask from the layers</span></span>
-<span id="cb8-15"><a></a>    <span class="cf">if</span> image_data[<span class="st">'layers'</span>] <span class="kw">and</span> <span class="bu">len</span>(image_data[<span class="st">'layers'</span>]) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
-<span id="cb8-16"><a></a>        mask_layer <span class="op">=</span> image_data[<span class="st">'layers'</span>][<span class="dv">0</span>]</span>
-<span id="cb8-17"><a></a>        mask_array <span class="op">=</span> np.array(mask_layer)</span>
-<span id="cb8-18"><a></a>        </span>
-<span id="cb8-19"><a></a>        <span class="co"># Create binary mask: white where painted, black where not</span></span>
-<span id="cb8-20"><a></a>        alpha_channel <span class="op">=</span> mask_array[:, :, <span class="dv">3</span>]</span>
-<span id="cb8-21"><a></a>        binary_mask <span class="op">=</span> np.where(alpha_channel <span class="op">&gt;</span> <span class="dv">0</span>, <span class="dv">255</span>, <span class="dv">0</span>).astype(np.uint8)</span>
-<span id="cb8-22"><a></a>        mask_image <span class="op">=</span> Image.fromarray(binary_mask, mode<span class="op">=</span><span class="st">'L'</span>)</span>
-<span id="cb8-23"><a></a>    <span class="cf">else</span>:</span>
-<span id="cb8-24"><a></a>        <span class="cf">return</span> <span class="va">None</span></span>
-<span id="cb8-25"><a></a>    </span>
-<span id="cb8-26"><a></a>    <span class="co"># Convert images to bytes for the replicate API</span></span>
-<span id="cb8-27"><a></a>    image_bytes <span class="op">=</span> io.BytesIO()</span>
-<span id="cb8-28"><a></a>    original_image.save(image_bytes, <span class="bu">format</span><span class="op">=</span><span class="st">'PNG'</span>)</span>
-<span id="cb8-29"><a></a>    image_bytes.seek(<span class="dv">0</span>)</span>
-<span id="cb8-30"><a></a>    </span>
-<span id="cb8-31"><a></a>    mask_bytes <span class="op">=</span> io.BytesIO()</span>
-<span id="cb8-32"><a></a>    mask_image.save(mask_bytes, <span class="bu">format</span><span class="op">=</span><span class="st">'PNG'</span>)</span>
-<span id="cb8-33"><a></a>    mask_bytes.seek(<span class="dv">0</span>)</span>
-<span id="cb8-34"><a></a>    </span>
-<span id="cb8-35"><a></a>    <span class="co"># Call the Replicate API</span></span>
-<span id="cb8-36"><a></a>    output <span class="op">=</span> replicate.run(</span>
-<span id="cb8-37"><a></a>        <span class="st">"black-forest-labs/flux-fill-pro"</span>,</span>
-<span id="cb8-38"><a></a>        <span class="bu">input</span><span class="op">=</span>{</span>
-<span id="cb8-39"><a></a>            <span class="st">"image"</span>: image_bytes,</span>
-<span id="cb8-40"><a></a>            <span class="st">"mask"</span>: mask_bytes,</span>
-<span id="cb8-41"><a></a>            <span class="st">"prompt"</span>: prompt,</span>
-<span id="cb8-42"><a></a>            <span class="st">"steps"</span>: <span class="dv">25</span>,</span>
-<span id="cb8-43"><a></a>            <span class="st">"guidance"</span>: <span class="dv">75</span>,</span>
-<span id="cb8-44"><a></a>            <span class="st">"outpaint"</span>: <span class="st">"None"</span>,</span>
-<span id="cb8-45"><a></a>            <span class="st">"output_format"</span>: <span class="st">"jpg"</span>,</span>
-<span id="cb8-46"><a></a>            <span class="st">"safety_tolerance"</span>: <span class="dv">2</span>,</span>
-<span id="cb8-47"><a></a>            <span class="st">"prompt_upsampling"</span>: <span class="va">False</span></span>
-<span id="cb8-48"><a></a>        }</span>
-<span id="cb8-49"><a></a>    )</span>
-<span id="cb8-50"><a></a>    </span>
-<span id="cb8-51"><a></a>    <span class="co"># Read the FileOutput and convert to PIL Image</span></span>
-<span id="cb8-52"><a></a>    output_bytes <span class="op">=</span> output.read()</span>
-<span id="cb8-53"><a></a>    output_image <span class="op">=</span> Image.<span class="bu">open</span>(io.BytesIO(output_bytes))</span>
-<span id="cb8-54"><a></a>    </span>
-<span id="cb8-55"><a></a>    <span class="cf">return</span> output_image</span>
-<span id="cb8-56"><a></a></span>
-<span id="cb8-57"><a></a>demo <span class="op">=</span> gr.Interface(</span>
-<span id="cb8-58"><a></a>    fn<span class="op">=</span>inpaint,</span>
-<span id="cb8-59"><a></a>    inputs<span class="op">=</span>[</span>
-<span id="cb8-60"><a></a>        gr.ImageEditor(</span>
-<span id="cb8-61"><a></a>            label<span class="op">=</span><span class="st">"Image (paint over areas to inpaint)"</span>,</span>
-<span id="cb8-62"><a></a>            brush<span class="op">=</span>gr.Brush(color_mode<span class="op">=</span><span class="st">"fixed"</span>, colors<span class="op">=</span>[<span class="st">"#000000"</span>]),</span>
-<span id="cb8-63"><a></a>            layers<span class="op">=</span><span class="va">True</span></span>
-<span id="cb8-64"><a></a>        ),</span>
-<span id="cb8-65"><a></a>        gr.Textbox(label<span class="op">=</span><span class="st">"Prompt"</span>, placeholder<span class="op">=</span><span class="st">"Describe what should replace the masked area..."</span>)</span>
-<span id="cb8-66"><a></a>    ],</span>
-<span id="cb8-67"><a></a>    outputs<span class="op">=</span>gr.Image(label<span class="op">=</span><span class="st">"Output Image"</span>),</span>
-<span id="cb8-68"><a></a>    title<span class="op">=</span><span class="st">"Inpainting using black-forest-labs/flux-fill-pro"</span></span>
-<span id="cb8-69"><a></a>)</span>
-<span id="cb8-70"><a></a>demo.launch(debug<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a aria-label="1"></a><span class="im">import</span> gradio <span class="im">as</span> gr</span>
+<span id="cb8-2"><a aria-label="2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-3"><a aria-label="3"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb8-4"><a aria-label="4"></a><span class="im">import</span> replicate</span>
+<span id="cb8-5"><a aria-label="5"></a><span class="im">import</span> io</span>
+<span id="cb8-6"><a aria-label="6"></a></span>
+<span id="cb8-7"><a aria-label="7"></a><span class="kw">def</span> inpaint(image_data, prompt):</span>
+<span id="cb8-8"><a aria-label="8"></a>    <span class="cf">if</span> image_data <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb8-9"><a aria-label="9"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb8-10"><a aria-label="10"></a>    </span>
+<span id="cb8-11"><a aria-label="11"></a>    <span class="co"># Get the original image from the background</span></span>
+<span id="cb8-12"><a aria-label="12"></a>    original_image <span class="op">=</span> Image.fromarray(image_data[<span class="st">'background'</span>])</span>
+<span id="cb8-13"><a aria-label="13"></a>    </span>
+<span id="cb8-14"><a aria-label="14"></a>    <span class="co"># Get the mask from the layers</span></span>
+<span id="cb8-15"><a aria-label="15"></a>    <span class="cf">if</span> image_data[<span class="st">'layers'</span>] <span class="kw">and</span> <span class="bu">len</span>(image_data[<span class="st">'layers'</span>]) <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb8-16"><a aria-label="16"></a>        mask_layer <span class="op">=</span> image_data[<span class="st">'layers'</span>][<span class="dv">0</span>]</span>
+<span id="cb8-17"><a aria-label="17"></a>        mask_array <span class="op">=</span> np.array(mask_layer)</span>
+<span id="cb8-18"><a aria-label="18"></a>        </span>
+<span id="cb8-19"><a aria-label="19"></a>        <span class="co"># Create binary mask: white where painted, black where not</span></span>
+<span id="cb8-20"><a aria-label="20"></a>        alpha_channel <span class="op">=</span> mask_array[:, :, <span class="dv">3</span>]</span>
+<span id="cb8-21"><a aria-label="21"></a>        binary_mask <span class="op">=</span> np.where(alpha_channel <span class="op">&gt;</span> <span class="dv">0</span>, <span class="dv">255</span>, <span class="dv">0</span>).astype(np.uint8)</span>
+<span id="cb8-22"><a aria-label="22"></a>        mask_image <span class="op">=</span> Image.fromarray(binary_mask, mode<span class="op">=</span><span class="st">'L'</span>)</span>
+<span id="cb8-23"><a aria-label="23"></a>    <span class="cf">else</span>:</span>
+<span id="cb8-24"><a aria-label="24"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb8-25"><a aria-label="25"></a>    </span>
+<span id="cb8-26"><a aria-label="26"></a>    <span class="co"># Convert images to bytes for the replicate API</span></span>
+<span id="cb8-27"><a aria-label="27"></a>    image_bytes <span class="op">=</span> io.BytesIO()</span>
+<span id="cb8-28"><a aria-label="28"></a>    original_image.save(image_bytes, <span class="bu">format</span><span class="op">=</span><span class="st">'PNG'</span>)</span>
+<span id="cb8-29"><a aria-label="29"></a>    image_bytes.seek(<span class="dv">0</span>)</span>
+<span id="cb8-30"><a aria-label="30"></a>    </span>
+<span id="cb8-31"><a aria-label="31"></a>    mask_bytes <span class="op">=</span> io.BytesIO()</span>
+<span id="cb8-32"><a aria-label="32"></a>    mask_image.save(mask_bytes, <span class="bu">format</span><span class="op">=</span><span class="st">'PNG'</span>)</span>
+<span id="cb8-33"><a aria-label="33"></a>    mask_bytes.seek(<span class="dv">0</span>)</span>
+<span id="cb8-34"><a aria-label="34"></a>    </span>
+<span id="cb8-35"><a aria-label="35"></a>    <span class="co"># Call the Replicate API</span></span>
+<span id="cb8-36"><a aria-label="36"></a>    output <span class="op">=</span> replicate.run(</span>
+<span id="cb8-37"><a aria-label="37"></a>        <span class="st">"black-forest-labs/flux-fill-pro"</span>,</span>
+<span id="cb8-38"><a aria-label="38"></a>        <span class="bu">input</span><span class="op">=</span>{</span>
+<span id="cb8-39"><a aria-label="39"></a>            <span class="st">"image"</span>: image_bytes,</span>
+<span id="cb8-40"><a aria-label="40"></a>            <span class="st">"mask"</span>: mask_bytes,</span>
+<span id="cb8-41"><a aria-label="41"></a>            <span class="st">"prompt"</span>: prompt,</span>
+<span id="cb8-42"><a aria-label="42"></a>            <span class="st">"steps"</span>: <span class="dv">25</span>,</span>
+<span id="cb8-43"><a aria-label="43"></a>            <span class="st">"guidance"</span>: <span class="dv">75</span>,</span>
+<span id="cb8-44"><a aria-label="44"></a>            <span class="st">"outpaint"</span>: <span class="st">"None"</span>,</span>
+<span id="cb8-45"><a aria-label="45"></a>            <span class="st">"output_format"</span>: <span class="st">"jpg"</span>,</span>
+<span id="cb8-46"><a aria-label="46"></a>            <span class="st">"safety_tolerance"</span>: <span class="dv">2</span>,</span>
+<span id="cb8-47"><a aria-label="47"></a>            <span class="st">"prompt_upsampling"</span>: <span class="va">False</span></span>
+<span id="cb8-48"><a aria-label="48"></a>        }</span>
+<span id="cb8-49"><a aria-label="49"></a>    )</span>
+<span id="cb8-50"><a aria-label="50"></a>    </span>
+<span id="cb8-51"><a aria-label="51"></a>    <span class="co"># Read the FileOutput and convert to PIL Image</span></span>
+<span id="cb8-52"><a aria-label="52"></a>    output_bytes <span class="op">=</span> output.read()</span>
+<span id="cb8-53"><a aria-label="53"></a>    output_image <span class="op">=</span> Image.<span class="bu">open</span>(io.BytesIO(output_bytes))</span>
+<span id="cb8-54"><a aria-label="54"></a>    </span>
+<span id="cb8-55"><a aria-label="55"></a>    <span class="cf">return</span> output_image</span>
+<span id="cb8-56"><a aria-label="56"></a></span>
+<span id="cb8-57"><a aria-label="57"></a>demo <span class="op">=</span> gr.Interface(</span>
+<span id="cb8-58"><a aria-label="58"></a>    fn<span class="op">=</span>inpaint,</span>
+<span id="cb8-59"><a aria-label="59"></a>    inputs<span class="op">=</span>[</span>
+<span id="cb8-60"><a aria-label="60"></a>        gr.ImageEditor(</span>
+<span id="cb8-61"><a aria-label="61"></a>            label<span class="op">=</span><span class="st">"Image (paint over areas to inpaint)"</span>,</span>
+<span id="cb8-62"><a aria-label="62"></a>            brush<span class="op">=</span>gr.Brush(color_mode<span class="op">=</span><span class="st">"fixed"</span>, colors<span class="op">=</span>[<span class="st">"#000000"</span>]),</span>
+<span id="cb8-63"><a aria-label="63"></a>            layers<span class="op">=</span><span class="va">True</span></span>
+<span id="cb8-64"><a aria-label="64"></a>        ),</span>
+<span id="cb8-65"><a aria-label="65"></a>        gr.Textbox(label<span class="op">=</span><span class="st">"Prompt"</span>, placeholder<span class="op">=</span><span class="st">"Describe what should replace the masked area..."</span>)</span>
+<span id="cb8-66"><a aria-label="66"></a>    ],</span>
+<span id="cb8-67"><a aria-label="67"></a>    outputs<span class="op">=</span>gr.Image(label<span class="op">=</span><span class="st">"Output Image"</span>),</span>
+<span id="cb8-68"><a aria-label="68"></a>    title<span class="op">=</span><span class="st">"Inpainting using black-forest-labs/flux-fill-pro"</span></span>
+<span id="cb8-69"><a aria-label="69"></a>)</span>
+<span id="cb8-70"><a aria-label="70"></a>demo.launch(debug<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section></section>
@@ -1142,23 +1147,23 @@
 <h2>Outpainting</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/04/notebooks/outpainting.ipynb" data-notebook-title="Outpainting using black-forest-labs/flux-fill-pro" data-notebook-cellid="run">
 <div id="run" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="im">import</span> replicate</span>
-<span id="cb9-2"><a></a></span>
-<span id="cb9-3"><a></a><span class="co"># Call the Replicate API</span></span>
-<span id="cb9-4"><a></a>output <span class="op">=</span> replicate.run(</span>
-<span id="cb9-5"><a></a>    <span class="st">"black-forest-labs/flux-fill-pro"</span>,</span>
-<span id="cb9-6"><a></a>    <span class="bu">input</span><span class="op">=</span>{</span>
-<span id="cb9-7"><a></a>        <span class="st">"image"</span>: INPUT_IMAGE,</span>
-<span id="cb9-8"><a></a>        <span class="st">"prompt"</span>: <span class="st">"The main building of a technical college, no text"</span>,</span>
-<span id="cb9-9"><a></a>        <span class="st">"seed"</span>: <span class="dv">123456</span>,</span>
-<span id="cb9-10"><a></a>        <span class="st">"steps"</span>: <span class="dv">50</span>,</span>
-<span id="cb9-11"><a></a>        <span class="st">"guidance"</span>: <span class="dv">60</span>,</span>
-<span id="cb9-12"><a></a>        <span class="st">"outpaint"</span>: <span class="st">"Zoom out 2x"</span>,</span>
-<span id="cb9-13"><a></a>        <span class="st">"output_format"</span>: <span class="st">"jpg"</span>,</span>
-<span id="cb9-14"><a></a>        <span class="st">"safety_tolerance"</span>: <span class="dv">2</span>,</span>
-<span id="cb9-15"><a></a>        <span class="st">"prompt_upsampling"</span>: <span class="va">False</span></span>
-<span id="cb9-16"><a></a>    }</span>
-<span id="cb9-17"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a aria-label="1"></a><span class="im">import</span> replicate</span>
+<span id="cb9-2"><a aria-label="2"></a></span>
+<span id="cb9-3"><a aria-label="3"></a><span class="co"># Call the Replicate API</span></span>
+<span id="cb9-4"><a aria-label="4"></a>output <span class="op">=</span> replicate.run(</span>
+<span id="cb9-5"><a aria-label="5"></a>    <span class="st">"black-forest-labs/flux-fill-pro"</span>,</span>
+<span id="cb9-6"><a aria-label="6"></a>    <span class="bu">input</span><span class="op">=</span>{</span>
+<span id="cb9-7"><a aria-label="7"></a>        <span class="st">"image"</span>: INPUT_IMAGE,</span>
+<span id="cb9-8"><a aria-label="8"></a>        <span class="st">"prompt"</span>: <span class="st">"The main building of a technical college, no text"</span>,</span>
+<span id="cb9-9"><a aria-label="9"></a>        <span class="st">"seed"</span>: <span class="dv">123456</span>,</span>
+<span id="cb9-10"><a aria-label="10"></a>        <span class="st">"steps"</span>: <span class="dv">50</span>,</span>
+<span id="cb9-11"><a aria-label="11"></a>        <span class="st">"guidance"</span>: <span class="dv">60</span>,</span>
+<span id="cb9-12"><a aria-label="12"></a>        <span class="st">"outpaint"</span>: <span class="st">"Zoom out 2x"</span>,</span>
+<span id="cb9-13"><a aria-label="13"></a>        <span class="st">"output_format"</span>: <span class="st">"jpg"</span>,</span>
+<span id="cb9-14"><a aria-label="14"></a>        <span class="st">"safety_tolerance"</span>: <span class="dv">2</span>,</span>
+<span id="cb9-15"><a aria-label="15"></a>        <span class="st">"prompt_upsampling"</span>: <span class="va">False</span></span>
+<span id="cb9-16"><a aria-label="16"></a>    }</span>
+<span id="cb9-17"><a aria-label="17"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -1265,7 +1270,7 @@
 <h2>Introducing ControlNet</h2>
 <ul>
 <li class="fragment">Developed by Lvmin Zhang and Maneesh Agrawala at Stanford University</li>
-<li class="fragment">Published in February 2023 <span class="citation" data-cites="zhang2023controlnet">(<a href="#/references-1" role="doc-biblioref" onclick="">Zhang, Rao, and Agrawala 2023</a>)</span></li>
+<li class="fragment">Published in February 2023 <span class="citation" data-cites="zhang2023controlnet">(<a href="#/references-1" role="doc-biblioref" onclick="">Zhang et al. 2023</a>)</span></li>
 <li class="fragment">ControlNet represented a paradigm shift from “describe what you want” to “show the structure you want”.</li>
 </ul>
 </section>
@@ -1313,8 +1318,8 @@
 <h2>How ControlNet Works</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/04/notebooks/controlnet-openpose-sd-1.5.ipynb" data-notebook-title="ControlNet (OpenPose) using Stable Diffusion 1.5" data-notebook-cellid="openpose">
 <div id="openpose" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:721}}" data-outputid="d842bdbb-4404-45af-cf74-62f14dcd07eb" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a>pose_image <span class="op">=</span> openpose(input_image)</span>
-<span id="cb10-2"><a></a>display(pose_image)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a aria-label="1"></a>pose_image <span class="op">=</span> openpose(input_image)</span>
+<span id="cb10-2"><a aria-label="2"></a>display(pose_image)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -1336,13 +1341,13 @@
 <h2>How ControlNet Works</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/04/notebooks/controlnet-openpose-sd-1.5.ipynb" data-notebook-title="ControlNet (OpenPose) using Stable Diffusion 1.5" data-notebook-cellid="load-controlnet">
 <div id="load-controlnet" class="cell" data-execution_count="11">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a><span class="im">import</span> torch</span>
-<span id="cb11-2"><a></a><span class="im">from</span> diffusers <span class="im">import</span> ControlNetModel</span>
-<span id="cb11-3"><a></a></span>
-<span id="cb11-4"><a></a>controlnet <span class="op">=</span> ControlNetModel.from_pretrained(</span>
-<span id="cb11-5"><a></a>    <span class="st">"lllyasviel/control_v11p_sd15_openpose"</span>,</span>
-<span id="cb11-6"><a></a>    torch_dtype<span class="op">=</span>torch.float16</span>
-<span id="cb11-7"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a aria-label="1"></a><span class="im">import</span> torch</span>
+<span id="cb11-2"><a aria-label="2"></a><span class="im">from</span> diffusers <span class="im">import</span> ControlNetModel</span>
+<span id="cb11-3"><a aria-label="3"></a></span>
+<span id="cb11-4"><a aria-label="4"></a>controlnet <span class="op">=</span> ControlNetModel.from_pretrained(</span>
+<span id="cb11-5"><a aria-label="5"></a>    <span class="st">"lllyasviel/control_v11p_sd15_openpose"</span>,</span>
+<span id="cb11-6"><a aria-label="6"></a>    torch_dtype<span class="op">=</span>torch.float16</span>
+<span id="cb11-7"><a aria-label="7"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -1350,15 +1355,15 @@
 <h2>How ControlNet Works</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/04/notebooks/controlnet-openpose-sd-1.5.ipynb" data-notebook-title="ControlNet (OpenPose) using Stable Diffusion 1.5" data-notebook-cellid="load-sd">
 <div id="load-sd" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:873,&quot;referenced_widgets&quot;:[&quot;7aaa571f9b684ed7b5172e92155073a8&quot;,&quot;0224b3e35fb24dfa9ff4dbd0759e7014&quot;,&quot;a69ab57e30ac48bbb441c092bd3c916e&quot;,&quot;7e754d090d58414bab9550d881aed016&quot;,&quot;27aaec9f2000425fac2e576ec9aca138&quot;,&quot;e254740576a84a7f97ec84a0c4fa1a25&quot;,&quot;7933de8ae1e24acca314727c306555a5&quot;,&quot;6fba198b47414328aa4d2a50c14f5d2c&quot;,&quot;d018b8445d0d4bc0850ac3ca5317008f&quot;,&quot;6514018c915440a59ce407304f4f0428&quot;,&quot;189f4dc0021842ae8b48f0f2f95e687b&quot;]}}" data-outputid="d7c140ad-b57e-47a3-9a17-f1242acfc3ef" data-execution_count="16">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a><span class="im">from</span> diffusers <span class="im">import</span> StableDiffusionControlNetPipeline</span>
-<span id="cb12-2"><a></a></span>
-<span id="cb12-3"><a></a>pipe <span class="op">=</span> StableDiffusionControlNetPipeline.from_pretrained(</span>
-<span id="cb12-4"><a></a>    <span class="st">"runwayml/stable-diffusion-v1-5"</span>,</span>
-<span id="cb12-5"><a></a>    controlnet<span class="op">=</span>controlnet,</span>
-<span id="cb12-6"><a></a>    torch_dtype<span class="op">=</span>torch.float16,</span>
-<span id="cb12-7"><a></a>    use_safetensors<span class="op">=</span><span class="va">True</span></span>
-<span id="cb12-8"><a></a>)</span>
-<span id="cb12-9"><a></a>pipe.to(<span class="st">"cuda"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a aria-label="1"></a><span class="im">from</span> diffusers <span class="im">import</span> StableDiffusionControlNetPipeline</span>
+<span id="cb12-2"><a aria-label="2"></a></span>
+<span id="cb12-3"><a aria-label="3"></a>pipe <span class="op">=</span> StableDiffusionControlNetPipeline.from_pretrained(</span>
+<span id="cb12-4"><a aria-label="4"></a>    <span class="st">"runwayml/stable-diffusion-v1-5"</span>,</span>
+<span id="cb12-5"><a aria-label="5"></a>    controlnet<span class="op">=</span>controlnet,</span>
+<span id="cb12-6"><a aria-label="6"></a>    torch_dtype<span class="op">=</span>torch.float16,</span>
+<span id="cb12-7"><a aria-label="7"></a>    use_safetensors<span class="op">=</span><span class="va">True</span></span>
+<span id="cb12-8"><a aria-label="8"></a>)</span>
+<span id="cb12-9"><a aria-label="9"></a>pipe.to(<span class="st">"cuda"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -1366,20 +1371,20 @@
 <h2>How ControlNet Works</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/04/notebooks/controlnet-openpose-sd-1.5.ipynb" data-notebook-title="ControlNet (OpenPose) using Stable Diffusion 1.5" data-notebook-cellid="new-image">
 <div id="new-image" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:753,&quot;referenced_widgets&quot;:[&quot;62c5d0a598c440ebaad870ee1c261e96&quot;,&quot;e538ecf120ca4e83a2fefb10047df748&quot;,&quot;ce904d8599944399b762449d142dd85b&quot;,&quot;e512b4a8835d40e2bb4d33c8c9811bc7&quot;,&quot;59541e7144c541bca9708c7d6039df33&quot;,&quot;180902b2e6164446ae754e7d356aa56c&quot;,&quot;b0cf8153b47e45cbbc62d3097420f41d&quot;,&quot;3985af59218d4ee1b1b022590a9b0356&quot;,&quot;da1fbf3861474f03940caa92cd150f4d&quot;,&quot;783801a0292542b88f60c38cc2f46954&quot;,&quot;da710d97c3454057b51979a4251a17b0&quot;]}}" data-outputid="facb389d-b3fe-48e1-bafd-1c0932694edf" data-execution_count="35">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a>PROMPT <span class="op">=</span> <span class="st">"a robot with glowing LED lights, futuristic, sci-fi"</span></span>
-<span id="cb13-2"><a></a>NEGATIVE_PROMPT <span class="op">=</span> <span class="st">"blurry, low quality, distorted, extra limbs, deformed"</span></span>
-<span id="cb13-3"><a></a>SEED <span class="op">=</span> <span class="dv">3434002</span></span>
-<span id="cb13-4"><a></a></span>
-<span id="cb13-5"><a></a>result <span class="op">=</span> pipe(</span>
-<span id="cb13-6"><a></a>    prompt<span class="op">=</span>PROMPT,</span>
-<span id="cb13-7"><a></a>    negative_prompt<span class="op">=</span>NEGATIVE_PROMPT,</span>
-<span id="cb13-8"><a></a>    image<span class="op">=</span>pose_image,</span>
-<span id="cb13-9"><a></a>    num_inference_steps<span class="op">=</span><span class="dv">25</span>,</span>
-<span id="cb13-10"><a></a>    guidance_scale<span class="op">=</span><span class="fl">7.5</span>,</span>
-<span id="cb13-11"><a></a>    controlnet_conditioning_scale<span class="op">=</span><span class="fl">1.0</span>,</span>
-<span id="cb13-12"><a></a>    generator<span class="op">=</span>torch.manual_seed(SEED) <span class="cf">if</span> SEED <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span> <span class="cf">else</span> <span class="va">None</span></span>
-<span id="cb13-13"><a></a>).images[<span class="dv">0</span>]</span>
-<span id="cb13-14"><a></a>display(result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a aria-label="1"></a>PROMPT <span class="op">=</span> <span class="st">"a robot with glowing LED lights, futuristic, sci-fi"</span></span>
+<span id="cb13-2"><a aria-label="2"></a>NEGATIVE_PROMPT <span class="op">=</span> <span class="st">"blurry, low quality, distorted, extra limbs, deformed"</span></span>
+<span id="cb13-3"><a aria-label="3"></a>SEED <span class="op">=</span> <span class="dv">3434002</span></span>
+<span id="cb13-4"><a aria-label="4"></a></span>
+<span id="cb13-5"><a aria-label="5"></a>result <span class="op">=</span> pipe(</span>
+<span id="cb13-6"><a aria-label="6"></a>    prompt<span class="op">=</span>PROMPT,</span>
+<span id="cb13-7"><a aria-label="7"></a>    negative_prompt<span class="op">=</span>NEGATIVE_PROMPT,</span>
+<span id="cb13-8"><a aria-label="8"></a>    image<span class="op">=</span>pose_image,</span>
+<span id="cb13-9"><a aria-label="9"></a>    num_inference_steps<span class="op">=</span><span class="dv">25</span>,</span>
+<span id="cb13-10"><a aria-label="10"></a>    guidance_scale<span class="op">=</span><span class="fl">7.5</span>,</span>
+<span id="cb13-11"><a aria-label="11"></a>    controlnet_conditioning_scale<span class="op">=</span><span class="fl">1.0</span>,</span>
+<span id="cb13-12"><a aria-label="12"></a>    generator<span class="op">=</span>torch.manual_seed(SEED) <span class="cf">if</span> SEED <span class="op">!=</span> <span class="op">-</span><span class="dv">1</span> <span class="cf">else</span> <span class="va">None</span></span>
+<span id="cb13-13"><a aria-label="13"></a>).images[<span class="dv">0</span>]</span>
+<span id="cb13-14"><a aria-label="14"></a>display(result)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -1457,7 +1462,7 @@
 <li class="fragment">Historically, computer vision has used classification models called CNNs (Convolutional Neural Networks)</li>
 <li class="fragment">Enter the Vision Transformer (ViT)
 <ul>
-<li class="fragment">“An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale” <span class="citation" data-cites="dosovitskiy2021vit">(<a href="#/references-1" role="doc-biblioref" onclick="">Dosovitskiy et al. 2021</a>)</span></li>
+<li class="fragment">“An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale” <span class="citation" data-cites="dosovitskiy2021vit">(<a href="#/references-1" role="doc-biblioref" onclick=""><span class="nocase">Dosovitskiy et al.</span> 2021</a>)</span></li>
 </ul></li>
 <li class="fragment">Tipping Point
 <ul>
@@ -1512,11 +1517,11 @@
 <h2>Sidebar: Image URL Dereferencing</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/04/notebooks/vlm-gemma-3-4b.ipynb" data-notebook-title="Using Gemma 3 (4B) to identify images" data-notebook-cellid="image">
 <div id="image" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:688}}" data-outputid="cc84b4e7-6f96-45fd-a810-7ef99b27fc67" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a><span class="im">from</span> IPython.display <span class="im">import</span> Image</span>
-<span id="cb14-2"><a></a></span>
-<span id="cb14-3"><a></a>IMAGE_URL <span class="op">=</span> <span class="st">"https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/p-blog/candy.JPG"</span></span>
-<span id="cb14-4"><a></a></span>
-<span id="cb14-5"><a></a>Image(url<span class="op">=</span>IMAGE_URL, width<span class="op">=</span><span class="dv">500</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a aria-label="1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Image</span>
+<span id="cb14-2"><a aria-label="2"></a></span>
+<span id="cb14-3"><a aria-label="3"></a>IMAGE_URL <span class="op">=</span> <span class="st">"https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/p-blog/candy.JPG"</span></span>
+<span id="cb14-4"><a aria-label="4"></a></span>
+<span id="cb14-5"><a aria-label="5"></a>Image(url<span class="op">=</span>IMAGE_URL, width<span class="op">=</span><span class="dv">500</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -1524,22 +1529,22 @@
 <h2>Sidebar: Image URL Dereferencing</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/04/notebooks/vlm-gemma-3-4b.ipynb" data-notebook-title="Using Gemma 3 (4B) to identify images" data-notebook-cellid="result">
 <div id="result" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="8c965b58-573d-4917-dff6-7d10baf8f49f">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a></a>messages <span class="op">=</span> [</span>
-<span id="cb15-2"><a></a>    {</span>
-<span id="cb15-3"><a></a>        <span class="st">"role"</span>: <span class="st">"system"</span>,</span>
-<span id="cb15-4"><a></a>        <span class="st">"content"</span>: [{<span class="st">"type"</span>: <span class="st">"text"</span>, <span class="st">"text"</span>: <span class="st">"You are a helpful assistant."</span>}],</span>
-<span id="cb15-5"><a></a>    },</span>
-<span id="cb15-6"><a></a>    {</span>
-<span id="cb15-7"><a></a>        <span class="st">"role"</span>: <span class="st">"user"</span>,</span>
-<span id="cb15-8"><a></a>        <span class="st">"content"</span>: [</span>
-<span id="cb15-9"><a></a>            {<span class="st">"type"</span>: <span class="st">"image"</span>, <span class="st">"url"</span>: IMAGE_URL},</span>
-<span id="cb15-10"><a></a>            {<span class="st">"type"</span>: <span class="st">"text"</span>, <span class="st">"text"</span>: <span class="st">"What animal is on the candy?"</span>},</span>
-<span id="cb15-11"><a></a>        ],</span>
-<span id="cb15-12"><a></a>    },</span>
-<span id="cb15-13"><a></a>]</span>
-<span id="cb15-14"><a></a></span>
-<span id="cb15-15"><a></a>output <span class="op">=</span> pipe(text<span class="op">=</span>messages, max_new_tokens<span class="op">=</span><span class="dv">200</span>)</span>
-<span id="cb15-16"><a></a><span class="bu">print</span>(output[<span class="dv">0</span>][<span class="st">"generated_text"</span>][<span class="op">-</span><span class="dv">1</span>][<span class="st">"content"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a aria-label="1"></a>messages <span class="op">=</span> [</span>
+<span id="cb15-2"><a aria-label="2"></a>    {</span>
+<span id="cb15-3"><a aria-label="3"></a>        <span class="st">"role"</span>: <span class="st">"system"</span>,</span>
+<span id="cb15-4"><a aria-label="4"></a>        <span class="st">"content"</span>: [{<span class="st">"type"</span>: <span class="st">"text"</span>, <span class="st">"text"</span>: <span class="st">"You are a helpful assistant."</span>}],</span>
+<span id="cb15-5"><a aria-label="5"></a>    },</span>
+<span id="cb15-6"><a aria-label="6"></a>    {</span>
+<span id="cb15-7"><a aria-label="7"></a>        <span class="st">"role"</span>: <span class="st">"user"</span>,</span>
+<span id="cb15-8"><a aria-label="8"></a>        <span class="st">"content"</span>: [</span>
+<span id="cb15-9"><a aria-label="9"></a>            {<span class="st">"type"</span>: <span class="st">"image"</span>, <span class="st">"url"</span>: IMAGE_URL},</span>
+<span id="cb15-10"><a aria-label="10"></a>            {<span class="st">"type"</span>: <span class="st">"text"</span>, <span class="st">"text"</span>: <span class="st">"What animal is on the candy?"</span>},</span>
+<span id="cb15-11"><a aria-label="11"></a>        ],</span>
+<span id="cb15-12"><a aria-label="12"></a>    },</span>
+<span id="cb15-13"><a aria-label="13"></a>]</span>
+<span id="cb15-14"><a aria-label="14"></a></span>
+<span id="cb15-15"><a aria-label="15"></a>output <span class="op">=</span> pipe(text<span class="op">=</span>messages, max_new_tokens<span class="op">=</span><span class="dv">200</span>)</span>
+<span id="cb15-16"><a aria-label="16"></a><span class="bu">print</span>(output[<span class="dv">0</span>][<span class="st">"generated_text"</span>][<span class="op">-</span><span class="dv">1</span>][<span class="st">"content"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -1650,12 +1655,12 @@
 <h2>References</h2>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-dosovitskiy2021vit" class="csl-entry" role="listitem">
-Dosovitskiy, Alexey, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, et al. 2021. <span>“An Image Is Worth 16x16 Words: Transformers for Image Recognition at Scale.”</span> <em>arXiv Preprint arXiv:2010.11929</em>.
+<span class="nocase">Dosovitskiy, Alexey, Lucas Beyer, Alexander Kolesnikov, et al.</span> 2021. <span>“An Image Is Worth 16x16 Words: Transformers for Image Recognition at Scale.”</span> <em>arXiv Preprint arXiv:2010.11929</em>.
 </div>
 <div id="ref-vasu2025fastvlm" class="csl-entry" role="listitem">
-Vasu, Pavan Kumar Anasosalu, Fartash Faghri, Chun-Liang Li, Cem Koc, Nate True, Albert Antony, Gokul Santhanam, et al. 2025. <span>“FastVLM: Efficient Vision Encoding for Vision Language Models.”</span> In <em>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</em>, 19769–80.
+Vasu, Pavan Kumar Anasosalu, Fartash Faghri, Chun-Liang Li, et al. 2025. <span>“FastVLM: Efficient Vision Encoding for Vision Language Models.”</span> <em>Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)</em>, 19769–80.
 </div>
 <div id="ref-zhang2023controlnet" class="csl-entry" role="listitem">
 Zhang, Lvmin, Anyi Rao, and Maneesh Agrawala. 2023. <span>“Adding Conditional Control to Text-to-Image Diffusion Models.”</span> <em>arXiv Preprint arXiv:2302.05543</em>.

@@ -6,8 +6,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.26">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-5c1318cf63eba56dbef7ba16bc7d56f5.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
 
   <title>CS-394 – Module 1: Foundations of Generative AI</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -16,10 +16,16 @@
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -97,7 +103,6 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
-      margin-bottom: 0em;
     }
     .hanging-indent div.csl-entry {
       margin-left:2em;
@@ -114,7 +119,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-eeafb82a00776dbd0312b01cd21cfa25.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-c0f83db45831a6b0d0e18a94327038c6.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -282,9 +287,9 @@
 <h2>How does Word2Vec Work?</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/01/notebooks/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-1">
 <div id="word-1" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a>word <span class="op">=</span> <span class="st">"cat"</span></span>
-<span id="cb1-2"><a></a>vector <span class="op">=</span> model[word]</span>
-<span id="cb1-3"><a></a>vector[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a aria-label="1"></a>word <span class="op">=</span> <span class="st">"cat"</span></span>
+<span id="cb1-2"><a aria-label="2"></a>vector <span class="op">=</span> model[word]</span>
+<span id="cb1-3"><a aria-label="3"></a>vector[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>array([ 0.0123291 ,  0.20410156, -0.28515625,  0.21679688,  0.11816406,
         0.08300781,  0.04980469, -0.00952148,  0.22070312, -0.12597656],
@@ -297,9 +302,9 @@
 <h2>How does Word2Vec Work?</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/01/notebooks/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-2">
 <div id="word-2" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>word <span class="op">=</span> <span class="st">"dog"</span></span>
-<span id="cb3-2"><a></a>vector <span class="op">=</span> model[word]</span>
-<span id="cb3-3"><a></a>vector[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a aria-label="1"></a>word <span class="op">=</span> <span class="st">"dog"</span></span>
+<span id="cb3-2"><a aria-label="2"></a>vector <span class="op">=</span> model[word]</span>
+<span id="cb3-3"><a aria-label="3"></a>vector[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>array([ 0.05126953, -0.02233887, -0.17285156,  0.16113281, -0.08447266,
         0.05737305,  0.05859375, -0.08251953, -0.01538086, -0.06347656],
@@ -312,9 +317,9 @@
 <h2>How does Word2Vec Work?</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/01/notebooks/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="word-3">
 <div id="word-3" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a>word <span class="op">=</span> <span class="st">"pizza"</span></span>
-<span id="cb5-2"><a></a>vector <span class="op">=</span> model[word]</span>
-<span id="cb5-3"><a></a>vector[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a aria-label="1"></a>word <span class="op">=</span> <span class="st">"pizza"</span></span>
+<span id="cb5-2"><a aria-label="2"></a>vector <span class="op">=</span> model[word]</span>
+<span id="cb5-3"><a aria-label="3"></a>vector[:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>array([-1.2597656e-01,  2.5390625e-02,  1.6699219e-01,  5.5078125e-01,
        -7.6660156e-02,  1.2890625e-01,  1.0253906e-01, -3.9482117e-04,
@@ -339,9 +344,9 @@
 <h2>How does Word2Vec Work?</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/01/notebooks/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="similar-words">
 <div id="similar-words" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a>find_similar_words(<span class="st">"cat"</span>)</span>
-<span id="cb7-2"><a></a>find_similar_words(<span class="st">"dog"</span>)</span>
-<span id="cb7-3"><a></a>find_similar_words(<span class="st">"pizza"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a aria-label="1"></a>find_similar_words(<span class="st">"cat"</span>)</span>
+<span id="cb7-2"><a aria-label="2"></a>find_similar_words(<span class="st">"dog"</span>)</span>
+<span id="cb7-3"><a aria-label="3"></a>find_similar_words(<span class="st">"pizza"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Words most similar to 'cat':
@@ -390,11 +395,11 @@ meatball_sandwich    | similarity: 0.6377</code></pre>
 <h2>How does Word2Vec Work?</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/01/notebooks/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="compute-similarity">
 <div id="compute-similarity" class="cell" data-execution_count="21">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a>compute_similarity(<span class="st">'cat'</span>, <span class="st">'dog'</span>)</span>
-<span id="cb9-2"><a></a>compute_similarity(<span class="st">'cat'</span>, <span class="st">'kitten'</span>)</span>
-<span id="cb9-3"><a></a>compute_similarity(<span class="st">'cat'</span>, <span class="st">'car'</span>)</span>
-<span id="cb9-4"><a></a>compute_similarity(<span class="st">'doctor'</span>, <span class="st">'hospital'</span>)</span>
-<span id="cb9-5"><a></a>compute_similarity(<span class="st">'king'</span>, <span class="st">'queen'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a aria-label="1"></a>compute_similarity(<span class="st">'cat'</span>, <span class="st">'dog'</span>)</span>
+<span id="cb9-2"><a aria-label="2"></a>compute_similarity(<span class="st">'cat'</span>, <span class="st">'kitten'</span>)</span>
+<span id="cb9-3"><a aria-label="3"></a>compute_similarity(<span class="st">'cat'</span>, <span class="st">'car'</span>)</span>
+<span id="cb9-4"><a aria-label="4"></a>compute_similarity(<span class="st">'doctor'</span>, <span class="st">'hospital'</span>)</span>
+<span id="cb9-5"><a aria-label="5"></a>compute_similarity(<span class="st">'king'</span>, <span class="st">'queen'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Similarity between 'cat' and 'dog': 0.7609
 Similarity between 'cat' and 'kitten': 0.7465
@@ -409,9 +414,9 @@ Similarity between 'king' and 'queen': 0.6511</code></pre>
 <h2>How does Word2Vec Work?</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/01/notebooks/word2vec.ipynb" data-notebook-title="Word2Vec" data-notebook-cellid="vector-arithmetic">
 <div id="vector-arithmetic" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a></a>vector_arithmetic([<span class="st">'king'</span>, <span class="st">'woman'</span>], [<span class="st">'man'</span>])</span>
-<span id="cb11-2"><a></a>vector_arithmetic([<span class="st">'Paris'</span>, <span class="st">'Italy'</span>], [<span class="st">'France'</span>])</span>
-<span id="cb11-3"><a></a>vector_arithmetic([<span class="st">'walking'</span>, <span class="st">'swim'</span>], [<span class="st">'walk'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a aria-label="1"></a>vector_arithmetic([<span class="st">'king'</span>, <span class="st">'woman'</span>], [<span class="st">'man'</span>])</span>
+<span id="cb11-2"><a aria-label="2"></a>vector_arithmetic([<span class="st">'Paris'</span>, <span class="st">'Italy'</span>], [<span class="st">'France'</span>])</span>
+<span id="cb11-3"><a aria-label="3"></a>vector_arithmetic([<span class="st">'walking'</span>, <span class="st">'swim'</span>], [<span class="st">'walk'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 king + woman - man:
@@ -681,7 +686,7 @@ paddling             | similarity: 0.6424</code></pre>
 <ul>
 <li class="fragment">Frequent pairs of adjacent bytes represented as a single byte</li>
 </ul></li>
-<li class="fragment">In 2016, adapted to neural machine translation <span class="citation" data-cites="sennrich-etal-2016-neural">(<a href="#/references-1" role="doc-biblioref" onclick="">Sennrich, Haddow, and Birch 2016</a>)</span>
+<li class="fragment">In 2016, adapted to neural machine translation <span class="citation" data-cites="sennrich-etal-2016-neural">(<a href="#/references-1" role="doc-biblioref" onclick="">Sennrich et al. 2016</a>)</span>
 <ul>
 <li class="fragment">Applied BPE to break words into subword units for better handling of rare words</li>
 </ul></li>
@@ -716,7 +721,7 @@ paddling             | similarity: 0.6424</code></pre>
 </ul></li>
 <li class="fragment">Researchers working on “attention tasks” using Recurrent Neural Networks (RNNs)
 <ul>
-<li class="fragment">Bahdanau et al.&nbsp;introduce attention for translation <span class="citation" data-cites="bahdanau2015neural">(<a href="#/references-1" role="doc-biblioref" onclick="">Bahdanau, Cho, and Bengio 2015</a>)</span></li>
+<li class="fragment">Bahdanau et al.&nbsp;introduce attention for translation <span class="citation" data-cites="bahdanau2015neural">(<a href="#/references-1" role="doc-biblioref" onclick="">Bahdanau et al. 2015</a>)</span></li>
 <li class="fragment">Showed that focusing on relevant parts of input improved translation quality</li>
 </ul></li>
 </ul>
@@ -759,11 +764,11 @@ paddling             | similarity: 0.6424</code></pre>
 <h2>Example</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/01/notebooks/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="load-model">
 <div id="load-model" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a></a><span class="im">from</span> transformers <span class="im">import</span> AutoTokenizer, AutoModelForSeq2SeqLM</span>
-<span id="cb13-2"><a></a></span>
-<span id="cb13-3"><a></a>model_name <span class="op">=</span> <span class="st">"Helsinki-NLP/opus-mt-fr-en"</span></span>
-<span id="cb13-4"><a></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(model_name)</span>
-<span id="cb13-5"><a></a>model <span class="op">=</span> AutoModelForSeq2SeqLM.from_pretrained(model_name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a aria-label="1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoTokenizer, AutoModelForSeq2SeqLM</span>
+<span id="cb13-2"><a aria-label="2"></a></span>
+<span id="cb13-3"><a aria-label="3"></a>model_name <span class="op">=</span> <span class="st">"Helsinki-NLP/opus-mt-fr-en"</span></span>
+<span id="cb13-4"><a aria-label="4"></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(model_name)</span>
+<span id="cb13-5"><a aria-label="5"></a>model <span class="op">=</span> AutoModelForSeq2SeqLM.from_pretrained(model_name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id":"554eae15412f407392def18a94e2cdf3","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
@@ -796,10 +801,10 @@ paddling             | similarity: 0.6424</code></pre>
 <h2>Example</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/01/notebooks/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="tokenize">
 <div id="tokenize" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a>french_text <span class="op">=</span> <span class="st">"Bonjour, comment allez-vous?"</span></span>
-<span id="cb14-2"><a></a>input_ids <span class="op">=</span> tokenizer.encode(french_text, return_tensors<span class="op">=</span><span class="st">"pt"</span>)</span>
-<span id="cb14-3"><a></a><span class="bu">print</span>(input_ids[<span class="dv">0</span>])</span>
-<span id="cb14-4"><a></a><span class="bu">print</span>(<span class="st">"Tokens:"</span>, tokenizer.convert_ids_to_tokens(input_ids[<span class="dv">0</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a aria-label="1"></a>french_text <span class="op">=</span> <span class="st">"Bonjour, comment allez-vous?"</span></span>
+<span id="cb14-2"><a aria-label="2"></a>input_ids <span class="op">=</span> tokenizer.encode(french_text, return_tensors<span class="op">=</span><span class="st">"pt"</span>)</span>
+<span id="cb14-3"><a aria-label="3"></a><span class="bu">print</span>(input_ids[<span class="dv">0</span>])</span>
+<span id="cb14-4"><a aria-label="4"></a><span class="bu">print</span>(<span class="st">"Tokens:"</span>, tokenizer.convert_ids_to_tokens(input_ids[<span class="dv">0</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tensor([8703,    2, 1027, 5682,   21,  682,   54,    0])
 Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&gt;']</code></pre>
@@ -811,8 +816,8 @@ Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&
 <h2>Example</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/01/notebooks/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="transformer">
 <div id="transformer" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a>output_ids <span class="op">=</span> model.generate(input_ids)</span>
-<span id="cb16-2"><a></a><span class="bu">print</span>(output_ids)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a aria-label="1"></a>output_ids <span class="op">=</span> model.generate(input_ids)</span>
+<span id="cb16-2"><a aria-label="2"></a><span class="bu">print</span>(output_ids)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tensor([[59513, 10537,     2,   541,    52,    55,    54,     0]])</code></pre>
 </div>
@@ -823,8 +828,8 @@ Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&
 <h2>Example</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/01/notebooks/translation-transformer.ipynb" data-notebook-title="Translation Transformer" data-notebook-cellid="decode">
 <div id="decode" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a></a>english_text <span class="op">=</span> tokenizer.decode(output_ids[<span class="dv">0</span>], skip_special_tokens<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb18-2"><a></a><span class="bu">print</span>(<span class="st">"Translation:"</span>, english_text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a aria-label="1"></a>english_text <span class="op">=</span> tokenizer.decode(output_ids[<span class="dv">0</span>], skip_special_tokens<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb18-2"><a aria-label="2"></a><span class="bu">print</span>(<span class="st">"Translation:"</span>, english_text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Translation: Hello, how are you?</code></pre>
 </div>
@@ -1037,14 +1042,14 @@ Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&
 <h2>Example</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/01/notebooks/GPT-2.ipynb" data-notebook-title="Pre-trained GPT-2 Notebook" data-notebook-cellid="load-model">
 <div id="load-model" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a></a><span class="im">from</span> transformers <span class="im">import</span> GPT2LMHeadModel, GPT2Tokenizer</span>
-<span id="cb20-2"><a></a></span>
-<span id="cb20-3"><a></a><span class="co"># Load pre-trained GPT-2 model and tokenizer</span></span>
-<span id="cb20-4"><a></a>tokenizer <span class="op">=</span> GPT2Tokenizer.from_pretrained(<span class="st">"gpt2"</span>)</span>
-<span id="cb20-5"><a></a>model <span class="op">=</span> GPT2LMHeadModel.from_pretrained(<span class="st">"gpt2"</span>)</span>
-<span id="cb20-6"><a></a></span>
-<span id="cb20-7"><a></a><span class="co"># Set pad token</span></span>
-<span id="cb20-8"><a></a>tokenizer.pad_token <span class="op">=</span> tokenizer.eos_token</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a aria-label="1"></a><span class="im">from</span> transformers <span class="im">import</span> GPT2LMHeadModel, GPT2Tokenizer</span>
+<span id="cb20-2"><a aria-label="2"></a></span>
+<span id="cb20-3"><a aria-label="3"></a><span class="co"># Load pre-trained GPT-2 model and tokenizer</span></span>
+<span id="cb20-4"><a aria-label="4"></a>tokenizer <span class="op">=</span> GPT2Tokenizer.from_pretrained(<span class="st">"gpt2"</span>)</span>
+<span id="cb20-5"><a aria-label="5"></a>model <span class="op">=</span> GPT2LMHeadModel.from_pretrained(<span class="st">"gpt2"</span>)</span>
+<span id="cb20-6"><a aria-label="6"></a></span>
+<span id="cb20-7"><a aria-label="7"></a><span class="co"># Set pad token</span></span>
+<span id="cb20-8"><a aria-label="8"></a>tokenizer.pad_token <span class="op">=</span> tokenizer.eos_token</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -1052,28 +1057,28 @@ Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&
 <h2>Example</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/01/notebooks/GPT-2.ipynb" data-notebook-title="Pre-trained GPT-2 Notebook" data-notebook-cellid="autocomplete">
 <div id="autocomplete" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a></a><span class="im">import</span> torch</span>
-<span id="cb21-2"><a></a></span>
-<span id="cb21-3"><a></a><span class="kw">def</span> autocomplete(prompt, max_length<span class="op">=</span><span class="dv">50</span>, temperature<span class="op">=</span><span class="fl">0.7</span>, top_k<span class="op">=</span><span class="dv">50</span>, top_p<span class="op">=</span><span class="fl">0.9</span>):</span>
-<span id="cb21-4"><a></a>    <span class="co"># Encode the prompt with attention mask</span></span>
-<span id="cb21-5"><a></a>    inputs <span class="op">=</span> tokenizer(prompt, return_tensors<span class="op">=</span><span class="st">"pt"</span>)</span>
-<span id="cb21-6"><a></a>    </span>
-<span id="cb21-7"><a></a>    <span class="co"># Generate continuation</span></span>
-<span id="cb21-8"><a></a>    <span class="cf">with</span> torch.no_grad():</span>
-<span id="cb21-9"><a></a>        output <span class="op">=</span> model.generate(</span>
-<span id="cb21-10"><a></a>            inputs[<span class="st">'input_ids'</span>],</span>
-<span id="cb21-11"><a></a>            attention_mask<span class="op">=</span>inputs[<span class="st">'attention_mask'</span>],</span>
-<span id="cb21-12"><a></a>            max_length<span class="op">=</span>max_length,</span>
-<span id="cb21-13"><a></a>            temperature<span class="op">=</span>temperature,</span>
-<span id="cb21-14"><a></a>            top_k<span class="op">=</span>top_k,</span>
-<span id="cb21-15"><a></a>            top_p<span class="op">=</span>top_p,</span>
-<span id="cb21-16"><a></a>            do_sample<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb21-17"><a></a>            pad_token_id<span class="op">=</span>tokenizer.eos_token_id</span>
-<span id="cb21-18"><a></a>        )</span>
-<span id="cb21-19"><a></a>    </span>
-<span id="cb21-20"><a></a>    <span class="co"># Decode and return the generated text</span></span>
-<span id="cb21-21"><a></a>    generated_text <span class="op">=</span> tokenizer.decode(output[<span class="dv">0</span>], skip_special_tokens<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb21-22"><a></a>    <span class="cf">return</span> generated_text</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a aria-label="1"></a><span class="im">import</span> torch</span>
+<span id="cb21-2"><a aria-label="2"></a></span>
+<span id="cb21-3"><a aria-label="3"></a><span class="kw">def</span> autocomplete(prompt, max_length<span class="op">=</span><span class="dv">50</span>, temperature<span class="op">=</span><span class="fl">0.7</span>, top_k<span class="op">=</span><span class="dv">50</span>, top_p<span class="op">=</span><span class="fl">0.9</span>):</span>
+<span id="cb21-4"><a aria-label="4"></a>    <span class="co"># Encode the prompt with attention mask</span></span>
+<span id="cb21-5"><a aria-label="5"></a>    inputs <span class="op">=</span> tokenizer(prompt, return_tensors<span class="op">=</span><span class="st">"pt"</span>)</span>
+<span id="cb21-6"><a aria-label="6"></a>    </span>
+<span id="cb21-7"><a aria-label="7"></a>    <span class="co"># Generate continuation</span></span>
+<span id="cb21-8"><a aria-label="8"></a>    <span class="cf">with</span> torch.no_grad():</span>
+<span id="cb21-9"><a aria-label="9"></a>        output <span class="op">=</span> model.generate(</span>
+<span id="cb21-10"><a aria-label="10"></a>            inputs[<span class="st">'input_ids'</span>],</span>
+<span id="cb21-11"><a aria-label="11"></a>            attention_mask<span class="op">=</span>inputs[<span class="st">'attention_mask'</span>],</span>
+<span id="cb21-12"><a aria-label="12"></a>            max_length<span class="op">=</span>max_length,</span>
+<span id="cb21-13"><a aria-label="13"></a>            temperature<span class="op">=</span>temperature,</span>
+<span id="cb21-14"><a aria-label="14"></a>            top_k<span class="op">=</span>top_k,</span>
+<span id="cb21-15"><a aria-label="15"></a>            top_p<span class="op">=</span>top_p,</span>
+<span id="cb21-16"><a aria-label="16"></a>            do_sample<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb21-17"><a aria-label="17"></a>            pad_token_id<span class="op">=</span>tokenizer.eos_token_id</span>
+<span id="cb21-18"><a aria-label="18"></a>        )</span>
+<span id="cb21-19"><a aria-label="19"></a>    </span>
+<span id="cb21-20"><a aria-label="20"></a>    <span class="co"># Decode and return the generated text</span></span>
+<span id="cb21-21"><a aria-label="21"></a>    generated_text <span class="op">=</span> tokenizer.decode(output[<span class="dv">0</span>], skip_special_tokens<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb21-22"><a aria-label="22"></a>    <span class="cf">return</span> generated_text</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -1099,9 +1104,9 @@ Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&
 <h2>Example</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/01/notebooks/GPT-2.ipynb" data-notebook-title="Pre-trained GPT-2 Notebook" data-notebook-cellid="prompts">
 <div id="prompts" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="7decbea9-1b4b-4208-a441-a65f9be042d2" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a></a>prompt <span class="op">=</span> <span class="st">"Mary had a little lamb"</span></span>
-<span id="cb22-2"><a></a>completion <span class="op">=</span> autocomplete(prompt, max_length<span class="op">=</span><span class="dv">80</span>)</span>
-<span id="cb22-3"><a></a><span class="bu">print</span>(completion)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a aria-label="1"></a>prompt <span class="op">=</span> <span class="st">"Mary had a little lamb"</span></span>
+<span id="cb22-2"><a aria-label="2"></a>completion <span class="op">=</span> autocomplete(prompt, max_length<span class="op">=</span><span class="dv">80</span>)</span>
+<span id="cb22-3"><a aria-label="3"></a><span class="bu">print</span>(completion)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Mary had a little lamb, and the young woman asked her for a little lamb, and they gave it to her.
 
@@ -1163,27 +1168,27 @@ Tokens: ['▁Bonjour', ',', '▁comment', '▁allez', '-', 'vous', '?', '&lt;/s&
 <h2>References</h2>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-bahdanau2015neural" class="csl-entry" role="listitem">
-Bahdanau, Dzmitry, Kyunghyun Cho, and Yoshua Bengio. 2015. <span>“Neural Machine Translation by Jointly Learning to Align and Translate.”</span> In <em>International Conference on Learning Representations</em>. <a href="https://arxiv.org/abs/1409.0473">https://arxiv.org/abs/1409.0473</a>.
+Bahdanau, Dzmitry, Kyunghyun Cho, and Yoshua Bengio. 2015. <span>“Neural Machine Translation by Jointly Learning to Align and Translate.”</span> <em>International Conference on Learning Representations</em>. <a href="https://arxiv.org/abs/1409.0473">https://arxiv.org/abs/1409.0473</a>.
 </div>
 <div id="ref-gage1994new" class="csl-entry" role="listitem">
 Gage, Philip. 1994. <span>“A New Algorithm for Data Compression.”</span> <em>The C Users Journal</em> 12 (2): 23–38.
 </div>
 <div id="ref-mikolov2013efficient" class="csl-entry" role="listitem">
-Mikolov, Tomas, Kai Chen, Greg Corrado, and Jeffrey Dean. 2013. <span>“Efficient Estimation of Word Representations in Vector Space.”</span> In <em>International Conference on Learning Representations</em>. <a href="https://arxiv.org/abs/1301.3781">https://arxiv.org/abs/1301.3781</a>.
+Mikolov, Tomas, Kai Chen, Greg Corrado, and Jeffrey Dean. 2013. <span>“Efficient Estimation of Word Representations in Vector Space.”</span> <em>International Conference on Learning Representations</em>. <a href="https://arxiv.org/abs/1301.3781">https://arxiv.org/abs/1301.3781</a>.
 </div>
 <div id="ref-mikolov2013distributed" class="csl-entry" role="listitem">
-Mikolov, Tomas, Ilya Sutskever, Kai Chen, Greg S Corrado, and Jeff Dean. 2013. <span>“Distributed Representations of Words and Phrases and Their Compositionality.”</span> In <em>Advances in Neural Information Processing Systems</em>, 3111–19. <a href="https://arxiv.org/abs/1310.4546">https://arxiv.org/abs/1310.4546</a>.
+Mikolov, Tomas, Ilya Sutskever, Kai Chen, Greg S Corrado, and Jeff Dean. 2013. <span>“Distributed Representations of Words and Phrases and Their Compositionality.”</span> <em>Advances in Neural Information Processing Systems</em>, 3111–19. <a href="https://arxiv.org/abs/1310.4546">https://arxiv.org/abs/1310.4546</a>.
 </div>
 <div id="ref-radford2018improving" class="csl-entry" role="listitem">
-Radford, Alec, Karthik Narasimhan, Tim Salimans, and Ilya Sutskever. 2018. <span>“Improving Language Understanding by Generative Pre-Training.”</span> <a href="https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf">https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf</a>.
+Radford, Alec, Karthik Narasimhan, Tim Salimans, and Ilya Sutskever. 2018. <em>Improving Language Understanding by Generative Pre-Training</em>. <a href="https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf">https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf</a>.
 </div>
 <div id="ref-sennrich-etal-2016-neural" class="csl-entry" role="listitem">
-Sennrich, Rico, Barry Haddow, and Alexandra Birch. 2016. <span>“Neural Machine Translation of Rare Words with Subword Units.”</span> In <em>Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)</em>, 1715–25. Berlin, Germany: Association for Computational Linguistics. <a href="https://doi.org/10.18653/v1/P16-1162">https://doi.org/10.18653/v1/P16-1162</a>.
+Sennrich, Rico, Barry Haddow, and Alexandra Birch. 2016. <span>“Neural Machine Translation of Rare Words with Subword Units.”</span> <em>Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)</em> (Berlin, Germany), 1715–25. <a href="https://doi.org/10.18653/v1/P16-1162">https://doi.org/10.18653/v1/P16-1162</a>.
 </div>
 <div id="ref-vaswani2017attention" class="csl-entry" role="listitem">
-Vaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Łukasz Kaiser, and Illia Polosukhin. 2017. <span>“Attention Is All You Need.”</span> In <em>Advances in Neural Information Processing Systems</em>. Vol. 30.
+Vaswani, Ashish, Noam Shazeer, Niki Parmar, et al. 2017. <span>“Attention Is All You Need.”</span> <em>Advances in Neural Information Processing Systems</em> 30.
 </div>
 </div>
 </section></section>

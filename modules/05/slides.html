@@ -6,8 +6,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.26">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-5c1318cf63eba56dbef7ba16bc7d56f5.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
 
   <title>CS-394 – Module 5: Running Models on Local Hardware</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -16,10 +16,16 @@
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -97,7 +103,6 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
-      margin-bottom: 0em;
     }
     .hanging-indent div.csl-entry {
       margin-left:2em;
@@ -114,7 +119,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-eeafb82a00776dbd0312b01cd21cfa25.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-c0f83db45831a6b0d0e18a94327038c6.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -483,7 +488,7 @@
 <ul>
 <li class="fragment">MoE (Mixture of Experts)
 <ul>
-<li class="fragment">2022: Google releases Switch Transformers <span class="citation" data-cites="fedus2022switch">(<a href="#/references-1" role="doc-biblioref" onclick="">Fedus, Zoph, and Shazeer 2022</a>)</span>, simplifying MoE by routing each token to just a single expert</li>
+<li class="fragment">2022: Google releases Switch Transformers <span class="citation" data-cites="fedus2022switch">(<a href="#/references-1" role="doc-biblioref" onclick="">Fedus et al. 2022</a>)</span>, simplifying MoE by routing each token to just a single expert</li>
 <li class="fragment">2023: Mixtral 8x7B (Mistral AI) brings high-quality open-source MoE to the mainstream, becoming a standard architecture for efficient large-scale models</li>
 </ul></li>
 </ul>
@@ -546,21 +551,21 @@
 <h2>How do MoE Models Work?</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/05/notebooks/moe-heatmap.ipynb" data-notebook-title="Routing Heatmap for Small MoE Model" data-notebook-cellid="load-model">
 <div id="load-model" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:540,&quot;referenced_widgets&quot;:[&quot;52581879eb7b4382b8c14efdbe5b2ec0&quot;,&quot;d679de2b167d464bac398623ebe638b1&quot;,&quot;c76da39949224260bee780ad76cdd329&quot;,&quot;8074228464dc43c98a5b8a40ed31d3d9&quot;,&quot;6e7558f19cf4483597453b08ec5db385&quot;,&quot;e87deac2da7b4ef8ab661abd62c2b1e1&quot;,&quot;dff8560843f34c9abefa435d03384f01&quot;,&quot;fa5e94d54c7d4fa9a360e8dfd7cff621&quot;,&quot;e8029cdf39154820934671f62b15069e&quot;,&quot;707a1d5a8df544abaee79edcef843e2e&quot;,&quot;bbae47b658ae49b3a85cf5513b69c7fa&quot;,&quot;0ec9c12663b44fdb8a8e67989befe062&quot;,&quot;ad595d9de09d4542acf41506e47c7b83&quot;,&quot;aae62ea7e70f4bc6b3002176a3f4e289&quot;,&quot;a53149e53b67476b931c937f4261d9c1&quot;,&quot;3a2be454021740aa89230c358fc71f47&quot;,&quot;424cf682c33b4618859f6d1d21355f93&quot;,&quot;88aee749b0414055b10c5e135a08414d&quot;,&quot;0a82f43f5b344dada8f3a5a768544b42&quot;,&quot;b196e8aec950451dbc0f46776fa22bf8&quot;,&quot;1928779088a54bee84100ec187684865&quot;,&quot;026a4317590d4dd1aacd6c30add19f78&quot;,&quot;087a8dc7e0e04cf48da262cd257a12c2&quot;,&quot;40f2c9e54eda4ad083bb35c69d08c26c&quot;,&quot;b4a3bf7bfea04e54b57bafdbdea7b1a7&quot;,&quot;96bb1218c4ce438da92558d38e8b4c15&quot;,&quot;8315beea701c49188be024b035eb5b6f&quot;,&quot;6751fb43a31e426d835dbc6ef4be6861&quot;,&quot;b01e2b04e65e411882c45117e85ff235&quot;,&quot;a4d0ff9cad8846c5a13a5b2e50b978f6&quot;,&quot;12d359896acc41028540a244538a3773&quot;,&quot;6b8cdd45f5904e9587300978a774ee2e&quot;,&quot;9465ec32acb642bdba8d5efc47114463&quot;,&quot;2848f63b2ac1440ab84dde43f1b75583&quot;,&quot;e5e1864611f34917b18a286712aa58a0&quot;,&quot;996ad9a47a364e66b030ab1b4b8b2555&quot;,&quot;dbbd033a0ccb4b8ab3cbe7ab21b708da&quot;,&quot;343be4ec82f24e2aa4bc55a7bdb5a503&quot;,&quot;f8eafb7b833e4926821ffd52b863d51c&quot;,&quot;fd47a4dd3a7e498bb53b7389bd0bb75b&quot;,&quot;38626ed766aa48a1bdb3bbcd4766a3ce&quot;,&quot;33d73591890f435d9fadf644d4fadf3e&quot;,&quot;fb648ce3f655477382700f2b07a18f67&quot;,&quot;2a0f3c728b0c4c5eb359034069404bc7&quot;,&quot;285cd10a80bf43bdb70497131ccc4919&quot;,&quot;36be9990b9374475acc2cddeceacc76b&quot;,&quot;5db023acb6534e1fae292f1333b8caba&quot;,&quot;e8ac7ec77b25472281b7b5446530c481&quot;,&quot;270b75d266674399b42644c54f879b98&quot;,&quot;38b25e3ec7de40f9b9029e3b865647e8&quot;,&quot;2b3f5a9b350d49ee9e21c3b391aafd4d&quot;,&quot;f48be9097f31447bba0d46135de9ffc5&quot;,&quot;7d2829bcfd2f4d4fb148969b4b0f42b9&quot;,&quot;1edb92d21a5f48a1958068d9975d1af2&quot;,&quot;921380dca30a4ae9a82c76955866d164&quot;,&quot;2d9ecd2ffc484dae8a8fdaa323ecc2fc&quot;,&quot;866fa7582e4740afbf80074938ab74ec&quot;,&quot;5190ea15c6734f519025ad8b63071ea0&quot;,&quot;c0a854c699354eacb6b2ae25b07698d5&quot;,&quot;9ba166652e5d474aad0431855f2a5f14&quot;,&quot;8ddc47ae164d414aa6b10ef2552723c1&quot;,&quot;9ee5a96dec084d7e9b660a236b7c93d4&quot;,&quot;b382de9c91f04ce494f3109c1ae50e0f&quot;,&quot;09ada04e114842998643106bbf536b4a&quot;,&quot;90aa9cbabdd9478ea3c05cb7d83e30fc&quot;,&quot;d1ff58255c9b4d37b47407599336d5f0&quot;,&quot;3c032d8a3a694ca6a810b4b6d1be984f&quot;,&quot;ea7cbd3a1ee343c399ba7865a252d262&quot;,&quot;c7f8384643e44293bfba76499f7b2928&quot;,&quot;5b47058afdc84caa943f7643c0248539&quot;,&quot;3d7fad42830141b9a5548c93e301cf9f&quot;,&quot;54ec6b1f034546f7b813f2595338678d&quot;,&quot;e51e816ced254d67b7e73f427a81bf0a&quot;,&quot;5ab3785ec9f741c0b907b4691c78b318&quot;,&quot;43f577ded6a34f55b922ec695b803120&quot;,&quot;7478bf3ff768493eb2f8c709c4972ae0&quot;,&quot;4f336f337a274b51b9198179826bcdc8&quot;,&quot;f25f6c1f8d794ad08186e5711063d634&quot;,&quot;7518ac82080e4aaf8b87a19ad4951939&quot;,&quot;7aa88f7a36c743c69789f6ea3a8f7623&quot;,&quot;a39f64f9fc9e492b88ca5e8b9c410c1f&quot;,&quot;4db62cf2648140489364664bbc59d4c2&quot;,&quot;8cc66db1c079460e895e728b5810c351&quot;,&quot;06808f07cc8a40f6b4d3dc23ce9f1599&quot;,&quot;67260cf4d35c42ac943916e17e687d79&quot;,&quot;c1518fb1868846b49256d06e362a1856&quot;,&quot;f92a300231aa4830b1b731081f87fbb6&quot;,&quot;98ef9252ca9743c39341e0813875e474&quot;,&quot;665d5f8ba76c43abaadfb3c0f748a80c&quot;,&quot;244893c23d87427fbf731f76a365213c&quot;,&quot;fcb3f332704f4cc898e37f8de8324f46&quot;,&quot;f20b7a48965a40c3a87508f675c6890a&quot;,&quot;4bdb3f175df6428c9f4eb42371c3d5c0&quot;,&quot;6a6d4ed72ada48a9a0bfd8b6db8216ce&quot;,&quot;66082b3a6e454ecfa4616d80fc8b5e66&quot;,&quot;5d062c22cebf4eec86eae303e2f83767&quot;,&quot;0ca3942d618646f7b830ccf0f79f7779&quot;,&quot;98e0daae4f8240ffba25eddce352adfb&quot;,&quot;7eaacd783bd941c8b75599626be30fc9&quot;,&quot;39e0544fc39b4d7fa9d48ce9be14aebb&quot;,&quot;92bece1efa944186a016bab06cd283e0&quot;,&quot;48d2290cd6fa4044a67cbbacd380d052&quot;,&quot;fe125a77270048e5ba2182143f828044&quot;,&quot;5d681e224164482da70f104e556c021e&quot;,&quot;fa10bdbab2ec4cf0a95e392eb3d77f60&quot;,&quot;1d32cfb0a8af43f98d2174e023280269&quot;,&quot;256c87fe002d4fb58dea05089c70fb57&quot;,&quot;f8893c54cd6a43bc8fdb754e60d36071&quot;,&quot;81455ed1f07245e4b46e3a10fc201533&quot;,&quot;8e0491e2f4234a9abbace036e6169254&quot;,&quot;b8562328710d4173acf57b27562fdeff&quot;,&quot;6dbea3ac541447919eaa511603ed368e&quot;,&quot;2572568afce645eb84d7fa8e8aba733c&quot;,&quot;b387d05735c44b869a01863c33b77f61&quot;,&quot;09ef91241ea7473688a568e7a141ca47&quot;,&quot;1af2ae948e0946d2b1440b67ab26e79c&quot;,&quot;00f7918248e14fe3a7c6001cace0c609&quot;,&quot;22a47854213247e78c3c13da4f989e01&quot;,&quot;efc76cca05da47fba8b26df81024c2bf&quot;,&quot;79db35f755b549d7b8659d67717b8b6f&quot;,&quot;4f0a2205ce194fb8b39c84006afe0a3e&quot;,&quot;e8499bead7fc45d8b4019d0b1fb48be5&quot;,&quot;4581f770419c442b9755a664bdf3bdcb&quot;,&quot;573d11a996ac4130a5d274ef26a51c5a&quot;,&quot;7faf3a6b13264c57bf392490df6f02ee&quot;,&quot;96a85974be1a4c868bda65370c536cbe&quot;,&quot;13f7778e30954988b5ed558f44ea39ca&quot;,&quot;a92c04928c35448db742bbd13cafbc10&quot;,&quot;2017bac6d85c479f8386a27db96d8f51&quot;,&quot;c5ede252294144ad82185ee7b5f2ffb9&quot;,&quot;cef98a9bb9324e50ba60cd3ae6c4d1d9&quot;,&quot;7e7bebf54dfd453b8cddf86b1f93ec71&quot;,&quot;86ac9142885d48e39d4313d2bb8cbd21&quot;,&quot;98acf19e9d8044d9bce4c44683187205&quot;,&quot;670d6ea9bc9b40448edf30f7dbe0f9a3&quot;,&quot;50cb17eab83f4b648ac017107bd28a64&quot;,&quot;c78d55a0c1014c49a43849548858a711&quot;,&quot;b9d7b3f8890f45a79524b8abd02affc1&quot;,&quot;7bca462d35774d7bac409afff08edc7e&quot;,&quot;c30d60f355884de09c5a84b810e365ee&quot;,&quot;da7cc2daf89b4335bf1e69b564e0cbdd&quot;,&quot;3071c866c768441cbfda8fe568a0f910&quot;,&quot;194abb2955e745aa82725c9729d3397e&quot;]}}" data-outputid="3cb7e88f-2117-48d3-eb40-236c682947bf" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">from</span> transformers <span class="im">import</span> AutoModelForCausalLM, AutoTokenizer</span>
-<span id="cb1-2"><a></a><span class="im">import</span> torch</span>
-<span id="cb1-3"><a></a></span>
-<span id="cb1-4"><a></a>model <span class="op">=</span> AutoModelForCausalLM.from_pretrained(</span>
-<span id="cb1-5"><a></a>    <span class="st">"microsoft/Phi-tiny-MoE-instruct"</span>,</span>
-<span id="cb1-6"><a></a>    device_map<span class="op">=</span><span class="st">"auto"</span>,</span>
-<span id="cb1-7"><a></a>    dtype<span class="op">=</span>torch.float16,</span>
-<span id="cb1-8"><a></a>    trust_remote_code<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb1-9"><a></a>    output_router_logits<span class="op">=</span><span class="va">True</span>  <span class="co"># Enable router outputs</span></span>
-<span id="cb1-10"><a></a>)</span>
-<span id="cb1-11"><a></a></span>
-<span id="cb1-12"><a></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(</span>
-<span id="cb1-13"><a></a>    <span class="st">"microsoft/Phi-tiny-MoE-instruct"</span>,</span>
-<span id="cb1-14"><a></a>    trust_remote_code<span class="op">=</span><span class="va">True</span></span>
-<span id="cb1-15"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a aria-label="1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoModelForCausalLM, AutoTokenizer</span>
+<span id="cb1-2"><a aria-label="2"></a><span class="im">import</span> torch</span>
+<span id="cb1-3"><a aria-label="3"></a></span>
+<span id="cb1-4"><a aria-label="4"></a>model <span class="op">=</span> AutoModelForCausalLM.from_pretrained(</span>
+<span id="cb1-5"><a aria-label="5"></a>    <span class="st">"microsoft/Phi-tiny-MoE-instruct"</span>,</span>
+<span id="cb1-6"><a aria-label="6"></a>    device_map<span class="op">=</span><span class="st">"auto"</span>,</span>
+<span id="cb1-7"><a aria-label="7"></a>    dtype<span class="op">=</span>torch.float16,</span>
+<span id="cb1-8"><a aria-label="8"></a>    trust_remote_code<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb1-9"><a aria-label="9"></a>    output_router_logits<span class="op">=</span><span class="va">True</span>  <span class="co"># Enable router outputs</span></span>
+<span id="cb1-10"><a aria-label="10"></a>)</span>
+<span id="cb1-11"><a aria-label="11"></a></span>
+<span id="cb1-12"><a aria-label="12"></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(</span>
+<span id="cb1-13"><a aria-label="13"></a>    <span class="st">"microsoft/Phi-tiny-MoE-instruct"</span>,</span>
+<span id="cb1-14"><a aria-label="14"></a>    trust_remote_code<span class="op">=</span><span class="va">True</span></span>
+<span id="cb1-15"><a aria-label="15"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -568,43 +573,43 @@
 <h2>How do MoE Models Work?</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/05/notebooks/moe-heatmap.ipynb" data-notebook-title="Routing Heatmap for Small MoE Model" data-notebook-cellid="register-hooks">
 <div id="register-hooks" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="76118d64-31d6-4bda-f4b1-36cfd61ddfc4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a>PROMPT <span class="op">=</span> <span class="st">"What is hello in Japanese?"</span></span>
-<span id="cb2-2"><a></a></span>
-<span id="cb2-3"><a></a>gate_layers <span class="op">=</span> []</span>
-<span id="cb2-4"><a></a><span class="cf">for</span> name, module <span class="kw">in</span> model.named_modules():</span>
-<span id="cb2-5"><a></a>    <span class="cf">if</span> <span class="st">'block_sparse_moe.gate'</span> <span class="kw">in</span> name:</span>
-<span id="cb2-6"><a></a>        gate_layers.append((name, module))</span>
-<span id="cb2-7"><a></a></span>
-<span id="cb2-8"><a></a><span class="bu">print</span>(<span class="ss">f"Found </span><span class="sc">{</span><span class="bu">len</span>(gate_layers)<span class="sc">}</span><span class="ss"> gate layers</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb2-9"><a></a></span>
-<span id="cb2-10"><a></a>router_outputs <span class="op">=</span> []</span>
-<span id="cb2-11"><a></a></span>
-<span id="cb2-12"><a></a><span class="kw">def</span> router_hook(module, <span class="bu">input</span>, output):</span>
-<span id="cb2-13"><a></a>    router_outputs.append(output.detach().cpu())</span>
-<span id="cb2-14"><a></a></span>
-<span id="cb2-15"><a></a><span class="co"># Register hooks</span></span>
-<span id="cb2-16"><a></a>hooks <span class="op">=</span> []</span>
-<span id="cb2-17"><a></a><span class="cf">for</span> name, module <span class="kw">in</span> gate_layers:</span>
-<span id="cb2-18"><a></a>    hooks.append(module.register_forward_hook(router_hook))</span>
-<span id="cb2-19"><a></a></span>
-<span id="cb2-20"><a></a>inputs <span class="op">=</span> tokenizer(PROMPT, return_tensors<span class="op">=</span><span class="st">"pt"</span>).to(model.device)</span>
-<span id="cb2-21"><a></a></span>
-<span id="cb2-22"><a></a><span class="co"># Run forward pass</span></span>
-<span id="cb2-23"><a></a>router_outputs.clear()</span>
-<span id="cb2-24"><a></a><span class="cf">with</span> torch.no_grad():</span>
-<span id="cb2-25"><a></a>    _ <span class="op">=</span> model(<span class="op">**</span>inputs, use_cache<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb2-26"><a></a></span>
-<span id="cb2-27"><a></a><span class="co"># Analyze first layer</span></span>
-<span id="cb2-28"><a></a>router_probs <span class="op">=</span> torch.softmax(router_outputs[<span class="dv">0</span>], dim<span class="op">=-</span><span class="dv">1</span>)</span>
-<span id="cb2-29"><a></a><span class="bu">print</span>(<span class="st">"First layer routing:"</span>)</span>
-<span id="cb2-30"><a></a><span class="bu">print</span>(<span class="ss">f"  Number of experts: </span><span class="sc">{</span>router_probs<span class="sc">.</span>shape[<span class="op">-</span><span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb2-31"><a></a><span class="bu">print</span>(<span class="ss">f"  Shape: </span><span class="sc">{</span>router_probs<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb2-32"><a></a></span>
-<span id="cb2-33"><a></a><span class="co"># Show top-k experts for first 5 tokens</span></span>
-<span id="cb2-34"><a></a><span class="cf">for</span> tok_idx <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">min</span>(<span class="dv">5</span>, router_probs.shape[<span class="dv">0</span>])):</span>
-<span id="cb2-35"><a></a>    top_k <span class="op">=</span> torch.topk(router_probs[tok_idx], k<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb2-36"><a></a>    <span class="bu">print</span>(<span class="ss">f"  Token </span><span class="sc">{</span>tok_idx<span class="sc">}</span><span class="ss">: top experts </span><span class="sc">{</span>top_k<span class="sc">.</span>indices<span class="sc">.</span>tolist()<span class="sc">}</span><span class="ss"> "</span></span>
-<span id="cb2-37"><a></a>          <span class="ss">f"with probs </span><span class="sc">{</span>[<span class="ss">f'</span><span class="sc">{</span>p<span class="sc">:.3f}</span><span class="ss">'</span> <span class="cf">for</span> p <span class="kw">in</span> top_k.values.tolist()]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a aria-label="1"></a>PROMPT <span class="op">=</span> <span class="st">"What is hello in Japanese?"</span></span>
+<span id="cb2-2"><a aria-label="2"></a></span>
+<span id="cb2-3"><a aria-label="3"></a>gate_layers <span class="op">=</span> []</span>
+<span id="cb2-4"><a aria-label="4"></a><span class="cf">for</span> name, module <span class="kw">in</span> model.named_modules():</span>
+<span id="cb2-5"><a aria-label="5"></a>    <span class="cf">if</span> <span class="st">'block_sparse_moe.gate'</span> <span class="kw">in</span> name:</span>
+<span id="cb2-6"><a aria-label="6"></a>        gate_layers.append((name, module))</span>
+<span id="cb2-7"><a aria-label="7"></a></span>
+<span id="cb2-8"><a aria-label="8"></a><span class="bu">print</span>(<span class="ss">f"Found </span><span class="sc">{</span><span class="bu">len</span>(gate_layers)<span class="sc">}</span><span class="ss"> gate layers</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb2-9"><a aria-label="9"></a></span>
+<span id="cb2-10"><a aria-label="10"></a>router_outputs <span class="op">=</span> []</span>
+<span id="cb2-11"><a aria-label="11"></a></span>
+<span id="cb2-12"><a aria-label="12"></a><span class="kw">def</span> router_hook(module, <span class="bu">input</span>, output):</span>
+<span id="cb2-13"><a aria-label="13"></a>    router_outputs.append(output.detach().cpu())</span>
+<span id="cb2-14"><a aria-label="14"></a></span>
+<span id="cb2-15"><a aria-label="15"></a><span class="co"># Register hooks</span></span>
+<span id="cb2-16"><a aria-label="16"></a>hooks <span class="op">=</span> []</span>
+<span id="cb2-17"><a aria-label="17"></a><span class="cf">for</span> name, module <span class="kw">in</span> gate_layers:</span>
+<span id="cb2-18"><a aria-label="18"></a>    hooks.append(module.register_forward_hook(router_hook))</span>
+<span id="cb2-19"><a aria-label="19"></a></span>
+<span id="cb2-20"><a aria-label="20"></a>inputs <span class="op">=</span> tokenizer(PROMPT, return_tensors<span class="op">=</span><span class="st">"pt"</span>).to(model.device)</span>
+<span id="cb2-21"><a aria-label="21"></a></span>
+<span id="cb2-22"><a aria-label="22"></a><span class="co"># Run forward pass</span></span>
+<span id="cb2-23"><a aria-label="23"></a>router_outputs.clear()</span>
+<span id="cb2-24"><a aria-label="24"></a><span class="cf">with</span> torch.no_grad():</span>
+<span id="cb2-25"><a aria-label="25"></a>    _ <span class="op">=</span> model(<span class="op">**</span>inputs, use_cache<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb2-26"><a aria-label="26"></a></span>
+<span id="cb2-27"><a aria-label="27"></a><span class="co"># Analyze first layer</span></span>
+<span id="cb2-28"><a aria-label="28"></a>router_probs <span class="op">=</span> torch.softmax(router_outputs[<span class="dv">0</span>], dim<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb2-29"><a aria-label="29"></a><span class="bu">print</span>(<span class="st">"First layer routing:"</span>)</span>
+<span id="cb2-30"><a aria-label="30"></a><span class="bu">print</span>(<span class="ss">f"  Number of experts: </span><span class="sc">{</span>router_probs<span class="sc">.</span>shape[<span class="op">-</span><span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-31"><a aria-label="31"></a><span class="bu">print</span>(<span class="ss">f"  Shape: </span><span class="sc">{</span>router_probs<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-32"><a aria-label="32"></a></span>
+<span id="cb2-33"><a aria-label="33"></a><span class="co"># Show top-k experts for first 5 tokens</span></span>
+<span id="cb2-34"><a aria-label="34"></a><span class="cf">for</span> tok_idx <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">min</span>(<span class="dv">5</span>, router_probs.shape[<span class="dv">0</span>])):</span>
+<span id="cb2-35"><a aria-label="35"></a>    top_k <span class="op">=</span> torch.topk(router_probs[tok_idx], k<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb2-36"><a aria-label="36"></a>    <span class="bu">print</span>(<span class="ss">f"  Token </span><span class="sc">{</span>tok_idx<span class="sc">}</span><span class="ss">: top experts </span><span class="sc">{</span>top_k<span class="sc">.</span>indices<span class="sc">.</span>tolist()<span class="sc">}</span><span class="ss"> "</span></span>
+<span id="cb2-37"><a aria-label="37"></a>          <span class="ss">f"with probs </span><span class="sc">{</span>[<span class="ss">f'</span><span class="sc">{</span>p<span class="sc">:.3f}</span><span class="ss">'</span> <span class="cf">for</span> p <span class="kw">in</span> top_k.values.tolist()]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -612,46 +617,46 @@
 <h2>How do MoE Models Work?</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/05/notebooks/moe-heatmap.ipynb" data-notebook-title="Routing Heatmap for Small MoE Model" data-notebook-cellid="routing-0">
 <div id="routing-0" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:535}}" data-outputid="32aac517-6524-4d1b-d7df-e448f64f443f" data-execution_count="34">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb3-2"><a></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb3-3"><a></a></span>
-<span id="cb3-4"><a></a>PROMPT <span class="op">=</span> <span class="st">"What is hello in Japanese?"</span></span>
-<span id="cb3-5"><a></a></span>
-<span id="cb3-6"><a></a><span class="kw">def</span> capture_routing(prompt):</span>
-<span id="cb3-7"><a></a>    inputs <span class="op">=</span> tokenizer(prompt, return_tensors<span class="op">=</span><span class="st">"pt"</span>).to(model.device)</span>
-<span id="cb3-8"><a></a>    tokens <span class="op">=</span> tokenizer.convert_ids_to_tokens(inputs[<span class="st">'input_ids'</span>][<span class="dv">0</span>])</span>
-<span id="cb3-9"><a></a></span>
-<span id="cb3-10"><a></a>    router_outputs.clear()</span>
-<span id="cb3-11"><a></a>    <span class="cf">with</span> torch.no_grad():</span>
-<span id="cb3-12"><a></a>        _ <span class="op">=</span> model(<span class="op">**</span>inputs, use_cache<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb3-13"><a></a></span>
-<span id="cb3-14"><a></a>    <span class="cf">return</span> router_outputs[:<span class="dv">32</span>], tokens</span>
-<span id="cb3-15"><a></a></span>
-<span id="cb3-16"><a></a><span class="kw">def</span> routing_heatmap(router_logits, tokens, layer_idx<span class="op">=</span><span class="dv">0</span>):</span>
-<span id="cb3-17"><a></a>    <span class="co"># Get routing probabilities</span></span>
-<span id="cb3-18"><a></a>    router_probs <span class="op">=</span> torch.softmax(router_logits[layer_idx], dim<span class="op">=-</span><span class="dv">1</span>).numpy()</span>
-<span id="cb3-19"><a></a>    num_tokens, num_experts <span class="op">=</span> router_probs.shape</span>
-<span id="cb3-20"><a></a></span>
-<span id="cb3-21"><a></a>    fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
-<span id="cb3-22"><a></a></span>
-<span id="cb3-23"><a></a>    <span class="co"># Use seaborn to display routing probabilities</span></span>
-<span id="cb3-24"><a></a>    sns.heatmap(</span>
-<span id="cb3-25"><a></a>        router_probs.T,</span>
-<span id="cb3-26"><a></a>        cmap<span class="op">=</span><span class="st">'YlOrRd'</span>,</span>
-<span id="cb3-27"><a></a>        ax<span class="op">=</span>axes,</span>
-<span id="cb3-28"><a></a>        cbar_kws<span class="op">=</span>{<span class="st">'label'</span>: <span class="st">'Probability'</span>},</span>
-<span id="cb3-29"><a></a>        xticklabels<span class="op">=</span>tokens[:num_tokens],</span>
-<span id="cb3-30"><a></a>        yticklabels<span class="op">=</span>[<span class="ss">f'E</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_experts)]</span>
-<span id="cb3-31"><a></a>    )</span>
-<span id="cb3-32"><a></a>    axes.set_title(<span class="ss">f'Layer </span><span class="sc">{</span>layer_idx<span class="sc">}</span><span class="ss">: Routing Probabilities per Token'</span>)</span>
-<span id="cb3-33"><a></a>    axes.set_xlabel(<span class="st">'Token'</span>)</span>
-<span id="cb3-34"><a></a>    axes.set_ylabel(<span class="st">'Expert'</span>)</span>
-<span id="cb3-35"><a></a>    plt.setp(axes.get_xticklabels(), rotation<span class="op">=</span><span class="dv">45</span>, ha<span class="op">=</span><span class="st">'right'</span>)</span>
-<span id="cb3-36"><a></a></span>
-<span id="cb3-37"><a></a>outputs, tokens <span class="op">=</span> capture_routing(PROMPT)</span>
-<span id="cb3-38"><a></a></span>
-<span id="cb3-39"><a></a><span class="co"># Display heatmap for layer 0</span></span>
-<span id="cb3-40"><a></a>routing_heatmap(outputs, tokens, layer_idx<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a aria-label="1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-2"><a aria-label="2"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb3-3"><a aria-label="3"></a></span>
+<span id="cb3-4"><a aria-label="4"></a>PROMPT <span class="op">=</span> <span class="st">"What is hello in Japanese?"</span></span>
+<span id="cb3-5"><a aria-label="5"></a></span>
+<span id="cb3-6"><a aria-label="6"></a><span class="kw">def</span> capture_routing(prompt):</span>
+<span id="cb3-7"><a aria-label="7"></a>    inputs <span class="op">=</span> tokenizer(prompt, return_tensors<span class="op">=</span><span class="st">"pt"</span>).to(model.device)</span>
+<span id="cb3-8"><a aria-label="8"></a>    tokens <span class="op">=</span> tokenizer.convert_ids_to_tokens(inputs[<span class="st">'input_ids'</span>][<span class="dv">0</span>])</span>
+<span id="cb3-9"><a aria-label="9"></a></span>
+<span id="cb3-10"><a aria-label="10"></a>    router_outputs.clear()</span>
+<span id="cb3-11"><a aria-label="11"></a>    <span class="cf">with</span> torch.no_grad():</span>
+<span id="cb3-12"><a aria-label="12"></a>        _ <span class="op">=</span> model(<span class="op">**</span>inputs, use_cache<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb3-13"><a aria-label="13"></a></span>
+<span id="cb3-14"><a aria-label="14"></a>    <span class="cf">return</span> router_outputs[:<span class="dv">32</span>], tokens</span>
+<span id="cb3-15"><a aria-label="15"></a></span>
+<span id="cb3-16"><a aria-label="16"></a><span class="kw">def</span> routing_heatmap(router_logits, tokens, layer_idx<span class="op">=</span><span class="dv">0</span>):</span>
+<span id="cb3-17"><a aria-label="17"></a>    <span class="co"># Get routing probabilities</span></span>
+<span id="cb3-18"><a aria-label="18"></a>    router_probs <span class="op">=</span> torch.softmax(router_logits[layer_idx], dim<span class="op">=-</span><span class="dv">1</span>).numpy()</span>
+<span id="cb3-19"><a aria-label="19"></a>    num_tokens, num_experts <span class="op">=</span> router_probs.shape</span>
+<span id="cb3-20"><a aria-label="20"></a></span>
+<span id="cb3-21"><a aria-label="21"></a>    fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb3-22"><a aria-label="22"></a></span>
+<span id="cb3-23"><a aria-label="23"></a>    <span class="co"># Use seaborn to display routing probabilities</span></span>
+<span id="cb3-24"><a aria-label="24"></a>    sns.heatmap(</span>
+<span id="cb3-25"><a aria-label="25"></a>        router_probs.T,</span>
+<span id="cb3-26"><a aria-label="26"></a>        cmap<span class="op">=</span><span class="st">'YlOrRd'</span>,</span>
+<span id="cb3-27"><a aria-label="27"></a>        ax<span class="op">=</span>axes,</span>
+<span id="cb3-28"><a aria-label="28"></a>        cbar_kws<span class="op">=</span>{<span class="st">'label'</span>: <span class="st">'Probability'</span>},</span>
+<span id="cb3-29"><a aria-label="29"></a>        xticklabels<span class="op">=</span>tokens[:num_tokens],</span>
+<span id="cb3-30"><a aria-label="30"></a>        yticklabels<span class="op">=</span>[<span class="ss">f'E</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_experts)]</span>
+<span id="cb3-31"><a aria-label="31"></a>    )</span>
+<span id="cb3-32"><a aria-label="32"></a>    axes.set_title(<span class="ss">f'Layer </span><span class="sc">{</span>layer_idx<span class="sc">}</span><span class="ss">: Routing Probabilities per Token'</span>)</span>
+<span id="cb3-33"><a aria-label="33"></a>    axes.set_xlabel(<span class="st">'Token'</span>)</span>
+<span id="cb3-34"><a aria-label="34"></a>    axes.set_ylabel(<span class="st">'Expert'</span>)</span>
+<span id="cb3-35"><a aria-label="35"></a>    plt.setp(axes.get_xticklabels(), rotation<span class="op">=</span><span class="dv">45</span>, ha<span class="op">=</span><span class="st">'right'</span>)</span>
+<span id="cb3-36"><a aria-label="36"></a></span>
+<span id="cb3-37"><a aria-label="37"></a>outputs, tokens <span class="op">=</span> capture_routing(PROMPT)</span>
+<span id="cb3-38"><a aria-label="38"></a></span>
+<span id="cb3-39"><a aria-label="39"></a><span class="co"># Display heatmap for layer 0</span></span>
+<span id="cb3-40"><a aria-label="40"></a>routing_heatmap(outputs, tokens, layer_idx<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -1016,14 +1021,14 @@
 <h2>How to Quantize a Model</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/05/notebooks/quantization.ipynb" data-notebook-title="Quantization of Hugging Face model using llama.cpp" data-notebook-cellid="build-llama">
 <div id="build-llama" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="14eb357d-4ef0-49c3-bf2f-bfbb4a3371a6" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a>TEMP_FOLDER <span class="op">=</span> <span class="st">"/content/tmp"</span></span>
-<span id="cb4-2"><a></a></span>
-<span id="cb4-3"><a></a><span class="co"># Create a temporary location and clone llama.cpp</span></span>
-<span id="cb4-4"><a></a><span class="op">!</span>mkdir <span class="op">-</span>p {TEMP_FOLDER}</span>
-<span id="cb4-5"><a></a><span class="op">!</span>cd {TEMP_FOLDER} <span class="op">&amp;&amp;</span> git clone https:<span class="op">//</span>github.com<span class="op">/</span>ggml<span class="op">-</span>org<span class="op">/</span>llama.cpp</span>
-<span id="cb4-6"><a></a></span>
-<span id="cb4-7"><a></a><span class="op">!</span>cd {TEMP_FOLDER}<span class="op">/</span>llama.cpp <span class="op">&amp;&amp;</span> cmake <span class="op">-</span>B build</span>
-<span id="cb4-8"><a></a><span class="op">!</span>cd {TEMP_FOLDER}<span class="op">/</span>llama.cpp <span class="op">&amp;&amp;</span> cmake <span class="op">--</span>build build <span class="op">--</span>config Release <span class="op">--</span>target llama<span class="op">-</span>quantize</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a aria-label="1"></a>TEMP_FOLDER <span class="op">=</span> <span class="st">"/content/tmp"</span></span>
+<span id="cb4-2"><a aria-label="2"></a></span>
+<span id="cb4-3"><a aria-label="3"></a><span class="co"># Create a temporary location and clone llama.cpp</span></span>
+<span id="cb4-4"><a aria-label="4"></a><span class="op">!</span>mkdir <span class="op">-</span>p {TEMP_FOLDER}</span>
+<span id="cb4-5"><a aria-label="5"></a><span class="op">!</span>cd {TEMP_FOLDER} <span class="op">&amp;&amp;</span> git clone https:<span class="op">//</span>github.com<span class="op">/</span>ggml<span class="op">-</span>org<span class="op">/</span>llama.cpp</span>
+<span id="cb4-6"><a aria-label="6"></a></span>
+<span id="cb4-7"><a aria-label="7"></a><span class="op">!</span>cd {TEMP_FOLDER}<span class="op">/</span>llama.cpp <span class="op">&amp;&amp;</span> cmake <span class="op">-</span>B build</span>
+<span id="cb4-8"><a aria-label="8"></a><span class="op">!</span>cd {TEMP_FOLDER}<span class="op">/</span>llama.cpp <span class="op">&amp;&amp;</span> cmake <span class="op">--</span>build build <span class="op">--</span>config Release <span class="op">--</span>target llama<span class="op">-</span>quantize</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -1031,31 +1036,31 @@
 <h2>How to Quantize a Model</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/05/notebooks/quantization.ipynb" data-notebook-title="Quantization of Hugging Face model using llama.cpp" data-notebook-cellid="convert">
 <div id="convert" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000,&quot;referenced_widgets&quot;:[&quot;ae44dee311524895926f9e8abe85e25a&quot;,&quot;d1da0dbc1b8d453fb6c740d42284191e&quot;,&quot;ebe59d82062f48acb14d90a7589fdb92&quot;,&quot;19faff8ac6bd4c1f963eaff0cd36575b&quot;,&quot;06caea8b08674c928090c7672ae471e4&quot;,&quot;7df4f34f4593486faaead96cf6876032&quot;,&quot;fcc82250e51546f0bb8f5449b9241c60&quot;,&quot;429e052d7c234d5c989f718978a194e9&quot;,&quot;9e39c89dcb2a4595993d578108d85fbb&quot;,&quot;09efed9120334bf986783fff5fd076da&quot;,&quot;7cc3c04122044d8ab102f7a196324e62&quot;,&quot;a1e304a7afc7480fa3bf4cca5acbf413&quot;,&quot;6846af1e73874a2f9892b72daa8e8918&quot;,&quot;29a7646006b145c5bf9ebc26019a0921&quot;,&quot;87b1d00a16954c4e97e6fa1c49b5cc27&quot;,&quot;b02b701b76fa4262b437298a11088a9d&quot;,&quot;49db6beebb0140f5930cf7d532d2454d&quot;,&quot;a607fd74f4b14ce7949db2a12a867a1a&quot;,&quot;a2fb68ecde6b4e4f90e6fe0d528a1f75&quot;,&quot;4f67de272467463fbc5f7234513cd0da&quot;,&quot;06aa74172e7940508c67303fb454ae16&quot;,&quot;d83d1c14aa23406d869503afbae312fa&quot;]}}" data-outputid="5c4c9d8f-15af-4979-c93a-88f227f1e4f5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">from</span> huggingface_hub <span class="im">import</span> snapshot_download</span>
-<span id="cb5-2"><a></a></span>
-<span id="cb5-3"><a></a>MODEL_FOLDER <span class="op">=</span> <span class="st">"/content/models"</span></span>
-<span id="cb5-4"><a></a>MODEL_VENDOR <span class="op">=</span> <span class="st">"Qwen"</span></span>
-<span id="cb5-5"><a></a>MODEL_NAME <span class="op">=</span> <span class="st">"Qwen3-0.6B"</span></span>
-<span id="cb5-6"><a></a>MODEL_REPO <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>MODEL_VENDOR<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>MODEL_NAME<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb5-7"><a></a>GGUF_FOLDER <span class="op">=</span> <span class="st">"/content/ggufs"</span></span>
-<span id="cb5-8"><a></a></span>
-<span id="cb5-9"><a></a><span class="co"># Create a temporary location and clone llama.cpp</span></span>
-<span id="cb5-10"><a></a></span>
-<span id="cb5-11"><a></a><span class="op">!</span>mkdir <span class="op">-</span>p {MODEL_FOLDER}<span class="op">/</span>{MODEL_NAME}</span>
-<span id="cb5-12"><a></a><span class="op">!</span>mkdir <span class="op">-</span>p {GGUF_FOLDER}</span>
-<span id="cb5-13"><a></a></span>
-<span id="cb5-14"><a></a><span class="co"># Download the model from Hugging Face at full precision</span></span>
-<span id="cb5-15"><a></a>snapshot_download(repo_id<span class="op">=</span>MODEL_REPO, local_dir<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>MODEL_FOLDER<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>MODEL_NAME<span class="sc">}</span><span class="ss">"</span>, repo_type<span class="op">=</span><span class="st">"model"</span>)</span>
-<span id="cb5-16"><a></a></span>
-<span id="cb5-17"><a></a><span class="co"># Convert to GGUF (fp16 first)</span></span>
-<span id="cb5-18"><a></a><span class="op">!</span>cd {TEMP_FOLDER}<span class="op">/</span>llama.cpp <span class="op">&amp;&amp;</span> python convert_hf_to_gguf.py {MODEL_FOLDER}<span class="op">/</span>{MODEL_NAME} <span class="op">\</span></span>
-<span id="cb5-19"><a></a>    <span class="op">--</span>outfile {GGUF_FOLDER}<span class="op">/</span>{MODEL_NAME}<span class="op">-</span>F16.gguf <span class="op">\</span></span>
-<span id="cb5-20"><a></a>    <span class="op">--</span>outtype f16</span>
-<span id="cb5-21"><a></a></span>
-<span id="cb5-22"><a></a><span class="co"># # Convert gp16 GGUF to Q4_K_M</span></span>
-<span id="cb5-23"><a></a><span class="op">!</span>{TEMP_FOLDER}<span class="op">/</span>llama.cpp<span class="op">/</span>build<span class="op">/</span><span class="bu">bin</span><span class="op">/</span>llama<span class="op">-</span>quantize {GGUF_FOLDER}<span class="op">/</span>{MODEL_NAME}<span class="op">-</span>F16.gguf <span class="op">\</span></span>
-<span id="cb5-24"><a></a>    {GGUF_FOLDER}<span class="op">/</span>{MODEL_NAME}<span class="op">-</span>Q4_K_M.gguf <span class="op">\</span></span>
-<span id="cb5-25"><a></a>    Q4_K_M</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a aria-label="1"></a><span class="im">from</span> huggingface_hub <span class="im">import</span> snapshot_download</span>
+<span id="cb5-2"><a aria-label="2"></a></span>
+<span id="cb5-3"><a aria-label="3"></a>MODEL_FOLDER <span class="op">=</span> <span class="st">"/content/models"</span></span>
+<span id="cb5-4"><a aria-label="4"></a>MODEL_VENDOR <span class="op">=</span> <span class="st">"Qwen"</span></span>
+<span id="cb5-5"><a aria-label="5"></a>MODEL_NAME <span class="op">=</span> <span class="st">"Qwen3-0.6B"</span></span>
+<span id="cb5-6"><a aria-label="6"></a>MODEL_REPO <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>MODEL_VENDOR<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>MODEL_NAME<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb5-7"><a aria-label="7"></a>GGUF_FOLDER <span class="op">=</span> <span class="st">"/content/ggufs"</span></span>
+<span id="cb5-8"><a aria-label="8"></a></span>
+<span id="cb5-9"><a aria-label="9"></a><span class="co"># Create a temporary location and clone llama.cpp</span></span>
+<span id="cb5-10"><a aria-label="10"></a></span>
+<span id="cb5-11"><a aria-label="11"></a><span class="op">!</span>mkdir <span class="op">-</span>p {MODEL_FOLDER}<span class="op">/</span>{MODEL_NAME}</span>
+<span id="cb5-12"><a aria-label="12"></a><span class="op">!</span>mkdir <span class="op">-</span>p {GGUF_FOLDER}</span>
+<span id="cb5-13"><a aria-label="13"></a></span>
+<span id="cb5-14"><a aria-label="14"></a><span class="co"># Download the model from Hugging Face at full precision</span></span>
+<span id="cb5-15"><a aria-label="15"></a>snapshot_download(repo_id<span class="op">=</span>MODEL_REPO, local_dir<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>MODEL_FOLDER<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>MODEL_NAME<span class="sc">}</span><span class="ss">"</span>, repo_type<span class="op">=</span><span class="st">"model"</span>)</span>
+<span id="cb5-16"><a aria-label="16"></a></span>
+<span id="cb5-17"><a aria-label="17"></a><span class="co"># Convert to GGUF (fp16 first)</span></span>
+<span id="cb5-18"><a aria-label="18"></a><span class="op">!</span>cd {TEMP_FOLDER}<span class="op">/</span>llama.cpp <span class="op">&amp;&amp;</span> python convert_hf_to_gguf.py {MODEL_FOLDER}<span class="op">/</span>{MODEL_NAME} <span class="op">\</span></span>
+<span id="cb5-19"><a aria-label="19"></a>    <span class="op">--</span>outfile {GGUF_FOLDER}<span class="op">/</span>{MODEL_NAME}<span class="op">-</span>F16.gguf <span class="op">\</span></span>
+<span id="cb5-20"><a aria-label="20"></a>    <span class="op">--</span>outtype f16</span>
+<span id="cb5-21"><a aria-label="21"></a></span>
+<span id="cb5-22"><a aria-label="22"></a><span class="co"># # Convert gp16 GGUF to Q4_K_M</span></span>
+<span id="cb5-23"><a aria-label="23"></a><span class="op">!</span>{TEMP_FOLDER}<span class="op">/</span>llama.cpp<span class="op">/</span>build<span class="op">/</span><span class="bu">bin</span><span class="op">/</span>llama<span class="op">-</span>quantize {GGUF_FOLDER}<span class="op">/</span>{MODEL_NAME}<span class="op">-</span>F16.gguf <span class="op">\</span></span>
+<span id="cb5-24"><a aria-label="24"></a>    {GGUF_FOLDER}<span class="op">/</span>{MODEL_NAME}<span class="op">-</span>Q4_K_M.gguf <span class="op">\</span></span>
+<span id="cb5-25"><a aria-label="25"></a>    Q4_K_M</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -1941,14 +1946,14 @@ main:    total time = 17247.52 ms</code></pre>
 <h2>Python Binding</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/05/notebooks/python-binding.ipynb" data-notebook-title="Using llama.cpp Binding for Python" data-notebook-cellid="load-model">
 <div id="load-model" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a><span class="im">from</span> llama_cpp <span class="im">import</span> Llama</span>
-<span id="cb7-2"><a></a></span>
-<span id="cb7-3"><a></a>GGUF_MODEL <span class="op">=</span> <span class="ss">f"../code/gguf/gemma-3-1b-it-Q4_K_M.gguf"</span></span>
-<span id="cb7-4"><a></a></span>
-<span id="cb7-5"><a></a>llm <span class="op">=</span> Llama(</span>
-<span id="cb7-6"><a></a>      model_path<span class="op">=</span>GGUF_MODEL,</span>
-<span id="cb7-7"><a></a>      chat_format<span class="op">=</span><span class="st">"gemma"</span></span>
-<span id="cb7-8"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a aria-label="1"></a><span class="im">from</span> llama_cpp <span class="im">import</span> Llama</span>
+<span id="cb7-2"><a aria-label="2"></a></span>
+<span id="cb7-3"><a aria-label="3"></a>GGUF_MODEL <span class="op">=</span> <span class="ss">f"../code/gguf/gemma-3-1b-it-Q4_K_M.gguf"</span></span>
+<span id="cb7-4"><a aria-label="4"></a></span>
+<span id="cb7-5"><a aria-label="5"></a>llm <span class="op">=</span> Llama(</span>
+<span id="cb7-6"><a aria-label="6"></a>      model_path<span class="op">=</span>GGUF_MODEL,</span>
+<span id="cb7-7"><a aria-label="7"></a>      chat_format<span class="op">=</span><span class="st">"gemma"</span></span>
+<span id="cb7-8"><a aria-label="8"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -1956,15 +1961,15 @@ main:    total time = 17247.52 ms</code></pre>
 <h2>Python Binding</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/05/notebooks/python-binding.ipynb" data-notebook-title="Using llama.cpp Binding for Python" data-notebook-cellid="chat">
 <div id="chat" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a>llm.create_chat_completion(</span>
-<span id="cb8-2"><a></a>      messages <span class="op">=</span> [</span>
-<span id="cb8-3"><a></a>          {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are a helpful assistant."</span>},</span>
-<span id="cb8-4"><a></a>          {</span>
-<span id="cb8-5"><a></a>              <span class="st">"role"</span>: <span class="st">"user"</span>,</span>
-<span id="cb8-6"><a></a>              <span class="st">"content"</span>: <span class="st">"Hello"</span></span>
-<span id="cb8-7"><a></a>          }</span>
-<span id="cb8-8"><a></a>      ]</span>
-<span id="cb8-9"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a aria-label="1"></a>llm.create_chat_completion(</span>
+<span id="cb8-2"><a aria-label="2"></a>      messages <span class="op">=</span> [</span>
+<span id="cb8-3"><a aria-label="3"></a>          {<span class="st">"role"</span>: <span class="st">"system"</span>, <span class="st">"content"</span>: <span class="st">"You are a helpful assistant."</span>},</span>
+<span id="cb8-4"><a aria-label="4"></a>          {</span>
+<span id="cb8-5"><a aria-label="5"></a>              <span class="st">"role"</span>: <span class="st">"user"</span>,</span>
+<span id="cb8-6"><a aria-label="6"></a>              <span class="st">"content"</span>: <span class="st">"Hello"</span></span>
+<span id="cb8-7"><a aria-label="7"></a>          }</span>
+<span id="cb8-8"><a aria-label="8"></a>      ]</span>
+<span id="cb8-9"><a aria-label="9"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -2042,21 +2047,21 @@ main:    total time = 17247.52 ms</code></pre>
 </section>
 <section id="local-models-in-the-browser-3" class="slide level2">
 <h2>Local Models in the Browser</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb10-1"><a></a><span class="cf">await</span> wllama<span class="op">.</span><span class="fu">loadModelFromHF</span>(</span>
-<span id="cb10-2"><a></a>    <span class="st">'ggml-org/models'</span><span class="op">,</span></span>
-<span id="cb10-3"><a></a>    <span class="st">'tinyllamas/stories260K.gguf'</span><span class="op">,</span></span>
-<span id="cb10-4"><a></a>    {</span>
-<span id="cb10-5"><a></a>      progressCallback<span class="op">,</span></span>
-<span id="cb10-6"><a></a>    }</span>
-<span id="cb10-7"><a></a>  )<span class="op">;</span></span>
-<span id="cb10-8"><a></a><span class="kw">const</span> outputText <span class="op">=</span> <span class="cf">await</span> wllama<span class="op">.</span><span class="fu">createCompletion</span>(prompt<span class="op">,</span> {</span>
-<span id="cb10-9"><a></a>  <span class="dt">nPredict</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span></span>
-<span id="cb10-10"><a></a>  <span class="dt">sampling</span><span class="op">:</span> {</span>
-<span id="cb10-11"><a></a>    <span class="dt">temp</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span></span>
-<span id="cb10-12"><a></a>    <span class="dt">top_k</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
-<span id="cb10-13"><a></a>    <span class="dt">top_p</span><span class="op">:</span> <span class="fl">0.9</span><span class="op">,</span></span>
-<span id="cb10-14"><a></a>  }<span class="op">,</span></span>
-<span id="cb10-15"><a></a>})<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb10-1"><a aria-label="1"></a><span class="cf">await</span> wllama<span class="op">.</span><span class="fu">loadModelFromHF</span>(</span>
+<span id="cb10-2"><a aria-label="2"></a>    <span class="st">'ggml-org/models'</span><span class="op">,</span></span>
+<span id="cb10-3"><a aria-label="3"></a>    <span class="st">'tinyllamas/stories260K.gguf'</span><span class="op">,</span></span>
+<span id="cb10-4"><a aria-label="4"></a>    {</span>
+<span id="cb10-5"><a aria-label="5"></a>      progressCallback<span class="op">,</span></span>
+<span id="cb10-6"><a aria-label="6"></a>    }</span>
+<span id="cb10-7"><a aria-label="7"></a>  )<span class="op">;</span></span>
+<span id="cb10-8"><a aria-label="8"></a><span class="kw">const</span> outputText <span class="op">=</span> <span class="cf">await</span> wllama<span class="op">.</span><span class="fu">createCompletion</span>(prompt<span class="op">,</span> {</span>
+<span id="cb10-9"><a aria-label="9"></a>  <span class="dt">nPredict</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span></span>
+<span id="cb10-10"><a aria-label="10"></a>  <span class="dt">sampling</span><span class="op">:</span> {</span>
+<span id="cb10-11"><a aria-label="11"></a>    <span class="dt">temp</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span></span>
+<span id="cb10-12"><a aria-label="12"></a>    <span class="dt">top_k</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb10-13"><a aria-label="13"></a>    <span class="dt">top_p</span><span class="op">:</span> <span class="fl">0.9</span><span class="op">,</span></span>
+<span id="cb10-14"><a aria-label="14"></a>  }<span class="op">,</span></span>
+<span id="cb10-15"><a aria-label="15"></a>})<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="local-models-in-the-browser-4" class="slide level2">
 <h2>Local Models in the Browser</h2>
@@ -2072,28 +2077,28 @@ main:    total time = 17247.52 ms</code></pre>
 </section>
 <section id="local-models-in-the-browser-5" class="slide level2">
 <h2>Local Models in the Browser</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb11-1"><a></a><span class="kw">const</span> appConfig<span class="op">:</span> webllm<span class="op">.</span><span class="at">AppConfig</span> <span class="op">=</span> {</span>
-<span id="cb11-2"><a></a>  <span class="dt">model_list</span><span class="op">:</span> [</span>
-<span id="cb11-3"><a></a>    {</span>
-<span id="cb11-4"><a></a>      <span class="dt">model</span><span class="op">:</span> <span class="vs">`https://huggingface.co/simonguest/Qwen3-0.6B-it-code-hint-3-MLC`</span><span class="op">,</span></span>
-<span id="cb11-5"><a></a>      <span class="dt">overrides</span><span class="op">:</span> {</span>
-<span id="cb11-6"><a></a>        <span class="dt">temperature</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span></span>
-<span id="cb11-7"><a></a>      }<span class="op">,</span></span>
-<span id="cb11-8"><a></a>    }<span class="op">,</span></span>
-<span id="cb11-9"><a></a>  ]<span class="op">,</span></span>
-<span id="cb11-10"><a></a>}<span class="op">;</span></span>
-<span id="cb11-11"><a></a>engine <span class="op">=</span> <span class="cf">await</span> webllm<span class="op">.</span><span class="fu">CreateMLCEngine</span>(<span class="st">"Qwen3-0.6B-it-code-hint-3"</span><span class="op">,</span> {</span>
-<span id="cb11-12"><a></a>  appConfig<span class="op">,</span></span>
-<span id="cb11-13"><a></a>  initProgressCallback<span class="op">,</span></span>
-<span id="cb11-14"><a></a>})<span class="op">;</span></span>
-<span id="cb11-15"><a></a></span>
-<span id="cb11-16"><a></a><span class="kw">const</span> chunks <span class="op">=</span> <span class="cf">await</span> engine<span class="op">.</span><span class="at">chat</span><span class="op">.</span><span class="at">completions</span><span class="op">.</span><span class="fu">create</span>({</span>
-<span id="cb11-17"><a></a>  <span class="dt">messages</span><span class="op">:</span> [</span>
-<span id="cb11-18"><a></a>    { <span class="dt">role</span><span class="op">:</span> <span class="st">'system'</span><span class="op">,</span> <span class="dt">content</span><span class="op">:</span> SYSTEM_PROMPT}<span class="op">,</span></span>
-<span id="cb11-19"><a></a>    { <span class="dt">role</span><span class="op">:</span> <span class="st">'user'</span><span class="op">,</span> <span class="dt">content</span><span class="op">:</span> PROMPT }]<span class="op">,</span></span>
-<span id="cb11-20"><a></a>  <span class="dt">temperature</span><span class="op">:</span> <span class="fl">0.7</span><span class="op">,</span></span>
-<span id="cb11-21"><a></a>  <span class="dt">stream</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb11-22"><a></a>})<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb11-1"><a aria-label="1"></a><span class="kw">const</span> appConfig<span class="op">:</span> webllm<span class="op">.</span><span class="at">AppConfig</span> <span class="op">=</span> {</span>
+<span id="cb11-2"><a aria-label="2"></a>  <span class="dt">model_list</span><span class="op">:</span> [</span>
+<span id="cb11-3"><a aria-label="3"></a>    {</span>
+<span id="cb11-4"><a aria-label="4"></a>      <span class="dt">model</span><span class="op">:</span> <span class="vs">`https://huggingface.co/simonguest/Qwen3-0.6B-it-code-hint-3-MLC`</span><span class="op">,</span></span>
+<span id="cb11-5"><a aria-label="5"></a>      <span class="dt">overrides</span><span class="op">:</span> {</span>
+<span id="cb11-6"><a aria-label="6"></a>        <span class="dt">temperature</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span></span>
+<span id="cb11-7"><a aria-label="7"></a>      }<span class="op">,</span></span>
+<span id="cb11-8"><a aria-label="8"></a>    }<span class="op">,</span></span>
+<span id="cb11-9"><a aria-label="9"></a>  ]<span class="op">,</span></span>
+<span id="cb11-10"><a aria-label="10"></a>}<span class="op">;</span></span>
+<span id="cb11-11"><a aria-label="11"></a>engine <span class="op">=</span> <span class="cf">await</span> webllm<span class="op">.</span><span class="fu">CreateMLCEngine</span>(<span class="st">"Qwen3-0.6B-it-code-hint-3"</span><span class="op">,</span> {</span>
+<span id="cb11-12"><a aria-label="12"></a>  appConfig<span class="op">,</span></span>
+<span id="cb11-13"><a aria-label="13"></a>  initProgressCallback<span class="op">,</span></span>
+<span id="cb11-14"><a aria-label="14"></a>})<span class="op">;</span></span>
+<span id="cb11-15"><a aria-label="15"></a></span>
+<span id="cb11-16"><a aria-label="16"></a><span class="kw">const</span> chunks <span class="op">=</span> <span class="cf">await</span> engine<span class="op">.</span><span class="at">chat</span><span class="op">.</span><span class="at">completions</span><span class="op">.</span><span class="fu">create</span>({</span>
+<span id="cb11-17"><a aria-label="17"></a>  <span class="dt">messages</span><span class="op">:</span> [</span>
+<span id="cb11-18"><a aria-label="18"></a>    { <span class="dt">role</span><span class="op">:</span> <span class="st">'system'</span><span class="op">,</span> <span class="dt">content</span><span class="op">:</span> SYSTEM_PROMPT}<span class="op">,</span></span>
+<span id="cb11-19"><a aria-label="19"></a>    { <span class="dt">role</span><span class="op">:</span> <span class="st">'user'</span><span class="op">,</span> <span class="dt">content</span><span class="op">:</span> PROMPT }]<span class="op">,</span></span>
+<span id="cb11-20"><a aria-label="20"></a>  <span class="dt">temperature</span><span class="op">:</span> <span class="fl">0.7</span><span class="op">,</span></span>
+<span id="cb11-21"><a aria-label="21"></a>  <span class="dt">stream</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb11-22"><a aria-label="22"></a>})<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="local-models-in-the-browser-6" class="slide level2">
 <h2>Local Models in the Browser</h2>
@@ -2108,22 +2113,22 @@ main:    total time = 17247.52 ms</code></pre>
 </section>
 <section id="local-models-in-the-browser-7" class="slide level2">
 <h2>Local Models in the Browser</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb12-1"><a></a><span class="im">import</span> { pipeline } <span class="im">from</span> <span class="st">"@huggingface/transformers"</span><span class="op">;</span></span>
-<span id="cb12-2"><a></a></span>
-<span id="cb12-3"><a></a><span class="co">// Create a text generation pipeline</span></span>
-<span id="cb12-4"><a></a><span class="kw">const</span> generator <span class="op">=</span> <span class="cf">await</span> <span class="fu">pipeline</span>(</span>
-<span id="cb12-5"><a></a>  <span class="st">"text-generation"</span><span class="op">,</span></span>
-<span id="cb12-6"><a></a>  <span class="st">"onnx-community/Qwen3-0.6B-ONNX'</span></span>
-<span id="cb12-7"><a></a>  { <span class="dt">device</span><span class="op">:</span> <span class="st">"webgpu"</span><span class="op">,</span> <span class="dt">dtype</span><span class="op">:</span> <span class="st">"q4f16"</span> }<span class="op">,</span></span>
-<span id="cb12-8"><a></a>)<span class="op">;</span></span>
-<span id="cb12-9"><a></a></span>
-<span id="cb12-10"><a></a><span class="co">// Define the list of messages</span></span>
-<span id="cb12-11"><a></a><span class="kw">const</span> messages <span class="op">=</span> [</span>
-<span id="cb12-12"><a></a>  { <span class="dt">role</span><span class="op">:</span> <span class="st">"system"</span><span class="op">,</span> <span class="dt">content</span><span class="op">:</span> <span class="st">"You are a helpful assistant."</span> }<span class="op">,</span> </span>
-<span id="cb12-13"><a></a>  { <span class="dt">role</span><span class="op">:</span> <span class="st">"user"</span><span class="op">,</span> <span class="dt">content</span><span class="op">:</span> <span class="st">"Write me a poem about Machine Learning."</span> }<span class="op">,</span></span>
-<span id="cb12-14"><a></a>]</span>
-<span id="cb12-15"><a></a><span class="kw">const</span> output <span class="op">=</span> <span class="cf">await</span> <span class="fu">generator</span> (messages)</span>
-<span id="cb12-16"><a></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(output[<span class="dv">0</span>] generated_text<span class="op">.</span><span class="fu">at</span>(<span class="op">-</span><span class="dv">1</span>)<span class="op">.</span><span class="at">content</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb12-1"><a aria-label="1"></a><span class="im">import</span> { pipeline } <span class="im">from</span> <span class="st">"@huggingface/transformers"</span><span class="op">;</span></span>
+<span id="cb12-2"><a aria-label="2"></a></span>
+<span id="cb12-3"><a aria-label="3"></a><span class="co">// Create a text generation pipeline</span></span>
+<span id="cb12-4"><a aria-label="4"></a><span class="kw">const</span> generator <span class="op">=</span> <span class="cf">await</span> <span class="fu">pipeline</span>(</span>
+<span id="cb12-5"><a aria-label="5"></a>  <span class="st">"text-generation"</span><span class="op">,</span></span>
+<span id="cb12-6"><a aria-label="6"></a>  <span class="st">"onnx-community/Qwen3-0.6B-ONNX'</span></span>
+<span id="cb12-7"><a aria-label="7"></a>  { <span class="dt">device</span><span class="op">:</span> <span class="st">"webgpu"</span><span class="op">,</span> <span class="dt">dtype</span><span class="op">:</span> <span class="st">"q4f16"</span> }<span class="op">,</span></span>
+<span id="cb12-8"><a aria-label="8"></a>)<span class="op">;</span></span>
+<span id="cb12-9"><a aria-label="9"></a></span>
+<span id="cb12-10"><a aria-label="10"></a><span class="co">// Define the list of messages</span></span>
+<span id="cb12-11"><a aria-label="11"></a><span class="kw">const</span> messages <span class="op">=</span> [</span>
+<span id="cb12-12"><a aria-label="12"></a>  { <span class="dt">role</span><span class="op">:</span> <span class="st">"system"</span><span class="op">,</span> <span class="dt">content</span><span class="op">:</span> <span class="st">"You are a helpful assistant."</span> }<span class="op">,</span> </span>
+<span id="cb12-13"><a aria-label="13"></a>  { <span class="dt">role</span><span class="op">:</span> <span class="st">"user"</span><span class="op">,</span> <span class="dt">content</span><span class="op">:</span> <span class="st">"Write me a poem about Machine Learning."</span> }<span class="op">,</span></span>
+<span id="cb12-14"><a aria-label="14"></a>]</span>
+<span id="cb12-15"><a aria-label="15"></a><span class="kw">const</span> output <span class="op">=</span> <span class="cf">await</span> <span class="fu">generator</span> (messages)</span>
+<span id="cb12-16"><a aria-label="16"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(output[<span class="dv">0</span>] generated_text<span class="op">.</span><span class="fu">at</span>(<span class="op">-</span><span class="dv">1</span>)<span class="op">.</span><span class="at">content</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section></section>
 <section>
 <section id="looking-ahead" class="title-slide slide level1 center">
@@ -2149,18 +2154,18 @@ main:    total time = 17247.52 ms</code></pre>
 <h2>References</h2>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-fedus2022switch" class="csl-entry" role="listitem">
 Fedus, William, Barret Zoph, and Noam Shazeer. 2022. <span>“Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity.”</span> <em>Journal of Machine Learning Research</em> 23 (120): 1–40.
 </div>
 <div id="ref-frantar2023gptq" class="csl-entry" role="listitem">
-Frantar, Elias, Saleh Ashkboos, Torsten Hoefler, and Dan Alistarh. 2023. <span>“<span>GPTQ</span>: Accurate Post-Training Quantization for Generative Pre-Trained Transformers.”</span> In <em>International Conference on Learning Representations</em>. <a href="https://arxiv.org/abs/2210.17323">https://arxiv.org/abs/2210.17323</a>.
+Frantar, Elias, Saleh Ashkboos, Torsten Hoefler, and Dan Alistarh. 2023. <span>“<span>GPTQ</span>: Accurate Post-Training Quantization for Generative Pre-Trained Transformers.”</span> <em>International Conference on Learning Representations</em>. <a href="https://arxiv.org/abs/2210.17323">https://arxiv.org/abs/2210.17323</a>.
 </div>
 <div id="ref-jacobs1991adaptive" class="csl-entry" role="listitem">
 Jacobs, Robert A., Michael I. Jordan, Steven J. Nowlan, and Geoffrey E. Hinton. 1991. <span>“Adaptive Mixtures of Local Experts.”</span> <em>Neural Computation</em> 3 (1): 79–87.
 </div>
 <div id="ref-shazeer2017outrageously" class="csl-entry" role="listitem">
-Shazeer, Noam, Azalia Mirhoseini, Krzysztof Maziarz, Andy Davis, Quoc V. Le, Geoffrey E. Hinton, and Jeff Dean. 2017. <span>“Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer.”</span> In <em>International Conference on Learning Representations</em>. <a href="https://arxiv.org/abs/1701.06538">https://arxiv.org/abs/1701.06538</a>.
+Shazeer, Noam, Azalia Mirhoseini, Krzysztof Maziarz, et al. 2017. <span>“Outrageously Large Neural Networks: The Sparsely-Gated Mixture-of-Experts Layer.”</span> <em>International Conference on Learning Representations</em>. <a href="https://arxiv.org/abs/1701.06538">https://arxiv.org/abs/1701.06538</a>.
 </div>
 </div>
 </section></section>

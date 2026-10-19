@@ -6,11 +6,11 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-5c1318cf63eba56dbef7ba16bc7d56f5.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.26">
+  <meta name="generator" content="quarto-1.10.19">
 
   <title>CS-394 – Module 7: Increasing Model Accuracy (Part 2)</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -19,10 +19,16 @@
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -100,7 +106,6 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
-      margin-bottom: 0em;
     }
     .hanging-indent div.csl-entry {
       margin-left:2em;
@@ -117,7 +122,7 @@
     div.csl-indent {
       margin-left: 2em;
     }  </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-eeafb82a00776dbd0312b01cd21cfa25.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-c0f83db45831a6b0d0e18a94327038c6.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -457,55 +462,55 @@
 <h2>Upload Training Files</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/07/notebooks/create-dataset.ipynb" data-notebook-title="Create Hugging Face Dataset" data-notebook-cellid="create-dataset">
 <div id="create-dataset" class="cell" data-execution_count="10">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">from</span> datasets <span class="im">import</span> Dataset, DatasetDict</span>
-<span id="cb1-2"><a></a><span class="im">import</span> json</span>
-<span id="cb1-3"><a></a></span>
-<span id="cb1-4"><a></a></span>
-<span id="cb1-5"><a></a><span class="kw">def</span> load_jsonl(file_path):</span>
-<span id="cb1-6"><a></a>    data <span class="op">=</span> []</span>
-<span id="cb1-7"><a></a>    <span class="cf">with</span> <span class="bu">open</span>(file_path, <span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
-<span id="cb1-8"><a></a>        <span class="cf">for</span> line_num, line <span class="kw">in</span> <span class="bu">enumerate</span>(f, <span class="dv">1</span>):</span>
-<span id="cb1-9"><a></a>            line <span class="op">=</span> line.strip()</span>
-<span id="cb1-10"><a></a>            <span class="cf">if</span> <span class="kw">not</span> line:  <span class="co"># Skip empty lines</span></span>
-<span id="cb1-11"><a></a>                <span class="cf">continue</span></span>
-<span id="cb1-12"><a></a>            <span class="cf">try</span>:</span>
-<span id="cb1-13"><a></a>                <span class="co"># Try parsing the line</span></span>
-<span id="cb1-14"><a></a>                data.append(json.loads(line))</span>
-<span id="cb1-15"><a></a>            <span class="cf">except</span> json.JSONDecodeError <span class="im">as</span> e:</span>
-<span id="cb1-16"><a></a>                <span class="bu">print</span>(<span class="ss">f"Warning: Error parsing line </span><span class="sc">{</span>line_num<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-17"><a></a>                <span class="bu">print</span>(<span class="ss">f"Problematic line: </span><span class="sc">{</span>line[:<span class="dv">200</span>]<span class="sc">}</span><span class="ss">..."</span>)</span>
-<span id="cb1-18"><a></a>    <span class="cf">return</span> data</span>
-<span id="cb1-19"><a></a></span>
-<span id="cb1-20"><a></a></span>
-<span id="cb1-21"><a></a><span class="kw">def</span> create_hf_dataset(train_file, val_file, test_file):</span>
-<span id="cb1-22"><a></a>    <span class="co"># Load the data</span></span>
-<span id="cb1-23"><a></a>    train_data <span class="op">=</span> load_jsonl(train_file)</span>
-<span id="cb1-24"><a></a>    val_data <span class="op">=</span> load_jsonl(val_file)</span>
-<span id="cb1-25"><a></a>    test_data <span class="op">=</span> load_jsonl(test_file)</span>
-<span id="cb1-26"><a></a></span>
-<span id="cb1-27"><a></a>    <span class="co"># Create datasets</span></span>
-<span id="cb1-28"><a></a>    train_dataset <span class="op">=</span> Dataset.from_list(train_data)</span>
-<span id="cb1-29"><a></a>    val_dataset <span class="op">=</span> Dataset.from_list(val_data)</span>
-<span id="cb1-30"><a></a>    test_dataset <span class="op">=</span> Dataset.from_list(test_data)</span>
-<span id="cb1-31"><a></a></span>
-<span id="cb1-32"><a></a>    <span class="co"># Combine into DatasetDict</span></span>
-<span id="cb1-33"><a></a>    dataset_dict <span class="op">=</span> DatasetDict(</span>
-<span id="cb1-34"><a></a>        {</span>
-<span id="cb1-35"><a></a>            <span class="st">"train"</span>: train_dataset,</span>
-<span id="cb1-36"><a></a>            <span class="st">"validation"</span>: val_dataset,</span>
-<span id="cb1-37"><a></a>            <span class="st">"test"</span>: test_dataset,</span>
-<span id="cb1-38"><a></a>        }</span>
-<span id="cb1-39"><a></a>    )</span>
-<span id="cb1-40"><a></a></span>
-<span id="cb1-41"><a></a>    <span class="cf">return</span> dataset_dict</span>
-<span id="cb1-42"><a></a></span>
-<span id="cb1-43"><a></a></span>
-<span id="cb1-44"><a></a><span class="co"># Create and validate the dataset is ready to upload</span></span>
-<span id="cb1-45"><a></a>dataset <span class="op">=</span> create_hf_dataset(TRAIN_FILE, VALIDATION_FILE, TEST_FILE)</span>
-<span id="cb1-46"><a></a><span class="bu">print</span>(<span class="ss">f"Train samples: </span><span class="sc">{</span><span class="bu">len</span>(dataset[<span class="st">'train'</span>])<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-47"><a></a><span class="bu">print</span>(<span class="ss">f"Validation samples: </span><span class="sc">{</span><span class="bu">len</span>(dataset[<span class="st">'validation'</span>])<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-48"><a></a><span class="bu">print</span>(<span class="ss">f"Test samples: </span><span class="sc">{</span><span class="bu">len</span>(dataset[<span class="st">'test'</span>])<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-49"><a></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Sample entry: </span><span class="sc">{</span>dataset[<span class="st">'train'</span>][<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a aria-label="1"></a><span class="im">from</span> datasets <span class="im">import</span> Dataset, DatasetDict</span>
+<span id="cb1-2"><a aria-label="2"></a><span class="im">import</span> json</span>
+<span id="cb1-3"><a aria-label="3"></a></span>
+<span id="cb1-4"><a aria-label="4"></a></span>
+<span id="cb1-5"><a aria-label="5"></a><span class="kw">def</span> load_jsonl(file_path):</span>
+<span id="cb1-6"><a aria-label="6"></a>    data <span class="op">=</span> []</span>
+<span id="cb1-7"><a aria-label="7"></a>    <span class="cf">with</span> <span class="bu">open</span>(file_path, <span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb1-8"><a aria-label="8"></a>        <span class="cf">for</span> line_num, line <span class="kw">in</span> <span class="bu">enumerate</span>(f, <span class="dv">1</span>):</span>
+<span id="cb1-9"><a aria-label="9"></a>            line <span class="op">=</span> line.strip()</span>
+<span id="cb1-10"><a aria-label="10"></a>            <span class="cf">if</span> <span class="kw">not</span> line:  <span class="co"># Skip empty lines</span></span>
+<span id="cb1-11"><a aria-label="11"></a>                <span class="cf">continue</span></span>
+<span id="cb1-12"><a aria-label="12"></a>            <span class="cf">try</span>:</span>
+<span id="cb1-13"><a aria-label="13"></a>                <span class="co"># Try parsing the line</span></span>
+<span id="cb1-14"><a aria-label="14"></a>                data.append(json.loads(line))</span>
+<span id="cb1-15"><a aria-label="15"></a>            <span class="cf">except</span> json.JSONDecodeError <span class="im">as</span> e:</span>
+<span id="cb1-16"><a aria-label="16"></a>                <span class="bu">print</span>(<span class="ss">f"Warning: Error parsing line </span><span class="sc">{</span>line_num<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-17"><a aria-label="17"></a>                <span class="bu">print</span>(<span class="ss">f"Problematic line: </span><span class="sc">{</span>line[:<span class="dv">200</span>]<span class="sc">}</span><span class="ss">..."</span>)</span>
+<span id="cb1-18"><a aria-label="18"></a>    <span class="cf">return</span> data</span>
+<span id="cb1-19"><a aria-label="19"></a></span>
+<span id="cb1-20"><a aria-label="20"></a></span>
+<span id="cb1-21"><a aria-label="21"></a><span class="kw">def</span> create_hf_dataset(train_file, val_file, test_file):</span>
+<span id="cb1-22"><a aria-label="22"></a>    <span class="co"># Load the data</span></span>
+<span id="cb1-23"><a aria-label="23"></a>    train_data <span class="op">=</span> load_jsonl(train_file)</span>
+<span id="cb1-24"><a aria-label="24"></a>    val_data <span class="op">=</span> load_jsonl(val_file)</span>
+<span id="cb1-25"><a aria-label="25"></a>    test_data <span class="op">=</span> load_jsonl(test_file)</span>
+<span id="cb1-26"><a aria-label="26"></a></span>
+<span id="cb1-27"><a aria-label="27"></a>    <span class="co"># Create datasets</span></span>
+<span id="cb1-28"><a aria-label="28"></a>    train_dataset <span class="op">=</span> Dataset.from_list(train_data)</span>
+<span id="cb1-29"><a aria-label="29"></a>    val_dataset <span class="op">=</span> Dataset.from_list(val_data)</span>
+<span id="cb1-30"><a aria-label="30"></a>    test_dataset <span class="op">=</span> Dataset.from_list(test_data)</span>
+<span id="cb1-31"><a aria-label="31"></a></span>
+<span id="cb1-32"><a aria-label="32"></a>    <span class="co"># Combine into DatasetDict</span></span>
+<span id="cb1-33"><a aria-label="33"></a>    dataset_dict <span class="op">=</span> DatasetDict(</span>
+<span id="cb1-34"><a aria-label="34"></a>        {</span>
+<span id="cb1-35"><a aria-label="35"></a>            <span class="st">"train"</span>: train_dataset,</span>
+<span id="cb1-36"><a aria-label="36"></a>            <span class="st">"validation"</span>: val_dataset,</span>
+<span id="cb1-37"><a aria-label="37"></a>            <span class="st">"test"</span>: test_dataset,</span>
+<span id="cb1-38"><a aria-label="38"></a>        }</span>
+<span id="cb1-39"><a aria-label="39"></a>    )</span>
+<span id="cb1-40"><a aria-label="40"></a></span>
+<span id="cb1-41"><a aria-label="41"></a>    <span class="cf">return</span> dataset_dict</span>
+<span id="cb1-42"><a aria-label="42"></a></span>
+<span id="cb1-43"><a aria-label="43"></a></span>
+<span id="cb1-44"><a aria-label="44"></a><span class="co"># Create and validate the dataset is ready to upload</span></span>
+<span id="cb1-45"><a aria-label="45"></a>dataset <span class="op">=</span> create_hf_dataset(TRAIN_FILE, VALIDATION_FILE, TEST_FILE)</span>
+<span id="cb1-46"><a aria-label="46"></a><span class="bu">print</span>(<span class="ss">f"Train samples: </span><span class="sc">{</span><span class="bu">len</span>(dataset[<span class="st">'train'</span>])<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-47"><a aria-label="47"></a><span class="bu">print</span>(<span class="ss">f"Validation samples: </span><span class="sc">{</span><span class="bu">len</span>(dataset[<span class="st">'validation'</span>])<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-48"><a aria-label="48"></a><span class="bu">print</span>(<span class="ss">f"Test samples: </span><span class="sc">{</span><span class="bu">len</span>(dataset[<span class="st">'test'</span>])<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-49"><a aria-label="49"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Sample entry: </span><span class="sc">{</span>dataset[<span class="st">'train'</span>][<span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -513,16 +518,16 @@
 <h2>Upload Training Files</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/07/notebooks/create-dataset.ipynb" data-notebook-title="Create Hugging Face Dataset" data-notebook-cellid="upload">
 <div id="upload" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="kw">def</span> upload_dataset(dataset, repo_name, token):</span>
-<span id="cb2-2"><a></a>    dataset.push_to_hub(</span>
-<span id="cb2-3"><a></a>        repo_name,</span>
-<span id="cb2-4"><a></a>        token<span class="op">=</span>token,</span>
-<span id="cb2-5"><a></a>        private<span class="op">=</span><span class="va">False</span></span>
-<span id="cb2-6"><a></a>    )</span>
-<span id="cb2-7"><a></a>    </span>
-<span id="cb2-8"><a></a>    <span class="bu">print</span>(<span class="ss">f"Dataset uploaded successfully to: https://huggingface.co/datasets/</span><span class="sc">{</span>repo_name<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb2-9"><a></a></span>
-<span id="cb2-10"><a></a>upload_dataset(dataset, DATASET_REPO, os.environ.get(<span class="st">"HF_TOKEN"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a aria-label="1"></a><span class="kw">def</span> upload_dataset(dataset, repo_name, token):</span>
+<span id="cb2-2"><a aria-label="2"></a>    dataset.push_to_hub(</span>
+<span id="cb2-3"><a aria-label="3"></a>        repo_name,</span>
+<span id="cb2-4"><a aria-label="4"></a>        token<span class="op">=</span>token,</span>
+<span id="cb2-5"><a aria-label="5"></a>        private<span class="op">=</span><span class="va">False</span></span>
+<span id="cb2-6"><a aria-label="6"></a>    )</span>
+<span id="cb2-7"><a aria-label="7"></a>    </span>
+<span id="cb2-8"><a aria-label="8"></a>    <span class="bu">print</span>(<span class="ss">f"Dataset uploaded successfully to: https://huggingface.co/datasets/</span><span class="sc">{</span>repo_name<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-9"><a aria-label="9"></a></span>
+<span id="cb2-10"><a aria-label="10"></a>upload_dataset(dataset, DATASET_REPO, os.environ.get(<span class="st">"HF_TOKEN"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section></section>
@@ -801,13 +806,13 @@
 <h2>Post-Training: Test</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/07/notebooks/train-cuda.ipynb" data-notebook-title="Supervised Fine-Tuning on CUDA" data-notebook-cellid="test-model">
 <div id="test-model" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="im">import</span> random</span>
-<span id="cb3-2"><a></a></span>
-<span id="cb3-3"><a></a>idx <span class="op">=</span> random.randint(<span class="dv">0</span>, <span class="bu">len</span>(formatted_dataset[<span class="st">'test'</span>]) <span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb3-4"><a></a>test_data <span class="op">=</span> formatted_dataset[<span class="st">'test'</span>][idx][<span class="st">"text"</span>]</span>
-<span id="cb3-5"><a></a></span>
-<span id="cb3-6"><a></a>output <span class="op">=</span> pipe(test_data)</span>
-<span id="cb3-7"><a></a><span class="bu">print</span>(output[<span class="dv">0</span>][<span class="st">'generated_text'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a aria-label="1"></a><span class="im">import</span> random</span>
+<span id="cb3-2"><a aria-label="2"></a></span>
+<span id="cb3-3"><a aria-label="3"></a>idx <span class="op">=</span> random.randint(<span class="dv">0</span>, <span class="bu">len</span>(formatted_dataset[<span class="st">'test'</span>]) <span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb3-4"><a aria-label="4"></a>test_data <span class="op">=</span> formatted_dataset[<span class="st">'test'</span>][idx][<span class="st">"text"</span>]</span>
+<span id="cb3-5"><a aria-label="5"></a></span>
+<span id="cb3-6"><a aria-label="6"></a>output <span class="op">=</span> pipe(test_data)</span>
+<span id="cb3-7"><a aria-label="7"></a><span class="bu">print</span>(output[<span class="dv">0</span>][<span class="st">'generated_text'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -840,39 +845,39 @@
 <h2>Post-Training: Create Model Card</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/07/notebooks/train-cuda.ipynb" data-notebook-title="Supervised Fine-Tuning on CUDA" data-notebook-cellid="model-card">
 <div id="model-card" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">from</span> huggingface_hub <span class="im">import</span> ModelCard</span>
-<span id="cb4-2"><a></a></span>
-<span id="cb4-3"><a></a>card_content <span class="op">=</span> <span class="ss">f"""---</span></span>
-<span id="cb4-4"><a></a><span class="ss">base_model: </span><span class="sc">{</span>BASE_MODEL<span class="sc">}</span></span>
-<span id="cb4-5"><a></a><span class="ss">tags:</span></span>
-<span id="cb4-6"><a></a><span class="ss">- peft</span></span>
-<span id="cb4-7"><a></a><span class="ss">- lora</span></span>
-<span id="cb4-8"><a></a><span class="ss">- text-generation</span></span>
-<span id="cb4-9"><a></a><span class="ss">---</span></span>
-<span id="cb4-10"><a></a></span>
-<span id="cb4-11"><a></a><span class="ss"># </span><span class="sc">{</span>MODEL_NAME<span class="sc">}</span></span>
-<span id="cb4-12"><a></a></span>
-<span id="cb4-13"><a></a><span class="ss">## Model Description</span></span>
-<span id="cb4-14"><a></a><span class="ss">Fine-tuned from `</span><span class="sc">{</span>BASE_MODEL<span class="sc">}</span><span class="ss">` using QLoRA (4-bit) with supervised fine-tuning.</span></span>
-<span id="cb4-15"><a></a></span>
-<span id="cb4-16"><a></a><span class="ss">## Training Details</span></span>
-<span id="cb4-17"><a></a><span class="ss">- Dataset: `</span><span class="sc">{</span>DATASET_REPO<span class="sc">}</span><span class="ss">`</span></span>
-<span id="cb4-18"><a></a><span class="ss">- LoRA rank: </span><span class="sc">{</span>LORA_R<span class="sc">}</span><span class="ss">, alpha: </span><span class="sc">{</span>LORA_ALPHA<span class="sc">}</span></span>
-<span id="cb4-19"><a></a><span class="ss">- Epochs: </span><span class="sc">{</span>NUM_EPOCHS<span class="sc">}</span><span class="ss">, Learning rate: </span><span class="sc">{</span>LEARNING_RATE<span class="sc">}</span></span>
-<span id="cb4-20"><a></a></span>
-<span id="cb4-21"><a></a><span class="ss">## Intended Use</span></span>
-<span id="cb4-22"><a></a></span>
-<span id="cb4-23"><a></a><span class="ss">This model is a test model used for the CS-394/594 class at DigiPen.</span></span>
-<span id="cb4-24"><a></a></span>
-<span id="cb4-25"><a></a><span class="ss">The model is designed to provide a summary explanation of a snippet of Python code, to be used in an IDE. This model takes a snippet of code (passed as the user prompt) and returns a two paragraph explanation of what the code does, including an analogy that helps students better understand how the code functions.</span></span>
-<span id="cb4-26"><a></a></span>
-<span id="cb4-27"><a></a><span class="ss">## Limitations</span></span>
-<span id="cb4-28"><a></a></span>
-<span id="cb4-29"><a></a><span class="ss">This model is a single-turn model and has not been trained on support long, multi-turn conversations.</span></span>
-<span id="cb4-30"><a></a><span class="ss">"""</span></span>
-<span id="cb4-31"><a></a></span>
-<span id="cb4-32"><a></a>card <span class="op">=</span> ModelCard(card_content)</span>
-<span id="cb4-33"><a></a>card.save(<span class="ss">f"</span><span class="sc">{</span>MODEL_FOLDER<span class="sc">}</span><span class="ss">/lora/README.md"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a aria-label="1"></a><span class="im">from</span> huggingface_hub <span class="im">import</span> ModelCard</span>
+<span id="cb4-2"><a aria-label="2"></a></span>
+<span id="cb4-3"><a aria-label="3"></a>card_content <span class="op">=</span> <span class="ss">f"""---</span></span>
+<span id="cb4-4"><a aria-label="4"></a><span class="ss">base_model: </span><span class="sc">{</span>BASE_MODEL<span class="sc">}</span></span>
+<span id="cb4-5"><a aria-label="5"></a><span class="ss">tags:</span></span>
+<span id="cb4-6"><a aria-label="6"></a><span class="ss">- peft</span></span>
+<span id="cb4-7"><a aria-label="7"></a><span class="ss">- lora</span></span>
+<span id="cb4-8"><a aria-label="8"></a><span class="ss">- text-generation</span></span>
+<span id="cb4-9"><a aria-label="9"></a><span class="ss">---</span></span>
+<span id="cb4-10"><a aria-label="10"></a></span>
+<span id="cb4-11"><a aria-label="11"></a><span class="ss"># </span><span class="sc">{</span>MODEL_NAME<span class="sc">}</span></span>
+<span id="cb4-12"><a aria-label="12"></a></span>
+<span id="cb4-13"><a aria-label="13"></a><span class="ss">## Model Description</span></span>
+<span id="cb4-14"><a aria-label="14"></a><span class="ss">Fine-tuned from `</span><span class="sc">{</span>BASE_MODEL<span class="sc">}</span><span class="ss">` using QLoRA (4-bit) with supervised fine-tuning.</span></span>
+<span id="cb4-15"><a aria-label="15"></a></span>
+<span id="cb4-16"><a aria-label="16"></a><span class="ss">## Training Details</span></span>
+<span id="cb4-17"><a aria-label="17"></a><span class="ss">- Dataset: `</span><span class="sc">{</span>DATASET_REPO<span class="sc">}</span><span class="ss">`</span></span>
+<span id="cb4-18"><a aria-label="18"></a><span class="ss">- LoRA rank: </span><span class="sc">{</span>LORA_R<span class="sc">}</span><span class="ss">, alpha: </span><span class="sc">{</span>LORA_ALPHA<span class="sc">}</span></span>
+<span id="cb4-19"><a aria-label="19"></a><span class="ss">- Epochs: </span><span class="sc">{</span>NUM_EPOCHS<span class="sc">}</span><span class="ss">, Learning rate: </span><span class="sc">{</span>LEARNING_RATE<span class="sc">}</span></span>
+<span id="cb4-20"><a aria-label="20"></a></span>
+<span id="cb4-21"><a aria-label="21"></a><span class="ss">## Intended Use</span></span>
+<span id="cb4-22"><a aria-label="22"></a></span>
+<span id="cb4-23"><a aria-label="23"></a><span class="ss">This model is a test model used for the CS-394/594 class at DigiPen.</span></span>
+<span id="cb4-24"><a aria-label="24"></a></span>
+<span id="cb4-25"><a aria-label="25"></a><span class="ss">The model is designed to provide a summary explanation of a snippet of Python code, to be used in an IDE. This model takes a snippet of code (passed as the user prompt) and returns a two paragraph explanation of what the code does, including an analogy that helps students better understand how the code functions.</span></span>
+<span id="cb4-26"><a aria-label="26"></a></span>
+<span id="cb4-27"><a aria-label="27"></a><span class="ss">## Limitations</span></span>
+<span id="cb4-28"><a aria-label="28"></a></span>
+<span id="cb4-29"><a aria-label="29"></a><span class="ss">This model is a single-turn model and has not been trained on support long, multi-turn conversations.</span></span>
+<span id="cb4-30"><a aria-label="30"></a><span class="ss">"""</span></span>
+<span id="cb4-31"><a aria-label="31"></a></span>
+<span id="cb4-32"><a aria-label="32"></a>card <span class="op">=</span> ModelCard(card_content)</span>
+<span id="cb4-33"><a aria-label="33"></a>card.save(<span class="ss">f"</span><span class="sc">{</span>MODEL_FOLDER<span class="sc">}</span><span class="ss">/lora/README.md"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -888,28 +893,28 @@
 <h2>Post-Training: Merge and Upload</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/07/notebooks/train-cuda.ipynb" data-notebook-title="Supervised Fine-Tuning on CUDA" data-notebook-cellid="merge-model">
 <div id="merge-model" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="im">import</span> torch</span>
-<span id="cb5-2"><a></a><span class="im">from</span> transformers <span class="im">import</span> AutoModelForCausalLM, AutoTokenizer</span>
-<span id="cb5-3"><a></a></span>
-<span id="cb5-4"><a></a><span class="im">from</span> peft <span class="im">import</span> PeftModel</span>
-<span id="cb5-5"><a></a></span>
-<span id="cb5-6"><a></a><span class="co"># Load the configuration and model</span></span>
-<span id="cb5-7"><a></a>base_model <span class="op">=</span> AutoModelForCausalLM.from_pretrained(</span>
-<span id="cb5-8"><a></a>    BASE_MODEL,</span>
-<span id="cb5-9"><a></a>    device_map<span class="op">=</span><span class="st">"auto"</span>,</span>
-<span id="cb5-10"><a></a>    dtype<span class="op">=</span>torch.bfloat16,</span>
-<span id="cb5-11"><a></a>)</span>
-<span id="cb5-12"><a></a>adapter_model <span class="op">=</span> PeftModel.from_pretrained(base_model, <span class="ss">f"</span><span class="sc">{</span>MODEL_FOLDER<span class="sc">}</span><span class="ss">/lora"</span>)</span>
-<span id="cb5-13"><a></a></span>
-<span id="cb5-14"><a></a><span class="co"># Merge and save the model</span></span>
-<span id="cb5-15"><a></a>merged_model <span class="op">=</span> adapter_model.merge_and_unload() <span class="co"># type: ignore</span></span>
-<span id="cb5-16"><a></a>merged_model.save_pretrained(<span class="ss">f"</span><span class="sc">{</span>MODEL_FOLDER<span class="sc">}</span><span class="ss">/merged"</span>)</span>
-<span id="cb5-17"><a></a><span class="co"># Save the tokenizer</span></span>
-<span id="cb5-18"><a></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(BASE_MODEL)</span>
-<span id="cb5-19"><a></a>tokenizer.save_pretrained(<span class="ss">f"</span><span class="sc">{</span>MODEL_FOLDER<span class="sc">}</span><span class="ss">/merged"</span>)</span>
-<span id="cb5-20"><a></a></span>
-<span id="cb5-21"><a></a><span class="co"># Copy the model card to the merged folder</span></span>
-<span id="cb5-22"><a></a><span class="op">!</span>cp {MODEL_FOLDER}<span class="op">/</span>lora<span class="op">/</span>README.md {MODEL_FOLDER}<span class="op">/</span>merged<span class="op">/</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a aria-label="1"></a><span class="im">import</span> torch</span>
+<span id="cb5-2"><a aria-label="2"></a><span class="im">from</span> transformers <span class="im">import</span> AutoModelForCausalLM, AutoTokenizer</span>
+<span id="cb5-3"><a aria-label="3"></a></span>
+<span id="cb5-4"><a aria-label="4"></a><span class="im">from</span> peft <span class="im">import</span> PeftModel</span>
+<span id="cb5-5"><a aria-label="5"></a></span>
+<span id="cb5-6"><a aria-label="6"></a><span class="co"># Load the configuration and model</span></span>
+<span id="cb5-7"><a aria-label="7"></a>base_model <span class="op">=</span> AutoModelForCausalLM.from_pretrained(</span>
+<span id="cb5-8"><a aria-label="8"></a>    BASE_MODEL,</span>
+<span id="cb5-9"><a aria-label="9"></a>    device_map<span class="op">=</span><span class="st">"auto"</span>,</span>
+<span id="cb5-10"><a aria-label="10"></a>    dtype<span class="op">=</span>torch.bfloat16,</span>
+<span id="cb5-11"><a aria-label="11"></a>)</span>
+<span id="cb5-12"><a aria-label="12"></a>adapter_model <span class="op">=</span> PeftModel.from_pretrained(base_model, <span class="ss">f"</span><span class="sc">{</span>MODEL_FOLDER<span class="sc">}</span><span class="ss">/lora"</span>)</span>
+<span id="cb5-13"><a aria-label="13"></a></span>
+<span id="cb5-14"><a aria-label="14"></a><span class="co"># Merge and save the model</span></span>
+<span id="cb5-15"><a aria-label="15"></a>merged_model <span class="op">=</span> adapter_model.merge_and_unload() <span class="co"># type: ignore</span></span>
+<span id="cb5-16"><a aria-label="16"></a>merged_model.save_pretrained(<span class="ss">f"</span><span class="sc">{</span>MODEL_FOLDER<span class="sc">}</span><span class="ss">/merged"</span>)</span>
+<span id="cb5-17"><a aria-label="17"></a><span class="co"># Save the tokenizer</span></span>
+<span id="cb5-18"><a aria-label="18"></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(BASE_MODEL)</span>
+<span id="cb5-19"><a aria-label="19"></a>tokenizer.save_pretrained(<span class="ss">f"</span><span class="sc">{</span>MODEL_FOLDER<span class="sc">}</span><span class="ss">/merged"</span>)</span>
+<span id="cb5-20"><a aria-label="20"></a></span>
+<span id="cb5-21"><a aria-label="21"></a><span class="co"># Copy the model card to the merged folder</span></span>
+<span id="cb5-22"><a aria-label="22"></a><span class="op">!</span>cp {MODEL_FOLDER}<span class="op">/</span>lora<span class="op">/</span>README.md {MODEL_FOLDER}<span class="op">/</span>merged<span class="op">/</span>.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -917,42 +922,42 @@
 <h2>Post-Training: Merge and Upload</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/07/notebooks/train-cuda.ipynb" data-notebook-title="Supervised Fine-Tuning on CUDA" data-notebook-cellid="upload-model">
 <div id="upload-model" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="im">from</span> huggingface_hub <span class="im">import</span> HfApi, create_repo</span>
-<span id="cb6-2"><a></a></span>
-<span id="cb6-3"><a></a><span class="co"># Set the MODEL_REPO</span></span>
-<span id="cb6-4"><a></a>MODEL_REPO <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>HF_USERNAME<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>MODEL_NAME<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb6-5"><a></a></span>
-<span id="cb6-6"><a></a><span class="co"># Initialize the API</span></span>
-<span id="cb6-7"><a></a>api <span class="op">=</span> HfApi()</span>
-<span id="cb6-8"><a></a></span>
-<span id="cb6-9"><a></a><span class="co"># Create the repository (if it doesn't exist)</span></span>
-<span id="cb6-10"><a></a><span class="cf">try</span>:</span>
-<span id="cb6-11"><a></a>    create_repo(MODEL_REPO, repo_type<span class="op">=</span><span class="st">"model"</span>, exist_ok<span class="op">=</span><span class="va">True</span>, private<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb6-12"><a></a>    <span class="bu">print</span>(<span class="ss">f"Repository </span><span class="sc">{</span>MODEL_REPO<span class="sc">}</span><span class="ss"> created or already exists"</span>)</span>
-<span id="cb6-13"><a></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb6-14"><a></a>    <span class="bu">print</span>(<span class="ss">f"Error creating repo: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb6-15"><a></a></span>
-<span id="cb6-16"><a></a><span class="co"># Upload merged model files to root (this is the main model)</span></span>
-<span id="cb6-17"><a></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Uploading merged model to root..."</span>)</span>
-<span id="cb6-18"><a></a>api.upload_folder(</span>
-<span id="cb6-19"><a></a>    folder_path<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>MODEL_FOLDER<span class="sc">}</span><span class="ss">/merged"</span>,</span>
-<span id="cb6-20"><a></a>    repo_id<span class="op">=</span>MODEL_REPO,</span>
-<span id="cb6-21"><a></a>    repo_type<span class="op">=</span><span class="st">"model"</span>,</span>
-<span id="cb6-22"><a></a>    path_in_repo<span class="op">=</span><span class="st">""</span>,  <span class="co"># Empty string uploads to root</span></span>
-<span id="cb6-23"><a></a>    commit_message<span class="op">=</span><span class="st">"Upload merged model"</span></span>
-<span id="cb6-24"><a></a>)</span>
-<span id="cb6-25"><a></a></span>
-<span id="cb6-26"><a></a><span class="co"># Upload LoRA adapter to subfolder (optional but useful for reference)</span></span>
-<span id="cb6-27"><a></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Uploading LoRA adapter..."</span>)</span>
-<span id="cb6-28"><a></a>api.upload_folder(</span>
-<span id="cb6-29"><a></a>    folder_path<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>MODEL_FOLDER<span class="sc">}</span><span class="ss">/lora"</span>,</span>
-<span id="cb6-30"><a></a>    repo_id<span class="op">=</span>MODEL_REPO,</span>
-<span id="cb6-31"><a></a>    repo_type<span class="op">=</span><span class="st">"model"</span>,</span>
-<span id="cb6-32"><a></a>    path_in_repo<span class="op">=</span><span class="st">"lora_adapter"</span>,  <span class="co"># Keep adapter in subfolder</span></span>
-<span id="cb6-33"><a></a>    commit_message<span class="op">=</span><span class="st">"Upload LoRA adapter"</span></span>
-<span id="cb6-34"><a></a>)</span>
-<span id="cb6-35"><a></a></span>
-<span id="cb6-36"><a></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">✓ All files uploaded successfully to https://huggingface.co/</span><span class="sc">{</span>MODEL_REPO<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a aria-label="1"></a><span class="im">from</span> huggingface_hub <span class="im">import</span> HfApi, create_repo</span>
+<span id="cb6-2"><a aria-label="2"></a></span>
+<span id="cb6-3"><a aria-label="3"></a><span class="co"># Set the MODEL_REPO</span></span>
+<span id="cb6-4"><a aria-label="4"></a>MODEL_REPO <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>HF_USERNAME<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>MODEL_NAME<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb6-5"><a aria-label="5"></a></span>
+<span id="cb6-6"><a aria-label="6"></a><span class="co"># Initialize the API</span></span>
+<span id="cb6-7"><a aria-label="7"></a>api <span class="op">=</span> HfApi()</span>
+<span id="cb6-8"><a aria-label="8"></a></span>
+<span id="cb6-9"><a aria-label="9"></a><span class="co"># Create the repository (if it doesn't exist)</span></span>
+<span id="cb6-10"><a aria-label="10"></a><span class="cf">try</span>:</span>
+<span id="cb6-11"><a aria-label="11"></a>    create_repo(MODEL_REPO, repo_type<span class="op">=</span><span class="st">"model"</span>, exist_ok<span class="op">=</span><span class="va">True</span>, private<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb6-12"><a aria-label="12"></a>    <span class="bu">print</span>(<span class="ss">f"Repository </span><span class="sc">{</span>MODEL_REPO<span class="sc">}</span><span class="ss"> created or already exists"</span>)</span>
+<span id="cb6-13"><a aria-label="13"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
+<span id="cb6-14"><a aria-label="14"></a>    <span class="bu">print</span>(<span class="ss">f"Error creating repo: </span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-15"><a aria-label="15"></a></span>
+<span id="cb6-16"><a aria-label="16"></a><span class="co"># Upload merged model files to root (this is the main model)</span></span>
+<span id="cb6-17"><a aria-label="17"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Uploading merged model to root..."</span>)</span>
+<span id="cb6-18"><a aria-label="18"></a>api.upload_folder(</span>
+<span id="cb6-19"><a aria-label="19"></a>    folder_path<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>MODEL_FOLDER<span class="sc">}</span><span class="ss">/merged"</span>,</span>
+<span id="cb6-20"><a aria-label="20"></a>    repo_id<span class="op">=</span>MODEL_REPO,</span>
+<span id="cb6-21"><a aria-label="21"></a>    repo_type<span class="op">=</span><span class="st">"model"</span>,</span>
+<span id="cb6-22"><a aria-label="22"></a>    path_in_repo<span class="op">=</span><span class="st">""</span>,  <span class="co"># Empty string uploads to root</span></span>
+<span id="cb6-23"><a aria-label="23"></a>    commit_message<span class="op">=</span><span class="st">"Upload merged model"</span></span>
+<span id="cb6-24"><a aria-label="24"></a>)</span>
+<span id="cb6-25"><a aria-label="25"></a></span>
+<span id="cb6-26"><a aria-label="26"></a><span class="co"># Upload LoRA adapter to subfolder (optional but useful for reference)</span></span>
+<span id="cb6-27"><a aria-label="27"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Uploading LoRA adapter..."</span>)</span>
+<span id="cb6-28"><a aria-label="28"></a>api.upload_folder(</span>
+<span id="cb6-29"><a aria-label="29"></a>    folder_path<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>MODEL_FOLDER<span class="sc">}</span><span class="ss">/lora"</span>,</span>
+<span id="cb6-30"><a aria-label="30"></a>    repo_id<span class="op">=</span>MODEL_REPO,</span>
+<span id="cb6-31"><a aria-label="31"></a>    repo_type<span class="op">=</span><span class="st">"model"</span>,</span>
+<span id="cb6-32"><a aria-label="32"></a>    path_in_repo<span class="op">=</span><span class="st">"lora_adapter"</span>,  <span class="co"># Keep adapter in subfolder</span></span>
+<span id="cb6-33"><a aria-label="33"></a>    commit_message<span class="op">=</span><span class="st">"Upload LoRA adapter"</span></span>
+<span id="cb6-34"><a aria-label="34"></a>)</span>
+<span id="cb6-35"><a aria-label="35"></a></span>
+<span id="cb6-36"><a aria-label="36"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">✓ All files uploaded successfully to https://huggingface.co/</span><span class="sc">{</span>MODEL_REPO<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section></section>
@@ -974,14 +979,14 @@
 <h2>Post-Training: Quantize</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/07/notebooks/quantize.ipynb" data-notebook-title="Quantize Your Fine-Tuned Model" data-notebook-cellid="build-llama">
 <div id="build-llama" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="14eb357d-4ef0-49c3-bf2f-bfbb4a3371a6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a></a>TEMP_FOLDER <span class="op">=</span> <span class="st">"/content/tmp"</span></span>
-<span id="cb7-2"><a></a></span>
-<span id="cb7-3"><a></a><span class="co"># Create a temporary location and clone llama.cpp</span></span>
-<span id="cb7-4"><a></a><span class="op">!</span>mkdir <span class="op">-</span>p {TEMP_FOLDER}</span>
-<span id="cb7-5"><a></a><span class="op">!</span>cd {TEMP_FOLDER} <span class="op">&amp;&amp;</span> git clone https:<span class="op">//</span>github.com<span class="op">/</span>ggml<span class="op">-</span>org<span class="op">/</span>llama.cpp</span>
-<span id="cb7-6"><a></a></span>
-<span id="cb7-7"><a></a><span class="op">!</span>cd {TEMP_FOLDER}<span class="op">/</span>llama.cpp <span class="op">&amp;&amp;</span> cmake <span class="op">-</span>B build</span>
-<span id="cb7-8"><a></a><span class="op">!</span>cd {TEMP_FOLDER}<span class="op">/</span>llama.cpp <span class="op">&amp;&amp;</span> cmake <span class="op">--</span>build build <span class="op">--</span>config Release <span class="op">--</span>target llama<span class="op">-</span>quantize <span class="op">-</span>j <span class="dv">8</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a aria-label="1"></a>TEMP_FOLDER <span class="op">=</span> <span class="st">"/content/tmp"</span></span>
+<span id="cb7-2"><a aria-label="2"></a></span>
+<span id="cb7-3"><a aria-label="3"></a><span class="co"># Create a temporary location and clone llama.cpp</span></span>
+<span id="cb7-4"><a aria-label="4"></a><span class="op">!</span>mkdir <span class="op">-</span>p {TEMP_FOLDER}</span>
+<span id="cb7-5"><a aria-label="5"></a><span class="op">!</span>cd {TEMP_FOLDER} <span class="op">&amp;&amp;</span> git clone https:<span class="op">//</span>github.com<span class="op">/</span>ggml<span class="op">-</span>org<span class="op">/</span>llama.cpp</span>
+<span id="cb7-6"><a aria-label="6"></a></span>
+<span id="cb7-7"><a aria-label="7"></a><span class="op">!</span>cd {TEMP_FOLDER}<span class="op">/</span>llama.cpp <span class="op">&amp;&amp;</span> cmake <span class="op">-</span>B build</span>
+<span id="cb7-8"><a aria-label="8"></a><span class="op">!</span>cd {TEMP_FOLDER}<span class="op">/</span>llama.cpp <span class="op">&amp;&amp;</span> cmake <span class="op">--</span>build build <span class="op">--</span>config Release <span class="op">--</span>target llama<span class="op">-</span>quantize <span class="op">-</span>j <span class="dv">8</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -989,31 +994,31 @@
 <h2>Post-Training: Quantize</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/07/notebooks/quantize.ipynb" data-notebook-title="Quantize Your Fine-Tuned Model" data-notebook-cellid="convert">
 <div id="convert" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;,&quot;height&quot;:1000,&quot;referenced_widgets&quot;:[&quot;ae44dee311524895926f9e8abe85e25a&quot;,&quot;d1da0dbc1b8d453fb6c740d42284191e&quot;,&quot;ebe59d82062f48acb14d90a7589fdb92&quot;,&quot;19faff8ac6bd4c1f963eaff0cd36575b&quot;,&quot;06caea8b08674c928090c7672ae471e4&quot;,&quot;7df4f34f4593486faaead96cf6876032&quot;,&quot;fcc82250e51546f0bb8f5449b9241c60&quot;,&quot;429e052d7c234d5c989f718978a194e9&quot;,&quot;9e39c89dcb2a4595993d578108d85fbb&quot;,&quot;09efed9120334bf986783fff5fd076da&quot;,&quot;7cc3c04122044d8ab102f7a196324e62&quot;,&quot;a1e304a7afc7480fa3bf4cca5acbf413&quot;,&quot;6846af1e73874a2f9892b72daa8e8918&quot;,&quot;29a7646006b145c5bf9ebc26019a0921&quot;,&quot;87b1d00a16954c4e97e6fa1c49b5cc27&quot;,&quot;b02b701b76fa4262b437298a11088a9d&quot;,&quot;49db6beebb0140f5930cf7d532d2454d&quot;,&quot;a607fd74f4b14ce7949db2a12a867a1a&quot;,&quot;a2fb68ecde6b4e4f90e6fe0d528a1f75&quot;,&quot;4f67de272467463fbc5f7234513cd0da&quot;,&quot;06aa74172e7940508c67303fb454ae16&quot;,&quot;d83d1c14aa23406d869503afbae312fa&quot;]}}" data-outputid="5c4c9d8f-15af-4979-c93a-88f227f1e4f5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a></a><span class="im">from</span> huggingface_hub <span class="im">import</span> snapshot_download</span>
-<span id="cb8-2"><a></a></span>
-<span id="cb8-3"><a></a>HF_USERNAME <span class="op">=</span> <span class="st">"simonguest"</span> <span class="co"># Change this to your Hugging Face username</span></span>
-<span id="cb8-4"><a></a>MODEL_NAME <span class="op">=</span> <span class="st">"Qwen3-1.7B-code-explainer"</span> <span class="co"># Change this to the repo of your merged model</span></span>
-<span id="cb8-5"><a></a>MODEL_REPO <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>HF_USERNAME<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>MODEL_NAME<span class="sc">}</span><span class="ss">"</span></span>
-<span id="cb8-6"><a></a></span>
-<span id="cb8-7"><a></a><span class="co"># Working folders</span></span>
-<span id="cb8-8"><a></a>MODEL_FOLDER <span class="op">=</span> <span class="st">"/content/model"</span></span>
-<span id="cb8-9"><a></a>GGUF_FOLDER <span class="op">=</span> <span class="st">"/content/ggufs"</span></span>
-<span id="cb8-10"><a></a></span>
-<span id="cb8-11"><a></a><span class="op">!</span>mkdir <span class="op">-</span>p {MODEL_FOLDER}</span>
-<span id="cb8-12"><a></a><span class="op">!</span>mkdir <span class="op">-</span>p {GGUF_FOLDER}</span>
-<span id="cb8-13"><a></a></span>
-<span id="cb8-14"><a></a><span class="co"># Download the model from Hugging Face at full precision</span></span>
-<span id="cb8-15"><a></a>snapshot_download(repo_id<span class="op">=</span>MODEL_REPO, local_dir<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>MODEL_FOLDER<span class="sc">}</span><span class="ss">"</span>, repo_type<span class="op">=</span><span class="st">"model"</span>)</span>
-<span id="cb8-16"><a></a></span>
-<span id="cb8-17"><a></a><span class="co"># Convert to GGUF (fp16 first)</span></span>
-<span id="cb8-18"><a></a><span class="op">!</span>cd {TEMP_FOLDER}<span class="op">/</span>llama.cpp <span class="op">&amp;&amp;</span> python convert_hf_to_gguf.py {MODEL_FOLDER} <span class="op">\</span></span>
-<span id="cb8-19"><a></a>    <span class="op">--</span>outfile {GGUF_FOLDER}<span class="op">/</span>{MODEL_NAME}<span class="op">-</span>F16.gguf <span class="op">\</span></span>
-<span id="cb8-20"><a></a>    <span class="op">--</span>outtype f16</span>
-<span id="cb8-21"><a></a></span>
-<span id="cb8-22"><a></a><span class="co"># # Convert gp16 GGUF to Q4_K_M</span></span>
-<span id="cb8-23"><a></a><span class="op">!</span>{TEMP_FOLDER}<span class="op">/</span>llama.cpp<span class="op">/</span>build<span class="op">/</span><span class="bu">bin</span><span class="op">/</span>llama<span class="op">-</span>quantize {GGUF_FOLDER}<span class="op">/</span>{MODEL_NAME}<span class="op">-</span>F16.gguf <span class="op">\</span></span>
-<span id="cb8-24"><a></a>    {GGUF_FOLDER}<span class="op">/</span>{MODEL_NAME}<span class="op">-</span>Q4_K_M.gguf <span class="op">\</span></span>
-<span id="cb8-25"><a></a>    Q4_K_M</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a aria-label="1"></a><span class="im">from</span> huggingface_hub <span class="im">import</span> snapshot_download</span>
+<span id="cb8-2"><a aria-label="2"></a></span>
+<span id="cb8-3"><a aria-label="3"></a>HF_USERNAME <span class="op">=</span> <span class="st">"simonguest"</span> <span class="co"># Change this to your Hugging Face username</span></span>
+<span id="cb8-4"><a aria-label="4"></a>MODEL_NAME <span class="op">=</span> <span class="st">"Qwen3-1.7B-code-explainer"</span> <span class="co"># Change this to the repo of your merged model</span></span>
+<span id="cb8-5"><a aria-label="5"></a>MODEL_REPO <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>HF_USERNAME<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>MODEL_NAME<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb8-6"><a aria-label="6"></a></span>
+<span id="cb8-7"><a aria-label="7"></a><span class="co"># Working folders</span></span>
+<span id="cb8-8"><a aria-label="8"></a>MODEL_FOLDER <span class="op">=</span> <span class="st">"/content/model"</span></span>
+<span id="cb8-9"><a aria-label="9"></a>GGUF_FOLDER <span class="op">=</span> <span class="st">"/content/ggufs"</span></span>
+<span id="cb8-10"><a aria-label="10"></a></span>
+<span id="cb8-11"><a aria-label="11"></a><span class="op">!</span>mkdir <span class="op">-</span>p {MODEL_FOLDER}</span>
+<span id="cb8-12"><a aria-label="12"></a><span class="op">!</span>mkdir <span class="op">-</span>p {GGUF_FOLDER}</span>
+<span id="cb8-13"><a aria-label="13"></a></span>
+<span id="cb8-14"><a aria-label="14"></a><span class="co"># Download the model from Hugging Face at full precision</span></span>
+<span id="cb8-15"><a aria-label="15"></a>snapshot_download(repo_id<span class="op">=</span>MODEL_REPO, local_dir<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>MODEL_FOLDER<span class="sc">}</span><span class="ss">"</span>, repo_type<span class="op">=</span><span class="st">"model"</span>)</span>
+<span id="cb8-16"><a aria-label="16"></a></span>
+<span id="cb8-17"><a aria-label="17"></a><span class="co"># Convert to GGUF (fp16 first)</span></span>
+<span id="cb8-18"><a aria-label="18"></a><span class="op">!</span>cd {TEMP_FOLDER}<span class="op">/</span>llama.cpp <span class="op">&amp;&amp;</span> python convert_hf_to_gguf.py {MODEL_FOLDER} <span class="op">\</span></span>
+<span id="cb8-19"><a aria-label="19"></a>    <span class="op">--</span>outfile {GGUF_FOLDER}<span class="op">/</span>{MODEL_NAME}<span class="op">-</span>F16.gguf <span class="op">\</span></span>
+<span id="cb8-20"><a aria-label="20"></a>    <span class="op">--</span>outtype f16</span>
+<span id="cb8-21"><a aria-label="21"></a></span>
+<span id="cb8-22"><a aria-label="22"></a><span class="co"># # Convert gp16 GGUF to Q4_K_M</span></span>
+<span id="cb8-23"><a aria-label="23"></a><span class="op">!</span>{TEMP_FOLDER}<span class="op">/</span>llama.cpp<span class="op">/</span>build<span class="op">/</span><span class="bu">bin</span><span class="op">/</span>llama<span class="op">-</span>quantize {GGUF_FOLDER}<span class="op">/</span>{MODEL_NAME}<span class="op">-</span>F16.gguf <span class="op">\</span></span>
+<span id="cb8-24"><a aria-label="24"></a>    {GGUF_FOLDER}<span class="op">/</span>{MODEL_NAME}<span class="op">-</span>Q4_K_M.gguf <span class="op">\</span></span>
+<span id="cb8-25"><a aria-label="25"></a>    Q4_K_M</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -1021,22 +1026,22 @@
 <h2>Post-Training: Quantize</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/07/notebooks/quantize.ipynb" data-notebook-title="Quantize Your Fine-Tuned Model" data-notebook-cellid="upload">
 <div id="upload" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="im">from</span> huggingface_hub <span class="im">import</span> HfApi</span>
-<span id="cb9-2"><a></a></span>
-<span id="cb9-3"><a></a><span class="co"># Initialize the API</span></span>
-<span id="cb9-4"><a></a>api <span class="op">=</span> HfApi()</span>
-<span id="cb9-5"><a></a></span>
-<span id="cb9-6"><a></a><span class="co"># Upload GGUF files to root</span></span>
-<span id="cb9-7"><a></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Uploading GGUF models to root..."</span>)</span>
-<span id="cb9-8"><a></a>api.upload_folder(</span>
-<span id="cb9-9"><a></a>    folder_path<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>GGUF_FOLDER<span class="sc">}</span><span class="ss">"</span>,</span>
-<span id="cb9-10"><a></a>    repo_id<span class="op">=</span>MODEL_REPO,</span>
-<span id="cb9-11"><a></a>    repo_type<span class="op">=</span><span class="st">"model"</span>,</span>
-<span id="cb9-12"><a></a>    path_in_repo<span class="op">=</span><span class="st">""</span>,  <span class="co"># GGUF files are typically found on the root level of a HF repo</span></span>
-<span id="cb9-13"><a></a>    commit_message<span class="op">=</span><span class="st">"Upload GGUF quantized models"</span></span>
-<span id="cb9-14"><a></a>)</span>
-<span id="cb9-15"><a></a></span>
-<span id="cb9-16"><a></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">GGUFs uploaded successfully to https://huggingface.co/</span><span class="sc">{</span>MODEL_REPO<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a aria-label="1"></a><span class="im">from</span> huggingface_hub <span class="im">import</span> HfApi</span>
+<span id="cb9-2"><a aria-label="2"></a></span>
+<span id="cb9-3"><a aria-label="3"></a><span class="co"># Initialize the API</span></span>
+<span id="cb9-4"><a aria-label="4"></a>api <span class="op">=</span> HfApi()</span>
+<span id="cb9-5"><a aria-label="5"></a></span>
+<span id="cb9-6"><a aria-label="6"></a><span class="co"># Upload GGUF files to root</span></span>
+<span id="cb9-7"><a aria-label="7"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Uploading GGUF models to root..."</span>)</span>
+<span id="cb9-8"><a aria-label="8"></a>api.upload_folder(</span>
+<span id="cb9-9"><a aria-label="9"></a>    folder_path<span class="op">=</span><span class="ss">f"</span><span class="sc">{</span>GGUF_FOLDER<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb9-10"><a aria-label="10"></a>    repo_id<span class="op">=</span>MODEL_REPO,</span>
+<span id="cb9-11"><a aria-label="11"></a>    repo_type<span class="op">=</span><span class="st">"model"</span>,</span>
+<span id="cb9-12"><a aria-label="12"></a>    path_in_repo<span class="op">=</span><span class="st">""</span>,  <span class="co"># GGUF files are typically found on the root level of a HF repo</span></span>
+<span id="cb9-13"><a aria-label="13"></a>    commit_message<span class="op">=</span><span class="st">"Upload GGUF quantized models"</span></span>
+<span id="cb9-14"><a aria-label="14"></a>)</span>
+<span id="cb9-15"><a aria-label="15"></a></span>
+<span id="cb9-16"><a aria-label="16"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">GGUFs uploaded successfully to https://huggingface.co/</span><span class="sc">{</span>MODEL_REPO<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section></section>
@@ -1097,12 +1102,12 @@
 <h2>References</h2>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-dettmers2023qlora" class="csl-entry" role="listitem">
 Dettmers, Tim, Artidoro Pagnoni, Ari Holtzman, and Luke Zettlemoyer. 2023. <span>“QLoRA: Efficient Finetuning of Quantized LLMs.”</span> <em>Advances in Neural Information Processing Systems</em> 36. <a href="https://arxiv.org/abs/2305.14314">https://arxiv.org/abs/2305.14314</a>.
 </div>
 <div id="ref-hu2021lora" class="csl-entry" role="listitem">
-Hu, Edward J., Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean Wang, Lu Wang, and Weizhu Chen. 2021. <span>“LoRA: Low-Rank Adaptation of Large Language Models.”</span> <em>arXiv Preprint arXiv:2106.09685</em>. <a href="https://arxiv.org/abs/2106.09685">https://arxiv.org/abs/2106.09685</a>.
+Hu, Edward J., Yelong Shen, Phillip Wallis, et al. 2021. <span>“LoRA: Low-Rank Adaptation of Large Language Models.”</span> <em>arXiv Preprint arXiv:2106.09685</em>. <a href="https://arxiv.org/abs/2106.09685">https://arxiv.org/abs/2106.09685</a>.
 </div>
 </div>
 </section></section>

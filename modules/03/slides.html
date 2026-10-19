@@ -6,11 +6,11 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-597958c53c93a607afca12fd375c57ed.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-5c1318cf63eba56dbef7ba16bc7d56f5.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.26">
+  <meta name="generator" content="quarto-1.10.19">
 
   <title>CS-394 – Module 3: Agents and Tools</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -19,10 +19,16 @@
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -97,7 +103,7 @@
     code span.vs { color: #032f62; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-eeafb82a00776dbd0312b01cd21cfa25.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-c0f83db45831a6b0d0e18a94327038c6.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -437,11 +443,11 @@
 <h2>Campus Agent</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/03/notebooks/campus-agent.ipynb" data-notebook-title="DigiPen Campus Agent" data-notebook-cellid="campus-agent">
 <div id="campus-agent" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a>agent <span class="op">=</span> Agent(</span>
-<span id="cb1-2"><a></a>    name<span class="op">=</span><span class="st">"DigiPen Campus Agent"</span>,</span>
-<span id="cb1-3"><a></a>    instructions<span class="op">=</span><span class="st">"You are a helpful campus agent that can plan and execute tasks for students at DigiPen. Please be concise and accurate in handing off tasks to other agents as needed."</span>,</span>
-<span id="cb1-4"><a></a>    handoffs<span class="op">=</span>[building_agent, course_agent, handbook_agent, cafe_agent],</span>
-<span id="cb1-5"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a aria-label="1"></a>agent <span class="op">=</span> Agent(</span>
+<span id="cb1-2"><a aria-label="2"></a>    name<span class="op">=</span><span class="st">"DigiPen Campus Agent"</span>,</span>
+<span id="cb1-3"><a aria-label="3"></a>    instructions<span class="op">=</span><span class="st">"You are a helpful campus agent that can plan and execute tasks for students at DigiPen. Please be concise and accurate in handing off tasks to other agents as needed."</span>,</span>
+<span id="cb1-4"><a aria-label="4"></a>    handoffs<span class="op">=</span>[building_agent, course_agent, handbook_agent, cafe_agent],</span>
+<span id="cb1-5"><a aria-label="5"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -449,17 +455,17 @@
 <h2>Building Agent</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/03/notebooks/campus-agent.ipynb" data-notebook-title="DigiPen Campus Agent" data-notebook-cellid="building-agent">
 <div id="building-agent" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a>building_agent <span class="op">=</span> Agent(</span>
-<span id="cb2-2"><a></a>    name<span class="op">=</span><span class="st">"Building Agent"</span>,</span>
-<span id="cb2-3"><a></a>    instructions<span class="op">=</span><span class="st">"You help students locate and provide information about buildings and rooms on campus. Be descriptive when giving locations."</span>,</span>
-<span id="cb2-4"><a></a>    tools<span class="op">=</span>[</span>
-<span id="cb2-5"><a></a>        FileSearchTool(</span>
-<span id="cb2-6"><a></a>            max_num_results<span class="op">=</span><span class="dv">3</span>,</span>
-<span id="cb2-7"><a></a>            vector_store_ids<span class="op">=</span>[VECTOR_STORE_ID],</span>
-<span id="cb2-8"><a></a>            include_search_results<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb2-9"><a></a>        )</span>
-<span id="cb2-10"><a></a>    ],</span>
-<span id="cb2-11"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a aria-label="1"></a>building_agent <span class="op">=</span> Agent(</span>
+<span id="cb2-2"><a aria-label="2"></a>    name<span class="op">=</span><span class="st">"Building Agent"</span>,</span>
+<span id="cb2-3"><a aria-label="3"></a>    instructions<span class="op">=</span><span class="st">"You help students locate and provide information about buildings and rooms on campus. Be descriptive when giving locations."</span>,</span>
+<span id="cb2-4"><a aria-label="4"></a>    tools<span class="op">=</span>[</span>
+<span id="cb2-5"><a aria-label="5"></a>        FileSearchTool(</span>
+<span id="cb2-6"><a aria-label="6"></a>            max_num_results<span class="op">=</span><span class="dv">3</span>,</span>
+<span id="cb2-7"><a aria-label="7"></a>            vector_store_ids<span class="op">=</span>[VECTOR_STORE_ID],</span>
+<span id="cb2-8"><a aria-label="8"></a>            include_search_results<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb2-9"><a aria-label="9"></a>        )</span>
+<span id="cb2-10"><a aria-label="10"></a>    ],</span>
+<span id="cb2-11"><a aria-label="11"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -467,17 +473,17 @@
 <h2>Course Agent</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/03/notebooks/campus-agent.ipynb" data-notebook-title="DigiPen Campus Agent" data-notebook-cellid="course-agent">
 <div id="course-agent" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>course_agent <span class="op">=</span> Agent(</span>
-<span id="cb3-2"><a></a>    name<span class="op">=</span><span class="st">"Course Agent"</span>,</span>
-<span id="cb3-3"><a></a>    instructions<span class="op">=</span><span class="st">"You help students find out information about courses held at DigiPen."</span>,</span>
-<span id="cb3-4"><a></a>    tools<span class="op">=</span>[</span>
-<span id="cb3-5"><a></a>        FileSearchTool(</span>
-<span id="cb3-6"><a></a>            max_num_results<span class="op">=</span><span class="dv">5</span>,</span>
-<span id="cb3-7"><a></a>            vector_store_ids<span class="op">=</span>[VECTOR_STORE_ID],</span>
-<span id="cb3-8"><a></a>            include_search_results<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb3-9"><a></a>        )</span>
-<span id="cb3-10"><a></a>    ],</span>
-<span id="cb3-11"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a aria-label="1"></a>course_agent <span class="op">=</span> Agent(</span>
+<span id="cb3-2"><a aria-label="2"></a>    name<span class="op">=</span><span class="st">"Course Agent"</span>,</span>
+<span id="cb3-3"><a aria-label="3"></a>    instructions<span class="op">=</span><span class="st">"You help students find out information about courses held at DigiPen."</span>,</span>
+<span id="cb3-4"><a aria-label="4"></a>    tools<span class="op">=</span>[</span>
+<span id="cb3-5"><a aria-label="5"></a>        FileSearchTool(</span>
+<span id="cb3-6"><a aria-label="6"></a>            max_num_results<span class="op">=</span><span class="dv">5</span>,</span>
+<span id="cb3-7"><a aria-label="7"></a>            vector_store_ids<span class="op">=</span>[VECTOR_STORE_ID],</span>
+<span id="cb3-8"><a aria-label="8"></a>            include_search_results<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb3-9"><a aria-label="9"></a>        )</span>
+<span id="cb3-10"><a aria-label="10"></a>    ],</span>
+<span id="cb3-11"><a aria-label="11"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -485,17 +491,17 @@
 <h2>Handbook Agent</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/03/notebooks/campus-agent.ipynb" data-notebook-title="DigiPen Campus Agent" data-notebook-cellid="handbook-agent">
 <div id="handbook-agent" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a>handbook_agent <span class="op">=</span> Agent(</span>
-<span id="cb4-2"><a></a>    name<span class="op">=</span><span class="st">"Handbook Agent"</span>,</span>
-<span id="cb4-3"><a></a>    instructions<span class="op">=</span><span class="st">"You help students navigate the school handbook, providing information about campus policies and student conduct."</span>,</span>
-<span id="cb4-4"><a></a>    tools<span class="op">=</span>[</span>
-<span id="cb4-5"><a></a>        FileSearchTool(</span>
-<span id="cb4-6"><a></a>            max_num_results<span class="op">=</span><span class="dv">5</span>,</span>
-<span id="cb4-7"><a></a>            vector_store_ids<span class="op">=</span>[VECTOR_STORE_ID],</span>
-<span id="cb4-8"><a></a>            include_search_results<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb4-9"><a></a>        )</span>
-<span id="cb4-10"><a></a>    ],</span>
-<span id="cb4-11"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a aria-label="1"></a>handbook_agent <span class="op">=</span> Agent(</span>
+<span id="cb4-2"><a aria-label="2"></a>    name<span class="op">=</span><span class="st">"Handbook Agent"</span>,</span>
+<span id="cb4-3"><a aria-label="3"></a>    instructions<span class="op">=</span><span class="st">"You help students navigate the school handbook, providing information about campus policies and student conduct."</span>,</span>
+<span id="cb4-4"><a aria-label="4"></a>    tools<span class="op">=</span>[</span>
+<span id="cb4-5"><a aria-label="5"></a>        FileSearchTool(</span>
+<span id="cb4-6"><a aria-label="6"></a>            max_num_results<span class="op">=</span><span class="dv">5</span>,</span>
+<span id="cb4-7"><a aria-label="7"></a>            vector_store_ids<span class="op">=</span>[VECTOR_STORE_ID],</span>
+<span id="cb4-8"><a aria-label="8"></a>            include_search_results<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb4-9"><a aria-label="9"></a>        )</span>
+<span id="cb4-10"><a aria-label="10"></a>    ],</span>
+<span id="cb4-11"><a aria-label="11"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -576,13 +582,13 @@
 <h2>Cafe Agent</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/03/notebooks/campus-agent.ipynb" data-notebook-title="DigiPen Campus Agent" data-notebook-cellid="cafe-agent">
 <div id="cafe-agent" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a>cafe_agent <span class="op">=</span> Agent(</span>
-<span id="cb5-2"><a></a>    name<span class="op">=</span><span class="st">"Cafe Agent"</span>,</span>
-<span id="cb5-3"><a></a>    instructions<span class="op">=</span><span class="st">"You help students locate and provide information about the Bytes Cafe."</span>,</span>
-<span id="cb5-4"><a></a>    tools<span class="op">=</span>[</span>
-<span id="cb5-5"><a></a>        get_bytes_cafe_menu,</span>
-<span id="cb5-6"><a></a>    ],</span>
-<span id="cb5-7"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a aria-label="1"></a>cafe_agent <span class="op">=</span> Agent(</span>
+<span id="cb5-2"><a aria-label="2"></a>    name<span class="op">=</span><span class="st">"Cafe Agent"</span>,</span>
+<span id="cb5-3"><a aria-label="3"></a>    instructions<span class="op">=</span><span class="st">"You help students locate and provide information about the Bytes Cafe."</span>,</span>
+<span id="cb5-4"><a aria-label="4"></a>    tools<span class="op">=</span>[</span>
+<span id="cb5-5"><a aria-label="5"></a>        get_bytes_cafe_menu,</span>
+<span id="cb5-6"><a aria-label="6"></a>    ],</span>
+<span id="cb5-7"><a aria-label="7"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -590,29 +596,29 @@
 <h2>Cafe Agent Tool</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/03/notebooks/campus-agent.ipynb" data-notebook-title="DigiPen Campus Agent" data-notebook-cellid="cafe-agent-tool">
 <div id="cafe-agent-tool" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a></a><span class="im">from</span> agents <span class="im">import</span> function_tool</span>
-<span id="cb6-2"><a></a></span>
-<span id="cb6-3"><a></a><span class="at">@function_tool</span></span>
-<span id="cb6-4"><a></a><span class="kw">def</span> get_bytes_cafe_menu(date: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">any</span>:</span>
-<span id="cb6-5"><a></a>    <span class="cf">return</span> {</span>
-<span id="cb6-6"><a></a>        <span class="ss">f"</span><span class="sc">{</span>date<span class="sc">}</span><span class="ss">"</span>: {</span>
-<span id="cb6-7"><a></a>            <span class="st">"daily byte"</span>: {</span>
-<span id="cb6-8"><a></a>                <span class="st">"name"</span>: <span class="st">"Steak Quesadilla"</span>,</span>
-<span id="cb6-9"><a></a>                <span class="st">"price"</span>: <span class="dv">12</span>,</span>
-<span id="cb6-10"><a></a>                <span class="st">"description"</span>: <span class="st">"Flank steak, mixed cheese in a flour tortilla served with air fried potatoes, sour cream and salsa"</span>,</span>
-<span id="cb6-11"><a></a>            },</span>
-<span id="cb6-12"><a></a>            <span class="st">"vegetarian"</span>: {</span>
-<span id="cb6-13"><a></a>                <span class="st">"name"</span>: <span class="st">"Impossible Quesadilla"</span>,</span>
-<span id="cb6-14"><a></a>                <span class="st">"price"</span>: <span class="dv">12</span>,</span>
-<span id="cb6-15"><a></a>                <span class="st">"description"</span>: <span class="st">"Impossible plant based product, mixed cheese in a flour tortilla served with air fried potatoes, sour cream and salsa"</span>,</span>
-<span id="cb6-16"><a></a>            },</span>
-<span id="cb6-17"><a></a>            <span class="st">"international"</span>: {</span>
-<span id="cb6-18"><a></a>                <span class="st">"name"</span>: <span class="st">"Chicken Curry"</span>,</span>
-<span id="cb6-19"><a></a>                <span class="st">"price"</span>: <span class="dv">12</span>,</span>
-<span id="cb6-20"><a></a>                <span class="st">"description"</span>: <span class="st">"Chicken thighs, onion, carrot, potato, curry sauce served over rice"</span>,</span>
-<span id="cb6-21"><a></a>            },</span>
-<span id="cb6-22"><a></a>        }</span>
-<span id="cb6-23"><a></a>    }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a aria-label="1"></a><span class="im">from</span> agents <span class="im">import</span> function_tool</span>
+<span id="cb6-2"><a aria-label="2"></a></span>
+<span id="cb6-3"><a aria-label="3"></a><span class="at">@function_tool</span></span>
+<span id="cb6-4"><a aria-label="4"></a><span class="kw">def</span> get_bytes_cafe_menu(date: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">any</span>:</span>
+<span id="cb6-5"><a aria-label="5"></a>    <span class="cf">return</span> {</span>
+<span id="cb6-6"><a aria-label="6"></a>        <span class="ss">f"</span><span class="sc">{</span>date<span class="sc">}</span><span class="ss">"</span>: {</span>
+<span id="cb6-7"><a aria-label="7"></a>            <span class="st">"daily byte"</span>: {</span>
+<span id="cb6-8"><a aria-label="8"></a>                <span class="st">"name"</span>: <span class="st">"Steak Quesadilla"</span>,</span>
+<span id="cb6-9"><a aria-label="9"></a>                <span class="st">"price"</span>: <span class="dv">12</span>,</span>
+<span id="cb6-10"><a aria-label="10"></a>                <span class="st">"description"</span>: <span class="st">"Flank steak, mixed cheese in a flour tortilla served with air fried potatoes, sour cream and salsa"</span>,</span>
+<span id="cb6-11"><a aria-label="11"></a>            },</span>
+<span id="cb6-12"><a aria-label="12"></a>            <span class="st">"vegetarian"</span>: {</span>
+<span id="cb6-13"><a aria-label="13"></a>                <span class="st">"name"</span>: <span class="st">"Impossible Quesadilla"</span>,</span>
+<span id="cb6-14"><a aria-label="14"></a>                <span class="st">"price"</span>: <span class="dv">12</span>,</span>
+<span id="cb6-15"><a aria-label="15"></a>                <span class="st">"description"</span>: <span class="st">"Impossible plant based product, mixed cheese in a flour tortilla served with air fried potatoes, sour cream and salsa"</span>,</span>
+<span id="cb6-16"><a aria-label="16"></a>            },</span>
+<span id="cb6-17"><a aria-label="17"></a>            <span class="st">"international"</span>: {</span>
+<span id="cb6-18"><a aria-label="18"></a>                <span class="st">"name"</span>: <span class="st">"Chicken Curry"</span>,</span>
+<span id="cb6-19"><a aria-label="19"></a>                <span class="st">"price"</span>: <span class="dv">12</span>,</span>
+<span id="cb6-20"><a aria-label="20"></a>                <span class="st">"description"</span>: <span class="st">"Chicken thighs, onion, carrot, potato, curry sauce served over rice"</span>,</span>
+<span id="cb6-21"><a aria-label="21"></a>            },</span>
+<span id="cb6-22"><a aria-label="22"></a>        }</span>
+<span id="cb6-23"><a aria-label="23"></a>    }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -629,20 +635,20 @@
 </section>
 <section id="sidebar-fine-tuning-models-for-tools-1" class="slide level2">
 <h2>Sidebar: Fine-tuning models for Tools</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb7-1"><a></a><span class="fu">{</span></span>
-<span id="cb7-2"><a></a>  <span class="dt">"role"</span><span class="fu">:</span> <span class="st">"assistant"</span><span class="fu">,</span></span>
-<span id="cb7-3"><a></a>  <span class="dt">"content"</span><span class="fu">:</span> <span class="kw">null</span><span class="fu">,</span></span>
-<span id="cb7-4"><a></a>  <span class="dt">"tool_calls"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb7-5"><a></a>    <span class="fu">{</span></span>
-<span id="cb7-6"><a></a>      <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"call_abc123"</span><span class="fu">,</span></span>
-<span id="cb7-7"><a></a>      <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"function"</span><span class="fu">,</span></span>
-<span id="cb7-8"><a></a>      <span class="dt">"function"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb7-9"><a></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"get_weather"</span><span class="fu">,</span></span>
-<span id="cb7-10"><a></a>        <span class="dt">"arguments"</span><span class="fu">:</span> <span class="st">"{</span><span class="ch">\"</span><span class="st">location</span><span class="ch">\"</span><span class="st">: </span><span class="ch">\"</span><span class="st">San Francisco</span><span class="ch">\"</span><span class="st">, </span><span class="ch">\"</span><span class="st">unit</span><span class="ch">\"</span><span class="st">: </span><span class="ch">\"</span><span class="st">celsius</span><span class="ch">\"</span><span class="st">}"</span></span>
-<span id="cb7-11"><a></a>      <span class="fu">}</span></span>
-<span id="cb7-12"><a></a>    <span class="fu">}</span></span>
-<span id="cb7-13"><a></a>  <span class="ot">]</span></span>
-<span id="cb7-14"><a></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb7-1"><a aria-label="1"></a><span class="fu">{</span></span>
+<span id="cb7-2"><a aria-label="2"></a>  <span class="dt">"role"</span><span class="fu">:</span> <span class="st">"assistant"</span><span class="fu">,</span></span>
+<span id="cb7-3"><a aria-label="3"></a>  <span class="dt">"content"</span><span class="fu">:</span> <span class="kw">null</span><span class="fu">,</span></span>
+<span id="cb7-4"><a aria-label="4"></a>  <span class="dt">"tool_calls"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb7-5"><a aria-label="5"></a>    <span class="fu">{</span></span>
+<span id="cb7-6"><a aria-label="6"></a>      <span class="dt">"id"</span><span class="fu">:</span> <span class="st">"call_abc123"</span><span class="fu">,</span></span>
+<span id="cb7-7"><a aria-label="7"></a>      <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"function"</span><span class="fu">,</span></span>
+<span id="cb7-8"><a aria-label="8"></a>      <span class="dt">"function"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb7-9"><a aria-label="9"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"get_weather"</span><span class="fu">,</span></span>
+<span id="cb7-10"><a aria-label="10"></a>        <span class="dt">"arguments"</span><span class="fu">:</span> <span class="st">"{</span><span class="ch">\"</span><span class="st">location</span><span class="ch">\"</span><span class="st">: </span><span class="ch">\"</span><span class="st">San Francisco</span><span class="ch">\"</span><span class="st">, </span><span class="ch">\"</span><span class="st">unit</span><span class="ch">\"</span><span class="st">: </span><span class="ch">\"</span><span class="st">celsius</span><span class="ch">\"</span><span class="st">}"</span></span>
+<span id="cb7-11"><a aria-label="11"></a>      <span class="fu">}</span></span>
+<span id="cb7-12"><a aria-label="12"></a>    <span class="fu">}</span></span>
+<span id="cb7-13"><a aria-label="13"></a>  <span class="ot">]</span></span>
+<span id="cb7-14"><a aria-label="14"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="sidebar-fine-tuning-models-for-tools-2" class="slide level2">
 <h2>Sidebar: Fine-tuning models for Tools</h2>
@@ -653,11 +659,11 @@
 </section>
 <section id="sidebar-fine-tuning-models-for-tools-3" class="slide level2">
 <h2>Sidebar: Fine-tuning models for Tools</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb8-1"><a></a><span class="fu">{</span></span>
-<span id="cb8-2"><a></a>  <span class="dt">"role"</span><span class="fu">:</span> <span class="st">"tool"</span><span class="fu">,</span></span>
-<span id="cb8-3"><a></a>  <span class="dt">"tool_call_id"</span><span class="fu">:</span> <span class="st">"call_abc123"</span><span class="fu">,</span></span>
-<span id="cb8-4"><a></a>  <span class="dt">"content"</span><span class="fu">:</span> <span class="st">"{</span><span class="ch">\"</span><span class="st">temperature</span><span class="ch">\"</span><span class="st">: 18, </span><span class="ch">\"</span><span class="st">condition</span><span class="ch">\"</span><span class="st">: </span><span class="ch">\"</span><span class="st">partly cloudy</span><span class="ch">\"</span><span class="st">, </span><span class="ch">\"</span><span class="st">humidity</span><span class="ch">\"</span><span class="st">: 65, </span><span class="ch">\"</span><span class="st">wind_speed</span><span class="ch">\"</span><span class="st">: 12}"</span></span>
-<span id="cb8-5"><a></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb8-1"><a aria-label="1"></a><span class="fu">{</span></span>
+<span id="cb8-2"><a aria-label="2"></a>  <span class="dt">"role"</span><span class="fu">:</span> <span class="st">"tool"</span><span class="fu">,</span></span>
+<span id="cb8-3"><a aria-label="3"></a>  <span class="dt">"tool_call_id"</span><span class="fu">:</span> <span class="st">"call_abc123"</span><span class="fu">,</span></span>
+<span id="cb8-4"><a aria-label="4"></a>  <span class="dt">"content"</span><span class="fu">:</span> <span class="st">"{</span><span class="ch">\"</span><span class="st">temperature</span><span class="ch">\"</span><span class="st">: 18, </span><span class="ch">\"</span><span class="st">condition</span><span class="ch">\"</span><span class="st">: </span><span class="ch">\"</span><span class="st">partly cloudy</span><span class="ch">\"</span><span class="st">, </span><span class="ch">\"</span><span class="st">humidity</span><span class="ch">\"</span><span class="st">: 65, </span><span class="ch">\"</span><span class="st">wind_speed</span><span class="ch">\"</span><span class="st">: 12}"</span></span>
+<span id="cb8-5"><a aria-label="5"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="sidebar-fine-tuning-models-for-tools-4" class="slide level2">
 <h2>Sidebar: Fine-tuning models for Tools</h2>
@@ -842,10 +848,10 @@
 <h2>Short-term Memory</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/03/notebooks/memory.ipynb" data-notebook-title="Agent Memory" data-notebook-cellid="create-session">
 <div id="create-session" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a></a><span class="im">from</span> agents <span class="im">import</span> Agent, Runner, SQLiteSession</span>
-<span id="cb9-2"><a></a></span>
-<span id="cb9-3"><a></a>agent <span class="op">=</span> Agent(name<span class="op">=</span><span class="st">"Assistant"</span>, instructions<span class="op">=</span><span class="st">"Reply very concisely"</span>)</span>
-<span id="cb9-4"><a></a>session <span class="op">=</span> SQLiteSession(<span class="st">"conv_123"</span>, db_path<span class="op">=</span>SQLITE_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a aria-label="1"></a><span class="im">from</span> agents <span class="im">import</span> Agent, Runner, SQLiteSession</span>
+<span id="cb9-2"><a aria-label="2"></a></span>
+<span id="cb9-3"><a aria-label="3"></a>agent <span class="op">=</span> Agent(name<span class="op">=</span><span class="st">"Assistant"</span>, instructions<span class="op">=</span><span class="st">"Reply very concisely"</span>)</span>
+<span id="cb9-4"><a aria-label="4"></a>session <span class="op">=</span> SQLiteSession(<span class="st">"conv_123"</span>, db_path<span class="op">=</span>SQLITE_DB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
@@ -853,8 +859,8 @@
 <h2>Short-term Memory</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/03/notebooks/memory.ipynb" data-notebook-title="Agent Memory" data-notebook-cellid="conversation-stored">
 <div id="conversation-stored" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a></a>result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"My name is Simon"</span>, session<span class="op">=</span>session)</span>
-<span id="cb10-2"><a></a><span class="bu">print</span>(result.final_output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a aria-label="1"></a>result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"My name is Simon"</span>, session<span class="op">=</span>session)</span>
+<span id="cb10-2"><a aria-label="2"></a><span class="bu">print</span>(result.final_output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Nice to meet you, Simon!</code></pre>
 </div>
@@ -865,8 +871,8 @@
 <h2>Short-term Memory</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/03/notebooks/memory.ipynb" data-notebook-title="Agent Memory" data-notebook-cellid="conversation-retrieved">
 <div id="conversation-retrieved" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a></a>result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"What is my name?"</span>, session<span class="op">=</span>session)</span>
-<span id="cb12-2"><a></a><span class="bu">print</span>(result.final_output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a aria-label="1"></a>result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"What is my name?"</span>, session<span class="op">=</span>session)</span>
+<span id="cb12-2"><a aria-label="2"></a><span class="bu">print</span>(result.final_output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Your name is Simon.</code></pre>
 </div>
@@ -877,8 +883,8 @@
 <h2>Short-term Memory</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/03/notebooks/memory.ipynb" data-notebook-title="Agent Memory" data-notebook-cellid="without-session">
 <div id="without-session" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a></a>result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"What is my name?"</span>)</span>
-<span id="cb14-2"><a></a><span class="bu">print</span>(result.final_output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a aria-label="1"></a>result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"What is my name?"</span>)</span>
+<span id="cb14-2"><a aria-label="2"></a><span class="bu">print</span>(result.final_output)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>You haven’t shared your name yet.</code></pre>
 </div>
@@ -917,16 +923,16 @@
 </section>
 <section id="implementing-long-term-memory-mem0" class="slide level2">
 <h2>Implementing Long-term Memory (mem0)</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a></a><span class="im">from</span> mem0 <span class="im">import</span> Memory</span>
-<span id="cb16-2"><a></a>memory <span class="op">=</span> Memory()</span>
-<span id="cb16-3"><a></a></span>
-<span id="cb16-4"><a></a><span class="co"># Create new memories from the conversation</span></span>
-<span id="cb16-5"><a></a>messages.append({<span class="st">"role"</span>: <span class="st">"assistant"</span>, <span class="st">"content"</span>: assistant_response})</span>
-<span id="cb16-6"><a></a>memory.add(messages, user_id<span class="op">=</span>user_id)</span>
-<span id="cb16-7"><a></a></span>
-<span id="cb16-8"><a></a><span class="co"># Retrieve relevant memories</span></span>
-<span id="cb16-9"><a></a>relevant_memories <span class="op">=</span> memory.search(query<span class="op">=</span>message, user_id<span class="op">=</span>user_id, limit<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb16-10"><a></a><span class="co"># (append these to the system prompt)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a aria-label="1"></a><span class="im">from</span> mem0 <span class="im">import</span> Memory</span>
+<span id="cb16-2"><a aria-label="2"></a>memory <span class="op">=</span> Memory()</span>
+<span id="cb16-3"><a aria-label="3"></a></span>
+<span id="cb16-4"><a aria-label="4"></a><span class="co"># Create new memories from the conversation</span></span>
+<span id="cb16-5"><a aria-label="5"></a>messages.append({<span class="st">"role"</span>: <span class="st">"assistant"</span>, <span class="st">"content"</span>: assistant_response})</span>
+<span id="cb16-6"><a aria-label="6"></a>memory.add(messages, user_id<span class="op">=</span>user_id)</span>
+<span id="cb16-7"><a aria-label="7"></a></span>
+<span id="cb16-8"><a aria-label="8"></a><span class="co"># Retrieve relevant memories</span></span>
+<span id="cb16-9"><a aria-label="9"></a>relevant_memories <span class="op">=</span> memory.search(query<span class="op">=</span>message, user_id<span class="op">=</span>user_id, limit<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb16-10"><a aria-label="10"></a><span class="co"># (append these to the system prompt)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="implementing-long-term-memory-1" class="slide level2">
 <h2>Implementing Long-term Memory</h2>
@@ -1008,14 +1014,14 @@
 <h2>OpenAI Agents SDK and MCP</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/03/notebooks/open-meteo-mcp.ipynb" data-notebook-title="OpenAI Agents SDK with MCP Server" data-notebook-cellid="list-available-tools">
 <div id="list-available-tools" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="40684e74-d669-4926-c1ec-986d770ace7f">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a></a><span class="cf">try</span>:</span>
-<span id="cb17-2"><a></a>  <span class="cf">async</span> <span class="cf">with</span> MCPServerStreamableHttp(</span>
-<span id="cb17-3"><a></a>      params <span class="op">=</span> {<span class="st">"url"</span>: <span class="st">"http://localhost:3000/mcp"</span>}</span>
-<span id="cb17-4"><a></a>      ) <span class="im">as</span> server:</span>
-<span id="cb17-5"><a></a>    tools <span class="op">=</span> <span class="cf">await</span> server.list_tools()</span>
-<span id="cb17-6"><a></a>    <span class="bu">print</span>(<span class="ss">f"Available tools: </span><span class="sc">{</span>[tool.name <span class="cf">for</span> tool <span class="kw">in</span> tools]<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb17-7"><a></a><span class="cf">except</span>:</span>
-<span id="cb17-8"><a></a>  <span class="bu">print</span>(<span class="st">"Is the MCP server running? Check at the top of this notebook for instructions."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a aria-label="1"></a><span class="cf">try</span>:</span>
+<span id="cb17-2"><a aria-label="2"></a>  <span class="cf">async</span> <span class="cf">with</span> MCPServerStreamableHttp(</span>
+<span id="cb17-3"><a aria-label="3"></a>      params <span class="op">=</span> {<span class="st">"url"</span>: <span class="st">"http://localhost:3000/mcp"</span>}</span>
+<span id="cb17-4"><a aria-label="4"></a>      ) <span class="im">as</span> server:</span>
+<span id="cb17-5"><a aria-label="5"></a>    tools <span class="op">=</span> <span class="cf">await</span> server.list_tools()</span>
+<span id="cb17-6"><a aria-label="6"></a>    <span class="bu">print</span>(<span class="ss">f"Available tools: </span><span class="sc">{</span>[tool.name <span class="cf">for</span> tool <span class="kw">in</span> tools]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb17-7"><a aria-label="7"></a><span class="cf">except</span>:</span>
+<span id="cb17-8"><a aria-label="8"></a>  <span class="bu">print</span>(<span class="st">"Is the MCP server running? Check at the top of this notebook for instructions."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Available tools: ['weather_forecast', 'weather_archive', 'air_quality', 'marine_weather', 'elevation', 'flood_forecast', 'seasonal_forecast', 'climate_projection', 'ensemble_forecast', 'geocoding', 'dwd_icon_forecast', 'gfs_forecast', 'meteofrance_forecast', 'ecmwf_forecast', 'jma_forecast', 'metno_forecast', 'gem_forecast']</code></pre>
 </div>
@@ -1026,20 +1032,20 @@
 <h2>OpenAI Agents SDK and MCP</h2>
 <div class="quarto-embed-nb-cell" data-notebook="/home/runner/work/CS-394/CS-394/modules/03/notebooks/open-meteo-mcp.ipynb" data-notebook-title="OpenAI Agents SDK with MCP Server" data-notebook-cellid="simple-query">
 <div id="simple-query" class="cell" data-quarto-private-1="{&quot;key&quot;:&quot;colab&quot;,&quot;value&quot;:{&quot;base_uri&quot;:&quot;https://localhost:8080/&quot;}}" data-outputid="c0988bc3-cf36-4263-f27b-71aeebd2e727">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a></a><span class="cf">try</span>:</span>
-<span id="cb19-2"><a></a>  <span class="cf">async</span> <span class="cf">with</span> MCPServerStreamableHttp(</span>
-<span id="cb19-3"><a></a>    params <span class="op">=</span> {<span class="st">"url"</span>: <span class="st">"http://localhost:3000/mcp"</span>}</span>
-<span id="cb19-4"><a></a>    ) <span class="im">as</span> server:</span>
-<span id="cb19-5"><a></a>    agent <span class="op">=</span> Agent(</span>
-<span id="cb19-6"><a></a>        name<span class="op">=</span><span class="st">"Weather Agent"</span>,</span>
-<span id="cb19-7"><a></a>        model<span class="op">=</span><span class="st">"gpt-5.2"</span>,</span>
-<span id="cb19-8"><a></a>        instructions<span class="op">=</span><span class="st">"You are a helpful weather assistant. Use the available tools to answer questions about weather forecasts, historical weather data, and air quality. Always provide clear, concise answers."</span>,</span>
-<span id="cb19-9"><a></a>        mcp_servers<span class="op">=</span>[server],</span>
-<span id="cb19-10"><a></a>    )</span>
-<span id="cb19-11"><a></a>    result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"What's the weather forecast for Minneapolis–St. Paul this week?"</span>)</span>
-<span id="cb19-12"><a></a>    <span class="bu">print</span>(result.final_output)</span>
-<span id="cb19-13"><a></a><span class="cf">except</span>:</span>
-<span id="cb19-14"><a></a>  <span class="bu">print</span>(<span class="st">"Is the MCP server running? Check at the top of this notebook for instructions."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a aria-label="1"></a><span class="cf">try</span>:</span>
+<span id="cb19-2"><a aria-label="2"></a>  <span class="cf">async</span> <span class="cf">with</span> MCPServerStreamableHttp(</span>
+<span id="cb19-3"><a aria-label="3"></a>    params <span class="op">=</span> {<span class="st">"url"</span>: <span class="st">"http://localhost:3000/mcp"</span>}</span>
+<span id="cb19-4"><a aria-label="4"></a>    ) <span class="im">as</span> server:</span>
+<span id="cb19-5"><a aria-label="5"></a>    agent <span class="op">=</span> Agent(</span>
+<span id="cb19-6"><a aria-label="6"></a>        name<span class="op">=</span><span class="st">"Weather Agent"</span>,</span>
+<span id="cb19-7"><a aria-label="7"></a>        model<span class="op">=</span><span class="st">"gpt-5.2"</span>,</span>
+<span id="cb19-8"><a aria-label="8"></a>        instructions<span class="op">=</span><span class="st">"You are a helpful weather assistant. Use the available tools to answer questions about weather forecasts, historical weather data, and air quality. Always provide clear, concise answers."</span>,</span>
+<span id="cb19-9"><a aria-label="9"></a>        mcp_servers<span class="op">=</span>[server],</span>
+<span id="cb19-10"><a aria-label="10"></a>    )</span>
+<span id="cb19-11"><a aria-label="11"></a>    result <span class="op">=</span> <span class="cf">await</span> Runner.run(agent, <span class="st">"What's the weather forecast for Minneapolis–St. Paul this week?"</span>)</span>
+<span id="cb19-12"><a aria-label="12"></a>    <span class="bu">print</span>(result.final_output)</span>
+<span id="cb19-13"><a aria-label="13"></a><span class="cf">except</span>:</span>
+<span id="cb19-14"><a aria-label="14"></a>  <span class="bu">print</span>(<span class="st">"Is the MCP server running? Check at the top of this notebook for instructions."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Minneapolis–St. Paul (Twin Cities) forecast for the next 7 days (America/Chicago):
 
