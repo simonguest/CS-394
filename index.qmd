@@ -2,4 +2,4 @@
 
 ## About
 
-This site contains a collection of slides, code, and other resources for lectures held within the 25/26 CS-394/594 course.
+This site contains a collection of slides, code, and other resources for lectures held within the 26/27 CS-394/594 course.
